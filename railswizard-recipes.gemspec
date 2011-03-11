@@ -1,18 +1,22 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "railswizard-recipes/version"
+require File.dirname(__FILE__) + "/version"
 
 Gem::Specification.new do |s|
   s.name        = "railswizard-recipes"
-  s.version     = Railswizard::Recipes::VERSION
+  s.version     = RailsWizard::Recipes::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.authors     = ["Michael Bleigh"]
+  s.email       = ["michael@intridea.com"]
+  s.homepage    = "http://railswizard.org/"
+  s.summary     = %q{The collection of recipes available on RailsWizard.org}
+  s.description = %q{The collection of recipes available on RailsWizard.org}
 
   s.rubyforge_project = "railswizard-recipes"
+  
+  s.add_dependency "i18n"
+  s.add_dependency "activesupport", "~> 3.0.0"
+  s.add_development_dependency "rspec", "~> 2.5.0"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
