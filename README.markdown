@@ -16,20 +16,18 @@ ruby file. The `__END__` parsing convention is used so that each recipe
 is actually a valid, parseable Ruby file. The structure of a recipe 
 looks something like this:
 
-```ruby
-gem 'supergem'
+    gem 'supergem'
 
-after_bundler do
-  generate "supergem:install"
-end
+    after_bundler do
+      generate "supergem:install"
+    end
 
-__END__
+    __END__
 
-category: templating
-name: SuperGem
-description: Installs SuperGem which is useful for things
-author: mbleigh
-```
+    category: templating
+    name: SuperGem
+    description: Installs SuperGem which is useful for things
+    author: mbleigh
 
 It's really that simple. The gem has RSpec tests that automatically
 validate each recipe in the repository, so you should run `rake spec`
