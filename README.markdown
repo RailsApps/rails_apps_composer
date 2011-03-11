@@ -1,9 +1,12 @@
-# RailsWizard Recipes
+# RailsWizard Gem 
 
-This is the official collection of recipes for [RailsWizard][1], the
+This is the official gem collection of recipes for [RailsWizard][1], the
 online Rails template generator. Previously stored in MongoDB, the
 recipes now live in a GitHub repository to make them fork-friendly. You
 can see all of the recipes in the [recipes directory][2].
+
+If you're looking for the web app source code, it now lives at
+[rails_wizard-web][3].
 
 ## Submitting a Recipe
 
@@ -39,4 +42,5 @@ RailsWizard could properly parse and understand your recipe file.
 RailsWizard and its recipes are distributed under the MIT License.
 
 [1]:http://railswizard.org/
-[2]:https://github.com/intridea/railswizard/tree/master/recipes
+[2]:https://github.com/intridea/rails_wizard/tree/master/recipes
+[3]:https://github.com/intridea/rails_wizard-web
