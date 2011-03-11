@@ -43,4 +43,4 @@ RailsWizard and its recipes are distributed under the MIT License.
 
 [1]:http://railswizard.org/
 [2]:https://github.com/intridea/rails_wizard/tree/master/recipes
-[3]:https://github.com/intridea/rails_wizard-web
+[3]:https://github.com/intridea/rails_wizard.web
