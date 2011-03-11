@@ -1,17 +1,3 @@
-require 'rails_wizard/recipe'
-
-module RailsWizard
-  module Recipes
-    class Devise < RailsWizard::Recipe
-      name "Devise"
-      category "authentication"
-      description "Utilize Devise for authentication, automatically configured for your selected ORM."
-    end
-  end
-end
-
-__END__
-
 gem 'devise'
 
 after_bundler do
@@ -29,3 +15,9 @@ after_bundler do
     generate 'devise user'
   end
 end
+
+__END__
+
+category: authentication
+name: Devise
+description: "Utilize Devise for authentication, automatically configured for your selected ORM."

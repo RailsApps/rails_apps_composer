@@ -1,62 +1,40 @@
 require 'active_support/inflector'
+require 'yaml'
 
 module RailsWizard
-  module Recipes
-    @@categories = {}
-    @@list = {}
-    
-    def self.add(recipe)
-      @@list[recipe.key] = recipe
-    end
-
-    def self.list
-      @@list.keys.sort
-    end
-
-    def self.list_classes
-      @@list.values.sort_by{|c| c.key}
-    end
-
-    def self.for(category)
-      (@@categories[category.to_s] || []).sort
-    end
-
-    def self.add_to_category(category, recipe)
-      (@@categories[category.to_s] ||= []) << recipe.key
-      @@categories[category.to_s].uniq!
-    end
-
-    def self.remove_from_category(category, recipe)
-      (@@categories[category.to_s] ||= []).delete(recipe.key)
-    end
-  end
-
   class Recipe
-    def self.inherited(subclass)
-      file, = caller[0].partition(':')
-      
-      parts = File.open(file).read.split(/^__END__$/)
-      if parts.size > 1
-        subclass.template parts.last.strip
+    def self.generate(key, template_or_file, attributes = {})
+      if template_or_file.respond_to?(:read)
+        file = template_or_file.read
+        parts = file.split(/^__END__$/)
+        raise ArgumentError, "The recipe file must have YAML matter after an __END__" unless parts.size == 2
+        template = parts.first.strip
+        attributes = YAML.load(parts.last).inject({}) do |h,(k,v)|
+          h[k.to_sym] = v
+          h
+        end.merge!(attributes)
+      else
+        template = template_or_file
       end
-      
-      RailsWizard::Recipes.add(subclass)
+ 
+      recipe_class = Class.new(RailsWizard::Recipe) 
+      recipe_class.attributes = attributes
+      recipe_class.template = template
+      recipe_class.key = key
+
+      recipe_class
     end
 
-    # The unique key to reference this recipe, calculated simply
-    # as the underscoring of its class name.
-    def self.key(val = false)
-      ActiveSupport::Inflector.underscore(ActiveSupport::Inflector.demodulize(to_s))
-    end
-
-    ATTRIBUTES = %w(category name description template)
+    ATTRIBUTES = %w(key category name description template)
     
     ATTRIBUTES.each do |setter|
       class_eval <<-RUBY
-        def self.#{setter}(val = false)
-          @attributes ||= {}
-          @attributes[:#{setter}] = val unless val == false
-          @attributes[:#{setter}]
+        def self.#{setter}
+          (@attributes ||= {})[:#{setter}]
+        end
+
+        def self.#{setter}=(val)
+          (@attributes ||= {})[:#{setter}] = val
         end
 
         def #{setter}
@@ -65,22 +43,14 @@ module RailsWizard
       RUBY
     end
 
-    def self.category(val = false)
-      if @attributes[:category]
-        RailsWizard::Recipes.remove_from_category(@attributes[:category], self)
-      end
-
-      @attributes ||= {}
-      @attributes[:category] = val unless val == false
-      RailsWizard::Recipes.add_to_category(val, self)
-      @attributes[:category]
-    end
-
-
     # The attributes hash containing any set values for
     # the properties specified in ATTRIBUTES.
     def self.attributes
-      @attributes
+      @attributes || {}
+    end
+
+    def self.attributes=(hash)
+      @attributes = hash
     end
 
     def attributes
