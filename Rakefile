@@ -33,3 +33,11 @@ task :run => :clean do
     file.unlink
   end
 end
+
+desc "Prints out a template from the provided recipes."
+task :print do
+  require 'rails_wizard'
+
+  recipes = ENV['RECIPES'].split(',')
+  puts RailsWizard::Template.new(recipes).compile
+end
