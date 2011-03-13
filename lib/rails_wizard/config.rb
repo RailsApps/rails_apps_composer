@@ -1,10 +1,15 @@
+require 'active_support/ordered_hash'
+
 module RailsWizard
   class Config
     attr_reader :questions
 
     def initialize(schema)
-      @questions = {}
-      schema.each_pair do |key, details|
+      @questions = ActiveSupport::OrderedHash.new
+      schema.each do |hash| 
+        key = hash.keys.first
+        details = hash.values.first
+
         kind = details['type']
         raise ArgumentError, "Unrecognized question type, must be one of #{QUESTION_TYPES.keys.join(', ')}" unless QUESTION_TYPES.keys.include?(kind)
         @questions[key] = QUESTION_TYPES[kind].new(details)

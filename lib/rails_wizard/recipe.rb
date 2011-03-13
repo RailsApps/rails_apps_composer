@@ -1,7 +1,8 @@
+require 'rails_wizard/config'
+
 require 'active_support/inflector'
 require 'yaml'
-
-require 'rails_wizard/config'
+require 'erb'
 
 module RailsWizard
   class Recipe
@@ -82,7 +83,16 @@ module RailsWizard
     end
 
     def self.from_mongo(key)
-      RailsWizard::Recipes[key]
+      case key
+        when String
+          RailsWizard::Recipes[key]
+        when RailsWizard::Recipe
+          key
+      end
+    end
+
+    def self.get_binding
+      binding
     end
   end
 end
