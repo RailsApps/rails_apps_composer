@@ -7,6 +7,9 @@ end
 
 __END__
 
-category: authentication
 name: OmniAuth
 description: "A basic setup of OmniAuth with a SessionsController to handle the request and callback phases."
+author: mbleigh
+
+exclusive: authentication
+category: authentication

@@ -2,6 +2,10 @@
 
 __END__
 
-category: orm
 name: ActiveRecord
 description: "Use the default ActiveRecord database store."
+author: mbleigh
+
+exclusive: orm
+category: persistence
+tags: [sql, defaults, orm]

@@ -1,5 +1,6 @@
 require 'rails_wizard/recipes'
 require 'rails_wizard/recipe'
+require 'rails_wizard/config'
 
 Dir[File.dirname(__FILE__) + '/../recipes/*.rb'].each do |path|
   key = File.basename(path, '.rb')

@@ -16,6 +16,12 @@ RailsWizard::Recipes.list_classes.each do |recipe|
       end
     end
 
+    it "should have a Config or nil config" do
+      if recipe.config
+        recipe.config.should be_kind_of(RailsWizard::Config)
+      end
+    end
+
     it "should be in the list" do
       RailsWizard::Recipes.list_classes.should be_include(recipe)
       RailsWizard::Recipes.list.should be_include(recipe.key)

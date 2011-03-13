@@ -1,8 +1,16 @@
 require 'active_support/inflector'
 require 'yaml'
 
+require 'rails_wizard/config'
+
 module RailsWizard
   class Recipe
+    ATTRIBUTES = %w(key args category name description template config)
+    DEFAULT_ATTRIBUTES = {
+      :category => 'other',
+      :args => []
+    }
+
     def self.generate(key, template_or_file, attributes = {})
       if template_or_file.respond_to?(:read)
         file = template_or_file.read
@@ -25,16 +33,14 @@ module RailsWizard
       recipe_class
     end
 
-    ATTRIBUTES = %w(key category name description template)
-    
     ATTRIBUTES.each do |setter|
       class_eval <<-RUBY
         def self.#{setter}
-          (@attributes ||= {})[:#{setter}]
+          attributes[:#{setter}]
         end
 
         def self.#{setter}=(val)
-          (@attributes ||= {})[:#{setter}] = val
+          attributes[:#{setter}] = val
         end
 
         def #{setter}
@@ -44,21 +50,39 @@ module RailsWizard
     end
 
     # The attributes hash containing any set values for
-    # the properties specified in ATTRIBUTES.
     def self.attributes
-      @attributes || {}
+      @attributes ||= DEFAULT_ATTRIBUTES.dup
     end
 
     def self.attributes=(hash)
-      @attributes = hash
+      attributes.merge! hash
+    end
+
+    def self.config
+      return nil unless attributes[:config]
+      RailsWizard::Config.new(attributes[:config])
     end
 
     def attributes
       self.class.attributes
     end
 
-    def compile
+    def self.compile
       "# >#{"[ #{name} ]".center(75,'-')}<\n\n# #{description}\nsay_recipe '#{name}'\n\n#{template}\n"
+    end
+    def compile; self.class.compile end
+
+    def self.to_mongo(value)
+      case value
+        when Class
+          value.key
+        when String
+          value
+      end
+    end
+
+    def self.from_mongo(key)
+      RailsWizard::Recipes[key]
     end
   end
 end

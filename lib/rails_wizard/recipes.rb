@@ -11,12 +11,20 @@ module RailsWizard
       recipe
     end
 
+    def self.[](key)
+      @@list[key.to_s]
+    end
+
     def self.list
       @@list.keys.sort
     end
 
     def self.list_classes
       @@list.values.sort_by{|c| c.key}
+    end
+
+    def self.categories
+      @@categories.keys.sort
     end
 
     def self.for(category)

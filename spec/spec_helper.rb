@@ -2,7 +2,7 @@ require 'bundler'
 Bundler.setup
 require 'rspec'
 
-require 'railswizard-recipes'
+require 'rails_wizard'
 
 RSpec.configure do |config|
 

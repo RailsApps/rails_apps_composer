@@ -5,7 +5,7 @@ describe RailsWizard::Recipe do
     subject{ RailsWizard::Recipe.generate('recipe_example', "# this is a test", :category => 'example', :name => "RailsWizard Example") }
 
     context 'string setter methods' do
-      (RailsWizard::Recipe::ATTRIBUTES + ['category']).each do |setter|
+      (RailsWizard::Recipe::ATTRIBUTES - ['config']).each do |setter|
         it "should be able to set #{setter} with an argument" do
           subject.send(setter + '=', "test")
           subject.send(setter).should == 'test'
@@ -19,11 +19,6 @@ describe RailsWizard::Recipe do
     end
 
     describe '.attributes' do
-      it 'should be a hash of the set attributes' do
-        hash = subject::ATTRIBUTES.inject({}){|hash,att| subject.send(att + '=', att); hash[att.to_sym] = att; hash}
-        subject.attributes.should == hash
-      end
-
       it 'should be accessible from the instance' do
         subject.new.attributes.should == subject.attributes
       end
@@ -69,6 +64,14 @@ RUBY
         subject.template = "This is only a test."
         subject.new.compile.should be_include(subject.template)
       end
+    end
+  end
+
+  it 'should set default attributes' do
+    recipe = RailsWizard::Recipe.generate('abc','# test')
+    
+    RailsWizard::Recipe::DEFAULT_ATTRIBUTES.each_pair do |k,v|
+      recipe.send(k).should == v
     end
   end
 end

@@ -4,6 +4,9 @@ end
 
 __END__
 
-category: css
 name: SASS
 description: "Utilize SASS (through the HAML gem) for really awesome stylesheets!"
+author: mbleigh
+
+category: css
+exclusive: css_replacement

@@ -2,6 +2,10 @@
 
 __END__
 
-category: unit_testing
 name: Test::Unit
 description: "Utilize the default Rails test facilities."
+author: mbleigh
+
+exclusive: unit_testing
+category: testing
+tags: [defaults]

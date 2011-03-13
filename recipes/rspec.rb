@@ -10,6 +10,12 @@ end
 
 __END__
 
-category: unit_testing
 name: RSpec
 description: "Use RSpec for unit testing for this Rails app."
+author: mbleigh
+
+exclusive: unit_testing
+category: testing
+
+args: ["-T"]
+

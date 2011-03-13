@@ -3,6 +3,9 @@ gem 'haml-rails'
 
 __END__
 
-category: templating
 name: HAML
 description: "Utilize HAML for templating."
+author: mbleigh
+
+category: templating
+exclusive: templating

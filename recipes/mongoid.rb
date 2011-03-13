@@ -6,6 +6,13 @@ end
 
 __END__
 
-category: orm
 name: Mongoid
 description: "Utilize MongoDB with Mongoid as the ORM."
+author: mbleigh
+
+category: persistence
+exclusive: orm
+tags: [orm, mongodb]
+
+args: ["-O"]
+

@@ -7,6 +7,12 @@ end
 
 __END__
 
-category: orm
 name: MongoMapper
 description: "Use MongoDB with MongoMapper as your primary datastore."
+author: mbleigh
+
+exclusive: orm 
+category: persistence
+tags: [mongodb, orm]
+
+args: ["-O"]

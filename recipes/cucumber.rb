@@ -7,6 +7,10 @@ end
 
 __END__
 
-category: integration_testing
 name: Cucumber
 description: "Use Cucumber for integration testing with Capybara."
+author: mbleigh
+
+exclusive: acceptance_testing 
+category: testing
+tags: [acceptance]
