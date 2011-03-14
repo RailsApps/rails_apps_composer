@@ -16,6 +16,27 @@ module RailsWizard
     end
     def render(template_name, binding = nil); self.class.render(template_name, binding) end
 
+
+    def resolve_recipes
+      recipes_with_dependencies.sort
+    end
+
+    def recipes_with_dependencies
+      @recipes_with_dependencies ||= recipes
+      
+      added_more = false
+      for recipe in recipes
+        recipe.requires.each do |requirement|
+          unless @recipes_with_dependencies.include?(requirement)
+            @recipes_with_dependencies << requirement
+            added_more = true
+          end
+        end
+      end
+
+      added_more ? recipes_with_dependencies : @recipes_with_dependencies
+    end
+
     def compile
       render 'layout', binding
     end

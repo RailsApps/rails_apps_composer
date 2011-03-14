@@ -17,7 +17,7 @@ description: "Adds the latest jQuery and Rails UJS helpers for jQuery."
 author: mbleigh
 
 exclusive: javascript_framework
-category: javascript
-tags: [framework]
+category: assets
+tags: [javascript, framework]
 
 args: ["-J"]

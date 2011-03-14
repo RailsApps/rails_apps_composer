@@ -8,5 +8,6 @@ name: SASS
 description: "Utilize SASS (through the HAML gem) for really awesome stylesheets!"
 author: mbleigh
 
-category: css
-exclusive: css_replacement
+exclusive: css_replacement 
+category: assets
+tags: [css]

@@ -29,6 +29,18 @@ mongohq:
 YAML
 end
 
+if recipe? 'mongo_mapper'
+  gsub_file "config/mongo.yml", /defaults:/, <<-YAML
+#{header}
+
+defaults:
+YAML
+
+  
+elsif recipe? 'mongoid'
+
+end
+
 __END__
 
 name: MongoHQ

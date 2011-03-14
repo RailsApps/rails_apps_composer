@@ -17,7 +17,7 @@ description: "Adds MooTools and MooTools-compatible UJS helpers."
 author: mbleigh
 
 exclusive: javascript_framework
-category: javascript
-tags: [framework]
+category: assets 
+tags: [javascript, framework]
 
 args: ["-J"]

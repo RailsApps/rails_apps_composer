@@ -27,7 +27,7 @@ describe RailsWizard::Recipe do
     describe '.generate' do
       it 'should work with a string and hash as arguments' do
         recipe = RailsWizard::Recipe.generate('some_key', '# some code', :name => "Example")
-        recipe.should < RailsWizard::Recipe
+        recipe.superclass.should == RailsWizard::Recipe
       end
 
       it 'should work with an IO object' do
@@ -72,6 +72,28 @@ RUBY
     
     RailsWizard::Recipe::DEFAULT_ATTRIBUTES.each_pair do |k,v|
       recipe.send(k).should == v
+    end
+  end
+
+  context 'Comparable' do
+    subject{ RailsWizard::Recipe }
+    it 'a < b.run_after(a)' do
+      A = subject.generate('a', '#')
+      B = subject.generate('b', '#', :run_after => [A])
+      
+      (A < B).should be_true
+    end
+
+    it 'a > b.run_before(a)' do
+      A = subject.generate('a', '#')
+      B = subject.generate('b', '#', :run_before => [A])
+      
+      (A > B).should be_true
+    end
+
+    after do
+      Object.send :remove_const, :A if defined?(A)
+      Object.send :remove_const, :B if defined?(B)
     end
   end
 end

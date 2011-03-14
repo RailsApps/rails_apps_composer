@@ -8,4 +8,5 @@ description: "Utilize Less CSS for CSS generation utilizing the \"more\" plugin 
 author: mbleigh
 
 exclusive: css_replacement
-category: css
+category: assets
+tags: [css]

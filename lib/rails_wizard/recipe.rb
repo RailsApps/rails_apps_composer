@@ -6,10 +6,21 @@ require 'erb'
 
 module RailsWizard
   class Recipe
-    ATTRIBUTES = %w(key args category name description template config)
+    extend Comparable
+    
+    def self.<=>(another)
+      return -1 if another.run_after.include?(self)
+      return 1 if another.run_before.include?(self)
+      0
+    end
+
+    ATTRIBUTES = %w(key args category name description template config exclusive tags run_before run_after)
     DEFAULT_ATTRIBUTES = {
       :category => 'other',
-      :args => []
+      :args => [],
+      :tags => [],
+      :run_after => [],
+      :run_before => []
     }
 
     def self.generate(key, template_or_file, attributes = {})
