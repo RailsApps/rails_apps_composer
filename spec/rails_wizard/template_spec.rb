@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe RailsWizard::Template do
+  subject{ RailsWizard::Template }
+  let(:recipe){ RailsWizard::Recipe.generate('name','# test') }
+
+  describe '#initialize' do
+    it 'should work with classes' do
+      subject.new([recipe]).should == recipe
+    end
+  end
+
   describe '#recipes_with_dependencies' do
     def r(*deps)
       mock(:Class, :requires => deps)
