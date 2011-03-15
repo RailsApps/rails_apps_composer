@@ -32,8 +32,9 @@ module RailsWizard
       for recipe in recipe_classes
         recipe.requires.each do |requirement|
           requirement = RailsWizard::Recipe.from_mongo(requirement)
-          unless @recipes_with_dependencies.include?(requirement)
-            @recipes_with_dependencies << requirement
+          count = @recipes_with_dependencies.size
+          (@recipes_with_dependencies << requirement).uniq!
+          unless @recipes_with_dependencies.size == count
             added_more = true
           end
         end

@@ -9,8 +9,8 @@ module RailsWizard
     extend Comparable
     
     def self.<=>(another)
-      return -1 if another.run_after.include?(self)
-      return 1 if another.run_before.include?(self)
+      return -1 if another.run_after.include?(self.key) || self.run_before.include?(another.key)
+      return 1 if another.run_before.include?(self.key) || self.run_after.include?(another.key)
       0
     end
 
