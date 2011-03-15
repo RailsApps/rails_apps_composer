@@ -94,12 +94,8 @@ module RailsWizard
     end
 
     def self.from_mongo(key)
-      case key
-        when String
-          RailsWizard::Recipes[key]
-        when RailsWizard::Recipe
-          key
-      end
+      return key if key.respond_to?(:superclass) && key.superclass == RailsWizard::Recipe
+      RailsWizard::Recipes[key]
     end
 
     def self.get_binding

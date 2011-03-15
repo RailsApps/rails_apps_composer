@@ -1,5 +1,3 @@
-require 'file_utils'
-
 class TemplateRunner
   def initialize(template, config)
     @template = template
