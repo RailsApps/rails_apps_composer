@@ -1,14 +1,14 @@
-config['database'] = 'oracle'
+if config['database']
+  say_wizard "Configuring '#{config['database']}' database settings..."
+  old_gem = gem_for_database
+  @options = @options.dup.merge(:database => config['database'])
+  gsub_file 'Gemfile', "gem '#{old_gem}'", "gem '#{gem_for_database}'"
+  template "config/databases/#{@options[:database]}.yml", "config/database.yml.new"
+  run 'mv config/database.yml.new config/database.yml'
+end
 
 after_bundler do
-  if config['database']
-    say_wizard "Configuring '#{config['database']}' database settings..."
-    old_gem = gem_for_database
-    @options[:database] = config['database']
-    gsub_file "gem '#{old_gem}'", "gem '#{gem_for_database}'"
-    template "config/databases/#{@options[:database]}.yml", "config/database.yml"
-    rake "db:create:all" 
-  end
+  rake "db:create:all" if config['auto_create']
 end
 
 __END__
@@ -32,3 +32,6 @@ config:
         - ["SQLite", sqlite3]
         - ["Frontbase", frontbase]
         - ["IBM DB", ibm_db]
+  - auto_create:
+      type: boolean
+      prompt: "Automatically create database with default configuration?"

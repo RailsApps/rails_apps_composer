@@ -18,8 +18,8 @@ class TemplateRunner
     @output
   end
 
-  def rails_directory
-    RailsDirectory.new(File.join(@dir, @app_name))
+  def rails
+    RailsDirectory.new(@rails_dir)
   end
 
   def clean

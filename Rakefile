@@ -24,13 +24,16 @@ task :run => :clean do
   template = RailsWizard::Template.new(recipes)
 
   begin
-    file = Tempfile.new('temporary_template')
-    file.write template.compile
-    file.close  
+    dir = Dir.mktmpdir "rails_template"
+    Dir.chdir(dir) do
+      file = File.open('template.rb', 'w')
+      file.write template.compile
+      file.close  
     
-    system "rails new test_run -m #{file.path} #{template.args.join(' ')}"
-  ensure
-    file.unlink
+      system "rails new test_run -m template.rb #{template.args.join(' ')}"
+
+      puts "\n\n cd #{dir} # look at the app"
+    end
   end
 end
 

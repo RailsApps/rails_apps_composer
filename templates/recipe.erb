@@ -4,4 +4,6 @@
 @before_configs["<%= key %>"].call if @before_configs["<%= key %>"]
 say_recipe '<%= name %>'
 
+<%= config.compile if config %>
+
 <%= template %>
