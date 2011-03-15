@@ -19,11 +19,11 @@ Rails.application.config.generators do |g|
 end
 RUBY
 
-@recipes = <%= recipes.map(&:key).inspect %> 
+@recipes = <%= resolve_recipes.map(&:key).inspect %> 
 
 <%= render "helpers" %>
 
-<% recipes.each do |recipe| %>
+<% resolve_recipes.each do |recipe| %>
 <%= render 'recipe', recipe.get_binding %>
 <% end %>
 
@@ -31,10 +31,12 @@ RUBY
 
 <%= custom_code %><% end %>
 
+@current_recipe = nil
+
 # >-----------------------------[ Run Bundler ]-------------------------------<
 
 say_wizard "Running Bundler install. This will take a while."
 run 'bundle install'
 say_wizard "Running after Bundler callbacks."
-@after_blocks.each{|b| b.call}
-
+@after_blocks.each{|b| @current_recipe = b[0]; b[1].call}
+@after_everything_blocks.each{|b| @current_recipe = b[0]; b[1].call}

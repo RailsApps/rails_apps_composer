@@ -1,5 +1,4 @@
 if config['use_heroku']
-  say_wizard 'Adding mongohq:free addon (you can always upgrade later)'
   
   header = <<-YAML
 <% if ENV['MONGOHQ_URL'] %>
@@ -14,6 +13,7 @@ mongohq:
 YAML
 
   after_bundler do
+    say_wizard 'Adding mongohq:free addon (you can always upgrade later)'  
     system 'heroku addons:add mongohq:free'
   end
 else
@@ -29,16 +29,11 @@ mongohq:
 YAML
 end
 
-if recipe? 'mongo_mapper'
-  gsub_file "config/mongo.yml", /defaults:/, <<-YAML
-#{header}
+after_bundler do
+  mongo_yml = "config/mongo#{'id' if recipe?('mongoid')}.yml"
 
-defaults:
-YAML
-
-  
-elsif recipe? 'mongoid'
-
+  prepend_file mongo_yml, header
+  inject_into_file mongo_yml, "  <<: *mongohq\n", :after => "production:\n  <<: *defaults\n"
 end
 
 __END__

@@ -14,13 +14,14 @@ module RailsWizard
       0
     end
 
-    ATTRIBUTES = %w(key args category name description template config exclusive tags run_before run_after)
+    ATTRIBUTES = %w(key args category name description template config exclusive tags run_before run_after requires)
     DEFAULT_ATTRIBUTES = {
       :category => 'other',
       :args => [],
       :tags => [],
       :run_after => [],
-      :run_before => []
+      :run_before => [],
+      :requires => []
     }
 
     def self.generate(key, template_or_file, attributes = {})

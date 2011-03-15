@@ -18,15 +18,20 @@ module RailsWizard
 
 
     def resolve_recipes
-      recipes_with_dependencies.sort
+      @resolve_recipes ||= recipes_with_dependencies.sort
+    end
+
+    def recipe_classes
+      @recipe_classes ||= recipes.map{|r| RailsWizard::Recipe.from_mongo(r)}
     end
 
     def recipes_with_dependencies
-      @recipes_with_dependencies ||= recipes
+      @recipes_with_dependencies ||= recipe_classes
       
       added_more = false
-      for recipe in recipes
+      for recipe in recipe_classes
         recipe.requires.each do |requirement|
+          requirement = RailsWizard::Recipe.from_mongo(requirement)
           unless @recipes_with_dependencies.include?(requirement)
             @recipes_with_dependencies << requirement
             added_more = true
