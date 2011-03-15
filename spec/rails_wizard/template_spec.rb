@@ -6,7 +6,7 @@ describe RailsWizard::Template do
 
   describe '#initialize' do
     it 'should work with classes' do
-      subject.new([recipe]).should == recipe
+      subject.new([recipe]).recipes.should == [recipe]
     end
   end
 

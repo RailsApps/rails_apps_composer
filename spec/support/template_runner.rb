@@ -1,4 +1,5 @@
 class TemplateRunner
+  attr_reader :template, :config, :app_name, :dir, :rails_dir, :output
   def initialize(template, config)
     @template = template
     @config = config
@@ -8,7 +9,17 @@ class TemplateRunner
     @app_name = app_name
     @dir = Dir.mktmpdir
     @rails_dir = File.join(@dir, @app_name)
-    
+    Dir.chrdir(@dir) do
+      template_file = File.open 'template.rb', 'w'
+      template_file.write
+      template_file.close
+      @output = `rails new #{@app_name} -m template.rb`
+    end
+    @output
+  end
+
+  def rails_directory
+    RailsDirectory.new(File.join(@dir, @app_name))
   end
 
   def clean
