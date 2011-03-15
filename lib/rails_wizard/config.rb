@@ -17,17 +17,21 @@ module RailsWizard
     end
 
     def compile(values = {})
-            
-    end
-
-    class Question
-      def initialize(schema)
+      result = []
+      result << "config = #{values.inspect}"
+      @questions.each_pair do |key, question|
+        result << "config['#{key}'] = #{question.compile} unless config.key?('#{key}')"
       end
     end
-    
+
     class Prompt
       def initialize(details)
+        @details = details
+        @prompt = details['prompt']
+      end
 
+      def compile
+        "wizard_ask(#{prompt.inspect})"
       end
     end
 
@@ -38,6 +42,9 @@ module RailsWizard
     end
 
     class MultipleChoice < Question
+      def compile
+        "multiple_choice(#{prompt.inspect}, #{@details['choices'].inspect})"
+      end 
     end
 
     QUESTION_TYPES = {
