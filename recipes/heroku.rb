@@ -54,5 +54,5 @@ config:
       if: create
   - deploy:
       prompt: "Deploy immediately?"
-      type: boolean
-      if_recipe: git 
+      type: boolean 
+      if: create
