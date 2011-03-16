@@ -79,14 +79,14 @@ RUBY
     subject{ RailsWizard::Recipe }
     it 'a < b.run_after(a)' do
       A = subject.generate('a', '#')
-      B = subject.generate('b', '#', :run_after => [A])
-      
+      B = subject.generate('b', '#', :run_after => ['a'])
+
       (A < B).should be_true
     end
 
     it 'a > b.run_before(a)' do
       A = subject.generate('a', '#')
-      B = subject.generate('b', '#', :run_before => [A])
+      B = subject.generate('b', '#', :run_before => ['a'])
       
       (A > B).should be_true
     end

@@ -12,12 +12,13 @@ describe RailsWizard::Template do
 
   describe '#recipes_with_dependencies' do
     def r(*deps)
-      mock(:Class, :requires => deps)
+      mock(:Class, :requires => deps, :superclass => RailsWizard::Recipe)
     end
 
     subject do
       @template = RailsWizard::Template.new([]) 
       @template.stub!(:recipes).and_return(@recipes)
+      @template.stub!(:recipe_classes).and_return(@recipes)
       @template
     end
     
