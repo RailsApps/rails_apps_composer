@@ -5,9 +5,10 @@ after_bundler do
 
   if recipes.include? 'mongo_mapper'
     gem 'mm-devise'
-    gsub_file 'config/intializers/devise.rb', 'devise/orm/active_record', 'devise/orm/mongo_mapper_active_model'
+    gsub_file 'config/initializers/devise.rb', 'devise/orm/', 'devise/orm/mongo_mapper_active_model'
+    generate 'mongo_mapper:devise User'
   elsif recipes.include? 'mongoid'
-    gsub_file 'config/intializers/devise.rb', 'devise/orm/active_record', 'devise/orm/mongoid'
+    gsub_file 'config/initializers/devise.rb', 'devise/orm/active_record', 'devise/orm/mongoid'
   end      
 
   generate 'devise user'
