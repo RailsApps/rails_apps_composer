@@ -31,7 +31,7 @@ end
 __END__
 
 name: Heroku
-description: Create'] Heroku application and instantly deploy.
+description: Create Heroku application and instantly deploy.
 author: mbleigh
 
 requires: [git]
