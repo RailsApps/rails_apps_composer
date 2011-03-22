@@ -1,5 +1,8 @@
 require 'bundler'
-Bundler::GemHelper.install_tasks
+Bundler.setup :development
+
+require 'mg'
+MG.new "rails_wizard.gemspec"
 
 require 'rspec/core/rake_task'
 

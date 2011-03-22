@@ -2,4 +2,4 @@
 .bundle
 Gemfile.lock
 ./test_run
-pkg/*
+dist/*
