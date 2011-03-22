@@ -1,6 +1,6 @@
 inside "public/javascripts" do
   get "https://github.com/kevinvaldek/mootools-ujs/raw/master/Source/rails.js", "rails.js"
-  get "http://ajax.googleapis.com/ajax/libs/mootools/1.2.5/mootools-yui-compressed.js", "mootools.min.js"
+  get "http://ajax.googleapis.com/ajax/libs/mootools/1.3.1/mootools-yui-compressed.js", "mootools.min.js"
 end
 
 gsub_file "config/application.rb", /# JavaScript.*\n/, ""
