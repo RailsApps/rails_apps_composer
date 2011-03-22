@@ -11,7 +11,7 @@ module RailsWizard
     def self.<=>(another)
       return -1 if another.run_after.include?(self.key) || self.run_before.include?(another.key)
       return 1 if another.run_before.include?(self.key) || self.run_after.include?(another.key)
-      0
+      self.key <=> another.key
     end
 
     ATTRIBUTES = %w(key args category name description template config exclusive tags run_before run_after requires)

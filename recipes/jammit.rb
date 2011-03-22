@@ -39,5 +39,5 @@ tags: [packaging]
 config:
   - pre_commit:
       type: boolean
-      prompt: "Do you a git pre-commit hook to generate assets for Heroku?"
+      prompt: "Create a git pre-commit hook to generate assets for Heroku?"
       if_recipe: heroku

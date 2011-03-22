@@ -15,6 +15,7 @@ module RailsWizard
         while recipe = ask("#{print_recipes}#{bold}Which recipe would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
           if recipe == ''
             run_template(name, @recipes)
+            break
           elsif RailsWizard::Recipes.list.include?(recipe)
             @recipes << recipe
             puts

@@ -1,5 +1,5 @@
-gem 'cucumber-rails', :group => :test
-gem 'capybara', :group => :test
+gem 'cucumber-rails', :group => [:development, :test]
+gem 'capybara', :group => [:development, :test]
 
 after_bundler do
   generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' unless recipes.include?('activerecord')}"

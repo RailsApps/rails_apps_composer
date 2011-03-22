@@ -1,4 +1,4 @@
-gem 'capybara'
+gem 'capybara', :group => [:development, :test]
 
 after_bundler do
   create_file "spec/support/capybara.rb", <<-RUBY
