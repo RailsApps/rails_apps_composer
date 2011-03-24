@@ -3,7 +3,7 @@ gem 'capybara', :group => [:development, :test]
 after_bundler do
   create_file "spec/support/capybara.rb", <<-RUBY
 require 'capybara/rails'
-require 'capbybara/rspec'
+require 'capybara/rspec'
 RUBY
 
   create_file "spec/requests/home_spec.rb", <<-RUBY
