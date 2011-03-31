@@ -5,5 +5,6 @@
 say_recipe '<%= name %>'
 
 <%= config.compile if config %>
+@configs[@current_recipe] = config
 
 <%= template %>

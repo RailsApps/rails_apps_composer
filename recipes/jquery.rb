@@ -1,14 +1,9 @@
-inside "public/javascripts" do
-  get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "rails.js"
-  get "http://code.jquery.com/jquery-1.5.1.min.js", "jquery.js"
-end
+gem 'jquery-rails'
 
-application do
-  "\nconfig.action_view.javascript_expansions[:defaults] = %w(jquery rails)\n"
+after_bundler do
+  ui = config['ui'] ? ' --ui' : ''
+  generate "jquery:install#{ui}"
 end
-
-gsub_file "config/application.rb", /# JavaScript.*\n/, ""
-gsub_file "config/application.rb", /# config\.action_view\.javascript.*\n/, ""
 
 __END__
 
@@ -21,3 +16,8 @@ category: assets
 tags: [javascript, framework]
 
 args: ["-J"]
+
+config:
+  - ui:
+      type: boolean
+      prompt: Install jQuery UI?

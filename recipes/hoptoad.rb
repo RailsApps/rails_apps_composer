@@ -1,12 +1,14 @@
 
 gem 'hoptoad_notifier'
 
-after_bundler do
-  if config['use_heroku']
+if config['use_heroku']
+  after_everything do
     say_wizard "Adding hoptoad:basic Heroku addon (you can always upgrade later)"
     run "heroku addons:add hoptoad:basic"
     generate "hoptoad --heroku"
-  else
+  end
+else
+  after_bundler do
     generate "hoptoad --api-key #{config['api_key']}"
   end
 end
@@ -19,6 +21,7 @@ description: Add Hoptoad exception reporting to your application.
 category: services
 exclusive: exception_notification
 tags: [exception_notification]
+run_after: [heroku]
 
 config:
   - use_heroku:

@@ -35,6 +35,7 @@ def multiple_choice(question, choices)
 end
 
 @current_recipe = nil
+@configs = {}
 
 @after_blocks = []
 def after_bundler(&block); @after_blocks << [@current_recipe, block]; end

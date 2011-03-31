@@ -12,7 +12,7 @@ mongohq:
 <% end %>
 YAML
 
-  after_bundler do
+  after_everything do
     say_wizard 'Adding mongohq:free addon (you can always upgrade later)'  
     system 'heroku addons:add mongohq:free'
   end
@@ -43,7 +43,7 @@ description: "Utilize MongoHQ as the production data host for your application."
 author: mbleigh
 
 requires_any: [mongo_mapper, mongoid]
-run_after: [mongo_mapper, mongoid]
+run_after: [mongo_mapper, mongoid, heroku]
 exclusive: mongodb_host
 category: services
 tags: [mongodb]

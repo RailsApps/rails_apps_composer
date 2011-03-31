@@ -9,7 +9,7 @@ end
 
 env("REDISTOGO_URL", "redis://localhost:6379")
 
-after_bundler do
+after_everything do
   if config['use_heroku']
     say_wizard "Adding redistogo:nano Heroku addon, you can always upgrade later."
     run "heroku addons:add redistogo:nano"
@@ -17,6 +17,7 @@ after_bundler do
     env("REDISTOGO_URL", config['url'], 'production') if config['url']
   end
 end
+
 __END__
 
 name: RedisToGo
