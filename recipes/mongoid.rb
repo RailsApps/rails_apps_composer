@@ -1,3 +1,4 @@
+gem 'bson_ext'
 gem 'mongoid', '>= 2.0.0.beta.19'
 
 after_bundler do
