@@ -39,5 +39,6 @@ name: HomePage
 description: "Create a simple home page (with a home controller and view)."
 author: fortuity
 
+run_after: [add_user_name]
 category: other
 tags: [utilities, configuration]

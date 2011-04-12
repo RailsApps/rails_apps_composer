@@ -99,6 +99,6 @@ description: "Add a users controller and user show page with links from the home
 author: fortuity
 
 requires: [devise]
-run_after: [devise]
+run_after: [seed_database]
 category: other
 tags: [utilities, configuration]

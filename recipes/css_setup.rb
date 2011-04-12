@@ -36,5 +36,6 @@ name: CssSetup
 description: "Add a stylesheet with styles for a horizontal menu and flash messages."
 author: fortuity
 
+run_after: [users_page]
 category: other
 tags: [utilities, configuration]

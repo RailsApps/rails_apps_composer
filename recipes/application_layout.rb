@@ -39,5 +39,6 @@ name: ApplicationLayout
 description: "Add a default application layout with flash messages."
 author: fortuity
 
+run_after: [css_setup]
 category: other
 tags: [utilities, configuration]
