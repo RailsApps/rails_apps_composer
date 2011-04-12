@@ -2,7 +2,7 @@ require 'bundler'
 Bundler.setup :development
 
 require 'mg'
-MG.new "rails_wizard.gemspec"
+MG.new "rails3_devise_wizard.gemspec"
 
 require 'rspec/core/rake_task'
 

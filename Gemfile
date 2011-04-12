@@ -1,4 +1,4 @@
 source "http://rubygems.org"
 
-# Specify your gem's dependencies in railswizard-recipes.gemspec
+# Specify your gem's dependencies in rails3_devise_wizard.gemspec
 gemspec
