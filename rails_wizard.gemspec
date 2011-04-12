@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.add_dependency "thor"
   s.add_development_dependency "rspec", "~> 2.5.0"
   s.add_development_dependency "mg"
+  s.add_development_dependency "activesupport", "~> 3.0.0"
+  s.add_development_dependency "i18n"
 
   s.files         = Dir["lib/**/*.rb", "recipes/*.rb", "README.markdown", "version.rb", "templates/*"] 
   s.test_files    = Dir["spec/**/*"] 
