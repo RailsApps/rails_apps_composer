@@ -22,7 +22,6 @@ name: Mongoid
 description: "Utilize MongoDB with Mongoid as the ORM."
 author: fortuity
 
-run_after: [cucumber]
 category: persistence
 exclusive: orm
 tags: [orm, mongodb]

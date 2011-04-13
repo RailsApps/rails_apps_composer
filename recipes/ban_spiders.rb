@@ -15,6 +15,5 @@ name: BanSpiders
 description: "Ban spiders from the site by changing robots.txt."
 author: fortuity
 
-run_after: [cleanup]
 category: other
 tags: [utilities, configuration]

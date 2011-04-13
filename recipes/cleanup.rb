@@ -30,6 +30,5 @@ name: Cleanup
 description: "Remove unnecessary files left over from generating a new Rails app."
 author: fortuity
 
-run_after: [devise_navigation]
 category: other
 tags: [utilities, configuration]

@@ -32,7 +32,6 @@ name: jQuery
 description: "Adds the latest jQuery and Rails UJS helpers for jQuery."
 author: fortuity
 
-run_after: [git]
 exclusive: javascript_framework
 category: assets
 tags: [javascript, framework]

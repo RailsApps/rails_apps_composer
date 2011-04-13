@@ -71,6 +71,5 @@ description: "Modify the default Devise configuration to add a 'name' attribute 
 author: fortuity
 
 requires: [devise]
-run_after: [devise]
 category: other
 tags: [utilities, configuration]

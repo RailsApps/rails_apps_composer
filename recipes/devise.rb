@@ -31,7 +31,5 @@ name: Devise
 description: Utilize Devise for authentication, automatically configured for your selected ORM.
 author: fortuity
 
-run_after: [action_mailer]
-run_before: [add_user_name, devise_navigation, home_page_users, seed_database, users_page]
 category: authentication
 exclusive: authentication

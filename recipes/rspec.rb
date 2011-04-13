@@ -78,7 +78,6 @@ name: RSpec
 description: "Use RSpec for unit testing for this Rails app."
 author: fortuity
 
-run_after: [haml]
 exclusive: unit_testing
 category: testing
 

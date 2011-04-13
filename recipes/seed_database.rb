@@ -31,6 +31,5 @@ description: "Create a database seed file with a default user."
 author: fortuity
 
 requires: [devise]
-run_after: [home_page_users]
 category: other
 tags: [utilities, configuration]

@@ -90,7 +90,6 @@ name: DeviseNavigation
 description: "Add navigation links for Devise."
 author: fortuity
 
-requires: [devise, application_layout]
-run_after: [application_layout]
+requires: [devise]
 category: other
 tags: [utilities, configuration]

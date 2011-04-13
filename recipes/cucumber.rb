@@ -59,7 +59,6 @@ name: Cucumber
 description: "Use Cucumber for integration testing with Capybara."
 author: fortuity
 
-run_after: [rspec]
 exclusive: acceptance_testing 
 category: testing
 tags: [acceptance]

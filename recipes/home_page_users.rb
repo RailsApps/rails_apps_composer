@@ -46,6 +46,5 @@ description: "Display a list of users on the home page."
 author: fortuity
 
 requires: [devise]
-run_after: [home_page]
 category: other
 tags: [utilities, configuration]

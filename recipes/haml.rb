@@ -10,6 +10,5 @@ name: HAML
 description: "Utilize HAML for templating."
 author: fortuity
 
-run_after: [jquery]
 category: templating
 exclusive: templating

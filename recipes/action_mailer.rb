@@ -37,6 +37,5 @@ name: ActionMailer
 description: "Configure ActionMailer to show errors during development and suppress failures when the app is deployed to production."
 author: fortuity
 
-run_after: [mongoid]
 category: other
 tags: [utilities, configuration]
