@@ -59,7 +59,7 @@ RUBY
     end
   end
 
-  if recipes.include? 'A0_devise'
+  if recipes.include? 'devise'
     # add Devise test helpers
     create_file 'spec/support/devise.rb' do 
     <<-RUBY

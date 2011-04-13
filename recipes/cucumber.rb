@@ -28,7 +28,7 @@ RUBY
 
 end
 
-if recipes.include? 'A0_devise'
+if recipes.include? 'devise'
 
   after_bundler do
 
