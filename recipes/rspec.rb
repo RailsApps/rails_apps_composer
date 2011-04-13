@@ -42,8 +42,8 @@ RUBY
   end
   
   # remove either possible occurrence of "require rails/test_unit/railtie"
-  gsub_file 'config/application.rb', /require 'rails\/test_unit\/railtie'/, "# require 'rails/test_unit/railtie'"
-  gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, "# require 'rails/test_unit/railtie'"
+  gsub_file 'config/application.rb', /require 'rails\/test_unit\/railtie'/, '# require "rails/test_unit/railtie"'
+  gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, '# require "rails/test_unit/railtie"'
 
   say_wizard "Removing test folder (not needed for RSpec)"
   run 'rm -rf test/'
