@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Daniel Kehoe"]
   s.email       = ["daniel@danielkehoe.com"]
   s.homepage    = "http://github.com/fortuity/rails3_devise_wizard"
-  s.summary     = %q{A gem that creates ready-to-run Rails web applications you can deploy in minutes.}
-  s.description = %q{Quickly generate Rails application templates you can use to create and deploy Rails starter apps.}
+  s.summary     = %q{Create ready-to-run Rails web applications using Devise for authentication.}
+  s.description = %q{A gem to generate Rails application templates you can use to create Rails starter apps that use Devise for authentication.}
 
   s.rubyforge_project = "rails3_devise_wizard"
   
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "activesupport", "~> 3.0.0"
   s.add_development_dependency "i18n"
 
-  s.files         = Dir["lib/**/*.rb", "recipes/*.rb", "README.markdown", "version.rb", "templates/*"] 
+  s.files         = Dir["lib/**/*.rb", "recipes/*.rb", "README.textile", "version.rb", "templates/*"] 
   s.test_files    = Dir["spec/**/*"] 
   s.executables   = ["rails3_devise_wizard"]
   s.require_paths = ["lib"]
