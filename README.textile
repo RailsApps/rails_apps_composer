@@ -1,6 +1,6 @@
 h1. Rails3 Devise Wizard Gem
 
-A gem to create a ready-to-run Rails web application you can deploy in minutes.
+Creates a ready-to-run Rails web application using Devise for authentication. Makes it easy to create and maintain a starter app using your own preferred options.
 
 This gem can be used to create the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, as described in a detailed "tutorial":http://github.com/fortuity/rails3-mongoid-devise/wiki/Tutorial-%28Walkthrough%29.
 
@@ -28,44 +28,83 @@ h2. Installation
 
 Installation is simple:
 
-bc. gem install rails3_devise_wizard, :git => 'git://github.com/fortuity/rails3_devise_wizard.git'
-
+@$ gem install rails3_devise_wizard@
 
 h2. Usage
 
-The @rails3_devise_wizard@ gem offers an interactive terminal command to build a Rails application template. To get started, run:
+h4. List Recipes
 
-bc. rails3_devise_wizard new APP_NAME
+You can display a list of recipes:
 
+@$ rails3_devise_wizard list@
 
-Where @APP_NAME@ is the directory in which you wish to create the app (it mirrors the Rails creation syntax). You will then be guided through the recipe selection process and subsequently the Rails app generator will automatically run with the template and all appropriate command line options included.
+You'll find more details about the available recipes by browsing the repository "recipes directory":https://github.com/fortuity/rails3_devise_wizard/tree/master/recipes. 
 
-h4. Specifying Recipes
+h4. Generate a Starter App
 
-If you wish to skip the interactive recipe selector, you may provide instead a list of recipes with the @-r@ option:
+You can build an application by providing a list of recipes with the @-r@ option. For example, to build the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
 
-bc. rails3_devise_wizard new APP_NAME -r jquery mongo_mapper sass
+<pre>
+$ rails3_devise_wizard new APP_NAME -r git jquery haml rspec cucumber mongoid action_mailer devise add_user_name home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders
+</pre>
 
+This will automatically generate an application using the specified recipes.
 
-This will automatically generate a Rails template with the provided recipes and launch the app generator.
+h2. Make Your Own Starter App (the Easy Way)
 
-h4. Listing Recipes
+h4. Select Recipes
 
-You can also print out a simple list of recipes:
+You can mix and match recipes to create your own customized starter app. Browse the repository "recipes directory":https://github.com/fortuity/rails3_devise_wizard/tree/master/recipes to see what is available. Then provide your list of recipes to the rails3_devise_wizard gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using jquery and haml:
 
-bc. rails3_devise_wizard list
+<pre>
+$ rails3_devise_wizard new APP_NAME -r jquery haml
+</pre>
 
+h2. Make Your Own Starter App (the Advanced Way)
 
-Or print out a list of recipes for a specific category:
+You can modify the recipes and save an application template that creates your own customized starter app.
 
-bc. rails3_devise_wizard list persistence
+First, you'll need to make your own copy of the rails3_devise_wizard gem.
 
+@$ git clone git://github.com/fortuity/rails3_devise_wizard.git@
 
-h2. Rails3 Devise Wizard Recipes
+@$ cd rails3_devise_wizard@
 
-You can find the rails3_devise_wizard recipe collection in the GitHub repository's "recipes directory":https://github.com/fortuity/rails3_devise_wizard/tree/master/recipes. If you find errors or fork a recipe you can submit a pull request or create a "Github issue":http://github.com/fortuity/rails3_devise_wizard/issues.
+h4. Customize the Recipes
 
-h4. Writing New Recipes
+Modify or write new recipes as you wish (see below for details about writing recipes). You can run @rake spec@ to make sure your recipes conform to the required syntax.
+
+h4. Save the Application Template
+
+The rails3_devise_wizard gem creates an application template as an intermediate step before generating an application. You can generate and save the application template. Here's an example of generating an application template and saving the template to a file:
+
+<pre>
+$ rake print RECIPES=recipe1,recipe2 > ~/Desktop/recipe.txt
+</pre>
+
+h4. Generate an Application from an Application Template
+
+The rails3_devise_wizard gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
+
+<pre>
+$ rails new testapp -m ~/Desktop/recipe.txt
+</pre>
+
+You can specify the @-T -O -J@ flags as needed to skip Test::Unit files, Active Record files, and Prototype files.
+
+Here's an example:
+
+<pre>
+$ rails new testapp -m ~/Desktop/recipe.txt -T -O -J
+</pre>
+
+h2. Writing New Recipes
+
+You can find the rails3_devise_wizard recipe collection in the GitHub repository's "recipes directory":https://github.com/fortuity/rails3_devise_wizard/tree/master/recipes. If you find errors or improve a recipe you can contribute to the project by submitting a pull request or creating a "Github issue":http://github.com/fortuity/rails3_devise_wizard/issues.
+
+h4. Rails Wizard Basics
+
+For more information on all available options for authoring recipes that can be read by the rails_wizard or rails3_devise_wizard gems, please see the "wiki for Michael Bleigh's  RailsWizard gem":https://github.com/intridea/rails_wizard/wiki.
 
 Recipes are made of up *template code* and *YAML back-matter* stored in a ruby file. The @__END__@ parsing convention is used so that each recipe is actually a valid, parseable Ruby file. The structure of a recipe looks something like this:
 
@@ -84,11 +123,25 @@ description: Installs SuperGem which is useful for things
 author: mbleigh
 </pre>
 
-The gem has RSpec tests that automatically validate each recipe in the repository, so you should run @rake spec@ as a basic sanity check before submitting a pull request. Note that these don't verify that your recipe code itself works, just that the gem could properly parse and understand your recipe file.
+h4. Rails3 Devise Wizard Differences
 
-For more information on all available options for authoring recipes, please see the "wiki for Michael Bleigh's  RailsWizard gem":https://github.com/intridea/rails_wizard/wiki.
+The rails3_devise_wizard gem is very similar to the rails_wizard gem, with one significant difference. The rails_wizard gem allows specification of execution order for recipes with @run_after@ and @run_after@ configuration flags. The rails3_devise_wizard gem does not support @run_after@ or @run_after@; instead, the order which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
 
-h2. How It Works
+<pre>
+$ rails3_devise_wizard new APP_NAME -r git jquery haml
+</pre>
+
+installs jquery before haml.
+
+h4. Recipe Differences
+
+Several recipes provided by the rails3_devise_wizard gem are different from those provided by the rails_wizard gem.
+
+h4. Rails Wizard RSpec Tests
+
+The gem has RSpec tests that automatically validate each recipe in the repository, so you should run @rake spec@ as a basic syntax check. Note that these don't verify that your recipe code itself works, just that the gem could properly parse and understand your recipe file.
+
+h4. How It Works
 
 Rails generators can use any methods provided by the "Thor::Actions":http://rdoc.info/github/wycats/thor/master/Thor/Actions module. The flexibility of mixing "recipes" for application templates comes from use of the @apply@ method from the Thor::Actions module. Given a web address or a local filepath, the "apply method":http://rdoc.info/github/wycats/thor/master/Thor/Actions#apply-instance_method loads and executes a file within the context of the generator script.
 
@@ -99,8 +152,6 @@ This is the only documentation.
 h4. Writing Recipes
 
 To understand the code in these templates, take a look at "Thor::Actions":http://rdoc.info/github/wycats/thor/master/Thor/Actions. Your recipes can use any methods provided by "Thor::Actions":http://rdoc.info/github/wycats/thor/master/Thor/Actions or "Rails::Generators::Actions":http://railsapi.com/doc/rails-v3.0.3/classes/Rails/Generators/Actions.html.
-
-Please send a message (via GitHub) or a "pull request" if you've written recipes you'd like to contribute.
 
 h4. About Rails Application Templates
 
@@ -122,7 +173,7 @@ This project is based on "Michael Bleigh's RailsWizard gem":https://github.com/i
 
 RSpec, Cucumber, and Yard recipes were contributed by "Ramon Brooker":http://cogniton-mind.tumblr.com/.
 
-Additional recipes by me, Daniel Kehoe "http://danielkehoe.com/":http://danielkehoe.com/, to implement the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application.
+Additional recipes by Daniel Kehoe, "http://danielkehoe.com/":http://danielkehoe.com/, to implement the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application.
 
 Is the gem useful to you? Follow me on Twitter:
 "http://twitter.com/railsinit":http://twitter.com/railsinit
