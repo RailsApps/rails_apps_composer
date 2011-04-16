@@ -23,6 +23,29 @@ after_bundler do
   # Generate models and routes for a User
   generate 'devise user'
 
+  if recipes.include? 'rspec'
+    # copy all the RSpec specs files from the rails3-mongoid-devise example app
+    inside 'spec' do
+      get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/factories.rb', 'factories.rb'
+    end
+    remove_file 'spec/controllers/home_controller_spec.rb'
+    remove_file 'spec/controllers/users_controller_spec.rb'
+    inside 'spec/controllers' do
+      get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/controllers/home_controller_spec.rb', 'home_controller_spec.rb'
+      get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/controllers/users_controller_spec.rb', 'users_controller_spec.rb'
+    end
+    remove_file 'spec/models/user_spec.rb'
+    inside 'spec/models' do
+      get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/models/user_spec.rb', 'user_spec.rb'
+    end
+    remove_file 'spec/views/home/index.html.erb_spec.rb'
+    remove_file 'spec/views/home/index.html.haml_spec.rb'
+    remove_file 'spec/views/users/show.html.erb_spec.rb'
+    remove_file 'spec/views/users/show.html.haml_spec.rb'
+    remove_file 'spec/helpers/home_helper_spec.rb'
+    remove_file 'spec/helpers/users_helper_spec.rb'
+  end
+
 end
 
 __END__
