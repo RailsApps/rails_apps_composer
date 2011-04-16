@@ -1,16 +1,24 @@
 h1. Rails3 Devise Wizard Gem
 
-Creates a ready-to-run Rails web application using Devise for authentication. Makes it easy to create and maintain a starter app using your own preferred options.
+Creates a ready-to-run Rails web application using Devise for authentication. Makes it easy to create and maintain a starter app using your own preferred options. This is the gem used to create the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, as described in a detailed "tutorial":http://github.com/fortuity/rails3-mongoid-devise/wiki/Tutorial-%28Walkthrough%29.
 
-This gem can be used to create the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, as described in a detailed "tutorial":http://github.com/fortuity/rails3-mongoid-devise/wiki/Tutorial-%28Walkthrough%29.
+h4. Based on Michael Bleigh's RailsWizard Gem
 
-h2. Based on Michael Bleigh's RailsWizard Gem
+The rails3_devise_wizard gem is a fork of "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see credits below). The purpose of this fork is to provide recipes for a ready-to-run Rails web application that uses Devise for authentication. Several recipes provided by the rails3_devise_wizard gem are different from those provided by the rails_wizard gem. Applications generated with the rails3_devise_wizard gem are more complete; for example, they may include a home page with sign-in, sign-out navigation links.
 
-The rails3_devise_wizard gem is a fork of "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see credits below). The purpose of this fork is to provide recipes for a ready-to-run Rails web application that uses Devise for authentication.
+h2. Suggested Use
+
+Any developer can quickly generate a Rails web application using the @rails new@ command. In practice, experienced Rails developers typically add an assortment of useful additional packages (gems) before beginning development of any web application. A developer often uses the same set of packages to get started and may create a "starter app" that can be copied and reused for any new project.
+
+It can be a hassle to integrate some of the most commonly used packages, particularly when new versions are released and there are minor "gotchas" that interfere with packages working together. Despite the apparent convenience of creating a starter app, it can be time consuming to maintain and update a starter app as component packages evolve. This project aims to simplify the process of building and maintaining a starter app by providing mix-and-match recipes to assemble the most commonly used Rails packages.
+
+If you use this gem to create your Rails starter app, you can expect the pieces to work together. If they don't, you can report problems and look for identified "issues":http://github.com/fortuity/rails3_devise_wizard/issues (and perhaps contributed fixes).
+
+If you use this gem to create a reusable application template (see the instructions below), you can check for changes to recipes here and reassemble your application template as packages evolve.
 
 h2. Dependencies
 
-Before generating a new Rails app using an application template, you will need:
+Before generating a new Rails app, you will need:
 
 * The Ruby language (version 1.8.7 or 1.9.2)
 * Rails (version 3.0.4 or newer)
@@ -70,6 +78,10 @@ First, you'll need to make your own copy of the rails3_devise_wizard gem.
 
 @$ cd rails3_devise_wizard@
 
+Install the "mg":https://github.com/sr/mg "minimal gem" which is required for development of the rails3_devise_wizard gem:
+
+@$ gem install mg@
+
 h4. Customize the Recipes
 
 Modify or write new recipes as you wish (see below for details about writing recipes). You can run @rake spec@ to make sure your recipes conform to the required syntax.
@@ -79,15 +91,19 @@ h4. Save the Application Template
 The rails3_devise_wizard gem creates an application template as an intermediate step before generating an application. You can generate and save the application template. Here's an example of generating an application template and saving the template to a file:
 
 <pre>
-$ rake print RECIPES=recipe1,recipe2 > ~/Desktop/recipe.txt
+$ rake print RECIPES=recipe1,recipe2 > ~/Desktop/template.txt
 </pre>
+
+h4. Edit the Application Template
+
+The application template is generated with an extraneous first line. Open the template file and remove the first line if it doesn't begin with a comment.
 
 h4. Generate an Application from an Application Template
 
 The rails3_devise_wizard gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
 
 <pre>
-$ rails new testapp -m ~/Desktop/recipe.txt
+$ rails new testapp -m ~/Desktop/template.txt
 </pre>
 
 You can specify the @-T -O -J@ flags as needed to skip Test::Unit files, Active Record files, and Prototype files.
@@ -97,6 +113,8 @@ Here's an example:
 <pre>
 $ rails new testapp -m ~/Desktop/recipe.txt -T -O -J
 </pre>
+
+That's all it takes. You'll have a ready-to-customize Rails web application in minutes.
 
 h2. Writing New Recipes
 
