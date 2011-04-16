@@ -4,9 +4,6 @@
 gem 'cucumber-rails', ">= 0.4.0", :group => :test
 gem 'capybara', ">= 0.4.1.2", :group => :test
 gem 'launchy', ">= 0.4.0", :group => :test
-if config['relish']
-  gem 'relish', ">= 0.2.2", :group => :development
-end
 
 after_bundler do
   generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' unless recipes.include?('activerecord')}"
@@ -62,8 +59,3 @@ author: fortuity
 exclusive: acceptance_testing 
 category: testing
 tags: [acceptance]
-
-config:
-  - relish:
-      type: boolean
-      prompt: Install the relish gem for viewing Cucumber features?
