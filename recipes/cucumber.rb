@@ -1,7 +1,7 @@
 # Application template recipe for the rails3_devise_wizard. Check for a newer version here:
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/cucumber.rb
 
-gem 'cucumber-rails', ">= 0.4.0", :group => :test
+gem 'cucumber-rails', ">= 0.4.1", :group => :test
 gem 'capybara', ">= 0.4.1.2", :group => :test
 gem 'launchy', ">= 0.4.0", :group => :test
 

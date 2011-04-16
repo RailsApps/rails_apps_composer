@@ -1,7 +1,7 @@
 # Application template recipe for the rails3_devise_wizard. Check for a newer version here:
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/devise.rb
 
-gem "devise", ">= 1.2.1"
+gem "devise", ">= 1.3.0"
 
 after_bundler do
   
