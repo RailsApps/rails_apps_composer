@@ -50,15 +50,15 @@ You'll find more details about the available recipes by browsing the repository 
 
 h4. Generate a Starter App
 
-You can build an application by providing a list of recipes with the @-r@ option. For example, to build the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
+There are two ways to use the rails3_devise_wizard gem to generate a starter app.
 
-<pre>
-$ rails3_devise_wizard new APP_NAME -r git jquery haml rspec cucumber mongoid action_mailer devise add_user_name home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders
-</pre>
+If you want to build a starter app for one-time use, you can build an application by providing a list of recipes with the @-r@ option. This will automatically generate an application using the specified recipes.
 
-This will automatically generate an application using the specified recipes.
+If you want to create and save an application template that you can reuse as needed to "clone" identical starter apps, you can download the rails3_devise_wizard project, customize recipes as needed, and use a @rake@ task to save a reusable application template file.
 
-h2. Make Your Own Starter App (the Easy Way)
+Each of these approaches is described below.
+
+h2. Make Your Own Starter App for One-Time Use
 
 h4. Select Recipes
 
@@ -68,7 +68,13 @@ You can mix and match recipes to create your own customized starter app. Browse 
 $ rails3_devise_wizard new APP_NAME -r jquery haml
 </pre>
 
-h2. Make Your Own Starter App (the Advanced Way)
+To build the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
+
+<pre>
+$ rails3_devise_wizard new APP_NAME -r jquery haml rspec cucumber mongoid action_mailer devise add_user_name home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders git
+</pre>
+
+h2. Make Your Own Starter App with a Reusable Application Template
 
 You can modify the recipes and save an application template that creates your own customized starter app.
 
@@ -91,12 +97,18 @@ h4. Save the Application Template
 The rails3_devise_wizard gem creates an application template as an intermediate step before generating an application. You can generate and save the application template. Here's an example of generating an application template and saving the template to a file:
 
 <pre>
-$ rake print RECIPES=recipe1,recipe2 > ~/Desktop/template.txt
+$ rake print --silent RECIPES=recipe1,recipe2 > ~/Desktop/template.txt
+</pre>
+
+To build a reusable application template for the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
+
+<pre>
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user_name,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
 h4. Edit the Application Template
 
-The application template is generated with an extraneous first line. Open the template file and remove the first line if it doesn't begin with a comment.
+If you don't include the @--silent@ option, the rake task will generate the application template with an extraneous first line. Open the template file and remove the first line if you encounter this problem.
 
 h4. Generate an Application from an Application Template
 
