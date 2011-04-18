@@ -4,6 +4,10 @@
 if config['cucumber']
   gem 'cucumber-rails', ">= 0.4.1", :group => :test
   gem 'capybara', ">= 0.4.1.2", :group => :test
+  unless recipes.include? 'rspec'
+    # we already added database_cleaner if we ran the rspec recipe
+    gem 'database_cleaner', '>= 0.6.6', :group => :test
+  end
   gem 'launchy', ">= 0.4.0", :group => :test
 else
   recipes.delete('cucumber')
@@ -14,18 +18,11 @@ if config['cucumber']
     say_wizard "Cucumber recipe running 'after bundler'"
     generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' unless recipes.include?('activerecord')}"
     if recipes.include? 'mongoid'
-      # reset your application database to a pristine state during testing
-      create_file 'features/support/local_env.rb' do 
-      <<-RUBY
-require 'database_cleaner'
-DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.orm = "mongoid"
-Before { DatabaseCleaner.clean }
-RUBY
+      gsub_file 'features/support/env.rb', /transaction/, "truncation"
+      inject_into_file 'features/support/env.rb', :after => 'begin' do
+        "\n  DatabaseCleaner.orm = 'mongoid'"
       end
     end
-    # see https://github.com/aslakhellesoy/cucumber-rails/issues/closed/#issue/77
-    gsub_file 'features/support/env.rb', /require 'cucumber\/rails\/capybara_javascript_emulation'/, "# require 'cucumber/rails/capybara_javascript_emulation'"
   end
 end
 
