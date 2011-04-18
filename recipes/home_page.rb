@@ -36,7 +36,7 @@ end
 __END__
 
 name: HomePage
-description: "Create a simple home page (with a home controller and view)."
+description: "Create a simple home page (creates a home controller and view)."
 author: fortuity
 
 category: other

@@ -18,7 +18,7 @@ end
 __END__
 
 name: Git
-description: "Provides basic Git setup for the Rails app and commits the initial repository."
+description: "Set up Git and commit the initial repository."
 author: fortuity
 
 exclusive: scm
