@@ -2,7 +2,9 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/add_user_name.rb
 
 after_bundler do
-   
+  
+  say_wizard "AddUserName recipe running 'after bundler'"
+  
   # Add a 'name' attribute to the User model
   if recipes.include? 'mongoid'
     gsub_file 'app/models/user.rb', /end/ do

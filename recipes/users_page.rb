@@ -3,7 +3,7 @@
 
 after_bundler do
 
-  if recipes.include? 'devise'
+  say_wizard "UsersPage recipe running 'after bundler'"
 
     #----------------------------------------------------------------------------
     # Create a users controller
@@ -87,8 +87,6 @@ HAML
 ERB
       end
     end
-
-  end
 
 end
 

@@ -3,6 +3,8 @@
 
 after_bundler do
 
+  say_wizard "ApplicationLayout recipe running 'after bundler'"
+
   # Set up the default application layout
   if recipes.include? 'haml'
     remove_file 'app/views/layouts/application.html.erb'

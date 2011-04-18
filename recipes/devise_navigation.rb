@@ -3,7 +3,7 @@
 
 after_bundler do
 
-  if recipes.include? 'devise'
+  say_wizard "DeviseNavigation recipe running 'after bundler'"
 
     # Create navigation links for Devise
     if recipes.include? 'haml'
@@ -79,8 +79,6 @@ HAML
 ERB
       end
     end
-
-  end
 
 end
 

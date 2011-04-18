@@ -2,7 +2,8 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/mongoid.rb
 
 if config['mongoid']
-  say_wizard "REMINDER: When creating a Rails app using Mongoid, you should add the '-O' flag to 'rails new'"
+  say_wizard "REMINDER: When creating a Rails app using Mongoid..."
+  say_wizard "you should add the '-O' flag to 'rails new'"
   gem 'bson_ext', '>= 1.3.0'
   gem 'mongoid', '>= 2.0.1'
 else
@@ -11,6 +12,7 @@ end
 
 if config['mongoid']
   after_bundler do
+    say_wizard "Mongoid recipe running 'after bundler'"
     # note: the mongoid generator automatically modifies the config/application.rb file
     # to remove the ActiveRecord dependency by commenting out "require active_record/railtie'"
     generate 'mongoid:config'

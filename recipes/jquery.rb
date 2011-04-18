@@ -2,8 +2,10 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/jquery.rb
 
 if config['jquery']
-  say_wizard "A REMINDER: When creating a Rails app using jQuery, you should add the '-J' flag to 'rails new'"
+  say_wizard "REMINDER: When creating a Rails app using jQuery..."
+  say_wizard "you should add the '-J' flag to 'rails new'"
   after_bundler do
+    say_wizard "jQuery recipe running 'after bundler'"
     # remove the Prototype adapter file
     remove_file 'public/javascripts/rails.js'
     # remove the Prototype files (if they exist)

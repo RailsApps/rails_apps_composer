@@ -2,6 +2,7 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/git.rb
 
 after_everything do
+  say_wizard "Git recipe running 'after everything'"
   # Git should ignore some files
   remove_file '.gitignore'
   get "https://github.com/fortuity/rails3-gitignore/raw/master/gitignore.txt", ".gitignore"

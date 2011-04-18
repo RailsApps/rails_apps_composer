@@ -11,6 +11,7 @@ end
 
 if config['cucumber']
   after_bundler do
+    say_wizard "Cucumber recipe running 'after bundler'"
     generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' unless recipes.include?('activerecord')}"
     if recipes.include? 'mongoid'
       # reset your application database to a pristine state during testing
@@ -31,6 +32,7 @@ end
 if config['cucumber']
   if recipes.include? 'devise'
     after_bundler do
+      say_wizard "Copying Cucumber scenarios from the rails3-mongoid-devise examples"
       # copy all the Cucumber scenario files from the rails3-mongoid-devise example app
       inside 'features/users' do
         get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/features/users/sign_in.feature', 'sign_in.feature'

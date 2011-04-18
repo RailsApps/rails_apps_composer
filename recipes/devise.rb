@@ -10,7 +10,9 @@ end
 
 if config['devise']
   after_bundler do
-  
+    
+    say_wizard "Devise recipe running 'after bundler'"
+    
     # Run the Devise generator
     generate 'devise:install'
 
@@ -28,8 +30,15 @@ if config['devise']
 
     # Generate models and routes for a User
     generate 'devise user'
+    
+  end
+
+  after_everything do
+
+    say_wizard "Devise recipe running 'after everything'"
 
     if recipes.include? 'rspec'
+      say_wizard "Copying RSpec files from the rails3-mongoid-devise examples"
       # copy all the RSpec specs files from the rails3-mongoid-devise example app
       inside 'spec' do
         get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/factories.rb', 'factories.rb'

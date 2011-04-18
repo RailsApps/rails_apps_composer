@@ -3,6 +3,8 @@
 
 after_bundler do
 
+  say_wizard "CssSetup recipe running 'after bundler'"
+
   # Add a stylesheet with styles for a horizontal menu and flash messages
   create_file 'public/stylesheets/application.css' do <<-CSS
 ul.hmenu {

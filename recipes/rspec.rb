@@ -2,7 +2,8 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/rspec.rb
 
 if config['rspec']
-  say_wizard "A REMINDER: When creating a Rails app using RSpec, you should add the '-T' flag to 'rails new'"
+  say_wizard "REMINDER: When creating a Rails app using RSpec..."
+  say_wizard "you should add the '-T' flag to 'rails new'"
   gem 'rspec-rails', '>= 2.5.0', :group => [:development, :test]
   if recipes.include? 'mongoid'
     # use the database_cleaner gem to reset the test database
@@ -22,6 +23,7 @@ end
 
 if config['rspec']
   after_bundler do
+    say_wizard "RSpec recipe running 'after bundler'"
     generate 'rspec:install'
 
     # remove ActiveRecord artifacts

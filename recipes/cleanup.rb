@@ -3,6 +3,8 @@
 
 after_bundler do
 
+  say_wizard "Cleanup recipe running 'after bundler'"
+
   # remove unnecessary files
   %w{
     README

@@ -2,7 +2,7 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/action_mailer.rb
 
 after_bundler do
-  
+  say_wizard "ActionMailer recipe running 'after bundler'"
   # modifying environment configuration files for ActionMailer
   gsub_file 'config/environments/development.rb', /# Don't care if the mailer can't send/, '# ActionMailer Config'
   gsub_file 'config/environments/development.rb', /config.action_mailer.raise_delivery_errors = false/ do

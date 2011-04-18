@@ -2,6 +2,7 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/ban_spiders.rb
 
 if config['ban_spiders']
+  say_wizard "BanSpiders recipe running 'after bundler'"
   after_bundler do
     # ban spiders from your site by changing robots.txt
     gsub_file 'public/robots.txt', /# User-Agent/, 'User-Agent'

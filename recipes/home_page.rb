@@ -3,6 +3,8 @@
 
 after_bundler do
   
+  say_wizard "HomePage recipe running 'after bundler'"
+  
   # remove the default home page
   remove_file 'public/index.html'
   
