@@ -16,19 +16,16 @@ after_bundler do
 end
 RUBY
     end
-  elsif recipes.include? 'mongo_mapper'
-    # Using MongoMapper? Create an issue, suggest some code, and I'll add it
-  elsif recipes.include? 'active_record'
-    gsub_file 'app/models/user.rb', /end/ do
-  <<-RUBY
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
-end
-RUBY
-    end
   else
-    # Placeholder for some other ORM
+    # for ActiveRecord
+    # Devise created a Users database, we'll modify it
+    generate 'migration AddNameToUsers name:string'
+    # Devise created a Users model, we'll modify it
+    gsub_file 'app/models/user.rb', /attr_accessible :email/, 'attr_accessible :name, :email'
+    inject_into_file 'app/models/user.rb', :before => 'validates_uniqueness_of' do
+      "validates_presence_of :name\n"
+    end
+    gsub_file 'app/models/user.rb', /validates_uniqueness_of :email/, 'validates_uniqueness_of :name, :email'
   end
 
   if recipes.include? 'devise'
