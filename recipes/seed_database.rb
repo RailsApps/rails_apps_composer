@@ -6,6 +6,10 @@ after_bundler do
 
   say_wizard "SeedDatabase recipe running 'after bundler'"
 
+  unless recipes.include? 'mongoid'
+    run 'rake db:migrate'
+  end
+
   if recipes.include? 'mongoid'
     # create a default user
     append_file 'db/seeds.rb' do <<-FILE
