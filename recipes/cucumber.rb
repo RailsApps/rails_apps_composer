@@ -4,10 +4,7 @@
 if config['cucumber']
   gem 'cucumber-rails', ">= 0.4.1", :group => :test
   gem 'capybara', ">= 0.4.1.2", :group => :test
-  unless recipes.include? 'rspec'
-    # we already added database_cleaner if we ran the rspec recipe
-    gem 'database_cleaner', '>= 0.6.6', :group => :test
-  end
+  gem 'database_cleaner', '>= 0.6.7', :group => :test
   gem 'launchy', ">= 0.4.0", :group => :test
 else
   recipes.delete('cucumber')
@@ -16,7 +13,7 @@ end
 if config['cucumber']
   after_bundler do
     say_wizard "Cucumber recipe running 'after bundler'"
-    generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' unless recipes.include?('activerecord')}"
+    generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' if recipes.include?('mongoid')}"
     if recipes.include? 'mongoid'
       gsub_file 'features/support/env.rb', /transaction/, "truncation"
       inject_into_file 'features/support/env.rb', :after => 'begin' do
