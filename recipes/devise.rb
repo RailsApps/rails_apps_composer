@@ -2,7 +2,7 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/devise.rb
 
 if config['devise']
-  gem "devise", ">= 1.3.0"
+  gem "devise", ">= 1.3.3"
 else
   recipes.delete('devise')
 end
