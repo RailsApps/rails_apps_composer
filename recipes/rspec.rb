@@ -25,12 +25,16 @@ if config['rspec']
   after_bundler do
     say_wizard "RSpec recipe running 'after bundler'"
     generate 'rspec:install'
-
-    # remove ActiveRecord artifacts
-    gsub_file 'spec/spec_helper.rb', /config.fixture_path/, '# config.fixture_path'
-    gsub_file 'spec/spec_helper.rb', /config.use_transactional_fixtures/, '# config.use_transactional_fixtures'
+    
+    say_wizard "Removing test folder (not needed for RSpec)"
+    run 'rm -rf test/'
 
     if recipes.include? 'mongoid'
+      
+      # remove ActiveRecord artifacts
+      gsub_file 'spec/spec_helper.rb', /config.fixture_path/, '# config.fixture_path'
+      gsub_file 'spec/spec_helper.rb', /config.use_transactional_fixtures/, '# config.use_transactional_fixtures'
+      
       # reset your application database to a pristine state during testing
       inject_into_file 'spec/spec_helper.rb', :before => "\nend" do
       <<-RUBY
@@ -47,16 +51,11 @@ if config['rspec']
   end
 RUBY
       end
-    end
-  
-    # remove either possible occurrence of "require rails/test_unit/railtie"
-    gsub_file 'config/application.rb', /require 'rails\/test_unit\/railtie'/, '# require "rails/test_unit/railtie"'
-    gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, '# require "rails/test_unit/railtie"'
 
-    say_wizard "Removing test folder (not needed for RSpec)"
-    run 'rm -rf test/'
+      # remove either possible occurrence of "require rails/test_unit/railtie"
+      gsub_file 'config/application.rb', /require 'rails\/test_unit\/railtie'/, '# require "rails/test_unit/railtie"'
+      gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, '# require "rails/test_unit/railtie"'
 
-    if recipes.include? 'mongoid'
       # configure RSpec to use matchers from the mongoid-rspec gem
       create_file 'spec/support/mongoid.rb' do 
       <<-RUBY
