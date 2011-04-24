@@ -205,8 +205,8 @@ RSpec, Cucumber, and Yard recipes were contributed by "Ramon Brooker":http://cog
 
 Additional recipes by Daniel Kehoe, "http://danielkehoe.com/":http://danielkehoe.com/, to implement the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application.
 
-Is the gem useful to you? Follow me on Twitter:
-"http://twitter.com/railsinit":http://twitter.com/railsinit
+Is the gem useful to you? Follow the project on Twitter:
+"http://twitter.com/rails_apps":http://twitter.com/rails_apps
 and tweet some praise. I'd love to know you were helped out by the gem.
 
 h2. License
