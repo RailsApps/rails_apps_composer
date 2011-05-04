@@ -9,7 +9,7 @@ if config['rspec']
     # use the database_cleaner gem to reset the test database
     gem 'database_cleaner', '>= 0.6.7', :group => :test
     # include RSpec matchers from the mongoid-rspec gem
-    gem 'mongoid-rspec', ">= 1.4.1", :group => :test
+    gem 'mongoid-rspec', ">= 1.4.2", :group => :test
   end
   if config['factory_girl']
     # use the factory_girl gem for test fixtures
