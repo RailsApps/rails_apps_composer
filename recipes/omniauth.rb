@@ -1,15 +1,140 @@
-gem 'omniauth', '~> 0.2.0'
+# Application template recipe for the rails3_devise_wizard. Check for a newer version here:
+# https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/omniauth.rb
 
-after_bundler do
-  file 'app/controllers/sessions_controller.rb', "class SessionsController < ApplicationController\n  def callback\n    auth # Do what you want with the auth hash!\n  end\n\n  def auth; request.env['omniauth.auth'] end\nend"
-  route "match '/auth/:provider/callback', :to => 'sessions#callback'"
+if config['omniauth']
+  gem 'omniauth', '>= 0.2.4'
+else
+  recipes.delete('omniauth')
+end
+
+if config['omniauth']
+  after_bundler do
+    
+      create_file 'config/initializers/omniauth.rb', <<-RUBY
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :#{config['provider']}, 'KEY', 'SECRET'
+end
+RUBY
+      end
+
+      append_file '.gitignore' do <<-TXT
+\n
+# keep OmniAuth service provider secrets out of the Git repo
+config/initializers/omniauth.rb
+TXT
+      end
+
+      inject_into_file 'config/routes.rb', :before => 'end' do
+        "resources :users, :only => [ :show, :edit, :update ]\n"
+      end
+      inject_into_file 'config/routes.rb', :before => 'end' do
+        "match '/auth/:provider/callback' => 'sessions#create'\n"
+      end
+      inject_into_file 'config/routes.rb', :before => 'end' do
+        "match '/signout' => 'sessions#destroy', :as => :signout\n"
+      end
+      inject_into_file 'config/routes.rb', :before => 'end' do
+        "match '/signin' => 'sessions#new', :as => :signin\n"
+      end
+      inject_into_file 'config/routes.rb', :before => 'end' do
+        "match '/auth/failure' => 'sessions#failure'\n"
+      end
+      
+      inject_into_file 'app/models/user.rb', :before => 'end' do <<-RUBY
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      user.provider = auth['provider']
+      user.uid = auth['uid']
+      user.name = auth['user_info']['name'] if auth['user_info']['name'] # Twitter, Google, Yahoo, GitHub
+      user.email = auth['user_info']['email'] if auth['user_info']['email'] # Google, Yahoo, GitHub
+      user.name = auth['extra']['user_hash']['name'] if auth['extra']['user_hash']['name'] # Facebook
+      user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
+    end
+  end
+RUBY
+      end
+
+      create_file 'app/controllers/sessions_controller.rb', <<-RUBY
+class SessionsController < ApplicationController
+  
+  def new
+    redirect_to '/auth/#{config['provider']}'
+  end
+  
+  def create
+    auth = request.env["omniauth.auth"]
+    user = User.where(:provider => auth['provider'], 
+                      :uid => auth['uid']).first || User.create_with_omniauth(auth)
+    session[:user_id] = user.id
+    if !user.email
+      redirect_to edit_user_path(user), :alert => "Please enter your email address."
+    else
+      redirect_to root_url, :notice => "Signed in!"
+    end
+  end
+  
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_url, :notice => 'Signed out!'
+  end
+  
+  def failure
+    redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
+  end
+  
+end
+RUBY
+      end
+
+      inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
+  helper_method :current_user
+  helper_method :user_signed_in?
+  helper_method :correct_user?
+
+  private
+    def current_user
+      begin
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      rescue Mongoid::Errors::DocumentNotFound
+        nil
+      end
+    end
+
+    def user_signed_in?
+      return true if current_user
+    end
+
+    def correct_user?
+      @user = User.find(params[:id])
+      unless current_user == @user
+        redirect_to root_url, :alert => "Access denied."
+      end
+    end
+
+    def authenticate_user!
+      if !current_user
+        redirect_to root_url, :alert => 'You need to sign in for access to this page.'
+      end
+    end
+RUBY
+      end
+
 end
 
 __END__
 
 name: OmniAuth
-description: "A basic setup of OmniAuth with a SessionsController to handle the request and callback phases."
-author: mbleigh
+description: "Utilize OmniAuth for authentication."
+author: fortuity
 
 exclusive: authentication
 category: authentication
+
+config:
+  - omniauth:
+      type: boolean
+      prompt: Would you like to use OmniAuth for authentication?
+  - provider:
+      type: multiple_choice
+      prompt: "Which service provider will you use?"
+      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linked_in], ["Other", provider]]
