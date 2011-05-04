@@ -5,14 +5,24 @@ after_bundler do
   
   say_wizard "AddUser recipe running 'after bundler'"
   
-  if recipes.include? 'devise'
-    # Generate models and routes for a User
-    generate 'devise user'
+  if recipes.include? 'omniauth'
+    generate 'model user provider:string uid:string name:string email:string'
+    gsub_file 'app/models/user.rb', /end/ do
+<<-RUBY
+  attr_accessible :provider, :uid, :name, :email
+end
+RUBY
+    end
   end
 
-  # Add a 'name' attribute to the User model
-  if recipes.include? 'mongoid'
-    gsub_file 'app/models/user.rb', /end/ do
+  if recipes.include? 'devise'
+    
+    # Generate models and routes for a User
+    generate 'devise user'
+
+    # Add a 'name' attribute to the User model
+    if recipes.include? 'mongoid'
+      gsub_file 'app/models/user.rb', /end/ do
   <<-RUBY
   field :name
   validates_presence_of :name
@@ -20,20 +30,19 @@ after_bundler do
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 end
 RUBY
+      end
+    else
+      # for ActiveRecord
+      # Devise created a Users database, we'll modify it
+      generate 'migration AddNameToUsers name:string'
+      # Devise created a Users model, we'll modify it
+      gsub_file 'app/models/user.rb', /attr_accessible :email/, 'attr_accessible :name, :email'
+      inject_into_file 'app/models/user.rb', :before => 'validates_uniqueness_of' do
+        "validates_presence_of :name\n"
+      end
+      gsub_file 'app/models/user.rb', /validates_uniqueness_of :email/, 'validates_uniqueness_of :name, :email'
     end
-  else
-    # for ActiveRecord
-    # Devise created a Users database, we'll modify it
-    generate 'migration AddNameToUsers name:string'
-    # Devise created a Users model, we'll modify it
-    gsub_file 'app/models/user.rb', /attr_accessible :email/, 'attr_accessible :name, :email'
-    inject_into_file 'app/models/user.rb', :before => 'validates_uniqueness_of' do
-      "validates_presence_of :name\n"
-    end
-    gsub_file 'app/models/user.rb', /validates_uniqueness_of :email/, 'validates_uniqueness_of :name, :email'
-  end
 
-  if recipes.include? 'devise'
     unless recipes.include? 'haml'
       
       # Generate Devise views (unless you are using Haml)
@@ -71,9 +80,8 @@ end
 __END__
 
 name: AddUser
-description: "Modify the default Devise configuration to add a 'name' attribute for all users."
+description: "Add a User model including 'name' and 'email' attributes."
 author: fortuity
 
-requires: [devise]
 category: other
 tags: [utilities, configuration]
