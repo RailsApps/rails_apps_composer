@@ -16,9 +16,9 @@ if config['jquery']
     # add jQuery files
     inside "public/javascripts" do
       get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "rails.js"
-      get "https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js", "jquery.js"
+      get "http://code.jquery.com/jquery-1.6.min.js", "jquery.js"
       if config['ui']
-        get "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js", "jqueryui.js"
+        get "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js", "jqueryui.js"
       end
     end
     # adjust the Javascript defaults
