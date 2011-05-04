@@ -24,13 +24,10 @@ if config['devise']
       # Nothing to do (Devise changes its initializer automatically when Mongoid is detected)
       # gsub_file 'config/initializers/devise.rb', 'devise/orm/active_record', 'devise/orm/mongoid'
     end
-  
+
     # Prevent logging of password_confirmation
     gsub_file 'config/application.rb', /:password/, ':password, :password_confirmation'
 
-    # Generate models and routes for a User
-    generate 'devise user'
-    
   end
 
   after_everything do
