@@ -2,7 +2,7 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/haml.rb
 
 if config['haml']
-  gem 'haml', '>= 3.0.25'
+  gem 'haml', '>= 3.1.1'
   gem 'haml-rails', '>= 0.3.4', :group => :development
 else
   recipes.delete('haml')
