@@ -40,11 +40,14 @@ RUBY
       create_file 'app/views/users/show.html.haml' do <<-'HAML'
 %p
   User: #{@user.name}
+%p
+  Email: #{@user.email if @user.email}
 HAML
       end
     else
       append_file 'app/views/users/show.html.erb' do <<-ERB
 <p>User: <%= @user.name %></p>
+<p>Email: <%= @user.email if @user.email %></p>
 ERB
       end
     end
@@ -96,6 +99,5 @@ name: UsersPage
 description: "Add a users controller and user show page with links from the home page."
 author: fortuity
 
-requires: [devise]
 category: other
 tags: [utilities, configuration]
