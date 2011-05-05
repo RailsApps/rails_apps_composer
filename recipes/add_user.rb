@@ -6,7 +6,7 @@ after_bundler do
   say_wizard "AddUser recipe running 'after bundler'"
   
   if recipes.include? 'omniauth'
-    generate 'model user provider:string uid:string name:string email:string'
+    generate(:model, "user provider:string uid:string name:string email:string")
     gsub_file 'app/models/user.rb', /end/ do
 <<-RUBY
   attr_accessible :provider, :uid, :name, :email
