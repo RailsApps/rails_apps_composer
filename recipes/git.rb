@@ -2,10 +2,22 @@
 # https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/git.rb
 
 after_everything do
+  
   say_wizard "Git recipe running 'after everything'"
+  
   # Git should ignore some files
   remove_file '.gitignore'
   get "https://github.com/fortuity/rails3-gitignore/raw/master/gitignore.txt", ".gitignore"
+
+  if recipes.include? 'omniauth'
+    append_file '.gitignore' do <<-TXT
+\n
+# keep OmniAuth service provider secrets out of the Git repo
+config/initializers/omniauth.rb
+TXT
+    end
+  end
+
   # Initialize new Git repo
   git :init
   git :add => '.'

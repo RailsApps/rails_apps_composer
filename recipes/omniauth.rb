@@ -18,13 +18,6 @@ end
 RUBY
     end
 
-    append_file '.gitignore' do <<-TXT
-\n
-# keep OmniAuth service provider secrets out of the Git repo
-config/initializers/omniauth.rb
-TXT
-    end
-
     route "match '/auth/failure' => 'sessions#failure'"
     route "match '/signout' => 'sessions#destroy', :as => :signout"
     route "match '/signin' => 'sessions#new', :as => :signin"
