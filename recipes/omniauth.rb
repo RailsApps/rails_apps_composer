@@ -25,21 +25,11 @@ config/initializers/omniauth.rb
 TXT
     end
 
-    inject_into_file 'config/routes.rb', :before => 'end' do
-      "resources :users, :only => [ :show, :edit, :update ]\n"
-    end
-    inject_into_file 'config/routes.rb', :before => 'end' do
-      "match '/auth/:provider/callback' => 'sessions#create'\n"
-    end
-    inject_into_file 'config/routes.rb', :before => 'end' do
-      "match '/signout' => 'sessions#destroy', :as => :signout\n"
-    end
-    inject_into_file 'config/routes.rb', :before => 'end' do
-      "match '/signin' => 'sessions#new', :as => :signin\n"
-    end
-    inject_into_file 'config/routes.rb', :before => 'end' do
-      "match '/auth/failure' => 'sessions#failure'\n"
-    end
+    route "resources :users, :only => [ :show, :edit, :update ]"
+    route "match '/auth/:provider/callback' => 'sessions#create'"
+    route "match '/signout' => 'sessions#destroy', :as => :signout"
+    route "match '/signin' => 'sessions#new', :as => :signin"
+    route "match '/auth/failure' => 'sessions#failure'"
 
     inject_into_file 'app/models/user.rb', :before => 'end' do <<-RUBY
   def self.create_with_omniauth(auth)
