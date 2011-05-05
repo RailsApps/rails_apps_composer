@@ -43,6 +43,5 @@ name: HomePageUsers
 description: "Display a list of users on the home page."
 author: fortuity
 
-requires: [devise]
 category: other
 tags: [utilities, configuration]

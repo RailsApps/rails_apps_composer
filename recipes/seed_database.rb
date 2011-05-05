@@ -38,6 +38,5 @@ name: SeedDatabase
 description: "Create a database seed file with a default user."
 author: fortuity
 
-requires: [devise]
 category: other
 tags: [utilities, configuration]
