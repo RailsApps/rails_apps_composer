@@ -9,11 +9,11 @@ after_bundler do
     # Modify a users controller
     #----------------------------------------------------------------------------
     inject_into_file 'app/controllers/users_controller.rb', :after => "before_filter :authenticate_user!\n" do <<-RUBY
-  before_filter :correct_user?\n
+  before_filter :correct_user?
 RUBY
     end
     
-    inject_into_file 'app/controllers/users_controller.rb', :before => 'end' do <<-RUBY
+    inject_into_file 'app/controllers/users_controller.rb', :before => 'def show' do <<-RUBY
   def edit
     @user = User.find(params[:id])
   end
@@ -26,6 +26,7 @@ RUBY
       render :edit
     end
   end
+\n
 RUBY
     end
 

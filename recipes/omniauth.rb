@@ -32,6 +32,7 @@ TXT
     route "resources :users, :only => [ :show, :edit, :update ]"
 
     inject_into_file 'app/models/user.rb', :before => 'end' do <<-RUBY
+\n
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
@@ -42,16 +43,13 @@ TXT
       user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
     end
   end
+\n
 RUBY
     end
 
-    # Don't use single-quote-style-heredoc: we want interpolation.
-    create_file 'app/controllers/sessions_controller.rb', do <<-RUBY
+    # We have to use single-quote-style-heredoc to avoid interpolation.
+    create_file 'app/controllers/sessions_controller.rb', do <<-'RUBY'
 class SessionsController < ApplicationController
-
-  def new
-    redirect_to '/auth/#{config['provider']}'
-  end
 
   def create
     auth = request.env["omniauth.auth"]
@@ -70,20 +68,24 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => 'Signed out!'
   end
 
-end
-RUBY
-    end
-
-    # We have to use single-quote-style-heredoc to avoid interpolation.
-    inject_into_file 'app/controllers/sessions_controller.rb', :before => 'end' do <<-'RUBY'
   def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
 
+end
 RUBY
     end
-      
-      
+
+    # Don't use single-quote-style-heredoc: we want interpolation.
+    inject_into_class 'app/controllers/sessions_controller.rb', do <<-RUBY
+
+  def new
+    redirect_to '/auth/#{config['provider']}'
+  end
+
+RUBY
+    end
+
     inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
   helper_method :current_user
   helper_method :user_signed_in?
@@ -114,6 +116,7 @@ RUBY
         redirect_to root_url, :alert => 'You need to sign in for access to this page.'
       end
     end
+\n
 RUBY
     end
 
