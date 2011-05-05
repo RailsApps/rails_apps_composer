@@ -9,38 +9,39 @@ end
 
 if config['omniauth']
   after_bundler do
-    
-      create_file 'config/initializers/omniauth.rb', <<-RUBY
+
+    # Don't use single-quote-style-heredoc: we want interpolation.
+    create_file 'config/initializers/omniauth.rb' do <<-RUBY
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :#{config['provider']}, 'KEY', 'SECRET'
 end
 RUBY
-      end
+    end
 
-      append_file '.gitignore' do <<-TXT
+    append_file '.gitignore' do <<-TXT
 \n
 # keep OmniAuth service provider secrets out of the Git repo
 config/initializers/omniauth.rb
 TXT
-      end
+    end
 
-      inject_into_file 'config/routes.rb', :before => 'end' do
-        "resources :users, :only => [ :show, :edit, :update ]\n"
-      end
-      inject_into_file 'config/routes.rb', :before => 'end' do
-        "match '/auth/:provider/callback' => 'sessions#create'\n"
-      end
-      inject_into_file 'config/routes.rb', :before => 'end' do
-        "match '/signout' => 'sessions#destroy', :as => :signout\n"
-      end
-      inject_into_file 'config/routes.rb', :before => 'end' do
-        "match '/signin' => 'sessions#new', :as => :signin\n"
-      end
-      inject_into_file 'config/routes.rb', :before => 'end' do
-        "match '/auth/failure' => 'sessions#failure'\n"
-      end
-      
-      inject_into_file 'app/models/user.rb', :before => 'end' do <<-RUBY
+    inject_into_file 'config/routes.rb', :before => 'end' do
+      "resources :users, :only => [ :show, :edit, :update ]\n"
+    end
+    inject_into_file 'config/routes.rb', :before => 'end' do
+      "match '/auth/:provider/callback' => 'sessions#create'\n"
+    end
+    inject_into_file 'config/routes.rb', :before => 'end' do
+      "match '/signout' => 'sessions#destroy', :as => :signout\n"
+    end
+    inject_into_file 'config/routes.rb', :before => 'end' do
+      "match '/signin' => 'sessions#new', :as => :signin\n"
+    end
+    inject_into_file 'config/routes.rb', :before => 'end' do
+      "match '/auth/failure' => 'sessions#failure'\n"
+    end
+
+    inject_into_file 'app/models/user.rb', :before => 'end' do <<-RUBY
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
@@ -52,15 +53,16 @@ TXT
     end
   end
 RUBY
-      end
+    end
 
-      create_file 'app/controllers/sessions_controller.rb', <<-RUBY
+    # Don't use single-quote-style-heredoc: we want interpolation.
+    create_file 'app/controllers/sessions_controller.rb', do <<-RUBY
 class SessionsController < ApplicationController
-  
+
   def new
     redirect_to '/auth/#{config['provider']}'
   end
-  
+
   def create
     auth = request.env["omniauth.auth"]
     user = User.where(:provider => auth['provider'], 
@@ -72,21 +74,27 @@ class SessionsController < ApplicationController
       redirect_to root_url, :notice => 'Signed in!'
     end
   end
-  
+
   def destroy
     session[:user_id] = nil
     redirect_to root_url, :notice => 'Signed out!'
   end
-  
+
+end
+RUBY
+    end
+
+    # We have to use single-quote-style-heredoc to avoid interpolation.
+    inject_into_file 'app/controllers/sessions_controller.rb', :before => 'end' do <<-'RUBY'
   def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
-  
-end
-RUBY
-      end
 
-      inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
+RUBY
+    end
+      
+      
+    inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
@@ -117,7 +125,7 @@ RUBY
       end
     end
 RUBY
-      end
+    end
 
   end
 end
