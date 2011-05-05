@@ -11,7 +11,6 @@ after_everything do
 
   if recipes.include? 'omniauth'
     append_file '.gitignore' do <<-TXT
-\n
 # keep OmniAuth service provider secrets out of the Git repo
 config/initializers/omniauth.rb
 TXT
