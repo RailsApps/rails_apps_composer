@@ -25,7 +25,7 @@ RUBY
     route "resources :users, :only => [ :show, :edit, :update ]"
 
     inject_into_file 'app/models/user.rb', :before => 'end' do <<-RUBY
-\n
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
@@ -36,7 +36,7 @@ RUBY
       user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
     end
   end
-\n
+
 RUBY
     end
 
@@ -49,11 +49,7 @@ class SessionsController < ApplicationController
     user = User.where(:provider => auth['provider'], 
                       :uid => auth['uid']).first || User.create_with_omniauth(auth)
     session[:user_id] = user.id
-    if !user.email
-      redirect_to edit_user_path(user), :alert => "Please enter your email address."
-    else
-      redirect_to root_url, :notice => 'Signed in!'
-    end
+    redirect_to root_url, :notice => 'Signed in!'
   end
 
   def destroy
@@ -70,7 +66,7 @@ RUBY
     end
 
     # Don't use single-quote-style-heredoc: we want interpolation.
-    inject_into_class 'app/controllers/sessions_controller.rb', SessionsController do <<-RUBY
+    inject_into_class 'app/controllers/sessions_controller.rb', 'SessionsController' do <<-RUBY
 
   def new
     redirect_to '/auth/#{config['provider']}'
@@ -109,7 +105,7 @@ RUBY
         redirect_to root_url, :alert => 'You need to sign in for access to this page.'
       end
     end
-\n
+
 RUBY
     end
 
