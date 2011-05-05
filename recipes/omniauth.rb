@@ -70,7 +70,7 @@ RUBY
     end
 
     # Don't use single-quote-style-heredoc: we want interpolation.
-    inject_into_class 'app/controllers/sessions_controller.rb', do <<-RUBY
+    inject_into_class 'app/controllers/sessions_controller.rb', SessionsController do <<-RUBY
 
   def new
     redirect_to '/auth/#{config['provider']}'
