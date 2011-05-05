@@ -25,16 +25,28 @@ if config['rspec']
   after_bundler do
     say_wizard "RSpec recipe running 'after bundler'"
     generate 'rspec:install'
-    
+
     say_wizard "Removing test folder (not needed for RSpec)"
     run 'rm -rf test/'
 
+    # don't generate spec tests for views and helpers
+    inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
+
+    config.generators do |g|
+      g.view_specs false
+      g.helper_specs false
+    end
+
+RUBY
+    end
+
+
     if recipes.include? 'mongoid'
-      
+
       # remove ActiveRecord artifacts
       gsub_file 'spec/spec_helper.rb', /config.fixture_path/, '# config.fixture_path'
       gsub_file 'spec/spec_helper.rb', /config.use_transactional_fixtures/, '# config.use_transactional_fixtures'
-      
+
       # reset your application database to a pristine state during testing
       inject_into_file 'spec/spec_helper.rb', :before => "\nend" do
       <<-RUBY
