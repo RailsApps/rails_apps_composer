@@ -29,9 +29,9 @@ if config['rspec']
     say_wizard "Removing test folder (not needed for RSpec)"
     run 'rm -rf test/'
 
-    # don't generate spec tests for views and helpers
     inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
 
+    # don't generate RSpec tests for views and helpers
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
