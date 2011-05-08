@@ -100,6 +100,14 @@ The rails3_devise_wizard gem creates an application template as an intermediate 
 $ rake print --silent RECIPES=recipe1,recipe2 > ~/Desktop/template.txt
 </pre>
 
+h4. Template for Rails 3 + Devise + RSpec + Cucumber
+
+To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/fortuity/rails3-devise-rspec-cucumber/ example application, run the command:
+
+<pre>
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,action_mailer,devise,add_user_name,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
+</pre>
+
 h4. Template for Rails 3 + Mongoid + Devise
 
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
