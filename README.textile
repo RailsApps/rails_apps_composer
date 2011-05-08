@@ -100,10 +100,20 @@ The rails3_devise_wizard gem creates an application template as an intermediate 
 $ rake print --silent RECIPES=recipe1,recipe2 > ~/Desktop/template.txt
 </pre>
 
+h4. Template for Rails 3 + Mongoid + Devise
+
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user_name,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
+</pre>
+
+h4. Template for Rails 3 + Mongoid + OmniAuth
+
+To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/fortuity/rails3-mongoid-omniauth/ example application, run the command:
+
+<pre>
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,navigation,users_page,omniauth_email,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
 h4. Edit the Application Template
