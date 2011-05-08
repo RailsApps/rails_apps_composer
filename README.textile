@@ -71,7 +71,7 @@ $ rails3_devise_wizard new APP_NAME -r jquery haml
 To build the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails3_devise_wizard new APP_NAME -r jquery haml rspec cucumber mongoid action_mailer devise add_user_name home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders git
+$ rails3_devise_wizard new APP_NAME -r jquery haml rspec cucumber mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders git
 </pre>
 
 h2. Make Your Own Starter App with a Reusable Application Template
@@ -105,7 +105,7 @@ h4. Template for Rails 3 + Devise + RSpec + Cucumber
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/fortuity/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,action_mailer,devise,add_user_name,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
 h4. Template for Rails 3 + Mongoid + Devise
@@ -113,7 +113,7 @@ h4. Template for Rails 3 + Mongoid + Devise
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user_name,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
 h4. Template for Rails 3 + Mongoid + OmniAuth
@@ -145,6 +145,69 @@ $ rails new testapp -m ~/Desktop/recipe.txt -T -O -J
 </pre>
 
 That's all it takes. You'll have a ready-to-customize Rails web application in minutes.
+
+h2. The Recipes
+
+The following recipes are available.
+
+h4. Recipes for General Use
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "action_mailer.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/action_mailer.rb          | Changes ActionMailer defaults             | none               | dkehoe |
+| "ban_spiders.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/ban_spiders.rb           | Ban spiders from your site by changing robots.txt | none | dkehoe |
+| "cleanup.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/cleanup.rb               | Remove unnecessary files, add READMEs | none | fnichol, dkehoe |
+| "git.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/git.rb                    | Add a gitignore file, initialize new Git repo | Git | fnichol, dkehoe |
+| "sample_readme.textile":https://github.com/fortuity/rails-template-recipes/raw/master/sample_readme.textile     | Placeholder text for a README file (textile markup) | none | dkehoe |
+| "sample_readme.txt":https://github.com/fortuity/rails-template-recipes/raw/master/sample_readme.txt         | Placeholder text for a README file (ASCII) | none | dkehoe |
+
+h4. Recipes for Testing and BDD
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "rspec.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/rspec.rb          | Install RSpec | none | rbrooker, dkehoe |
+| "cucumber.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/cucumber.rb          | Install Cucumber | none | rbrooker, dkehoe |
+
+h4. Recipes for Mongoid
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "mongoid.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/mongoid.rb        | Installs Mongoid with the bson_ext gem | Mongoid | dkehoe |
+
+h4. Recipes for jQuery
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "jquery.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/jquery_fix.rb             | Installs jQuery | none | dkehoe |
+
+h4. Recipes for Devise
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "devise.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/devise.rb          | Installs Devise  | none | dkehoe |
+
+h4. Recipes for OmniAuth
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "omniauth.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/omniauth.rb        | OmniAuth for authentication | none | dkehoe |
+| "omniauth_email.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/omniauth_email.rb        | Requests a new uer's email address when authenticating with Twitter, etc. | OmniAuth | dkehoe |
+
+h4. Recipes for Haml
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "haml.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/haml.rb          | Installs Haml | none | dkehoe |
+
+h4. Recipes for the Application Layout
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "application_layout.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/application_layout.rb     | Adds application layout with flash messages | ERB or Haml      | dkehoe |
+| "css_setup.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/css_setup.rb              | Add a stylesheet with styles for a horizontal menu and flash messages | none | dkehoe |
+
+h4. Recipes for the Example Apps
+
+|_. File                    |_.                                  |_. Dependencies     |_. Authors |
+| "add_user.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/add_user.rb          | adds User model for use with OmniAuth or Devise | none | dkehoe |
+| "navigation.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/_navigation.rb      | Add navigation links to the default application layout | none | dkehoe |
+| "devise_navigation.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/devise_navigation.rb      | Add navigation links to the default application layout | Devise | dkehoe |
+| "home_page.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/home_page.rb              | Create a home controller, route, and simple view | ERB or Haml | dkehoe |
+| "home_page_users.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/home_page_users.rb        | Modify a home page to display a list of users | Home controller, User model, ERB or Haml | dkehoe |
+| "seed_database.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/seed_database.rb          | Adds a db/seeds.rb file to initialize a database | none | dkehoe |
+| "users_page.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/users_page.rb             | Add a home page containing links to User pages | User model, ERB or Haml | dkehoe |
 
 h2. Writing New Recipes
 
