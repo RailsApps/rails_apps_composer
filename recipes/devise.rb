@@ -35,20 +35,20 @@ if config['devise']
     say_wizard "Devise recipe running 'after everything'"
 
     if recipes.include? 'rspec'
-      say_wizard "Copying RSpec files from the rails3-mongoid-devise examples"
-      # copy all the RSpec specs files from the rails3-mongoid-devise example app
+      say_wizard "Copying RSpec files from the rails3-devise-rspec-cucumber examples"
+      # copy all the RSpec specs files from the rails3-devise-rspec-cucumber example app
       inside 'spec' do
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/factories.rb', 'factories.rb'
+        get 'https://github.com/fortuity/rails3-devise-rspec-cucumber/raw/master/spec/factories.rb', 'factories.rb'
       end
       remove_file 'spec/controllers/home_controller_spec.rb'
       remove_file 'spec/controllers/users_controller_spec.rb'
       inside 'spec/controllers' do
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/controllers/home_controller_spec.rb', 'home_controller_spec.rb'
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/controllers/users_controller_spec.rb', 'users_controller_spec.rb'
+        get 'https://github.com/fortuity/rails3-devise-rspec-cucumber/raw/master/spec/controllers/home_controller_spec.rb', 'home_controller_spec.rb'
+        get 'https://github.com/fortuity/rails3-devise-rspec-cucumber/raw/master/spec/controllers/users_controller_spec.rb', 'users_controller_spec.rb'
       end
       remove_file 'spec/models/user_spec.rb'
       inside 'spec/models' do
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/spec/models/user_spec.rb', 'user_spec.rb'
+        get 'https://github.com/fortuity/rails3-devise-rspec-cucumber/raw/master/spec/models/user_spec.rb', 'user_spec.rb'
       end
       remove_file 'spec/views/home/index.html.erb_spec.rb'
       remove_file 'spec/views/home/index.html.haml_spec.rb'
