@@ -100,12 +100,30 @@ The rails3_devise_wizard gem creates an application template as an intermediate 
 $ rake print --silent RECIPES=recipe1,recipe2 > ~/Desktop/template.txt
 </pre>
 
+If you don't include the @--silent@ option, the rake task will generate the application template with an extraneous first line. Open the template file and remove the first line if you encounter this problem.
+
+The rails3_devise_wizard gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
+
+<pre>
+$ rails new testapp -m ~/Desktop/template.txt
+</pre>
+
+You can specify the @-T -O -J@ flags as needed to skip Test::Unit files, Active Record files, and Prototype files.
+
+That's all it takes. You'll have a ready-to-customize Rails web application in minutes.
+
 h4. Template for Rails 3 + Devise + RSpec + Cucumber
 
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/fortuity/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
+</pre>
+
+Then generate the application using the @-T -J@ flags:
+
+<pre>
+$ rails new testapp -m ~/Desktop/template.txt -T -J
 </pre>
 
 h4. Template for Rails 3 + Mongoid + Devise
@@ -116,6 +134,12 @@ To build a reusable application template for the "rails3-mongoid-devise":http://
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
+Then generate the application using the @-T -O -J@ flags:
+
+<pre>
+$ rails new testapp -m ~/Desktop/template.txt -T -O -J
+</pre>
+
 h4. Template for Rails 3 + Mongoid + OmniAuth
 
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/fortuity/rails3-mongoid-omniauth/ example application, run the command:
@@ -124,27 +148,11 @@ To build a reusable application template for the "rails3-mongoid-omniauth":http:
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,navigation,users_page,omniauth_email,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
-h4. Edit the Application Template
-
-If you don't include the @--silent@ option, the rake task will generate the application template with an extraneous first line. Open the template file and remove the first line if you encounter this problem.
-
-h4. Generate an Application from an Application Template
-
-The rails3_devise_wizard gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
+Then generate the application using the @-T -O -J@ flags:
 
 <pre>
-$ rails new testapp -m ~/Desktop/template.txt
+$ rails new testapp -m ~/Desktop/template.txt -T -O -J
 </pre>
-
-You can specify the @-T -O -J@ flags as needed to skip Test::Unit files, Active Record files, and Prototype files.
-
-Here's an example:
-
-<pre>
-$ rails new testapp -m ~/Desktop/recipe.txt -T -O -J
-</pre>
-
-That's all it takes. You'll have a ready-to-customize Rails web application in minutes.
 
 h2. The Recipes
 
