@@ -20,11 +20,28 @@ Rails.application.config.generators do |g|
 end
 RUBY
 
-@recipes = <%= resolve_recipes.map(&:key).inspect %> 
+@recipes = <%= resolve_recipes.map(&:key).inspect %>
 
 <%= render "helpers" %>
 
+case Rails::VERSION::MAJOR.to_s
+when "3"
+  case Rails::VERSION::MINOR.to_s
+  when "1"
+    say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
+    @recipes << 'rails 3.1'
+  when "0"
+    say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
+    @recipes << 'rails 3.0'
+  else
+    say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
+  end
+else
+  say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
+end
+
 say_wizard "Checking configuration. Please confirm your preferences."
+
 <% resolve_recipes.each do |recipe| %>
 <%= render 'recipe', recipe.get_binding %>
 <% end %>
@@ -49,4 +66,4 @@ say_wizard "Running 'after everything' callbacks."
 @current_recipe = nil
 say_wizard "Finished running the rails3_devise_wizard app template."
 say_wizard "Your new Rails app is ready. Any problems?"
-say_wizard "See http://github.com/fortuity/rails3-mongoid-devise/issues"
+say_wizard "See http://github.com/fortuity/rails3_devise_wizard/issues"
