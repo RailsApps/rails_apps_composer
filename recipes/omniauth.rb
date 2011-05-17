@@ -49,7 +49,7 @@ RUBY
     end
 
     # We have to use single-quote-style-heredoc to avoid interpolation.
-    create_file 'app/controllers/sessions_controller.rb', do <<-'RUBY'
+    create_file 'app/controllers/sessions_controller.rb' do <<-'RUBY'
 class SessionsController < ApplicationController
 
   def create
