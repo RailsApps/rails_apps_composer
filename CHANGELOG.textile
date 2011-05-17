@@ -1,0 +1,35 @@
+h1. CHANGELOG
+
+h2. 1.0.0 May 17, 2011
+
+* rename project from rails3_devise_wizard to rails_apps_composer and move to new repo at "http://github.com/RailsApps/":http://github.com/RailsApps/ 
+
+h2. 0.3.2 May 17, 2011
+
+* omniauth recipe no longer requires add_user recipe
+* fixed a syntax error in the omniauth recipe
+
+h2. 0.3.1 May 13, 2011
+
+* accommodate Rails 3.1 and change the jquery recipe
+* modify recipes to compose the rails3-devise-rspec-cucumber example app
+
+h2. 0.2.8 May 5, 2011
+
+* add recipes needed for the rails3-mongoid-omniauth example app
+* update various recipes with newer gem versions
+
+h2. 0.2.5 April 18, 2011
+
+* app template will confirm preferences before running recipes (allows creation of a single master installation script)
+* add recipes needed for the rails3-mongoid-devise example app
+* changes to many recipes (different from RailsWizard)
+* execution order dependent on list of recipes, not "run_after" and "run_before" configuration flags (different from RailsWizard)
+
+h2. 0.2.0 April 15, 2011
+
+* original version named rails3_devise_wizard and based on "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard version 0.1.4
+
+h2. 0.1.4 April 7, 2011
+
+* Michael Bleigh's RailsWizard gem
