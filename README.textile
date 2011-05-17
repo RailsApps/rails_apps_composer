@@ -1,18 +1,26 @@
-h1. Rails3 Devise Wizard Gem
+h1. Rails Apps Composer Gem
 
-Creates a ready-to-run Rails web application using Devise for authentication. Makes it easy to create and maintain a starter app using your own preferred options. This is the gem used to create the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, as described in a detailed "tutorial":http://github.com/fortuity/rails3-mongoid-devise/wiki/Tutorial-%28Walkthrough%29.
+A gem with recipes to create Rails application templates you can use to generate Rails starter apps. Creates ready-to-run Rails web applications. Makes it easy to create and maintain a starter app using your own preferred options.
 
 h4. Based on Michael Bleigh's RailsWizard Gem
 
-The rails3_devise_wizard gem is a fork of "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see credits below). The purpose of this fork is to provide recipes for a ready-to-run Rails web application that uses Devise for authentication. Several recipes provided by the rails3_devise_wizard gem are different from those provided by the rails_wizard gem. Applications generated with the rails3_devise_wizard gem are more complete; for example, they may include a home page with sign-in, sign-out navigation links.
+The rails_apps_composer gem is a fork of "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see credits below). The purpose of this fork is to provide recipes for ready-to-run Rails starter apps. Several recipes provided by the rails_apps_composer gem are different from those provided by the rails_wizard gem. Applications generated with the rails_apps_composer gem are more complete; for example, they may include a home page with sign-in, sign-out navigation links.
+
+Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
+
+h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:http://www.twitter.com/rails_apps Follow on Twitter !http://railsapps.github.com/images/mailing-list-icon.jpg(Join the Mailing List)!:http://eepurl.com/dQx3o Join the Mailing List
+
+Follow the project on Twitter: "http://twitter.com/rails_apps":http://twitter.com/rails_apps. Tweet some praise if you like what you've found.
+
+<a href="http://eepurl.com/dQx3o">Join the email list</a> (low volume, announcements only) for project updates and my tips about Rails resources.
 
 h2. Suggested Use
 
 Any developer can quickly generate a Rails web application using the @rails new@ command. In practice, experienced Rails developers typically add an assortment of useful additional packages (gems) before beginning development of any web application. A developer often uses the same set of packages to get started and may create a "starter app" that can be copied and reused for any new project.
 
-It can be a hassle to integrate some of the most commonly used packages, particularly when new versions are released and there are minor "gotchas" that interfere with packages working together. Despite the apparent convenience of creating a starter app, it can be time consuming to maintain and update a starter app as component packages evolve. This project aims to simplify the process of building and maintaining a starter app by providing mix-and-match recipes to assemble the most commonly used Rails packages.
+It can be a hassle to integrate some of the most commonly used gems, particularly when new versions are released and there are minor "gotchas" that interfere with gems working together. Despite the apparent convenience of creating a starter app, it can be time consuming to maintain and update a starter app as component packages evolve. This project aims to simplify the process of building and maintaining a starter app by providing mix-and-match recipes to assemble the most commonly used Rails packages.
 
-If you use this gem to create your Rails starter app, you can expect the pieces to work together. If they don't, you can report problems and look for identified "issues":http://github.com/fortuity/rails3_devise_wizard/issues (and perhaps contributed fixes).
+If you use this gem to create your Rails starter app, you can expect the pieces to work together. If they don't, you can report problems and look for identified "issues":http://github.com/RailsApps/rails_apps_composer/issues (and perhaps contributed fixes).
 
 If you use this gem to create a reusable application template (see the instructions below), you can check for changes to recipes here and reassemble your application template as packages evolve.
 
@@ -36,7 +44,7 @@ h2. Installation
 
 Installation is simple:
 
-@$ gem install rails3_devise_wizard@
+@$ gem install rails_apps_composer@
 
 h2. Usage
 
@@ -44,17 +52,17 @@ h4. List Recipes
 
 You can display a list of recipes:
 
-@$ rails3_devise_wizard list@
+@$ rails_apps_composer list@
 
-You'll find more details about the available recipes by browsing the repository "recipes directory":https://github.com/fortuity/rails3_devise_wizard/tree/master/recipes. 
+You'll find more details about the available recipes by browsing the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. 
 
 h4. Generate a Starter App
 
-There are two ways to use the rails3_devise_wizard gem to generate a starter app.
+There are two ways to use the rails_apps_composer gem to generate a starter app.
 
 If you want to build a starter app for one-time use, you can build an application by providing a list of recipes with the @-r@ option. This will automatically generate an application using the specified recipes.
 
-If you want to create and save an application template that you can reuse as needed to "clone" identical starter apps, you can download the rails3_devise_wizard project, customize recipes as needed, and use a @rake@ task to save a reusable application template file.
+If you want to create and save an application template that you can reuse as needed to "clone" identical starter apps, you can download the rails_apps_composer project, customize recipes as needed, and use a @rake@ task to save a reusable application template file.
 
 Each of these approaches is described below.
 
@@ -62,31 +70,31 @@ h2. Make Your Own Starter App for One-Time Use
 
 h4. Select Recipes
 
-You can mix and match recipes to create your own customized starter app. Browse the repository "recipes directory":https://github.com/fortuity/rails3_devise_wizard/tree/master/recipes to see what is available. Then provide your list of recipes to the rails3_devise_wizard gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using jquery and haml:
+You can mix and match recipes to create your own customized starter app. Browse the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes to see what is available. Then provide your list of recipes to the rails_apps_composer gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using jquery and haml:
 
 <pre>
-$ rails3_devise_wizard new APP_NAME -r jquery haml
+$ rails_apps_composer new APP_NAME -r jquery haml
 </pre>
 
-To build the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
+To build the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails3_devise_wizard new APP_NAME -r jquery haml rspec cucumber mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders git
+$ rails_apps_composer new APP_NAME -r jquery haml rspec cucumber mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders git
 </pre>
 
 h2. Make Your Own Starter App with a Reusable Application Template
 
 You can modify the recipes and save an application template that creates your own customized starter app.
 
-First, you'll need to make your own copy of the rails3_devise_wizard gem.
+First, you'll need to make your own copy of the rails_apps_composer gem.
 
-@$ git clone git://github.com/fortuity/rails3_devise_wizard.git@
+@$ git clone git://github.com/RailsApps/rails_apps_composer.git@
 
-@$ cd rails3_devise_wizard@
+@$ cd rails_apps_composer@
 
-Install the "mg":https://github.com/sr/mg "minimal gem" which is required for development of the rails3_devise_wizard gem:
+The "mg":https://github.com/sr/mg "minimal gem" is required for development of the rails_apps_composer gem. Several other gems are needed as well:
 
-@$ gem install mg@
+@$ gem install i18n activesupport thor rspec mg@
 
 h4. Customize the Recipes
 
@@ -94,7 +102,7 @@ Modify or write new recipes as you wish (see below for details about writing rec
 
 h4. Save the Application Template
 
-The rails3_devise_wizard gem creates an application template as an intermediate step before generating an application. You can generate and save the application template. Here's an example of generating an application template and saving the template to a file:
+The rails_apps_composer gem creates an application template as an intermediate step before generating an application. You can generate and save the application template. Here's an example of generating an application template and saving the template to a file:
 
 <pre>
 $ rake print --silent RECIPES=recipe1,recipe2 > ~/Desktop/template.txt
@@ -102,25 +110,25 @@ $ rake print --silent RECIPES=recipe1,recipe2 > ~/Desktop/template.txt
 
 If you don't include the @--silent@ option, the rake task will generate the application template with an extraneous first line. Open the template file and remove the first line if you encounter this problem.
 
-The rails3_devise_wizard gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
+The rails_apps_composer gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
 
 <pre>
 $ rails new testapp -m ~/Desktop/template.txt
 </pre>
 
-You can specify the @-T -O -J@ flags as needed to skip Test::Unit files, Active Record files, and Prototype files.
+You can specify the @-T -O -J@ flags as needed to skip Test::Unit files and Active Record files. For Rails 3.0, you can also specify the @-J@ flag to skip Prototype files.
 
 That's all it takes. You'll have a ready-to-customize Rails web application in minutes.
 
 h4. Template for Rails 3 + Devise + RSpec + Cucumber
 
-To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/fortuity/rails3-devise-rspec-cucumber/ example application, run the command:
+To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
-Then generate the application using the @-T -J@ flags:
+Then generate the application using the @-T@ flag. Add the @-J@ flag for Rails 3.0.
 
 <pre>
 $ rails new testapp -m ~/Desktop/template.txt -T -J
@@ -128,13 +136,13 @@ $ rails new testapp -m ~/Desktop/template.txt -T -J
 
 h4. Template for Rails 3 + Mongoid + Devise
 
-To build a reusable application template for the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application, run the command:
+To build a reusable application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
-Then generate the application using the @-T -O -J@ flags:
+Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
 
 <pre>
 $ rails new testapp -m ~/Desktop/template.txt -T -O -J
@@ -142,13 +150,13 @@ $ rails new testapp -m ~/Desktop/template.txt -T -O -J
 
 h4. Template for Rails 3 + Mongoid + OmniAuth
 
-To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/fortuity/rails3-mongoid-omniauth/ example application, run the command:
+To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,navigation,users_page,omniauth_email,cleanup,ban_spiders,git > ~/Desktop/template.txt
 </pre>
 
-Then generate the application using the @-T -O -J@ flags:
+Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
 
 <pre>
 $ rails new testapp -m ~/Desktop/template.txt -T -O -J
@@ -161,69 +169,69 @@ The following recipes are available.
 h4. Recipes for General Use
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "action_mailer.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/action_mailer.rb          | Changes ActionMailer defaults             | none               | dkehoe |
-| "ban_spiders.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/ban_spiders.rb           | Ban spiders from your site by changing robots.txt | none | dkehoe |
-| "cleanup.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/cleanup.rb               | Remove unnecessary files, add READMEs | none | fnichol, dkehoe |
-| "git.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/git.rb                    | Add a gitignore file, initialize new Git repo | Git | fnichol, dkehoe |
-| "sample_readme.textile":https://github.com/fortuity/rails-template-recipes/raw/master/sample_readme.textile     | Placeholder text for a README file (textile markup) | none | dkehoe |
-| "sample_readme.txt":https://github.com/fortuity/rails-template-recipes/raw/master/sample_readme.txt         | Placeholder text for a README file (ASCII) | none | dkehoe |
+| "action_mailer.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/action_mailer.rb          | Changes ActionMailer defaults             | none               | dkehoe |
+| "ban_spiders.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/ban_spiders.rb           | Ban spiders from your site by changing robots.txt | none | dkehoe |
+| "cleanup.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/cleanup.rb               | Remove unnecessary files, add READMEs | none | fnichol, dkehoe |
+| "git.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/git.rb                    | Add a gitignore file, initialize new Git repo | Git | fnichol, dkehoe |
+| "sample_readme.textile":https://github.com/RailsApps/rails-template-recipes/raw/master/sample_readme.textile     | Placeholder text for a README file (textile markup) | none | dkehoe |
+| "sample_readme.txt":https://github.com/RailsApps/rails-template-recipes/raw/master/sample_readme.txt         | Placeholder text for a README file (ASCII) | none | dkehoe |
 
 h4. Recipes for Testing and BDD
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "rspec.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/rspec.rb          | Install RSpec | none | rbrooker, dkehoe |
-| "cucumber.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/cucumber.rb          | Install Cucumber | none | rbrooker, dkehoe |
+| "rspec.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rspec.rb          | Install RSpec | none | rbrooker, dkehoe |
+| "cucumber.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/cucumber.rb          | Install Cucumber | none | rbrooker, dkehoe |
 
 h4. Recipes for Mongoid
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "mongoid.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/mongoid.rb        | Installs Mongoid with the bson_ext gem | Mongoid | dkehoe |
+| "mongoid.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/mongoid.rb        | Installs Mongoid with the bson_ext gem | Mongoid | dkehoe |
 
 h4. Recipes for jQuery
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "jquery.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/jquery_fix.rb             | Installs jQuery | none | dkehoe |
+| "jquery.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/jquery_fix.rb             | Installs jQuery | none | dkehoe |
 
 h4. Recipes for Devise
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "devise.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/devise.rb          | Installs Devise  | none | dkehoe |
+| "devise.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/devise.rb          | Installs Devise  | none | dkehoe |
 
 h4. Recipes for OmniAuth
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "omniauth.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/omniauth.rb        | OmniAuth for authentication | none | dkehoe |
-| "omniauth_email.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/omniauth_email.rb        | Requests a new uer's email address when authenticating with Twitter, etc. | OmniAuth | dkehoe |
+| "omniauth.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/omniauth.rb        | OmniAuth for authentication | none | dkehoe |
+| "omniauth_email.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/omniauth_email.rb        | Requests a new uer's email address when authenticating with Twitter, etc. | OmniAuth | dkehoe |
 
 h4. Recipes for Haml
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "haml.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/haml.rb          | Installs Haml | none | dkehoe |
+| "haml.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/haml.rb          | Installs Haml | none | dkehoe |
 
 h4. Recipes for the Application Layout
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "application_layout.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/application_layout.rb     | Adds application layout with flash messages | ERB or Haml      | dkehoe |
-| "css_setup.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/css_setup.rb              | Add a stylesheet with styles for a horizontal menu and flash messages | none | dkehoe |
+| "application_layout.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/application_layout.rb     | Adds application layout with flash messages | ERB or Haml      | dkehoe |
+| "css_setup.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/css_setup.rb              | Add a stylesheet with styles for a horizontal menu and flash messages | none | dkehoe |
 
 h4. Recipes for the Example Apps
 
 |_. File                    |_.                                  |_. Dependencies     |_. Authors |
-| "add_user.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/add_user.rb          | adds User model for use with OmniAuth or Devise | none | dkehoe |
-| "navigation.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/_navigation.rb      | Add navigation links to the default application layout | none | dkehoe |
-| "devise_navigation.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/devise_navigation.rb      | Add navigation links to the default application layout | Devise | dkehoe |
-| "home_page.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/home_page.rb              | Create a home controller, route, and simple view | ERB or Haml | dkehoe |
-| "home_page_users.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/home_page_users.rb        | Modify a home page to display a list of users | Home controller, User model, ERB or Haml | dkehoe |
-| "seed_database.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/seed_database.rb          | Adds a db/seeds.rb file to initialize a database | none | dkehoe |
-| "users_page.rb":https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/users_page.rb             | Add a home page containing links to User pages | User model, ERB or Haml | dkehoe |
+| "add_user.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/add_user.rb          | adds User model for use with OmniAuth or Devise | none | dkehoe |
+| "navigation.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/_navigation.rb      | Add navigation links to the default application layout | none | dkehoe |
+| "devise_navigation.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/devise_navigation.rb      | Add navigation links to the default application layout | Devise | dkehoe |
+| "home_page.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/home_page.rb              | Create a home controller, route, and simple view | ERB or Haml | dkehoe |
+| "home_page_users.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/home_page_users.rb        | Modify a home page to display a list of users | Home controller, User model, ERB or Haml | dkehoe |
+| "seed_database.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/seed_database.rb          | Adds a db/seeds.rb file to initialize a database | none | dkehoe |
+| "users_page.rb":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/users_page.rb             | Add a home page containing links to User pages | User model, ERB or Haml | dkehoe |
 
 h2. Writing New Recipes
 
-You can find the rails3_devise_wizard recipe collection in the GitHub repository's "recipes directory":https://github.com/fortuity/rails3_devise_wizard/tree/master/recipes. If you find errors or improve a recipe you can contribute to the project by submitting a pull request or creating a "Github issue":http://github.com/fortuity/rails3_devise_wizard/issues.
+You can find the rails_apps_composer recipe collection in the GitHub repository's "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. If you find errors or improve a recipe you can contribute to the project by submitting a pull request or creating a "Github issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
 h4. Rails Wizard Basics
 
-For more information on all available options for authoring recipes that can be read by the rails_wizard or rails3_devise_wizard gems, please see the "wiki for Michael Bleigh's  RailsWizard gem":https://github.com/intridea/rails_wizard/wiki.
+For more information on all available options for authoring recipes that can be read by the rails_wizard or rails_apps_composer gems, please see the "wiki for Michael Bleigh's  RailsWizard gem":https://github.com/intridea/rails_wizard/wiki.
 
 Recipes are made of up *template code* and *YAML back-matter* stored in a ruby file. The @__END__@ parsing convention is used so that each recipe is actually a valid, parseable Ruby file. The structure of a recipe looks something like this:
 
@@ -242,19 +250,19 @@ description: Installs SuperGem which is useful for things
 author: mbleigh
 </pre>
 
-h4. Rails3 Devise Wizard Differences
+h4. Rails Apps Composer Differences
 
-The rails3_devise_wizard gem is very similar to the rails_wizard gem, with one significant difference. The rails_wizard gem allows specification of execution order for recipes with @run_after@ and @run_after@ configuration flags. The rails3_devise_wizard gem does not support @run_after@ or @run_after@; instead, the order which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
+The rails_apps_composer gem is very similar to the rails_wizard gem, with one significant difference. The rails_wizard gem allows specification of execution order for recipes with @run_after@ and @run_after@ configuration flags. The rails_apps_composer gem does not support @run_after@ or @run_after@; instead, the order which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
 
 <pre>
-$ rails3_devise_wizard new APP_NAME -r git jquery haml
+$ rails_apps_composer new APP_NAME -r git jquery haml
 </pre>
 
 installs jquery before haml.
 
 h4. Recipe Differences
 
-Several recipes provided by the rails3_devise_wizard gem are different from those provided by the rails_wizard gem.
+Several recipes provided by the rails_apps_composer gem are different from those provided by the rails_wizard gem.
 
 h4. Rails Wizard RSpec Tests
 
@@ -282,7 +290,7 @@ h4. About Rails Application Templates
 
 h2. Issues
 
-Any issues? Please create a "GitHub issue":http://github.com/fortuity/rails3_devise_wizard/issues.
+Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
 h2. Credits
 
@@ -292,7 +300,7 @@ This project is based on "Michael Bleigh's RailsWizard gem":https://github.com/i
 
 RSpec, Cucumber, and Yard recipes were contributed by "Ramon Brooker":http://cogniton-mind.tumblr.com/.
 
-Additional recipes by Daniel Kehoe, "http://danielkehoe.com/":http://danielkehoe.com/, to implement the "rails3-mongoid-devise":http://github.com/fortuity/rails3-mongoid-devise/ example application.
+Additional recipes by Daniel Kehoe, "http://danielkehoe.com/":http://danielkehoe.com/.
 
 Is the gem useful to you? Follow the project on Twitter:
 "http://twitter.com/rails_apps":http://twitter.com/rails_apps
@@ -302,4 +310,4 @@ h2. License
 
 h4. MIT License
 
-The rails3_devise_wizard gem and its recipes are distributed under the MIT License.
+The rails_apps_composer gem and its recipes are distributed under the MIT License.

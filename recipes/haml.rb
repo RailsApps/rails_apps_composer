@@ -1,5 +1,5 @@
-# Application template recipe for the rails3_devise_wizard. Check for a newer version here:
-# https://github.com/fortuity/rails3_devise_wizard/blob/master/recipes/haml.rb
+# Application template recipe for the rails_apps_composer. Check for a newer version here:
+# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/haml.rb
 
 if config['haml']
   gem 'haml', '>= 3.1.1'
