@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/omniauth.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/omniauth.rb
 
 if config['omniauth']
   gem 'omniauth', '>= 0.2.4'
@@ -137,7 +137,7 @@ __END__
 
 name: OmniAuth
 description: "Utilize OmniAuth for authentication."
-author: fortuity
+author: RailsApps
 
 exclusive: authentication
 category: authentication

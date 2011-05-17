@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/mongoid.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/mongoid.rb
 
 if config['mongoid']
   say_wizard "REMINDER: When creating a Rails app using Mongoid..."
@@ -25,7 +25,7 @@ __END__
 
 name: Mongoid
 description: "Use Mongoid to connect to a MongoDB database."
-author: fortuity
+author: RailsApps
 
 category: persistence
 exclusive: orm

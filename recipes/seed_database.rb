@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/seed_database.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/seed_database.rb
 
 
 after_bundler do
@@ -36,7 +36,7 @@ __END__
 
 name: SeedDatabase
 description: "Create a database seed file with a default user."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

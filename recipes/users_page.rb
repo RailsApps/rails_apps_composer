@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/users_page.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/users_page.rb
 
 after_bundler do
 
@@ -97,7 +97,7 @@ __END__
 
 name: UsersPage
 description: "Add a users controller and user show page with links from the home page."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

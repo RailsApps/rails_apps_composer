@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/add_user_name.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/add_user_name.rb
 
 after_bundler do
   
@@ -53,8 +53,8 @@ ERB
 
       # copy Haml versions of modified Devise views
       inside 'app/views/devise/registrations' do
-        get 'https://github.com/fortuity/rails3-application-templates/raw/master/files/rails3-mongoid-devise/app/views/devise/registrations/edit.html.haml', 'edit.html.haml'
-        get 'https://github.com/fortuity/rails3-application-templates/raw/master/files/rails3-mongoid-devise/app/views/devise/registrations/new.html.haml', 'new.html.haml'
+        get 'https://github.com/RailsApps/rails3-application-templates/raw/master/files/rails3-mongoid-devise/app/views/devise/registrations/edit.html.haml', 'edit.html.haml'
+        get 'https://github.com/RailsApps/rails3-application-templates/raw/master/files/rails3-mongoid-devise/app/views/devise/registrations/new.html.haml', 'new.html.haml'
       end
 
     end
@@ -67,7 +67,7 @@ __END__
 
 name: AddUserName
 description: "Modify the default Devise configuration to add a 'name' attribute for all users."
-author: fortuity
+author: RailsApps
 
 requires: [devise]
 category: other

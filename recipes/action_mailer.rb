@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/action_mailer.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/action_mailer.rb
 
 after_bundler do
   say_wizard "ActionMailer recipe running 'after bundler'"
@@ -35,7 +35,7 @@ __END__
 
 name: ActionMailer
 description: "Configure ActionMailer to show errors during development and suppress failures when the app is deployed to production."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

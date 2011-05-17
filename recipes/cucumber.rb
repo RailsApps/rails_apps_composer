@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/cucumber.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/cucumber.rb
 
 if config['cucumber']
   gem 'cucumber-rails', ">= 0.4.1", :group => :test
@@ -29,18 +29,18 @@ if config['cucumber']
       say_wizard "Copying Cucumber scenarios from the rails3-mongoid-devise examples"
       # copy all the Cucumber scenario files from the rails3-mongoid-devise example app
       inside 'features/users' do
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/features/users/sign_in.feature', 'sign_in.feature'
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/features/users/sign_out.feature', 'sign_out.feature'
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/features/users/sign_up.feature', 'sign_up.feature'
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/features/users/user_edit.feature', 'user_edit.feature'
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/features/users/user_show.feature', 'user_show.feature'
+        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/sign_in.feature', 'sign_in.feature'
+        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/sign_out.feature', 'sign_out.feature'
+        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/sign_up.feature', 'sign_up.feature'
+        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/user_edit.feature', 'user_edit.feature'
+        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/user_show.feature', 'user_show.feature'
       end
       inside 'features/step_definitions' do
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/features/step_definitions/user_steps.rb', 'user_steps.rb'
+        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/step_definitions/user_steps.rb', 'user_steps.rb'
       end
       remove_file 'features/support/paths.rb'
       inside 'features/support' do
-        get 'https://github.com/fortuity/rails3-mongoid-devise/raw/master/features/support/paths.rb', 'paths.rb'
+        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/support/paths.rb', 'paths.rb'
       end
     end
   end
@@ -50,7 +50,7 @@ __END__
 
 name: Cucumber
 description: "Use Cucumber for BDD (with Capybara)."
-author: fortuity
+author: RailsApps
 
 exclusive: acceptance_testing 
 category: testing

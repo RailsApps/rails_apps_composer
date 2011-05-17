@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/haml.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/haml.rb
 
 if config['haml']
   gem 'haml', '>= 3.1.1'
@@ -12,7 +12,7 @@ __END__
 
 name: HAML
 description: "Utilize Haml instead of ERB."
-author: fortuity
+author: RailsApps
 
 category: templating
 exclusive: templating

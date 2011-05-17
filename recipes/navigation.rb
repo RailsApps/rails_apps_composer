@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/navigation.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/navigation.rb
 
 after_bundler do
 
@@ -62,7 +62,7 @@ __END__
 
 name: Navigation
 description: "Add navigation links."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

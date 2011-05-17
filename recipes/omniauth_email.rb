@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/omniauth_email.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/omniauth_email.rb
 
 after_bundler do
 
@@ -76,7 +76,7 @@ __END__
 
 name: OmniAuthEmail
 description: "Request a user's email address for an OmniAuth example app."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

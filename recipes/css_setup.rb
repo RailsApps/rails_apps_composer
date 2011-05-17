@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/css_setup.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/css_setup.rb
 
 after_bundler do
 
@@ -36,7 +36,7 @@ __END__
 
 name: CssSetup
 description: "Add a stylesheet with styles for a horizontal menu and flash messages."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

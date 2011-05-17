@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/rspec.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rspec.rb
 
 if config['rspec']
   say_wizard "REMINDER: When creating a Rails app using RSpec..."
@@ -96,7 +96,7 @@ __END__
 
 name: RSpec
 description: "Use RSpec instead of TestUnit."
-author: fortuity
+author: RailsApps
 
 exclusive: unit_testing
 category: testing

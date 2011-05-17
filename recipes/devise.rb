@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/devise.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/devise.rb
 
 if config['devise']
   gem "devise", ">= 1.3.3"
@@ -38,17 +38,17 @@ if config['devise']
       say_wizard "Copying RSpec files from the rails3-devise-rspec-cucumber examples"
       # copy all the RSpec specs files from the rails3-devise-rspec-cucumber example app
       inside 'spec' do
-        get 'https://github.com/fortuity/rails3-devise-rspec-cucumber/raw/master/spec/factories.rb', 'factories.rb'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/factories.rb', 'factories.rb'
       end
       remove_file 'spec/controllers/home_controller_spec.rb'
       remove_file 'spec/controllers/users_controller_spec.rb'
       inside 'spec/controllers' do
-        get 'https://github.com/fortuity/rails3-devise-rspec-cucumber/raw/master/spec/controllers/home_controller_spec.rb', 'home_controller_spec.rb'
-        get 'https://github.com/fortuity/rails3-devise-rspec-cucumber/raw/master/spec/controllers/users_controller_spec.rb', 'users_controller_spec.rb'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/controllers/home_controller_spec.rb', 'home_controller_spec.rb'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/controllers/users_controller_spec.rb', 'users_controller_spec.rb'
       end
       remove_file 'spec/models/user_spec.rb'
       inside 'spec/models' do
-        get 'https://github.com/fortuity/rails3-devise-rspec-cucumber/raw/master/spec/models/user_spec.rb', 'user_spec.rb'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/models/user_spec.rb', 'user_spec.rb'
       end
       remove_file 'spec/views/home/index.html.erb_spec.rb'
       remove_file 'spec/views/home/index.html.haml_spec.rb'
@@ -65,7 +65,7 @@ __END__
 
 name: Devise
 description: Utilize Devise for authentication, automatically configured for your selected ORM.
-author: fortuity
+author: RailsApps
 
 category: authentication
 exclusive: authentication

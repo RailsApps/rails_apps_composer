@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/cleanup.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/cleanup.rb
 
 after_bundler do
 
@@ -30,7 +30,7 @@ __END__
 
 name: Cleanup
 description: "Remove unnecessary files left over from generating a new Rails app."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

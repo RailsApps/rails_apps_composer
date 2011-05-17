@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/ban_spiders.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/ban_spiders.rb
 
 if config['ban_spiders']
   say_wizard "BanSpiders recipe running 'after bundler'"
@@ -16,7 +16,7 @@ __END__
 
 name: BanSpiders
 description: "Ban spiders from the site by changing robots.txt."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

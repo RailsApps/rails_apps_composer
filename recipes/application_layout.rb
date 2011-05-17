@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/application_layout.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/application_layout.rb
 
 after_bundler do
 
@@ -39,7 +39,7 @@ __END__
 
 name: ApplicationLayout
 description: "Add a default application layout with flash messages."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

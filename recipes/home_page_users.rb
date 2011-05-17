@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/home_page_users.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/home_page_users.rb
 
 after_bundler do
 
@@ -41,7 +41,7 @@ __END__
 
 name: HomePageUsers
 description: "Display a list of users on the home page."
-author: fortuity
+author: RailsApps
 
 category: other
 tags: [utilities, configuration]

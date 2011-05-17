@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/devise_navigation.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/devise_navigation.rb
 
 after_bundler do
 
@@ -86,7 +86,7 @@ __END__
 
 name: DeviseNavigation
 description: "Add navigation links for Devise."
-author: fortuity
+author: RailsApps
 
 requires: [devise]
 category: other

@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/jquery.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/jquery.rb
 
 if config['jquery']
   if recipes.include? 'rails 3.0'
@@ -53,7 +53,7 @@ __END__
 
 name: jQuery
 description: "Install jQuery (with jQuery UI option) for Rails 3.0 or 3.1."
-author: fortuity
+author: RailsApps
 
 exclusive: javascript_framework
 category: assets

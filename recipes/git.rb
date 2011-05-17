@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/fortuity/rails_apps_composer/blob/master/recipes/git.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/git.rb
 
 after_everything do
   
@@ -7,7 +7,7 @@ after_everything do
   
   # Git should ignore some files
   remove_file '.gitignore'
-  get "https://github.com/fortuity/rails3-gitignore/raw/master/gitignore.txt", ".gitignore"
+  get "https://github.com/RailsApps/rails3-application-templates/raw/master/files/gitignore.txt", ".gitignore"
 
   if recipes.include? 'omniauth'
     append_file '.gitignore' do <<-TXT
@@ -31,7 +31,7 @@ __END__
 
 name: Git
 description: "Set up Git and commit the initial repository."
-author: fortuity
+author: RailsApps
 
 exclusive: scm
 category: other
