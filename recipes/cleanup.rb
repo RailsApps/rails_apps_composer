@@ -14,8 +14,8 @@ after_bundler do
   }.each { |file| remove_file file }
 
   # add placeholder READMEs
-  get "https://github.com/fortuity/rails-template-recipes/raw/master/sample_readme.txt", "README"
-  get "https://github.com/fortuity/rails-template-recipes/raw/master/sample_readme.textile", "README.textile"
+  get "https://github.com/RailsApps/rails3-application-templates/raw/master/files/sample_readme.txt", "README"
+  get "https://github.com/RailsApps/rails3-application-templates/raw/master/files/sample_readme.textile", "README.textile"
   gsub_file "README", /App_Name/, "#{app_name.humanize.titleize}"
   gsub_file "README.textile", /App_Name/, "#{app_name.humanize.titleize}"
 
