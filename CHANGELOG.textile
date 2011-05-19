@@ -3,7 +3,7 @@ h1. CHANGELOG
 h2. 1.0.1 May 19, 2011
 
 * bugfix for jquery recipe
-* new gem versions: devise, bson_ext, devise, cucumber-rails, rspec-rails
+* new gem versions: devise, bson_ext, rspec-rails, cucumber-rails, capybara
 
 h2. 1.0.0 May 17, 2011
 
