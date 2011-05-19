@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.0.1 May 19, 2011
+
+* bugfix for jquery recipe
+* new gem versions: devise, bson_ext, devise, cucumber-rails, rspec-rails
+
 h2. 1.0.0 May 17, 2011
 
 * rename project from rails3_devise_wizard to rails_apps_composer and move to new repo at "http://github.com/RailsApps/":http://github.com/RailsApps/ 
