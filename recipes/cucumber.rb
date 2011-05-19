@@ -44,7 +44,9 @@ if config['cucumber']
           get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/support/paths.rb', 'paths.rb'
         end
       rescue OpenURI::HTTPError
-        say_wizard "Unable to obtain Cucumber example files from the repo"
+        inside '../../' do
+          say_wizard "Unable to obtain Cucumber example files from the repo"
+        end
       end
     end
   end
