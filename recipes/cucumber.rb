@@ -43,9 +43,9 @@ if config['cucumber']
         inside 'features/support' do
           get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/support/paths.rb', 'paths.rb'
         end
+      rescue HTTPError
+        say_wizard "Unable to obtain Cucumber example files from the repo"
       end
-    rescue HTTPError
-      say_wizard "Unable to obtain Cucumber example files from the repo"
     end
   end
 end
