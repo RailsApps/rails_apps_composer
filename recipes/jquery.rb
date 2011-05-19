@@ -25,7 +25,7 @@ if config['jquery']
       # first uncomment "config.action_view.javascript_expansions"
       gsub_file "config/application.rb", /# config.action_view.javascript_expansions/, "config.action_view.javascript_expansions"
       # then add "jquery rails" if necessary
-      gsub_file "config/application.rb", /= \%w\(\)/, "%w(jquery rails)"
+      gsub_file "config/application.rb", /= \%w\(\)/, "= %w(jquery rails)"
       # finally change to "jquery jqueryui rails" if necessary
       if config['ui']
         gsub_file "config/application.rb", /jquery rails/, "jquery jqueryui rails"
