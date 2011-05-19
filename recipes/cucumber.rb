@@ -2,7 +2,7 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/cucumber.rb
 
 if config['cucumber']
-  gem 'cucumber-rails', ">= 0.4.1", :group => :test
+  gem 'cucumber-rails', ">= 0.5.0", :group => :test
   gem 'capybara', ">= 0.4.1.2", :group => :test
   gem 'database_cleaner', '>= 0.6.7', :group => :test
   gem 'launchy', ">= 0.4.0", :group => :test
