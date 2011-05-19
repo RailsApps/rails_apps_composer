@@ -17,7 +17,9 @@ if config['mongoid']
     # to remove the ActiveRecord dependency by commenting out "require active_record/railtie'"
     generate 'mongoid:config'
     # remove the unnecessary 'config/database.yml' file
-    remove_file 'config/database.yml'
+    in_root do
+      remove_file 'config/database.yml'
+    end
   end
 end
 
