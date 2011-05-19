@@ -52,7 +52,7 @@ if config['devise']
           get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/models/user_spec.rb', 'user_spec.rb'
         end
       rescue OpenURI::HTTPError
-        inside '../../' do
+        in_root do
           say_wizard "Unable to obtain RSpec example files from the repo"
         end
       end
