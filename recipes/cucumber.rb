@@ -35,17 +35,17 @@ end
 if config['cucumber']
   if recipes.include? 'devise'
     after_bundler do
-      say_wizard "Copying Cucumber scenarios from the rails3-mongoid-devise examples"
+      say_wizard "Copying Cucumber scenarios from the rails3-devise-rspec-cucumber examples"
       begin
-        # copy all the Cucumber scenario files from the rails3-mongoid-devise example app
-        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/sign_in.feature', 'features/users/sign_in.feature'
-        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/sign_out.feature', 'features/users/sign_out.feature'
-        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/sign_up.feature', 'features/users/sign_up.feature'
-        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/user_edit.feature', 'features/users/user_edit.feature'
-        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/users/user_show.feature', 'features/users/user_show.feature'
-        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/step_definitions/user_steps.rb', 'features/step_definitions/user_steps.rb'
+        # copy all the Cucumber scenario files from the rails3-devise-rspec-cucumber example app
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/features/users/sign_in.feature', 'features/users/sign_in.feature'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/features/users/sign_out.feature', 'features/users/sign_out.feature'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/features/users/sign_up.feature', 'features/users/sign_up.feature'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/features/users/user_edit.feature', 'features/users/user_edit.feature'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/features/users/user_show.feature', 'features/users/user_show.feature'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/features/step_definitions/user_steps.rb', 'features/step_definitions/user_steps.rb'
         remove_file 'features/support/paths.rb'
-        get 'https://github.com/RailsApps/rails3-mongoid-devise/raw/master/features/support/paths.rb', 'features/support/paths.rb'
+        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/features/support/paths.rb', 'features/support/paths.rb'
       rescue OpenURI::HTTPError
         say_wizard "Unable to obtain Cucumber example files from the repo"
       end
