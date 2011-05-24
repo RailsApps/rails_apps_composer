@@ -2,10 +2,17 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/mongoid.rb
 
 if config['mongoid']
-  say_wizard "REMINDER: When creating a Rails app using Mongoid..."
-  say_wizard "you should add the '-O' flag to 'rails new'"
-  gem 'bson_ext', '>= 1.3.1'
-  gem 'mongoid', '>= 2.0.1'
+  if recipes.include? 'rails 3.0'
+    # for Rails 3.0, use only gem versions we know that work
+    say_wizard "REMINDER: When creating a Rails app using Mongoid..."
+    say_wizard "you should add the '-O' flag to 'rails new'"
+    gem 'bson_ext', '1.3.1'
+    gem 'mongoid', '2.0.2'
+  else
+    # for Rails 3.1+, use optimistic versioning for gems
+    gem 'bson_ext', '>= 1.3.1'
+    gem 'mongoid', '>= 2.0.2'
+  end
 else
   recipes.delete('mongoid')
 end

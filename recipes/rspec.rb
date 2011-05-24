@@ -2,18 +2,34 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rspec.rb
 
 if config['rspec']
-  say_wizard "REMINDER: When creating a Rails app using RSpec..."
-  say_wizard "you should add the '-T' flag to 'rails new'"
-  gem 'rspec-rails', '>= 2.6.0', :group => [:development, :test]
-  if recipes.include? 'mongoid'
-    # use the database_cleaner gem to reset the test database
-    gem 'database_cleaner', '>= 0.6.7', :group => :test
-    # include RSpec matchers from the mongoid-rspec gem
-    gem 'mongoid-rspec', ">= 1.4.2", :group => :test
-  end
-  if config['factory_girl']
-    # use the factory_girl gem for test fixtures
-    gem 'factory_girl_rails', ">= 1.1.beta1", :group => :test
+  if recipes.include? 'rails 3.0'
+    # for Rails 3.0, use only gem versions we know that work
+    say_wizard "REMINDER: When creating a Rails app using RSpec..."
+    say_wizard "you should add the '-T' flag to 'rails new'"
+    gem 'rspec-rails', '2.5.0', :group => [:development, :test]
+    if recipes.include? 'mongoid'
+      # use the database_cleaner gem to reset the test database
+      gem 'database_cleaner', '0.6.7', :group => :test
+      # include RSpec matchers from the mongoid-rspec gem
+      gem 'mongoid-rspec', '1.4.2', :group => :test
+    end
+    if config['factory_girl']
+      # use the factory_girl gem for test fixtures
+      gem 'factory_girl_rails', '1.1.beta1', :group => :test
+    end
+  else
+    # for Rails 3.1+, use optimistic versioning for gems
+    gem 'rspec-rails', '>= 2.6.0', :group => [:development, :test]
+    if recipes.include? 'mongoid'
+      # use the database_cleaner gem to reset the test database
+      gem 'database_cleaner', '>= 0.6.7', :group => :test
+      # include RSpec matchers from the mongoid-rspec gem
+      gem 'mongoid-rspec', '>= 1.4.2', :group => :test
+    end
+    if config['factory_girl']
+      # use the factory_girl gem for test fixtures
+      gem 'factory_girl_rails', '>= 1.1.beta1', :group => :test
+    end
   end
 else
   recipes.delete('rspec')

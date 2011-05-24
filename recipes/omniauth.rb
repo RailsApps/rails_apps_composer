@@ -2,7 +2,13 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/omniauth.rb
 
 if config['omniauth']
-  gem 'omniauth', '>= 0.2.4'
+  if recipes.include? 'rails 3.0'
+    # for Rails 3.0, use only gem versions we know that work
+    gem 'omniauth', '0.2.6'
+  else
+    # for Rails 3.1+, use optimistic versioning for gems
+    gem 'omniauth', '>= 0.2.6'
+  end
 else
   recipes.delete('omniauth')
 end
