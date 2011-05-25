@@ -10,7 +10,7 @@ after_bundler do
     remove_file 'app/views/layouts/application.html.erb'
     # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
     create_file 'app/views/layouts/application.html.haml' do <<-HAML
-!!!
+!!! 5
 %html
   %head
     %title #{app_name}
