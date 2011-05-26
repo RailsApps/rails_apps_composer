@@ -57,6 +57,7 @@ say_wizard "Checking configuration. Please confirm your preferences."
 say_wizard "Running 'bundle install'. This will take a while."
 run 'bundle install'
 say_wizard "Running 'after bundler' callbacks."
+require 'bundler/setup'
 @after_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; b[1].call}
 
 @current_recipe = nil
