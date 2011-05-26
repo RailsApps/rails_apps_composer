@@ -6,14 +6,15 @@ after_bundler do
   say_wizard "CssSetup recipe running 'after bundler'"
 
   # Add a stylesheet with styles for a horizontal menu and flash messages
-  create_file 'public/stylesheets/application.css' do <<-CSS
+  css = <<-CSS
+
 ul.hmenu {
-  list-style: none;	
+  list-style: none;
   margin: 0 0 2em;
   padding: 0;
 }
 ul.hmenu li {
-  display: inline;  
+  display: inline;
 }
 #flash_notice, #flash_alert {
   padding: 5px 8px;
@@ -27,7 +28,12 @@ ul.hmenu li {
   background-color: #FCC;
   border: solid 1px #C66;
 }
+
 CSS
+  if recipes.include? 'rails 3.0'
+    create_file 'public/stylesheets/application.css', css
+  else
+    append_file 'app/assets/stylesheets/application.css', css
   end
 
 end
