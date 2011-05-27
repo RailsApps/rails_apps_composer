@@ -10,7 +10,7 @@ after_bundler do
     remove_file 'app/views/layouts/application.html.erb'
     # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
     create_file 'app/views/layouts/application.html.haml' do <<-HAML
-!!!
+!!! 5
 %html
   %head
     %title #{app_name}
@@ -22,6 +22,10 @@ after_bundler do
       = content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String)
     = yield
 HAML
+    end
+    if recipes.include? 'rails 3.1'
+      gsub_file 'app/views/layouts/application.html.haml', /stylesheet_link_tag :all/, 'stylesheet_link_tag :application'
+      gsub_file 'app/views/layouts/application.html.haml', /javascript_include_tag :defaults/, 'javascript_include_tag :application'
     end
   else
     inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do
