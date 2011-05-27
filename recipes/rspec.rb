@@ -6,7 +6,7 @@ if config['rspec']
     # for Rails 3.0, use only gem versions we know that work
     say_wizard "REMINDER: When creating a Rails app using RSpec..."
     say_wizard "you should add the '-T' flag to 'rails new'"
-    gem 'rspec-rails', '2.5.0', :group => [:development, :test]
+    gem 'rspec-rails', '2.6.1', :group => [:development, :test]
     if recipes.include? 'mongoid'
       # use the database_cleaner gem to reset the test database
       gem 'database_cleaner', '0.6.7', :group => :test
@@ -19,7 +19,7 @@ if config['rspec']
     end
   else
     # for Rails 3.1+, use optimistic versioning for gems
-    gem 'rspec-rails', '~> 2.6.1.beta', :group => [:development, :test]
+    gem 'rspec-rails', '>= 2.6.1', :group => [:development, :test]
     if recipes.include? 'mongoid'
       # use the database_cleaner gem to reset the test database
       gem 'database_cleaner', '>= 0.6.7', :group => :test

@@ -1,5 +1,14 @@
 h1. CHANGELOG
 
+h2. 1.0.5 May 27, 2011
+
+* adjust Javascript and stylesheet link tags for Rails 3.1 
+* adjust CSS stylesheets location for Rails 3.1 
+* use HTML 5 for Haml
+* fix indentation in devise_navigation recipe for Haml
+* update gems for Rails 3.0.8 and 3.1: cucumber-rails 0.5.1, capybara 1.0.0.beta1, rspec 2.6.1
+* remove "fix_rake" recipe, was needed for Rails 3.0.7, not needed for Rails 3.0.8
+
 h2. 1.0.4 May 24, 2011
 
 * for Rails 3.0, use only gem versions that we know work
