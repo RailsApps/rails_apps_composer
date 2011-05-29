@@ -14,18 +14,19 @@ after_bundler do
 %html
   %head
     %title #{app_name}
-    = stylesheet_link_tag :all
-    = javascript_include_tag :defaults
-    = csrf_meta_tag
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = csrf_meta_tags
   %body
     - flash.each do |name, msg|
       = content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String)
     = yield
 HAML
     end
-    if recipes.include? 'rails 3.1'
-      gsub_file 'app/views/layouts/application.html.haml', /stylesheet_link_tag :all/, 'stylesheet_link_tag :application'
-      gsub_file 'app/views/layouts/application.html.haml', /javascript_include_tag :defaults/, 'javascript_include_tag :application'
+    if recipes.include? 'rails 3.0'
+      gsub_file 'app/views/layouts/application.html.haml', /stylesheet_link_tag :application/, 'stylesheet_link_tag :all'
+      gsub_file 'app/views/layouts/application.html.haml', /javascript_include_tag :application/, 'javascript_include_tag :defaults'
+      gsub_file 'app/views/layouts/application.html.haml', /csrf_meta_tags/, 'csrf_meta_tag'
     end
   else
     inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do
