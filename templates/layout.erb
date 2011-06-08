@@ -40,6 +40,11 @@ else
   say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
 end
 
+# show which version of rake is running
+# with the added benefit of ensuring that the Gemfile's version of rake is activated
+gemfile_rake_ver = run 'bundle exec rake --version', :capture => true, :verbose => false
+say_wizard "You are using #{gemfile_rake_ver.strip}"
+
 say_wizard "Checking configuration. Please confirm your preferences."
 
 <% resolve_recipes.each do |recipe| %>
