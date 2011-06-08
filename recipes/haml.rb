@@ -8,7 +8,7 @@ if config['haml']
     gem 'haml-rails', '0.3.4', :group => :development
   else
     # for Rails 3.1+, use optimistic versioning for gems
-    gem 'haml', '>= 3.1.1'
+    gem 'haml', '>= 3.1.2'
     gem 'haml-rails', '>= 0.3.4', :group => :development
   end
 else
