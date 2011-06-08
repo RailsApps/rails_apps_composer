@@ -47,6 +47,25 @@ say_wizard "You are using #{gemfile_rake_ver.strip}"
 
 say_wizard "Checking configuration. Please confirm your preferences."
 
+# >---------------------------[ Javascript Runtime ]-----------------------------<
+
+@current_recipe = "linux"
+config = {}
+config['linux'] = yes_wizard?("Are using a Linux OS such as Ubuntu?") if true && true unless config.key?('linux')
+@configs[@current_recipe] = config
+
+if config['linux']
+  if recipes.include? 'rails 3.0'
+    # nothing needed
+  else
+    # for Rails 3.1+, install a gem for a Javascript runtime
+    gem 'execjs', '>= 1.1.1'
+    gem 'therubyracer', '>= 0.8.2'
+  end
+end
+
+# >---------------------------------[ Recipes ]----------------------------------<
+
 <% resolve_recipes.each do |recipe| %>
 <%= render 'recipe', recipe.get_binding %>
 <% end %>
