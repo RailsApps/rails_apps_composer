@@ -44,13 +44,13 @@ if config['devise']
       say_wizard "Copying RSpec files from the rails3-devise-rspec-cucumber examples"
       begin
         # copy all the RSpec specs files from the rails3-devise-rspec-cucumber example app
-        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/factories.rb', 'spec/factories.rb'
+        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/spec/factories.rb', 'spec/factories.rb'
         remove_file 'spec/controllers/home_controller_spec.rb'
         remove_file 'spec/controllers/users_controller_spec.rb'
-        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/controllers/home_controller_spec.rb', 'spec/controllers/home_controller_spec.rb'
-        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/controllers/users_controller_spec.rb', 'spec/controllers/users_controller_spec.rb'
+        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/spec/controllers/home_controller_spec.rb', 'spec/controllers/home_controller_spec.rb'
+        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/spec/controllers/users_controller_spec.rb', 'spec/controllers/users_controller_spec.rb'
         remove_file 'spec/models/user_spec.rb'
-        get 'https://github.com/RailsApps/rails3-devise-rspec-cucumber/raw/master/spec/models/user_spec.rb', 'spec/models/user_spec.rb'
+        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/spec/models/user_spec.rb', 'spec/models/user_spec.rb'
       rescue OpenURI::HTTPError
         say_wizard "Unable to obtain RSpec example files from the repo"
       end
