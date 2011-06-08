@@ -15,7 +15,7 @@ if config['jquery']
       remove_file 'public/javascripts/prototype.js'
       # add jQuery files
       inside "public/javascripts" do
-        get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "rails.js"
+        get "https://raw.github.com/rails/jquery-ujs/master/src/rails.js", "rails.js"
         get "http://code.jquery.com/jquery-1.6.min.js", "jquery.js"
         if config['ui']
           get "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js", "jqueryui.js"

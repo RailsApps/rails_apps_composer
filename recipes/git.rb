@@ -7,7 +7,7 @@ after_everything do
   
   # Git should ignore some files
   remove_file '.gitignore'
-  get "https://github.com/RailsApps/rails3-application-templates/raw/master/files/gitignore.txt", ".gitignore"
+  get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/gitignore.txt", ".gitignore"
 
   if recipes.include? 'omniauth'
     append_file '.gitignore' do <<-TXT

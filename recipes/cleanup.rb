@@ -23,8 +23,8 @@ after_bundler do
   end
   
   # add placeholder READMEs
-  get "https://github.com/RailsApps/rails3-application-templates/raw/master/files/sample_readme.txt", "README"
-  get "https://github.com/RailsApps/rails3-application-templates/raw/master/files/sample_readme.textile", "README.textile"
+  get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/sample_readme.txt", "README"
+  get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/sample_readme.textile", "README.textile"
   gsub_file "README", /App_Name/, "#{app_name.humanize.titleize}"
   gsub_file "README.textile", /App_Name/, "#{app_name.humanize.titleize}"
 
