@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.0.6 June 8, 2011
+
+* fix to avoid the error "You have already activated rake..."
+
 h2. 1.0.5 May 27, 2011
 
 * adjust Javascript and stylesheet link tags for Rails 3.1 
