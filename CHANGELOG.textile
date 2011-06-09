@@ -5,6 +5,7 @@ h2. 1.0.6 June 8, 2011
 * fix to avoid the error "You have already activated rake..."
 * for Rails 3.1, install a gem for a Javascript runtime for Linux users
 * update gems for Rails 3.1: haml 3.1.2, cucumber-rails 0.5.2, capybara 1.0.0.rc1
+* minor change to URLs for downloading 'raw' files from GitHub
 
 h2. 1.0.5 May 27, 2011
 
