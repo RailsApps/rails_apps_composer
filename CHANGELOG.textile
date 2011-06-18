@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.0.7 June 18, 2011
+
+* add HTML5 Boilerplate recipe
+* update gem capybara 1.0.0.rc1 to capybara 1.0.0
+
 h2. 1.0.6 June 8, 2011
 
 * fix to avoid the error "You have already activated rake..."
