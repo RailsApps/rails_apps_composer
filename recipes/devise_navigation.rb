@@ -64,6 +64,28 @@ ERB
     if recipes.include? 'boilerplate'
       if recipes.include? 'haml'
         # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+        inject_into_file 'app/views/layouts/application.html.haml', :after => "%header\n" do <<-HAML
+    %nav
+      %ul
+        = render 'devise/menu/registration_items'
+        = render 'devise/menu/login_items'
+HAML
+        end
+      else
+        inject_into_file 'app/views/layouts/application.html.erb', :after => "<header>\n" do
+  <<-ERB
+      <nav>
+        <ul>
+          <%= render 'devise/menu/registration_items' %>
+          <%= render 'devise/menu/login_items' %>
+        </ul>
+      </nav>
+ERB
+        end
+      end
+    else
+      if recipes.include? 'haml'
+        # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
         inject_into_file 'app/views/layouts/application.html.haml', :after => "%body\n" do <<-HAML
     %ul.hmenu
       = render 'devise/menu/registration_items'
@@ -72,25 +94,6 @@ HAML
         end
       else
         inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do
-  <<-ERB
-  <ul class="hmenu">
-    <%= render 'devise/menu/registration_items' %>
-    <%= render 'devise/menu/login_items' %>
-  </ul>
-ERB
-        end
-      end
-    else
-      if recipes.include? 'haml'
-        # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
-        inject_into_file 'app/views/layouts/application.html.haml', :after => "%header\n" do <<-HAML
-    %ul.hmenu
-      = render 'devise/menu/registration_items'
-      = render 'devise/menu/login_items'
-HAML
-        end
-      else
-        inject_into_file 'app/views/layouts/application.html.erb', :after => "<header>\n" do
   <<-ERB
   <ul class="hmenu">
     <%= render 'devise/menu/registration_items' %>

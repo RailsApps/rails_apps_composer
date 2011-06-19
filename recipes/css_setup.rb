@@ -30,10 +30,41 @@ ul.hmenu li {
 }
 
 CSS
+
+  # Add a stylesheet for use with HTML5 Boilerplate
+  css_boilerplate = <<-CSS
+
+header nav ul {
+  list-style: none;
+  margin: 0 0 2em;
+  padding: 0;
+}
+header nav ul {
+  display: inline;
+}
+#flash_notice, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+#flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+CSS
+
   if recipes.include? 'rails 3.0'
     create_file 'public/stylesheets/application.css', css
   else
-    append_file 'app/assets/stylesheets/application.css', css
+    if recipes.include? 'boilerplate'
+      append_file 'app/assets/stylesheets/application.css', css_boilerplate
+    else
+      append_file 'app/assets/stylesheets/application.css', css
+    end
   end
 
 end
