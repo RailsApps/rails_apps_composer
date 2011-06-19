@@ -8,6 +8,7 @@ after_bundler do
   # Set up the default application layout
   if recipes.include? 'haml'
     remove_file 'app/views/layouts/application.html.erb'
+    remove_file 'app/views/layouts/application.html.haml'
     # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
     create_file 'app/views/layouts/application.html.haml' do <<-HAML
 !!! 5
@@ -29,12 +30,14 @@ HAML
       gsub_file 'app/views/layouts/application.html.haml', /csrf_meta_tags/, 'csrf_meta_tag'
     end
   else
-    inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do
-  <<-ERB
+    unless recipes.include? 'boilerplate'
+      inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do
+    <<-ERB
   <%- flash.each do |name, msg| -%>
     <%= content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String) %>
   <%- end -%>
 ERB
+      end
     end
   end
 
