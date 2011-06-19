@@ -65,10 +65,10 @@ ERB
       if recipes.include? 'haml'
         # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
         inject_into_file 'app/views/layouts/application.html.haml', :after => "%header\n" do <<-HAML
-    %nav
-      %ul
-        = render 'devise/menu/registration_items'
-        = render 'devise/menu/login_items'
+          %nav
+            %ul
+              = render 'devise/menu/registration_items'
+              = render 'devise/menu/login_items'
 HAML
         end
       else

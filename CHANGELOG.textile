@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.0.8 June 19, 2011
+
+* tweak CSS and layout for HTML5 Boilerplate
+
 h2. 1.0.7 June 18, 2011
 
 * add HTML5 Boilerplate recipe

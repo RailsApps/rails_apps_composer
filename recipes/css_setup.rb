@@ -39,7 +39,7 @@ header nav ul {
   margin: 0 0 2em;
   padding: 0;
 }
-header nav ul {
+header nav ul li {
   display: inline;
 }
 #flash_notice, #flash_alert {
