@@ -19,14 +19,49 @@ if config['boilerplate']
       get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon.png", "app/assets/images/apple-touch-icon.png"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/crossdomain.xml", "public/crossdomain.xml"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/humans.txt", "public/humans.txt"
+      # Set up the default application layout
+      if recipes.include? 'haml'
+        # create some Haml helpers
+        # We have to use single-quote-style-heredoc to avoid interpolation.
+        inject_into_file 'app/helpers/application_helper.rb', :after => "ApplicationHelper\n" do <<-'RUBY'
+  # Create a named haml tag to wrap IE conditional around a block
+  # http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+  def ie_tag(name=:body, attrs={}, &block)
+    attrs.symbolize_keys!
+    haml_concat("<!--[if lt IE 7]> #{ tag(name, add_class('ie6', attrs), true) } <![endif]-->".html_safe)
+    haml_concat("<!--[if IE 7]>    #{ tag(name, add_class('ie7', attrs), true) } <![endif]-->".html_safe)
+    haml_concat("<!--[if IE 8]>    #{ tag(name, add_class('ie8', attrs), true) } <![endif]-->".html_safe)
+    haml_concat("<!--[if gt IE 8]><!-->".html_safe)
+    haml_tag name, attrs do
+      haml_concat("<!--<![endif]-->".html_safe)
+      block.call
     end
-    # Set up the default application layout
-    if recipes.include? 'haml'
-      # Haml version of default application layout
-      remove_file 'app/views/layouts/application.html.erb'
-      remove_file 'app/views/layouts/application.html.haml'
-      # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
-      create_file 'app/views/layouts/application.html.haml' do <<-HAML
+  end
+
+  def ie_html(attrs={}, &block)
+    ie_tag(:html, attrs, &block)
+  end
+
+  def ie_body(attrs={}, &block)
+    ie_tag(:body, attrs, &block)
+  end
+
+private
+
+  def add_class(name, attrs)
+    classes = attrs[:class] || ''
+    classes.strip!
+    classes = ' ' + classes if !classes.blank?
+    classes = name + classes
+    attrs.merge(:class => classes)
+  end
+RUBY
+        end
+        # Haml version of default application layout
+        remove_file 'app/views/layouts/application.html.erb'
+        remove_file 'app/views/layouts/application.html.haml'
+        # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+        create_file 'app/views/layouts/application.html.haml' do <<-HAML
 - ie_html :lang => 'en', :class => 'no-js' do
   %head
     %title #{app_name}
@@ -42,12 +77,12 @@ if config['boilerplate']
           = yield
         %footer
 HAML
-      end
-    else
-      # ERB version of default application layout
-      remove_file 'app/views/layouts/application.html.erb'
-      remove_file 'app/views/layouts/application.html.haml'
-      create_file 'app/views/layouts/application.html.erb' do <<-ERB
+        end
+      else
+        # ERB version of default application layout
+        remove_file 'app/views/layouts/application.html.erb'
+        remove_file 'app/views/layouts/application.html.haml'
+        create_file 'app/views/layouts/application.html.erb' do <<-ERB
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -74,13 +109,14 @@ HAML
 </body>
 </html>
 ERB
-      end
-      inject_into_file 'app/views/layouts/application.html.erb', :after => "<header>\n" do
+        end
+        inject_into_file 'app/views/layouts/application.html.erb', :after => "<header>\n" do
   <<-ERB
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String) %>
       <%- end -%>
 ERB
+        end
       end
     end
   elsif recipes.include? 'rails 3.0'
