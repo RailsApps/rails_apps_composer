@@ -12,11 +12,11 @@ if config['boilerplate']
       # Download HTML5 Boilerplate Stylesheet
       get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/boilerplate.scss"
       # Download HTML5 Boilerplate Site Root Assets
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "app/assets/images/apple-touch-icon-114x114-precomposed.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-57x57-precomposed.png", "app/assets/images/apple-touch-icon-57x57-precomposed.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-72x72-precomposed.png", "app/assets/images/apple-touch-icon-72x72-precomposed.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-precomposed.png", "app/assets/images/apple-touch-icon-precomposed.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon.png", "app/assets/images/apple-touch-icon.png"
+      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "public/apple-touch-icon-114x114-precomposed.png"
+      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-57x57-precomposed.png", "public/apple-touch-icon-57x57-precomposed.png"
+      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-72x72-precomposed.png", "public/apple-touch-icon-72x72-precomposed.png"
+      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-precomposed.png", "public/apple-touch-icon-precomposed.png"
+      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon.png", "public/apple-touch-icon.png"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/crossdomain.xml", "public/crossdomain.xml"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/humans.txt", "public/humans.txt"
       # Set up the default application layout

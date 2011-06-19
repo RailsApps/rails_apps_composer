@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.0.9 June 19, 2011
+
+* correct location for HTML5 Boilerplate site root assets
+
 h2. 1.0.8 June 19, 2011
 
 * tweak CSS and layout for HTML5 Boilerplate
