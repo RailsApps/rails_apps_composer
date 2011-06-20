@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.0.10 June 20, 2011
+
+* add 'extras' recipe
+* add 'rails-footnotes' to 'extras' recipe
+
 h2. 1.0.9 June 20, 2011
 
 * rename 'boilerplate' recipe to 'html5'
