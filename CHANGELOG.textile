@@ -1,7 +1,9 @@
 h1. CHANGELOG
 
-h2. 1.0.9 June 19, 2011
+h2. 1.0.9 June 20, 2011
 
+* rename 'boilerplate' recipe to 'html5'
+* add option to use "normalize.css" as alternative to full CSS reset
 * correct location for HTML5 Boilerplate site root assets
 
 h2. 1.0.8 June 19, 2011
