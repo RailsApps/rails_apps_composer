@@ -8,7 +8,6 @@ if config['html5']
       # Download HTML5 Boilerplate JavaScripts
       get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.min.js", "app/assets/javascripts/modernizr.js"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/respond.min.js", "app/assets/javascripts/respond.js"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/js/plugins.js", "app/assets/javascripts/plugins.js"
       # Download stylesheet to normalize or reset CSS
       case config['css_option']
         when 'normalize'
