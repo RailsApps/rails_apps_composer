@@ -9,8 +9,13 @@ if config['html5']
       get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.min.js", "app/assets/javascripts/modernizr.js"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/respond.min.js", "app/assets/javascripts/respond.js"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/js/plugins.js", "app/assets/javascripts/plugins.js"
-      # Download HTML5 Boilerplate Stylesheet
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/boilerplate.scss"
+      # Download stylesheet to normalize or reset CSS
+      case config['css_option']
+        when 'normalize'
+          get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.scss"
+        when 'reset'
+          get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/reset.scss"
+      end
       # Download HTML5 Boilerplate Site Root Assets
       get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "public/apple-touch-icon-114x114-precomposed.png"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-57x57-precomposed.png", "public/apple-touch-icon-57x57-precomposed.png"
@@ -144,4 +149,8 @@ config:
   - html5:
       type: boolean
       prompt: Would you like to install HTML5 Boilerplate?
+  - css_option:
+      type: multiple_choice
+      prompt: "How do you like your CSS?"
+      choices: [["Normalize CSS for consistent styling across browsers", normalize], ["Completely reset all CSS to eliminate styling", reset]]
 
