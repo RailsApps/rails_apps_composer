@@ -1,10 +1,10 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/boilerplate.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/html5.rb
 
-if config['boilerplate']
+if config['html5']
   if recipes.include? 'rails 3.1'
     after_bundler do
-      say_wizard "Boilerplate recipe running 'after bundler'"
+      say_wizard "HTML5 Boilerplate recipe running 'after bundler'"
       # Download HTML5 Boilerplate JavaScripts
       get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.min.js", "app/assets/javascripts/modernizr.js"
       get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/respond.min.js", "app/assets/javascripts/respond.js"
@@ -123,17 +123,17 @@ ERB
       end
     end
   elsif recipes.include? 'rails 3.0'
-    say_wizard "Not supported for Rails version #{Rails::VERSION::STRING}. Boilerplate recipe skipped."
+    say_wizard "Not supported for Rails version #{Rails::VERSION::STRING}. HTML5 Boilerplate recipe skipped."
   else
-    say_wizard "Don't know what to do for Rails version #{Rails::VERSION::STRING}. Boilerplate recipe skipped."
+    say_wizard "Don't know what to do for Rails version #{Rails::VERSION::STRING}. HTML5 Boilerplate recipe skipped."
   end
 else
-  recipes.delete('boilerplate')
+  recipes.delete('html5')
 end
 
 __END__
 
-name: boilerplate
+name: html5
 description: "Install HTML5 Boilerplate."
 author: RailsApps
 
@@ -141,7 +141,7 @@ category: other
 tags: [utilities, configuration]
 
 config:
-  - boilerplate:
+  - html5:
       type: boolean
       prompt: Would you like to install HTML5 Boilerplate?
 
