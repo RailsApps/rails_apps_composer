@@ -12,7 +12,7 @@ Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_app
 
 h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:http://www.twitter.com/rails_apps Follow on Twitter !http://railsapps.github.com/images/mailing-list-icon.jpg(Join the Mailing List)!:http://eepurl.com/dQx3o Join the Mailing List
 
-Follow the project on Twitter: "rails_apps":http://twitter.com/rails_apps. Tweet some praise if you like what you've found.
+Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. Tweet some praise if you like what you've found.
 
 <a href="http://eepurl.com/dQx3o">Join the email list</a> (low volume, announcements only) for project updates and my tips about Rails resources.
 
@@ -31,9 +31,9 @@ h2. Dependencies
 Before generating a new Rails app, you will need:
 
 * The Ruby language (version 1.9.2)
-* Rails
+* Rails (3.0 or 3.1)
 
-Recipes can be written to detect which version of Rails is in use. Some of the recipes behave differently  depending on the version of Rails.
+Recipes will detect which version of Rails is in use. Some of the recipes behave differently depending on the version of Rails.
 
 See "Managing Rails Versions and Gems":http://railsapps.github.com/managing-rails-versions-gems.html for detailed instructions and advice.
 
@@ -67,7 +67,7 @@ h2. Make Your Own Starter App for One-Time Use
 
 h4. Select Recipes
 
-You can mix and match recipes to create your own customized starter app. Browse the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes to see what is available. Then provide your list of recipes to the Rails Apps Composer gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using jquery and haml:
+You can mix and match recipes to create your own customized starter app. See an annotated list of available "recipes for the Rails Apps Composer gem":http://railsapps.github.com/rails-apps-recipes.html. For an up-to-date list, browse the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes to see what is available. Then provide your list of recipes to the Rails Apps Composer gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using jquery and haml:
 
 <pre>
 $ rails_apps_composer new APP_NAME -r jquery haml
@@ -78,6 +78,8 @@ For example, to build the "rails3-mongoid-devise":http://github.com/RailsApps/ra
 <pre>
 $ rails_apps_composer new APP_NAME -r jquery haml rspec cucumber mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders git
 </pre>
+
+Replace @APP_NAME@ with the name you want for your application.
 
 h2. Make Your Own Starter App with a Reusable Application Template
 
@@ -122,13 +124,13 @@ h4. Template for Rails 3 + Devise + RSpec + Cucumber
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,devise_navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T@ flag. Add the @-J@ flag for Rails 3.0.
 
 <pre>
-$ rails new testapp -m ~/Desktop/template.txt -T -J
+$ rails new testapp -m ~/Desktop/template.txt -T
 </pre>
 
 h4. Template for Rails 3 + Mongoid + Devise
@@ -136,13 +138,13 @@ h4. Template for Rails 3 + Mongoid + Devise
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,devise_navigation,cleanup,ban_spiders,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,devise_navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
 
 <pre>
-$ rails new testapp -m ~/Desktop/template.txt -T -O -J
+$ rails new testapp -m ~/Desktop/template.txt -T -O
 </pre>
 
 h4. Template for Rails 3 + Mongoid + OmniAuth
@@ -150,13 +152,13 @@ h4. Template for Rails 3 + Mongoid + OmniAuth
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,navigation,users_page,omniauth_email,cleanup,ban_spiders,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,html5,navigation,users_page,omniauth_email,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
 
 <pre>
-$ rails new testapp -m ~/Desktop/template.txt -T -O -J
+$ rails new testapp -m ~/Desktop/template.txt -T -O
 </pre>
 
 h2. The Recipes
@@ -241,7 +243,7 @@ RSpec, Cucumber, and Yard recipes were contributed by "Ramon Brooker":http://cog
 Additional recipes by Daniel Kehoe, "http://danielkehoe.com/":http://danielkehoe.com/.
 
 Is the gem useful to you? Follow the project on Twitter:
-"rails_apps":http://twitter.com/rails_apps
+"@rails_apps":http://twitter.com/rails_apps
 and tweet some praise. I'd love to know you were helped out by the gem.
 
 h2. License
