@@ -4,6 +4,7 @@ h2. 1.0.10 June 20, 2011
 
 * add 'extras' recipe
 * add 'rails-footnotes' to 'extras' recipe
+* update gem 'cucumber-rails' from 0.5.2 to 1.0.0
 
 h2. 1.0.9 June 20, 2011
 
@@ -18,7 +19,7 @@ h2. 1.0.8 June 19, 2011
 h2. 1.0.7 June 18, 2011
 
 * add HTML5 Boilerplate recipe
-* update gem capybara 1.0.0.rc1 to capybara 1.0.0
+* update gem 'capybara' 1.0.0.rc1 to 1.0.0
 
 h2. 1.0.6 June 8, 2011
 
