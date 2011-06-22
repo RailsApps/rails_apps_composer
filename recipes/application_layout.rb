@@ -30,7 +30,7 @@ HAML
       gsub_file 'app/views/layouts/application.html.haml', /csrf_meta_tags/, 'csrf_meta_tag'
     end
   else
-    unless recipes.include? 'boilerplate'
+    unless recipes.include? 'html5'
       inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do
     <<-ERB
   <%- flash.each do |name, msg| -%>

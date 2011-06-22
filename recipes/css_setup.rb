@@ -60,7 +60,7 @@ CSS
   if recipes.include? 'rails 3.0'
     create_file 'public/stylesheets/application.css', css
   else
-    if recipes.include? 'boilerplate'
+    if recipes.include? 'html5'
       append_file 'app/assets/stylesheets/application.css', css_boilerplate
     else
       append_file 'app/assets/stylesheets/application.css', css

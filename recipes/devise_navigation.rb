@@ -61,7 +61,7 @@ ERB
     end
 
     # Add navigation links to the default application layout
-    if recipes.include? 'boilerplate'
+    if recipes.include? 'html5'
       if recipes.include? 'haml'
         # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
         inject_into_file 'app/views/layouts/application.html.haml', :after => "%header\n" do <<-HAML
