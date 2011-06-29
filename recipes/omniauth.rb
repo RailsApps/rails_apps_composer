@@ -54,7 +54,7 @@ RUBY
           user.name = auth['user_info']['name'] if auth['user_info']['name'] # Twitter, Google, Yahoo, GitHub
           user.email = auth['user_info']['email'] if auth['user_info']['email'] # Google, Yahoo, GitHub
         end
-        if auth['extra']['user_hash']
+        if auth['extra'] && auth['extra']['user_hash']
           user.name = auth['extra']['user_hash']['name'] if auth['extra']['user_hash']['name'] # Facebook
           user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
         end
