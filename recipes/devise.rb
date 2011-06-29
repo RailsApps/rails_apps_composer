@@ -7,7 +7,7 @@ if config['devise']
     gem 'devise', '1.3.4'
   else
     # for Rails 3.1+, use optimistic versioning for gems
-    gem 'devise', '>= 1.3.4'
+    gem 'devise', '>= 1.4.0'
   end
 else
   recipes.delete('devise')

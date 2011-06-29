@@ -1,5 +1,12 @@
 h1. CHANGELOG
 
+
+h2. 1.0.11 June 29, 2011
+
+* update gem 'cucumber-rails' from 1.0.0 to 1.0.2
+* update gem 'factory_girl_rails' from 1.1.beta1 to 1.1.beta2
+* update gem 'devise' from 1.3.4 to 1.4.0
+
 h2. 1.0.10 June 21, 2011
 
 * add 'extras' recipe
