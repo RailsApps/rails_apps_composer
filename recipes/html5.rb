@@ -69,11 +69,14 @@ RUBY
 - ie_html :lang => 'en', :class => 'no-js' do
   %head
     %title #{app_name}
+    %meta{:charset => "utf-8"}
+    %meta{:http-equiv => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
     = stylesheet_link_tag :application
     = javascript_include_tag :application
     = csrf_meta_tags
     %body
-      #container
+      #container.container
         %header
           - flash.each do |name, msg|
             = content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String)
@@ -104,7 +107,7 @@ HAML
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="container">
+  <div id="container" class="container">
     <header>
     </header>
     <div id="main" role="main">
