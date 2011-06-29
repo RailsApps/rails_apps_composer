@@ -39,20 +39,39 @@ ERB
     end
 
     # Add navigation links to the default application layout
-    if recipes.include? 'haml'
-      # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
-      inject_into_file 'app/views/layouts/application.html.haml', :after => "%body\n" do <<-HAML
+    if recipes.include? 'html5'
+      if recipes.include? 'haml'
+        # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+        inject_into_file 'app/views/layouts/application.html.haml', :after => "%header\n" do <<-HAML
+          %ul.hmenu
+            = render 'shared/navigation'
+HAML
+        end
+      else
+        inject_into_file 'app/views/layouts/application.html.erb', :after => "<header>\n" do
+  <<-ERB
+          <ul class="hmenu">
+            <%= render 'shared/navigation' %>
+          </ul>
+ERB
+        end
+      end
+    else
+      if recipes.include? 'haml'
+        # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+        inject_into_file 'app/views/layouts/application.html.haml', :after => "%body\n" do <<-HAML
   %ul.hmenu
     = render 'shared/navigation'
 HAML
-      end
-    else
-      inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do
+        end
+      else
+        inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do
   <<-ERB
   <ul class="hmenu">
     <%= render 'shared/navigation' %>
   </ul>
 ERB
+        end
       end
     end
 
