@@ -43,16 +43,19 @@ ERB
       if recipes.include? 'haml'
         # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
         inject_into_file 'app/views/layouts/application.html.haml', :after => "%header\n" do <<-HAML
-          %ul.hmenu
-            = render 'shared/navigation'
+          %nav
+            %ul.hmenu
+              = render 'shared/navigation'
 HAML
         end
       else
         inject_into_file 'app/views/layouts/application.html.erb', :after => "<header>\n" do
   <<-ERB
-          <ul class="hmenu">
-            <%= render 'shared/navigation' %>
-          </ul>
+          <nav>
+            <ul class="hmenu">
+              <%= render 'shared/navigation' %>
+            </ul>
+          </nav>
 ERB
         end
       end
