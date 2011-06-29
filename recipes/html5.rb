@@ -10,10 +10,16 @@ if config['html5']
       get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/respond.min.js", "app/assets/javascripts/respond.js"
       # Download stylesheet to normalize or reset CSS
       case config['css_option']
+        when 'skeleton'
+          get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
+          get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css", "app/assets/stylesheets/base.css.scss"
+          get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css", "app/assets/stylesheets/layout.css.scss"
+          get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css", "app/assets/stylesheets/skeleton.css.scss"
+          get "https://raw.github.com/dhgamache/Skeleton/master/javascripts/app.js", "app/assets/javascripts/tabs.js"
         when 'normalize'
-          get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.scss"
+          get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
         when 'reset'
-          get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/reset.scss"
+          get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/reset.css.scss"
       end
       # Download HTML5 Boilerplate Site Root Assets
       get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "public/apple-touch-icon-114x114-precomposed.png"
@@ -154,5 +160,5 @@ config:
   - css_option:
       type: multiple_choice
       prompt: "How do you like your CSS?"
-      choices: [["Normalize CSS for consistent styling across browsers", normalize], ["Completely reset all CSS to eliminate styling", reset]]
+      choices: [["Normalize CSS and add Skeleton styling", skeleton], ["Normalize CSS for consistent styling across browsers", normalize], ["Completely reset all CSS to eliminate styling", reset]]
 
