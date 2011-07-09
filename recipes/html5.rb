@@ -161,5 +161,5 @@ config:
   - css_option:
       type: multiple_choice
       prompt: "If you've chosen HTML5 Boilerplate, how do you like your CSS?"
-      choices: [["Normalize CSS and add Skeleton styling", skeleton], ["Normalize CSS for consistent styling across browsers", normalize], ["Completely reset all CSS to eliminate styling", reset]]
+      choices: [["Do nothing", nothing], ["Normalize CSS and add Skeleton styling", skeleton], ["Normalize CSS for consistent styling across browsers", normalize], ["Completely reset all CSS to eliminate styling", reset]]
 
