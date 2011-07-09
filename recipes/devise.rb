@@ -34,7 +34,7 @@ if config['devise']
     # Prevent logging of password_confirmation
     gsub_file 'config/application.rb', /:password/, ':password, :password_confirmation'
 
-    if config['cucumber']
+    if recipes.include? 'cucumber'
       # Cucumber wants to test GET requests not DELETE requests for destroy_user_session_path
       # (see https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3)
       gsub_file 'config/initializers/devise.rb', 'config.sign_out_via = :delete', 'config.sign_out_via = :get'
