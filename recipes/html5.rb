@@ -141,6 +141,7 @@ ERB
     say_wizard "Don't know what to do for Rails version #{Rails::VERSION::STRING}. HTML5 Boilerplate recipe skipped."
   end
 else
+  say_wizard "HTML5 Boilerplate recipe skipped. No CSS styles added."
   recipes.delete('html5')
 end
 
@@ -159,6 +160,6 @@ config:
       prompt: Would you like to install HTML5 Boilerplate?
   - css_option:
       type: multiple_choice
-      prompt: "How do you like your CSS?"
+      prompt: "If you've chosen HTML5 Boilerplate, how do you like your CSS?"
       choices: [["Normalize CSS and add Skeleton styling", skeleton], ["Normalize CSS for consistent styling across browsers", normalize], ["Completely reset all CSS to eliminate styling", reset]]
 
