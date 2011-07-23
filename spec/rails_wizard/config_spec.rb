@@ -27,8 +27,8 @@ describe RailsWizard::Config do
 
     it 'should error on invalid question type' do
       @schema = <<-YAML
-      - invalid
-        type: invalid
+      - invalid:
+          type: invalid
       YAML
       lambda{ subject }.should raise_error(ArgumentError)
     end
