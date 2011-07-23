@@ -1,5 +1,7 @@
 heroku_name = app_name.gsub('_','')
 
+gem 'heroku'
+
 after_everything do
   if config['create']
     say_wizard "Creating Heroku app '#{heroku_name}.heroku.com'"  
