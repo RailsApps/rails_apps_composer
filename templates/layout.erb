@@ -28,22 +28,12 @@ case Rails::VERSION::MAJOR.to_s
 when "3"
   case Rails::VERSION::MINOR.to_s
   when "1"
-    say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
     @recipes << 'rails 3.1'
   when "0"
-    say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
     @recipes << 'rails 3.0'
-  else
-    say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
   end
-else
-  say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
 end
 
-# show which version of rake is running
-# with the added benefit of ensuring that the Gemfile's version of rake is activated
-gemfile_rake_ver = run 'bundle exec rake --version', :capture => true, :verbose => false
-say_wizard "You are using #{gemfile_rake_ver.strip}"
 
 say_wizard "Checking configuration. Please confirm your preferences."
 
