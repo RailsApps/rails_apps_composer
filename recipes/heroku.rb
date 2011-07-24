@@ -3,9 +3,11 @@ heroku_name = app_name.gsub('_','')
 gem 'heroku'
 
 after_everything do
+  stack = "--stack #{config['cedar'] ? 'cedar' : 'bamboo-mri-1.9.2'}"
+  
   if config['create']
     say_wizard "Creating Heroku app '#{heroku_name}.heroku.com'"  
-    while !system("heroku create #{heroku_name}")
+    while !system("heroku create #{heroku_name} #{stack}")
       heroku_name = ask_wizard("What do you want to call your app? ")
     end
   end
@@ -13,7 +15,7 @@ after_everything do
   if config['staging']
     staging_name = "#{heroku_name}-staging"
     say_wizard "Creating staging Heroku app '#{staging_name}.heroku.com'"
-    while !system("heroku create #{staging_name}")
+    while !system("heroku create #{staging_name} #{stack}")
       staging_name = ask_wizard("What do you want to call your staging app?")
     end
     git :remote => "rm heroku"
@@ -48,6 +50,10 @@ config:
       type: boolean
   - staging:
       prompt: "Create staging app? (appname-staging.heroku.com)"
+      type: boolean
+      if: create
+  - cedar:
+      prompt: "Use the Cedar stack? (saying no uses bamboo-mri-1.9.2)"
       type: boolean
       if: create
   - domain:
