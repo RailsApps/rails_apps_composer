@@ -50,7 +50,7 @@ if config['devise']
       say_wizard "Copying RSpec files from the rails3-devise-rspec-cucumber examples"
       begin
         # copy all the RSpec specs files from the rails3-devise-rspec-cucumber example app
-        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/spec/factories.rb', 'spec/factories.rb'
+        get 'https://raw.github.com/vegetables/rails3-devise-rspec-cucumber/master/spec/factories.rb', 'spec/factories.rb'
         remove_file 'spec/controllers/home_controller_spec.rb'
         remove_file 'spec/controllers/users_controller_spec.rb'
         get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/spec/controllers/home_controller_spec.rb', 'spec/controllers/home_controller_spec.rb'
