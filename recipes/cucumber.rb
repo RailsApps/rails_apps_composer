@@ -13,7 +13,7 @@ if config['cucumber']
     gem 'cucumber-rails', '>= 1.0.2', :group => :test
     gem 'capybara', '>= 1.0.0', :group => :test
     gem 'database_cleaner', '>= 0.6.7', :group => :test
-    gem 'launchy', '>= 0.4.0', :group => :test
+    gem 'launchy', '>= 2.0.5', :group => :test
   end
 else
   recipes.delete('cucumber')

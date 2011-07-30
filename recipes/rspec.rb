@@ -28,7 +28,7 @@ if config['rspec']
     end
     if config['factory_girl']
       # use the factory_girl gem for test fixtures
-      gem 'factory_girl_rails', '>= 1.1.rc1', :group => :test
+      gem 'factory_girl_rails', '>= 1.1.0', :group => :test
     end
   end
 else
