@@ -1,13 +1,11 @@
-unless recipes.include? 'haml'
-  gem 'haml', '>= 3.0.0'
-end
+gem 'sass', '>= 3.1.6'
 
 __END__
 
 name: SASS
-description: "Utilize SASS (through the HAML gem) for really awesome stylesheets!"
-author: mbleigh
+description: "Utilize SASS for really awesome stylesheets!"
+author: mbleigh & mrc2407
 
-exclusive: css_replacement 
+exclusive: css_replacement
 category: assets
 tags: [css]
