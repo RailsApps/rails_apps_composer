@@ -51,7 +51,7 @@ RUBY
     = stylesheet_link_tag :application
     = javascript_include_tag :application
     = csrf_meta_tags
-    %body
+    %body{:class => params[:controller]}
       #container.container
         %header
           - flash.each do |name, msg|
@@ -82,7 +82,7 @@ HAML
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= params[:controller] %>">
   <div id="container" class="container">
     <header>
     </header>
