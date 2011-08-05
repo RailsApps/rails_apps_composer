@@ -3,6 +3,7 @@
 
 if config['html5']
   if recipes.include? 'rails 3.1'
+    gem 'frontend-helpers'
     after_bundler do
       say_wizard "HTML5 Boilerplate recipe running 'after bundler'"
       # Download HTML5 Boilerplate JavaScripts
@@ -32,38 +33,8 @@ if config['html5']
       if recipes.include? 'haml'
         # create some Haml helpers
         # We have to use single-quote-style-heredoc to avoid interpolation.
-        inject_into_file 'app/helpers/application_helper.rb', :after => "ApplicationHelper\n" do <<-'RUBY'
-  # Create a named haml tag to wrap IE conditional around a block
-  # http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
-  def ie_tag(name=:body, attrs={}, &block)
-    attrs.symbolize_keys!
-    haml_concat("<!--[if lt IE 7]> #{ tag(name, add_class('ie6', attrs), true) } <![endif]-->".html_safe)
-    haml_concat("<!--[if IE 7]>    #{ tag(name, add_class('ie7', attrs), true) } <![endif]-->".html_safe)
-    haml_concat("<!--[if IE 8]>    #{ tag(name, add_class('ie8', attrs), true) } <![endif]-->".html_safe)
-    haml_concat("<!--[if gt IE 8]><!-->".html_safe)
-    haml_tag name, attrs do
-      haml_concat("<!--<![endif]-->".html_safe)
-      block.call
-    end
-  end
-
-  def ie_html(attrs={}, &block)
-    ie_tag(:html, attrs, &block)
-  end
-
-  def ie_body(attrs={}, &block)
-    ie_tag(:body, attrs, &block)
-  end
-
-private
-
-  def add_class(name, attrs)
-    classes = attrs[:class] || ''
-    classes.strip!
-    classes = ' ' + classes if !classes.blank?
-    classes = name + classes
-    attrs.merge(:class => classes)
-  end
+        inject_into_file 'app/controllers/application_controller.rb', :after => "protect_from_forgery\n" do <<-'RUBY'
+  include FrontendHelpers::Html5Helper
 RUBY
         end
         # Haml version of default application layout
@@ -71,7 +42,7 @@ RUBY
         remove_file 'app/views/layouts/application.html.haml'
         # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
         create_file 'app/views/layouts/application.html.haml' do <<-HAML
-- ie_html :lang => 'en', :class => 'no-js' do
+- html_tag class: 'no-js' do
   %head
     %title #{app_name}
     %meta{:charset => "utf-8"}
