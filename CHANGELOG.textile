@@ -1,9 +1,11 @@
 h1. CHANGELOG
 
-h2. 1.0.13 July 30, 2011
+h2. 1.0.13 August 5, 2011
 
+* update gem 'mongoid' from 2.0.2 to 2.1.5
 * update gem 'factory_girl_rails' from 1.1.rc1 to 1.1.0
 * update gem 'launchy' from 0.4.0 to 2.0.5
+* update HTML5 boilerplate recipe with changed Javascript urls 
 
 h2. 1.0.12 July 9, 2011
 
