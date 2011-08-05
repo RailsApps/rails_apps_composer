@@ -6,8 +6,7 @@ if config['html5']
     after_bundler do
       say_wizard "HTML5 Boilerplate recipe running 'after bundler'"
       # Download HTML5 Boilerplate JavaScripts
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.min.js", "app/assets/javascripts/modernizr.js"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/respond.min.js", "app/assets/javascripts/respond.js"
+      get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.6.min.js", "app/assets/javascripts/modernizr.js"
       # Download stylesheet to normalize or reset CSS
       case config['css_option']
         when 'skeleton'
