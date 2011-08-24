@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.0.15 August 23, 2011
+
+* update HTML5 boilerplate recipe Javascript urls for Skeleton, changed app.js to tabs.js
+
 h2. 1.0.14 August 5, 2011
 
 * add christopherhein's frontend-helpers gem to HTML5 recipe
