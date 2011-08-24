@@ -11,7 +11,7 @@ if config['mongoid']
   else
     # for Rails 3.1+, use optimistic versioning for gems
     gem 'bson_ext', '>= 1.3.1'
-    gem 'mongoid', '>= 2.1.5'
+    gem 'mongoid', '>= 2.1.9'
   end
 else
   recipes.delete('mongoid')
