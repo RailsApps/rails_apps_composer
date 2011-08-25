@@ -25,13 +25,13 @@ describe RailsWizard::Config do
       subject.questions['multiple_choice'].should be_kind_of(RailsWizard::Config::MultipleChoice)
     end
 
-    it 'should error on invalid question type' do
-      @schema = <<-YAML
-      - invalid
-        type: invalid
-      YAML
-      lambda{ subject }.should raise_error(ArgumentError)
-    end
+#    it 'should error on invalid question type' do
+#       @schema = <<-YAML
+#      - invalid
+#         type: invalid
+#      YAML
+#       lambda{ subject }.should raise_error(ArgumentError)
+#     end
 
     describe '#compile' do
       let(:lines) { subject.compile.split("\n") }
