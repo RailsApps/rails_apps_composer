@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.0.16 August 30, 2011
+
+* update gem 'mongoid' from 2.1.9 to 2.2.0
+* improve fix for Devise/Cucumber issue https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3
+
 h2. 1.0.15 August 24, 2011
 
 * update gem 'mongoid' from 2.1.5 to 2.1.9
@@ -22,7 +27,7 @@ h2. 1.0.12 July 9, 2011
 
 * update gem 'factory_girl_rails' from 1.1.beta3 to 1.1.rc1
 * update gem 'devise' from 1.4.0 to 1.4.2
-* fix for issue https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3
+* fix for Devise/Cucumber issue https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3
 
 h2. 1.0.11 June 29, 2011
 
