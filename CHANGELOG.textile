@@ -1,8 +1,8 @@
 h1. CHANGELOG
 
-h2. 1.0.16 August 30, 2011
+h2. 1.0.16 August 31, 2011
 
-* update gem 'devise' from 1.4.2 to 1.4.3
+* update gem 'devise' from 1.4.2 to 1.4.4
 * update gem 'mongoid' from 2.1.9 to 2.2.0
 * improve fix for Devise/Cucumber issue https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3
 
