@@ -5,7 +5,8 @@ h2. 1.0.17 unreleased
 * for 'omniauth' recipe, use OmniAuth from GitHub to avoid gem compatibility issues
 * add recipe for Compass (contributed by Ashley Woodard)
 * add recipe for Backbone.js (contributed by Ashley Woodard)
-* use 'mysql2 ~> 0.2' for rails 3.0 projects (contributed by Ashley Woodard)
+* use 'mysql2 ~> 0.2' for Rails 3.0 projects (contributed by Ashley Woodard)
+* add ":method=>'delete'" to 'Logout' link for devise_navigation recipe
 
 h2. 1.0.16 August 31, 2011
 

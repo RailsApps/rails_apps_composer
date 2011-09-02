@@ -12,7 +12,7 @@ after_bundler do
       create_file "app/views/devise/menu/_login_items.html.haml" do <<-'HAML'
 - if user_signed_in?
   %li
-    = link_to('Logout', destroy_user_session_path)
+    = link_to('Logout', destroy_user_session_path, :method=>'delete')
 - else
   %li
     = link_to('Login', new_user_session_path)
@@ -22,7 +22,7 @@ HAML
       create_file "app/views/devise/menu/_login_items.html.erb" do <<-ERB
 <% if user_signed_in? %>
   <li>
-  <%= link_to('Logout', destroy_user_session_path) %>        
+  <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>        
   </li>
 <% else %>
   <li>
