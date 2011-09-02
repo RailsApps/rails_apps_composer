@@ -3,6 +3,11 @@ if config['database']
   old_gem = gem_for_database
   @options = @options.dup.merge(:database => config['database'])
   gsub_file 'Gemfile', "gem '#{old_gem}'", "gem '#{gem_for_database}'"
+  if config['database'] == 'mysql'
+    if recipes.include? 'rails 3.0'
+      gsub_file 'Gemfile', "gem 'mysql2'", "gem 'mysql2', '<= 0.3.0'"
+    end
+  end
   template "config/databases/#{@options[:database]}.yml", "config/database.yml.new"
   run 'mv config/database.yml.new config/database.yml'
 end
