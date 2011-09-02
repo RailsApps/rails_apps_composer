@@ -1,7 +1,9 @@
 h1. CHANGELOG
 
-h2. 1.0.17 unreleased
+h2. 1.0.17 September 2, 2011
 
+* update gem 'factory_girl_rails' from 1.1.0 to 1.2.0
+* update gem 'capybara' 1.0.1 to 1.1.0
 * for 'omniauth' recipe, use OmniAuth from GitHub to avoid gem compatibility issues
 * add recipe for Compass (contributed by Ashley Woodard)
 * add recipe for Backbone.js (contributed by Ashley Woodard)
