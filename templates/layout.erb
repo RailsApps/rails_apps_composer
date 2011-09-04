@@ -49,17 +49,21 @@ say_wizard "Checking configuration. Please confirm your preferences."
 
 # >---------------------------[ Javascript Runtime ]-----------------------------<
 
-@current_recipe = "linux"
-config = {}
-config['linux'] = yes_wizard?("Are using a Linux OS such as Ubuntu?") if true && true unless config.key?('linux')
-@configs[@current_recipe] = config
+prepend_file 'Gemfile' do <<-RUBY
+require 'rbconfig'
+HOST_OS = Config::CONFIG['host_os']
 
-if config['linux']
-  if recipes.include? 'rails 3.0'
-    # nothing needed
-  else
-    # for Rails 3.1+, install a gem for a Javascript runtime
-    gem 'therubyracer', '>= 0.8.2'
+RUBY
+end
+
+if recipes.include? 'rails 3.1'
+  append_file 'Gemfile' do <<-RUBY
+# install a Javascript runtime for linux
+if HOST_OS =~ /linux/i
+  gem 'therubyracer', '>= 0.8.2'
+end
+
+  RUBY
   end
 end
 
