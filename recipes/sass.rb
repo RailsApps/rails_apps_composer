@@ -1,4 +1,6 @@
-gem 'sass', '>= 3.1.6'
+if recipes.include? 'rails 3.0'
+  gem 'sass', '>= 3.1.6'
+end
 
 if config['sass']
   after_bundler do
