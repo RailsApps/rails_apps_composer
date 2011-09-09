@@ -2,6 +2,9 @@ h1. CHANGELOG
 
 h2. 1.0.18 unreleased
 
+* update gem 'capybara' 1.1.0 to 1.1.1
+* update gem 'devise' from 1.4.4 to 1.4.5
+* update gem 'omniauth' from 0.2.6 to 0.3.0.rc3
 * fix indentation of 'body' tag in 'html5' recipe
 * add recipe for Guard (contributed by Ashley Woodard)
 * remove explicit dependency on sass gem for Rails 3.1 projects (contributed by Ashley Woodard)

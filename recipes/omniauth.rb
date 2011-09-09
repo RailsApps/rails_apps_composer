@@ -7,8 +7,7 @@ if config['omniauth']
     gem 'omniauth', '0.2.6'
   else
     # for Rails 3.1+, use optimistic versioning for gems
-    # avoid gem compatibility issues for Cucumber and Launchy by using OmniAuth from GitHub
-    gem 'omniauth', '>= 0.2.6', :git => "git://github.com/intridea/omniauth.git"
+    gem 'omniauth', '>= 0.3.0.rc3'
   end
 else
   recipes.delete('omniauth')
