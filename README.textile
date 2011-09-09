@@ -76,7 +76,7 @@ $ rails_apps_composer new APP_NAME -r jquery haml
 For example, to build the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails_apps_composer new APP_NAME -r jquery haml rspec cucumber mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout devise_navigation cleanup ban_spiders git
+$ rails_apps_composer new APP_NAME -r jquery haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout navigation cleanup ban_spiders git
 </pre>
 
 Replace @APP_NAME@ with the name you want for your application.
@@ -124,7 +124,7 @@ h4. Template for Rails 3 + Devise + RSpec + Cucumber
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,devise_navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T@ flag. Add the @-J@ flag for Rails 3.0.
@@ -138,7 +138,7 @@ h4. Template for Rails 3 + Mongoid + Devise
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,devise_navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
@@ -152,7 +152,7 @@ h4. Template for Rails 3 + Mongoid + OmniAuth
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,html5,navigation,users_page,omniauth_email,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,html5,navigation,users_page,omniauth_email,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
@@ -239,6 +239,8 @@ This project is based on "Michael Bleigh's RailsWizard gem":https://github.com/i
 "Fletcher Nichol's":http://silversky.ca/ project  "fnichol/rails-template-recipes":https://github.com/fnichol/rails-template-recipes provides the basis for several recipes.
 
 RSpec, Cucumber, and Yard recipes were contributed by "Ramon Brooker":http://cogniton-mind.tumblr.com/.
+
+Guard recipe contributed by "Ashley Woodard":https://github.com/ashley-woodard.
 
 Additional recipes by Daniel Kehoe, "http://danielkehoe.com/":http://danielkehoe.com/.
 
