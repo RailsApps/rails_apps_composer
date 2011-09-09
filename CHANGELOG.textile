@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 1.0.18 unreleased
 
+* remove 'devise_navigation' recipe and merge with 'navigation' recipe
 * update gem 'capybara' 1.1.0 to 1.1.1
 * update gem 'devise' from 1.4.4 to 1.4.5
 * update gem 'omniauth' from 0.2.6 to 0.3.0.rc3

@@ -4,12 +4,57 @@
 after_bundler do
 
   say_wizard "Navigation recipe running 'after bundler'"
+  
+    if recipes.include? 'devise'
+      # Create navigation links for Devise
+      if recipes.include? 'haml'
+        # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+        # We have to use single-quote-style-heredoc to avoid interpolation.
+        create_file "app/views/shared/_navigation.html.haml" do <<-'HAML'
+- if user_signed_in?
+  %li
+    = link_to('Logout', destroy_user_session_path, :method=>'delete')
+- else
+  %li
+    = link_to('Login', new_user_session_path)
+- if user_signed_in?
+  %li
+    = link_to('Edit account', edit_user_registration_path)
+- else
+  %li
+    = link_to('Sign up', new_user_registration_path)
+HAML
+        end
+      else
+        create_file "app/views/shared/_navigation.html.erb" do <<-ERB
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Edit account', edit_user_registration_path) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Sign up', new_user_registration_path)  %>
+  </li>
+<% end %>
+ERB
+        end
+      end
 
-    # Create navigation links
-    if recipes.include? 'haml'
-      # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
-      # We have to use single-quote-style-heredoc to avoid interpolation.
-      create_file "app/views/shared/_navigation.html.haml" do <<-'HAML'
+    else
+      # Create navigation links
+      if recipes.include? 'haml'
+        # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+        # We have to use single-quote-style-heredoc to avoid interpolation.
+        create_file "app/views/shared/_navigation.html.haml" do <<-'HAML'
 - if user_signed_in?
   %li
     Logged in as #{current_user.name}
@@ -19,9 +64,9 @@ after_bundler do
   %li
     = link_to('Login', signin_path)
 HAML
-      end
-    else
-      create_file "app/views/shared/_navigation.html.erb" do <<-ERB
+        end
+      else
+        create_file "app/views/shared/_navigation.html.erb" do <<-ERB
 <% if user_signed_in? %>
   <li>
   Logged in as <%= current_user.name %>
@@ -35,6 +80,7 @@ HAML
   </li>
 <% end %>
 ERB
+        end
       end
     end
 
