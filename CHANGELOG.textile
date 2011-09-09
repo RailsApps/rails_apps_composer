@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.0.19 September 9, 2011
+
+* fixed pesky HAML indent in 'navigation' recipe
+
 h2. 1.0.18 September 9, 2011
 
 * remove 'devise_navigation' recipe and merge with 'navigation' recipe
