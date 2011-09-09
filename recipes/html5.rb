@@ -51,14 +51,14 @@ RUBY
     = stylesheet_link_tag :application
     = javascript_include_tag :application
     = csrf_meta_tags
-    %body{:class => params[:controller]}
-      #container.container
-        %header
-          - flash.each do |name, msg|
-            = content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String)
-        #main{:role => "main"}
-          = yield
-        %footer
+  %body{:class => params[:controller]}
+    #container.container
+      %header
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String)
+      #main{:role => "main"}
+        = yield
+      %footer
 HAML
         end
       else
