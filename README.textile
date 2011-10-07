@@ -70,16 +70,16 @@ h4. Select Recipes
 You can mix and match recipes to create your own customized starter app. See an annotated list of available "recipes for the Rails Apps Composer gem":http://railsapps.github.com/rails-apps-recipes.html. For an up-to-date list, browse the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes to see what is available. Then provide your list of recipes to the Rails Apps Composer gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using jquery and haml:
 
 <pre>
-$ rails_apps_composer new APP_NAME -r jquery haml
+$ rails_apps_composer new myapp -r jquery haml
 </pre>
 
 For example, to build the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails_apps_composer new APP_NAME -r jquery haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout navigation cleanup ban_spiders git
+$ rails_apps_composer new myapp -r jquery haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout navigation cleanup ban_spiders git
 </pre>
 
-Replace @APP_NAME@ with the name you want for your application.
+Replace @myapp@ with the name you want for your application.
 
 h2. Make Your Own Starter App with a Reusable Application Template
 
@@ -112,7 +112,7 @@ If you don't include the @--silent@ option, the rake task will generate the appl
 The Rails Apps Composer gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
 
 <pre>
-$ rails new testapp -m ~/Desktop/template.txt
+$ rails new myapp -m ~/Desktop/template.txt
 </pre>
 
 You can specify the @-T -O@ flags as needed to skip Test::Unit files and Active Record files. For Rails 3.0, you can also specify the @-J@ flag to skip Prototype files (not needed for Rails 3.1).
@@ -130,7 +130,7 @@ $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,action_mailer,dev
 Then generate the application using the @-T@ flag. Add the @-J@ flag for Rails 3.0.
 
 <pre>
-$ rails new testapp -m ~/Desktop/template.txt -T
+$ rails new myapp -m ~/Desktop/template.txt -T
 </pre>
 
 h4. Template for Rails 3 + Mongoid + Devise
@@ -144,7 +144,7 @@ $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,action_ma
 Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
 
 <pre>
-$ rails new testapp -m ~/Desktop/template.txt -T -O
+$ rails new myapp -m ~/Desktop/template.txt -T -O
 </pre>
 
 h4. Template for Rails 3 + Mongoid + OmniAuth
@@ -158,7 +158,7 @@ $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,seed_data
 Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
 
 <pre>
-$ rails new testapp -m ~/Desktop/template.txt -T -O
+$ rails new myapp -m ~/Desktop/template.txt -T -O
 </pre>
 
 h2. The Recipes
@@ -195,7 +195,7 @@ h4. Rails Apps Composer Differences
 The Rails Apps Composer gem is very similar to the rails_wizard gem, with one significant difference. The rails_wizard gem allows specification of execution order for recipes with @run_after@ and @run_after@ configuration flags. The Rails Apps Composer gem does not support @run_after@ or @run_after@; instead, the order which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
 
 <pre>
-$ rails_apps_composer new APP_NAME -r git jquery haml
+$ rails_apps_composer new myapp -r git jquery haml
 </pre>
 
 installs jquery before haml.

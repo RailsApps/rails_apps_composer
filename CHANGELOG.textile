@@ -1,5 +1,13 @@
 h1. CHANGELOG
 
+h2. 1.0.20 October 7, 2011
+
+* update gem 'cucumber-rails' from 1.0.2 to 1.1.1
+* update gem 'bson_ext' from 1.3.1 to 1.4.0
+* update gem 'mongoid' from 2.2.0 to 2.3.0
+* update gem 'devise' from 1.4.5 to 1.4.7
+* update gem 'omniauth' from 0.3.0.rc3 to 0.3.0
+
 h2. 1.0.19 September 9, 2011
 
 * fixed pesky HAML indent in 'navigation' recipe
@@ -7,7 +15,7 @@ h2. 1.0.19 September 9, 2011
 h2. 1.0.18 September 9, 2011
 
 * remove 'devise_navigation' recipe and merge with 'navigation' recipe
-* update gem 'capybara' 1.1.0 to 1.1.1
+* update gem 'capybara' from 1.1.0 to 1.1.1
 * update gem 'devise' from 1.4.4 to 1.4.5
 * update gem 'omniauth' from 0.2.6 to 0.3.0.rc3
 * fix indentation of 'body' tag in 'html5' recipe
