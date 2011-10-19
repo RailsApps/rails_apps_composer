@@ -51,7 +51,7 @@ say_wizard "Checking configuration. Please confirm your preferences."
 
 prepend_file 'Gemfile' do <<-RUBY
 require 'rbconfig'
-HOST_OS = Config::CONFIG['host_os']
+HOST_OS = RbConfig::CONFIG['host_os']
 
 RUBY
 end
@@ -60,7 +60,7 @@ if recipes.include? 'rails 3.1'
   append_file 'Gemfile' do <<-RUBY
 # install a Javascript runtime for linux
 if HOST_OS =~ /linux/i
-  gem 'therubyracer', '>= 0.8.2'
+  gem 'therubyracer', '>= 0.9.8'
 end
 
   RUBY
