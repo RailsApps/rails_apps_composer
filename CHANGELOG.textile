@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 1.0.20 unreleased
+h2. 1.0.21 unreleased
 
 * update gem 'bson_ext' from 1.4.0 to 1.4.1
 * update gem 'mongoid' from 2.3.0 to 2.3.2
