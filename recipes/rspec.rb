@@ -19,7 +19,7 @@ if config['rspec']
     end
   else
     # for Rails 3.1+, use optimistic versioning for gems
-    gem 'rspec-rails', '>= 2.6.1', :group => [:development, :test]
+    gem 'rspec-rails', '>= 2.7.0', :group => [:development, :test]
     if recipes.include? 'mongoid'
       # use the database_cleaner gem to reset the test database
       gem 'database_cleaner', '>= 0.6.7', :group => :test
@@ -28,7 +28,7 @@ if config['rspec']
     end
     if config['factory_girl']
       # use the factory_girl gem for test fixtures
-      gem 'factory_girl_rails', '>= 1.2.0', :group => :test
+      gem 'factory_girl_rails', '>= 1.3.0', :group => :test
     end
   end
 else
