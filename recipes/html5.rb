@@ -13,22 +13,17 @@ if recipes.include? 'rails 3.1'
   end
   after_bundler do
     say_wizard "HTML5 recipe running 'after bundler'"
-    # Download HTML5 Boilerplate JavaScripts
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.6.min.js", "app/assets/javascripts/modernizr.js"
-    # Download stylesheet to normalize or reset CSS
     case config['css_option']
       when 'nothing'
         say_wizard "no HTML5 design framework selected"
       when 'foundation'
         say_wizard "installing Zurb Foundation HTML5 design framework"
-        # generator adds to application.css: /*= require "foundation" */
-        # generator adds to application.js: //= require "foundation"
-        generate 'foundation:install'
+        insert_into_file "app/assets/javascripts/application.js", "//= require foundation\n", :after => "jquery_ujs\n"
+        insert_into_file "app/assets/stylesheets/application.css", " *= require foundation\n", :after => "require_self\n"
       when 'bootstrap'
         say_wizard "installing Twitter Bootstrap HTML5 design framework"
-        # not implemented yet:
-        # add to application.css: /*= require twitter/bootstrap */
-        # add to application.js: //= require twitter/bootstrap
+        insert_into_file "app/assets/javascripts/application.js", "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
+        insert_into_file "app/assets/stylesheets/application.css", " *= require twitter/bootstrap\n", :after => "require_self\n"
       when 'skeleton'
         say_wizard "installing Skeleton HTML5 design framework"
         get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
@@ -43,6 +38,8 @@ if recipes.include? 'rails 3.1'
         say_wizard "Resetting all CSS to eliminate styling"
         get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/reset.css.scss"
     end
+    # Download HTML5 Boilerplate JavaScripts
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.6.min.js", "app/assets/javascripts/modernizr.js"
     # Download HTML5 Boilerplate Site Root Assets
     get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "public/apple-touch-icon-114x114-precomposed.png"
     get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-57x57-precomposed.png", "public/apple-touch-icon-57x57-precomposed.png"
