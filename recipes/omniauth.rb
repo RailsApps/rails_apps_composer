@@ -7,7 +7,7 @@ if config['omniauth']
     gem 'omniauth', '0.2.6'
   else
     # for Rails 3.1+, use optimistic versioning for gems
-    gem 'omniauth', '>= 0.3.0'
+    gem 'omniauth', '>= 0.3.2'
   end
 else
   recipes.delete('omniauth')
