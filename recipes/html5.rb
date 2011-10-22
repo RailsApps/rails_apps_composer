@@ -1,47 +1,63 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/html5.rb
 
-if config['html5']
-  if recipes.include? 'rails 3.1'
-    gem 'frontend-helpers'
-    after_bundler do
-      say_wizard "HTML5 Boilerplate recipe running 'after bundler'"
-      # Download HTML5 Boilerplate JavaScripts
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.6.min.js", "app/assets/javascripts/modernizr.js"
-      # Download stylesheet to normalize or reset CSS
-      case config['css_option']
-        when 'skeleton'
-          get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
-          get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css", "app/assets/stylesheets/base.css.scss"
-          get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css", "app/assets/stylesheets/layout.css.scss"
-          get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css", "app/assets/stylesheets/skeleton.css.scss"
-          get "https://raw.github.com/dhgamache/Skeleton/master/javascripts/tabs.js", "app/assets/javascripts/tabs.js"
-        when 'normalize'
-          get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
-        when 'reset'
-          get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/reset.css.scss"
-      end
-      # Download HTML5 Boilerplate Site Root Assets
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "public/apple-touch-icon-114x114-precomposed.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-57x57-precomposed.png", "public/apple-touch-icon-57x57-precomposed.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-72x72-precomposed.png", "public/apple-touch-icon-72x72-precomposed.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-precomposed.png", "public/apple-touch-icon-precomposed.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon.png", "public/apple-touch-icon.png"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/crossdomain.xml", "public/crossdomain.xml"
-      get "https://raw.github.com/paulirish/html5-boilerplate/master/humans.txt", "public/humans.txt"
-      # Set up the default application layout
-      if recipes.include? 'haml'
-        # create some Haml helpers
-        # We have to use single-quote-style-heredoc to avoid interpolation.
-        inject_into_file 'app/controllers/application_controller.rb', :after => "protect_from_forgery\n" do <<-'RUBY'
+if recipes.include? 'rails 3.1'
+  gem 'frontend-helpers'
+  case config['css_option']
+    when 'foundation'
+      gem 'zurb-foundation'
+  end
+  after_bundler do
+    say_wizard "HTML5 recipe running 'after bundler'"
+    # Download HTML5 Boilerplate JavaScripts
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.6.min.js", "app/assets/javascripts/modernizr.js"
+    # Download stylesheet to normalize or reset CSS
+    case config['css_option']
+      when 'nothing'
+        say_wizard "no HTML5 design framework selected"
+      when 'foundation'
+        say_wizard "installing Zurb Foundation HTML5 design framework"
+        # generator adds to application.css: /*= require "foundation" */
+        # generator adds to application.js: //= require "foundation"
+        generate 'foundation:install'
+      when 'bootstrap'
+        say_wizard "installing Twitter Bootstrap HTML5 design framework"
+        # not implemented yet
+      when 'skeleton'
+        say_wizard "installing Skeleton HTML5 design framework"
+        get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
+        get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css", "app/assets/stylesheets/base.css.scss"
+        get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css", "app/assets/stylesheets/layout.css.scss"
+        get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css", "app/assets/stylesheets/skeleton.css.scss"
+        get "https://raw.github.com/dhgamache/Skeleton/master/javascripts/tabs.js", "app/assets/javascripts/tabs.js"
+      when 'normalize'
+        say_wizard "Normalizing CSS for consistent styling"
+        get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
+      when 'reset'
+        say_wizard "Resetting all CSS to eliminate styling"
+        get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/reset.css.scss"
+    end
+    # Download HTML5 Boilerplate Site Root Assets
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "public/apple-touch-icon-114x114-precomposed.png"
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-57x57-precomposed.png", "public/apple-touch-icon-57x57-precomposed.png"
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-72x72-precomposed.png", "public/apple-touch-icon-72x72-precomposed.png"
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-precomposed.png", "public/apple-touch-icon-precomposed.png"
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon.png", "public/apple-touch-icon.png"
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/crossdomain.xml", "public/crossdomain.xml"
+    get "https://raw.github.com/paulirish/html5-boilerplate/master/humans.txt", "public/humans.txt"
+    # Set up the default application layout
+    if recipes.include? 'haml'
+      # create some Haml helpers
+      # We have to use single-quote-style-heredoc to avoid interpolation.
+      inject_into_file 'app/controllers/application_controller.rb', :after => "protect_from_forgery\n" do <<-'RUBY'
   include FrontendHelpers::Html5Helper
 RUBY
-        end
-        # Haml version of default application layout
-        remove_file 'app/views/layouts/application.html.erb'
-        remove_file 'app/views/layouts/application.html.haml'
-        # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
-        create_file 'app/views/layouts/application.html.haml' do <<-HAML
+      end
+      # Haml version of default application layout
+      remove_file 'app/views/layouts/application.html.erb'
+      remove_file 'app/views/layouts/application.html.haml'
+      # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+      create_file 'app/views/layouts/application.html.haml' do <<-HAML
 - html_tag class: 'no-js' do
   %head
     %title #{app_name}
@@ -60,12 +76,12 @@ RUBY
         = yield
       %footer
 HAML
-        end
-      else
-        # ERB version of default application layout
-        remove_file 'app/views/layouts/application.html.erb'
-        remove_file 'app/views/layouts/application.html.haml'
-        create_file 'app/views/layouts/application.html.erb' do <<-ERB
+      end
+    else
+      # ERB version of default application layout
+      remove_file 'app/views/layouts/application.html.erb'
+      remove_file 'app/views/layouts/application.html.haml'
+      create_file 'app/views/layouts/application.html.erb' do <<-ERB
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -95,25 +111,22 @@ HAML
 </body>
 </html>
 ERB
-        end
-        inject_into_file 'app/views/layouts/application.html.erb', :after => "<header>\n" do
+      end
+      inject_into_file 'app/views/layouts/application.html.erb', :after => "<header>\n" do
   <<-ERB
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String) %>
       <%- end -%>
 ERB
-        end
       end
     end
-  elsif recipes.include? 'rails 3.0'
-    say_wizard "Not supported for Rails version #{Rails::VERSION::STRING}. HTML5 Boilerplate recipe skipped."
-  else
-    say_wizard "Don't know what to do for Rails version #{Rails::VERSION::STRING}. HTML5 Boilerplate recipe skipped."
   end
+elsif recipes.include? 'rails 3.0'
+  say_wizard "Not supported for Rails version #{Rails::VERSION::STRING}. HTML5 recipe skipped."
 else
-  say_wizard "HTML5 Boilerplate recipe skipped. No CSS styles added."
-  recipes.delete('html5')
+  say_wizard "Don't know what to do for Rails version #{Rails::VERSION::STRING}. HTML5 recipe skipped."
 end
+
 
 __END__
 
@@ -125,11 +138,8 @@ category: other
 tags: [utilities, configuration]
 
 config:
-  - html5:
-      type: boolean
-      prompt: Would you like to install HTML5 Boilerplate?
   - css_option:
       type: multiple_choice
-      prompt: "If you've chosen HTML5 Boilerplate, how do you like your CSS?"
-      choices: [["Do nothing", nothing], ["Normalize CSS and add Skeleton styling", skeleton], ["Normalize CSS for consistent styling across browsers", normalize], ["Completely reset all CSS to eliminate styling", reset]]
+      prompt: "Which design framework would you like for HTML5?"
+      choices: [["None", nothing], ["Zurb Foundation", foundation], ["Twitter Bootstrap", bootstrap], ["Skeleton", skeleton], ["Normalize CSS for consistent styling", normalize], ["Reset all CSS to eliminate styling", reset]]
 
