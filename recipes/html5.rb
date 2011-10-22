@@ -5,7 +5,11 @@ if recipes.include? 'rails 3.1'
   gem 'frontend-helpers'
   case config['css_option']
     when 'foundation'
+      # https://github.com/zurb/foundation-rails
       gem 'zurb-foundation'
+    when 'bootstrap'
+      # https://github.com/seyhunak/twitter-bootstrap-rails
+      gem 'twitter-bootstrap-rails'
   end
   after_bundler do
     say_wizard "HTML5 recipe running 'after bundler'"
@@ -22,7 +26,9 @@ if recipes.include? 'rails 3.1'
         generate 'foundation:install'
       when 'bootstrap'
         say_wizard "installing Twitter Bootstrap HTML5 design framework"
-        # not implemented yet
+        # not implemented yet:
+        # add to application.css: /*= require twitter/bootstrap */
+        # add to application.js: //= require twitter/bootstrap
       when 'skeleton'
         say_wizard "installing Skeleton HTML5 design framework"
         get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"

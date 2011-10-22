@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 1.0.21 unreleased
 
 * add Zurb Foundation framework to html5 recipe
+* add Twitter Bootstrap framework to html5 recipe
 * use RbConfig instead of Config to avoid deprecation warning in Ruby 1.9.3
 * update gem 'bson_ext' from 1.4.0 to 1.4.1
 * update gem 'mongoid' from 2.3.0 to 2.3.2
