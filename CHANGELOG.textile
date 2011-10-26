@@ -2,6 +2,8 @@ h1. CHANGELOG
 
 h2. 1.0.21 unreleased
 
+* better selection of HTML5 Boilerplate features in the html5 recipe
+* corrected html5 recipe after @paul_irish moved the GitHub repo for html5-boilerplate
 * add Zurb Foundation framework to html5 recipe
 * add Twitter Bootstrap framework to html5 recipe
 * use RbConfig instead of Config to avoid deprecation warning in Ruby 1.9.3

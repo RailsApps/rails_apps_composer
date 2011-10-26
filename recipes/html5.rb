@@ -15,39 +15,40 @@ if recipes.include? 'rails 3.1'
     say_wizard "HTML5 recipe running 'after bundler'"
     case config['css_option']
       when 'nothing'
-        say_wizard "no HTML5 design framework selected"
+        say_wizard "no HTML5 front-end framework selected"
       when 'foundation'
-        say_wizard "installing Zurb Foundation HTML5 design framework"
+        say_wizard "installing Zurb Foundation HTML5 framework"
         insert_into_file "app/assets/javascripts/application.js", "//= require foundation\n", :after => "jquery_ujs\n"
         insert_into_file "app/assets/stylesheets/application.css", " *= require foundation\n", :after => "require_self\n"
       when 'bootstrap'
-        say_wizard "installing Twitter Bootstrap HTML5 design framework"
+        say_wizard "installing Twitter Bootstrap HTML5 framework"
         insert_into_file "app/assets/javascripts/application.js", "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
         insert_into_file "app/assets/stylesheets/application.css", " *= require twitter/bootstrap\n", :after => "require_self\n"
       when 'skeleton'
-        say_wizard "installing Skeleton HTML5 design framework"
+        say_wizard "installing Skeleton HTML5 framework"
         get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
         get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css", "app/assets/stylesheets/base.css.scss"
         get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css", "app/assets/stylesheets/layout.css.scss"
         get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css", "app/assets/stylesheets/skeleton.css.scss"
         get "https://raw.github.com/dhgamache/Skeleton/master/javascripts/tabs.js", "app/assets/javascripts/tabs.js"
+      when 'boilerplate'
+        say_wizard "installing HTML5 Boilerplate framework"
+        # Download HTML5 Boilerplate JavaScripts
+        get "https://raw.github.com/h5bp/html5-boilerplate/master/js/libs/modernizr-2.0.6.min.js", "app/assets/javascripts/modernizr.js"
+        # Download HTML5 Boilerplate Site Root Assets
+        get "https://raw.github.com/h5bp/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "public/apple-touch-icon-114x114-precomposed.png"
+        get "https://raw.github.com/h5bp/html5-boilerplate/master/apple-touch-icon-57x57-precomposed.png", "public/apple-touch-icon-57x57-precomposed.png"
+        get "https://raw.github.com/h5bp/html5-boilerplate/master/apple-touch-icon-72x72-precomposed.png", "public/apple-touch-icon-72x72-precomposed.png"
+        get "https://raw.github.com/h5bp/html5-boilerplate/master/apple-touch-icon-precomposed.png", "public/apple-touch-icon-precomposed.png"
+        get "https://raw.github.com/h5bp/html5-boilerplate/master/apple-touch-icon.png", "public/apple-touch-icon.png"
+        get "https://raw.github.com/h5bp/html5-boilerplate/master/humans.txt", "public/humans.txt"
       when 'normalize'
-        say_wizard "Normalizing CSS for consistent styling"
+        say_wizard "normalizing CSS for consistent styling"
         get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
       when 'reset'
-        say_wizard "Resetting all CSS to eliminate styling"
-        get "https://raw.github.com/paulirish/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/reset.css.scss"
+        say_wizard "resetting all CSS to eliminate styling"
+        get "https://raw.github.com/h5bp/html5-boilerplate/master/css/style.css", "app/assets/stylesheets/reset.css.scss"
     end
-    # Download HTML5 Boilerplate JavaScripts
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/js/libs/modernizr-2.0.6.min.js", "app/assets/javascripts/modernizr.js"
-    # Download HTML5 Boilerplate Site Root Assets
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-114x114-precomposed.png", "public/apple-touch-icon-114x114-precomposed.png"
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-57x57-precomposed.png", "public/apple-touch-icon-57x57-precomposed.png"
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-72x72-precomposed.png", "public/apple-touch-icon-72x72-precomposed.png"
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon-precomposed.png", "public/apple-touch-icon-precomposed.png"
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/apple-touch-icon.png", "public/apple-touch-icon.png"
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/crossdomain.xml", "public/crossdomain.xml"
-    get "https://raw.github.com/paulirish/html5-boilerplate/master/humans.txt", "public/humans.txt"
     # Set up the default application layout
     if recipes.include? 'haml'
       # create some Haml helpers
@@ -134,7 +135,7 @@ end
 __END__
 
 name: html5
-description: "Install HTML5 Boilerplate."
+description: "Install a front-end framework for HTML5 and CSS3."
 author: RailsApps
 
 category: other
@@ -143,6 +144,6 @@ tags: [utilities, configuration]
 config:
   - css_option:
       type: multiple_choice
-      prompt: "Which design framework would you like for HTML5?"
-      choices: [["None", nothing], ["Zurb Foundation", foundation], ["Twitter Bootstrap", bootstrap], ["Skeleton", skeleton], ["Normalize CSS for consistent styling", normalize], ["Reset all CSS to eliminate styling", reset]]
+      prompt: "Which front-end framework would you like for HTML5 and CSS3?"
+      choices: [["None", nothing], ["Zurb Foundation", foundation], ["Twitter Bootstrap", bootstrap], ["Skeleton", skeleton], ["HTML5 Boilerplate", boilerplate], ["Just normalize CSS for consistent styling", normalize], ["Just reset all CSS to eliminate styling", reset]]
 
