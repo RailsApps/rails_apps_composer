@@ -31,8 +31,8 @@ ul.hmenu li {
 
 CSS
 
-  # Add a stylesheet for use with HTML5 Boilerplate
-  css_boilerplate = <<-CSS
+  # Add a stylesheet for use with HTML5
+  css_html5 = <<-CSS
 
 header nav ul {
   list-style: none;
@@ -61,7 +61,7 @@ CSS
     create_file 'public/stylesheets/application.css', css
   else
     if recipes.include? 'html5'
-      append_file 'app/assets/stylesheets/application.css', css_boilerplate
+      append_file 'app/assets/stylesheets/application.css', css_html5
     else
       append_file 'app/assets/stylesheets/application.css', css
     end

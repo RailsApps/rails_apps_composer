@@ -1,15 +1,14 @@
 h1. CHANGELOG
 
-h2. 1.0.21 unreleased
+h2. 1.0.21 October 27, 2011
 
-* better selection of HTML5 Boilerplate features in the html5 recipe
-* corrected html5 recipe after @paul_irish moved the GitHub repo for html5-boilerplate
+* drop HTML5 Boilerplate from the html5 recipe
 * add Zurb Foundation framework to html5 recipe
 * add Twitter Bootstrap framework to html5 recipe
 * use RbConfig instead of Config to avoid deprecation warning in Ruby 1.9.3
 * update gem 'bson_ext' from 1.4.0 to 1.4.1
 * update gem 'mongoid' from 2.3.0 to 2.3.2
-* update gem 'devise' from 1.4.7 to 1.4.8
+* update gem 'devise' from 1.4.7 to 1.4.9
 * update gem 'factory_girl_rails' from 1.2.0 to 1.3.0
 * update gem 'rspec-rails' from 2.6.1 to 2.7.0
 * update gem 'omniauth' from 0.3.0 to 0.3.2
