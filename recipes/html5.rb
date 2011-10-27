@@ -42,13 +42,13 @@ if recipes.include? 'rails 3.1'
       # Haml version of default application layout
       remove_file 'app/views/layouts/application.html.erb'
       remove_file 'app/views/layouts/application.html.haml'
-      get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/views/layout/application.html.haml", "app/views/layouts/application.html.haml"
+      get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/views/layouts/application.html.haml", "app/views/layouts/application.html.haml"
       gsub_file "app/views/layouts/application.html.haml", /App_Name/, "#{app_name.humanize.titleize}"
     else
       # ERB version of default application layout
       remove_file 'app/views/layouts/application.html.erb'
       remove_file 'app/views/layouts/application.html.haml'
-      get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/views/layout/application.html.erb", "app/views/layouts/application.html.erb"
+      get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/views/layouts/application.html.erb", "app/views/layouts/application.html.erb"
       gsub_file "app/views/layouts/application.html.erb", /App_Name/, "#{app_name.humanize.titleize}"
     end
   end
