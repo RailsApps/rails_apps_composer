@@ -10,7 +10,7 @@ if config['mongoid']
     gem 'mongoid', '2.0.2'
   else
     # for Rails 3.1+, use optimistic versioning for gems
-    gem 'bson_ext', '>= 1.4.1'
+    gem 'bson_ext', '>= 1.3.1'
     gem 'mongoid', '>= 2.3.2'
   end
 else

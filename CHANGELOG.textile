@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.0.22 October 28, 2011
+
+* gem 'bson_ext' rolled back from 1.4.1 to 1.3.1 because of performance issues
+
 h2. 1.0.21 October 27, 2011
 
 * drop HTML5 Boilerplate from the html5 recipe
