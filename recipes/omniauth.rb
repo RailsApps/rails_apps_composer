@@ -7,7 +7,20 @@ if config['omniauth']
     gem 'omniauth', '0.2.6'
   else
     # for Rails 3.1+, use optimistic versioning for gems
-    gem 'omniauth', '>= 0.3.2'
+    gem 'omniauth', '>= 1.0.0'
+    # for available gems, see https://github.com/intridea/omniauth/wiki/List-of-Strategies
+    case config['provider']
+      when 'twitter'
+        gem 'omniauth-twitter'
+      when 'facebook'
+        gem 'omniauth-facebook'
+      when 'github'
+       gem 'omniauth-github'
+      when 'linkedin'
+        gem 'omniauth-linkedin'
+      when 'provider'
+        say_wizard "IMPORTANT: you'll have to add a gem to your Gemfile for the provider you want"
+    end
   end
 else
   recipes.delete('omniauth')
@@ -49,13 +62,9 @@ RUBY
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
-      if auth['user_info']
-        user.name = auth['user_info']['name'] if auth['user_info']['name'] # Twitter, Google, Yahoo, GitHub
-        user.email = auth['user_info']['email'] if auth['user_info']['email'] # Google, Yahoo, GitHub
-      end
-      if auth['extra'] && auth['extra']['user_hash']
-        user.name = auth['extra']['user_hash']['name'] if auth['extra']['user_hash']['name'] # Facebook
-        user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
+      if auth['info']
+         user.name = auth['info']['name'] || ""
+         user.email = auth['info']['email'] || ""
       end
     end
   end
@@ -76,7 +85,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    reset_session
     redirect_to root_url, :notice => 'Signed out!'
   end
 
@@ -151,4 +160,4 @@ config:
   - provider:
       type: multiple_choice
       prompt: "Which service provider will you use?"
-      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linked_in], ["Other", provider]]
+      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linkedin], ["Other", provider]]
