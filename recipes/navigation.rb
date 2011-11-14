@@ -123,6 +123,32 @@ ERB
       end
     end
 
+    # Throw it all away and create new navigation if we're enabling subdomains
+    if recipes.include? 'subdomains'
+      remove_file 'app/views/shared/_navigation.html.haml'
+      # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+      # We have to use single-quote-style-heredoc to avoid interpolation.
+      create_file 'app/views/shared/_navigation.html.haml' do <<-'HAML'
+%li
+  = link_to 'Main', root_url(:host => request.domain)
+- unless request.subdomain.present? && request.subdomain != "www"
+  - if user_signed_in?
+    %li
+      = link_to('Edit account', edit_user_registration_path)
+  - else
+    %li
+      = link_to('Sign up', new_user_registration_path)
+- else
+  - if user_signed_in?
+    %li
+      = link_to('Logout', destroy_user_session_path, :method=>'delete')
+  - else
+    %li
+      = link_to('Login', new_user_session_path)
+HAML
+      end
+    end
+
 end
 
 __END__
