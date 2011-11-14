@@ -1,5 +1,12 @@
 h1. CHANGELOG
 
+h2. 1.0.25 November 14, 2011
+
+* add 'subdomains' recipe
+* modify layout.erb to autoload modules/classes from the lib directory
+* update gem 'devise' from 1.4.9 to 1.5.0
+* update gem 'database_cleaner' from 0.6.7 to 0.7.0
+
 h2. 1.0.24 November 8, 2011
 
 * update gem 'omniauth' from 0.3.2 to 1.0.0 (and update recipe)

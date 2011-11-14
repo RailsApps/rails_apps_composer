@@ -47,6 +47,13 @@ say_wizard "You are using #{gemfile_rake_ver.strip}"
 
 say_wizard "Checking configuration. Please confirm your preferences."
 
+# >---------------------------[ Autoload Modules/Classes ]-----------------------------<
+
+inject_into_file 'config/application.rb', :after => "config.autoload_paths += %W(#{config.root}/extras)\n" do <<-RUBY
+    config.autoload_paths += %W(#{config.root}/lib)
+RUBY
+end
+
 # >---------------------------[ Javascript Runtime ]-----------------------------<
 
 prepend_file 'Gemfile' do <<-RUBY
