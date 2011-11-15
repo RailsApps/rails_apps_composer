@@ -2,8 +2,8 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/subdomains.rb
 # this recipe requires Mongoid and Haml (ActiveRecord and ERB verions are not implemented)
 
-unless recipes.include? 'haml'
-  unless recipes.include? 'mongoid'
+if recipes.include? 'haml'
+  if recipes.include? 'mongoid'
     if recipes.include? 'rails 3.1'
       after_bundler do
         say_wizard "Subdomains recipe running 'after bundler'"
