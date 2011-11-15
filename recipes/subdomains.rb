@@ -37,7 +37,7 @@ RUBY
             end
             # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
             # We have to use single-quote-style-heredoc to avoid interpolation.
-            create_file 'app/views/profile/show.html.haml' do
+            create_file 'app/views/profiles/show.html.haml' do
 <<-'HAML'
 %h1 Profile
 %h3= @user.name
