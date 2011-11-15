@@ -30,8 +30,8 @@ h2. Dependencies
 
 Before generating a new Rails app, you will need:
 
-* The Ruby language (version 1.9.2)
-* Rails (3.0 or 3.1)
+* The Ruby language (version 1.9.3)
+* Rails 3.1
 
 Recipes will detect which version of Rails is in use. Some of the recipes behave differently depending on the version of Rails.
 
@@ -76,7 +76,7 @@ $ rails_apps_composer new myapp -r jquery haml
 For example, to build the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails_apps_composer new myapp -r jquery haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout navigation cleanup ban_spiders git
+$ rails_apps_composer new myapp -r jquery haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout html5 navigation cleanup ban_spiders extras git
 </pre>
 
 Replace @myapp@ with the name you want for your application.
@@ -127,7 +127,7 @@ To build a reusable application template for the "rails3-devise-rspec-cucumber":
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
-Then generate the application using the @-T@ flag. Add the @-J@ flag for Rails 3.0.
+Then generate the application using the @-T@ flag.
 
 <pre>
 $ rails new myapp -m ~/Desktop/template.txt -T
@@ -141,7 +141,7 @@ To build a reusable application template for the "rails3-mongoid-devise":http://
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
-Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
+Then generate the application using the @-T -O@ flags.
 
 <pre>
 $ rails new myapp -m ~/Desktop/template.txt -T -O
@@ -155,7 +155,21 @@ To build a reusable application template for the "rails3-mongoid-omniauth":http:
 $ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,html5,navigation,users_page,omniauth_email,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
-Then generate the application using the @-T -O@ flags. Add the @-J@ flag for Rails 3.0.
+Then generate the application using the @-T -O@ flags.
+
+<pre>
+$ rails new myapp -m ~/Desktop/template.txt -T -O
+</pre>
+
+h4. Template for Rails 3 + Subdomains
+
+To build a reusable application template for the "rails3-subdomains":https://github.com/RailsApps/rails3-subdomains example application, run the command:
+
+<pre>
+$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,subdomains,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+</pre>
+
+Then generate the application using the @-T -O@ flags.
 
 <pre>
 $ rails new myapp -m ~/Desktop/template.txt -T -O
