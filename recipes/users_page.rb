@@ -22,7 +22,7 @@ RUBY
     # Modify the routes
     #----------------------------------------------------------------------------
     # @devise_for :users@ route must be placed above @resources :users, :only => :show@.
-    gsub_file 'config/routes.rb', /get \"users\/show\"/, '#get \"users\/show\"'
+    gsub_file 'config/routes.rb', /get \"users\/show\"/, ''
     gsub_file 'config/routes.rb', /devise_for :users/ do
     <<-RUBY
 devise_for :users

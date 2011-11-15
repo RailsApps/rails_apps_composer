@@ -13,7 +13,7 @@ if recipes.include? 'haml'
           when 'one-per-user'
             # user name as a subdomain
             inject_into_file 'app/models/user.rb', :before => 'validates_uniqueness_of' do <<-RUBY
-  validates_format_of :name, with: /^[a-z0-9_]+$/, message: 'must be lowercase alphanumerics only'
+validates_format_of :name, with: /^[a-z0-9_]+$/, message: 'must be lowercase alphanumerics only'
   validates_length_of :name, maximum: 32, message: 'exceeds maximum of 32 characters'
   validates_exclusion_of :name, in: ['www', 'mail', 'ftp'], message: 'is not available'
   
@@ -64,6 +64,7 @@ RUBY
             # create routes for subdomains
             gsub_file 'config/routes.rb', /root :to => "home#index"/, ''
             inject_into_file 'config/routes.rb', :after => 'resources :users, :only => :show' do <<-RUBY
+
   constraints(Subdomain) do
     match '/' => 'profiles#show'
   end
