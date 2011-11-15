@@ -62,11 +62,12 @@ end
 RUBY
             end
             # create routes for subdomains
-            inject_into_file 'config/routes.rb', :before => 'root :to => "home#index"' do 
-<<-RUBY
+            gsub_file 'config/routes.rb', /root :to => "home#index"/, ''
+            inject_into_file 'config/routes.rb', :after => 'resources :users, :only => :show' do <<-RUBY
   constraints(Subdomain) do
     match '/' => 'profiles#show'
   end
+  root :to => "home#index"
 RUBY
             end
             
