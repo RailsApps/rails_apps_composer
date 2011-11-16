@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.0.26 unreleased
+
+* update gem 'capybara' from 1.1.1 to 1.1.2
+
 h2. 1.0.25 November 14, 2011
 
 * add 'subdomains' recipe
