@@ -71,7 +71,19 @@ RUBY
   root :to => "home#index"
 RUBY
             end
-            
+            remove_file 'app/views/users/show.html.haml'
+            # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
+            # We have to use single-quote-style-heredoc to avoid interpolation.
+            create_file 'app/views/users/show.html.haml' do
+<<-'HAML'
+%p
+  User: #{@user.name}
+%p
+  Email: #{@user.email if @user.email}
+%p
+  Profile: #{link_to root_url(:subdomain => @user.name), root_url(:subdomain => @user.name)}
+HAML
+            end
             remove_file 'app/views/home/index.html.haml'
             # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
             # We have to use single-quote-style-heredoc to avoid interpolation.
@@ -80,10 +92,10 @@ RUBY
 %h3 Home
 - @users.each do |user|
   %br/ 
-  User: #{link_to user.name, user}
-  Profile: #{link_to root_url(:subdomain => user.name), root_url(:subdomain => user.name)}
+  #{user.name} profile: #{link_to root_url(:subdomain => user.name), root_url(:subdomain => user.name)}
 HAML
             end
+            gsub_file 'app/controllers/users_controller.rb', /before_filter :authenticate_user!/, ''
         end
       end
     elsif recipes.include? 'rails 3.0'

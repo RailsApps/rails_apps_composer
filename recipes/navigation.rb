@@ -131,20 +131,21 @@ ERB
       create_file 'app/views/shared/_navigation.html.haml' do <<-'HAML'
 %li
   = link_to 'Main', root_url(:host => request.domain)
-- unless request.subdomain.present? && request.subdomain != "www"
+- if request.subdomain.present? && request.subdomain != "www"
   - if user_signed_in?
     %li
-      = link_to('Edit account', edit_user_registration_path)
+      = link_to('Edit account', edit_user_registration_url)
+    %li
+      = link_to('Logout', destroy_user_session_url, :method=>'delete')
   - else
     %li
-      = link_to('Sign up', new_user_registration_path)
+      = link_to('Login', new_user_session_url)
 - else
+  %li
+    = link_to('Sign up', new_user_registration_url(:host => request.domain))
   - if user_signed_in?
     %li
-      = link_to('Logout', destroy_user_session_path, :method=>'delete')
-  - else
-    %li
-      = link_to('Login', new_user_session_path)
+      = link_to('Logout', destroy_user_session_url, :method=>'delete')
 HAML
       end
     end
