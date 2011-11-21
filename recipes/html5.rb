@@ -7,8 +7,9 @@ if recipes.include? 'rails 3.1'
       # https://github.com/zurb/foundation-rails
       gem 'zurb-foundation'
     when 'bootstrap'
-      # https://github.com/seyhunak/twitter-bootstrap-rails
-      gem 'twitter-bootstrap-rails'
+      # https://github.com/thomas-mcdonald/bootstrap-sass
+      # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
+      gem 'bootstrap-sass'
   end
   after_bundler do
     say_wizard "HTML5 recipe running 'after bundler'"
@@ -24,8 +25,8 @@ if recipes.include? 'rails 3.1'
         insert_into_file "app/assets/stylesheets/application.css.scss", " *= require foundation\n", :after => "require_self\n"
       when 'bootstrap'
         say_wizard "installing Twitter Bootstrap HTML5 framework"
-        insert_into_file "app/assets/javascripts/application.js", "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
-        insert_into_file "app/assets/stylesheets/application.css.scss", " *= require twitter/bootstrap\n", :after => "require_self\n"
+        insert_into_file "app/assets/javascripts/application.js", "//= require bootstrap\n", :after => "jquery_ujs\n"
+        insert_into_file "app/assets/stylesheets/application.css.scss", " *= require bootstrap\n", :after => "require_self\n"
       when 'skeleton'
         say_wizard "installing Skeleton HTML5 framework"
         get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
