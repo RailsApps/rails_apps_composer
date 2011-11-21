@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 1.0.27  unreleased
 
+* 'application.css' renamed as 'application.css.scss'
 * update gem 'factory_girl_rails' from 1.3.0 to 1.4.0
 
 h2. 1.0.26  November 17, 2011

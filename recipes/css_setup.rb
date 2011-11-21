@@ -60,10 +60,13 @@ CSS
   if recipes.include? 'rails 3.0'
     create_file 'public/stylesheets/application.css', css
   else
+    # rename the application stylesheet to use SCSS
+    copy_file 'app/assets/stylesheets/application.css', 'app/assets/stylesheets/application.css.scss'
+    remove_file 'app/assets/stylesheets/application.css'
     if recipes.include? 'html5'
-      append_file 'app/assets/stylesheets/application.css', css_html5
+      append_file 'app/assets/stylesheets/application.css.scss', css_html5
     else
-      append_file 'app/assets/stylesheets/application.css', css
+      append_file 'app/assets/stylesheets/application.css.scss', css
     end
   end
 

@@ -21,11 +21,11 @@ if recipes.include? 'rails 3.1'
       when 'foundation'
         say_wizard "installing Zurb Foundation HTML5 framework"
         insert_into_file "app/assets/javascripts/application.js", "//= require foundation\n", :after => "jquery_ujs\n"
-        insert_into_file "app/assets/stylesheets/application.css", " *= require foundation\n", :after => "require_self\n"
+        insert_into_file "app/assets/stylesheets/application.css.scss", " *= require foundation\n", :after => "require_self\n"
       when 'bootstrap'
         say_wizard "installing Twitter Bootstrap HTML5 framework"
         insert_into_file "app/assets/javascripts/application.js", "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
-        insert_into_file "app/assets/stylesheets/application.css", " *= require twitter/bootstrap\n", :after => "require_self\n"
+        insert_into_file "app/assets/stylesheets/application.css.scss", " *= require twitter/bootstrap\n", :after => "require_self\n"
       when 'skeleton'
         say_wizard "installing Skeleton HTML5 framework"
         get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
