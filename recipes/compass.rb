@@ -6,7 +6,7 @@ if config['compass']
       remove_file 'app/assets/stylesheets/application.css'
       create_file 'app/assets/stylesheets/application.css.sass' do <<-SASS
 //= require_self
-//= require_tree . 
+//= require_tree .
 
 @import compass
 @import _blueprint
@@ -21,7 +21,8 @@ SASS
     end
   end
 else
-  receipes.delete('compass')
+  # typo
+  recipes.delete('compass')
 end
 
 __END__
