@@ -26,8 +26,11 @@ if config['rspec']
       # include RSpec matchers from the mongoid-rspec gem
       gem 'mongoid-rspec', '>= 1.4.4', :group => :test
     end
+      # use the gem for test fixtures
+    if config['machinist']
+      gem 'machinist', group: :test
+    end
     if config['factory_girl']
-      # use the factory_girl gem for test fixtures
       gem 'factory_girl_rails', '>= 1.4.0', :group => :test
     end
   end
@@ -51,6 +54,7 @@ if config['rspec']
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
+      #{"g.fixture_replacement :machinist" if config['machinist']}
     end
 
 RUBY
@@ -85,7 +89,7 @@ RUBY
       gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, '# require "rails/test_unit/railtie"'
 
       # configure RSpec to use matchers from the mongoid-rspec gem
-      create_file 'spec/support/mongoid.rb' do 
+      create_file 'spec/support/mongoid.rb' do
       <<-RUBY
 RSpec.configure do |config|
   config.include Mongoid::Matchers
@@ -96,7 +100,7 @@ RUBY
 
     if recipes.include? 'devise'
       # add Devise test helpers
-      create_file 'spec/support/devise.rb' do 
+      create_file 'spec/support/devise.rb' do
       <<-RUBY
 RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
@@ -126,3 +130,6 @@ config:
   - factory_girl:
       type: boolean
       prompt: Would you like to use factory_girl for test fixtures with RSpec?
+  - machinist:
+      type: boolean
+      prompt: Would you like to use machinist for test fixtures with RSpec?
