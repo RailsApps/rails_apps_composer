@@ -21,7 +21,6 @@ SASS
     end
   end
 else
-  # typo
   recipes.delete('compass')
 end
 

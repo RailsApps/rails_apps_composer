@@ -1,12 +1,6 @@
 heroku_name = app_name.gsub('_','')
 
-# need this gem
-
-# gem 'heroku', :group => :development
-# gem 'heroku', group:  :development               # two space
-gem 'heroku', group: :development               # one space
-# gem 'heroku', group::development               # zero space
-
+gem 'heroku', group: :development
 
 after_everything do
   if config['create']

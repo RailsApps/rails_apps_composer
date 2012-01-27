@@ -2,6 +2,12 @@ h1. CHANGELOG
 
 h2. 1.0.28  unreleased
 
+* remove code that adds a Javascript runtime to the Gemfile for Linux users (recommend Node.js instead)
+* 'compass' recipe => fix typo (TMorgan99)
+* 'guard' recipe => gets missing newline in Gemfile.append for case OS (TMorgan99)
+* 'heroku' recipe => declares gem 'heroku' (TMorgan99)
+* 'rspec' recipe => adds support for machinist (TMorgan99)
+
 h2. 1.0.27  unreleased
 
 * switch from 'twitter-bootstrap-rails' to 'bootstrap-sass'

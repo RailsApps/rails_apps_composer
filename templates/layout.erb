@@ -29,6 +29,7 @@ when "3"
   case Rails::VERSION::MINOR.to_s
   when "2"
     say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
+    # this could be reworked to reduce confusion!
     @recipes << 'rails 3.1'
   when "1"
     say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
@@ -56,37 +57,6 @@ inject_into_file 'config/application.rb', :after => 'config.autoload_paths += %W
 
     config.autoload_paths += %W(#{config.root}/lib)
 RUBY
-end
-
-# >---------------------------[ Javascript Runtime ]-----------------------------<
-
-prepend_file 'Gemfile' do <<-RUBY
-require 'rbconfig'
-HOST_OS = RbConfig::CONFIG['host_os']
-
-RUBY
-end
-
-# if Node.js is not available, use therubyracer
-node_ver = run 'node -v', :capture => true, :verbose => false           rescue nil
-
-if node_ver.blank?
-  if recipes.include? 'rails 3.1'
-say_wizard "You are not using Node.js; installing therubyracer"
-    append_file 'Gemfile' do <<-RUBY
-
-  # install a Javascript runtime for linux
-  if HOST_OS =~ /linux/i
-    gem 'therubyracer', '>= 0.9.8'
-  end
-
-    RUBY
-    end
-  end
-else
-
-say_wizard "You are using Node.js #{node_ver.strip}"
-
 end
 
 # >---------------------------------[ Recipes ]----------------------------------<
