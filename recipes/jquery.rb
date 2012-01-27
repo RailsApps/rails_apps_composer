@@ -31,13 +31,13 @@ if config['jquery']
         gsub_file "config/application.rb", /jquery rails/, "jquery jqueryui rails"
       end
     end
-  elsif recipes.include? 'rails 3.1'
+  elsif recipes.include? 'rails 3.1' or recipes.include? 'rails 3.2'
     if config['ui']
       inside "app/assets/javascripts" do
         get "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js", "jqueryui.js"
       end
     else
-      say_wizard "jQuery installed by default in Rails 3.1."
+      say_wizard "jQuery installed by default in Rails 3.1 and 3.2."
     end
   else
     say_wizard "Don't know what to do for Rails version #{Rails::VERSION::STRING}. jQuery recipe skipped."
@@ -52,7 +52,7 @@ end
 __END__
 
 name: jQuery
-description: "Install jQuery (with jQuery UI option) for Rails 3.0 or 3.1."
+description: "Install jQuery (with jQuery UI option) for Rails 3.0, 3.1, or 3.2."
 author: RailsApps
 
 exclusive: javascript_framework

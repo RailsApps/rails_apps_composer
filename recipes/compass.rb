@@ -1,5 +1,5 @@
 if config['compass']
-  if recipes.include? 'rails 3.1'
+  if recipes.include? 'rails 3.1' or recipes.include? 'rails 3.2'
     gem 'compass', :version => '~> 0.12.alpha.0'
 
     after_bundler do

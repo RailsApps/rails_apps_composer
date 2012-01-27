@@ -8,10 +8,14 @@ if config['mongoid']
     say_wizard "you should add the '-O' flag to 'rails new'"
     gem 'bson_ext', '1.3.1'
     gem 'mongoid', '2.0.2'
-  else
-    # for Rails 3.1+, use optimistic versioning for gems
+  elsif recipes.include? 'rails 3.1'
+    # for Rails 3.1, use optimistic versioning for gems
     gem 'bson_ext', '>= 1.3.1'
     gem 'mongoid', '>= 2.3.3'
+  elsif recipes.include? 'rails 3.2'
+    # for Rails 3.2, use optimistic versioning for gems
+    gem 'bson_ext', '>= 1.5.2'
+    gem 'mongoid', '>= 2.4.2'
   end
 else
   recipes.delete('mongoid')

@@ -1,5 +1,10 @@
 if recipes.include? 'rails 3.0'
   gem 'sass', '>= 3.1.6'
+elsif recipes.include? 'rails 3.1'
+  gem 'sass', '>= 3.1.6'
+elsif recipes.include? 'rails 3.2'
+  gem 'sass', '>= 3.1.12'
+  gem 'sass-rails', '>= 3.2.4'
 end
 
 if config['sass']

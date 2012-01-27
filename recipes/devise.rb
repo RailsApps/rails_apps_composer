@@ -5,9 +5,12 @@ if config['devise']
   if recipes.include? 'rails 3.0'
     # for Rails 3.0, use only gem versions we know that work
     gem 'devise', '1.3.4'
-  else
-    # for Rails 3.1+, use optimistic versioning for gems
+  elsif recipes.include? 'rails 3.1'
+    # for Rails 3.1, use optimistic versioning for gems
     gem 'devise', '>= 1.5.0'
+  elsif recipes.include? 'rails 3.2'
+    # for Rails 3.1, use optimistic versioning for gems
+    gem 'devise', '>= 2.0.0'
   end
 else
   recipes.delete('devise')

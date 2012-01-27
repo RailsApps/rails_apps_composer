@@ -6,9 +6,13 @@ if config['haml']
     # for Rails 3.0, use only gem versions we know that work
     gem 'haml', '3.1.1'
     gem 'haml-rails', '0.3.4', :group => :development
-  else
-    # for Rails 3.1+, use optimistic versioning for gems
+  elsif recipes.include? 'rails 3.1'
+    # for Rails 3.1, use optimistic versioning for gems
     gem 'haml', '>= 3.1.2'
+    gem 'haml-rails', '>= 0.3.4', :group => :development
+  elsif recipes.include? 'rails 3.2'
+    # for Rails 3.2, use optimistic versioning for gems
+    gem 'haml', '>= 3.1.4'
     gem 'haml-rails', '>= 0.3.4', :group => :development
   end
 else

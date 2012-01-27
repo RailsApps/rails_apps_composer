@@ -17,8 +17,8 @@ if config['rspec']
       # use the factory_girl gem for test fixtures
       gem 'factory_girl_rails', '1.1.beta1', :group => :test
     end
-  else
-    # for Rails 3.1+, use optimistic versioning for gems
+  elsif recipes.include? 'rails 3.1'
+    # for Rails 3.1, use optimistic versioning for gems
     gem 'rspec-rails', '>= 2.8.0.rc1', :group => [:development, :test]
     if recipes.include? 'mongoid'
       # use the database_cleaner gem to reset the test database
@@ -30,7 +30,20 @@ if config['rspec']
       # use the factory_girl gem for test fixtures
       gem 'factory_girl_rails', '>= 1.4.0', :group => :test
     end
-  end
+  elsif recipes.include? 'rails 3.2'
+    # for Rails 3.2, use optimistic versioning for gems
+    gem 'rspec-rails', '>= 2.8.1', :group => [:development, :test]
+    if recipes.include? 'mongoid'
+      # use the database_cleaner gem to reset the test database
+      gem 'database_cleaner', '>= 0.7.1', :group => :test
+      # include RSpec matchers from the mongoid-rspec gem
+      gem 'mongoid-rspec', '>= 1.4.4', :group => :test
+    end
+    if config['factory_girl']
+      # use the factory_girl gem for test fixtures
+      gem 'factory_girl_rails', '>= 1.6.0', :group => :test
+    end
+
 else
   recipes.delete('rspec')
 end
@@ -85,7 +98,7 @@ RUBY
       gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, '# require "rails/test_unit/railtie"'
 
       # configure RSpec to use matchers from the mongoid-rspec gem
-      create_file 'spec/support/mongoid.rb' do 
+      create_file 'spec/support/mongoid.rb' do
       <<-RUBY
 RSpec.configure do |config|
   config.include Mongoid::Matchers
@@ -96,7 +109,7 @@ RUBY
 
     if recipes.include? 'devise'
       # add Devise test helpers
-      create_file 'spec/support/devise.rb' do 
+      create_file 'spec/support/devise.rb' do
       <<-RUBY
 RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
