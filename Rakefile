@@ -31,8 +31,8 @@ task :run => :clean do
     Dir.chdir(dir) do
       file = File.open('template.rb', 'w')
       file.write template.compile
-      file.close  
-    
+      file.close
+
       system "rails new test_run -m template.rb #{template.args.join(' ')}"
 
       puts "\n\n cd #{dir} # look at the app"
@@ -44,6 +44,25 @@ desc "Prints out a template from the provided recipes."
 task :print do
   require 'rails_wizard'
 
-  recipes = ENV['RECIPES'].split(',')
+#   recipes = ENV['RECIPES'].split(',')
+    # do rspec first; it sets up the generators configuration.
+  recipes = %w{
+rspec
+action_mailer
+activerecord
+application_layout
+capybara
+cleanup
+compass
+css_setup
+git
+guard
+haml
+heroku
+html5
+navigation
+sass
+static_page
+}
   puts RailsWizard::Template.new(recipes).compile
 end

@@ -1,8 +1,18 @@
 heroku_name = app_name.gsub('_','')
 
+# need this gem
+
+# gem 'heroku', :group => :development
+# gem 'heroku', group:  :development               # two space
+gem 'heroku', group: :development               # one space
+# gem 'heroku', group::development               # zero space
+
+
 after_everything do
   if config['create']
-    say_wizard "Creating Heroku app '#{heroku_name}.heroku.com'"  
+    say_wizard "Creating Heroku app '#{heroku_name}.heroku.com'"
+    # system "heroku apps:destroy --app #{heroku_name} --confirm #{heroku_name}"
+
     while !system("heroku create #{heroku_name}")
       heroku_name = ask_wizard("What do you want to call your app? ")
     end
@@ -54,5 +64,5 @@ config:
       if: create
   - deploy:
       prompt: "Deploy immediately?"
-      type: boolean 
+      type: boolean
       if: create
