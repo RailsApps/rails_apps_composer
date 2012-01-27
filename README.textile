@@ -31,7 +31,7 @@ h2. Dependencies
 Before generating a new Rails app, you will need:
 
 * The Ruby language (version 1.9.3)
-* Rails 3.1
+* Rails 3.1 or 3.2
 
 Recipes will detect which version of Rails is in use. Some of the recipes behave differently depending on the version of Rails.
 
@@ -257,6 +257,8 @@ RSpec, Cucumber, and Yard recipes were contributed by "Ramon Brooker":http://cog
 Guard recipe contributed by "Ashley Woodard":https://github.com/ashley-woodard.
 
 Additional recipes by Daniel Kehoe, "http://danielkehoe.com/":http://danielkehoe.com/.
+
+Rails 3.2 recipe updates by Joel Parker Henderson, "http://joelparkerhenderson.com/":http:/joelparkerhenderson.com/.
 
 Is the gem useful to you? Follow the project on Twitter:
 "@rails_apps":http://twitter.com/rails_apps

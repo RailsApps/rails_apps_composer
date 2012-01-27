@@ -27,12 +27,9 @@ RUBY
 case Rails::VERSION::MAJOR.to_s
 when "3"
   case Rails::VERSION::MINOR.to_s
-  when "1"
+  when "0","1","2"
     say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
-    @recipes << 'rails 3.1'
-  when "0"
-    say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
-    @recipes << 'rails 3.0'
+    @recipes << "rails #{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}"
   else
     say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
   end
@@ -64,7 +61,7 @@ HOST_OS = RbConfig::CONFIG['host_os']
 RUBY
 end
 
-if recipes.include? 'rails 3.1'
+if recipes.include? 'rails 3.1' or recipes.include? 'rails 3.2'
   append_file 'Gemfile' do <<-RUBY
 # install a Javascript runtime for linux
 if HOST_OS =~ /linux/i
