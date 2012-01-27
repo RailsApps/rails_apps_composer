@@ -43,7 +43,7 @@ if config['rspec']
       # use the factory_girl gem for test fixtures
       gem 'factory_girl_rails', '>= 1.6.0', :group => :test
     end
-
+  end
 else
   recipes.delete('rspec')
 end

@@ -1,7 +1,7 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/html5.rb
 
-if recipes.include? 'rails 3.1' or recipies.include? 'rails 3.2'
+if recipes.include? 'rails 3.1' or recipes.include? 'rails 3.2'
   case config['css_option']
     when 'foundation'
       # https://github.com/zurb/foundation-rails

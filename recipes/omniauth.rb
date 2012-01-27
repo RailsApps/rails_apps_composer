@@ -5,7 +5,7 @@ if config['omniauth']
   if recipes.include? 'rails 3.0'
     # for Rails 3.0, use only gem versions we know that work
     gem 'omniauth', '0.2.6'
-  eslif recipes.include? 'rails 3.1' or recipes.include? 'rails 3.2'
+  elsif recipes.include? 'rails 3.1' or recipes.include? 'rails 3.2'
     # for Rails 3.1+, use optimistic versioning for gems
     gem 'omniauth', '>= 1.0.2'
     # for available gems, see https://github.com/intridea/omniauth/wiki/List-of-Strategies
