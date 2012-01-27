@@ -1,5 +1,7 @@
 h1. CHANGELOG
 
+h2. 1.0.28  unreleased
+
 h2. 1.0.27  unreleased
 
 * switch from 'twitter-bootstrap-rails' to 'bootstrap-sass'

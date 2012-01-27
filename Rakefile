@@ -44,25 +44,6 @@ desc "Prints out a template from the provided recipes."
 task :print do
   require 'rails_wizard'
 
-#   recipes = ENV['RECIPES'].split(',')
-    # do rspec first; it sets up the generators configuration.
-  recipes = %w{
-rspec
-action_mailer
-activerecord
-application_layout
-capybara
-cleanup
-compass
-css_setup
-git
-guard
-haml
-heroku
-html5
-navigation
-sass
-static_page
-}
+  recipes = ENV['RECIPES'].split(',')
   puts RailsWizard::Template.new(recipes).compile
 end
