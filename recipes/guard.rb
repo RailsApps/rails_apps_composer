@@ -1,6 +1,13 @@
 if config['guard']
   gem 'guard', '>= 0.6.2', :group => :development
 
+  prepend_file 'Gemfile' do <<-RUBY
+require 'rbconfig'
+HOST_OS = RbConfig::CONFIG['host_os']
+
+RUBY
+  end
+
   append_file 'Gemfile' do <<-RUBY
   # need newline here!
 case HOST_OS
