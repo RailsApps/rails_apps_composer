@@ -24,11 +24,6 @@ after_bundler do
     = yield
 HAML
     end
-    if recipes.include? 'rails 3.0'
-      gsub_file 'app/views/layouts/application.html.haml', /stylesheet_link_tag :application/, 'stylesheet_link_tag :all'
-      gsub_file 'app/views/layouts/application.html.haml', /javascript_include_tag :application/, 'javascript_include_tag :defaults'
-      gsub_file 'app/views/layouts/application.html.haml', /csrf_meta_tags/, 'csrf_meta_tag'
-    end
   else
     unless recipes.include? 'html5'
       inject_into_file 'app/views/layouts/application.html.erb', :after => "<body>\n" do

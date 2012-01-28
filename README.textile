@@ -31,9 +31,7 @@ h2. Dependencies
 Before generating a new Rails app, you will need:
 
 * The Ruby language (version 1.9.3)
-* Rails 3.1
-
-Recipes will detect which version of Rails is in use. Some of the recipes behave differently depending on the version of Rails.
+* Rails 3.1 or newer
 
 See "Managing Rails Versions and Gems":http://railsapps.github.com/managing-rails-versions-gems.html for detailed instructions and advice.
 
@@ -115,7 +113,7 @@ The Rails Apps Composer gem creates an application template that can be used by 
 $ rails new myapp -m ~/Desktop/template.txt
 </pre>
 
-You can specify the @-T -O@ flags as needed to skip Test::Unit files and Active Record files. For Rails 3.0, you can also specify the @-J@ flag to skip Prototype files (not needed for Rails 3.1).
+You can specify the @-T -O@ flags as needed to skip Test::Unit files and Active Record files.
 
 That's all it takes. You'll have a ready-to-customize Rails web application in minutes.
 

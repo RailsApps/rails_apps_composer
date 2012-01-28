@@ -1,15 +1,7 @@
 if config['backbone']
-  # rails-backbone is preferred, but only support rails 3.1
-  if recipes.include? 'rails 3.1'
-    gem 'rails-backbone', :version => '~> 0.5.3'
-    after_bundler do
-      generate 'backbone:install'
-    end
-  else
-    gem 'backbone-rails', :version => '~> 0.5.2'
-    after_bundler do
-      generate 'backbone:install'
-    end
+  gem 'rails-backbone', :version => '~> 0.6.1'
+  after_bundler do
+    generate 'backbone:install'
   end
 else
   recipes.delete('backbone')

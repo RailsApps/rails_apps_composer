@@ -24,30 +24,24 @@ RUBY
 
 <%= render "helpers" %>
 
+# this application template only supports Rails version 3.1 and newer
 case Rails::VERSION::MAJOR.to_s
 when "3"
   case Rails::VERSION::MINOR.to_s
   when "2"
     say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
-    # this could be reworked to reduce confusion!
-    @recipes << 'rails 3.1'
   when "1"
     say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
-    @recipes << 'rails 3.1'
   when "0"
-    say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
-    @recipes << 'rails 3.0'
+    say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported. Try 3.1 or newer."
+    raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported. Try 3.1 or newer."
   else
-    say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
+    say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
   end
 else
-  say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
+  say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported. Try 3.1 or newer."
+  raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported. Try 3.1 or newer."
 end
-
-# show which version of rake is running
-# with the added benefit of ensuring that the Gemfile's version of rake is activated
-gemfile_rake_ver = run 'bundle exec rake --version', :capture => true, :verbose => false
-say_wizard "You are using #{gemfile_rake_ver.strip}"
 
 say_wizard "Checking configuration. Please confirm your preferences."
 

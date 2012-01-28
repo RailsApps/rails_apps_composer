@@ -10,18 +10,9 @@ after_bundler do
     README
     doc/README_FOR_APP
     public/index.html
+    app/assets/images/rails.png
   }.each { |file| remove_file file }
-  
-  if recipes.include? 'rails 3.0'
-    %w{
-      public/images/rails.png
-    }.each { |file| remove_file file }
-  else
-    %w{
-      app/assets/images/rails.png
-    }.each { |file| remove_file file }
-  end
-  
+
   # add placeholder READMEs
   get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/sample_readme.txt", "README"
   get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/sample_readme.textile", "README.textile"

@@ -1,8 +1,38 @@
 h1. CHANGELOG
 
+h2. 1.1.0  unreleased
+
+* remove support for Rails 3.0 (require Rails 3.1 or newer)
+* remove 'jquery' recipe (jQuery installed by default for Rails 3.1)
+* remove 'draggable' recipe (not maintained)
+* remove 'env_yaml' recipe (not maintained)
+* remove 'jammit' recipe (not maintained)
+* remove 'mongo_mapper' recipe (not maintained)
+* remove 'mootools' recipe (not maintained)
+* remove 'pow' recipe (not maintained)
+* remove 'prototype' recipe (not maintained)
+* remove 'redis' recipe (not maintained)
+* remove 'redistogo' recipe (not maintained)
+* remove 'rightjs' recipe (not maintained)
+* remove 'sequel' recipe (not maintained)
+* remove 'slim' recipe (not maintained)
+* remove 'test_unit' recipe (not maintained)
+* update gem 'rails-backbone' from 0.5.3 to 0.6.1
+* update gem 'compass' from 0.12.alpha.0 to 0.12.alpha.4
+* update gem 'cucumber-rails' from 1.2.0 to 1.2.1
+* update gem 'database_cleaner' from 0.7.0 to 0.7.1
+* update gem 'devise' from 1.5.0 to 2.0.0
+* update gem 'haml' from 3.1.2 to 3.1.4
+* update gem 'bson_ext' from 1.3.1 to 1.5.2
+* update gem 'mongoid' from 2.3.3 to 2.4.2
+* update gem 'omniauth' from 1.0.0 to 1.0.2
+* update gem 'rspec-rails' from 2.8.0.rc1 to 2.8.1
+* update gem 'factory_girl_rails' from 1.4.0 to 1.6.0
+* update gem 'sass' from 3.1.6 to 3.1.12
+
 h2. 1.0.28  unreleased
 
-* remove code that adds a Javascript runtime to the Gemfile for Linux users (recommend Node.js instead)
+* remove code that adds a Javascript runtime to the Gemfile for Linux users
 * 'compass' recipe => fix typo (TMorgan99)
 * 'guard' recipe => gets missing newline in Gemfile.append for case OS (TMorgan99)
 * 'heroku' recipe => declares gem 'heroku' (TMorgan99)

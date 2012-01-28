@@ -1,5 +1,3 @@
-# Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/home_page.rb
 
 after_bundler do
 

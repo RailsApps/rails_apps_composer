@@ -1,8 +1,6 @@
-if recipes.include? 'rails 3.0'
-  gem 'sass', '>= 3.1.6'
-end
 
 if config['sass']
+  gem 'sass', '>= 3.1.12'
   after_bundler do
     create_file 'config/initializers/sass.rb' do <<-RUBY
 Rails.application.config.generators.stylesheet_engine = :sass

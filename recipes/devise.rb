@@ -2,17 +2,10 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/devise.rb
 
 if config['devise']
-  if recipes.include? 'rails 3.0'
-    # for Rails 3.0, use only gem versions we know that work
-    gem 'devise', '1.3.4'
-  else
-    # for Rails 3.1+, use optimistic versioning for gems
-    gem 'devise', '>= 1.5.0'
-  end
+  gem 'devise', '>= 2.0.0'
 else
   recipes.delete('devise')
 end
-
 
 if config['devise']
   after_bundler do

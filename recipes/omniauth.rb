@@ -2,25 +2,19 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/omniauth.rb
 
 if config['omniauth']
-  if recipes.include? 'rails 3.0'
-    # for Rails 3.0, use only gem versions we know that work
-    gem 'omniauth', '0.2.6'
-  else
-    # for Rails 3.1+, use optimistic versioning for gems
-    gem 'omniauth', '>= 1.0.0'
-    # for available gems, see https://github.com/intridea/omniauth/wiki/List-of-Strategies
-    case config['provider']
-      when 'twitter'
-        gem 'omniauth-twitter'
-      when 'facebook'
-        gem 'omniauth-facebook'
-      when 'github'
-       gem 'omniauth-github'
-      when 'linkedin'
-        gem 'omniauth-linkedin'
-      when 'provider'
-        say_wizard "IMPORTANT: you'll have to add a gem to your Gemfile for the provider you want"
-    end
+  gem 'omniauth', '>= 1.0.2'
+  # for available gems, see https://github.com/intridea/omniauth/wiki/List-of-Strategies
+  case config['provider']
+    when 'twitter'
+      gem 'omniauth-twitter'
+    when 'facebook'
+      gem 'omniauth-facebook'
+    when 'github'
+     gem 'omniauth-github'
+    when 'linkedin'
+      gem 'omniauth-linkedin'
+    when 'provider'
+      say_wizard "IMPORTANT: you'll have to add a gem to your Gemfile for the provider you want"
   end
 else
   recipes.delete('omniauth')

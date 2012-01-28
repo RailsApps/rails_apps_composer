@@ -2,19 +2,10 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/cucumber.rb
 
 if config['cucumber']
-  if recipes.include? 'rails 3.0'
-    # for Rails 3.0, use only gem versions we know that work
-    gem 'cucumber-rails', '0.5.1', :group => :test
-    gem 'capybara', '1.0.0', :group => :test
-    gem 'database_cleaner', '0.6.7', :group => :test
-    gem 'launchy', '0.4.0', :group => :test
-  else
-    # for Rails 3.1+, use optimistic versioning for gems
-    gem 'cucumber-rails', '>= 1.2.0', :group => :test
-    gem 'capybara', '>= 1.1.2', :group => :test
-    gem 'database_cleaner', '>= 0.7.0', :group => :test
-    gem 'launchy', '>= 2.0.5', :group => :test
-  end
+  gem 'cucumber-rails', '>= 1.2.1', :group => :test
+  gem 'capybara', '>= 1.1.2', :group => :test
+  gem 'database_cleaner', '>= 0.7.1', :group => :test
+  gem 'launchy', '>= 2.0.5', :group => :test
 else
   recipes.delete('cucumber')
 end
