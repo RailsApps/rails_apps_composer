@@ -10,11 +10,9 @@ The Rails Apps Composer gem is a fork of "Michael Bleigh's RailsWizard gem":http
 
 Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
-h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:http://www.twitter.com/rails_apps Follow on Twitter !http://railsapps.github.com/images/mailing-list-icon.jpg(Join the Mailing List)!:http://eepurl.com/dQx3o Join the Mailing List
+h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:http://www.twitter.com/rails_apps Follow on Twitter
 
 Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. Tweet some praise if you like what you've found.
-
-<a href="http://eepurl.com/dQx3o">Join the email list</a> (low volume, announcements only) for project updates and my tips about Rails resources.
 
 h2. Suggested Use
 
@@ -33,7 +31,7 @@ Before generating a new Rails app, you will need:
 * The Ruby language (version 1.9.3)
 * Rails 3.1 or newer
 
-See "Managing Rails Versions and Gems":http://railsapps.github.com/managing-rails-versions-gems.html for detailed instructions and advice.
+See "Installing Rails 3.2":http://railsapps.github.com/installing-rails.html for detailed instructions and advice.
 
 h2. Installation
 
@@ -65,16 +63,16 @@ h2. Make Your Own Starter App for One-Time Use
 
 h4. Select Recipes
 
-You can mix and match recipes to create your own customized starter app. See an annotated list of available "recipes for the Rails Apps Composer gem":http://railsapps.github.com/rails-apps-recipes.html. For an up-to-date list, browse the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes to see what is available. Then provide your list of recipes to the Rails Apps Composer gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using jquery and haml:
+You can mix and match recipes to create your own customized starter app. See an annotated list of available "recipes for the Rails Apps Composer gem":http://railsapps.github.com/rails-apps-recipes.html. For an up-to-date list, browse the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes to see what is available. Then provide your list of recipes to the Rails Apps Composer gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using haml:
 
 <pre>
-$ rails_apps_composer new myapp -r jquery haml
+$ rails_apps_composer new myapp -r haml
 </pre>
 
 For example, to build the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails_apps_composer new myapp -r jquery haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout html5 navigation cleanup ban_spiders extras git
+$ rails_apps_composer new myapp -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout html5 navigation cleanup ban_spiders extras git
 </pre>
 
 Replace @myapp@ with the name you want for your application.
@@ -122,7 +120,7 @@ h4. Template for Rails 3 + Devise + RSpec + Cucumber
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T@ flag.
@@ -136,7 +134,7 @@ h4. Template for Rails 3 + Mongoid + Devise
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -150,7 +148,7 @@ h4. Template for Rails 3 + Mongoid + OmniAuth
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,html5,navigation,users_page,omniauth_email,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,html5,navigation,users_page,omniauth_email,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -164,7 +162,7 @@ h4. Template for Rails 3 + Subdomains
 To build a reusable application template for the "rails3-subdomains":https://github.com/RailsApps/rails3-subdomains example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=jquery,haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,subdomains,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,subdomains,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -207,10 +205,10 @@ h4. Rails Apps Composer Differences
 The Rails Apps Composer gem is very similar to the rails_wizard gem, with one significant difference. The rails_wizard gem allows specification of execution order for recipes with @run_after@ and @run_after@ configuration flags. The Rails Apps Composer gem does not support @run_after@ or @run_after@; instead, the order which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
 
 <pre>
-$ rails_apps_composer new myapp -r git jquery haml
+$ rails_apps_composer new myapp -r git haml
 </pre>
 
-installs jquery before haml.
+installs git before haml.
 
 h4. Recipe Differences
 
