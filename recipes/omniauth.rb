@@ -13,8 +13,6 @@ if config['omniauth']
      gem 'omniauth-github'
     when 'linkedin'
       gem 'omniauth-linkedin'
-    when 'provider'
-      say_wizard "IMPORTANT: you'll have to add a gem to your Gemfile for the provider you want"
   end
 else
   recipes.delete('omniauth')
@@ -154,4 +152,4 @@ config:
   - provider:
       type: multiple_choice
       prompt: "Which service provider will you use?"
-      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linkedin], ["Other", provider]]
+      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linkedin]]

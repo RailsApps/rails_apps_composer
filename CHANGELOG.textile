@@ -31,6 +31,7 @@ h2. 1.1.0  unreleased
 * update gem 'factory_girl_rails' from 1.4.0 to 1.6.0
 * update gem 'sass' from 3.1.6 to 3.1.12
 * bugfix in 'application_layout' recipe: removed slash which prevented variable interpolation
+* bugfix in 'omniauth' recipe: eliminate 'other' as a provider choice
 
 h2. 1.0.28  unreleased
 
