@@ -18,6 +18,7 @@ h2. 1.1.0 January 28, 2012
 * remove 'sequel' recipe (not maintained)
 * remove 'slim' recipe (not maintained)
 * remove 'test_unit' recipe (not maintained)
+* incorporate 'ban_spiders' recipe in 'extras' recipe
 * update gem 'rails-backbone' from 0.5.3 to 0.6.1
 * update gem 'compass' from 0.12.alpha.0 to 0.12.alpha.4
 * update gem 'cucumber-rails' from 1.2.0 to 1.2.1

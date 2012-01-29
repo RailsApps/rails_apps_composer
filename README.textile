@@ -72,7 +72,7 @@ $ rails_apps_composer new myapp -r haml
 For example, to build the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails_apps_composer new myapp -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup application_layout html5 navigation cleanup ban_spiders extras git
+$ rails_apps_composer new myapp -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup html5 navigation cleanup extras git
 </pre>
 
 Replace @myapp@ with the name you want for your application.
@@ -120,7 +120,7 @@ h4. Template for Rails 3 + Devise + RSpec + Cucumber
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=haml,rspec,cucumber,guard,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T@ flag.
@@ -134,7 +134,7 @@ h4. Template for Rails 3 + Mongoid + Devise
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -148,7 +148,7 @@ h4. Template for Rails 3 + Mongoid + OmniAuth
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,application_layout,html5,navigation,users_page,omniauth_email,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,html5,navigation,users_page,omniauth_email,cleanup,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -162,7 +162,7 @@ h4. Template for Rails 3 + Subdomains
 To build a reusable application template for the "rails3-subdomains":https://github.com/RailsApps/rails3-subdomains example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,application_layout,subdomains,html5,navigation,cleanup,ban_spiders,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,subdomains,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
