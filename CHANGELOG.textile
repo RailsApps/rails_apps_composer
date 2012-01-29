@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 1.1.0  unreleased
 
+* add MongoLab recipe based on MongoHQ recipe (contributed by Leo Lou)
 * remove support for Rails 3.0 (require Rails 3.1 or newer)
 * remove 'jquery' recipe (jQuery installed by default for Rails 3.1)
 * remove 'draggable' recipe (not maintained)
@@ -29,6 +30,7 @@ h2. 1.1.0  unreleased
 * update gem 'rspec-rails' from 2.8.0.rc1 to 2.8.1
 * update gem 'factory_girl_rails' from 1.4.0 to 1.6.0
 * update gem 'sass' from 3.1.6 to 3.1.12
+* bugfix in 'application_layout' recipe: removed slash which prevented variable interpolation
 
 h2. 1.0.28  unreleased
 
