@@ -25,6 +25,11 @@ if config['rspec']
   after_bundler do
     say_wizard "RSpec recipe running 'after bundler'"
     generate 'rspec:install'
+    
+    if config['machinist']
+      say_wizard "Generating blueprints file for Machinist"
+      generate 'machinist:install'
+    end
 
     say_wizard "Removing test folder (not needed for RSpec)"
     run 'rm -rf test/'
