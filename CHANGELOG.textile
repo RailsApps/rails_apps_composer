@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.1.1 February 4, 2012
+
+* bugfix in 'rspec' recipe: call machinist:install generator
+* require 'rake' in the gemspec file to avoid 'could not find rake' failures
+
 h2. 1.1.0 January 28, 2012
 
 * remove support for Rails 3.0 (require Rails 3.1 or newer)
