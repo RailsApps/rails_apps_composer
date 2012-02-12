@@ -31,7 +31,7 @@ tags: [utilities, configuration]
 config:
   - footnotes:
       type: boolean
-      prompt: Would you like to use 'rails-footnotes' during development?
+      prompt: Would you like to use 'rails-footnotes' (it's SLOW!')?
   - ban_spiders:
       type: boolean
       prompt: Would you like to set a robots.txt file to ban spiders?

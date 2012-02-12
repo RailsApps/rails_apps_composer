@@ -8,7 +8,7 @@ case config['css_option']
   when 'bootstrap'
     # https://github.com/thomas-mcdonald/bootstrap-sass
     # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
-    gem 'bootstrap-sass'
+    gem 'bootstrap-sass', '~> 2.0.0'
 end
 after_bundler do
   say_wizard "HTML5 recipe running 'after bundler'"
@@ -25,7 +25,7 @@ after_bundler do
     when 'bootstrap'
       say_wizard "installing Twitter Bootstrap HTML5 framework"
       insert_into_file "app/assets/javascripts/application.js", "//= require bootstrap\n", :after => "jquery_ujs\n"
-      insert_into_file "app/assets/stylesheets/application.css.scss", " *= require bootstrap\n", :after => "require_self\n"
+      insert_into_file "app/assets/stylesheets/application.css.scss", " @import 'bootstrap';\n", :after => "*/\n"
     when 'skeleton'
       say_wizard "installing Skeleton HTML5 framework"
       get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
