@@ -17,12 +17,17 @@ if config['rspec']
   end
   # add a collection of RSpec matchers and Cucumber steps to make testing email easy
   gem 'email_spec', '>= 1.2.1', :group => :test
-  create_file 'features/support/email_spec.rb' do
-  <<-RUBY
+  create_file 'features/support/email_spec.rb' do <<-RUBY
 require 'email_spec/cucumber'
 RUBY
   end
   generate 'email_spec:steps'
+  inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
+  inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+RUBY
+  end
 else
   recipes.delete('rspec')
 end
