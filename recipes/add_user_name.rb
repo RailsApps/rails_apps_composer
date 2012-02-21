@@ -52,6 +52,9 @@ ERB
     else
 
       # copy Haml versions of modified Devise views
+      inside 'app/views/devise' do
+        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/rails3-mongoid-devise/app/views/devise/_links.erb', '_links.erb'
+      end
       inside 'app/views/devise/registrations' do
         get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/rails3-mongoid-devise/app/views/devise/registrations/edit.html.haml', 'edit.html.haml'
         get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/rails3-mongoid-devise/app/views/devise/registrations/new.html.haml', 'new.html.haml'

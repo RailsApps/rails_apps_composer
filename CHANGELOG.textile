@@ -1,8 +1,11 @@
 h1. CHANGELOG
+
 h2. 1.1.4 February 21, 2012
 
+* add a 'bundle update' after 'bundle install'
 * fix 'email_spec' configuration in 'rspec' recipe
 * fix typo for machinist in 'rspec' recipe
+* avoid deprecation warning with Devise 2.0 for old 'devise/shared/_links.erb' partial
 
 h2. 1.1.3 February 21, 2012
 
