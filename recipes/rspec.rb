@@ -10,7 +10,7 @@ if config['rspec']
     gem 'mongoid-rspec', '>= 1.4.4', :group => :test
   end
   if config['machinist']
-    gem 'machinist', :group: :test
+    gem 'machinist', :group => :test
   end
   if config['factory_girl']
     gem 'factory_girl_rails', '>= 1.7.0', :group => :test
