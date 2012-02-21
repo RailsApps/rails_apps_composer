@@ -15,6 +15,14 @@ if config['rspec']
   if config['factory_girl']
     gem 'factory_girl_rails', '>= 1.7.0', :group => :test
   end
+  # add a collection of RSpec matchers and Cucumber steps to make testing email easy
+  gem 'email_spec', '>= 1.2.1', :group => :test
+  create_file 'features/support/email_spec.rb' do
+  <<-RUBY
+require 'email_spec/cucumber'
+RUBY
+  end
+  generate 'email_spec:steps'
 else
   recipes.delete('rspec')
 end
