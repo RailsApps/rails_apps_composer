@@ -21,13 +21,6 @@ if config['rspec']
 require 'email_spec/cucumber'
 RUBY
   end
-  generate 'email_spec:steps'
-  inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
-  inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
-RUBY
-  end
 else
   recipes.delete('rspec')
 end
@@ -38,7 +31,13 @@ if config['rspec']
   after_bundler do
     say_wizard "RSpec recipe running 'after bundler'"
     generate 'rspec:install'
-    
+    generate 'email_spec:steps'
+    inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
+    inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+RUBY
+    end
     if config['machinist']
       say_wizard "Generating blueprints file for Machinist"
       generate 'machinist:install'
