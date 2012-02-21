@@ -2,7 +2,7 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/devise.rb
 
 if config['devise']
-  gem 'devise', '>= 2.0.0'
+  gem 'devise', '>= 2.0.4'
 else
   recipes.delete('devise')
 end

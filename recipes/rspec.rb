@@ -13,7 +13,7 @@ if config['rspec']
     gem 'machinist', :group: :test
   end
   if config['factory_girl']
-    gem 'factory_girl_rails', '>= 1.6.0', :group => :test
+    gem 'factory_girl_rails', '>= 1.7.0', :group => :test
   end
 else
   recipes.delete('rspec')

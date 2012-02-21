@@ -8,7 +8,7 @@ case config['css_option']
   when 'bootstrap'
     # https://github.com/thomas-mcdonald/bootstrap-sass
     # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
-    gem 'bootstrap-sass', '~> 2.0.0'
+    gem 'bootstrap-sass', '~> 2.0.1'
 end
 after_bundler do
   say_wizard "HTML5 recipe running 'after bundler'"
