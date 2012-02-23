@@ -22,7 +22,7 @@ RUBY
 
     if recipes.include? 'devise-confirmable'
       gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
-      gsub_file 'app/models/user.rb', / :trackable,/, ""
+      generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime'
     end
 
     # Add a 'name' attribute to the User model
