@@ -17,6 +17,11 @@ after_bundler do
     end
   end
   
+  # clone the schema changes to the test database
+  unless recipes.include? 'mongoid'
+    run 'bundle exec rake db:test:prepare'
+  end
+  
   if recipes.include? 'mongoid'
     append_file 'db/seeds.rb' do <<-FILE
 puts 'EMPTY THE MONGODB DATABASE'
