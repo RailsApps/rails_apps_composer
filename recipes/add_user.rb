@@ -16,16 +16,12 @@ RUBY
   end
 
   if recipes.include? 'devise'
-    
+
     # Generate models and routes for a User
-    if recipes.include? 'devise-invitable'
-      generate 'devise_invitable user'
-    else
-      generate 'devise user'
-    end
-    
+    generate 'devise user'
+
     if recipes.include? 'devise-confirmable'
-        gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
+      gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
     end
 
     # Add a 'name' attribute to the User model

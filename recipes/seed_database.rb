@@ -10,6 +10,13 @@ after_bundler do
     run 'bundle exec rake db:migrate'
   end
 
+  if recipes.include? 'devise-invitable'
+    generate 'devise_invitable user'
+    unless recipes.include? 'mongoid'
+      run 'bundle exec rake db:migrate'
+    end
+  end
+  
   if recipes.include? 'mongoid'
     append_file 'db/seeds.rb' do <<-FILE
 puts 'EMPTY THE MONGODB DATABASE'

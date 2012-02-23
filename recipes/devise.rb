@@ -26,10 +26,9 @@ if recipes.include? 'devise'
     say_wizard "Devise recipe running 'after bundler'"
 
     # Run the Devise generator
+    generate 'devise:install'
     if recipes.include? 'devise-invitable'
       generate 'devise_invitable:install'
-    else
-      generate 'devise:install'
     end
 
     if recipes.include? 'mongo_mapper'
