@@ -23,6 +23,10 @@ RUBY
     else
       generate 'devise user'
     end
+    
+    if recipes.include? 'devise-confirmable'
+        gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
+    end
 
     # Add a 'name' attribute to the User model
     if recipes.include? 'mongoid'

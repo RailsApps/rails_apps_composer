@@ -22,13 +22,9 @@ end
 
 if recipes.include? 'devise'
   after_bundler do
-    
+
     say_wizard "Devise recipe running 'after bundler'"
-    
-    if recipes.include? 'devise-confirmable'
-        gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
-    end
-    
+
     # Run the Devise generator
     if recipes.include? 'devise-invitable'
       generate 'devise_invitable:install'
@@ -53,7 +49,7 @@ if recipes.include? 'devise'
       # (see https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3)
       gsub_file 'config/initializers/devise.rb', 'config.sign_out_via = :delete', 'config.sign_out_via = Rails.env.test? ? :get : :delete'
     end
-    
+
   end
 
   after_everything do
