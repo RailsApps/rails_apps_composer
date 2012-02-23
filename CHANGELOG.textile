@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 1.1.5 February 22, 2012
 
 * add 'confirmable' and 'invitable' options to 'devise' recipe
+* change prompt for 'guard' recipe
 
 h2. 1.1.4 February 21, 2012
 
