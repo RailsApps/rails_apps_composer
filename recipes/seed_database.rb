@@ -38,6 +38,9 @@ user = User.create! :name => 'First User', :email => 'user@example.com', :passwo
 puts 'New user created: ' << user.name
 FILE
     end
+    if recipes.include? 'devise-confirmable'
+      gsub_file 'db/seeds.rb', /:password_confirmation => 'please'/, ":password_confirmation => 'please', :confirmed_at => DateTime.now"
+    end
   end
 
   run 'bundle exec rake db:seed'

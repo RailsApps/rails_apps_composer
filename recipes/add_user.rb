@@ -20,13 +20,9 @@ RUBY
     # Generate models and routes for a User
     generate 'devise user'
 
-    if recipes.include? 'devise-confirmable'
-      gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
-      generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'
-    end
-
     # Add a 'name' attribute to the User model
     if recipes.include? 'mongoid'
+      # for mongoid
       gsub_file 'app/models/user.rb', /end/ do
   <<-RUBY
   field :name
@@ -40,6 +36,9 @@ RUBY
       # for ActiveRecord
       # Devise created a Users database, we'll modify it
       generate 'migration AddNameToUsers name:string'
+      if recipes.include? 'devise-confirmable'
+        generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'
+      end
       # Devise created a Users model, we'll modify it
       gsub_file 'app/models/user.rb', /attr_accessible :email/, 'attr_accessible :name, :email'
       inject_into_file 'app/models/user.rb', :before => 'validates_uniqueness_of' do
@@ -48,8 +47,14 @@ RUBY
       gsub_file 'app/models/user.rb', /validates_uniqueness_of :email/, 'validates_uniqueness_of :name, :email'
     end
 
+    # needed for both mongoid and ActiveRecord
+    if recipes.include? 'devise-confirmable'
+      gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
+      gsub_file 'app/models/user.rb', /:remember_me/, ':remember_me, :confirmed_at'
+    end
+
     unless recipes.include? 'haml'
-      
+
       # Generate Devise views (unless you are using Haml)
       run 'rails generate devise:views'
       
