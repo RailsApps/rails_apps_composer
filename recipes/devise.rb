@@ -1,19 +1,40 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/devise.rb
 
-if config['devise']
-  gem 'devise', '>= 2.0.4'
-else
-  recipes.delete('devise')
+case config['devise']
+  when 'no'
+    recipes.delete('devise')
+    say_wizard "Devise recipe skipped."
+  when 'standard'
+    gem 'devise', '>= 2.0.4'
+  when 'confirmable'
+    gem 'devise', '>= 2.0.4'
+    recipes << 'devise-confirmable'
+  when 'invitable'
+    gem 'devise', '>= 2.0.4'
+    gem 'devise_invitable', '>= 1.0.0'
+    recipes << 'devise-confirmable'
+    recipes << 'devise-invitable'
+  else
+    recipes.delete('devise')
+    say_wizard "Devise recipe skipped."
 end
 
-if config['devise']
+if recipes.include? 'devise'
   after_bundler do
     
     say_wizard "Devise recipe running 'after bundler'"
     
+    if recipes.include? 'devise-confirmable'
+        gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
+    end
+    
     # Run the Devise generator
-    generate 'devise:install'
+    if recipes.include? 'devise-invitable'
+      generate 'devise_invitable:install'
+    else
+      generate 'devise:install'
+    end
 
     if recipes.include? 'mongo_mapper'
       gem 'mm-devise'
@@ -75,5 +96,6 @@ exclusive: authentication
 
 config:
   - devise:
-      type: boolean
+      type: multiple_choice
       prompt: Would you like to use Devise for authentication?
+      choices: [["No", no], ["Devise with default modules", standard], ["Devise with Confirmable module", confirmable], ["Devise with Confirmable and Invitable modules", invitable]]

@@ -18,7 +18,11 @@ RUBY
   if recipes.include? 'devise'
     
     # Generate models and routes for a User
-    generate 'devise user'
+    if recipes.include? 'devise-invitable'
+      generate 'devise_invitable user'
+    else
+      generate 'devise user'
+    end
 
     # Add a 'name' attribute to the User model
     if recipes.include? 'mongoid'
