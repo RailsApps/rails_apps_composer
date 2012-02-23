@@ -22,6 +22,7 @@ RUBY
 
     if recipes.include? 'devise-confirmable'
       gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
+      gsub_file 'app/models/user.rb', / :trackable,/, ""
     end
 
     # Add a 'name' attribute to the User model
