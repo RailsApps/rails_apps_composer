@@ -27,9 +27,7 @@ if recipes.include? 'devise'
 
     # Run the Devise generator
     generate 'devise:install'
-    if recipes.include? 'devise-invitable'
-      generate 'devise_invitable:install'
-    end
+    generate 'devise_invitable:install' if recipes.include? 'devise-invitable'
 
     if recipes.include? 'mongo_mapper'
       gem 'mm-devise'

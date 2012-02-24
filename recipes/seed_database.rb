@@ -6,9 +6,7 @@ after_bundler do
 
   say_wizard "SeedDatabase recipe running 'after bundler'"
 
-  unless recipes.include? 'mongoid'
-    run 'bundle exec rake db:migrate'
-  end
+  run 'bundle exec rake db:migrate' unless recipes.include? 'mongoid'
 
   if recipes.include? 'devise-invitable'
     generate 'devise_invitable user'
@@ -18,9 +16,7 @@ after_bundler do
   end
   
   # clone the schema changes to the test database
-  unless recipes.include? 'mongoid'
-    run 'bundle exec rake db:test:prepare'
-  end
+  run 'bundle exec rake db:test:prepare' unless recipes.include? 'mongoid'
   
   if recipes.include? 'mongoid'
     append_file 'db/seeds.rb' do <<-FILE
