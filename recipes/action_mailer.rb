@@ -8,7 +8,7 @@ after_bundler do
   gsub_file 'config/environments/development.rb', /# Don't care if the mailer can't send/, '# ActionMailer Config'
   gsub_file 'config/environments/development.rb', /config.action_mailer.raise_delivery_errors = false/ do
   <<-RUBY
-config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+config.action_mailer.default_url_options = { :host => 'example.com' }
   # A dummy setup for development - no deliveries, but logged
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = false
@@ -20,7 +20,7 @@ RUBY
   inject_into_file 'config/environments/development.rb', :before => "\nend" do 
   <<-RUBY
 \n
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'example.com' }
 end
 RUBY
   end
@@ -29,7 +29,7 @@ RUBY
   <<-RUBY
 config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'yourhost.com' }
+  config.action_mailer.default_url_options = { :host => 'example.com' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
