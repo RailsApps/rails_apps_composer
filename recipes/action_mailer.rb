@@ -2,8 +2,9 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/action_mailer.rb
 
 after_bundler do
-  say_wizard "ActionMailer recipe running 'after bundler'"
   # modifying environment configuration files for ActionMailer
+  say_wizard "ActionMailer recipe running 'after bundler'"
+  # development environment
   gsub_file 'config/environments/development.rb', /# Don't care if the mailer can't send/, '# ActionMailer Config'
   gsub_file 'config/environments/development.rb', /config.action_mailer.raise_delivery_errors = false/ do
   <<-RUBY
@@ -15,6 +16,15 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.default :charset => "utf-8"
 RUBY
   end
+  # test environment
+  inject_into_file 'config/environments/development.rb', :before => "\nend" do 
+  <<-RUBY
+\n
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+end
+RUBY
+  end
+  # production environment
   gsub_file 'config/environments/production.rb', /config.active_support.deprecation = :notify/ do
   <<-RUBY
 config.active_support.deprecation = :notify

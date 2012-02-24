@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 1.1.5 unreleased
 
+* update 'action_mailer' recipe to configuire test environment
 * add 'confirmable' and 'invitable' options to 'devise' recipe
 * change prompt for 'guard' recipe
 * add 'rake db:test:prepare' to 'seed_database' recipe
