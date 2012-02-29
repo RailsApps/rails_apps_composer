@@ -40,7 +40,6 @@ if config['cucumber']
         remove_file 'features/support/paths.rb'
         get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/features/support/paths.rb', 'features/support/paths.rb'
         if recipes.include? 'devise-confirmable'
-          gsub_file 'spec/factories.rb', /# confirmed_at/, "confirmed_at"
           gsub_file 'features/step_definitions/user_steps.rb', /Welcome! You have signed up successfully./, "A message with a confirmation link has been sent to your email address."
           inject_into_file 'features/users/sign_in.feature', :before => '    Scenario: User signs in successfully' do
 <<-RUBY

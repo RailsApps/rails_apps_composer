@@ -58,6 +58,7 @@ if recipes.include? 'devise'
       begin
         # copy all the RSpec specs files from the rails3-devise-rspec-cucumber example app
         get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/spec/factories.rb', 'spec/factories.rb'
+        gsub_file 'spec/factories.rb', /# confirmed_at/, "confirmed_at" if recipes.include? 'devise-confirmable'
         remove_file 'spec/controllers/home_controller_spec.rb'
         remove_file 'spec/controllers/users_controller_spec.rb'
         get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/spec/controllers/home_controller_spec.rb', 'spec/controllers/home_controller_spec.rb'
