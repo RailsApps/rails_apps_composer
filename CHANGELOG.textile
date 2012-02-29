@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.1.6 unreleased
+
+* update 'cucumber' recipe to Devise 'confirmable' option
+
 h2. 1.1.5 February 26, 2012
 
 * update 'action_mailer' recipe to configure test environment
