@@ -27,20 +27,25 @@ FILE
   end
 
   if recipes.include? 'devise'
-    # create a default user
-    append_file 'db/seeds.rb' do <<-FILE
+    if recipes.include? 'devise-confirmable'
+      append_file 'db/seeds.rb' do <<-FILE
+puts 'SETTING UP DEFAULT USER LOGIN'
+user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => DateTime.now"
+puts 'New user created: ' << user.name
+FILE
+      end
+    else
+      append_file 'db/seeds.rb' do <<-FILE
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
 puts 'New user created: ' << user.name
 FILE
-    end
-    if recipes.include? 'devise-confirmable'
-      gsub_file 'db/seeds.rb', /:password_confirmation => 'please'/, ":password_confirmation => 'please', :confirmed_at => DateTime.now"
+      end
     end
   end
-
+  
   run 'bundle exec rake db:seed'
-
+  
 end
 
 __END__

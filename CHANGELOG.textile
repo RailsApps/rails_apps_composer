@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.1.7 unreleased
+
+* improve 'devise' recipe for Devise 'confirmable' option
+
 h2. 1.1.6 February 28, 2012
 
 * update 'devise' recipe to accommmodate RSpec and Cucumber for Devise 'confirmable' option
