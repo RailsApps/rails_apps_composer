@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 1.1.7 unreleased
 
+* improve 'home_page' recipe to show how to set a home page for Devise authenticated users
 * improve 'devise' recipe for Devise 'confirmable' option
 
 h2. 1.1.6 February 28, 2012

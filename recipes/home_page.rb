@@ -33,6 +33,17 @@ ERB
   # set routes
   gsub_file 'config/routes.rb', /get \"home\/index\"/, 'root :to => "home#index"'
 
+  if recipes.include? 'devise'
+    inject_into_file 'config/routes.rb', :before => "root :to" do 
+    <<-RUBY
+  authenticated :user do
+    root :to => 'home#index'
+  end
+\n
+RUBY
+    end
+  end
+
 end
 
 __END__
