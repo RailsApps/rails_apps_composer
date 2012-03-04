@@ -2,43 +2,47 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/html5.rb
 
 case config['css_option']
+
   when 'foundation'
     # https://github.com/zurb/foundation-rails
     gem 'zurb-foundation'
+
   when 'bootstrap_less'
     # https://github.com/seyhunak/twitter-bootstrap-rails
     # http://railscasts.com/episodes/328-twitter-bootstrap-basics
     gem 'twitter-bootstrap-rails', '~> 2.0.3', :group => :assets
-    # for external check
     recipes << 'bootstrap'
+
   when 'bootstrap_sass'
     # https://github.com/thomas-mcdonald/bootstrap-sass
     # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
     gem 'bootstrap-sass', '~> 2.0.1'
-    # for external check
     recipes << 'bootstrap'
+
 end
 after_bundler do
   say_wizard "HTML5 recipe running 'after bundler'"
   # add a humans.txt file
   get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/humans.txt", "public/humans.txt"
   # install a front-end framework for HTML5 and CSS3
+  remove_file 'app/assets/stylesheets/application.css'
+  get 'https://raw.github.com/gist/1974706/f22d3bd5940e173707c6f7c3e5716eeb36882a08/application.css.scss', 'app/assets/stylesheets/application.css.scss'
   case config['css_option']
-    when 'nothing'
-      say_wizard "no HTML5 front-end framework selected"
-    when 'foundation'
-      say_wizard "installing Zurb Foundation HTML5 framework"
-      insert_into_file "app/assets/javascripts/application.js", "//= require foundation\n", :after => "jquery_ujs\n"
-      insert_into_file "app/assets/stylesheets/application.css", " *= require foundation\n", :after => "require_self\n"
 
     when 'bootstrap_less'
       say_wizard "installing Twitter Bootstrap HTML5 framework (less) "
       generate 'bootstrap:install'
+      remove_file 'app/assets/stylesheets/application.css'
 
     when 'bootstrap_sass'
       say_wizard "installing Twitter Bootstrap HTML5 framework (sass) "
       insert_into_file "app/assets/javascripts/application.js", "//= require bootstrap\n", :after => "jquery_ujs\n"
       create_file "app/assets/stylesheets/bootstrap_and_overrides.css.scss", "\n@import 'bootstrap';\n"
+
+    when 'foundation'
+      say_wizard "installing Zurb Foundation HTML5 framework"
+      insert_into_file "app/assets/javascripts/application.js", "//= require foundation\n", :after => "jquery_ujs\n"
+      insert_into_file "app/assets/stylesheets/application.css.scss", " *= require foundation\n", :after => "require_self\n"
 
     when 'skeleton'
       say_wizard "installing Skeleton HTML5 framework"
@@ -47,9 +51,14 @@ after_bundler do
       get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css", "app/assets/stylesheets/layout.css.scss"
       get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css", "app/assets/stylesheets/skeleton.css.scss"
       get "https://raw.github.com/dhgamache/Skeleton/master/javascripts/tabs.js", "app/assets/javascripts/tabs.js"
+
     when 'normalize'
       say_wizard "normalizing CSS for consistent styling"
       get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
+
+    when 'nothing'
+      say_wizard "no HTML5 front-end framework selected"
+
   end
   # Set up the default application layout
   if recipes.include? 'haml'
