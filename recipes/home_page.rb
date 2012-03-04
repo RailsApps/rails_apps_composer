@@ -34,12 +34,12 @@ ERB
   gsub_file 'config/routes.rb', /get \"home\/index\"/, 'root :to => "home#index"'
 
   if recipes.include? 'devise'
-    inject_into_file 'config/routes.rb', :before => "root :to" do 
+    inject_into_file 'config/routes.rb', :before => "  root :to" do 
     <<-RUBY
   authenticated :user do
     root :to => 'home#index'
   end
-\n
+\n  
 RUBY
     end
   end

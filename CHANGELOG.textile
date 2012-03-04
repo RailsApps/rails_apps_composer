@@ -4,6 +4,7 @@ h2. 1.1.7 unreleased
 
 * improve 'home_page' recipe to show how to set a home page for Devise authenticated users
 * improve 'devise' recipe for Devise 'confirmable' option
+* improve 'cleanup' recipe to remove commented lines from config/routes.rb
 
 h2. 1.1.6 February 28, 2012
 

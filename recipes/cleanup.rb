@@ -19,11 +19,15 @@ after_bundler do
   gsub_file "README", /App_Name/, "#{app_name.humanize.titleize}"
   gsub_file "README.textile", /App_Name/, "#{app_name.humanize.titleize}"
 
-  # remove commented lines from Gemfile
+  # remove commented lines and multiple blank lines from Gemfile
   # thanks to https://github.com/perfectline/template-bucket/blob/master/cleanup.rb
-  gsub_file "Gemfile", /#.*\n/, "\n"
-  gsub_file "Gemfile", /\n+/, "\n"
+  gsub_file 'Gemfile', /#.*\n/, "\n"
+  gsub_file 'Gemfile', /\n^\s*\n/, "\n"
 
+  # remove commented lines and multiple blank lines from config/routes.rb
+  gsub_file 'config/routes.rb', /  #.*\n/, "\n"
+  gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
+  
 end
 
 __END__
