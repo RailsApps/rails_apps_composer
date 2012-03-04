@@ -72,7 +72,7 @@ $ rails_apps_composer new myapp -r haml
 For example, to build the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails_apps_composer new myapp -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page css_setup html5 navigation cleanup extras git
+$ rails_apps_composer new myapp -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page html5 navigation cleanup extras git
 </pre>
 
 Replace @myapp@ with the name you want for your application.
@@ -120,7 +120,7 @@ h4. Template for Rails 3 + Devise + RSpec + Cucumber
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=haml,rspec,cucumber,guard,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T@ flag.
@@ -134,7 +134,7 @@ h4. Template for Rails 3 + Mongoid + Devise
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -148,7 +148,7 @@ h4. Template for Rails 3 + Mongoid + OmniAuth
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,css_setup,html5,navigation,users_page,omniauth_email,cleanup,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,seed_database,add_user,omniauth,home_page,home_page_users,html5,navigation,users_page,omniauth_email,cleanup,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -162,7 +162,7 @@ h4. Template for Rails 3 + Subdomains
 To build a reusable application template for the "rails3-subdomains":https://github.com/RailsApps/rails3-subdomains example application, run the command:
 
 <pre>
-$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,css_setup,subdomains,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
+$ rake print --silent RECIPES=haml,rspec,cucumber,guard,mongoid,action_mailer,devise,add_user,home_page,home_page_users,seed_database,users_page,subdomains,html5,navigation,cleanup,extras,git > ~/Desktop/template.txt
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -244,15 +244,21 @@ Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_app
 
 h2. Credits
 
-This project is based on "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard. The original idea for a RailsWizard and the innovative implementation is the work of Michael Bleigh.
+Daniel Kehoe maintains this gem as part of the "RailsApps Project":http://railsapps.github.com/.
+
+This gem is based on "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard. The original idea for a RailsWizard and the innovative implementation is the work of Michael Bleigh.
 
 "Fletcher Nichol's":http://silversky.ca/ project  "fnichol/rails-template-recipes":https://github.com/fnichol/rails-template-recipes provides the basis for several recipes.
 
-RSpec, Cucumber, and Yard recipes were contributed by "Ramon Brooker":http://cogniton-mind.tumblr.com/.
+h4. Contributors
 
-Guard recipe contributed by "Ashley Woodard":https://github.com/ashley-woodard.
+* 'inherited_resources' and 'simple_form' recipes contributed by gmgp
+* Slim recipe contributed by "Claudio B.":https://github.com/claudiob
+* MongoLab recipe contributed by "Leo Lou":https://github.com/l4u
+* RSpec, Cucumber, and Yard recipes contributed by "Ramon Brooker":http://cogniton-mind.tumblr.com/.
+* Compass, Backbone, and Guard recipes contributed by "Ashley Woodard":https://github.com/ashley-woodard.
 
-Additional recipes by Daniel Kehoe, "http://danielkehoe.com/":http://danielkehoe.com/.
+h4. What You Can Do
 
 Is the gem useful to you? Follow the project on Twitter:
 "@rails_apps":http://twitter.com/rails_apps

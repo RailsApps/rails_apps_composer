@@ -23,6 +23,7 @@ h2. 1.1.5 February 26, 2012
 * update 'seed_database' recipe to add 'rake db:test:prepare'
 * remove 'add_user_name' recipe (replaced by 'add_user' recipe)
 * update 'cucumber' recipe to run single features without adding "--require features" to the command line
+* add 'slim' recipe (contributed by claudiob)
 
 h2. 1.1.4 February 21, 2012
 
