@@ -9,10 +9,14 @@ case config['css_option']
     # https://github.com/seyhunak/twitter-bootstrap-rails
     # http://railscasts.com/episodes/328-twitter-bootstrap-basics
     gem 'twitter-bootstrap-rails', '~> 2.0.3', :group => :assets
+    # for external check
+    recipes << 'bootstrap'
   when 'bootstrap_sass'
     # https://github.com/thomas-mcdonald/bootstrap-sass
     # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
     gem 'bootstrap-sass', '~> 2.0.1'
+    # for external check
+    recipes << 'bootstrap'
 end
 after_bundler do
   say_wizard "HTML5 recipe running 'after bundler'"
