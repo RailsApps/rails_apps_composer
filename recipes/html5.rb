@@ -5,10 +5,18 @@ case config['css_option']
   when 'foundation'
     # https://github.com/zurb/foundation-rails
     gem 'zurb-foundation'
-  when 'bootstrap'
+  when 'bootstrap_less'
+    # https://github.com/seyhunak/twitter-bootstrap-rails
+    # http://railscasts.com/episodes/328-twitter-bootstrap-basics
+    gem 'twitter-bootstrap-rails', '~> 2.0.3', :group => :assets
+    # for external check
+    recipes << 'bootstrap'
+  when 'bootstrap_sass'
     # https://github.com/thomas-mcdonald/bootstrap-sass
     # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
     gem 'bootstrap-sass', '~> 2.0.1'
+    # for external check
+    recipes << 'bootstrap'
 end
 after_bundler do
   say_wizard "HTML5 recipe running 'after bundler'"
@@ -21,11 +29,17 @@ after_bundler do
     when 'foundation'
       say_wizard "installing Zurb Foundation HTML5 framework"
       insert_into_file "app/assets/javascripts/application.js", "//= require foundation\n", :after => "jquery_ujs\n"
-      insert_into_file "app/assets/stylesheets/application.css.scss", " *= require foundation\n", :after => "require_self\n"
-    when 'bootstrap'
-      say_wizard "installing Twitter Bootstrap HTML5 framework"
+      insert_into_file "app/assets/stylesheets/application.css", " *= require foundation\n", :after => "require_self\n"
+
+    when 'bootstrap_less'
+      say_wizard "installing Twitter Bootstrap HTML5 framework (less) "
+      generate 'bootstrap:install'
+
+    when 'bootstrap_sass'
+      say_wizard "installing Twitter Bootstrap HTML5 framework (sass) "
       insert_into_file "app/assets/javascripts/application.js", "//= require bootstrap\n", :after => "jquery_ujs\n"
-      insert_into_file "app/assets/stylesheets/application.css.scss", "\n@import 'bootstrap';\n", :after => "*/\n"
+      create_file "app/assets/stylesheets/bootstrap_and_overrides.css.scss", "\n@import 'bootstrap';\n"
+
     when 'skeleton'
       say_wizard "installing Skeleton HTML5 framework"
       get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
@@ -66,5 +80,4 @@ config:
   - css_option:
       type: multiple_choice
       prompt: "Which front-end framework would you like for HTML5 and CSS?"
-      choices: [["None", nothing], ["Zurb Foundation", foundation], ["Twitter Bootstrap", bootstrap], ["Skeleton", skeleton], ["Just normalize CSS for consistent styling", normalize]]
-
+      choices: [["None", nothing], ["Zurb Foundation", foundation], ["Twitter Bootstrap (less)", bootstrap_less], ["Twitter Bootstrap (sass)", bootstrap_sass], ["Skeleton", skeleton], ["Just normalize CSS for consistent styling", normalize]]
