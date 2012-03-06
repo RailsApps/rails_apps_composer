@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.1.8 March 5, 2012
+
+* improve 'html5' recipe to download files for complex application layout and css for Twitter Bootstrap
+* update gem 'mongoid' from 2.4.4 to 2.4.6
+
 h2. 1.1.7 March 4, 2012
 
 * improve 'home_page' recipe to show how to set a home page for Devise authenticated users

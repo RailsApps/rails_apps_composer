@@ -10,70 +10,92 @@ case config['css_option']
   when 'bootstrap_less'
     # https://github.com/seyhunak/twitter-bootstrap-rails
     # http://railscasts.com/episodes/328-twitter-bootstrap-basics
-    gem 'twitter-bootstrap-rails', '~> 2.0.3', :group => :assets
+    gem 'twitter-bootstrap-rails', '>= 2.0.3', :group => :assets
     recipes << 'bootstrap'
 
   when 'bootstrap_sass'
     # https://github.com/thomas-mcdonald/bootstrap-sass
     # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
-    gem 'bootstrap-sass', '~> 2.0.1'
+    gem 'bootstrap-sass', '>= 2.0.1'
     recipes << 'bootstrap'
 
 end
 after_bundler do
   say_wizard "HTML5 recipe running 'after bundler'"
   # add a humans.txt file
-  get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/humans.txt", "public/humans.txt"
+  get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/humans.txt', 'public/humans.txt'
   # install a front-end framework for HTML5 and CSS3
   remove_file 'app/assets/stylesheets/application.css'
-  get 'https://raw.github.com/gist/1974706/f22d3bd5940e173707c6f7c3e5716eeb36882a08/application.css.scss', 'app/assets/stylesheets/application.css.scss'
+  remove_file 'app/views/layouts/application.html.erb'
+  remove_file 'app/views/layouts/application.html.haml'
+  unless recipes.include? 'bootstrap'
+    if recipes.include? 'haml'
+      # Haml version of a simple application layout
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/simple/views/layouts/application.html.haml', 'app/views/layouts/application.html.haml'
+    else
+      # ERB version of a simple application layout
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/simple/views/layouts/application.html.erb', 'app/views/layouts/application.html.erb'
+    end
+    # simple css styles
+    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/simple/assets/stylesheets/application.css.scss', 'app/assets/stylesheets/application.css.scss'  
+  else # for Twitter Bootstrap
+    if recipes.include? 'haml'
+      # Haml version of a complex application layout using Twitter Bootstrap
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/application.html.haml', 'app/views/layouts/application.html.haml'
+    else
+      # ERB version of a complex application layout using Twitter Bootstrap
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/application.html.erb', 'app/views/layouts/application.html.erb'
+    end
+    # complex css styles using Twitter Bootstrap
+    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/assets/stylesheets/application.css.scss', 'app/assets/stylesheets/application.css.scss'
+  end
+  if recipes.include? 'haml'
+    gsub_file 'app/views/layouts/application.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
+  else
+    gsub_file 'app/views/layouts/application.html.erb', /App_Name/, "#{app_name.humanize.titleize}"
+  end
   case config['css_option']
 
     when 'bootstrap_less'
-      say_wizard "installing Twitter Bootstrap HTML5 framework (less) "
+      say_wizard 'installing Twitter Bootstrap HTML5 framework (less)'
       generate 'bootstrap:install'
-      remove_file 'app/assets/stylesheets/application.css'
+      remove_file 'app/assets/stylesheets/application.css' # already created application.css.scss above
+      insert_into_file 'app/assets/stylesheets/bootstrap_and_overrides.css.less', "body { padding-top: 60px; }\n", :after => "@import "twitter/bootstrap/bootstrap";\n"
 
     when 'bootstrap_sass'
-      say_wizard "installing Twitter Bootstrap HTML5 framework (sass) "
-      insert_into_file "app/assets/javascripts/application.js", "//= require bootstrap\n", :after => "jquery_ujs\n"
-      create_file "app/assets/stylesheets/bootstrap_and_overrides.css.scss", "\n@import 'bootstrap';\n"
+      say_wizard 'installing Twitter Bootstrap HTML5 framework (sass)'
+      insert_into_file 'app/assets/javascripts/application.js', "//= require bootstrap\n", :after => "jquery_ujs\n"
+      create_file 'app/assets/stylesheets/bootstrap_and_overrides.css.scss', <<-RUBY
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+@import "bootstrap";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
+RUBY
 
     when 'foundation'
-      say_wizard "installing Zurb Foundation HTML5 framework"
-      insert_into_file "app/assets/javascripts/application.js", "//= require foundation\n", :after => "jquery_ujs\n"
-      insert_into_file "app/assets/stylesheets/application.css.scss", " *= require foundation\n", :after => "require_self\n"
+      say_wizard 'installing Zurb Foundation HTML5 framework'
+      insert_into_file 'app/assets/javascripts/application.js', "//= require foundation\n", :after => "jquery_ujs\n"
+      insert_into_file 'app/assets/stylesheets/application.css.scss', " *= require foundation\n", :after => "require_self\n"
 
     when 'skeleton'
-      say_wizard "installing Skeleton HTML5 framework"
-      get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
-      get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css", "app/assets/stylesheets/base.css.scss"
-      get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css", "app/assets/stylesheets/layout.css.scss"
-      get "https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css", "app/assets/stylesheets/skeleton.css.scss"
-      get "https://raw.github.com/dhgamache/Skeleton/master/javascripts/tabs.js", "app/assets/javascripts/tabs.js"
+      say_wizard 'installing Skeleton HTML5 framework'
+      get 'https://raw.github.com/necolas/normalize.css/master/normalize.css', 'app/assets/stylesheets/normalize.css.scss'
+      get 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css', 'app/assets/stylesheets/base.css.scss'
+      get 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css', 'app/assets/stylesheets/layout.css.scss'
+      get 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css', 'app/assets/stylesheets/skeleton.css.scss'
+      get 'https://raw.github.com/dhgamache/Skeleton/master/javascripts/tabs.js', 'app/assets/javascripts/tabs.js'
 
     when 'normalize'
-      say_wizard "normalizing CSS for consistent styling"
-      get "https://raw.github.com/necolas/normalize.css/master/normalize.css", "app/assets/stylesheets/normalize.css.scss"
+      say_wizard 'normalizing CSS for consistent styling'
+      get 'https://raw.github.com/necolas/normalize.css/master/normalize.css', 'app/assets/stylesheets/normalize.css.scss'
 
     when 'nothing'
-      say_wizard "no HTML5 front-end framework selected"
+      say_wizard 'no HTML5 front-end framework selected'
 
   end
-  # Set up the default application layout
-  if recipes.include? 'haml'
-    # Haml version of default application layout
-    remove_file 'app/views/layouts/application.html.erb'
-    remove_file 'app/views/layouts/application.html.haml'
-    get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/views/layouts/application.html.haml", "app/views/layouts/application.html.haml"
-    gsub_file "app/views/layouts/application.html.haml", /App_Name/, "#{app_name.humanize.titleize}"
-  else
-    # ERB version of default application layout
-    remove_file 'app/views/layouts/application.html.erb'
-    remove_file 'app/views/layouts/application.html.haml'
-    get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/views/layouts/application.html.erb", "app/views/layouts/application.html.erb"
-    gsub_file "app/views/layouts/application.html.erb", /App_Name/, "#{app_name.humanize.titleize}"
-  end
+
 end
 
 __END__
