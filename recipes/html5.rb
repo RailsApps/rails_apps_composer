@@ -60,7 +60,7 @@ after_bundler do
       say_wizard 'installing Twitter Bootstrap HTML5 framework (less)'
       generate 'bootstrap:install'
       remove_file 'app/assets/stylesheets/application.css' # already created application.css.scss above
-      insert_into_file 'app/assets/stylesheets/bootstrap_and_overrides.css.less', "body { padding-top: 60px; }\n", :after => "@import "twitter/bootstrap/bootstrap";\n"
+      insert_into_file 'app/assets/stylesheets/bootstrap_and_overrides.css.less', "body { padding-top: 60px; }\n", :after => "@import \"twitter/bootstrap/bootstrap\";\n"
 
     when 'bootstrap_sass'
       say_wizard 'installing Twitter Bootstrap HTML5 framework (sass)'
