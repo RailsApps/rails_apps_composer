@@ -66,13 +66,7 @@ h4. Select Recipes
 You can mix and match recipes to create your own customized starter app. See an annotated list of available "recipes for the Rails Apps Composer gem":http://railsapps.github.com/rails-apps-recipes.html. For an up-to-date list, browse the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes to see what is available. Then provide your list of recipes to the Rails Apps Composer gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using haml:
 
 <pre>
-$ rails_apps_composer new myapp -r haml
-</pre>
-
-For example, to build the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
-
-<pre>
-$ rails_apps_composer new myapp -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page html5 cleanup extras git
+$ rails_apps_composer new myapp -r haml home_page html5
 </pre>
 
 Replace @myapp@ with the name you want for your application.
@@ -114,6 +108,20 @@ $ rails new myapp -m ~/Desktop/template.txt
 You can specify the @-T -O@ flags as needed to skip Test::Unit files and Active Record files.
 
 That's all it takes. You'll have a ready-to-customize Rails web application in minutes.
+
+h4. Template for Rails 3 + Haml + HTML5
+
+This application template will offer you a choice of Haml or ERB, give you options for a CSS front-end framework such as Twitter Bootstrap, and create a default application layout using HTML5:
+
+<pre>
+$ rake print --silent RECIPES=haml,home_page,html5,cleanup,extras,git > ~/Desktop/template.txt
+</pre>
+
+Then generate the application:
+
+<pre>
+$ rails new myapp -m ~/Desktop/template.txt
+</pre>
 
 h4. Template for Rails 3 + Devise + RSpec + Cucumber
 
