@@ -49,10 +49,34 @@ after_bundler do
     # complex css styles using Twitter Bootstrap
     get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/assets/stylesheets/application.css.scss', 'app/assets/stylesheets/application.css.scss'
   end
+  # get an appropriate navigation partial
+  if recipes.include? 'haml'
+    if recipes.include? 'devise'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
+    elsif recipes.include? 'omniauth'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/omniauth/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
+    elsif recipes.include? 'subdomains'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/subdomains/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
+    else
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/none/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
+    end
+  else
+    if recipes.include? 'devise'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/_navigation.html.erb', 'app/views/layouts/_navigation.html.erb'
+    elsif recipes.include? 'omniauth'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/omniauth/_navigation.html.erb', 'app/views/layouts/_navigation.html.erb'
+    elsif recipes.include? 'subdomains'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/subdomains/_navigation.html.erb', 'app/views/layouts/_navigation.html.erb'
+    else
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/none/_navigation.html.erb', 'app/views/layouts/_navigation.html.erb'
+    end
+  end
   if recipes.include? 'haml'
     gsub_file 'app/views/layouts/application.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
+    gsub_file 'app/views/layouts/_navigation.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
   else
     gsub_file 'app/views/layouts/application.html.erb', /App_Name/, "#{app_name.humanize.titleize}"
+    gsub_file 'app/views/layouts/_navigation.html.erb', /App_Name/, "#{app_name.humanize.titleize}"
   end
   case config['css_option']
 

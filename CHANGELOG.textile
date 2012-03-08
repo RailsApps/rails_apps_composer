@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.2.0 March 7, 2012
+
+* remove 'navigation' recipe (consolidated with 'html5' recipe)
+
 h2. 1.1.8 March 5, 2012
 
 * improve 'html5' recipe to download files for complex application layout and css for Twitter Bootstrap
