@@ -1,7 +1,7 @@
 gem 'rails-backbone', :version => '~> 0.6.1'
 
 after_bundler do
-generate 'backbone:install'
+  generate 'backbone:install'
 end
 
 __END__
