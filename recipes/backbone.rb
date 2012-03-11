@@ -1,10 +1,7 @@
-if config['backbone']
-  gem 'rails-backbone', :version => '~> 0.6.1'
-  after_bundler do
-    generate 'backbone:install'
-  end
-else
-  recipes.delete('backbone')
+gem 'rails-backbone', :version => '~> 0.6.1'
+
+after_bundler do
+  generate 'backbone:install'
 end
 
 __END__
