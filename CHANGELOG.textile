@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.2.1 March 11, 2012
+
+* fix 'backbone' recipe
+
 h2. 1.2.0 March 7, 2012
 
 * remove 'navigation' recipe (consolidated with 'html5' recipe)

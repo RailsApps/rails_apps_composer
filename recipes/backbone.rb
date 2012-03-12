@@ -1,5 +1,5 @@
 if config['backbone']
-  gem 'rails-backbone', :version => '~> 0.6.1'
+  gem 'rails-backbone', :version => '>= 0.7.0'
   after_bundler do
     generate 'backbone:install'
   end
@@ -16,3 +16,8 @@ author: ashley_woodard
 exclusive: javascript_framework
 category: assets
 tags: [javascript, framework]
+
+config:
+  - haml:
+      type: boolean
+      prompt: Would you like to use the Backbone.js MVC framework?
