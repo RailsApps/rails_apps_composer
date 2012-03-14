@@ -18,8 +18,7 @@ module RailsWizard
 
 
     def resolve_recipes
-      # @resolve_recipes ||= recipes_with_dependencies.sort
-      @resolve_recipes ||= recipes_with_dependencies
+      @resolve_recipes ||= recipes_with_dependencies.sort
     end
 
     def recipe_classes
