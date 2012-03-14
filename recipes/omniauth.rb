@@ -13,6 +13,8 @@ if config['omniauth']
      gem 'omniauth-github'
     when 'linkedin'
       gem 'omniauth-linkedin'
+    when 'google'
+      gem 'omniauth-google'
   end
 else
   recipes.delete('omniauth')
@@ -152,4 +154,4 @@ config:
   - provider:
       type: multiple_choice
       prompt: "Which service provider will you use?"
-      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linkedin]]
+      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linkedin], ["Google", google]
