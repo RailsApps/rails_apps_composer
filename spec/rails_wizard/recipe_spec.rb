@@ -74,28 +74,6 @@ RUBY
       recipe.send(k).should == v
     end
   end
-
-  context 'Comparable' do
-    subject{ RailsWizard::Recipe }
-    it 'a < b.run_after(a)' do
-      A = subject.generate('a', '#')
-      B = subject.generate('b', '#', :run_after => ['a'])
-
-      (A < B).should be_true
-    end
-
-    it 'a > b.run_before(a)' do
-      A = subject.generate('a', '#')
-      B = subject.generate('b', '#', :run_before => ['a'])
-      
-      (A > B).should be_true
-    end
-
-    after do
-      Object.send :remove_const, :A if defined?(A)
-      Object.send :remove_const, :B if defined?(B)
-    end
-  end
 end
 
 __END__

@@ -17,8 +17,22 @@ module RailsWizard
     def render(template_name, binding = nil); self.class.render(template_name, binding) end
 
 
+    # Sort the recipes list taking 'run_after' directives into account.
     def resolve_recipes
-      @resolve_recipes ||= recipes_with_dependencies.sort
+      @resolve_recipes ||= begin
+        list = recipes_with_dependencies
+
+        for i in 0...list.size
+          after_keys = list[i+1..-1].map { |r| r.key }
+
+          if (list[i].run_after & after_keys).any?
+            list.push list.slice!(i)
+            redo
+          end
+        end
+
+        list
+      end
     end
 
     def recipe_classes

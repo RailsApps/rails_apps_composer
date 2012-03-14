@@ -10,6 +10,31 @@ describe RailsWizard::Template do
     end
   end
 
+  describe '#resolve_dependencies' do
+    def recipe(name, opts={})
+      RailsWizard::Recipe.generate(name, '', opts)
+    end
+
+    subject do
+      @template = RailsWizard::Template.new([])
+      @template.stub!(:recipes_with_dependencies).and_return(@recipes)
+      @template.resolve_recipes.map { |r| r.key }
+    end
+
+    it 'should sort properly' do
+      @recipes = [
+        recipe('add_user', :run_after => ['devise']),
+        recipe('devise', :run_after => ['omniauth']),
+        recipe('omniauth'),
+        recipe('haml'),
+        recipe('compass')
+      ]
+
+      subject.index('devise').should > subject.index('omniauth')
+    end
+
+  end
+
   describe '#recipes_with_dependencies' do
     def r(*deps)
       mock(:Class, :requires => deps, :superclass => RailsWizard::Recipe)
