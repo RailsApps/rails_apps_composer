@@ -1,5 +1,6 @@
 if config['compass']
-  gem 'compass', :version => '~> 0.12.rc.1'
+  gem 'compass', :version => '~> 0.12.1', :group => [:assets]
+  gem 'compass-rails', :version => '~> 1.0.0', :group => [:assets]
   after_bundler do
     remove_file 'app/assets/stylesheets/application.css'
     create_file 'app/assets/stylesheets/application.css.sass' do <<-SASS
