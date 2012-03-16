@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.3.1 March 15, 2012
+
+* update 'devise' recipe to remove deprecated use of FactoryGirl
+
 h2. 1.3.0 March 15, 2012
 
 * implement and enable support for 'run_after' parameter (contributed by Rico Sta. Cruz) 
@@ -12,7 +16,7 @@ h2. 1.3.0 March 15, 2012
 * update gem 'bson_ext' from 1.5.2 to 1.6.1
 * update gem 'factory_girl_rails' from 1.7.0 to 2.0.0.rc
 * update gem 'rspec-rails' from 2.8.1 to 2.9.0.rc2
-* update gem 'devise' from 2.0.4 to 2.1.0.rc
+* update gem 'devise' from 2.0.4 to 2.1.0.rcc
 
 h2. 1.2.1 March 11, 2012
 
