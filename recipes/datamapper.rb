@@ -5,6 +5,8 @@ DM_VERSION='~> 1.2.0'
 
 if config['datamapper']
   abort "DataMapper #{DM_VERSION} is only compatible with Rails #{RAILS_VERSION}" unless ::Rails::VERSION::MAJOR == 3 and ::Rails::VERSION::MINOR < 2
+else
+  recipes.delete('datamapper')
 end
 
 if config['datamapper']
@@ -14,12 +16,13 @@ if config['datamapper']
   gem "dm-#{config['database']}-adapter", DM_VERSION
   gem 'dm-migrations', DM_VERSION
   gem 'dm-types', DM_VERSION
-  gem 'dm-validations', DM_VERSION
   gem 'dm-constraints', DM_VERSION
   gem 'dm-transactions', DM_VERSION
   gem 'dm-aggregates', DM_VERSION
   gem 'dm-timestamps', DM_VERSION
   gem 'dm-observer', DM_VERSION
+  gem 'dm-validations', DM_VERSION if config['validations'] == 'dm-validations'
+  gem 'dm-devise', '>= 2.0.1' if recipes.include? 'devise'
 
   inject_into_file 'config/application.rb', "require 'dm-rails/railtie'\n", :after => "require 'action_controller/railtie'\n"
   prepend_file 'app/controllers/application_controller.rb', "require 'dm-rails/middleware/identity_map'\n"
@@ -59,13 +62,15 @@ YAML
     inject_into_file 'config/database.yml', "  database: db/development.db\n", :before => "\ntest:"
     append_file 'config/database.yml', "  database: db/test.db\n"
   end
-else
-  recipes.delete('datamapper')
 end
 
 if config['datamapper']
   after_bundler do
     say_wizard "DataMapper recipe running 'after bundler'"
+    if recipes.include? 'devise'
+      generate 'data_mapper:devise_install' 
+      gsub_file 'config/initializers/devise.rb', /# config.data_mapper_validation_lib = nil/, "config.data_mapper_validation_lib = '#{config['validations']}'"
+    end
     rake "db:create:all" if config['auto_create']
   end
 end
@@ -95,6 +100,12 @@ config:
         - ["PostgreSQL", postgres]
         - ["Oracle", oracle]
         - ["MSSQL", sqlserver]
+  - validations:
+      type: multiple_choice
+      prompt: "Which validation method do you prefer?"
+      choices:
+        - ["DataMapper Validations", dm-validations]
+        - ["ActiveModel Validations", active_model]
   - auto_create:
       type: boolean
       prompt: "Automatically create database with default configuration?"
