@@ -39,9 +39,12 @@ module RailsWizard
 
       def print_recipes(recipes)
         puts
-        puts "#{bold}#{cyan}Available Recipes:#{clear} " + RailsWizard::Recipes.list.map {|recipe|
-          recipes.include?(recipe) ? "#{green}#{bold}#{recipe}#{clear}" : recipe
-        }.join(', ')
+        puts "#{bold}#{cyan}Available Recipes#{clear}:"
+        RailsWizard::Recipes.categories.each do |category|
+          puts "#{bold}#{cyan}#{category}#{clear}: " +RailsWizard::Recipes.for(category).collect {|recipe|
+            recipes.include?(recipe) ? "#{green}#{bold}#{recipe}#{clear}" : recipe
+          }.join(', ')
+        end
         puts
       end
 
