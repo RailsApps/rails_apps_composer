@@ -3,13 +3,25 @@ if config['compass']
   gem 'compass-rails', :version => '~> 1.0.0', :group => [:assets]
   after_bundler do
     remove_file 'app/assets/stylesheets/application.css'
-    create_file 'app/assets/stylesheets/application.css.sass' do <<-SASS
+
+    if File.exist?("config/initializers/sass.rb")
+      create_file "app/assets/stylesheets/application.css.sass" do <<-SASS
 //= require_self
 //= require_tree .
 
 @import compass
 @import _blueprint
-SASS
+      SASS
+      end
+    else
+      create_file "app/assets/stylesheets/application.css.scss" do <<-SCSS
+//= require_self
+//= require_tree .
+
+@import "compass";
+@import "_blueprint";
+      SCSS
+      end
     end
   end
 else
