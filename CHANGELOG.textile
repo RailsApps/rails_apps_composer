@@ -6,6 +6,7 @@ h2. 1.4.1 April 2, 2012
 * rename 'hoptoad' recipe to 'airbrake' and update (contributed by Peter Fern)
 * update 'extras' recipe to run 'rails-footnotes' generator when selected (contributed by Peter Fern)
 * update 'devise' recipe to use Devise 2.0.4 when devise_invitable is selected (pending fix to devise_invitable)
+* update 'add_user' recipe to support Devise 'confirmable' option for mongoid
 
 h2. 1.4.0 April 2, 2012
 

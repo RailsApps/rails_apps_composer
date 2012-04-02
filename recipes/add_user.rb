@@ -51,6 +51,12 @@ RUBY
     if recipes.include? 'devise-confirmable'
       gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
       gsub_file 'app/models/user.rb', /:remember_me/, ':remember_me, :confirmed_at'
+      if recipes.include? 'mongoid'
+        gsub_file 'app/models/user.rb', /# field :confirmation_token/, "field :confirmation_token"
+        gsub_file 'app/models/user.rb', /# field :confirmed_at/, "field :confirmed_at"
+        gsub_file 'app/models/user.rb', /# field :confirmation_sent_at/, "field :confirmation_sent_at"
+        gsub_file 'app/models/user.rb', /# field :unconfirmed_email/, "field :unconfirmed_email"
+      end
     end
 
     unless recipes.include? 'haml'
