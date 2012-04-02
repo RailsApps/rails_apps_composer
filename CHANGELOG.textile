@@ -7,6 +7,7 @@ h2. 1.4.1 April 2, 2012
 * update 'extras' recipe to run 'rails-footnotes' generator when selected (contributed by Peter Fern)
 * update 'devise' recipe to use Devise 2.0.4 when devise_invitable is selected (pending fix to devise_invitable)
 * update 'add_user' recipe to support Devise 'confirmable' option for mongoid
+* update 'seed_database' recipe to support mongoid with 'Time.now.utc' instead of 'DateTime.now'
 
 h2. 1.4.0 April 2, 2012
 
