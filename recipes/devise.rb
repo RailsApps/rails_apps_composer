@@ -11,7 +11,7 @@ case config['devise']
     gem 'devise', '>= 2.1.0.rc'
     recipes << 'devise-confirmable'
   when 'invitable'
-    gem 'devise', '>= 2.1.0.rc'
+    gem 'devise', '>= 2.0.4'
     gem 'devise_invitable', '>= 1.0.0'
     recipes << 'devise-confirmable'
     recipes << 'devise-invitable'

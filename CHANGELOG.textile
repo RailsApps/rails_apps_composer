@@ -1,5 +1,12 @@
 h1. CHANGELOG
 
+h2. 1.4.1 April 2, 2012
+
+* add 'datamapper' recipe (contributed by Peter Fern)
+* rename 'hoptoad' recipe to 'airbrake' and update (contributed by Peter Fern)
+* update 'extras' recipe to run 'rails-footnotes' generator when selected (contributed by Peter Fern)
+* update 'devise' recipe to use Devise 2.0.4 when devise_invitable is selected (pending fix to devise_invitable)
+
 h2. 1.4.0 April 2, 2012
 
 * added template command (no longer using 'rake print') (contributed by Keenan Brock)  
