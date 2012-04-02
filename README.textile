@@ -97,8 +97,6 @@ The Rails Apps Composer gem creates an application template as an intermediate s
 $ rails_apps_composer template ~/Desktop/template.rxt -r recipe1 recipe2
 </pre>
 
-If you don't include the @--silent@ option, the rake task will generate the application template with an extraneous first line. Open the template file and remove the first line if you encounter this problem.
-
 The Rails Apps Composer gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
 
 <pre>

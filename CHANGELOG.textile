@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.4.0 April 2, 2012
+
+* added template command (no longer using 'rake print') (contributed by Keenan Brock)  
+
 h2. 1.3.1 March 15, 2012
 
 * update 'devise' recipe to remove deprecated use of FactoryGirl
