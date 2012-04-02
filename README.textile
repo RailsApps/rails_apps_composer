@@ -94,7 +94,7 @@ h4. Save the Application Template
 The Rails Apps Composer gem creates an application template as an intermediate step before generating an application. You can generate and save the application template. Here's an example of generating an application template and saving the template to a file:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rxt -r recipe1 recipe2
+$ rails_apps_composer template ~/Desktop/template.txt -r recipe1 recipe2
 </pre>
 
 The Rails Apps Composer gem creates an application template that can be used by the @rails new@ command with the @-m@ option. For example:
@@ -112,7 +112,7 @@ h4. Template for Rails 3 + Haml + HTML5
 This application template will offer you a choice of Haml or ERB, give you options for a CSS front-end framework such as Twitter Bootstrap, and create a default application layout using HTML5:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rxt -r haml home_page html5 cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml home_page html5 cleanup extras git
 </pre>
 
 Then generate the application:
@@ -126,7 +126,7 @@ h4. Template for Rails 3 + Devise + RSpec + Cucumber
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rxt -r haml rspec cucumber guard action_mailer devise add_user home_page home_page_users seed_database users_page html5 cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard action_mailer devise add_user home_page home_page_users seed_database users_page html5 cleanup extras git
 </pre>
 
 Then generate the application using the @-T@ flag.
@@ -140,7 +140,7 @@ h4. Template for Rails 3 + Mongoid + Devise
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rxt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page html5 cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page html5 cleanup extras git
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -154,7 +154,7 @@ h4. Template for Rails 3 + Mongoid + OmniAuth
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rxt -r haml rspec cucumber guard mongoid seed_database add_user omniauth home_page home_page_users html5 users_page omniauth_email cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid seed_database add_user omniauth home_page home_page_users html5 users_page omniauth_email cleanup extras git
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -168,7 +168,7 @@ h4. Template for Rails 3 + Subdomains
 To build a reusable application template for the "rails3-subdomains":https://github.com/RailsApps/rails3-subdomains example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rxt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page subdomains html5 cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page subdomains html5 cleanup extras git
 </pre>
 
 Then generate the application using the @-T -O@ flags.
