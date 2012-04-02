@@ -7,8 +7,6 @@ Rails.application.config.generators.stylesheet_engine = :sass
 RUBY
     end
   end
-else
-
 end
 
 __END__
