@@ -8,6 +8,11 @@ h2. 1.4.1 April 2, 2012
 * update 'devise' recipe to use Devise 2.0.4 when devise_invitable is selected (pending fix to devise_invitable)
 * update 'add_user' recipe to support Devise 'confirmable' option for mongoid
 * update 'seed_database' recipe to support mongoid with 'Time.now.utc' instead of 'DateTime.now'
+* update gem 'rails-backbone' from 0.7.0 to 0.7.1
+* update gem 'factory_girl_rails' from 2.0.0.rc to 3.0.0
+* update gem 'mongoid' from 2.4.6 to 2.4.7
+* update gem 'database_cleaner' from 0.7.1 to 0.7.2
+* update gem 'launchy' from 2.0.5 to 2.1.0
 
 h2. 1.4.0 April 2, 2012
 
