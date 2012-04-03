@@ -154,7 +154,7 @@ h4. Template for Rails 3 + Mongoid + OmniAuth
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid seed_database add_user omniauth home_page home_page_users html5 users_page omniauth_email cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid seed_database omniauth home_page home_page_users html5 users_page omniauth_email cleanup extras git
 </pre>
 
 Then generate the application using the @-T -O@ flags.

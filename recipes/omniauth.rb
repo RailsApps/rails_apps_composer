@@ -23,6 +23,8 @@ end
 if config['omniauth']
   after_bundler do
 
+    say_wizard "OmniAuth recipe running 'after bundler'"
+  
     # Don't use single-quote-style-heredoc: we want interpolation.
     create_file 'config/initializers/omniauth.rb' do <<-RUBY
 Rails.application.config.middleware.use OmniAuth::Builder do

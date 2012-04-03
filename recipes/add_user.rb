@@ -102,6 +102,6 @@ name: AddUser
 description: "Add a User model including 'name' and 'email' attributes."
 author: RailsApps
 
-run_after: [devise, omniauth]
+run_after: [devise]
 category: other
 tags: [utilities, configuration]

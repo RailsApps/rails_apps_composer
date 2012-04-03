@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.4.3 April 3, 2012
+
+* update 'add_user' and 'omniauth' recipes to fix problem generating rails3-mongoid-omniauth example
+
 h2. 1.4.2 April 2, 2012
 
 * add 'compass_960' recipe (contributed by Julián Porta)
