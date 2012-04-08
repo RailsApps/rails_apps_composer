@@ -126,7 +126,7 @@ h4. Template for Rails 3 + Devise + RSpec + Cucumber
 To build a reusable application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard action_mailer devise add_user home_page home_page_users seed_database users_page html5 cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard action_mailer devise add_user home_page home_page_users seed_database users_page html5 simple_form cleanup extras git
 </pre>
 
 Then generate the application using the @-T@ flag.
@@ -140,7 +140,7 @@ h4. Template for Rails 3 + Mongoid + Devise
 To build a reusable application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page html5 cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page html5 simple_form cleanup extras git
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -154,7 +154,7 @@ h4. Template for Rails 3 + Mongoid + OmniAuth
 To build a reusable application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid seed_database omniauth home_page home_page_users html5 users_page omniauth_email cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid seed_database omniauth home_page home_page_users html5 simple_form users_page omniauth_email cleanup extras git
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -168,7 +168,7 @@ h4. Template for Rails 3 + Subdomains
 To build a reusable application template for the "rails3-subdomains":https://github.com/RailsApps/rails3-subdomains example application, run the command:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page subdomains html5 cleanup extras git
+$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page subdomains html5 simple_form cleanup extras git
 </pre>
 
 Then generate the application using the @-T -O@ flags.
@@ -208,7 +208,7 @@ author: mbleigh
 
 h4. Rails Apps Composer Differences
 
-The Rails Apps Composer gem is very similar to the rails_wizard gem, with one significant difference. The rails_wizard gem allows specification of execution order for recipes with @run_after@ and @run_after@ configuration flags. The Rails Apps Composer gem does not support @run_after@ or @run_after@; instead, the order which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
+The Rails Apps Composer gem is very similar to the rails_wizard gem, with one significant difference. The rails_wizard gem allows specification of execution order for recipes with @run_before@ and @run_after@ configuration flags. The Rails Apps Composer gem supports only the @run_after@ flag; additionally, the order in which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
 
 <pre>
 $ rails_apps_composer new myapp -r git haml
@@ -258,11 +258,18 @@ This gem is based on "Michael Bleigh's RailsWizard gem":https://github.com/intri
 
 h4. Contributors
 
+Recipes:
+
+* 'compass_960', 'redis' and 'resque' recipes contributed by Julián Porta
+* 'datamapper' recipe contributed by Peter Fern
+* 'active_admin' recipe contributed by Philippe Van Eerdenbrugghe
 * 'inherited_resources' and 'simple_form' recipes contributed by gmgp
 * Slim recipe contributed by "Claudio B.":https://github.com/claudiob
 * MongoLab recipe contributed by "Leo Lou":https://github.com/l4u
-* RSpec, Cucumber, and Yard recipes contributed by "Ramon Brooker":http://cogniton-mind.tumblr.com/.
-* Compass, Backbone, and Guard recipes contributed by "Ashley Woodard":https://github.com/ashley-woodard.
+* RSpec, Cucumber, and Yard recipes contributed by "Ramon Brooker":http://cogniton-mind.tumblr.com/
+* Compass, Backbone, and Guard recipes contributed by "Ashley Woodard":https://github.com/ashley-woodard
+
+plus many patches and improvements contributed by many valued contributors (see CHANGELOG).
 
 h4. What You Can Do
 
