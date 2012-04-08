@@ -45,7 +45,7 @@ author: Gmgp
 category: other
 tags: [utilities, configuration]
 
-before: [html5]
+run_after: [html5]
 
 config:
   - form_option:

@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.4.4 April 3, 2012
+
+* update 'devise' recipe to use Devise 2.1.0.rc when devise_invitable is selected
+* tweak 'simple_form' recipe
+
 h2. 1.4.3 April 3, 2012
 
 * update 'add_user' and 'omniauth' recipes to fix problem generating rails3-mongoid-omniauth example
@@ -45,7 +50,7 @@ h2. 1.3.0 March 15, 2012
 * update gem 'bson_ext' from 1.5.2 to 1.6.1
 * update gem 'factory_girl_rails' from 1.7.0 to 2.0.0.rc
 * update gem 'rspec-rails' from 2.8.1 to 2.9.0.rc2
-* update gem 'devise' from 2.0.4 to 2.1.0.rcc
+* update gem 'devise' from 2.0.4 to 2.1.0.rc
 
 h2. 1.2.1 March 11, 2012
 
