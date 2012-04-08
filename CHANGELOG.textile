@@ -2,6 +2,8 @@ h1. CHANGELOG
 
 h2. 1.4.4 April 3, 2012
 
+* update gem 'factory_girl_rails' from 3.0.0 to 3.1.0
+* update gem 'bson_ext' from 1.6.1 to 1.6.2
 * update 'devise' recipe to use Devise 2.1.0.rc when devise_invitable is selected
 * tweak 'simple_form' recipe
 
