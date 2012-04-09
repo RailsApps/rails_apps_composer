@@ -1,31 +1,31 @@
-after_bundler do
-  # say_wizard "rvmrc recipe running 'after bundler'"
+if config['rvmrc']
+  say_wizard "creating .rvmrc file in app root"
 
-  if config['rvmrc']
-    say_wizard "creating .rvmrc file in app root"
-    ## Create .rvmrc
-    ## Gemset defaults as the new Rails application name
-    file '.rvmrc', <<-RVMRC
-    rvm use --create 1.9.3@#{@app_name}
-    RVMRC
-    ## Trust the new .rvmrc
-    run "rvm rvmrc trust"
-    ## Change dir and change back into the app to install gems in that gemset
-    run "cd .. && cd #{@app_name}"
-    ## Install bundler so bundle install works
-    run "gem install bundler"
-  end
+  ## Create .rvmrc
+  ## Gemset defaults as the new Rails application name
+  file '.rvmrc', <<-RVMRC
+  rvm use --create 1.9.3@#{@app_name}
+  RVMRC
+
+  ## Reload rvm
+  run "rvm reload"
+
+  ## Trust .rvmrc file
+  # this fails and shows 'RVM is not a function, selecting rubies...'
+  # run "rvm rvmrc trust"
+
+  ## Install bundler so bundle install works
+  run "gem install bundler"
 end
   
-
 
 __END__
 
 name: rvmrc
 description: Create an .rvmrc file in the application directory and trust it.
 
-category: development
-exclusive: development_environment
+category: other
+tags: [utilities, configuration]
 
 config:
   - rvmrc:
