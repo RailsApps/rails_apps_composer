@@ -19,6 +19,20 @@ RUBY
 
     # Generate models and routes for a User
     generate 'devise user'
+    
+    if recipes.include? 'authorization'
+      # create'app/models/ability.rb'
+      generate 'cancan:ability'
+      # create 'app/models/role.rb'
+      # create 'config/initializers/rolify.rb'
+      # create 'db/migrate/...rolify_create_roles.rb'
+      # insert 'rolify' method in 'app/models/users.rb'
+      if recipes.include? 'mongoid'
+        generate 'rolify:role Role User mongoid'
+      else
+        generate 'rolify:role Role User'
+      end
+    end
 
     # Add a 'name' attribute to the User model
     if recipes.include? 'mongoid'

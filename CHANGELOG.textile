@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.4.5 unreleased
+
+* add option for authorization with CanCan and Rolify
+* add 'will-paginate' option to 'extras' recipe
+
 h2. 1.4.4 April 3, 2012
 
 * update gem 'factory_girl_rails' from 3.0.0 to 3.1.0

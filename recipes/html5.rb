@@ -52,7 +52,11 @@ after_bundler do
   # get an appropriate navigation partial
   if recipes.include? 'haml'
     if recipes.include? 'devise'
-      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
+      if recipes.include? 'authorization'
+        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/authorization/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
+      else
+        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'        
+      end
     elsif recipes.include? 'omniauth'
       get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/omniauth/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
     elsif recipes.include? 'subdomains'
@@ -62,7 +66,11 @@ after_bundler do
     end
   else
     if recipes.include? 'devise'
-      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/_navigation.html.erb', 'app/views/layouts/_navigation.html.erb'
+      if recipes.include? 'authorization'
+        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/authorization/_navigation.html.erb', 'app/views/layouts/_navigation.html.erb'
+      else
+        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/_navigation.html.erb', 'app/views/layouts/_navigation.html.erb'        
+      end
     elsif recipes.include? 'omniauth'
       get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/omniauth/_navigation.html.erb', 'app/views/layouts/_navigation.html.erb'
     elsif recipes.include? 'subdomains'

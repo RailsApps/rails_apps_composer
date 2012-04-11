@@ -20,6 +20,12 @@ case config['devise']
     say_wizard "Devise recipe skipped."
 end
 
+if config['authorization']
+  gem 'cancan', '>= 1.6.7'
+  gem 'rolify', '>= 3.1.0'
+  recipes << 'authorization'
+end
+
 if recipes.include? 'devise'
   after_bundler do
 
@@ -46,7 +52,16 @@ if recipes.include? 'devise'
       # (see https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3)
       gsub_file 'config/initializers/devise.rb', 'config.sign_out_via = :delete', 'config.sign_out_via = Rails.env.test? ? :get : :delete'
     end
-
+    
+    if config['authorization']
+      inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, :error => exception.message
+  end
+RUBY
+      end
+    end
+    
   end
 
   after_everything do
@@ -76,7 +91,7 @@ if recipes.include? 'devise'
       remove_file 'spec/helpers/home_helper_spec.rb'
       remove_file 'spec/helpers/users_helper_spec.rb'
     end
-
+    
   end
 end
 
@@ -94,3 +109,6 @@ config:
       type: multiple_choice
       prompt: Would you like to use Devise for authentication?
       choices: [["No", no], ["Devise with default modules", standard], ["Devise with Confirmable module", confirmable], ["Devise with Confirmable and Invitable modules", invitable]]
+  - authorization:
+      type: boolean
+      prompt: Would you like to manage authorization with CanCan & Rolify?

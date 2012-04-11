@@ -32,6 +32,8 @@ FILE
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
 puts 'New user created: ' << user.name
+user2 = User.create! :name => 'Second User', :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please', :confirmed_at => Time.now.utc
+puts 'New user created: ' << user2.name
 FILE
       end
     else
@@ -39,13 +41,28 @@ FILE
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
 puts 'New user created: ' << user.name
+user2 = User.create! :name => 'Second User', :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please'
+puts 'New user created: ' << user2.name
+FILE
+      end
+    end
+    if recipes.include? 'authorization'
+      append_file 'db/seeds.rb' do <<-FILE
+user.add_role :admin
 FILE
       end
     end
   end
   
-  run 'bundle exec rake db:seed'
+
   
+end
+
+after_everything do
+  
+  say_wizard "seeding the database"
+  run 'bundle exec rake db:seed'
+
 end
 
 __END__
