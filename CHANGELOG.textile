@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.4.6 April 11, 2012
+
+* resolve versioning issues
+
 h2. 1.4.5 April 11, 2012
 
 * add option for authorization with CanCan and Rolify
