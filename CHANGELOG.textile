@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 1.4.6 April 11, 2012
+h2. 1.5.0 April 11, 2012
 
 * add option for authorization with CanCan and Rolify
 * add 'will-paginate' option to 'extras' recipe

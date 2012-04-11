@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-$:.push File.dirname(__FILE__) + '/../lib'
-
-require 'rubygems'
-require 'rails_wizard/command'
-
-RailsWizard::Command.start
