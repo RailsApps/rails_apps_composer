@@ -1,9 +1,10 @@
 h1. CHANGELOG
 
-h2. 1.4.5 unreleased
+h2. 1.4.5 April 11, 2012
 
 * add option for authorization with CanCan and Rolify
 * add 'will-paginate' option to 'extras' recipe
+* update gem 'mongoid' from 2.4.7 to 2.4.8
 
 h2. 1.4.4 April 3, 2012
 
