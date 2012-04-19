@@ -56,7 +56,7 @@ if recipes.include? 'devise'
     if config['authorization']
       inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, :error => exception.message
+    redirect_to root_path, :alert => exception.message
   end
 RUBY
       end
