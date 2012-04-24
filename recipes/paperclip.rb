@@ -15,14 +15,14 @@ if config['paperclip']
     if recipes.include? 'mongoid'
       create_file 'config/initializers/mongoid-paperclip.rb' do
         <<-RUBY
-require 'mongoid-paperclip'
+require 'mongoid_paperclip'
         RUBY
       end
     end
 
     if recipes.include? 'cloudfiles'
       # Add Storage module file for paperclip in lib
-      get 'https://raw.github.com/gist/2476222/986bf7a49556ac549b75768af5dce2e6e4c67b61/Cloudfilesstorage.rb', 'lib/Cloudfilesstorage.rb'
+      get 'https://raw.github.com/gist/2476222/986bf7a49556ac549b75768af5dce2e6e4c67b61/Cloudfilesstorage.rb', 'lib/cloud_files_storage.rb'
       # Add config initialize file
       create_file 'config/initializers/cloudfiles.rb' do
         <<-RUBY
