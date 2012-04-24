@@ -1,4 +1,4 @@
-if config['mongoid']
+if recipes.include? 'mongoid'
   gem 'formtastic', "~> 2.1.1"
   gem 'activeadmin_mongoid'
 else

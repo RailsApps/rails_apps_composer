@@ -1,9 +1,9 @@
 if config['paperclip']
-  gem 'paperclip'
-
-  if  config['mongoid']
+  if recipes.include? 'mongoid'
     gem 'mongoid-paperclip'
-  end  
+  else
+    gem 'paperclip'
+  end 
 else
   recipes.delete('paperclip')
 end
