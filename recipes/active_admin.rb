@@ -1,4 +1,9 @@
-gem 'activeadmin'
+if recipes.include? 'mongoid'
+  gem 'formtastic', "~> 2.1.1"
+  gem 'activeadmin_mongoid'
+else
+  gem 'activeadmin'
+end
 gem "meta_search",    '>= 1.1.0.pre'
 # sass-rails is also required but is by default in rails
 
