@@ -2,7 +2,7 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/omniauth.rb
 
 if config['omniauth']
-  gem 'omniauth', '>= 1.0.3'
+  gem 'omniauth', '>= 1.1.0'
   # for available gems, see https://github.com/intridea/omniauth/wiki/List-of-Strategies
   case config['provider']
     when 'twitter'

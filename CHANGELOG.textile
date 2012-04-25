@@ -10,6 +10,8 @@ h2. 1.4.7 unreleased
 * correct error when using Cucumber and Capybara recipes together (contributed by Alan Oliver)
 * update gem 'mongoid' from 2.4.8 to 2.4.9
 * update gem 'factory_girl_rails' from 3.1.0 to 3.2.0
+* update gem 'rails-backbone' from 0.7.1 to 0.7.2
+* update gem 'omniauth' from 1.0.3 to 1.1.0
 
 h2. 1.4.6 April 11, 2012
 
