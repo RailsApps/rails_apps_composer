@@ -1,5 +1,14 @@
 h1. CHANGELOG
 
+h2. 1.4.7 unreleased
+
+* add 'paperclip' recipe with support for mongoid and cloudfiles (contributed by merlinvn)
+* add 'cloudfiles' recipe (contributed by merlinvn)
+* improve 'extras' recipe to support mongoid for will_paginate (contributed by merlinvn) 
+* improve 'active_admin' recipe to support mongoid (contributed by merlinvn) 
+* improve 'home_page' recipe to allow use of 'slim' recipe (contributed by Guten Ye)
+* correct error when using Cucumber and Capybara recipes together (contributed by Alan Oliver)
+
 h2. 1.4.6 April 11, 2012
 
 * resolve versioning issues
