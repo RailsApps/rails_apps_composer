@@ -21,6 +21,8 @@ after_bundler do
 %h3 Home
 HAML
     end
+  elsif recipes.include? 'slim'
+    # skip
   else
     remove_file 'app/views/home/index.html.erb'
     create_file 'app/views/home/index.html.erb' do 
