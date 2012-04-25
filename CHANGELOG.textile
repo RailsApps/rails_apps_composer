@@ -9,6 +9,7 @@ h2. 1.4.7 unreleased
 * improve 'home_page' recipe to allow use of 'slim' recipe (contributed by Guten Ye)
 * correct error when using Cucumber and Capybara recipes together (contributed by Alan Oliver)
 * update gem 'mongoid' from 2.4.8 to 2.4.9
+* update gem 'factory_girl_rails' from 3.1.0 to 3.2.0
 
 h2. 1.4.6 April 11, 2012
 
