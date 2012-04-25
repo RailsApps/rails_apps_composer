@@ -1,4 +1,4 @@
-gem 'capybara', :group => [:development, :test] unless config['cucumber']
+gem 'capybara', :group => [:development, :test] unless recipes.include? 'cucumber'
 
 after_bundler do
   create_file "spec/support/capybara.rb", <<-RUBY
