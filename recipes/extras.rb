@@ -20,7 +20,11 @@ end
 
 if config['paginate']
   say_wizard "Adding 'will_paginate'"
-  gem 'will_paginate', '>= 3.0.3'
+  if recipes.include? 'mongoid'
+    gem 'will_paginate_mongoid'
+  else
+    gem 'will_paginate', '>= 3.0.3'
+  end
   recipes << 'paginate'
 end
 
