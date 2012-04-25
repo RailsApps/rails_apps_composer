@@ -8,6 +8,7 @@ h2. 1.4.7 unreleased
 * improve 'active_admin' recipe to support mongoid (contributed by merlinvn) 
 * improve 'home_page' recipe to allow use of 'slim' recipe (contributed by Guten Ye)
 * correct error when using Cucumber and Capybara recipes together (contributed by Alan Oliver)
+* update gem 'mongoid' from 2.4.8 to 2.4.9
 
 h2. 1.4.6 April 11, 2012
 
