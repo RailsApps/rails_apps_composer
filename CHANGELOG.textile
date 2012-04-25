@@ -7,6 +7,7 @@ h2. 1.4.7 unreleased
 * improve 'extras' recipe to support mongoid for will_paginate (contributed by merlinvn) 
 * improve 'active_admin' recipe to support mongoid (contributed by merlinvn) 
 * improve 'home_page' recipe to allow use of 'slim' recipe (contributed by Guten Ye)
+* improve 'omniauth' recipe to add Tumblr to the strategy list (contributed by monfresh)
 * correct error when using Cucumber and Capybara recipes together (contributed by Alan Oliver)
 * update gem 'mongoid' from 2.4.8 to 2.4.9
 * update gem 'factory_girl_rails' from 3.1.0 to 3.2.0
