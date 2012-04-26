@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 1.4.7 unreleased
+h2. 1.4.7 April 25, 2012
 
 * improve 'html5' recipe to move flash messages into partials for application layouts
 * add 'paperclip' recipe with support for mongoid and cloudfiles (contributed by merlinvn)
