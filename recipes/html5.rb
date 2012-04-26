@@ -32,9 +32,11 @@ after_bundler do
     if recipes.include? 'haml'
       # Haml version of a simple application layout
       get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/simple/views/layouts/application.html.haml', 'app/views/layouts/application.html.haml'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/simple/views/layouts/_messages.html.haml', 'app/views/layouts/_messages.html.haml'
     else
       # ERB version of a simple application layout
       get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/simple/views/layouts/application.html.erb', 'app/views/layouts/application.html.erb'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/simple/views/layouts/_messages.html.erb', 'app/views/layouts/_messages.html.erb'
     end
     # simple css styles
     get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/simple/assets/stylesheets/application.css.scss', 'app/assets/stylesheets/application.css.scss'  
@@ -42,9 +44,11 @@ after_bundler do
     if recipes.include? 'haml'
       # Haml version of a complex application layout using Twitter Bootstrap
       get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/application.html.haml', 'app/views/layouts/application.html.haml'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/_messages.html.haml', 'app/views/layouts/_messages.html.haml'
     else
       # ERB version of a complex application layout using Twitter Bootstrap
       get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/application.html.erb', 'app/views/layouts/application.html.erb'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/_messages.html.erb', 'app/views/layouts/_messages.html.erb'
     end
     # complex css styles using Twitter Bootstrap
     get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/assets/stylesheets/application.css.scss', 'app/assets/stylesheets/application.css.scss'
