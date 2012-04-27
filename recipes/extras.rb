@@ -28,6 +28,14 @@ if config['paginate']
   recipes << 'paginate'
 end
 
+if config['jsruntime']
+  say_wizard "Adding 'therubyracer' JavaScript runtime gem"
+  # maybe it was already added by the html5 recipe for bootstrap_less?
+  unless recipes.include? 'jsruntime'
+    gem 'therubyracer', :group => :assets, :platform => :ruby
+  end
+end
+
 __END__
 
 name: Extras
@@ -47,3 +55,6 @@ config:
   - paginate:
       type: boolean
       prompt: Would you like to add 'will_paginate' for pagination?
+  - jsruntime:
+      type: boolean
+      prompt: Add 'therubyracer' JavaScript runtime (for Linux users without node.js)?

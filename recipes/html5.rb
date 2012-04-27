@@ -11,7 +11,10 @@ case config['css_option']
     # https://github.com/seyhunak/twitter-bootstrap-rails
     # http://railscasts.com/episodes/328-twitter-bootstrap-basics
     gem 'twitter-bootstrap-rails', '>= 2.0.3', :group => :assets
+    # please install gem 'therubyracer' to use Less
+    gem 'therubyracer', :group => :assets, :platform => :ruby
     recipes << 'bootstrap'
+    recipes << 'jsruntime'
 
   when 'bootstrap_sass'
     # https://github.com/thomas-mcdonald/bootstrap-sass

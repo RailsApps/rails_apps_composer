@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.4.8 April 26, 2012
+
+* improve 'extras' recipe to offer to install gem 'therubyracer' for Linux users without node.js
+* fix 'html5' recipe to add gem 'therubyracer' for 'Bootstrap with Less' option
+
 h2. 1.4.7 April 25, 2012
 
 * improve 'html5' recipe to move flash messages into partials for application layouts
