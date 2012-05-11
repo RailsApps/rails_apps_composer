@@ -2,7 +2,7 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/haml.rb
 
 if config['haml']
-  gem 'haml', '>= 3.1.4'
+  gem 'haml', '>= 3.1.5'
   gem 'haml-rails', '>= 0.3.4', :group => :development
 else
   recipes.delete('haml')
