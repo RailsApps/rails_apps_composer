@@ -89,6 +89,7 @@ end
 RUBY
         end
       end
+    end
 
     unless recipes.include? 'haml'
 
