@@ -8,6 +8,7 @@ h2. 1.4.9 May 11, 2012
 * fix 'active_admin' recipe to correct typo for activeadmin-mongoid gem (contributed by Alex Kravets)
 * fix 'users_page' recipe to force it to run after 'add_user' recipe
 * fix 'add_user' recipe to remove a uniqueness constraint when Mongoid is used (contributed by nrser)
+* fix 'add_user' recipe to remove superfluous 'attr_accessible' comment
 * update gem 'devise' from 2.1.0.rc to 2.1.0.rc2
 * update gem 'haml' from 3.1.4 to 3.1.5
 * update gem 'rspec-rails' from 2.9.0.rc2 to 2.10.1

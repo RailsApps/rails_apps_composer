@@ -60,6 +60,7 @@ RUBY
         "validates_presence_of :name\n"
       end
       gsub_file 'app/models/user.rb', /validates_uniqueness_of :email/, 'validates_uniqueness_of :name, :email'
+      gsub_file 'app/models/user.rb', /# attr_accessible :title, :body/, ''
     end
 
     # needed for both mongoid and ActiveRecord
