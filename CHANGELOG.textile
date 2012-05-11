@@ -4,6 +4,7 @@ h2. 1.4.9 unreleased
 
 * add 'responders' recipe (contributed by allen13)
 * fix 'active_admin' recipe to correct typo for activeadmin-mongoid gem (contributed by Alex Kravets)
+* fix 'users_page' recipe to force it to run after 'add_user' recipe
 
 h2. 1.4.8 April 26, 2012
 

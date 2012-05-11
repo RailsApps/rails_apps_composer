@@ -160,5 +160,6 @@ name: UsersPage
 description: "Add a users controller and user show page with links from the home page."
 author: RailsApps
 
+run_after: [add_user]
 category: other
 tags: [utilities, configuration]
