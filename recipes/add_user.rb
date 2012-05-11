@@ -74,6 +74,21 @@ RUBY
         gsub_file 'app/models/user.rb', /# field :unconfirmed_email/, "field :unconfirmed_email"
       end
     end
+    if recipes.include? 'devise-invitable'
+      if recipes.include? 'mongoid'
+        gsub_file 'app/models/user.rb', /end/ do
+  <<-RUBY
+  #invitable
+  field :invitation_token, :type => String
+  field :invitation_sent_at, :type => Time
+  field :invitation_accepted_at, :type => Time
+  field :invitation_limit, :type => Integer
+  field :invited_by_id, :type => String
+  field :invited_by_type, :type => String
+end
+RUBY
+        end
+      end
 
     unless recipes.include? 'haml'
 
