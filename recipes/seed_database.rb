@@ -62,7 +62,8 @@ after_everything do
   
   say_wizard "seeding the database"
   run 'bundle exec rake db:seed'
-
+  run 'rake db:mongoid:create_indexes' if recipes.include? 'mongoid'
+  
 end
 
 __END__

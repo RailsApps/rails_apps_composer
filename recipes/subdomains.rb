@@ -11,7 +11,7 @@ if recipes.include? 'haml'
           say_wizard "Subdomains recipe skipped."
         when 'one-per-user'
           # user name as a subdomain
-          inject_into_file 'app/models/user.rb', :before => 'validates_uniqueness_of' do <<-RUBY
+          inject_into_file 'app/models/user.rb', :before => 'attr_accessible' do <<-RUBY
 validates_format_of :name, with: /^[a-z0-9_]+$/, message: 'must be lowercase alphanumerics only'
   validates_length_of :name, maximum: 32, message: 'exceeds maximum of 32 characters'
   validates_exclusion_of :name, in: ['www', 'mail', 'ftp'], message: 'is not available'

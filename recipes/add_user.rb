@@ -39,9 +39,10 @@ RUBY
       # for mongoid
       gsub_file 'app/models/user.rb', /end/ do
   <<-RUBY
+  # run 'rake db:mongoid:create_indexes' to create indexes
+  index :email, :unique => true
   field :name
   validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 end
 RUBY
