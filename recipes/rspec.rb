@@ -2,7 +2,7 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rspec.rb
 
 if config['rspec']
-  gem 'rspec-rails', '>= 2.9.0.rc2', :group => [:development, :test]
+  gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
   if recipes.include? 'mongoid'
     # use the database_cleaner gem to reset the test database
     gem 'database_cleaner', '>= 0.7.2', :group => :test
