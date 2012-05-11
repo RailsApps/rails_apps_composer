@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 1.4.9 unreleased
 
 * add 'responders' recipe (contributed by allen13)
+* fix 'cucumber' recipe to add ':require => false' and avoid warning message
 * fix 'active_admin' recipe to correct typo for activeadmin-mongoid gem (contributed by Alex Kravets)
 * fix 'users_page' recipe to force it to run after 'add_user' recipe
 * fix 'add_user' recipe to remove a uniqueness constraint when Mongoid is used (contributed by nrser)
