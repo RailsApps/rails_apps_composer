@@ -5,6 +5,6 @@ end
 
 __END__
 
-name: rails responders
-description: "Use rails responders."
-author: platformatec
+name: Responders
+description: "Use Responders (https://github.com/plataformatec/responders)."
+author: allen13

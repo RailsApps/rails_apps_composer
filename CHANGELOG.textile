@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.4.9 unreleased
+
+* add 'responders' recipe (contributed by allen13)
+
 h2. 1.4.8 April 26, 2012
 
 * improve 'extras' recipe to offer to install gem 'therubyracer' for Linux users without node.js
