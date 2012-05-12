@@ -19,7 +19,8 @@ validates_format_of :name, with: /^[a-z0-9_]+$/, message: 'must be lowercase alp
 RUBY
           end
           # modify db/seeds.rb
-          gsub_file 'db/seeds.rb', /First User/, 'myname'
+          gsub_file 'db/seeds.rb', /First User/, 'user1'
+          gsub_file 'db/seeds.rb', /Second User/, 'user2'
           # controller and views for the profile page
           create_file 'app/controllers/profiles_controller.rb' do
 <<-RUBY
@@ -62,7 +63,7 @@ RUBY
           end
           # create routes for subdomains
           gsub_file 'config/routes.rb', /root :to => "home#index"/, ''
-          inject_into_file 'config/routes.rb', :after => 'resources :users, :only => :show' do <<-RUBY
+          inject_into_file 'config/routes.rb', :after => 'resources :users, :only => [:show, :index]' do <<-RUBY
 
   constraints(Subdomain) do
     match '/' => 'profiles#show'
