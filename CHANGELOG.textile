@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 1.4.10 unreleased
+h2. 1.4.10 May 11, 2012
 
 * fix 'subdomains' recipe to accommodate recent changes
 * fix 'omniauth_email' recipe to redirect if user's email is blank
