@@ -23,7 +23,7 @@ end
 
 __END__
 
-name: RailsAdmin
+name: ActiveAdmin
 description: "Install Active Admin to build an administration zone data in your application"
 author: systho
 
