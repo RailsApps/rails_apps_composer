@@ -91,6 +91,9 @@ RUBY
       end
     end
 
+    # patch for https://github.com/RailsApps/rails3-application-templates/issues/35
+    gsub_file 'app/models/user.rb', /:remember_meend/, ":remember_me\nend"
+
     unless recipes.include? 'haml'
 
       # Generate Devise views (unless you are using Haml)
