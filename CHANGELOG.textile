@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.4.12 unreleased
+
+* update gem 'bootstrap-sass' from 2.0.1 to 2.0.3
+
 h2. 1.4.11 May 13, 2012
 
 * fix 'add_user' recipe to add patch for https://github.com/RailsApps/rails3-application-templates/issues/35

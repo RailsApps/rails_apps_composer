@@ -19,7 +19,7 @@ case config['css_option']
   when 'bootstrap_sass'
     # https://github.com/thomas-mcdonald/bootstrap-sass
     # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
-    gem 'bootstrap-sass', '>= 2.0.1'
+    gem 'bootstrap-sass', '>= 2.0.3'
     recipes << 'bootstrap'
 
 end
