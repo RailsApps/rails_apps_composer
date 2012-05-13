@@ -140,6 +140,37 @@ RUBY
     end
 
   end
+
+  after_everything do
+
+    say_wizard "OmniAuth recipe running 'after everything'"
+
+    if recipes.include? 'rspec'
+      say_wizard "Copying RSpec files from the rails3-mongoid-omniauth examples"
+      begin
+        # copy all the RSpec specs files from the rails3-mongoid-omniauth example app
+        # spec_helper
+        remove_file 'spec/spec_helper.rb'
+        get 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/spec/spec_helper.rb', 'spec/spec_helper.rb'
+        # factories
+        remove_file 'spec/factories/users.rb'
+        get 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/spec/factories/users.rb', 'spec/factories/users.rb'
+        # controllers
+        get 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/spec/controllers/sessions_controller_spec.rb', 'spec/controllers/sessions_controller_spec.rb'
+        remove_file 'spec/controllers/home_controller_spec.rb'
+        remove_file 'spec/controllers/users_controller_spec.rb'
+        get 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/spec/controllers/home_controller_spec.rb', 'spec/controllers/home_controller_spec.rb'
+        get 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/spec/controllers/users_controller_spec.rb', 'spec/controllers/users_controller_spec.rb'
+        # models
+        remove_file 'spec/models/user_spec.rb'
+        get 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/spec/models/user_spec.rb', 'spec/models/user_spec.rb'
+      rescue OpenURI::HTTPError
+        say_wizard "Unable to obtain RSpec example files from the repo"
+      end
+    end
+    
+  end
+
 end
 
 __END__

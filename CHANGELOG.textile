@@ -3,11 +3,14 @@ h1. CHANGELOG
 h2. 1.4.11 May 13, 2012
 
 * fix 'add_user' recipe to add patch for https://github.com/RailsApps/rails3-application-templates/issues/35
+* update 'omniauth' recipe to add RSpec tests (contributed by Taylor Mock)
+* update gem 'mongoid' from 2.4.9 to 2.4.10
+* update gem 'factory_girl_rails' from 3.2.0 to 3.3.0
 
 h2. 1.4.10 May 11, 2012
 
 * fix 'subdomains' recipe to accommodate recent changes
-* fix 'omniauth_email' recipe to redirect if user's email is blank
+* fix 'omniauth_email' recipe to redirect if user's email is blank (contributed by Taylor Mock)
 
 h2. 1.4.9 May 11, 2012
 
