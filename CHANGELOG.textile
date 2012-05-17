@@ -1,8 +1,12 @@
 h1. CHANGELOG
 
-h2. 1.4.12 unreleased
+h2. 1.4.12 May 17, 2012
 
+* update 'action_mailer' recipe to allow choice of sending email via SMTP, Gmail, or SendGrid accounts
 * update gem 'bootstrap-sass' from 2.0.1 to 2.0.3
+* remove 'add_user' patch for https://github.com/RailsApps/rails3-application-templates/issues/35
+* update gem 'haml' from 3.1.5 to 3.1.6
+* update gem 'devise' from 2.1.0.rc2 to 2.1.0
 
 h2. 1.4.11 May 13, 2012
 

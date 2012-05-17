@@ -6,12 +6,12 @@ case config['devise']
     recipes.delete('devise')
     say_wizard "Devise recipe skipped."
   when 'standard'
-    gem 'devise', '>= 2.1.0.rc2'
+    gem 'devise', '>= 2.1.0'
   when 'confirmable'
-    gem 'devise', '>= 2.1.0.rc2'
+    gem 'devise', '>= 2.1.0'
     recipes << 'devise-confirmable'
   when 'invitable'
-    gem 'devise', '>= 2.1.0.rc2'
+    gem 'devise', '>= 2.1.0'
     gem 'devise_invitable', '>= 1.0.1'
     recipes << 'devise-confirmable'
     recipes << 'devise-invitable'

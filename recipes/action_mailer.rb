@@ -1,6 +1,16 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/action_mailer.rb
 
+case config['mailer']
+  when 'smtp'
+    recipes << 'smtp'
+  when 'gmail'
+    recipes << 'gmail'
+  when 'sendgrid'
+    gem 'sendgrid'
+    recipes << 'sendgrid'
+end
+
 after_bundler do
   ### modifying environment configuration files for ActionMailer
   say_wizard "ActionMailer recipe running 'after bundler'"
@@ -10,8 +20,8 @@ after_bundler do
   <<-RUBY
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
-  # change to false to prevent email from being sent during development
-  config.action_mailer.perform_deliveries = true
+  # change to true to allow email to be sent during development
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 RUBY
@@ -40,7 +50,7 @@ RUBY
   end
 
   ### modifying environment configuration files to send email using a GMail account
-  if config['gmail']
+  if recipes.include? 'gmail'
     gmail_configuration_text = <<-TEXT
 \n
   config.action_mailer.smtp_settings = {
@@ -59,17 +69,38 @@ TEXT
   end
   
 end
+
+  ### modifying environment configuration files to send email using a SendGrid account
+  if recipes.include? 'sendgrid'
+    sendgrid_configuration_text = <<-TEXT
+\n
+  config.action_mailer.smtp_settings = {
+    address: "smtp.sendgrid.net",
+    port: 25,
+    domain: "example.com",
+    authentication: "plain",
+    user_name: ENV["SENDGRID_USERNAME"],
+    password: ENV["SENDGRID_PASSWORD"]
+  }
+TEXT
+    say_wizard gmail_configuration_text
+    inject_into_file 'config/environments/development.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
+    inject_into_file 'config/environments/production.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
+  end
   
+end
+
 __END__
 
 name: ActionMailer
-description: "Configure ActionMailer to show errors during development and suppress failures when the app is deployed to production."
+description: "Configure ActionMailer for email."
 author: RailsApps
 
 category: other
 tags: [utilities, configuration]
 
 config:
-  - gmail:
-      type: boolean
-      prompt: Would you like the app to use a GMail account to send email?
+  - mailer:
+      type: multiple_choice
+      prompt: "How will you send email?"
+      choices: [["SMTP account", smtp], ["Gmail account", gmail], ["SendGrid account", sendgrid]]
