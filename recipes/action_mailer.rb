@@ -67,8 +67,6 @@ TEXT
     inject_into_file 'config/environments/development.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
   end
-  
-end
 
   ### modifying environment configuration files to send email using a SendGrid account
   if recipes.include? 'sendgrid'
