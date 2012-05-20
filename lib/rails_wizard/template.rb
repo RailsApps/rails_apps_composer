@@ -1,9 +1,10 @@
 module RailsWizard
   class Template
-    attr_reader :recipes
+    attr_reader :recipes, :defaults
 
-    def initialize(recipes)
+    def initialize(recipes, defaults={})
       @recipes = recipes.map{|r| RailsWizard::Recipe.from_mongo(r)}
+      @defaults = defaults
     end
 
     def self.template_root

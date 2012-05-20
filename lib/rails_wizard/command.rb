@@ -99,7 +99,7 @@ module RailsWizard
         else
           file = Tempfile.new('template')
         end
-        template = RailsWizard::Template.new(recipes)
+        template = RailsWizard::Template.new(recipes, defaults)
         file.write template.compile
         file.close
         if name
