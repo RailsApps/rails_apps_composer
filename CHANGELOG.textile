@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.4.14 unreleased
+
+* minor update to 'action_mailer' recipe for "Mandrill by MailChimp" option
+
 h2. 1.4.13 May 19, 2012
 
 * update 'action_mailer' recipe to add "Mandrill by MailChimp" option

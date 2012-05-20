@@ -97,7 +97,7 @@ TEXT
       :address   => "smtp.mandrillapp.com",
       :port      => 25,
       :user_name => ENV["MANDRILL_USERNAME"],
-      :password  => ENV["MANDRILL_PASSWORD"]
+      :password  => ENV["MANDRILL_API_KEY"]
     }
   TEXT
       say_wizard gmail_configuration_text
