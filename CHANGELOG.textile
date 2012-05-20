@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 1.4.14 unreleased
+h2. 1.4.14 May 20, 2012
 
 * update 'add_user' recipe to rename folders used for Devise Haml views
 * minor update to 'action_mailer' recipe for "Mandrill by MailChimp" option
