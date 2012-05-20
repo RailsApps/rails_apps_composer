@@ -32,6 +32,7 @@ module RailsWizard
           end
         end
 
+        list.each {|recipe| recipe.defaults = defaults[recipe.key] }
         list
       end
     end
