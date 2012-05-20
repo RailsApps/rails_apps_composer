@@ -92,10 +92,8 @@ RUBY
     end
 
     unless recipes.include? 'haml'
-
       # Generate Devise views (unless you are using Haml)
       run 'rails generate devise:views'
-      
       # Modify Devise views to add 'name'
       inject_into_file "app/views/devise/registrations/edit.html.erb", :after => "<%= devise_error_messages! %>\n" do
       <<-ERB
@@ -103,25 +101,17 @@ RUBY
 <%= f.text_field :name %></p>
 ERB
       end
-
       inject_into_file "app/views/devise/registrations/new.html.erb", :after => "<%= devise_error_messages! %>\n" do
       <<-ERB
 <p><%= f.label :name %><br />
 <%= f.text_field :name %></p>
 ERB
       end
-
     else
-
       # copy Haml versions of modified Devise views
-      inside 'app/views/devise' do
-        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/rails3-mongoid-devise/app/views/devise/_links.erb', '_links.erb'
-      end
-      inside 'app/views/devise/registrations' do
-        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/rails3-mongoid-devise/app/views/devise/registrations/edit.html.haml', 'edit.html.haml'
-        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/rails3-mongoid-devise/app/views/devise/registrations/new.html.haml', 'new.html.haml'
-      end
-
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/shared/_links.html.haml', 'app/views/devise/shared/_links.html.haml'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/registrations/edit.html.haml', 'app/views/devise/registrations/edit.html.haml'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/registrations/new.html.haml', 'app/views/devise/registrations/new.html.haml'
     end
 
   end
