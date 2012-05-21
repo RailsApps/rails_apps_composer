@@ -3,10 +3,15 @@ require 'spec_helper'
 describe RailsWizard::Template do
   subject{ RailsWizard::Template }
   let(:recipe){ RailsWizard::Recipe.generate('name','# test') }
+  let(:defaults){ { "some_option" => "value" } }
 
   describe '#initialize' do
     it 'should work with classes' do
       subject.new([recipe]).recipes.should == [recipe]
+    end
+
+    it 'should accept optional defaults' do
+      subject.new([recipe], defaults).defaults.should == defaults
     end
   end
 
