@@ -9,7 +9,6 @@ module RailsWizard
     method_option :defaults, :type => :string, :aliases => "-d"
     def new(name)
       recipes, defaults = load_defaults
-      puts recipes.inspect
       recipes = ask_for_recipes(recipes)
       run_template(name, recipes, defaults, nil)
     end
