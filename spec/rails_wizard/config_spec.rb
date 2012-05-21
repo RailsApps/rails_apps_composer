@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe RailsWizard::Config do
   describe '#initialize' do
-    subject{ RailsWizard::Config.new(YAML.load(@schema)) }  
+    let(:defaults) { nil }
+    subject{ RailsWizard::Config.new(YAML.load(@schema), defaults) }
     it 'should add a question key for each key of the schema' do
       @schema = <<-YAML
       - test:
@@ -71,6 +72,14 @@ describe RailsWizard::Config do
 
       it 'should handle "unelss_recipe"' do
         lines[3].should be_include("!recipe?('awesome')")
+      end
+
+      describe 'with defaults' do
+        let(:defaults) { { 'multiple_choice' => 'def' }}
+
+        it 'should process defaults' do
+          lines[0].should == 'config = {"multiple_choice"=>"def"}'
+        end
       end
     end
 

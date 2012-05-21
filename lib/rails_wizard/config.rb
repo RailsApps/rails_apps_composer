@@ -2,10 +2,11 @@ require 'active_support/ordered_hash'
 
 module RailsWizard
   class Config
-    attr_reader :questions
+    attr_reader :questions, :defaults
 
-    def initialize(schema)
+    def initialize(schema, defaults=nil)
       @questions = ActiveSupport::OrderedHash.new
+      @defaults = defaults
       schema.each do |hash| 
         key = hash.keys.first
         details = hash.values.first
@@ -18,6 +19,7 @@ module RailsWizard
 
     def compile(values = {})
       result = []
+      values.merge!(defaults) if defaults
       result << "config = #{values.inspect}"
       @questions.each_pair do |key, question|
         result << "config['#{key}'] = #{question.compile} unless config.key?('#{key}')"

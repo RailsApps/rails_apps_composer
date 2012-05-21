@@ -14,7 +14,7 @@ module RailsWizard
       self.key <=> another.key
     end
 
-    ATTRIBUTES = %w(key args category name description template config exclusive tags run_before run_after requires)
+    ATTRIBUTES = %w(key args category name description template config exclusive tags run_before run_after requires defaults)
     DEFAULT_ATTRIBUTES = {
       :category => 'other',
       :args => [],
@@ -73,7 +73,7 @@ module RailsWizard
 
     def self.config
       return nil unless attributes[:config]
-      RailsWizard::Config.new(attributes[:config])
+      RailsWizard::Config.new(attributes[:config], attributes[:defaults])
     end
 
     def attributes
