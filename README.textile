@@ -1,8 +1,11 @@
 h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer Gem
 
-A gem with recipes to create Rails application templates you can use to generate Rails starter apps. Creates ready-to-run Rails web applications. Makes it easy to create and maintain a starter app.
+What you can do with the rails_apps_composer gem:
 
-We use the rails_apps_composer gem to create the "Rails Example Apps":http://railsapps.github.com/ for the "Rails Apps project":https://github.com/RailsApps.
+* Create and maintain a starter app.
+* Make an application template that generates a complex Rails app in seconds.
+
+We use the rails_apps_composer gem to create the "Rails Example Apps":http://railsapps.github.com/ for the "RailsApps project":https://github.com/RailsApps.
 
 Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
@@ -12,26 +15,27 @@ The rails_apps_composer gem is a fork of "Michael Bleigh's RailsWizard gem":http
 
 h4. Alternatives
 
-See a list of "Rails Application Template Projects":http://railsapps.github.com/rails-application-templates.html, particularly a list of "Application template-generating gems."
-
 Notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/.
+
+See a list of "Rails Application Template Projects":http://railsapps.github.com/rails-application-templates.html, particularly a list of "Application template-generating gems."
 
 h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:http://www.twitter.com/rails_apps Follow on Twitter
 
 Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. Tweet some praise if you like what you've found.
 
-h2. Suggested Uses
-
-* Create a starter app.
-* Make an application template that generates a new Rails app in seconds.
+h2. Purpose
 
 Any developer can quickly generate a Rails web application using the @rails new@ command. In practice, experienced Rails developers typically add an assortment of useful additional packages (gems) before beginning development of any web application. A developer often uses the same set of packages to get started and may create a "starter app" that can be copied and reused for any new project.
 
 It can be a hassle to integrate some of the most commonly used gems, particularly when new versions are released and there are minor "gotchas" that interfere with gems working together. Despite the apparent convenience of creating a starter app, it can be time consuming to maintain and update a starter app as component packages evolve. This project aims to simplify the process of building and maintaining a starter app by providing mix-and-match recipes to assemble the most commonly used Rails packages.
 
-If you use this gem to create your Rails starter app, you can expect the pieces to work together. If they don't, you can report problems and look for identified "issues":http://github.com/RailsApps/rails_apps_composer/issues (and perhaps contributed fixes).
+h2. Issues
 
 Hundreds of developers are using this gem to build starter apps. As you can see from the commit log, the gem is actively maintained and the collection of recipes is growing.
+
+There is problem with all this activity, however. No developer who uses the rails_apps_composer gem uses all the recipes. And it would be very difficult to test a recipe in every possible combination. Consequently, combining some recipes may not work. We've provided some examples from the "RailsApps project":https://github.com/RailsApps that are known to work together (see "Examples"). If you're combining recipes, you'll have to experiment. Add recipes one-by-one and realize that some recipes may not be compatible.
+
+Have you found problems? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
 h2. Dependencies
 
@@ -76,7 +80,7 @@ Use the @~/.rac@ file to specify a list of recipes and recipe preferences. See d
 
 h4. Generate a Template
 
-You may want a template to customize or share with others. See various "application templates":https://github.com/RailsApps/rails3-application-templates from the "Rails Apps project":https://github.com/RailsApps. 
+You may want a template to customize or share with others. See various "application templates":https://github.com/RailsApps/rails3-application-templates from the "RailsApps project":https://github.com/RailsApps. 
 
 <pre>
 $ rails_apps_composer template ~/Desktop/template.txt -r haml home_page html5
@@ -199,7 +203,7 @@ The maintainers and contributors to the project can't test every combination of 
 
 h2. Examples
 
-We use the rails_apps_composer gem to create the "Rails Example Apps":http://railsapps.github.com/ for the "Rails Apps project":https://github.com/RailsApps. These example apps have been used by thousands of Rails developers. The recipes used for the Rails Apps examples are well-integrated and known to work in the specific combinations listed below.
+We use the rails_apps_composer gem to create the "Rails Example Apps":http://railsapps.github.com/ for the "RailsApps project":https://github.com/RailsApps. These example apps have been used by thousands of Rails developers. The recipes used for the RailsApps examples are well-integrated and known to work in the specific combinations listed below.
 
 h4. Template for Rails 3 + Haml + HTML5
 
@@ -336,13 +340,9 @@ h4. About Rails Application Templates
 "Railscasts: App Templates in Rails 2.3 (9 Feb 2009) by Ryan Bates":http://railscasts.com/episodes/148-app-templates-in-rails-2-3
 "Rails templates (4 Dec 2008) by Pratik Naik":http://m.onkey.org/rails-templates
 
-h2. Issues
-
-Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
-
 h2. Credits
 
-Daniel Kehoe maintains this gem as part of the "Rails Apps Project":http://railsapps.github.com/.
+Daniel Kehoe maintains this gem as part of the "RailsApps Project":http://railsapps.github.com/.
 
 This gem is based on "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard. The original idea for a RailsWizard and the innovative implementation is the work of Michael Bleigh.
 
