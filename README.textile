@@ -1,4 +1,4 @@
-h1. Rails Apps Composer Gem
+h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer Gem
 
 A gem with recipes to create Rails application templates you can use to generate Rails starter apps. Creates ready-to-run Rails web applications. Makes it easy to create and maintain a starter app.
 
