@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.4.15 May 21, 2012
+
+* New "defaults" option to specify recipes and preferences (contributed by Bryan Stearns)
+* revised README
+
 h2. 1.4.14 May 20, 2012
 
 * update 'add_user' recipe to rename folders used for Devise Haml views
