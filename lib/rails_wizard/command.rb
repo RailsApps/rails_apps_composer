@@ -106,6 +106,12 @@ module RailsWizard
         else
           file = Tempfile.new('template')
         end
+
+        unless gems.empty? # give the gems to the internal 'gems' recipe
+          recipes << 'gems'
+          (defaults['gems'] = {})['gems'] = gems
+        end
+
         template = RailsWizard::Template.new(recipes, defaults)
         file.write template.compile
         file.close

@@ -7,7 +7,7 @@ module RailsWizard
     def initialize(schema, defaults=nil)
       @questions = ActiveSupport::OrderedHash.new
       @defaults = defaults
-      schema.each do |hash| 
+      (schema || []).each do |hash|
         key = hash.keys.first
         details = hash.values.first
 

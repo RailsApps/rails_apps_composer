@@ -72,7 +72,7 @@ module RailsWizard
     end
 
     def self.config
-      return nil unless attributes[:config]
+      return nil unless attributes[:config] || attributes[:defaults]
       RailsWizard::Config.new(attributes[:config], attributes[:defaults])
     end
 
