@@ -6,20 +6,22 @@ module RailsWizard
     include Thor::Actions
     desc "new APP_NAME", "create a new Rails app"
     method_option :recipes, :type => :array, :aliases => "-r"
+    method_option :gems, :type => :array, :aliases => "-g"
     method_option :defaults, :type => :string, :aliases => "-d"
     def new(name)
-      recipes, defaults = load_defaults
-      recipes = ask_for_recipes(recipes)
-      run_template(name, recipes, defaults, nil)
+      recipes, gems, defaults = load_defaults
+      recipes, gems = ask_for_recipes(recipes, gems)
+      run_template(name, recipes, gems, defaults, nil)
     end
 
     desc "template TEMPLATE_FILE", "create a new Rails template"
     method_option :recipes, :type => :array, :aliases => "-r"
+    method_option :gems, :type => :array, :aliases => "-g"
     method_option :defaults, :type => :string, :aliases => "-d"
     def template(template_name)
-      recipes, defaults = load_defaults
-      recipes = ask_for_recipes(recipes)
-      run_template(nil, recipes, defaults, template_name)
+      recipes, gems, defaults = load_defaults
+      recipes, gems = ask_for_recipes(recipes, gems)
+      run_template(nil, recipes, gems, defaults, template_name)
     end
 
     desc "list [CATEGORY]", "list available recipes (optionally by category)"
@@ -52,10 +54,11 @@ module RailsWizard
           {}
         end
         recipes = defaults.delete('recipes') { [] }
-        [recipes, defaults]
+        gems = defaults.delete('gems') { [] }
+        [recipes, gems, defaults]
       end
 
-      def print_recipes(recipes)
+      def print_recipes(recipes, gems)
         puts
         puts "#{bold}#{cyan}Available Recipes#{clear}:"
         RailsWizard::Recipes.categories.each do |category|
@@ -63,14 +66,20 @@ module RailsWizard
             recipes.include?(recipe) ? "#{green}#{bold}#{recipe}#{clear}" : recipe
           }.join(', ')
         end
+        unless gems.empty?
+          puts "\n#{bold}#{cyan}Additional Gems#{clear}: " +
+               gems.map {|gem| "#{green}#{bold}#{gem}#{clear}" }.join(', ')
+        end
         puts
       end
 
-      def ask_for_recipes(recipes)
-        if options[:recipes]
-          return recipes + options[:recipes]
+      def ask_for_recipes(recipes, gems)
+        if options[:recipes] || options[:gems]
+          recipes = [recipes + options[:recipes]].flatten if options[:recipes]
+          gems = [gems + options[:gems]].flatten if options[:gems]
+          return [recipes, gems]
         end
-        while recipe = ask("#{print_recipes(recipes)}#{bold}Which recipe would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
+        while recipe = ask("#{print_recipes(recipes, gems)}#{bold}Which recipe or gem would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
           if recipe == ''
             break
           elsif recipes.include?(recipe)
@@ -78,16 +87,15 @@ module RailsWizard
           elsif RailsWizard::Recipes.list.include?(recipe)
             recipes << recipe
           else
-            puts
-            puts "> #{red}Invalid recipe, please try again.#{clear}"
+            gems << recipe
           end
         end
-        recipes
+        [recipes, gems]
       end
 
       #pass in name if you want to create a rails app
       #pass in file_name if you want to create a template
-      def run_template(name, recipes, defaults, file_name=nil)
+      def run_template(name, recipes, gems, defaults, file_name=nil)
         puts
         puts
         puts "#{bold}Generating#{name ? " and Running" : ''} Template..."
