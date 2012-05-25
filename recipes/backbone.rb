@@ -18,6 +18,6 @@ category: assets
 tags: [javascript, framework]
 
 config:
-  - haml:
+  - backbone:
       type: boolean
       prompt: Would you like to use the Backbone.js MVC framework?
