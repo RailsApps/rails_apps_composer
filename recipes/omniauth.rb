@@ -45,7 +45,11 @@ RUBY
     # add a user model (unless another recipe did so already)
     unless recipes.include? 'add_user'
       generate(:model, "user provider:string uid:string name:string email:string")
+<<<<<<< HEAD
       gsub_file 'app/models/user.rb', /end/ do
+=======
+      gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
+>>>>>>> 79e0009... Changed regex to match the last `end` in the file
 <<-RUBY
   attr_accessible :provider, :uid, :name, :email
 end

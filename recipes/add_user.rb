@@ -7,7 +7,11 @@ after_bundler do
   
   if recipes.include? 'omniauth'
     generate(:model, "user provider:string uid:string name:string email:string")
+<<<<<<< HEAD
     gsub_file 'app/models/user.rb', /end/ do
+=======
+    gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
+>>>>>>> 79e0009... Changed regex to match the last `end` in the file
 <<-RUBY
   attr_accessible :provider, :uid, :name, :email
 end
@@ -29,6 +33,13 @@ RUBY
       # insert 'rolify' method in 'app/models/users.rb'
       if recipes.include? 'mongoid'
         generate 'rolify:role Role User mongoid'
+	# correct the generation of rolify 3.1 with mongoid
+	# the call to `rolify` should be *after* the inclusion of mongoid
+	# (see https://github.com/EppO/rolify/issues/61)
+	# This isn't needed for rolify>=3.2.0.beta4, but should cause no harm
+	gsub_file 'app/models/user.rb',
+		  /^\s*(rolify.*?)$\s*(include Mongoid::Document.*?)$/,
+		  "  \\2\n  extend Rolify\n  \\1\n"
       else
         generate 'rolify:role Role User'
       end
@@ -37,7 +48,11 @@ RUBY
     # Add a 'name' attribute to the User model
     if recipes.include? 'mongoid'
       # for mongoid
+<<<<<<< HEAD
       gsub_file 'app/models/user.rb', /end/ do
+=======
+      gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
+>>>>>>> 79e0009... Changed regex to match the last `end` in the file
   <<-RUBY
   # run 'rake db:mongoid:create_indexes' to create indexes
   index :email, :unique => true
@@ -76,7 +91,11 @@ RUBY
     end
     if recipes.include? 'devise-invitable'
       if recipes.include? 'mongoid'
+<<<<<<< HEAD
         gsub_file 'app/models/user.rb', /end/ do
+=======
+        gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
+>>>>>>> 79e0009... Changed regex to match the last `end` in the file
   <<-RUBY
   #invitable
   field :invitation_token, :type => String
