@@ -35,7 +35,7 @@ RUBY
 	# This isn't needed for rolify>=3.2.0.beta4, but should cause no harm
 	gsub_file 'app/models/user.rb',
 		  /^\s*(rolify.*?)$\s*(include Mongoid::Document.*?)$/,
-		  "  \\2\n  \\1\n"
+		  "  \\2\n  extend Rolify\n  \\1\n"
       else
         generate 'rolify:role Role User'
       end
