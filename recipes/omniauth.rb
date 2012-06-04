@@ -45,7 +45,7 @@ RUBY
     # add a user model (unless another recipe did so already)
     unless recipes.include? 'add_user'
       generate(:model, "user provider:string uid:string name:string email:string")
-      gsub_file 'app/models/user.rb', /end/ do
+      gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
 <<-RUBY
   attr_accessible :provider, :uid, :name, :email
 end

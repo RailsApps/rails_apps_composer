@@ -7,7 +7,7 @@ after_bundler do
   
   if recipes.include? 'omniauth'
     generate(:model, "user provider:string uid:string name:string email:string")
-    gsub_file 'app/models/user.rb', /end/ do
+    gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
 <<-RUBY
   attr_accessible :provider, :uid, :name, :email
 end
@@ -37,7 +37,7 @@ RUBY
     # Add a 'name' attribute to the User model
     if recipes.include? 'mongoid'
       # for mongoid
-      gsub_file 'app/models/user.rb', /end/ do
+      gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
   <<-RUBY
   # run 'rake db:mongoid:create_indexes' to create indexes
   index :email, :unique => true
@@ -76,7 +76,7 @@ RUBY
     end
     if recipes.include? 'devise-invitable'
       if recipes.include? 'mongoid'
-        gsub_file 'app/models/user.rb', /end/ do
+        gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
   <<-RUBY
   #invitable
   field :invitation_token, :type => String

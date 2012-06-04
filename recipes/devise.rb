@@ -12,7 +12,7 @@ case config['devise']
     recipes << 'devise-confirmable'
   when 'invitable'
     gem 'devise', '>= 2.1.0'
-    gem 'devise_invitable', '>= 1.0.1'
+    gem 'devise_invitable', '>= 1.0.2'
     recipes << 'devise-confirmable'
     recipes << 'devise-invitable'
   else
