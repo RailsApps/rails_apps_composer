@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 1.5.1 June 4, 2012
+h2. 1.5.1 unreleased
 
 * update gem 'devise_invitable' from 1.0.1 to 1.0.2
 * update gem 'database_cleaner' from 0.7.2 to 0.8.0
