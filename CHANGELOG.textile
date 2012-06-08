@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 1.5.1 unreleased
+h2. 1.5.1 June 8, 2012
 
 * update 'devise' recipe to use 'rolify 3.2.0.beta4' with Mongoid
 * update gem 'bson_ext' from 1.6.2 to 1.6.4
