@@ -2,6 +2,8 @@ h1. CHANGELOG
 
 h2. 1.5.1 unreleased
 
+* update gem 'bson_ext' from 1.6.2 to 1.6.4
+* update gem 'mongoid' from 2.4.10 to 2.4.11
 * update gem 'devise_invitable' from 1.0.1 to 1.0.2
 * update gem 'database_cleaner' from 0.7.2 to 0.8.0
 * fix 'omniauth' and 'add_user' recipes to improve regex for gsub_file (contributed by Hosam Aly)
