@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 1.5.1 unreleased
 
+* update 'devise' recipe to use 'rolify 3.2.0.beta4' with Mongoid
 * update gem 'bson_ext' from 1.6.2 to 1.6.4
 * update gem 'mongoid' from 2.4.10 to 2.4.11
 * update gem 'devise_invitable' from 1.0.1 to 1.0.2

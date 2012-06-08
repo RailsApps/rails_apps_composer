@@ -22,7 +22,11 @@ end
 
 if config['authorization']
   gem 'cancan', '>= 1.6.7'
-  gem 'rolify', '>= 3.1.0'
+  if recipes.include? 'mongoid'
+    gem 'rolify', '>= 3.2.0.beta4'
+  else
+    gem 'rolify', '>= 3.1.0'
+  end
   recipes << 'authorization'
 end
 
