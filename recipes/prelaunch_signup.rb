@@ -151,7 +151,6 @@ config.active_support.deprecation = :notify
   config.action_mailer.default :charset => "utf-8"
 RUBY
   end
-
   ### modifying environment configuration files to send email using a GMail account
   if recipes.include? 'gmail'
     gmail_configuration_text = <<-TEXT
@@ -170,7 +169,6 @@ TEXT
     inject_into_file 'config/environments/development.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
   end
-
   ### modifying environment configuration files to send email using a SendGrid account
   if recipes.include? 'sendgrid'
     sendgrid_configuration_text = <<-TEXT
@@ -188,7 +186,6 @@ TEXT
     inject_into_file 'config/environments/development.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
   end
-  
     ### modifying environment configuration files to send email using a Mandrill account
     if recipes.include? 'mandrill'
       mandrill_configuration_text = <<-TEXT
@@ -204,7 +201,6 @@ TEXT
       inject_into_file 'config/environments/development.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
       inject_into_file 'config/environments/production.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     end
-    
 end
 
 # >--------------------------------[ Devise ]---------------------------------<
@@ -369,12 +365,12 @@ end
 # >-------------------------------[ UsersPage ]-------------------------------<
 after_bundler do
   say_wizard "UsersPage recipe running 'after bundler'"
-    #----------------------------------------------------------------------------
-    # Create a users controller
-    #----------------------------------------------------------------------------
-    generate(:controller, "users show index")
-    remove_file 'app/controllers/users_controller.rb'
-    create_file 'app/controllers/users_controller.rb' do <<-RUBY
+  #----------------------------------------------------------------------------
+  # Create a users controller
+  #----------------------------------------------------------------------------
+  generate(:controller, "users show index")
+  remove_file 'app/controllers/users_controller.rb'
+  create_file 'app/controllers/users_controller.rb' do <<-RUBY
 class UsersController < ApplicationController
   before_filter :authenticate_user!
 
@@ -388,67 +384,59 @@ class UsersController < ApplicationController
 
 end
 RUBY
-    end
-    if recipes.include? 'authorization'
-      inject_into_file 'app/controllers/users_controller.rb', "    authorize! :index, @user, :message => 'Not authorized as an administrator.'\n", :after => "def index\n"
-    end
-    #----------------------------------------------------------------------------
-    # Limit access to the users#index page
-    #----------------------------------------------------------------------------
-    if recipes.include? 'authorization'
-      inject_into_file 'app/models/ability.rb', :after => "def initialize(user)\n" do <<-RUBY
+  end
+  inject_into_file 'app/controllers/users_controller.rb', "    authorize! :index, @user, :message => 'Not authorized as an administrator.'\n", :after => "def index\n"
+  #----------------------------------------------------------------------------
+  # Limit access to the users#index page
+  #----------------------------------------------------------------------------
+  inject_into_file 'app/models/ability.rb', :after => "def initialize(user)\n" do <<-RUBY
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
     end
 RUBY
-      end
-    end
-    #----------------------------------------------------------------------------
-    # Modify the routes
-    #----------------------------------------------------------------------------
-    # @devise_for :users@ route must be placed above @resources :users, :only => :show@.
-    gsub_file 'config/routes.rb', /get \"users\/show\"/, ''
-    gsub_file 'config/routes.rb', /get \"users\/index\"/, ''
-    gsub_file 'config/routes.rb', /devise_for :users/ do
+  end
+  #----------------------------------------------------------------------------
+  # Modify the routes
+  #----------------------------------------------------------------------------
+  # @devise_for :users@ route must be placed above @resources :users, :only => :show@.
+  gsub_file 'config/routes.rb', /get \"users\/show\"/, ''
+  gsub_file 'config/routes.rb', /get \"users\/index\"/, ''
+  gsub_file 'config/routes.rb', /devise_for :users/ do
     <<-RUBY
 devise_for :users
   resources :users, :only => [:show, :index]
 RUBY
-    end
-    #----------------------------------------------------------------------------
-    # Create a users index page
-    #----------------------------------------------------------------------------
-    if recipes.include? 'haml'
-      remove_file 'app/views/users/index.html.haml'
-      create_file 'app/views/users/index.html.haml' do <<-'HAML'
+  end
+  #----------------------------------------------------------------------------
+  # Create a users index page
+  #----------------------------------------------------------------------------
+  remove_file 'app/views/users/index.html.haml'
+  create_file 'app/views/users/index.html.haml' do <<-'HAML'
 %h2 Users
 - @users.each do |user|
   %br/
   #{link_to user.email, user} signed up #{user.created_at.to_date}
 HAML
-      end
-    end
-    #----------------------------------------------------------------------------
-    # Create a users show page
-    #----------------------------------------------------------------------------
-    if recipes.include? 'haml'
-      remove_file 'app/views/users/show.html.haml'
-      create_file 'app/views/users/show.html.haml' do <<-'HAML'
+  end
+  #----------------------------------------------------------------------------
+  # Create a users show page
+  #----------------------------------------------------------------------------
+  remove_file 'app/views/users/show.html.haml'
+  create_file 'app/views/users/show.html.haml' do <<-'HAML'
 %p
   User: #{@user.name}
 %p
   Email: #{@user.email if @user.email}
 HAML
-      end
-    end
-    #----------------------------------------------------------------------------
-    # Create a home page containing links to user show pages
-    # (clobbers code from the home_page_users recipe)
-    #----------------------------------------------------------------------------
-    # set up the controller
-    remove_file 'app/controllers/home_controller.rb'
-    create_file 'app/controllers/home_controller.rb' do
+  end
+  #----------------------------------------------------------------------------
+  # Create a home page containing links to user show pages
+  # (clobbers code from the home_page_users recipe)
+  #----------------------------------------------------------------------------
+  # set up the controller
+  remove_file 'app/controllers/home_controller.rb'
+  create_file 'app/controllers/home_controller.rb' do
     <<-RUBY
 class HomeController < ApplicationController
   def index
@@ -456,18 +444,16 @@ class HomeController < ApplicationController
   end
 end
 RUBY
-    end
-    # modify the home page
-    if recipes.include? 'haml'
-      remove_file 'app/views/home/index.html.haml'
-      create_file 'app/views/home/index.html.haml' do
+  end
+  # modify the home page
+  remove_file 'app/views/home/index.html.haml'
+  create_file 'app/views/home/index.html.haml' do
       <<-'HAML'
 %h3 Home
 - @users.each do |user|
   %p User: #{link_to user.name, user}
 HAML
-      end
-    end
+  end
 end
 
 # >---------------------------------[ html5 ]---------------------------------<
@@ -481,26 +467,15 @@ after_bundler do
   remove_file 'app/assets/stylesheets/application.css'
   remove_file 'app/views/layouts/application.html.erb'
   remove_file 'app/views/layouts/application.html.haml'
-  if recipes.include? 'haml'
-    # Haml version of a complex application layout using Twitter Bootstrap
-    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/application.html.haml', 'app/views/layouts/application.html.haml'
-    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/_messages.html.haml', 'app/views/layouts/_messages.html.haml'
-  end
+  # Haml version of a complex application layout using Twitter Bootstrap
+  get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/application.html.haml', 'app/views/layouts/application.html.haml'
+  get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/_messages.html.haml', 'app/views/layouts/_messages.html.haml'
   # complex css styles using Twitter Bootstrap
   get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/assets/stylesheets/application.css.scss', 'app/assets/stylesheets/application.css.scss'
   # get an appropriate navigation partial
-  if recipes.include? 'haml'
-    if recipes.include? 'devise'
-      if recipes.include? 'authorization'
-        get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/authorization/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
-      end
-    end
-  end
-  if recipes.include? 'haml'
-    gsub_file 'app/views/layouts/application.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
-    gsub_file 'app/views/layouts/_navigation.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
-  end
-  say_wizard 'installing Twitter Bootstrap HTML5 framework (sass)'
+  get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/authorization/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
+  gsub_file 'app/views/layouts/application.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
+  gsub_file 'app/views/layouts/_navigation.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
   insert_into_file 'app/assets/javascripts/application.js', "//= require bootstrap\n", :after => "jquery_ujs\n"
   create_file 'app/assets/stylesheets/bootstrap_and_overrides.css.scss', <<-RUBY
 // Set the correct sprite paths
@@ -510,7 +485,6 @@ $iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image);
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 RUBY
-  end
 end
 
 # >------------------------------[ SimpleForm ]-------------------------------<
