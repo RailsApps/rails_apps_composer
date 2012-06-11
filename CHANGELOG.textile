@@ -1,8 +1,11 @@
 h1. CHANGELOG
 
-h2. 1.5.2 unreleased
+h2. 1.5.2 June 10, 2012
 
 * add 'prelaunch_signup' recipe
+* fix 'seed_database' recipe to apply migration for devise_invitable
+* update 'devise' recipe to apply patch for problems with Rolify 3.1 and Mongoid
+* revert 'devise' recipe to remove 'rolify 3.2.0.beta4' with Mongoid
 
 h2. 1.5.1 June 8, 2012
 

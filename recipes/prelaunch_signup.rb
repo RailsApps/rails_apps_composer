@@ -2,39 +2,44 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/prelaunch_signup.rb
 
 @recipes = ["haml", "rspec", "cucumber", "action_mailer", "devise", "add_user", 
-  "home_page", "home_page_users", "seed_database", "users_page", "html5", "simple_form", 
+  "home_page", "seed_database", "users_page", "html5", "simple_form", 
   "cleanup", "extras", "git"]
+  
+# >-------------------------------[ Create an Initializer File ]--------------------------------<
+create_file 'config/initializers/prelaunch-signup.rb' do <<-RUBY
+# change to "true" (and restart) when you want visitors to sign up without an invitation
+Rails.configuration.launched = false
+RUBY
+end
+
 # >---------------------------------[ HAML ]----------------------------------<
 gem 'haml', '>= 3.1.6'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
 # >---------------------------------[ RSpec ]---------------------------------<
-if true
-  gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
-  if true
-    gem 'factory_girl_rails', '>= 3.3.0', :group => [:development, :test]
-  end
-  # add a collection of RSpec matchers and Cucumber steps to make testing email easy
-  gem 'email_spec', '>= 1.2.1', :group => :test
-  create_file 'features/support/email_spec.rb' do <<-RUBY
+
+gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
+gem 'factory_girl_rails', '>= 3.3.0', :group => [:development, :test]
+# add a collection of RSpec matchers and Cucumber steps to make testing email easy
+gem 'email_spec', '>= 1.2.1', :group => :test
+create_file 'features/support/email_spec.rb' do <<-RUBY
 require 'email_spec/cucumber'
 RUBY
-  end
 end
-if true
-  after_bundler do
-    say_wizard "RSpec recipe running 'after bundler'"
-    generate 'rspec:install'
-    generate 'email_spec:steps'
-    inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
-    inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
+
+after_bundler do
+  say_wizard "RSpec recipe running 'after bundler'"
+  generate 'rspec:install'
+  generate 'email_spec:steps'
+  inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
+  inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
 RUBY
-    end
-    say_wizard "Removing test folder (not needed for RSpec)"
-    run 'rm -rf test/'
-    inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
+  end
+  say_wizard "Removing test folder (not needed for RSpec)"
+  run 'rm -rf test/'
+  inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
@@ -43,62 +48,77 @@ RUBY
     end
 
 RUBY
-    end
-    if recipes.include? 'devise'
-      # add Devise test helpers
-      create_file 'spec/support/devise.rb' do
+  end
+  if recipes.include? 'devise'
+    # add Devise test helpers
+    create_file 'spec/support/devise.rb' do
       <<-RUBY
 RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
 end
 RUBY
-      end
     end
   end
 end
+after_everything do
+  say_wizard "Copying RSpec files from the rails-prelaunch-signup example app"
+  begin
+    remove_file 'spec/factories/users.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/spec/factories/users.rb', 'spec/factories/users.rb'
+    gsub_file 'spec/factories/users.rb', /# confirmed_at/, "confirmed_at"
+    remove_file 'spec/controllers/home_controller_spec.rb'
+    remove_file 'spec/controllers/users_controller_spec.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/spec/controllers/home_controller_spec.rb', 'spec/controllers/home_controller_spec.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/spec/controllers/users_controller_spec.rb', 'spec/controllers/users_controller_spec.rb'
+    remove_file 'spec/models/user_spec.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/spec/models/user_spec.rb', 'spec/models/user_spec.rb'
+  rescue OpenURI::HTTPError
+    say_wizard "Unable to obtain RSpec example files from the repo"
+  end
+  remove_file 'spec/views/home/index.html.erb_spec.rb'
+  remove_file 'spec/views/home/index.html.haml_spec.rb'
+  remove_file 'spec/views/users/show.html.erb_spec.rb'
+  remove_file 'spec/views/users/show.html.haml_spec.rb'
+  remove_file 'spec/helpers/home_helper_spec.rb'
+  remove_file 'spec/helpers/users_helper_spec.rb'
+end
 
 # >-------------------------------[ Cucumber ]--------------------------------<
-if true
-  gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
-  gem 'capybara', '>= 1.1.2', :group => :test
-  gem 'database_cleaner', '>= 0.8.0', :group => :test
-  gem 'launchy', '>= 2.1.0', :group => :test
+gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
+gem 'capybara', '>= 1.1.2', :group => :test
+gem 'database_cleaner', '>= 0.8.0', :group => :test
+gem 'launchy', '>= 2.1.0', :group => :test
+
+after_bundler do
+  say_wizard "Cucumber recipe running 'after bundler'"
+  generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' if recipes.include?('mongoid')}"
+  # make it easy to run Cucumber for single features without adding "--require features" to the command line
+  gsub_file 'config/cucumber.yml', /std_opts = "/, 'std_opts = "-r features/support/ -r features/step_definitions '
 end
 
-if true
-  after_bundler do
-    say_wizard "Cucumber recipe running 'after bundler'"
-    generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' if recipes.include?('mongoid')}"
-    # make it easy to run Cucumber for single features without adding "--require features" to the command line
-    gsub_file 'config/cucumber.yml', /std_opts = "/, 'std_opts = "-r features/support/ -r features/step_definitions '
+after_bundler do
+  say_wizard "Copying Cucumber scenarios from the rails-prelaunch-signup example app"
+  begin
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/admin/send_invitations.feature', 'features/admin/send_invitations.feature'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/admin/view_progress.feature', 'features/admin/view_progress.feature'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/step_definitions/admin_steps.rb', 'features/step_definitions/admin_steps.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/step_definitions/email_steps.rb', 'features/step_definitions/email_steps.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/step_definitions/user_steps.rb', 'features/step_definitions/user_steps.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/step_definitions/visitor_steps.rb', 'features/step_definitions/visitor_steps.rb'
+    remove_file 'features/support/paths.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/support/paths.rb', 'features/support/paths.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/sign_in.feature', 'features/users/sign_in.feature'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/sign_out.feature', 'features/users/sign_out.feature'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/sign_up.feature', 'features/users/sign_up.feature'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/user_edit.feature', 'features/users/user_edit.feature'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/user_show.feature', 'features/users/user_show.feature'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/visitors/request_invitation.feature', 'features/visitors/request_invitation.feature'
+    # thank you page for testing registrations
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/public/thankyou.html', 'public/thankyou.html'
+  rescue OpenURI::HTTPError
+    say_wizard "Unable to obtain Cucumber example files from the repo"
   end
-end
-
-if true
-  if true
-    after_bundler do
-      say_wizard "Copying Cucumber scenarios from the rails-prelaunch-signup example app"
-      begin
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/admin/send_invitations.feature', 'features/admin/send_invitations.feature'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/admin/view_progress.feature', 'features/admin/view_progress.feature'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/step_definitions/admin_steps.rb', 'features/step_definitions/admin_steps.rb'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/step_definitions/email_steps.rb', 'features/step_definitions/email_steps.rb'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/step_definitions/user_steps.rb', 'features/step_definitions/user_steps.rb'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/step_definitions/visitor_steps.rb', 'features/step_definitions/visitor_steps.rb'
-        remove_file 'features/support/paths.rb'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/support/paths.rb', 'features/support/paths.rb'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/sign_in.feature', 'features/users/sign_in.feature'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/sign_out.feature', 'features/users/sign_out.feature'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/sign_up.feature', 'features/users/sign_up.feature'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/user_edit.feature', 'features/users/user_edit.feature'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/users/user_show.feature', 'features/users/user_show.feature'
-        get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/features/visitors/request_invitation.feature', 'features/visitors/request_invitation.feature'
-      rescue OpenURI::HTTPError
-        say_wizard "Unable to obtain Cucumber example files from the repo"
-      end
-    end 
-  end
-end
+end 
 
 # >-----------------------------[ ActionMailer ]------------------------------<
 case config['mailer']
@@ -211,26 +231,25 @@ recipes << 'devise-invitable'
 gem 'cancan', '>= 1.6.7'
 gem 'rolify', '>= 3.1.0'
 recipes << 'authorization'
-if true
-  after_bundler do
-    say_wizard "Devise recipe running 'after bundler'"
-    # Run the Devise generator
-    generate 'devise:install' unless recipes.include? 'datamapper'
-    generate 'devise_invitable:install' if recipes.include? 'devise-invitable'
-    # Prevent logging of password_confirmation
-    gsub_file 'config/application.rb', /:password/, ':password, :password_confirmation'
-    if recipes.include? 'cucumber'
-      # Cucumber wants to test GET requests not DELETE requests for destroy_user_session_path
-      # (see https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3)
-      gsub_file 'config/initializers/devise.rb', 'config.sign_out_via = :delete', 'config.sign_out_via = Rails.env.test? ? :get : :delete'
-    end
-    if recipes.include? 'authorization'
-      inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
+
+after_bundler do
+  say_wizard "Devise recipe running 'after bundler'"
+  # Run the Devise generator
+  generate 'devise:install' unless recipes.include? 'datamapper'
+  generate 'devise_invitable:install' if recipes.include? 'devise-invitable'
+  # Prevent logging of password_confirmation
+  gsub_file 'config/application.rb', /:password/, ':password, :password_confirmation'
+  if recipes.include? 'cucumber'
+    # Cucumber wants to test GET requests not DELETE requests for destroy_user_session_path
+    # (see https://github.com/RailsApps/rails3-devise-rspec-cucumber/issues/3)
+    gsub_file 'config/initializers/devise.rb', 'config.sign_out_via = :delete', 'config.sign_out_via = Rails.env.test? ? :get : :delete'
+  end
+  if recipes.include? 'authorization'
+    inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
 RUBY
-      end
     end
   end
 end
@@ -256,21 +275,20 @@ after_bundler do
     if recipes.include? 'devise-confirmable'
       generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'
     end
-    # Devise created a Users model, we'll modify it
-    gsub_file 'app/models/user.rb', /attr_accessible :email/, 'attr_accessible :name, :email'
-    inject_into_file 'app/models/user.rb', :before => 'validates_uniqueness_of' do
-      "validates_presence_of :name\n"
-    end
-    gsub_file 'app/models/user.rb', /validates_uniqueness_of :email/, 'validates_uniqueness_of :name, :email'
-    gsub_file 'app/models/user.rb', /# attr_accessible :title, :body/, ''
-    if recipes.include? 'devise-confirmable'
-      gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
-      gsub_file 'app/models/user.rb', /:remember_me/, ':remember_me, :confirmed_at'
-    end
-    # copy Haml versions of modified Devise views
-    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/shared/_links.html.haml', 'app/views/devise/shared/_links.html.haml'
-    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/registrations/edit.html.haml', 'app/views/devise/registrations/edit.html.haml'
-    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/registrations/new.html.haml', 'app/views/devise/registrations/new.html.haml'
+    # Devise created a Users model, we'll replace it
+    remove_file 'app/models/user.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/models/user.rb', 'app/models/user.rb'
+    # copy Haml versions of modified Devise views (plus a partial for the 'thank you' message)
+    remove_file 'app/views/devise/shared/_links.html.haml'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/devise/shared/_links.html.haml', 'app/views/devise/shared/_links.html.haml'
+    remove_file 'app/views/devise/registrations/edit.html.haml'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/devise/registrations/edit.html.haml', 'app/views/devise/registrations/edit.html.haml'
+    remove_file 'app/views/devise/registrations/new.html.haml'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/devise/registrations/new.html.haml', 'app/views/devise/registrations/new.html.haml'
+    remove_file 'app/views/devise/registrations/_thankyou.html.haml'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/devise/registrations/_thankyou.html.haml', 'app/views/devise/registrations/_thankyou.html.haml'
+    remove_file 'app/views/devise/confirmations/show.html.haml'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/devise/confirmations/show.html.haml', 'app/views/devise/confirmations/show.html.haml'
   end
 end
 
@@ -286,44 +304,7 @@ after_bundler do
     remove_file 'app/views/home/index.html.haml'
     create_file 'app/views/home/index.html.haml' do 
     <<-'HAML'
-%h3 Home
-HAML
-    end
-  end
-  # set routes
-  gsub_file 'config/routes.rb', /get \"home\/index\"/, 'root :to => "home#index"'
-  if recipes.include? 'devise'
-    inject_into_file 'config/routes.rb', :before => "  root :to" do 
-    <<-RUBY
-  authenticated :user do
-    root :to => 'home#index'
-  end
-\n  
-RUBY
-    end
-  end
-end
-
-# >-----------------------------[ HomePageUsers ]-----------------------------<
-after_bundler do
-  say_wizard "HomePageUsers recipe running 'after bundler'"
-  # Modify the home controller
-  gsub_file 'app/controllers/home_controller.rb', /def index/ do
-  <<-RUBY
-def index
-  @users = User.all
-RUBY
-  end
-  # Replace the home page
-  if recipes.include? 'haml'
-    remove_file 'app/views/home/index.html.haml'
-    # There is Haml code in this script. Changing the indentation is perilous between HAMLs.
-    # We have to use single-quote-style-heredoc to avoid interpolation.
-    create_file 'app/views/home/index.html.haml' do 
-    <<-'HAML'
-%h3 Home
-- @users.each do |user|
-  %p User: #{user.name}
+%h3 Welcome
 HAML
     end
   end
@@ -332,12 +313,6 @@ end
 # >-----------------------------[ SeedDatabase ]------------------------------<
 after_bundler do
   say_wizard "SeedDatabase recipe running 'after bundler'"
-  run 'bundle exec rake db:migrate'
-  if recipes.include? 'devise-invitable'
-    generate 'devise_invitable user'
-  end
-  # clone the schema changes to the test database
-  run 'bundle exec rake db:test:prepare'
   if recipes.include? 'devise'
     if recipes.include? 'devise-confirmable'
       append_file 'db/seeds.rb' do <<-FILE
@@ -358,11 +333,19 @@ FILE
   end
 end
 after_everything do
-  say_wizard "seeding the database"
+  say_wizard "applying migrations and seeding the database"
+  if recipes.include? 'devise-invitable'
+    run 'bundle exec rake db:migrate'
+    generate 'devise_invitable user'
+  end
+  run 'bundle exec rake db:migrate'
+  run 'bundle exec rake db:test:prepare'
   run 'bundle exec rake db:seed'
 end
 
 # >-------------------------------[ UsersPage ]-------------------------------<
+gem 'google_visualr', '>= 2.1.2'
+gem 'jquery-datatables-rails', '>= 1.10.0'
 after_bundler do
   say_wizard "UsersPage recipe running 'after bundler'"
   #----------------------------------------------------------------------------
@@ -370,22 +353,7 @@ after_bundler do
   #----------------------------------------------------------------------------
   generate(:controller, "users show index")
   remove_file 'app/controllers/users_controller.rb'
-  create_file 'app/controllers/users_controller.rb' do <<-RUBY
-class UsersController < ApplicationController
-  before_filter :authenticate_user!
-
-  def index
-    @users = User.all
-  end
-
-  def show
-    @user = User.find(params[:id])
-  end
-
-end
-RUBY
-  end
-  inject_into_file 'app/controllers/users_controller.rb', "    authorize! :index, @user, :message => 'Not authorized as an administrator.'\n", :after => "def index\n"
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/controllers/users_controller.rb', 'app/controllers/users_controller.rb'
   #----------------------------------------------------------------------------
   # Limit access to the users#index page
   #----------------------------------------------------------------------------
@@ -397,28 +365,10 @@ RUBY
 RUBY
   end
   #----------------------------------------------------------------------------
-  # Modify the routes
-  #----------------------------------------------------------------------------
-  # @devise_for :users@ route must be placed above @resources :users, :only => :show@.
-  gsub_file 'config/routes.rb', /get \"users\/show\"/, ''
-  gsub_file 'config/routes.rb', /get \"users\/index\"/, ''
-  gsub_file 'config/routes.rb', /devise_for :users/ do
-    <<-RUBY
-devise_for :users
-  resources :users, :only => [:show, :index]
-RUBY
-  end
-  #----------------------------------------------------------------------------
   # Create a users index page
   #----------------------------------------------------------------------------
   remove_file 'app/views/users/index.html.haml'
-  create_file 'app/views/users/index.html.haml' do <<-'HAML'
-%h2 Users
-- @users.each do |user|
-  %br/
-  #{link_to user.email, user} signed up #{user.created_at.to_date}
-HAML
-  end
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/users/index.html.haml', 'app/views/users/index.html.haml'
   #----------------------------------------------------------------------------
   # Create a users show page
   #----------------------------------------------------------------------------
@@ -439,9 +389,6 @@ HAML
   create_file 'app/controllers/home_controller.rb' do
     <<-RUBY
 class HomeController < ApplicationController
-  def index
-    @users = User.all
-  end
 end
 RUBY
   end
@@ -449,9 +396,7 @@ RUBY
   remove_file 'app/views/home/index.html.haml'
   create_file 'app/views/home/index.html.haml' do
       <<-'HAML'
-%h3 Home
-- @users.each do |user|
-  %p User: #{link_to user.name, user}
+%h3 Welcome
 HAML
   end
 end
@@ -471,12 +416,12 @@ after_bundler do
   get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/application.html.haml', 'app/views/layouts/application.html.haml'
   get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/views/layouts/_messages.html.haml', 'app/views/layouts/_messages.html.haml'
   # complex css styles using Twitter Bootstrap
-  get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/twitter-bootstrap/assets/stylesheets/application.css.scss', 'app/assets/stylesheets/application.css.scss'
+  remove_file 'app/assets/stylesheets/application.css.scss'
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/assets/stylesheets/application.css.scss', 'app/assets/stylesheets/application.css.scss'
   # get an appropriate navigation partial
   get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/navigation/devise/authorization/_navigation.html.haml', 'app/views/layouts/_navigation.html.haml'
   gsub_file 'app/views/layouts/application.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
   gsub_file 'app/views/layouts/_navigation.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
-  insert_into_file 'app/assets/javascripts/application.js', "//= require bootstrap\n", :after => "jquery_ujs\n"
   create_file 'app/assets/stylesheets/bootstrap_and_overrides.css.scss', <<-RUBY
 // Set the correct sprite paths
 $iconSpritePath: asset-url('glyphicons-halflings.png', image);
@@ -494,6 +439,80 @@ recipes << 'simple_form_bootstrap'
 after_bundler do
   say_wizard "Simple form recipe running 'after bundler'"
   generate 'simple_form:install --bootstrap'
+end
+
+# >------------------------------[ JavaScript ]-------------------------------<
+after_bundler do
+  remove_file 'app/assets/javascripts/application.js'
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/assets/javascripts/application.js', 'app/assets/javascripts/application.js'
+  remove_file 'app/assets/javascripts/users.js.coffee'
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/assets/javascripts/users.js.coffee', 'app/assets/javascripts/users.js.coffee'
+end
+
+# >------------------------------[ MailChimp ]-------------------------------<
+# the 'app/models/user.rb' file contains methods to support MailChimp; remove and replace them if we don't want MailChimp
+if config['mailchimp']
+  gem 'hominid'
+else
+  after_bundler do
+    # drop the MailChimp methods and add a UserMailer
+    gsub_file 'app/models/user.rb', /after_create :add_user_to_mailchimp unless Rails.env.test\?/, 'after_create :send_welcome_email'
+    gsub_file 'app/models/user.rb', /before_destroy :remove_user_from_mailchimp unless Rails.env.test\?\n/, ''
+    inject_into_file 'app/models/user.rb', :after => "private\n" do 
+  <<-RUBY
+\n
+  def send_welcome_email
+     unless self.email.include?('@example.com') && Rails.env != 'test'
+       UserMailer.welcome_email(self).deliver
+     end
+   end
+RUBY
+    end
+    generate 'mailer UserMailer'
+    remove_file 'spec/mailers/user_mailer_spec.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/spec/mailers/user_mailer_spec.rb', 'spec/mailers/user_mailer_spec.rb'
+    remove_file 'app/mailers/user_mailer.rb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/mailers/user_mailer.rb', 'app/mailers/user_mailer.rb'
+    if recipes.include? 'mandrill'
+      inject_into_file 'app/mailers/user_mailer.rb', :after => "mail(:to => user.email, :subject => \"Invitation Request Received\")\n" do <<-RUBY
+    headers['X-MC-Track'] = "opens, clicks"
+    headers['X-MC-GoogleAnalytics'] = "example.com"
+    headers['X-MC-Tags'] = "welcome"
+RUBY
+      end
+    end
+    remove_file 'app/views/user_mailer/welcome_email.html.erb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/user_mailer/welcome_email.html.erb', 'app/views/user_mailer/welcome_email.html.erb'
+    remove_file 'app/views/user_mailer/welcome_email.text.erb'
+    get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/user_mailer/welcome_email.text.erb', 'app/views/user_mailer/welcome_email.text.erb'
+  end
+end
+
+# >------------------------------[ Devise Email ]-------------------------------<
+after_bundler do
+  remove_file 'app/views/devise/mailer/confirmation_instructions.html.erb'
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/views/devise/mailer/confirmation_instructions.html.erb', 'app/views/devise/mailer/confirmation_instructions.html.erb'
+end
+
+# >------------------------------[ Controllers ]-------------------------------<
+after_bundler do
+  remove_file 'app/controllers/registrations_controller.rb'
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/controllers/registrations_controller.rb', 'app/controllers/registrations_controller.rb'
+  remove_file 'app/controllers/confirmations_controller.rb'
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/app/controllers/confirmations_controller.rb', 'app/controllers/confirmations_controller.rb'
+end
+
+# >------------------------------[ Routes ]-------------------------------<
+after_bundler do
+  remove_file 'config/routes.rb'
+  get 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/config/routes.rb', 'config/routes.rb'
+  gsub_file 'config/routes.rb', /RailsPrelaunchSignup/, app_const_base
+end
+
+# >------------------------------[ Messages ]-------------------------------<
+after_bundler do
+  gsub_file 'config/locales/devise.en.yml', /'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'/, "'Your invitation request has been received. You will receive an invitation when we launch.'"
+  gsub_file 'config/locales/devise.en.yml', /'You have to confirm your account before continuing.'/, "'Your account is not active.'"
 end
 
 # >--------------------------------[ Cleanup ]--------------------------------<
@@ -554,6 +573,9 @@ config:
       type: multiple_choice
       prompt: "How will you send email?"
       choices: [["SMTP account", smtp], ["Gmail account", gmail], ["SendGrid account", sendgrid], ["Mandrill by MailChimp account", mandrill]]
+  - mailchimp:
+      type: boolean
+      prompt: Use MailChimp to send news and welcome messages?
   - jsruntime:
       type: boolean
       prompt: Add 'therubyracer' JavaScript runtime (for Linux users without node.js)?
