@@ -219,6 +219,20 @@ Then generate the application:
 $ rails new myapp -m ~/Desktop/template.txt
 </pre>
 
+h4. Template for Prelaunch Signup App
+
+To build an application template for the "rails-prelaunch-signup":http://github.com/RailsApps/rails-prelaunch-signup/ example application, run the command:
+
+<pre>
+$ rails_apps_composer template ~/Desktop/template.txt -r prelaunch_signup
+</pre>
+
+Then generate the application using the @-T@ flag.
+
+<pre>
+$ rails new rails-prelaunch-signup -m ~/Desktop/template.txt -T
+</pre>
+
 h4. Template for Rails 3 + Devise + RSpec + Cucumber
 
 To build an application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
@@ -274,6 +288,28 @@ Then generate the application using the @-T -O@ flags.
 <pre>
 $ rails new rails3-subdomains -m ~/Desktop/template.txt -T -O
 </pre>
+
+h2. Changing the Gem
+
+Your patches and improvements are welcome. Fork the repository and clone the project locally.
+
+You'll need to install the gems that are dependencies for development:
+
+<pre>
+$ gem install activesupport i18n thor mg
+</pre>
+
+Add or modify recipes as needed.
+
+To build and install the modified gem locally:
+
+<pre>
+$ gem uninstall rails_apps_composer
+$ rake gem
+$ rake gem:install
+</pre>
+
+When you are happy with your changes, "submit a pull request":https://help.github.com/articles/using-pull-requests and I will review your contribution and publish an updated version of the gem for everyone to use.
 
 h2. Writing New Recipes
 
