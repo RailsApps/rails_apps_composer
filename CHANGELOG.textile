@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 1.5.3 unreleased
+h2. 1.5.3 June 26, 2012
 
 * update 'prelaunch_signup' recipe with migration for 'opt-in' field
 * update gem 'factory_girl_rails' from 3.3.0 to 3.5.0
