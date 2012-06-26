@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 1.5.3 unreleased
+
+* update 'prelaunch_signup' recipe with migration for 'opt-in' field
+
 h2. 1.5.2 June 10, 2012
 
 * add 'prelaunch_signup' recipe

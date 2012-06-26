@@ -310,6 +310,11 @@ HAML
   end
 end
 
+# >------------------------------[ Migrations ]-------------------------------<
+after_bundler do
+  generate 'migration AddOptinToUsers opt_in:boolean'
+end
+
 # >-----------------------------[ SeedDatabase ]------------------------------<
 after_bundler do
   say_wizard "SeedDatabase recipe running 'after bundler'"
