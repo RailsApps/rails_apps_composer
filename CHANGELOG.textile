@@ -3,6 +3,12 @@ h1. CHANGELOG
 h2. 1.5.3 unreleased
 
 * update 'prelaunch_signup' recipe with migration for 'opt-in' field
+* update gem 'factory_girl_rails' from 3.3.0 to 3.5.0
+* update gem 'cancan' from 1.6.7 to 1.6.8
+* update gem 'compass' from 0.12.1 to 0.12.2
+* update gem 'compass-rails' from 1.0.0 to 1.0.2
+* update gem 'devise' from 2.1.0 to 2.1.2
+* update gem 'mongoid-rspec' from 1.4.4 to 1.4.6
 
 h2. 1.5.2 June 10, 2012
 

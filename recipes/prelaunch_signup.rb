@@ -19,7 +19,7 @@ gem 'haml-rails', '>= 0.3.4', :group => :development
 # >---------------------------------[ RSpec ]---------------------------------<
 
 gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
-gem 'factory_girl_rails', '>= 3.3.0', :group => [:development, :test]
+gem 'factory_girl_rails', '>= 3.5.0', :group => [:development, :test]
 # add a collection of RSpec matchers and Cucumber steps to make testing email easy
 gem 'email_spec', '>= 1.2.1', :group => :test
 create_file 'features/support/email_spec.rb' do <<-RUBY
@@ -224,11 +224,11 @@ TEXT
 end
 
 # >--------------------------------[ Devise ]---------------------------------<
-gem 'devise', '>= 2.1.0'
+gem 'devise', '>= 2.1.2'
 gem 'devise_invitable', '>= 1.0.2'
 recipes << 'devise-confirmable'
 recipes << 'devise-invitable'
-gem 'cancan', '>= 1.6.7'
+gem 'cancan', '>= 1.6.8'
 gem 'rolify', '>= 3.1.0'
 recipes << 'authorization'
 

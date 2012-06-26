@@ -7,13 +7,13 @@ if config['rspec']
     # use the database_cleaner gem to reset the test database
     gem 'database_cleaner', '>= 0.8.0', :group => :test
     # include RSpec matchers from the mongoid-rspec gem
-    gem 'mongoid-rspec', '>= 1.4.4', :group => :test
+    gem 'mongoid-rspec', '>= 1.4.6', :group => :test
   end
   if config['machinist']
     gem 'machinist', :group => :test
   end
   if config['factory_girl']
-    gem 'factory_girl_rails', '>= 3.3.0', :group => [:development, :test]
+    gem 'factory_girl_rails', '>= 3.5.0', :group => [:development, :test]
   end
   # add a collection of RSpec matchers and Cucumber steps to make testing email easy
   gem 'email_spec', '>= 1.2.1', :group => :test
