@@ -25,8 +25,7 @@ after_everything do
   end
 
   unless config['domain'].blank?
-    run "heroku addons:add custom_domains"
-    run "heroku domains:add #{config['domain']}"
+    run "heroku domains:add #{config['domain']} --remote #{config['staging'] ? 'production' : 'heroku'}"
   end
 
   git :push => "#{config['staging'] ? 'staging' : 'heroku'} master" if config['deploy']
