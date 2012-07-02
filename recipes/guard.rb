@@ -50,9 +50,7 @@ end
 
   guard 'bundler', '>= 0.1.3'
 
-  unless recipes.include? 'pow'
-    guard 'rails', '>= 0.0.3'
-  end
+  guard 'rails', '>= 0.0.3'
   
   if recipes.include? 'guard-LiveReload'
     guard 'livereload', '>= 0.3.0'
