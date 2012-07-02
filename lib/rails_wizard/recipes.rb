@@ -6,8 +6,10 @@ module RailsWizard
     def self.add(recipe)
       RailsWizard::Recipes.const_set ActiveSupport::Inflector.camelize(recipe.key), recipe
       @@list[recipe.key] = recipe
-      (@@categories[recipe.category.to_s] ||= []) << recipe.key
-      @@categories[recipe.category.to_s].uniq!
+      unless recipe.category == 'internal'
+        (@@categories[recipe.category.to_s] ||= []) << recipe.key
+        @@categories[recipe.category.to_s].uniq!
+      end
       recipe
     end
 
