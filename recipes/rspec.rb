@@ -9,11 +9,11 @@ if config['rspec']
     # include RSpec matchers from the mongoid-rspec gem, 1.4.6 requires mongoid 3.0.0.rc making it impossible to resolve dependencies
     gem 'mongoid-rspec', '1.4.5', :group => :test
   end
-  if config['machinist']
-    gem 'machinist', :group => :test
-  end
-  if config['factory_girl']
-    gem 'factory_girl_rails', '>= 3.5.0', :group => [:development, :test]
+  case config['fixtures']
+    when 'machinist'
+      gem 'machinist', :group => :test
+    when 'factory_girl'
+      gem 'factory_girl_rails', '>= 3.5.0', :group => [:development, :test]
   end
   # add a collection of RSpec matchers and Cucumber steps to make testing email easy
   gem 'email_spec', '>= 1.2.1', :group => :test
@@ -38,7 +38,7 @@ if config['rspec']
   config.include(EmailSpec::Matchers)
 RUBY
     end
-    if config['machinist']
+    if config['fixtures'] === 'machinist'
       say_wizard "Generating blueprints file for Machinist"
       generate 'machinist:install'
     end
@@ -52,7 +52,7 @@ RUBY
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
-      #{"g.fixture_replacement :machinist" if config['machinist']}
+      #{"g.fixture_replacement :machinist" if config['fixtures'] === 'machinist'}
     end
 
 RUBY
@@ -125,9 +125,7 @@ config:
   - rspec:
       type: boolean
       prompt: Would you like to use RSpec instead of TestUnit?
-  - factory_girl:
-      type: boolean
-      prompt: Would you like to use factory_girl for test fixtures with RSpec?
-  - machinist:
-      type: boolean
-      prompt: Would you like to use machinist for test fixtures with RSpec?
+  - fixtures:
+      type: multiple_choice
+      prompt: Which library would you like to use for test fixtures with RSpec?
+      choices: [["None", none], ["factory_girl", factory_girl], ["machinist", machinist]]
