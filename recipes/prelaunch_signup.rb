@@ -407,7 +407,7 @@ HAML
 end
 
 # >---------------------------------[ html5 ]---------------------------------<
-gem 'bootstrap-sass', '>= 2.0.3'
+gem 'bootstrap-sass', '>= 2.0.4.0'
 recipes << 'bootstrap'
 after_bundler do
   say_wizard "HTML5 recipe running 'after bundler'"

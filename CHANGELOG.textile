@@ -1,5 +1,17 @@
 h1. CHANGELOG
 
+h2. 1.5.4 July 3, 2012
+
+* add 'unicorn' recipe (contributed by Michel Pavan Macedo)
+* rollback gem 'mongoid-rspec' from 1.4.6 to 1.4.5 (contributed by Michel Pavan Macedo)
+* improve 'guard' recipe (contributed by Michel Pavan Macedo)
+* improve 'rspec' recipe to offer option of factory_girl or machinist (contributed by Michel Pavan Macedo)
+* improve 'rails_admin' recipe to mount engine (contributed by ngottlieb)
+* improve 'heroku' recipe (contributed by ngottlieb)
+* update gem 'compass-rails' from 1.0.2 to 1.0.3
+* update gem 'bootstrap-sass' from 2.0.3 to 2.0.4.0
+* update gem 'zurb-foundation' to 3.0.2
+
 h2. 1.5.3 June 26, 2012
 
 * update 'prelaunch_signup' recipe with migration for 'opt-in' field

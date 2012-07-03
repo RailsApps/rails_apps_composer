@@ -5,7 +5,7 @@ case config['css_option']
 
   when 'foundation'
     # https://github.com/zurb/foundation-rails
-    gem 'zurb-foundation'
+    gem 'zurb-foundation', '>= 3.0.2'
 
   when 'bootstrap_less'
     # https://github.com/seyhunak/twitter-bootstrap-rails
@@ -19,7 +19,7 @@ case config['css_option']
   when 'bootstrap_sass'
     # https://github.com/thomas-mcdonald/bootstrap-sass
     # http://rubysource.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
-    gem 'bootstrap-sass', '>= 2.0.3'
+    gem 'bootstrap-sass', '>= 2.0.4.0'
     recipes << 'bootstrap'
 
 end
