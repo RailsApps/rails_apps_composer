@@ -6,6 +6,14 @@ after_bundler do
   rake 'admin:ckeditor_download' if config['ckeditor']
 end
 
+inject_into_file 'config/routes.rb', :after => "routes.draw do" do 
+<<-RUBY
+\n
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+\n  
+RUBY
+end
+
 __END__
 
 name: RailsAdmin
