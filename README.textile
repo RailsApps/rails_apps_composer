@@ -152,8 +152,7 @@ html5:
 
 rspec:
   rspec: true
-  factory_girl: true
-  machinist: false
+  fixtures: factory_girl
 
 sass:
   sass: true
