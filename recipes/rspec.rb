@@ -6,8 +6,8 @@ if config['rspec']
   if recipes.include? 'mongoid'
     # use the database_cleaner gem to reset the test database
     gem 'database_cleaner', '>= 0.8.0', :group => :test
-    # include RSpec matchers from the mongoid-rspec gem
-    gem 'mongoid-rspec', '>= 1.4.6', :group => :test
+    # include RSpec matchers from the mongoid-rspec gem, 1.4.6 requires mongoid 3.0.0.rc making it impossible to resolve dependencies
+    gem 'mongoid-rspec', '1.4.5', :group => :test
   end
   if config['machinist']
     gem 'machinist', :group => :test
