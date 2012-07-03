@@ -39,10 +39,6 @@ end
   RUBY
   end
 
-  def guards
-    @guards ||= []
-  end
-
   def guard(name, version = nil)
     args = []
     if version
@@ -50,14 +46,11 @@ end
     end
     args << { :group => :development }
     gem "guard-#{name}", *args
-    guards << name
   end
 
   guard 'bundler', '>= 0.1.3'
 
-  unless recipes.include? 'pow'
-    guard 'rails', '>= 0.0.3'
-  end
+  guard 'rails', '>= 0.0.3'
   
   if recipes.include? 'guard-LiveReload'
     guard 'livereload', '>= 0.3.0'
@@ -73,9 +66,6 @@ end
 
   after_bundler do
     run 'guard init'
-    guards.each do |name|
-      run "guard init #{name}"
-    end
   end
 
 else
