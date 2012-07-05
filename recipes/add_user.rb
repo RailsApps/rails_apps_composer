@@ -43,6 +43,10 @@ RUBY
 
     # Add a 'name' attribute to the User model
     if recipes.include? 'mongoid'
+      # include timestamps to avoid special casing views for Mongoid
+      gsub_file 'app/models/user.rb',
+        /include Mongoid::Document$/,
+        "\\0\n  include Mongoid::Timestamps\n"
       # for mongoid
       gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
   <<-RUBY
@@ -50,7 +54,7 @@ RUBY
   index :email, :unique => true
   field :name
   validates_presence_of :name
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
 end
 RUBY
       end
