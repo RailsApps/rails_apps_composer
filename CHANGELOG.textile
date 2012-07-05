@@ -1,5 +1,12 @@
 h1. CHANGELOG
 
+h2. 1.5.5 July 5, 2012
+
+* improve 'add_user' recipe for Mongoid (contributed by Michel Pavan Macedo)
+* improve 'omniauth' recipe for Mongoid (contributed by Michel Pavan Macedo)
+* improve 'seed_database' recipe for Mongoid
+* update gem 'zurb-foundation' from 3.0.2 to 3.0.3
+
 h2. 1.5.4 July 3, 2012
 
 * add 'unicorn' recipe (contributed by Michel Pavan Macedo)

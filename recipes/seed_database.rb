@@ -3,13 +3,6 @@
 
 after_bundler do
   say_wizard "SeedDatabase recipe running 'after bundler'"
-  if recipes.include? 'mongoid'
-    append_file 'db/seeds.rb' do <<-FILE
-puts 'EMPTY THE MONGODB DATABASE'
-Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
-FILE
-    end
-  end
   if recipes.include? 'devise'
     if recipes.include? 'devise-confirmable'
       append_file 'db/seeds.rb' do <<-FILE

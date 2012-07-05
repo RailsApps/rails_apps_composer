@@ -5,7 +5,7 @@ case config['css_option']
 
   when 'foundation'
     # https://github.com/zurb/foundation-rails
-    gem 'zurb-foundation', '>= 3.0.2'
+    gem 'zurb-foundation', '>= 3.0.3'
 
   when 'bootstrap_less'
     # https://github.com/seyhunak/twitter-bootstrap-rails
