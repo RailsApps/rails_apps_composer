@@ -2,7 +2,9 @@ h1. CHANGELOG
 
 h2. 1.5.5 unreleased
 
-* improve 'seed_database' recipe for Mongoid
+* display an error message when a recipe cannot be found (contributed by Jim Riordan)
+* improve 'seed_database' recipe for Mongoid (prepare for Mongoid 3.0 release)
+* update 'html5' recipe for newer Skeleton installation (contributed by Andrew J Vargo)
 * update gem 'zurb-foundation' from 3.0.2 to 3.0.3
 
 h2. 1.5.4 July 3, 2012
