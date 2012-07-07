@@ -42,8 +42,16 @@ RUBY
     route "match '/auth/:provider/callback' => 'sessions#create'"
     route "resources :users, :only => [ :show, :edit, :update ]"
 
-    # generate the user model
-    generate(:model, "user provider:string uid:string name:string email:string")
+    # add a user model (unless another recipe did so already)
+    unless recipes.include? 'add_user'
+      generate(:model, "user provider:string uid:string name:string email:string")
+      gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
+<<-RUBY
+  attr_accessible :provider, :uid, :name, :email
+end
+RUBY
+      end
+    end
 
     # modify the user model
     inject_into_file 'app/models/user.rb', :before => 'end' do <<-RUBY
