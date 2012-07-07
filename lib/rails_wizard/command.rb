@@ -98,18 +98,22 @@ module RailsWizard
         else
           file = Tempfile.new('template')
         end
-        template = RailsWizard::Template.new(recipes, defaults)
-        file.write template.compile
-        file.close
-        if name
-          system "rails new #{name} -m #{file.path} #{template.args.join(' ')}"
-        else
-          puts "install with the command:"
-          puts
-          puts "rails new <APP_NAME> -m #{file.path} #{template.args.join(' ')}"
+        begin
+          template = RailsWizard::Template.new(recipes, defaults)
+          file.write template.compile
+          file.close
+          if name
+            system "rails new #{name} -m #{file.path} #{template.args.join(' ')}"
+          else
+            puts "install with the command:"
+            puts
+            puts "rails new <APP_NAME> -m #{file.path} #{template.args.join(' ')}"
+          end
+        rescue RailsWizard::UnknownRecipeError
+          raise Thor::Error.new("> #{red}#{$!.message}.#{clear}")
+        ensure
+          file.unlink unless file_name
         end
-      ensure
-        file.unlink unless file_name
       end
     end
   end
