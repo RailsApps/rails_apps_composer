@@ -7,7 +7,7 @@ require 'erb'
 module RailsWizard
   class Recipe
     extend Comparable
-    
+
     def self.<=>(another)
       return -1 if another.run_after.include?(self.key) || self.run_before.include?(another.key)
       return 1 if another.run_before.include?(self.key) || self.run_after.include?(another.key)
@@ -37,8 +37,8 @@ module RailsWizard
       else
         template = template_or_file
       end
- 
-      recipe_class = Class.new(RailsWizard::Recipe) 
+
+      recipe_class = Class.new(RailsWizard::Recipe)
       recipe_class.attributes = attributes
       recipe_class.template = template
       recipe_class.key = key
@@ -95,12 +95,20 @@ module RailsWizard
     end
 
     def self.from_mongo(key)
-      return key if key.respond_to?(:superclass) && key.superclass == RailsWizard::Recipe
-      RailsWizard::Recipes[key]
+      return key if (key.respond_to?(:superclass) && key.superclass == RailsWizard::Recipe)
+      return RailsWizard::Recipes[key] if RailsWizard::Recipes[key]
+      raise(RailsWizard::UnknownRecipeError.new(key))
     end
 
     def self.get_binding
       binding
+    end
+  end
+
+  class UnknownRecipeError < StandardError
+    def initialize(key)
+      message = "No recipe found with name '#{key}'"
+      super(message)
     end
   end
 end
