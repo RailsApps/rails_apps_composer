@@ -124,7 +124,6 @@ RUBY
       get 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css', 'app/assets/stylesheets/base.css.scss'
       get 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css', 'app/assets/stylesheets/layout.css.scss'
       get 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css', 'app/assets/stylesheets/skeleton.css.scss'
-      get 'https://raw.github.com/dhgamache/Skeleton/master/javascripts/tabs.js', 'app/assets/javascripts/tabs.js'
 
     when 'normalize'
       say_wizard 'normalizing CSS for consistent styling'
