@@ -41,7 +41,7 @@ name: This is an Example
 description: You know it's an exmaple.
 RUBY
         recipe = RailsWizard::Recipe.generate('just_a_test', file)
-        recipe.template.should == '# this is an example'        
+        recipe.template.should == '# this is an example'
         recipe.category.should == 'example'
         recipe.name.should == 'This is an Example'
       end
@@ -69,9 +69,35 @@ RUBY
 
   it 'should set default attributes' do
     recipe = RailsWizard::Recipe.generate('abc','# test')
-    
+
     RailsWizard::Recipe::DEFAULT_ATTRIBUTES.each_pair do |k,v|
       recipe.send(k).should == v
+    end
+  end
+
+  describe ".from_mongo" do
+    context "when asked for a known recipe" do
+      let(:recipe_key) {'recipe_example'}
+      let(:recipe) { RailsWizard::Recipe.generate(recipe_key, "# this is a test", :category => 'example', :name => "RailsWizard Example") }
+      let(:recipe_klass) { Kernel.const_get("RailsWizard").const_get("Recipes").const_get("RecipeExample") }
+      before :all do
+        RailsWizard::Recipes.add(recipe)
+      end
+      context "by key" do
+        it "returns the recipe" do
+          RailsWizard::Recipe.from_mongo(recipe_key).should == recipe_klass
+        end
+      end
+      context "by class" do
+        it "returns the recipe" do
+          RailsWizard::Recipe.from_mongo(recipe_klass).should == recipe_klass
+        end
+      end
+    end
+    context "when asked for an unknown recipe" do
+      it "raises an UnknownRecipeError" do
+        expect { RailsWizard::Recipe.from_mongo("foo") }.to raise_error RailsWizard::UnknownRecipeError, "No recipe found with name 'foo'"
+      end
     end
   end
 end
