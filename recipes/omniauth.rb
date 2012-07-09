@@ -13,8 +13,6 @@ if config['omniauth']
      gem 'omniauth-github'
     when 'linkedin'
       gem 'omniauth-linkedin'
-    when 'google'
-      gem 'omniauth-google'
     when 'google-oauth2'
       gem 'omniauth-google-oauth2'
     when 'tumblr'
@@ -191,4 +189,4 @@ config:
   - provider:
       type: multiple_choice
       prompt: "Which service provider will you use?"
-      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linkedin], ["Google", google], ["Google-Oauth-2",google-oauth2], ["Tumblr", tumblr]]
+      choices: [["Twitter", twitter], ["Facebook", facebook], ["GitHub", github], ["LinkedIn", linkedin], ["Google-Oauth-2",google-oauth2], ["Tumblr", tumblr]]

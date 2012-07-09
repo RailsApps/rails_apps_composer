@@ -4,6 +4,7 @@ h2. 1.5.5 unreleased
 
 * display an error message when a recipe cannot be found (contributed by Jim Riordan)
 * improve 'seed_database' recipe for Mongoid (prepare for Mongoid 3.0 release)
+* update 'omniauth' recipe to add google-oauth2 support (contributed by Earl St Sauver)
 * update 'html5' recipe for newer Skeleton installation (contributed by Andrew J Vargo)
 * update gem 'zurb-foundation' from 3.0.2 to 3.0.3
 
