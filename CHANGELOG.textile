@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.0 unreleased
+
+* new 'preliminaries' recipe
+
 h2. 1.5.5 unreleased
 
 * display an error message when a recipe cannot be found (contributed by Jim Riordan)
