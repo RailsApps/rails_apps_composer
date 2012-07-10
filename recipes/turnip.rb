@@ -2,7 +2,7 @@ gem 'turnip', :group => [:test]
 
 after_bundler do
   append_to_file '.rspec', '-r turnip/rspec'
-  empty_directory 'spec/acceptance/steps'
+  create_file 'spec/acceptance/steps/.gitkeep'
 end
 
 __END__
