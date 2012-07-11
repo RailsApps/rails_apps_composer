@@ -15,8 +15,8 @@ gsub_file "README", /App_Name/, "#{app_name.humanize.titleize}"
 gsub_file "README.textile", /App_Name/, "#{app_name.humanize.titleize}"
 
 # Ruby on Rails
-gsub_file "README.textile", /* Ruby/, "* Ruby version 1.9.3" if recipes.include? 'ruby_1_9_3'
-gsub_file "README.textile", /* Rails/, "* Rails version 3.2.6" if recipes.include? 'rails_3_2_6'
+gsub_file "README.textile", /\* Ruby/, "* Ruby version 1.9.3" if recipes.include? 'ruby_1_9_3'
+gsub_file "README.textile", /\* Rails/, "* Rails version 3.2.6" if recipes.include? 'rails_3_2_6'
 
 # Database
 gsub_file "README.textile", /SQLite/, "MongoDB" if recipes.include? 'mongodb'
