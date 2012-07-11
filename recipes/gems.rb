@@ -69,3 +69,12 @@ if recipes.include? 'cancan'
   gem 'cancan', '>= 1.6.8'
   gem 'rolify', '>= 3.1.0'
 end
+
+__END__
+
+name: Gems
+description: "Add the gems your application needs."
+author: RailsApps
+
+category: other
+tags: [utilities, configuration]

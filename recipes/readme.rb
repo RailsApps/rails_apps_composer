@@ -56,3 +56,12 @@ end
 gsub_file "README.textile", /Authentication: None/, "Authentication: Devise" if recipes.include? 'devise'
 gsub_file "README.textile", /Authorization: None/, "Authorization: OmniAuth" if recipes.include? 'omniauth'
 gsub_file "README.textile", /Authentication: None/, "Authentication: CanCan" if recipes.include? 'cancan'
+
+__END__
+
+name: Readme
+description: "Build a README file for your application."
+author: RailsApps
+
+category: other
+tags: [utilities, configuration]
