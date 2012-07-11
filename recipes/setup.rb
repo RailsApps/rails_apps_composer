@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/preliminaries.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/setup.rb
 
 case config['ruby']
 	when 'ruby_1_9_3'
@@ -18,8 +18,7 @@ end
 case config['database']
 	when 'sqlite'
     recipes << 'sqlite'
-    orm = multiple_choice("How will you connect to SQLite?", [["ActiveRecord","activerecord"]])
-    recipes << orm
+    recipes << 'activerecord'
   when 'mongodb'
     recipes << 'mongodb'
     orm = multiple_choice("How will you connect to MongoDB?", [["Mongoid","mongoid"]])
@@ -71,7 +70,7 @@ end
 
 if config['email']
   recipes << 'email'
-  email = multiple_choice("What type of account?", [["SMTP","smtp"], ["Gmail","gmail"], ["SendGrid","sendgrid"], ["Mandrill","mandrill"]])
+  email = multiple_choice("What type of account for email?", [["SMTP","smtp"], ["Gmail","gmail"], ["SendGrid","sendgrid"], ["Mandrill","mandrill"]])
   recipes << email
 end
 
@@ -86,7 +85,7 @@ case config['authentication']
         recipes << 'devise-confirmable'
         recipes << 'devise-invitable'
     end
-    authorization = yes_wizard?("Add CanCan for authorization?")
+    authorization = yes_wizard?("Add CanCan and Rolify for authorization?")
     recipes << 'cancan' if config['authorization']
   when 'omniauth'
     recipes << 'omniauth'
@@ -95,7 +94,7 @@ case config['authentication']
 end
 
 if config['homepage']
-  recipes << homepage
+  recipes << 'homepage'
 end
 
 __END__
@@ -110,38 +109,38 @@ tags: [utilities, configuration]
 config:
   - ruby:
       type: multiple_choice
-      prompt: "Ruby version?"
+      prompt: "Confirm your Ruby version."
       choices: [["Ruby 1.9.3", ruby_1_9_3]]
   - rails:
       type: multiple_choice
-      prompt: "Rails version?"
+      prompt: "Confirm your Rails version."
       choices: [["Rails 3.2.6", rails_3_2_6]]
   - database:
       type: multiple_choice
-      prompt: "Database?"
+      prompt: "Which database will you use?"
       choices: [["SQLite", sqlite], ["MongoDB", mongodb]]
   - templating:
       type: multiple_choice
-      prompt: "Template engine?"
+      prompt: "Which template engine?"
       choices: [["ERB", erb], ["Haml", haml]]
   - testing:
       type: multiple_choice
-      prompt: "Testing framework?"
+      prompt: "Which testing framework?"
       choices: [["Test::Unit", test_unit], ["RSpec with Capybara", rspec], ["RSpec with Capybara and Cucumber", rspec_cucumber]]
   - frontend:
       type: multiple_choice
-      prompt: "Front-end framework?"
+      prompt: "Which front-end framework?"
       choices: [["None", nothing], ["Twitter Bootstrap (Sass)", bootstrap_sass], ["Twitter Bootstrap (Less)", bootstrap_less], ["Zurb Foundation", foundation], ["Skeleton", skeleton], ["Just normalize CSS for consistent styling", normalize]]
   - forms:
       type: multiple_choice
-      prompt: "Form builder?"
+      prompt: "Which form builder?"
       choices: [["None", none], ["SimpleForm", simple_form]]
   - email:
       type: boolean
       prompt: "Will the application send email?"
   - authentication:
       type: multiple_choice
-      prompt: "Authentication?"
+      prompt: "Add authentication?"
       choices: [["None", none], ["Devise", devise], ["OmniAuth", omniauth]]
   - homepage:
       type: boolean
