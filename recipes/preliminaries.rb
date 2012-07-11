@@ -109,40 +109,40 @@ tags: [utilities, configuration]
 
 config:
   - ruby:
-    type: multiple_choice
-    prompt: "Ruby version?"
-    choices: [["Ruby 1.9.3", ruby_1_9_3]]
+      type: multiple_choice
+      prompt: "Ruby version?"
+      choices: [["Ruby 1.9.3", ruby_1_9_3]]
   - rails:
-    type: multiple_choice
-    prompt: "Rails version?"
-    choices: [["Rails 3.2.6", rails_3_2_6]]
+      type: multiple_choice
+      prompt: "Rails version?"
+      choices: [["Rails 3.2.6", rails_3_2_6]]
   - database:
-    type: multiple_choice
-    prompt: "Database?"
-    choices: [["SQLite", sqlite], ["MongoDB", mongodb]]
+      type: multiple_choice
+      prompt: "Database?"
+      choices: [["SQLite", sqlite], ["MongoDB", mongodb]]
   - templating:
-    type: multiple_choice
-    prompt: "Template engine?"
-    choices: [["ERB", erb], ["Haml", haml]]
+      type: multiple_choice
+      prompt: "Template engine?"
+      choices: [["ERB", erb], ["Haml", haml]]
   - testing:
-    type: multiple_choice
-    prompt: "Testing framework?"
-    choices: [["Test::Unit", test_unit], ["RSpec with Capybara", rspec], ["RSpec with Capybara and Cucumber", rspec_cucumber]]
+      type: multiple_choice
+      prompt: "Testing framework?"
+      choices: [["Test::Unit", test_unit], ["RSpec with Capybara", rspec], ["RSpec with Capybara and Cucumber", rspec_cucumber]]
   - frontend:
-    type: multiple_choice
-    prompt: "Front-end framework?"
-    choices: [["None", nothing], ["Twitter Bootstrap (Sass)", bootstrap_sass], ["Twitter Bootstrap (Less)", bootstrap_less], ["Zurb Foundation", foundation], ["Skeleton", skeleton], ["Just normalize CSS for consistent styling", normalize]]
+      type: multiple_choice
+      prompt: "Front-end framework?"
+      choices: [["None", nothing], ["Twitter Bootstrap (Sass)", bootstrap_sass], ["Twitter Bootstrap (Less)", bootstrap_less], ["Zurb Foundation", foundation], ["Skeleton", skeleton], ["Just normalize CSS for consistent styling", normalize]]
   - forms:
-    type: multiple_choice
-    prompt: "Form builder?"
-    choices: [["None", none], ["SimpleForm", simple_form]]
+      type: multiple_choice
+      prompt: "Form builder?"
+      choices: [["None", none], ["SimpleForm", simple_form]]
   - email:
-    type: boolean
-    prompt: "Will the application send email?"
+      type: boolean
+      prompt: "Will the application send email?"
   - authentication:
-    type: multiple_choice
-    prompt: "Authentication?"
-    choices: [["None", none], ["Devise", devise], ["OmniAuth", omniauth]]
+      type: multiple_choice
+      prompt: "Authentication?"
+      choices: [["None", none], ["Devise", devise], ["OmniAuth", omniauth]]
   - homepage:
-    type: boolean
-    prompt: "Add a simple Home page and controller?"
+      type: boolean
+      prompt: "Add a simple Home page and controller?"
