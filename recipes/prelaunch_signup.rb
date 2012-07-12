@@ -18,7 +18,7 @@ gem 'haml-rails', '>= 0.3.4', :group => :development
 
 # >---------------------------------[ RSpec ]---------------------------------<
 
-gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
+gem 'rspec-rails', '>= 2.11.0', :group => [:development, :test]
 gem 'factory_girl_rails', '>= 3.5.0', :group => [:development, :test]
 # add a collection of RSpec matchers and Cucumber steps to make testing email easy
 gem 'email_spec', '>= 1.2.1', :group => :test

@@ -4,8 +4,7 @@
 if config['mongoid']
   say_wizard "REMINDER: When creating a Rails app using Mongoid..."
   say_wizard "you should add the '-O' flag to 'rails new'"
-  gem 'bson_ext', '>= 1.6.4'
-  gem 'mongoid', '>= 2.4.11'
+  gem 'mongoid', '>= 3.0.1'
 else
   recipes.delete('mongoid')
 end

@@ -48,6 +48,8 @@ RUBY
       gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
 <<-RUBY
   attr_accessible :provider, :uid, :name, :email
+  # run 'rake db:mongoid:create_indexes' to create indexes
+  index({ email: 1 }, { unique: true, background: true })
 end
 RUBY
       end

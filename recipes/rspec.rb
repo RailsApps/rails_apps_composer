@@ -2,12 +2,12 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rspec.rb
 
 if config['rspec']
-  gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
+  gem 'rspec-rails', '>= 2.11.0', :group => [:development, :test]
   if recipes.include? 'mongoid'
     # use the database_cleaner gem to reset the test database
     gem 'database_cleaner', '>= 0.8.0', :group => :test
-    # include RSpec matchers from the mongoid-rspec gem, 1.4.6 requires mongoid 3.0.0.rc making it impossible to resolve dependencies
-    gem 'mongoid-rspec', '1.4.5', :group => :test
+    # include RSpec matchers from the mongoid-rspec gem
+    gem 'mongoid-rspec', '1.4.6', :group => :test
   end
   case config['fixtures']
     when 'machinist'
