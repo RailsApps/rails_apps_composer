@@ -33,7 +33,7 @@ recipes = ["activerecord", "devise", "prototype"]
 
 def say_custom(tag, text); say "\033[1m\033[36m" + tag.to_s.rjust(10) + "\033[0m" + "  #{text}" end
 def say_recipe(name); say "\033[1m\033[36m" + "recipe".rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
-def say_wizard(text); say_custom('wizard', text) end
+def say_wizard(text); say_custom('composer', text) end
 def ask_wizard(question)
   ask "\033[1m\033[30m\033[46m" + "prompt".rjust(10) + "\033[0m\033[36m" + "  #{question}\033[0m"
 end

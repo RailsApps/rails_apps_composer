@@ -1,7 +1,7 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/readme.rb
 
-# remove unnecessary files
+# remove default READMEs
 %w{
   README
   README.rdoc
@@ -15,12 +15,12 @@ gsub_file "README", /App_Name/, "#{app_name.humanize.titleize}"
 gsub_file "README.textile", /App_Name/, "#{app_name.humanize.titleize}"
 
 # Ruby on Rails
-gsub_file "README.textile", /\* Ruby/, "* Ruby version 1.9.3" if recipes.include? 'ruby_1_9_3'
-gsub_file "README.textile", /\* Rails/, "* Rails version 3.2.6" if recipes.include? 'rails_3_2_6'
+gsub_file "README.textile", /\* Ruby/, "* Ruby version #{RUBY_VERSION}"
+gsub_file "README.textile", /\* Rails/, "* Rails version #{Rails::VERSION::STRING}"
 
 # Database
 gsub_file "README.textile", /SQLite/, "MongoDB" if recipes.include? 'mongodb'
-gsub_file "README.textile", /ActiveRecord/, "the Mongoid ORM." if recipes.include? 'mongoid'
+gsub_file "README.textile", /ActiveRecord/, "the Mongoid ORM" if recipes.include? 'mongoid'
 
 # Template Engine
 gsub_file "README.textile", /ERB/, "Haml" if recipes.include? 'haml'
@@ -39,8 +39,8 @@ gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: S
 gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: Normalized CSS" if recipes.include? 'normalize'
 
 # Form Builder
-gsub_file "README.textile", /Form Builder: None/, "SimpleForm" if recipes.include? 'simple_form'
-gsub_file "README.textile", /Form Builder: None/, "SimpleForm (Bootstrap)" if recipes.include? 'simple_form_bootstrap'
+gsub_file "README.textile", /Form Builder: None/, "Form Builder: SimpleForm" if recipes.include? 'simple_form'
+gsub_file "README.textile", /Form Builder: None/, "Form Builder: SimpleForm (Bootstrap)" if recipes.include? 'simple_form_bootstrap'
 
 # Email
 if recipes.include? 'email'
@@ -54,8 +54,8 @@ end
 
 # Authentication and Authorization
 gsub_file "README.textile", /Authentication: None/, "Authentication: Devise" if recipes.include? 'devise'
-gsub_file "README.textile", /Authorization: None/, "Authorization: OmniAuth" if recipes.include? 'omniauth'
-gsub_file "README.textile", /Authentication: None/, "Authentication: CanCan" if recipes.include? 'cancan'
+gsub_file "README.textile", /Authentication: None/, "Authentication: OmniAuth" if recipes.include? 'omniauth'
+gsub_file "README.textile", /Authorization: None/, "Authorization: CanCan" if recipes.include? 'cancan'
 
 __END__
 
