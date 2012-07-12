@@ -1,19 +1,21 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/gems.rb
 
-# Ruby on Rails
+### GEMFILE ###
+
+## Ruby on Rails
 insert_into_file 'Gemfile', "ruby '1.9.3'\n", :before => "gem 'rails', '3.2.6'" if recipes.include? 'heroku'
 
-# Database
+## Database
 gem 'mongoid', '>= 2.4.11' if recipes.include? 'mongoid'
 
-# Template Engine
+## Template Engine
 if recipes.include? 'haml'
   gem 'haml', '>= 3.1.6'
   gem 'haml-rails', '>= 0.3.4', :group => :development
 end
 
-# Testing Framework
+## Testing Framework
 if recipes.include? 'rspec'
   gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
   gem 'capybara', '>= 1.1.2', :group => :test
@@ -36,7 +38,7 @@ if recipes.include? 'rspec'
   gem 'email_spec', '>= 1.2.1', :group => :test if recipes.include? 'email'
 end  
 
-# Front-end Framework
+## Front-end Framework
 gem 'bootstrap-sass', '>= 2.0.4.0' if recipes.include? 'bootstrap_sass'
 gem 'zurb-foundation', '>= 3.0.3' if recipes.include? 'foundation'
 if recipes.include? 'bootstrap_less'
@@ -44,18 +46,18 @@ if recipes.include? 'bootstrap_less'
   gem 'therubyracer', :group => :assets, :platform => :ruby # install gem 'therubyracer' to use Less
 end
 
-# Form Builder
+## Form Builder
 gem 'simple_form' if recipes.include? 'simple_form'
 
-# Email
+## Email
 gem 'sendgrid' if recipes.include? 'sendgrid'
 gem 'hominid' if recipes.include? 'mandrill'
 
-# Authentication (Devise)
+## Authentication (Devise)
 gem 'devise', '>= 2.1.2' if recipes.include? 'devise'
 gem 'devise_invitable', '>= 1.0.2' if recipes.include? 'devise-invitable'
 
-# Authentication (OmniAuth)
+## Authentication (OmniAuth)
 gem 'omniauth', '>= 1.1.0' if recipes.include? 'omniauth'
 gem 'omniauth-twitter' if recipes.include? 'twitter'
 gem 'omniauth-facebook' if recipes.include? 'facebook'
@@ -64,11 +66,13 @@ gem 'omniauth-linkedin' if recipes.include? 'linkedin'
 gem 'omniauth-google-oauth2' if recipes.include? 'google-oauth2'
 gem 'omniauth-tumblr' if recipes.include? 'tumblr'
 
-# Authorization 
+## Authorization 
 if recipes.include? 'cancan'
   gem 'cancan', '>= 1.6.8'
   gem 'rolify', '>= 3.1.0'
 end
+
+### GENERATE ###
 
 __END__
 

@@ -1,16 +1,94 @@
 # Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/cucumber.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/testing.rb
 
-if config['cucumber']
-  gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
-  gem 'capybara', '>= 1.1.2', :group => :test
-  gem 'database_cleaner', '>= 0.8.0', :group => :test
-  gem 'launchy', '>= 2.1.0', :group => :test
-else
-  recipes.delete('cucumber')
+### RSPEC AND FIXTURE REPLACEMENTS ###
+
+if recipes.include? 'rspec'
+  after_bundler do
+    say_wizard "RSpec recipe running 'after bundler'"
+    generate 'rspec:install'
+    generate 'email_spec:steps'
+    inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
+    inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+RUBY
+    end
+    if recipes.include? 'machinist'
+      say_wizard "Generating blueprints file for Machinist"
+      generate 'machinist:install'
+    end
+
+    say_wizard "Removing test folder (not needed for RSpec)"
+    run 'rm -rf test/'
+
+    inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
+
+    # don't generate RSpec tests for views and helpers
+    config.generators do |g|
+      g.view_specs false
+      g.helper_specs false
+      #{"g.fixture_replacement :machinist" if config['fixtures'] === 'machinist'}
+    end
+
+RUBY
+    end
+
+
+    if recipes.include? 'mongoid'
+
+      # remove ActiveRecord artifacts
+      gsub_file 'spec/spec_helper.rb', /config.fixture_path/, '# config.fixture_path'
+      gsub_file 'spec/spec_helper.rb', /config.use_transactional_fixtures/, '# config.use_transactional_fixtures'
+
+      # reset your application database to a pristine state during testing
+      inject_into_file 'spec/spec_helper.rb', :before => "\nend" do
+      <<-RUBY
+  \n
+  # Clean up the database
+  require 'database_cleaner'
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.orm = "mongoid"
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.clean
+  end
+RUBY
+      end
+
+      # remove either possible occurrence of "require rails/test_unit/railtie"
+      gsub_file 'config/application.rb', /require 'rails\/test_unit\/railtie'/, '# require "rails/test_unit/railtie"'
+      gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, '# require "rails/test_unit/railtie"'
+
+      # configure RSpec to use matchers from the mongoid-rspec gem
+      create_file 'spec/support/mongoid.rb' do
+      <<-RUBY
+RSpec.configure do |config|
+  config.include Mongoid::Matchers
+end
+RUBY
+      end
+    end
+
+    if recipes.include? 'devise'
+      # add Devise test helpers
+      create_file 'spec/support/devise.rb' do
+      <<-RUBY
+RSpec.configure do |config|
+  config.include Devise::TestHelpers, :type => :controller
+end
+RUBY
+      end
+    end
+
+  end
 end
 
-if config['cucumber']
+### CUCUMBER ###
+
+if recipes.include? 'cucumber'
   after_bundler do
     say_wizard "Cucumber recipe running 'after bundler'"
     generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' if recipes.include?('mongoid')}"
@@ -25,7 +103,7 @@ if config['cucumber']
   end
 end
 
-if config['cucumber']
+if recipes.include? 'cucumber'
   if recipes.include? 'devise'
     after_bundler do
       say_wizard "Copying Cucumber scenarios from the rails3-devise-rspec-cucumber examples"
@@ -61,15 +139,10 @@ end
 
 __END__
 
-name: Cucumber
-description: "Use Cucumber for BDD (with Capybara)."
+name: testing
+description: "Add testing framework."
 author: RailsApps
 
-exclusive: acceptance_testing 
 category: testing
-tags: [acceptance]
 
-config:
-  - cucumber:
-      type: boolean
-      prompt: Would you like to use Cucumber for your BDD?
+args: ["-T"]
