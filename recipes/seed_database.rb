@@ -42,7 +42,8 @@ after_everything do
     run 'bundle exec rake db:migrate'
     run 'bundle exec rake db:test:prepare'
   else
-    say_wizard "creating indexes and seeding the database"
+    say_wizard "dropping database, creating indexes and seeding the database"
+    run 'rake db:drop'
     run 'rake db:mongoid:create_indexes'
   end
   run 'bundle exec rake db:seed'

@@ -7,7 +7,7 @@ if config['rspec']
     # use the database_cleaner gem to reset the test database
     gem 'database_cleaner', '>= 0.8.0', :group => :test
     # include RSpec matchers from the mongoid-rspec gem
-    gem 'mongoid-rspec', '1.4.6', :group => :test
+    gem 'mongoid-rspec', '>= 1.4.6', :group => :test
   end
   case config['fixtures']
     when 'machinist'

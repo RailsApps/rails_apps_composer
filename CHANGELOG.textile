@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 1.5.6 unreleased
+
+* update 'rspec' recipe to allow newer versions of gem 'mongoid-rspec'
+* update 'seed_database' to drop MongoDB database before seeding
+
 h2. 1.5.5 July 12, 2012
 
 * display an error message when a recipe cannot be found (contributed by Jim Riordan)
