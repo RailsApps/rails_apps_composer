@@ -15,7 +15,7 @@ Does the rails_apps_composer gem need improvements? "See the poll":http://gopoll
 
 h4. Alternatives
 
-The rails_apps_composer gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see "differences":#differences).
+The rails_apps_composer gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see "differences":#rails_apps_composer-differences).
 
 Notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/.
 
@@ -343,7 +343,7 @@ description: Installs SuperGem which is useful for things
 author: mbleigh
 </pre>
 
-h4(#differences). Rails_apps_composer Differences
+h4. Rails_apps_composer Differences
 
 The rails_apps_composer gem is derived from "Michael Bleigh’s RailsWizard gem":https://github.com/intridea/rails_wizard. Many recipes provided by the rails_apps_composer gem are different from those provided by the rails_wizard gem. Applications generated with the rails_apps_composer gem are more complex; for example, they may include a home page with sign-in, sign-out navigation links.
 
