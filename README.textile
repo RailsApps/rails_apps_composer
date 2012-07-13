@@ -9,11 +9,13 @@ We use the rails_apps_composer gem to create the "Rails Example Apps":http://rai
 
 Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
-h4. Based on Michael Bleigh's RailsWizard Gem
+h4. Take a Poll; Make Suggestions
 
-The rails_apps_composer gem is a fork of "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see credits below). The purpose of the fork is to provide recipes for ready-to-run Rails starter apps. Several recipes provided by the rails_apps_composer gem are different from those provided by the rails_wizard gem. Applications generated with the rails_apps_composer gem are more complete; for example, they may include a home page with sign-in, sign-out navigation links.
+Does the rails_apps_composer gem need improvements? "See the poll":http://gopollgo.com/does-the-rails-apps-composer-gem-need-improvements and "offer your suggestions":http://gopollgo.com/does-the-rails-apps-composer-gem-need-improvements.
 
 h4. Alternatives
+
+The rails_apps_composer gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see "differences":#differences).
 
 Notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/.
 
@@ -341,9 +343,11 @@ description: Installs SuperGem which is useful for things
 author: mbleigh
 </pre>
 
-h4. Rails_apps_composer Differences
+h4(#differences). Rails_apps_composer Differences
 
-The rails_apps_composer gem is very similar to the rails_wizard gem, with one significant difference. The rails_wizard gem is supposed to allow specification of execution order for recipes with @run_before@ and @run_after@ configuration flags (though the "rails_wizard implentation has been reported as buggy":https://github.com/intridea/rails_wizard/issues/30). The rails_apps_composer gem supports only the @run_after@ flag; additionally, the order in which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
+The rails_apps_composer gem is derived from "Michael Bleigh’s RailsWizard gem":https://github.com/intridea/rails_wizard. Many recipes provided by the rails_apps_composer gem are different from those provided by the rails_wizard gem. Applications generated with the rails_apps_composer gem are more complex; for example, they may include a home page with sign-in, sign-out navigation links.
+
+Operation of the rails_apps_composer gem differs as well. For example, the rails_wizard gem is supposed to allow specification of execution order for recipes with @run_before@ and @run_after@ configuration flags (though the "rails_wizard implentation has been reported as buggy":https://github.com/intridea/rails_wizard/issues/30). The rails_apps_composer gem supports only the @run_after@ flag; additionally, the order in which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
 
 <pre>
 $ rails_apps_composer new myapp -r git haml
@@ -379,7 +383,7 @@ h2. Credits
 
 Daniel Kehoe maintains this gem as part of the "RailsApps Project":http://railsapps.github.com/.
 
-This gem is based on "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard. The original idea for a RailsWizard and the innovative implementation is the work of Michael Bleigh.
+This gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard. The original idea and the innovative implementation is the work of Michael Bleigh.
 
 Please see the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob/master/CHANGELOG.textile for a list of contributors.
 
