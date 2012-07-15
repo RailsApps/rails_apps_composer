@@ -6,7 +6,7 @@ say_wizard "You are using Ruby version #{RUBY_VERSION}."
 say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
 
 ## Database
-database = multiple_choice "Which database will you use?", [["SQLite", "sqlite"], ["MongoDB", "mongodb"]]
+database = multiple_choice "Which database will you use in development?", [["SQLite", "sqlite"], ["MongoDB", "mongodb"]]
 case database
 	when 'sqlite'
     recipes << 'sqlite'
@@ -15,8 +15,6 @@ case database
     recipes << 'mongodb'
     orm = multiple_choice "How will you connect to MongoDB?", [["Mongoid","mongoid"]]
     recipes << orm
-	else
-		raise StandardError.new "No database selected."
 end
 
 ## Template Engine
@@ -26,8 +24,6 @@ case templating
     recipes << 'erb'
   when 'haml'
     recipes << 'haml'
-	else
-		raise StandardError.new "No template engine selected."
 end
 
 ## Testing Framework
@@ -41,40 +37,21 @@ case testing
     recipes << 'rspec'
     recipes << 'cucumber'
     fixtures = multiple_choice "Fixture replacement?", [["None","none"], ["Factory Girl","factory_girl"], ["Machinist","machinist"]]
-    recipes << fixtures
-	else
-		raise StandardError.new "No testing framework selected."
+    recipes << fixtures unless fixtures == 'none'
 end
 
 ## Front-end Framework
-frontend = multiple_choice "Which front-end framework?", [["None", "nothing"], ["Twitter Bootstrap (Sass)", "bootstrap_sass"], ["Twitter Bootstrap (Less)", "bootstrap_less"], ["Zurb Foundation", "foundation"], ["Skeleton", "skeleton"], ["Just normalize CSS for consistent styling", "normalize"]]
-case frontend
-  when 'bootstrap_sass'
-    recipes << 'bootstrap_sass'
-  when 'bootstrap_less'
-    recipes << 'bootstrap_less'
-  when 'foundation'
-    recipes << 'foundation'
-  when 'skeleton'
-    recipes << 'skeleton'
-  when 'normalize'
-    recipes << 'normalize'
-end
+frontend = multiple_choice "Which front-end framework?", [["None", "none"], ["Twitter Bootstrap (Sass)", "bootstrap_sass"], ["Twitter Bootstrap (Less)", "bootstrap_less"], ["Zurb Foundation", "foundation"], ["Skeleton", "skeleton"], ["Just normalize CSS for consistent styling", "normalize"]]
+recipes << frontend unless frontend == 'none'
 
 ## Form Builder
 form_builder = multiple_choice "Which form builder?", [["None", "none"], ["SimpleForm", "simple_form"]]
-case form_builder
-  when 'simple_form'
-    recipes << 'simple_form'
-end
+recipes << form_builder unless form_builder == 'none'
 
 ## Email
-email = yes_wizard? "Will the application send email?"
-if email
-  recipes << 'email'
-  email_account = multiple_choice "What type of account for email?", [["SMTP","smtp"], ["Gmail","gmail"], ["SendGrid","sendgrid"], ["Mandrill","mandrill"]]
-  recipes << email_account
-end
+email_account = multiple_choice "Add support for sending email?", [["None", "none"], ["SMTP","smtp"], ["Gmail","gmail"], ["SendGrid","sendgrid"], ["Mandrill","mandrill"]]
+recipes << 'email' unless email_account == 'none'
+recipes << email_account unless email_account == 'none'
 
 ## Authentication and Authorization
 authentication = multiple_choice "Add authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]]
@@ -95,16 +72,21 @@ case authentication
     recipes << omniauth_provider
 end
 authorization = multiple_choice "Add authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]]
-case authorization
-  when 'cancan'
-    recipes << 'cancan'
-end
+recipes << authorization unless authorization == 'none'
 
 ## MVC
-homepage = yes_wizard? "Add a home page and controller?"
-if homepage
-  recipes << 'homepage'
+if recipes.include? 'cancan'
+  starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_page"], ["Home Page, User Accounts", "users_page"], ["Home Page, User Accounts, Admin Dashboard", "admin_page"]]
+elsif (recipes.include? 'devise') || (recipes.include? 'omniauth')
+  starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_page"], ["Home Page, User Accounts", "users_page"]]
+else
+  starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_page"]]
 end
+recipes << starterapp unless starterapp == 'none'
+if (recipes.include? 'devise') && (recipes.include? 'cancan')
+  railsapp = multiple_choice "Install a ready-made application?", [["None", "none"], ["Prelaunch Signup App", "prelaunch_app"]]
+end
+recipes << railsapp unless railsapp == 'none'
 
 __END__
 
