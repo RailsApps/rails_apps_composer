@@ -5,7 +5,7 @@ What you can do with the rails_apps_composer gem:
 * Create and maintain a starter app.
 * Make an application template that generates a complex Rails app in seconds.
 
-bq. "It's like the rails generator but for all the stuff I want, like you've read minds!" -- Michael Martinez
+bq. "It's like the rails generator but just for the stuff I want, like you've read minds!" -- Michael Martinez
 
 We use the rails_apps_composer gem to create the "Rails Example Apps":http://railsapps.github.com/ for the "RailsApps project":https://github.com/RailsApps.
 
