@@ -1,4 +1,4 @@
-# Application template recipe for the rails_apps_composer. Check for a newer version here:
+# Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/gmgp/rails_apps_composer/blob/master/recipes/inherited_resources.rb
 
 if config['inherited_resources']

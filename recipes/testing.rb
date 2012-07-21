@@ -1,51 +1,47 @@
-# Application template recipe for the rails_apps_composer. Check for a newer version here:
+# Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/testing.rb
 
-### RSPEC AND FIXTURE REPLACEMENTS ###
-
-if recipes.include? 'rspec'
-  after_bundler do
-    say_wizard "RSpec recipe running 'after bundler'"
+after_bundler do
+  say_wizard "recipe running after 'bundle install'"
+  ### RSPEC ###
+  if recipes.include? 'rspec'
+    say_wizard "recipe installing RSpec"
     generate 'rspec:install'
-    generate 'email_spec:steps'
-    inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
-    inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
+    if recipes.include? 'email'
+      generate 'email_spec:steps'
+      inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
+      inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
 RUBY
+      end
     end
+    ## RSPEC AND FIXTURE REPLACEMENTS
     if recipes.include? 'machinist'
-      say_wizard "Generating blueprints file for Machinist"
+      say_wizard "generating blueprints file for 'machinist'"
       generate 'machinist:install'
     end
-
-    say_wizard "Removing test folder (not needed for RSpec)"
-    run 'rm -rf test/'
-
+    run 'rm -rf test/' # Removing test folder (not needed for RSpec)
     inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
-      #{"g.fixture_replacement :machinist" if config['fixtures'] === 'machinist'}
+      #{"g.fixture_replacement :machinist" if recipes.include? 'machinist'}
     end
 
 RUBY
     end
-
-
+    ## RSPEC AND MONGOID
     if recipes.include? 'mongoid'
-
       # remove ActiveRecord artifacts
       gsub_file 'spec/spec_helper.rb', /config.fixture_path/, '# config.fixture_path'
       gsub_file 'spec/spec_helper.rb', /config.use_transactional_fixtures/, '# config.use_transactional_fixtures'
-
       # reset your application database to a pristine state during testing
       inject_into_file 'spec/spec_helper.rb', :before => "\nend" do
       <<-RUBY
   \n
-  # Clean up the database
   require 'database_cleaner'
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
@@ -57,11 +53,9 @@ RUBY
   end
 RUBY
       end
-
       # remove either possible occurrence of "require rails/test_unit/railtie"
       gsub_file 'config/application.rb', /require 'rails\/test_unit\/railtie'/, '# require "rails/test_unit/railtie"'
       gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, '# require "rails/test_unit/railtie"'
-
       # configure RSpec to use matchers from the mongoid-rspec gem
       create_file 'spec/support/mongoid.rb' do
       <<-RUBY
@@ -71,7 +65,7 @@ end
 RUBY
       end
     end
-
+    ## RSPEC AND DEVISE
     if recipes.include? 'devise'
       # add Devise test helpers
       create_file 'spec/support/devise.rb' do
@@ -82,18 +76,20 @@ end
 RUBY
       end
     end
-
   end
-end
-
-### CUCUMBER ###
-
-if recipes.include? 'cucumber'
-  after_bundler do
-    say_wizard "Cucumber recipe running 'after bundler'"
+  ### CUCUMBER ###
+  if recipes.include? 'cucumber'
+    say_wizard "recipe installing Cucumber"
     generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' if recipes.include?('mongoid')}"
     # make it easy to run Cucumber for single features without adding "--require features" to the command line
     gsub_file 'config/cucumber.yml', /std_opts = "/, 'std_opts = "-r features/support/ -r features/step_definitions '
+    if recipes.include? 'email'
+      create_file 'features/support/email_spec.rb' do <<-RUBY
+require 'email_spec/cucumber'
+RUBY
+      end      
+    end
+    ## CUCUMBER AND MONGOID
     if recipes.include? 'mongoid'
       gsub_file 'features/support/env.rb', /transaction/, "truncation"
       inject_into_file 'features/support/env.rb', :after => 'begin' do
@@ -101,42 +97,79 @@ if recipes.include? 'cucumber'
       end
     end
   end
-end
+  ### GIT ###
+  git :add => '.' if recipes.include? 'git'
+  git :commit => "-aqm 'rails_apps_composer: testing framework'" if recipes.include? 'git'
+end # after_bundler
 
-if recipes.include? 'cucumber'
-  if recipes.include? 'devise'
-    after_bundler do
-      say_wizard "Copying Cucumber scenarios from the rails3-devise-rspec-cucumber examples"
-      begin
-        # copy all the Cucumber scenario files from the rails3-devise-rspec-cucumber example app
-        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/features/users/sign_in.feature', 'features/users/sign_in.feature'
-        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/features/users/sign_out.feature', 'features/users/sign_out.feature'
-        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/features/users/sign_up.feature', 'features/users/sign_up.feature'
-        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/features/users/user_edit.feature', 'features/users/user_edit.feature'
-        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/features/users/user_show.feature', 'features/users/user_show.feature'
-        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/features/step_definitions/user_steps.rb', 'features/step_definitions/user_steps.rb'
-        remove_file 'features/support/paths.rb'
-        get 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/features/support/paths.rb', 'features/support/paths.rb'
-        if recipes.include? 'devise-confirmable'
-          gsub_file 'features/step_definitions/user_steps.rb', /Welcome! You have signed up successfully./, "A message with a confirmation link has been sent to your email address."
-          inject_into_file 'features/users/sign_in.feature', :before => '    Scenario: User signs in successfully' do
-<<-RUBY
-    Scenario: User has not confirmed account
-      Given I exist as an unconfirmed user
-      And I am not logged in
-      When I sign in with valid credentials
-      Then I see an unconfirmed account message
-      And I should be signed out
-RUBY
-          end
-        end
-      rescue OpenURI::HTTPError
-        say_wizard "Unable to obtain Cucumber example files from the repo"
-      end
-    end 
+after_everything do
+  say_wizard "recipe running after everything"
+  ### RSPEC ###
+  if recipes.include? 'rspec'
+    if (recipes.include? 'devise') && (recipes.include? 'user_accounts')
+      say_wizard "copying RSpec files from the rails3-devise-rspec-cucumber examples"
+      repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
+      copy_from_repo 'spec/factories/users.rb', repo
+      gsub_file 'spec/factories/users.rb', /# confirmed_at/, "confirmed_at" if recipes.include? 'devise-confirmable'
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', repo
+      copy_from_repo 'spec/controllers/users_controller_spec.rb', repo
+      copy_from_repo 'spec/models/user_spec.rb', repo
+      remove_file 'spec/views/home/index.html.erb_spec.rb'
+      remove_file 'spec/views/home/index.html.haml_spec.rb'
+      remove_file 'spec/views/users/show.html.erb_spec.rb'
+      remove_file 'spec/views/users/show.html.haml_spec.rb'
+      remove_file 'spec/helpers/home_helper_spec.rb'
+      remove_file 'spec/helpers/users_helper_spec.rb'
+    end
+    ## RSPEC AND OMNIAUTH
+    if (recipes.include? 'omniauth') && (recipes.include? 'user_accounts')
+      say_wizard "copying RSpec files from the rails3-mongoid-omniauth examples"
+      repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+      copy_from_repo 'spec/spec_helper.rb', repo
+      copy_from_repo 'spec/factories/users.rb', repo
+      copy_from_repo 'spec/controllers/sessions_controller_spec.rb', repo
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', repo
+      copy_from_repo 'spec/controllers/users_controller_spec.rb', repo
+      copy_from_repo 'spec/models/user_spec.rb', repo
+    end
+    ## GIT
+    git :add => '.' if recipes.include? 'git'
+    git :commit => "-aqm 'rails_apps_composer: rspec files'" if recipes.include? 'git'
   end
-end
-
+  ### CUCUMBER ###
+  if recipes.include? 'cucumber'
+    ## CUCUMBER AND DEVISE
+    if (recipes.include? 'devise') && (recipes.include? 'user_accounts')
+      say_wizard "copying Cucumber scenarios from the rails3-devise-rspec-cucumber examples"
+      repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', repo
+      copy_from_repo 'features/users/sign_in.feature', repo
+      copy_from_repo 'features/users/sign_out.feature', repo
+      copy_from_repo 'features/users/sign_up.feature', repo
+      copy_from_repo 'features/users/user_edit.feature', repo
+      copy_from_repo 'features/users/user_show.feature', repo
+      copy_from_repo 'features/step_definitions/user_steps.rb', repo
+      copy_from_repo 'features/support/paths.rb', repo
+      if recipes.include? 'devise-confirmable'
+        gsub_file 'features/step_definitions/user_steps.rb', /Welcome! You have signed up successfully./, "A message with a confirmation link has been sent to your email address."
+        inject_into_file 'features/users/sign_in.feature', :before => '    Scenario: User signs in successfully' do
+<<-RUBY
+  Scenario: User has not confirmed account
+    Given I exist as an unconfirmed user
+    And I am not logged in
+    When I sign in with valid credentials
+    Then I see an unconfirmed account message
+    And I should be signed out
+RUBY
+        end
+      end
+    end
+    ## GIT
+    git :add => '.' if recipes.include? 'git'
+    git :commit => "-aqm 'rails_apps_composer: cucumber files'" if recipes.include? 'git'
+  end
+end # after_everything 
+  
 __END__
 
 name: testing

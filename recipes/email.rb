@@ -1,25 +1,12 @@
-# Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/action_mailer.rb
-
-case config['mailer']
-  when 'smtp'
-    recipes << 'smtp'
-  when 'gmail'
-    recipes << 'gmail'
-  when 'sendgrid'
-    gem 'sendgrid'
-    recipes << 'sendgrid'
-  when 'mandrill'
-    gem 'hominid'
-    recipes << 'mandrill'
-end
+# Application template recipe for the rails_apps_composer. Change the recipe here:
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/email.rb
 
 after_bundler do
-  ### modifying environment configuration files for ActionMailer
-  say_wizard "ActionMailer recipe running 'after bundler'"
-  ### development environment
-  gsub_file 'config/environments/development.rb', /# Don't care if the mailer can't send/, '# ActionMailer Config'
-  gsub_file 'config/environments/development.rb', /config.action_mailer.raise_delivery_errors = false/ do
+  say_wizard "recipe running after 'bundle install'"
+  if recipes.include? 'email'
+    ### DEVELOPMENT
+    gsub_file 'config/environments/development.rb', /# Don't care if the mailer can't send/, '# ActionMailer Config'
+    gsub_file 'config/environments/development.rb', /config.action_mailer.raise_delivery_errors = false/ do
   <<-RUBY
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
@@ -28,17 +15,17 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 RUBY
-  end
-  ### test environment
-  inject_into_file 'config/environments/test.rb', :before => "\nend" do 
+    end
+    ### TEST
+    inject_into_file 'config/environments/test.rb', :before => "\nend" do 
   <<-RUBY
 \n  
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }
 RUBY
-  end
-  ### production environment
-  gsub_file 'config/environments/production.rb', /config.active_support.deprecation = :notify/ do
+    end
+    ### PRODUCTION
+    gsub_file 'config/environments/production.rb', /config.active_support.deprecation = :notify/ do
   <<-RUBY
 config.active_support.deprecation = :notify
 
@@ -50,9 +37,9 @@ config.active_support.deprecation = :notify
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 RUBY
+    end
   end
-
-  ### modifying environment configuration files to send email using a GMail account
+  ### GMAIL ACCOUNT
   if recipes.include? 'gmail'
     gmail_configuration_text = <<-TEXT
 \n
@@ -66,12 +53,10 @@ RUBY
     password: ENV["GMAIL_PASSWORD"]
   }
 TEXT
-    say_wizard gmail_configuration_text
     inject_into_file 'config/environments/development.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
   end
-
-  ### modifying environment configuration files to send email using a SendGrid account
+  ### SENDGRID ACCOUNT
   if recipes.include? 'sendgrid'
     sendgrid_configuration_text = <<-TEXT
 \n
@@ -84,12 +69,10 @@ TEXT
     password: ENV["SENDGRID_PASSWORD"]
   }
 TEXT
-    say_wizard gmail_configuration_text
     inject_into_file 'config/environments/development.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
   end
-  
-    ### modifying environment configuration files to send email using a Mandrill account
+    ### MANDRILL ACCOUNT
     if recipes.include? 'mandrill'
       mandrill_configuration_text = <<-TEXT
   \n
@@ -100,24 +83,19 @@ TEXT
       :password  => ENV["MANDRILL_API_KEY"]
     }
   TEXT
-      say_wizard gmail_configuration_text
       inject_into_file 'config/environments/development.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
       inject_into_file 'config/environments/production.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     end
-    
-end
+    ### GIT
+    git :add => '.' if recipes.include? 'git'
+    git :commit => "-aqm 'rails_apps_composer: set email accounts'" if recipes.include? 'git'
+end # after_bundler
 
 __END__
 
-name: ActionMailer
-description: "Configure ActionMailer for email."
+name: email
+description: "Configure email accounts."
 author: RailsApps
 
 category: other
 tags: [utilities, configuration]
-
-config:
-  - mailer:
-      type: multiple_choice
-      prompt: "How will you send email?"
-      choices: [["SMTP account", smtp], ["Gmail account", gmail], ["SendGrid account", sendgrid], ["Mandrill by MailChimp account", mandrill]]

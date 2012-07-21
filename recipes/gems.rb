@@ -1,4 +1,4 @@
-# Application template recipe for the rails_apps_composer. Check for a newer version here:
+# Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/gems.rb
 
 ### GEMFILE ###
@@ -7,7 +7,7 @@
 insert_into_file 'Gemfile', "ruby '1.9.3'\n", :before => "gem 'rails', '3.2.6'" if recipes.include? 'heroku'
 
 ## Database
-gem 'mongoid', '>= 2.4.11' if recipes.include? 'mongoid'
+gem 'mongoid', '>= 3.0.1' if recipes.include? 'mongoid'
 
 ## Template Engine
 if recipes.include? 'haml'
@@ -17,13 +17,13 @@ end
 
 ## Testing Framework
 if recipes.include? 'rspec'
-  gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
+  gem 'rspec-rails', '>= 2.11.0', :group => [:development, :test]
   gem 'capybara', '>= 1.1.2', :group => :test
   if recipes.include? 'mongoid'
     # use the database_cleaner gem to reset the test database
     gem 'database_cleaner', '>= 0.8.0', :group => :test
     # include RSpec matchers from the mongoid-rspec gem
-    gem 'mongoid-rspec', '1.4.5', :group => :test
+    gem 'mongoid-rspec', '>= 1.4.6', :group => :test
   end
   # fixture replacements
   gem 'machinist', :group => :test if recipes.include? 'machinist'
@@ -40,10 +40,11 @@ end
 
 ## Front-end Framework
 gem 'bootstrap-sass', '>= 2.0.4.0' if recipes.include? 'bootstrap_sass'
-gem 'zurb-foundation', '>= 3.0.3' if recipes.include? 'foundation'
+gem 'zurb-foundation', '>= 3.0.5' if recipes.include? 'foundation'
 if recipes.include? 'bootstrap_less'
   gem 'twitter-bootstrap-rails', '>= 2.0.3', :group => :assets
-  gem 'therubyracer', :group => :assets, :platform => :ruby # install gem 'therubyracer' to use Less
+  # install gem 'therubyracer' to use Less
+  gem 'therubyracer', :group => :assets, :platform => :ruby
 end
 
 ## Form Builder
@@ -55,7 +56,7 @@ gem 'hominid' if recipes.include? 'mandrill'
 
 ## Authentication (Devise)
 gem 'devise', '>= 2.1.2' if recipes.include? 'devise'
-gem 'devise_invitable', '>= 1.0.2' if recipes.include? 'devise-invitable'
+gem 'devise_invitable', '>= 1.0.3' if recipes.include? 'devise-invitable'
 
 ## Authentication (OmniAuth)
 gem 'omniauth', '>= 1.1.0' if recipes.include? 'omniauth'
@@ -72,11 +73,33 @@ if recipes.include? 'cancan'
   gem 'rolify', '>= 3.1.0'
 end
 
-### GENERATE ###
+## Git
+git :add => '.' if recipes.include? 'git'
+git :commit => "-aqm 'rails_apps_composer: Gemfile'" if recipes.include? 'git'
+
+### GENERATORS ###
+after_bundler do
+  ## Database
+  generate 'mongoid:config' if recipes.include? 'mongoid'
+  remove_file 'config/database.yml' if recipes.include? 'mongoid'
+  ## Form Builder
+  if recipes.include? 'simple_form'
+    if recipes.include? 'bootstrap'
+      say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
+      generate 'simple_form:install --bootstrap'
+    else
+      say_wizard "recipe installing simple_form"
+      generate 'simple_form:install'
+    end
+  end
+  ## Git
+  git :add => '.' if recipes.include? 'git'
+  git :commit => "-aqm 'rails_apps_composer: generators'" if recipes.include? 'git'
+end # after_bundler
 
 __END__
 
-name: Gems
+name: gems
 description: "Add the gems your application needs."
 author: RailsApps
 

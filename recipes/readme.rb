@@ -1,4 +1,4 @@
-# Application template recipe for the rails_apps_composer. Check for a newer version here:
+# Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/readme.rb
 
 # remove default READMEs
@@ -8,9 +8,11 @@
   doc/README_FOR_APP
 }.each { |file| remove_file file }
 
-# add placeholder READMEs
-get "https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/readme/readme.txt", "README"
-get "https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/readme/readme.textile", "README.textile"
+# add placeholder READMEs and humans.txt file
+repo = 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
+copy_from_repo 'public/humans.txt', repo
+copy_from_repo 'README', repo
+copy_from_repo 'README.textile', repo
 gsub_file "README", /App_Name/, "#{app_name.humanize.titleize}"
 gsub_file "README.textile", /App_Name/, "#{app_name.humanize.titleize}"
 
@@ -57,9 +59,12 @@ gsub_file "README.textile", /Authentication: None/, "Authentication: Devise" if 
 gsub_file "README.textile", /Authentication: None/, "Authentication: OmniAuth" if recipes.include? 'omniauth'
 gsub_file "README.textile", /Authorization: None/, "Authorization: CanCan" if recipes.include? 'cancan'
 
+git :add => '.' if recipes.include? 'git'
+git :commit => "-aqm 'rails_apps_composer: add README files'" if recipes.include? 'git'
+
 __END__
 
-name: Readme
+name: readme
 description: "Build a README file for your application."
 author: RailsApps
 

@@ -2,15 +2,39 @@ h1. CHANGELOG
 
 h2. 2.0 unreleased
 
-* new 'preliminaries' recipe
+* reorganize recipes for easier maintenance
+* more extensive downloading of files from the example app repos on GitHub
+* new recipe: 'setup' allows if-then configuration options
+* new recipe: 'readme' to build README files that provide greater detail
+* new recipe: 'gems' collects all the gems in one recipe for easier updating
+* new recipe: 'testing' combines rspec and cucumber options with fixture replacements
+* new recipe: 'auth' combines devise, cancan and omniauth options
+* new recipe: 'email' consolidates email account options
+* new recipe: 'models' consolidates all models
+* new recipe: 'controllers' consolidates all controllers
+* new recipe: 'views' consolidates all views
+* new recipe: 'routes' consolidates all routes
+* new recipe: 'frontend' is the new name for the 'html5' recipe
+* new recipe: 'database' sets up the database seed and runs migrations
+* check if SQLite is present in the Gemfile and throw an error if MongoDB is selected
+* add 'rvm' option to 'extras' recipe to greate a project-specific gemset and .rvmrc file
 
-h2. 1.5.5 unreleased
+h2. 1.5.6 unreleased
+
+* update 'rspec' recipe to allow newer versions of gem 'mongoid-rspec'
+* update 'seed_database' to drop MongoDB database before seeding
+
+h2. 1.5.5 July 12, 2012
 
 * display an error message when a recipe cannot be found (contributed by Jim Riordan)
-* improve 'seed_database' recipe for Mongoid (prepare for Mongoid 3.0 release)
+* add 'turnip' recipe (contributed by Bradley Grzesiak)
+* update 'mongoid' 'omniauth' 'add_user' 'seed_database' recipes for Mongoid 3.0
+* update gem 'mongoid-rspec' from 1.4.5 to 1.4.6
 * update 'omniauth' recipe to add google-oauth2 support (contributed by Earl St Sauver)
 * update 'html5' recipe for newer Skeleton installation (contributed by Andrew J Vargo)
-* update gem 'zurb-foundation' from 3.0.2 to 3.0.3
+* update gem 'zurb-foundation' from 3.0.2 to 3.0.5
+* update gem 'rspec-rails' from 2.10.1 to 2.11.0
+* fix .rvmrc file for rails_apps_composer
 
 h2. 1.5.4 July 3, 2012
 
