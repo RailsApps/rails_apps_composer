@@ -28,15 +28,18 @@ f.each_line do |line|
 end
 sqlite_detected = gemfile.include? 'sqlite3'
 
-## Database
-database = multiple_choice "Which database will you use in development?", [["SQLite", "sqlite"], ["MongoDB", "mongodb"]]
+## Web Server
+dev_webserver = multiple_choice "Web server for development?", [["Thin", "thin-development"], ["Unicorn", "unicorn-development"], ["WEBrick (default)", "webrick"]]
+recipes << dev_webserver
+prod_webserver = multiple_choice "Web server for production?", [["Thin", "thin-production"], ["Unicorn", "unicorn-production"]]
+recipes << prod_webserver
+
+## Database Adapter
+database = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"], ["MySQL", "mysql"], ["MongoDB", "mongodb"]]
+recipes << database
 case database
-	when 'sqlite'
-    recipes << 'sqlite'
-    recipes << 'activerecord'
   when 'mongodb'
     unless sqlite_detected
-      recipes << 'mongodb'
       orm = multiple_choice "How will you connect to MongoDB?", [["Mongoid","mongoid"]]
       recipes << orm
     else
@@ -134,7 +137,6 @@ if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.i
   end
   recipes << full_app unless full_app == 'none'
 end
-recipes << railsapp unless railsapp == 'none'
 
 __END__
 

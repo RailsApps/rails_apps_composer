@@ -3,8 +3,9 @@ h1. CHANGELOG
 h2. 2.0 unreleased
 
 * reorganize recipes for easier maintenance
+* new 'copy_from_repo' method in helpers.erb
 * more extensive downloading of files from the example app repos on GitHub
-* new recipe: 'setup' allows if-then configuration options
+* new recipe: 'setup' allows conditional configuration options
 * new recipe: 'readme' to build README files that provide greater detail
 * new recipe: 'gems' collects all the gems in one recipe for easier updating
 * new recipe: 'testing' combines rspec and cucumber options with fixture replacements
@@ -18,6 +19,7 @@ h2. 2.0 unreleased
 * new recipe: 'database' sets up the database seed and runs migrations
 * check if SQLite is present in the Gemfile and throw an error if MongoDB is selected
 * add 'rvm' option to 'extras' recipe to greate a project-specific gemset and .rvmrc file
+* run 'bundle install --without production' in helpers.erb to avoid gems used only in production
 
 h2. 1.5.6 unreleased
 

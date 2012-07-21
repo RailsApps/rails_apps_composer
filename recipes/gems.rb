@@ -6,8 +6,19 @@
 ## Ruby on Rails
 insert_into_file 'Gemfile', "ruby '1.9.3'\n", :before => "gem 'rails', '3.2.6'" if recipes.include? 'heroku'
 
-## Database
+## Web Server
+gem 'thin', '>= 1.4.1', :group => [:development, :test] if recipes.include? 'thin-development'
+gem 'unicorn', '>= 4.3.1', :group => [:development, :test] if recipes.include? 'unicorn-development'
+gem 'thin', '>= 1.4.1', :group => :production if recipes.include? 'thin-production'
+gem 'unicorn', '>= 4.3.1', :group => :production if recipes.include? 'unicorn-production'
+
+## Database Adapter
 gem 'mongoid', '>= 3.0.1' if recipes.include? 'mongoid'
+gem 'pg', '>= 0.14.0' if recipes.include? 'postgresql'
+gem 'mysql2', '>= 0.3.11' if recipes.include? 'mysql'
+repo = 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
+copy_from_repo 'database.yml', repo, :recipe => 'postgresql'
+copy_from_repo 'database.yml', repo, :recipe => 'mysql'
 
 ## Template Engine
 if recipes.include? 'haml'
