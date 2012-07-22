@@ -26,6 +26,10 @@ puts 'New user created: ' << user2.name
 FILE
       end
     end
+    if recipes.include? 'subdomains'
+      gsub_file 'db/seeds.rb', /First User/, 'user1'
+      gsub_file 'db/seeds.rb', /Second User/, 'user2'
+    end
     if recipes.include? 'cancan'
       append_file 'db/seeds.rb' do <<-FILE
 user.add_role :admin

@@ -44,27 +44,28 @@ def after_everything(&block); @after_everything_blocks << [@current_recipe, bloc
 @before_configs = {}
 def before_config(&block); @before_configs[@current_recipe] = block; end
 
-def copy_from_repo(filename, repo, opts = {})
-  if recipes.include? 'haml'
-    remove_file filename
-    filename = filename.gsub(/.erb/, '.haml')
+def copy_from_repo(filename, opts = {})
+  repo = 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
+  repo = opts[:repo] unless opts[:repo].nil?
+  if (!opts[:recipe].nil?) && (!recipes.include? opts[:recipe])
+    return
+  end
+  source_filename = filename
+  destination_filename = filename
+  unless opts[:recipe].nil?
+    if filename.include? opts[:recipe]
+      destination_filename = filename.gsub(/\-#{opts[:recipe]}/, '')
+    end
+  end
+  if (recipes.include? 'haml') && (filename.include? 'views')
+    remove_file destination_filename
+    source_filename = source_filename.gsub(/.erb/, '.haml')
+    destination_filename = destination_filename.gsub(/.erb/, '.haml')
   end
   begin
-    unless opts[:recipe].nil?
-      if recipes.include? opts[:recipe]
-        source_filename = filename
-        destination_filename = filename
-        if destination_filename.include? opts[:recipe]
-          destination_filename = destination_filename.gsub(/\-#{opts[:recipe]}/, '')
-        end
-        remove_file destination_filename
-        get repo + source_filename, destination_filename
-      end
-    else
-      remove_file filename
-      get repo + filename, filename
-    end
+    remove_file destination_filename
+    get repo + source_filename, destination_filename
   rescue OpenURI::HTTPError
-    say_wizard "Unable to obtain #{filename} from the repo #{repo}"
+    say_wizard "Unable to obtain #{source_filename} from the repo #{repo}"
   end
 end

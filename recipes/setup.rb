@@ -11,7 +11,7 @@ recipes << 'git'
 if recipes.include? 'git'
   begin
     remove_file '.gitignore'
-    get "https://raw.github.com/RailsApps/rails3-application-templates/master/files/gitignore.txt", ".gitignore"
+    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/gitignore.txt', '.gitignore'
   rescue OpenURI::HTTPError
     say_wizard "Unable to obtain gitignore file from the repo"
   end
@@ -29,10 +29,23 @@ end
 sqlite_detected = gemfile.include? 'sqlite3'
 
 ## Web Server
-dev_webserver = multiple_choice "Web server for development?", [["Thin", "thin-development"], ["Unicorn", "unicorn-development"], ["WEBrick (default)", "webrick"]]
+dev_webserver = multiple_choice "Web server for development?", [["WEBrick (default)", "webrick"], 
+  ["Thin", "thin-development"], ["Unicorn", "unicorn-development"], ["Puma", "puma-development"]]
 recipes << dev_webserver
-prod_webserver = multiple_choice "Web server for production?", [["Thin", "thin-production"], ["Unicorn", "unicorn-production"]]
-recipes << prod_webserver
+prod_webserver = multiple_choice "Web server for production?", [["Same as development", "same"], 
+  ["Thin", "thin-production"], ["Unicorn", "unicorn-development"], ["Puma", "puma-production"]]
+if dev_webserver == 'same'
+  case prod_webserver
+    when 'thin-development'
+      recipes << 'thin-production'
+    when 'unicorn-development'
+      recipes << 'unicorn-production'
+    when 'puma-development'
+      recipes << 'puma-production'
+  end
+else
+  recipes << prod_webserver
+end
 
 ## Database Adapter
 database = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"], ["MySQL", "mysql"], ["MongoDB", "mongodb"]]
@@ -48,7 +61,7 @@ case database
 end
 
 ## Template Engine
-templating = multiple_choice "Which template engine?", [["ERB", "erb"], ["Haml", "haml"]]
+templating = multiple_choice "Template engine?", [["ERB", "erb"], ["Haml", "haml"]]
 case templating
 	when 'erb'
     recipes << 'erb'
@@ -58,31 +71,24 @@ end
 
 ## Testing Framework
 if recipes.include? 'testing'
-  testing = multiple_choice "Which testing framework?", [["RSpec with Capybara", "rspec"], ["RSpec with Capybara and Cucumber", "rspec_cucumber"], ["Test::Unit", "test_unit"]]
-  case testing
-  	when 'test_unit'
-      recipes << 'test_unit'
-    when 'rspec'
-      recipes << 'rspec'
-    when 'rspec_cucumber'
-      recipes << 'rspec'
-      recipes << 'cucumber'
-      fixtures = multiple_choice "Fixture replacement?", [["None","none"], ["Factory Girl","factory_girl"], ["Machinist","machinist"]]
-      recipes << fixtures unless fixtures == 'none'
-  end
+  testing = multiple_choice "Testing framework?", [["Test::Unit", "test_unit"], ["RSpec with Capybara and Cucumber", "cucumber"], ["RSpec with Capybara and Turnip", "turnip"], ["RSpec with Capybara", "rspec"]]
+  recipes << testing
+  recipes << 'rspec' if (testing == 'cucumber') || (testing == 'turnip')
+  fixtures = multiple_choice "Fixture replacement?", [["None","none"], ["Factory Girl","factory_girl"], ["Machinist","machinist"]]
+  recipes << fixtures unless fixtures == 'none'
 end
 
 ## Front-end Framework
 if recipes.include? 'frontend'
-  frontend = multiple_choice "Which front-end framework?", [["None", "none"], ["Twitter Bootstrap (Sass)", "bootstrap_sass"], ["Twitter Bootstrap (Less)", "bootstrap_less"], ["Zurb Foundation", "foundation"], ["Skeleton", "skeleton"], ["Just normalize CSS for consistent styling", "normalize"]]
+  frontend = multiple_choice "Front-end framework?", [["None", "none"], ["Twitter Bootstrap (Sass)", "bootstrap-sass"], ["Twitter Bootstrap (Less)", "bootstrap-less"], ["Zurb Foundation", "foundation"], ["Skeleton", "skeleton"], ["Just normalize CSS for consistent styling", "normalize"]]
   recipes << frontend unless frontend == 'none'
-  if (recipes.include? 'bootstrap_sass') || (recipes.include? 'bootstrap_less')
+  if (recipes.include? 'bootstrap-sass') || (recipes.include? 'bootstrap-less')
     recipes << 'bootstrap'
   end
 end
 
 ## Form Builder
-form_builder = multiple_choice "Which form builder?", [["None", "none"], ["SimpleForm", "simple_form"]]
+form_builder = multiple_choice "Form builder?", [["None", "none"], ["SimpleForm", "simple_form"]]
 recipes << form_builder unless form_builder == 'none'
 
 ## Email
@@ -94,11 +100,15 @@ end
 
 ## Authentication and Authorization
 if recipes.include? 'auth'
-  authentication = multiple_choice "Add authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]]
+  authentication = multiple_choice "Authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]]
   case authentication
     when 'devise'
       recipes << 'devise'
-      devise_modules = multiple_choice "Which Devise modules?", [["Devise with default modules","devise-standard"], ["Devise with Confirmable module","devise-confirmable"], ["Devise with Confirmable and Invitable modules","devise-invitable"]]
+      if recipes.include? 'mongodb'
+        devise_modules = multiple_choice "Devise modules?", [["Devise with default modules","devise-standard"]]
+      else
+        devise_modules = multiple_choice "Devise modules?", [["Devise with default modules","devise-standard"], ["Devise with Confirmable module","devise-confirmable"], ["Devise with Confirmable and Invitable modules","devise-invitable"]]
+      end
       case devise_modules
         when 'confirmable'
           recipes << 'devise-confirmable'
@@ -108,30 +118,37 @@ if recipes.include? 'auth'
       end
     when 'omniauth'
       recipes << 'omniauth'
-      omniauth_provider = multiple_choice "Which OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"], ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google-oauth2"], ["Tumblr", "tumblr"]]
+      omniauth_provider = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"], ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google-oauth2"], ["Tumblr", "tumblr"]]
       recipes << omniauth_provider
   end
-  authorization = multiple_choice "Add authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]]
+  authorization = multiple_choice "Authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]]
   recipes << authorization unless authorization == 'none'
 end
 
 ## MVC
 if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.include? 'views') && (recipes.include? 'routes')
   if recipes.include? 'cancan'
-    starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], ["Home Page, User Accounts", "user_accounts"], ["Home Page, User Accounts, Admin Dashboard", "admin_dashboard"]]
-  elsif (recipes.include? 'devise') || (recipes.include? 'omniauth')
-    starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], ["Home Page, User Accounts", "user_accounts"]]
+    starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], 
+      ["Home Page, User Accounts", "user_accounts"], 
+      ["Home Page, User Accounts, Admin Dashboard", "admin_dashboard"]]
+  elsif recipes.include? 'devise'
+    if recipes.include? 'mongoid'
+      starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], 
+        ["Home Page, User Accounts", "user_accounts"], 
+        ["Home Page, User Accounts, Subdomains", "subdomains"]]
+    else
+      starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], 
+        ["Home Page, User Accounts", "user_accounts"]]
+    end
+  elsif recipes.include? 'omniauth'
+    starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], 
+      ["Home Page, User Accounts", "user_accounts"]]
   else
     starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"]]
   end
   recipes << starterapp unless starterapp == 'none'
-  case starterapp
-  	when 'user_accounts'
-      recipes << 'simple_home'
-    when 'admin_dashboard'
-      recipes << 'user_accounts'
-      recipes << 'simple_home'
-  end
+  recipes << 'simple_home' if (starterapp == 'user_accounts') || (starterapp == 'admin_dashboard') || (starterapp == 'subdomains')
+  recipes << 'user_accounts' if (starterapp == 'admin_dashboard' )|| (starterapp == 'subdomains')
   if (recipes.include? 'devise') && (recipes.include? 'cancan')
     full_app = multiple_choice "Install a ready-made application?", [["None", "none"], ["Prelaunch Signup App", "prelaunch_app"]]
   end

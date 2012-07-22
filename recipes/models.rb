@@ -4,46 +4,37 @@
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### DEVISE ###
-  ## User model was already generated in the 'auth' recipe
   if recipes.include? 'devise'
-    # Add a 'name' attribute to the User model
-    ## MONGOID
     if recipes.include? 'mongoid'
-      # include timestamps to avoid special casing views for Mongoid
-      gsub_file 'app/models/user.rb',
-        /include Mongoid::Document$/,
-        "\\0\n  include Mongoid::Timestamps\n"
-      # for mongoid
-      gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
-  <<-RUBY
-  # run 'rake db:mongoid:create_indexes' to create indexes
-  index({ email: 1 }, { unique: true, background: true })
-  field :name, :type => String
-  validates_presence_of :name
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
-end
-RUBY
+      if recipes.include? 'devise-confirmable'
+        raise StandardError.new "Sorry. An example app using MongoDB and devise-confirmable is not available."
       end
-    ## ACTIVERECORD
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-devise/master/' if recipes.include? 'mongoid'
     else
-      # Devise created a Users database, we'll modify it
       generate 'migration AddNameToUsers name:string'
       if recipes.include? 'devise-confirmable'
         generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'
       end
-      # Devise created a Users model, we'll modify it
-      gsub_file 'app/models/user.rb', /attr_accessible :email/, 'attr_accessible :name, :email'
-      inject_into_file 'app/models/user.rb', :before => 'validates_uniqueness_of' do
-        "validates_presence_of :name\n"
-      end
-      gsub_file 'app/models/user.rb', /validates_uniqueness_of :email/, 'validates_uniqueness_of :name, :email'
-      gsub_file 'app/models/user.rb', /# attr_accessible :title, :body/, ''
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
     end
   end
   ### OMNIAUTH ###
   if recipes.include? 'omniauth'
-    copy_from_repo 'app/models/user.rb', 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+    if recipes.include? 'mongoid'
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+    else
+      generate 'model User name:string email:string provider:string uid:string'
+      run 'bundle exec rake db:migrate'
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+      gsub_file 'app/models/user.rb', /class User/, 'class User < ActiveRecord::Base'
+      gsub_file 'app/models/user.rb', /^\s*include Mongoid::Document\n/, ''
+      gsub_file 'app/models/user.rb', /^\s*field.*\n/, ''
+      gsub_file 'app/models/user.rb', /^\s*# run 'rake db:mongoid:create_indexes' to create indexes\n/, ''
+      gsub_file 'app/models/user.rb', /^\s*index\(\{ email: 1 \}, \{ unique: true, background: true \}\)\n/, ''
+    end
   end
+  ### SUBDOMAINS ###
+  copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if recipes.include? 'subdomains'
   ### GIT ###
   git :add => '.' if recipes.include? 'git'
   git :commit => "-aqm 'rails_apps_composer: models'" if recipes.include? 'git'

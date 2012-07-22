@@ -9,10 +9,9 @@
 }.each { |file| remove_file file }
 
 # add placeholder READMEs and humans.txt file
-repo = 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
-copy_from_repo 'public/humans.txt', repo
-copy_from_repo 'README', repo
-copy_from_repo 'README.textile', repo
+copy_from_repo 'public/humans.txt'
+copy_from_repo 'README'
+copy_from_repo 'README.textile'
 gsub_file "README", /App_Name/, "#{app_name.humanize.titleize}"
 gsub_file "README.textile", /App_Name/, "#{app_name.humanize.titleize}"
 
@@ -34,8 +33,8 @@ gsub_file "README.textile", /RSpec/, "RSpec and Factory Girl" if recipes.include
 gsub_file "README.textile", /RSpec/, "RSpec and Machinist" if recipes.include? 'machinist'
 
 # Front-end Framework
-gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: Twitter Bootstrap (Sass)" if recipes.include? 'bootstrap_sass'
-gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: Twitter Bootstrap (Less)" if recipes.include? 'bootstrap_less'
+gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: Twitter Bootstrap (Sass)" if recipes.include? 'bootstrap-sass'
+gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: Twitter Bootstrap (Less)" if recipes.include? 'bootstrap-less'
 gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: Zurb Foundation" if recipes.include? 'foundation'
 gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: Skeleton" if recipes.include? 'skeleton'
 gsub_file "README.textile", /Front-end Framework: None/, "Front-end Framework: Normalized CSS" if recipes.include? 'normalize'

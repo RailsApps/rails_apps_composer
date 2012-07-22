@@ -5,7 +5,7 @@ after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### APPLICATION_CONTROLLER ###
   if recipes.include? 'omniauth'
-    copy_from_repo 'app/controllers/application_controller.rb', 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+    copy_from_repo 'app/controllers/application_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
   end
   if recipes.include? 'cancan'
     inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
@@ -25,21 +25,19 @@ RUBY
   ### USERS_CONTROLLER ###
   if recipes.include? 'user_accounts'
     if recipes.include? 'devise'
-      copy_from_repo 'app/controllers/users_controller.rb', 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
+      copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
     elsif recipes.include? 'omniauth'
-      copy_from_repo 'app/controllers/users_controller.rb', 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+      copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
     end
     if recipes.include? 'cancan'
       inject_into_file 'app/controllers/users_controller.rb', "    authorize! :index, @user, :message => 'Not authorized as an administrator.'\n", :after => "def index\n"
     end
-    if recipes.include? 'paginate'
-      gsub_file 'app/controllers/users_controller.rb', /@users = User.all/, '@users = User.paginate(:page => params[:page])'
-    end
   end
+  gsub_file 'app/controllers/users_controller.rb', /before_filter :authenticate_user!/, '' if recipes.include? 'subdomains'
   ### SESSIONS_CONTROLLER ###
   if recipes.include? 'omniauth'
     filename = 'app/controllers/sessions_controller.rb'
-    copy_from_repo filename, 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+    copy_from_repo filename, :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
     provider = 'facebook' if recipes.include? 'facebook'
     provider = 'github' if recipes.include? 'github'
     provider = 'linkedin' if recipes.include? 'linkedin'
@@ -47,6 +45,8 @@ RUBY
     provider = 'tumblr' if recipes.include? 'tumblr'
     gsub_file filename, /twitter/, provider unless recipes.include? 'twitter'
   end
+  ### PROFILES_CONTROLLER ###
+  copy_from_repo 'app/controllers/profiles_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if recipes.include? 'subdomains'
   ### GIT ###
   git :add => '.' if recipes.include? 'git'
   git :commit => "-aqm 'rails_apps_composer: controllers'" if recipes.include? 'git'

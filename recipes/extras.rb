@@ -1,14 +1,6 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb
 
-if config['footnotes']
-  say_wizard "Adding 'rails-footnotes'"
-  gem 'rails-footnotes', '>= 3.7', :group => :development
-  after_bundler do
-    generate 'rails_footnotes:install'
-  end
-end
-
 if config['ban_spiders']
   say_wizard "Banning spiders by modifying 'public/robots.txt'"
   after_bundler do
@@ -17,20 +9,10 @@ if config['ban_spiders']
   end
 end
 
-if config['paginate']
-  say_wizard "Adding 'will_paginate'"
-  if recipes.include? 'mongoid'
-    gem 'will_paginate_mongoid'
-  else
-    gem 'will_paginate', '>= 3.0.3'
-  end
-  recipes << 'paginate'
-end
-
 if config['jsruntime']
   say_wizard "Adding 'therubyracer' JavaScript runtime gem"
-  # maybe it was already added for bootstrap_less?
-  unless recipes.include? 'bootstrap_less'
+  # maybe it was already added for bootstrap-less?
+  unless recipes.include? 'bootstrap-less'
     gem 'therubyracer', :group => :assets, :platform => :ruby
   end
 end
@@ -59,7 +41,7 @@ if config['rvmrc']
     raise "Use rvm gem 1.11.3.5 or newer."
   end
   run "rvm gemset list"
-  copy_from_repo '.rvmrc', 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
+  copy_from_repo '.rvmrc'
   gsub_file '.rvmrc', /App_Name/, "#{app_name}"
 end
 
@@ -91,15 +73,9 @@ category: other
 tags: [utilities, configuration]
 
 config:
-  - footnotes:
-      type: boolean
-      prompt: Use 'rails-footnotes' (it's SLOW!)?
   - ban_spiders:
       type: boolean
       prompt: Set a robots.txt file to ban spiders?
-  - paginate:
-      type: boolean
-      prompt: Add 'will_paginate' for pagination?
   - jsruntime:
       type: boolean
       prompt: Add 'therubyracer' JavaScript runtime (for Linux users without node.js)?

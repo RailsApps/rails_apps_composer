@@ -16,11 +16,6 @@ after_bundler do
 RUBY
       end
     end
-    ## RSPEC AND FIXTURE REPLACEMENTS
-    if recipes.include? 'machinist'
-      say_wizard "generating blueprints file for 'machinist'"
-      generate 'machinist:install'
-    end
     run 'rm -rf test/' # Removing test folder (not needed for RSpec)
     inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
 
@@ -97,6 +92,17 @@ RUBY
       end
     end
   end
+  ## TURNIP
+  if recipes.include? 'turnip'
+    append_to_file '.rspec', '-r turnip/rspec'
+    inject_into_file 'spec/spec_helper.rb', "require 'turnip/capybara'\n", :after => "require 'rspec/rails'\n"
+    create_file 'spec/acceptance/steps/.gitkeep'
+  end
+  ## FIXTURE REPLACEMENTS
+  if recipes.include? 'machinist'
+    say_wizard "generating blueprints file for 'machinist'"
+    generate 'machinist:install'
+  end
   ### GIT ###
   git :add => '.' if recipes.include? 'git'
   git :commit => "-aqm 'rails_apps_composer: testing framework'" if recipes.include? 'git'
@@ -109,11 +115,11 @@ after_everything do
     if (recipes.include? 'devise') && (recipes.include? 'user_accounts')
       say_wizard "copying RSpec files from the rails3-devise-rspec-cucumber examples"
       repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
-      copy_from_repo 'spec/factories/users.rb', repo
+      copy_from_repo 'spec/factories/users.rb', :repo => repo
       gsub_file 'spec/factories/users.rb', /# confirmed_at/, "confirmed_at" if recipes.include? 'devise-confirmable'
-      copy_from_repo 'spec/controllers/home_controller_spec.rb', repo
-      copy_from_repo 'spec/controllers/users_controller_spec.rb', repo
-      copy_from_repo 'spec/models/user_spec.rb', repo
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/controllers/users_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/models/user_spec.rb', :repo => repo
       remove_file 'spec/views/home/index.html.erb_spec.rb'
       remove_file 'spec/views/home/index.html.haml_spec.rb'
       remove_file 'spec/views/users/show.html.erb_spec.rb'
@@ -125,12 +131,12 @@ after_everything do
     if (recipes.include? 'omniauth') && (recipes.include? 'user_accounts')
       say_wizard "copying RSpec files from the rails3-mongoid-omniauth examples"
       repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-      copy_from_repo 'spec/spec_helper.rb', repo
-      copy_from_repo 'spec/factories/users.rb', repo
-      copy_from_repo 'spec/controllers/sessions_controller_spec.rb', repo
-      copy_from_repo 'spec/controllers/home_controller_spec.rb', repo
-      copy_from_repo 'spec/controllers/users_controller_spec.rb', repo
-      copy_from_repo 'spec/models/user_spec.rb', repo
+      copy_from_repo 'spec/spec_helper.rb', :repo => repo
+      copy_from_repo 'spec/factories/users.rb', :repo => repo
+      copy_from_repo 'spec/controllers/sessions_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/controllers/users_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/models/user_spec.rb', :repo => repo
     end
     ## GIT
     git :add => '.' if recipes.include? 'git'
@@ -142,14 +148,14 @@ after_everything do
     if (recipes.include? 'devise') && (recipes.include? 'user_accounts')
       say_wizard "copying Cucumber scenarios from the rails3-devise-rspec-cucumber examples"
       repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
-      copy_from_repo 'spec/controllers/home_controller_spec.rb', repo
-      copy_from_repo 'features/users/sign_in.feature', repo
-      copy_from_repo 'features/users/sign_out.feature', repo
-      copy_from_repo 'features/users/sign_up.feature', repo
-      copy_from_repo 'features/users/user_edit.feature', repo
-      copy_from_repo 'features/users/user_show.feature', repo
-      copy_from_repo 'features/step_definitions/user_steps.rb', repo
-      copy_from_repo 'features/support/paths.rb', repo
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
+      copy_from_repo 'features/users/sign_in.feature', :repo => repo
+      copy_from_repo 'features/users/sign_out.feature', :repo => repo
+      copy_from_repo 'features/users/sign_up.feature', :repo => repo
+      copy_from_repo 'features/users/user_edit.feature', :repo => repo
+      copy_from_repo 'features/users/user_show.feature', :repo => repo
+      copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
+      copy_from_repo 'features/support/paths.rb', :repo => repo
       if recipes.include? 'devise-confirmable'
         gsub_file 'features/step_definitions/user_steps.rb', /Welcome! You have signed up successfully./, "A message with a confirmation link has been sent to your email address."
         inject_into_file 'features/users/sign_in.feature', :before => '    Scenario: User signs in successfully' do

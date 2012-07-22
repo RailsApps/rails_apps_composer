@@ -9,16 +9,17 @@ insert_into_file 'Gemfile', "ruby '1.9.3'\n", :before => "gem 'rails', '3.2.6'" 
 ## Web Server
 gem 'thin', '>= 1.4.1', :group => [:development, :test] if recipes.include? 'thin-development'
 gem 'unicorn', '>= 4.3.1', :group => [:development, :test] if recipes.include? 'unicorn-development'
+gem 'puma', '>= 1.5.0', :group => [:development, :test] if recipes.include? 'puma-development'
 gem 'thin', '>= 1.4.1', :group => :production if recipes.include? 'thin-production'
 gem 'unicorn', '>= 4.3.1', :group => :production if recipes.include? 'unicorn-production'
+gem 'puma', '>= 1.5.0', :group => :production if recipes.include? 'puma-production'
 
 ## Database Adapter
 gem 'mongoid', '>= 3.0.1' if recipes.include? 'mongoid'
 gem 'pg', '>= 0.14.0' if recipes.include? 'postgresql'
 gem 'mysql2', '>= 0.3.11' if recipes.include? 'mysql'
-repo = 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
-copy_from_repo 'database.yml', repo, :recipe => 'postgresql'
-copy_from_repo 'database.yml', repo, :recipe => 'mysql'
+copy_from_repo 'database.yml', :recipe => 'postgresql'
+copy_from_repo 'database.yml', :recipe => 'mysql'
 
 ## Template Engine
 if recipes.include? 'haml'
@@ -27,7 +28,7 @@ if recipes.include? 'haml'
 end
 
 ## Testing Framework
-if recipes.include? 'rspec'
+if (recipes.include? 'rspec')
   gem 'rspec-rails', '>= 2.11.0', :group => [:development, :test]
   gem 'capybara', '>= 1.1.2', :group => :test
   if recipes.include? 'mongoid'
@@ -36,23 +37,21 @@ if recipes.include? 'rspec'
     # include RSpec matchers from the mongoid-rspec gem
     gem 'mongoid-rspec', '>= 1.4.6', :group => :test
   end
-  # fixture replacements
-  gem 'machinist', :group => :test if recipes.include? 'machinist'
-  gem 'factory_girl_rails', '>= 3.5.0', :group => [:development, :test] if recipes.include? 'factory_girl'
-  # Cucumber for BDD
-  if recipes.include? 'cucumber'
-    gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
-    gem 'database_cleaner', '>= 0.8.0', :group => :test unless recipes.include? 'mongoid'
-    gem 'launchy', '>= 2.1.0', :group => :test
-  end
-  # add a collection of RSpec matchers and Cucumber steps to make testing email easy
   gem 'email_spec', '>= 1.2.1', :group => :test if recipes.include? 'email'
-end  
+end
+if recipes.include? 'cucumber'
+  gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
+  gem 'database_cleaner', '>= 0.8.0', :group => :test unless recipes.include? 'mongoid'
+  gem 'launchy', '>= 2.1.0', :group => :test
+end
+gem 'turnip', '>= 1.0.0', :group => :test if recipes.include? 'turnip'
+gem 'factory_girl_rails', '>= 3.5.0', :group => [:development, :test] if recipes.include? 'factory_girl'
+gem 'machinist', :group => :test if recipes.include? 'machinist'
 
 ## Front-end Framework
-gem 'bootstrap-sass', '>= 2.0.4.0' if recipes.include? 'bootstrap_sass'
+gem 'bootstrap-sass', '>= 2.0.4.0' if recipes.include? 'bootstrap-sass'
 gem 'zurb-foundation', '>= 3.0.5' if recipes.include? 'foundation'
-if recipes.include? 'bootstrap_less'
+if recipes.include? 'bootstrap-less'
   gem 'twitter-bootstrap-rails', '>= 2.0.3', :group => :assets
   # install gem 'therubyracer' to use Less
   gem 'therubyracer', :group => :assets, :platform => :ruby

@@ -3,43 +3,23 @@
 
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
-  ### REMOVE THE DEFAULT HOME PAGE ###
-  remove_file 'public/index.html'
   ### HOME ###
   if recipes.include? 'simple_home'
+    remove_file 'public/index.html'
     gsub_file 'config/routes.rb', /get \"home\/index\"/, 'root :to => "home#index"'
   end
-  ## DEVISE
-  if (recipes.include? 'devise') && (recipes.include? 'simple_home')
-    inject_into_file 'config/routes.rb', :before => "  root :to" do <<-RUBY
-  authenticated :user do
-    root :to => 'home#index'
-  end
-\n
-RUBY
-    end
-  end
   ### USER_ACCOUNTS ###
-  ## DEVISE
-  if (recipes.include? 'devise') && (recipes.include? 'user_accounts')
-    # @devise_for :users@ route must be placed above @resources :users, :only => :show@.
-    gsub_file 'config/routes.rb', /get \"users\/show\"/, ''
-    gsub_file 'config/routes.rb', /get \"users\/index\"/, ''
-    gsub_file 'config/routes.rb', /devise_for :users/ do
-    <<-RUBY
-devise_for :users
-  resources :users, :only => [:show, :index]
-RUBY
-    end
-  end  
-  ## OMNIAUTH
-  if (recipes.include? 'omniauth') && (recipes.include? 'user_accounts')
-    route "match '/auth/failure' => 'sessions#failure'"
-    route "match '/signout' => 'sessions#destroy', :as => :signout"
-    route "match '/signin' => 'sessions#new', :as => :signin"
-    route "match '/auth/:provider/callback' => 'sessions#create'"
-    route "resources :users, :only => [ :show, :edit, :update ]"
+  if recipes.include? 'user_accounts'
+    ## DEVISE
+    copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/' if recipes.include? 'devise'
+    ## OMNIAUTH
+    copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/' if recipes.include? 'omniauth'
   end
+  ### SUBDOMAINS ###
+  copy_from_repo 'lib/subdomain.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if recipes.include? 'subdomains'
+  copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if recipes.include? 'subdomains'
+  ### CORRECT APPLICATION NAME ###
+  gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
   ### GIT ###
   git :add => '.' if recipes.include? 'git'
   git :commit => "-aqm 'rails_apps_composer: routes'" if recipes.include? 'git'

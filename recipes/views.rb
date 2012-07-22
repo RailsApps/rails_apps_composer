@@ -3,23 +3,25 @@
 
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
-  repo = 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
   ### DEVISE ###
-  copy_from_repo 'app/views/devise/shared/_links.html.erb', repo if recipes.include? 'devise'
-  copy_from_repo 'app/views/devise/registrations/edit.html.erb', repo if recipes.include? 'devise'
-  copy_from_repo 'app/views/devise/registrations/new.html.erb', repo if recipes.include? 'devise'
+  copy_from_repo 'app/views/devise/shared/_links.html.erb' if recipes.include? 'devise'
+  copy_from_repo 'app/views/devise/registrations/edit.html.erb' if recipes.include? 'devise'
+  copy_from_repo 'app/views/devise/registrations/new.html.erb' if recipes.include? 'devise'
   ### HOME ###
-  copy_from_repo 'app/views/home/index.html.erb', repo if recipes.include? 'user_accounts'
+  copy_from_repo 'app/views/home/index.html.erb' if recipes.include? 'user_accounts'
+  copy_from_repo 'app/views/home/index-subdomains.html.erb', :recipe => 'subdomains'
   ### USERS ###
   if recipes.include? 'user_accounts'
     ## INDEX
-    copy_from_repo 'app/views/users/index.html.erb', repo
-    copy_from_repo 'app/views/users/index-paginate.html.erb', repo, :recipe => 'paginate'
+    copy_from_repo 'app/views/users/index.html.erb'
     ## SHOW
-    copy_from_repo 'app/views/users/show.html.erb', repo
+    copy_from_repo 'app/views/users/show.html.erb'
+    copy_from_repo 'app/views/users/show-subdomains.html.erb', :recipe => 'subdomains'
     ## EDIT
-    copy_from_repo 'app/views/users/edit-omniauth.html.erb', repo, :recipe => 'omniauth'
+    copy_from_repo 'app/views/users/edit-omniauth.html.erb', :recipe => 'omniauth'
   end
+  ### PROFILES ###
+  copy_from_repo 'app/views/profiles/show-subdomains.html.erb', :recipe => 'subdomains'
   ### GIT ###
   git :add => '.' if recipes.include? 'git'
   git :commit => "-aqm 'rails_apps_composer: views'" if recipes.include? 'git'
