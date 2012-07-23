@@ -149,10 +149,20 @@ if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.i
   recipes << starterapp unless starterapp == 'none'
   recipes << 'simple_home' if (starterapp == 'user_accounts') || (starterapp == 'admin_dashboard') || (starterapp == 'subdomains')
   recipes << 'user_accounts' if (starterapp == 'admin_dashboard' )|| (starterapp == 'subdomains')
-  if (recipes.include? 'devise') && (recipes.include? 'cancan')
-    full_app = multiple_choice "Install a ready-made application?", [["None", "none"], ["Prelaunch Signup App", "prelaunch_app"]]
+  if (recipes.include? 'prelaunch') && (recipes.include? 'devise') && (recipes.include? 'cancan')
+    prelaunch_app = multiple_choice "Install a prelaunch app?", [["None", "none"], ["Prelaunch Signup App", "signup_app"]]
+    if prelaunch_app == 'signup_app'
+      recipes << 'signup_app'
+      bulkmail = multiple_choice "Send news and announcements with a mail service?", [["None", "none"], ["MailChimp","mailchimp"]]
+      recipes << bulkmail unless bulkmail == 'none'
+      if recipes.include? 'git'
+        prelaunch_branch = multiple_choice "Git branch for the prelaunch app?", [["wip (work-in-progress)", "wip"], ["master", "master"], ["prelaunch", "prelaunch"], ["staging", "staging"]]
+        if prelaunch_branch == 'master'
+          main_branch = multiple_choice "Git branch for the main app?", [["None (delete)", "none"], ["wip (work-in-progress)", "wip"], ["edge", "edge"]]
+        end
+      end
+    end
   end
-  recipes << full_app unless full_app == 'none'
 end
 
 __END__

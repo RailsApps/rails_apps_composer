@@ -60,7 +60,7 @@ after_everything do
   gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
   # GIT
   git :add => '.' if recipes.include? 'git'
-  git :commit => "-aqm 'rails_apps_composer: final commit'" if recipes.include? 'git'
+  git :commit => "-aqm 'rails_apps_composer: starter app complete'" if recipes.include? 'git'
 end
 
 __END__
