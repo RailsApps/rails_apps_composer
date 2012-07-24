@@ -153,6 +153,7 @@ if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.i
     prelaunch_app = multiple_choice "Install a prelaunch app?", [["None", "none"], ["Prelaunch Signup App", "signup_app"]]
     if prelaunch_app == 'signup_app'
       recipes << 'signup_app'
+      recipes << 'devise-confirmable'
       bulkmail = multiple_choice "Send news and announcements with a mail service?", [["None", "none"], ["MailChimp","mailchimp"]]
       recipes << bulkmail unless bulkmail == 'none'
       if recipes.include? 'git'

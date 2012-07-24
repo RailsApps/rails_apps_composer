@@ -83,6 +83,12 @@ if recipes.include? 'cancan'
   gem 'rolify', '>= 3.1.0'
 end
 
+## Signup App 
+if recipes.include? 'signup_app'
+  gem 'google_visualr', '>= 2.1.2'
+  gem 'jquery-datatables-rails', '>= 1.10.0'
+end
+
 ## Git
 git :add => '.' if recipes.include? 'git'
 git :commit => "-aqm 'rails_apps_composer: Gemfile'" if recipes.include? 'git'
