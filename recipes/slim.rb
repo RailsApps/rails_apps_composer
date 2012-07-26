@@ -38,6 +38,10 @@ SLIM
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_messages.html.slim', 'app/views/layouts/_messages.html.slim'
   end
 
+  # Add custom
+  say_wizard "Adding custom Slim shortcut for 'role' attribute using '@' character"
+  inject_into_file 'config/environment.rb', "Slim::Engine.set_default_options shortcut: { '@' => 'role', '#' => 'id', '.' => 'class'}\n\n", :before => "# Initialize the rails application\n"
+
 end
 
 __END__
