@@ -30,6 +30,8 @@ html
     = yield
 SLIM
       end
+      # Replace /App_Name/ with Rails project app name
+      gsub_file 'app/views/layouts/application.html.slim', /App_Name/, "#{app_name.humanize.titleize}"
     when 'enhanced'
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/application.html.slim', 'app/views/layouts/application.html.slim'
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_footer.html.slim', 'app/views/layouts/_footer.html.slim'
@@ -53,6 +55,10 @@ SLIM
           get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_navigation.html.slim', 'app/views/layouts/_navigation.html.slim'
         end
       end
+    # Replace /App_Name/ with Rails project app name
+    gsub_file 'app/views/layouts/application.html.slim', /App_Name/, "#{app_name.humanize.titleize}"
+    gsub_file 'app/views/layouts/_footer.html.slim', /App_Name/, "#{app_name.humanize.titleize}"
+    gsub_file 'app/views/layouts/_header.html.slim', /App_Name/, "#{app_name.humanize.titleize}"
   end
 
   # Add custom
@@ -77,4 +83,4 @@ config:
   - slim_template:
       type: multiple_choice
       prompt: "Which Slim view templates would you like to generate?"
-      choices: [["Default application layout", default], ["Enhanced application layout with partials", enhanced]]"
+      choices: [["Default application layout", default], ["Enhanced application layout with partials", enhanced]]
