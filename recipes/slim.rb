@@ -36,9 +36,22 @@ SLIM
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_header.html.slim', 'app/views/layouts/_header.html.slim'
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_messages.html.slim', 'app/views/layouts/_messages.html.slim'
       # If simple-navigation gem is not present, remove the line that renders
-      # simple-navigation's config file
+      # simple-navigation's config file and insert a navigation partial
       unless recipes.include? 'simple_navigation'
-        gsub_file 'app/views/layouts/_header.html.slim', /== render_navigation/, ''
+        gsub_file 'app/views/layouts/_header.html.slim', /== render_navigation/, '== render \'navigation\''
+        # If OmniAuth or Devise are present, insert example navigation at the
+        # bottom of the header partial
+        if recipes.include? 'devise'
+          if recipes.include? 'authorization'
+            get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/navigation/devise/authorization/_navigation.html.slim', 'app/views/layouts/_navigation.html.slim'
+          else
+            get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/navigation/devise/_navigation.html.slim', 'app/views/layouts/_navigation.html.slim'
+          end
+        elsif recipes.include? 'omniauth'
+          get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/navigation/omniauth/_navigation.html.slim', 'app/views/layouts/_navigation.html.slim'
+        else
+          get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_navigation.html.slim', 'app/views/layouts/_navigation.html.slim'
+        end
       end
   end
 
