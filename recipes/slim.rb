@@ -9,14 +9,17 @@ else
 end
 
 after_bundler do
-  
+
   say_wizard "Slim recipe running 'after bundler'"
-  
+
   remove_file 'app/views/layouts/application.html.erb'
-  # There is Slim code in this script. Changing the indentation is perilous between SLIMs.
-  # We have to use single-quote-style-heredoc to avoid interpolation.
-  create_file 'app/views/layouts/application.html.slim' do 
-  <<-'SLIM'
+  case config['slim_template']
+
+    when 'default'
+      # There is Slim code in this script. Changing the indentation is perilous between SLIMs.
+      # We have to use single-quote-style-heredoc to avoid interpolation.
+      create_file 'app/views/layouts/application.html.slim' do
+      <<-'SLIM'
 doctype html
 html
   head
@@ -27,6 +30,12 @@ html
   body
     = yield
 SLIM
+      end
+    when 'enhanced'
+      get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/application.html.slim', 'app/views/layouts/application.html.slim'
+      get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_footer.html.slim', 'app/views/layouts/_footer.html.slim'
+      get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_header.html.slim', 'app/views/layouts/_header.html.slim'
+      get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_messages.html.slim', 'app/views/layouts/_messages.html.slim'
   end
 
 end
@@ -43,4 +52,8 @@ exclusive: templating
 config:
   - slim:
       type: boolean
-      prompt: Would you like to use Slim instead of ERB?
+      prompt: "Would you like to use Slim instead of ERB?"
+  - slim_template:
+      type: multiple_choice
+      prompt: "Which Slim view templates would you like to generate?"
+      choices: [["Default application layout", default], ["Enhanced application layout with partials", enhanced]]"
