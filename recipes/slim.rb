@@ -1,5 +1,4 @@
-# Application template recipe for the rails_apps_composer. Check for a newer version here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/slim.rb
+# Application template recipe for the rails_apps_composer
 
 if config['slim']
   gem 'slim', '~> 1.0'
@@ -36,6 +35,11 @@ SLIM
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_footer.html.slim', 'app/views/layouts/_footer.html.slim'
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_header.html.slim', 'app/views/layouts/_header.html.slim'
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/layouts/_messages.html.slim', 'app/views/layouts/_messages.html.slim'
+      # If simple-navigation gem is not present, remove the line that renders
+      # simple-navigation's config file
+      unless recipes.include? 'simple_navigation'
+        gsub_file 'app/views/layouts/_header.html.slim', /== render_navigation/, ''
+      end
   end
 
   # Add custom
@@ -48,7 +52,7 @@ __END__
 
 name: SLIM
 description: "Utilize Slim instead of ERB."
-author: claudiob
+author: Akiva Levy
 
 category: templating
 exclusive: templating
