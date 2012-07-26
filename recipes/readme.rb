@@ -6,10 +6,13 @@ after_bundler do
   case config['readme_format']
     when 'default'
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/README.rdoc.example', 'README.rdoc'
+      gsub_file 'README.rdoc', /App_Name/, "#{app_name.humanize.titleize}"
     when 'markdown'
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/README.md.example', 'README.md'
+      gsub_file 'README.md', /App_Name/, "#{app_name.humanize.titleize}"
     when 'textile'
       get 'https://raw.github.com/akiva/rails-application-boilerplates/master/README.textile.example', 'README.textile'
+      gsub_file 'README.textile', /App_Name/, "#{app_name.humanize.titleize}"
   end
 
 end
