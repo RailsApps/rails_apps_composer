@@ -70,16 +70,22 @@ You can learn more about the available recipes by browsing the repository "recip
 
 h4. Generate an App
 
+You'll be prompted for recipes:
+
+<pre>
+$ rails_apps_composer new myapp
+</pre>
+
+Or provide a list of recipes:
+
 <pre>
 $ rails_apps_composer new myapp -r haml home_page html5
 </pre>
 
-The command with the @-r@ flag followed by a list of recipes generates an app.
-
 h4. Generate an App from Defaults
 
 <pre>
-$ rails_apps_composer --defaults=~/.rac
+$ rails_apps_composer new myapp --defaults=~/.rac
 </pre>
 
 Use the @~/.rac@ file to specify a list of recipes and recipe preferences. See details below concerning the format of the defaults file.
@@ -87,6 +93,8 @@ Use the @~/.rac@ file to specify a list of recipes and recipe preferences. See d
 h4. Generate a Template
 
 You may want a template to customize or share with others. See various "application templates":https://github.com/RailsApps/rails3-application-templates from the "RailsApps project":https://github.com/RailsApps. 
+
+For example:
 
 <pre>
 $ rails_apps_composer template ~/Desktop/template.txt -r haml home_page html5
@@ -100,7 +108,13 @@ Generate an app from the template at any time:
 $ rails new myapp -m ~/Desktop/template.txt
 </pre>
 
-Here is more information about usage of the gem.
+h4. Generate a Template from Defaults
+
+<pre>
+$ rails_apps_composer template ~/Desktop/template.txt --defaults=~/.rac
+</pre>
+
+Use the @~/.rac@ file to specify a list of recipes and recipe preferences. See details below concerning the format of the defaults file.
 
 h2. Generate an App
 
@@ -117,7 +131,7 @@ h2. Generate an App from Defaults
 If you frequently generate an app and always use the same recipes and preferences, create a defaults file and produce the same app every time. A big thank you to Bryan Stearns for contributing this feature!
 
 <pre>
-$ rails_apps_composer --defaults=~/.rac
+$ rails_apps_composer template ~/Desktop/template.txt --defaults=~/.rac
 </pre>
 
 If you create a shell alias such as @builditnow@ for the command, you'll have even less to remember.
