@@ -130,11 +130,17 @@ h2. Generate an App from Defaults
 
 If you frequently generate an app and always use the same recipes and preferences, create a defaults file and produce the same app every time. A big thank you to Bryan Stearns for contributing this feature!
 
+Generate an app from defaults:
+
+<pre>
+$ rails_apps_composer new myapp --defaults=~/.rac
+</pre>
+
+Or generate a template from defaults:
+
 <pre>
 $ rails_apps_composer template ~/Desktop/template.txt --defaults=~/.rac
 </pre>
-
-If you create a shell alias such as @builditnow@ for the command, you'll have even less to remember.
 
 Here's the format of a typical defaults file:
 
