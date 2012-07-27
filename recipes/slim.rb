@@ -40,7 +40,7 @@ SLIM
       # If simple-navigation gem is not present, remove the line that renders
       # simple-navigation's config file and insert a navigation partial
       unless recipes.include? 'simple_navigation'
-        gsub_file 'app/views/layouts/_header.html.slim', /== render_navigation/, '== render \'navigation\''
+        gsub_file 'app/views/layouts/_header.html.slim', /== render_navigation/, '== render \'layouts\/navigation\''
         # If OmniAuth or Devise are present, insert example navigation at the
         # bottom of the header partial
         if recipes.include? 'devise'
