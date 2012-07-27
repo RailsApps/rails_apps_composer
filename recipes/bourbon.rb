@@ -10,11 +10,11 @@ name: Bourbon
 description: "Include Bourbon library for SASS."
 author: Akiva Levy
 
-category: templating
-exclusive: templating
+category: assets
+exclusive: sass_library
 
 config:
   - bourbon:
       type: boolean
-      prompt: "Would you like to use the Bourbon library for SASS?
+      prompt: Would you like to use the Bourbon library for SASS?
 
