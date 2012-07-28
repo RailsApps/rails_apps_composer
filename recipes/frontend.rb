@@ -14,13 +14,14 @@ after_bundler do
   copy_from_repo 'app/views/layouts/_navigation-omniauth.html.erb', :recipe => 'omniauth'
   copy_from_repo 'app/views/layouts/_navigation-subdomains.html.erb', :recipe => 'subdomains'  
   ## APPLICATION NAME
-  if recipes.include? 'haml'
-    gsub_file 'app/views/layouts/application.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
-    gsub_file 'app/views/layouts/_navigation.html.haml', /App_Name/, "#{app_name.humanize.titleize}"
-  else
-    gsub_file 'app/views/layouts/application.html.erb', /App_Name/, "#{app_name.humanize.titleize}"
-    gsub_file 'app/views/layouts/_navigation.html.erb', /App_Name/, "#{app_name.humanize.titleize}"
-  end
+  application_layout_file = 'app/views/layouts/application.html.erb'
+  application_layout_file = 'app/views/layouts/application.html.haml' if recipes.include? 'haml'
+  application_layout_file = 'app/views/layouts/application.html.slim' if recipes.include? 'slim'
+  navigation_partial_file = 'app/views/layouts/_navigation.html.erb'
+  navigation_partial_file = 'app/views/layouts/_navigation.html.haml' if recipes.include? 'haml'
+  navigation_partial_file = 'app/views/layouts/_navigation.html.slim' if recipes.include? 'slim'
+  gsub_file application_layout_file, /App_Name/, "#{app_name.humanize.titleize}"
+  gsub_file navigation_partial_file, /App_Name/, "#{app_name.humanize.titleize}"
   ### CSS ###
   remove_file 'app/assets/stylesheets/application.css'
   copy_from_repo 'app/assets/stylesheets/application.css.scss'

@@ -61,13 +61,8 @@ case database
 end
 
 ## Template Engine
-templating = multiple_choice "Template engine?", [["ERB", "erb"], ["Haml", "haml"]]
-case templating
-	when 'erb'
-    recipes << 'erb'
-  when 'haml'
-    recipes << 'haml'
-end
+templating = multiple_choice "Template engine?", [["ERB", "erb"], ["Haml", "haml"], ["Slim", "slim"]]
+recipes << templating
 
 ## Testing Framework
 if recipes.include? 'testing'

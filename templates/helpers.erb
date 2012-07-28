@@ -59,13 +59,33 @@ def copy_from_repo(filename, opts = {})
   end
   if (recipes.include? 'haml') && (filename.include? 'views')
     remove_file destination_filename
-    source_filename = source_filename.gsub(/.erb/, '.haml')
     destination_filename = destination_filename.gsub(/.erb/, '.haml')
+  end
+  if (recipes.include? 'slim') && (filename.include? 'views')
+    remove_file destination_filename
+    destination_filename = destination_filename.gsub(/.erb/, '.slim')
   end
   begin
     remove_file destination_filename
-    get repo + source_filename, destination_filename
+    if (recipes.include? 'haml') && (filename.include? 'views')
+      create_file destination_filename, html_to_haml(repo + source_filename)
+    elsif (recipes.include? 'slim') && (filename.include? 'views')
+      create_file destination_filename, html_to_slim(repo + source_filename)
+    else
+      get repo + source_filename, destination_filename
+    end
   rescue OpenURI::HTTPError
     say_wizard "Unable to obtain #{source_filename} from the repo #{repo}"
   end
+end
+
+def html_to_haml(source)
+  html = open(source) {|input| input.binmode.read }
+  Haml::HTML.new(html, :erb => true, :xhtml => true).render
+end
+
+def html_to_slim(source)
+  html = open(source) {|input| input.binmode.read }
+  haml = Haml::HTML.new(html, :erb => true, :xhtml => true).render
+  Haml2Slim.convert!(haml)
 end

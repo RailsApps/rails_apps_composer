@@ -25,6 +25,18 @@ copy_from_repo 'database.yml', :recipe => 'mysql'
 if recipes.include? 'haml'
   gem 'haml', '>= 3.1.6'
   gem 'haml-rails', '>= 0.3.4', :group => :development
+  # hpricot and ruby_parser are needed for conversion of HTML to Haml
+  gem 'hpricot', '>= 0.8.6', :group => :development
+  gem 'ruby_parser', '>= 2.3.1', :group => :development
+end
+if recipes.include? 'slim'
+  gem 'slim', '>= 1.2.2'
+  gem 'haml2slim', '>= 0.4.6', :group => :development
+  # Haml is needed for conversion of HTML to Slim
+  gem 'haml', '>= 3.1.6', :group => :development
+  gem 'haml-rails', '>= 0.3.4', :group => :development
+  gem 'hpricot', '>= 0.8.6', :group => :development
+  gem 'ruby_parser', '>= 2.3.1', :group => :development
 end
 
 ## Testing Framework
