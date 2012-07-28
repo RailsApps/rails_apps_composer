@@ -3,8 +3,9 @@ h1. CHANGELOG
 h2. 2.0 unreleased
 
 * reorganize recipes for easier maintenance
-* new 'copy_from_repo' method in helpers.erb
 * more extensive downloading of files from the example app repos on GitHub
+* new 'copy_from_repo' method in helpers.erb
+* conversion of ERB files to Haml or Slim as needed in helpers.erb
 * new recipe: 'setup' allows conditional configuration options
 * new recipe: 'readme' to build README files that provide greater detail
 * new recipe: 'gems' collects all the gems in one recipe for easier updating
