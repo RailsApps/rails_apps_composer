@@ -5,7 +5,11 @@ module RailsWizard
     def initialize(recipes, gems={}, defaults={})
       @recipes = recipes.map{|r| RailsWizard::Recipe.from_mongo(r)}
       @defaults = defaults
-      @prefs = defaults['prefs']
+      unless defaults['prefs'].nil?
+        @prefs = defaults['prefs']
+      else
+        @prefs = {}
+      end
       unless defaults['gems'].nil?
         @gems = gems + defaults['gems']
       else
