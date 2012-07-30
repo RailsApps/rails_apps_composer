@@ -5,6 +5,7 @@ module RailsWizard
     def initialize(recipes, defaults={})
       @recipes = recipes.map{|r| RailsWizard::Recipe.from_mongo(r)}
       @defaults = defaults
+      @prefs = defaults['prefs']
     end
 
     def self.template_root
@@ -17,7 +18,12 @@ module RailsWizard
     end
     def render(template_name, binding = nil); self.class.render(template_name, binding) end
 
-
+    def resolve_preferences
+      @resolve_preferences ||= begin
+        @prefs.inspect
+      end
+    end
+    
     # Sort the recipes list taking 'run_after' directives into account.
     def resolve_recipes
       @resolve_recipes ||= begin

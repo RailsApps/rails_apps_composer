@@ -47,3 +47,11 @@ task :print do
   recipes = ENV['RECIPES'].split(',')
   puts RailsWizard::Template.new(recipes).compile
 end
+
+desc "uninstall rails_apps_composer gem and install a new version"
+task :reinstall do
+  Rake::Task['clobber'].invoke
+  Rake::Task['gem'].invoke
+  Rake::Task['gem:install'].invoke
+  puts "installed new rails_apps_composer #{RailsWizard::VERSION}"
+end

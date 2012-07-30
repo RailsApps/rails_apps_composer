@@ -4,10 +4,10 @@
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### RSPEC ###
-  if recipes.include? 'rspec'
+  if prefer :unit_test, 'rspec'
     say_wizard "recipe installing RSpec"
     generate 'rspec:install'
-    if recipes.include? 'email'
+    unless prefer :email, 'none'
       generate 'email_spec:steps'
       inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
       inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
@@ -23,13 +23,13 @@ RUBY
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
-      #{"g.fixture_replacement :machinist" if recipes.include? 'machinist'}
+      #{"g.fixture_replacement :machinist" if prefer :fixtures, 'machinist'}
     end
 
 RUBY
     end
     ## RSPEC AND MONGOID
-    if recipes.include? 'mongoid'
+    if prefer :orm, 'mongoid'
       # remove ActiveRecord artifacts
       gsub_file 'spec/spec_helper.rb', /config.fixture_path/, '# config.fixture_path'
       gsub_file 'spec/spec_helper.rb', /config.use_transactional_fixtures/, '# config.use_transactional_fixtures'
@@ -61,7 +61,7 @@ RUBY
       end
     end
     ## RSPEC AND DEVISE
-    if recipes.include? 'devise'
+    if prefer :authentication, 'devise'
       # add Devise test helpers
       create_file 'spec/support/devise.rb' do
       <<-RUBY
@@ -73,19 +73,19 @@ RUBY
     end
   end
   ### CUCUMBER ###
-  if recipes.include? 'cucumber'
+  if prefer :integration, 'cucumber'
     say_wizard "recipe installing Cucumber"
-    generate "cucumber:install --capybara#{' --rspec' if recipes.include?('rspec')}#{' -D' if recipes.include?('mongoid')}"
+    generate "cucumber:install --capybara#{' --rspec' if prefer :unit_test, 'rspec'}#{' -D' if prefer :orm, 'mongoid'}"
     # make it easy to run Cucumber for single features without adding "--require features" to the command line
     gsub_file 'config/cucumber.yml', /std_opts = "/, 'std_opts = "-r features/support/ -r features/step_definitions '
-    if recipes.include? 'email'
+    unless prefer :email, 'none'
       create_file 'features/support/email_spec.rb' do <<-RUBY
 require 'email_spec/cucumber'
 RUBY
       end      
     end
     ## CUCUMBER AND MONGOID
-    if recipes.include? 'mongoid'
+    if prefer :orm, 'mongoid'
       gsub_file 'features/support/env.rb', /transaction/, "truncation"
       inject_into_file 'features/support/env.rb', :after => 'begin' do
         "\n  DatabaseCleaner.orm = 'mongoid'"
@@ -93,30 +93,30 @@ RUBY
     end
   end
   ## TURNIP
-  if recipes.include? 'turnip'
+  if prefer :integration, 'turnip'
     append_to_file '.rspec', '-r turnip/rspec'
     inject_into_file 'spec/spec_helper.rb', "require 'turnip/capybara'\n", :after => "require 'rspec/rails'\n"
     create_file 'spec/acceptance/steps/.gitkeep'
   end
   ## FIXTURE REPLACEMENTS
-  if recipes.include? 'machinist'
+  if prefer :fixtures, 'machinist'
     say_wizard "generating blueprints file for 'machinist'"
     generate 'machinist:install'
   end
   ### GIT ###
-  git :add => '.' if recipes.include? 'git'
-  git :commit => "-aqm 'rails_apps_composer: testing framework'" if recipes.include? 'git'
+  git :add => '.' if prefer :git, true
+  git :commit => "-aqm 'rails_apps_composer: testing framework'" if prefer :git, true
 end # after_bundler
 
 after_everything do
   say_wizard "recipe running after everything"
   ### RSPEC ###
-  if recipes.include? 'rspec'
-    if (recipes.include? 'devise') && (recipes.include? 'user_accounts')
+  if prefer :unit_test, 'rspec'
+    if (prefer :authentication, 'devise') && (prefer :starter_app, 'users_app')
       say_wizard "copying RSpec files from the rails3-devise-rspec-cucumber examples"
       repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
       copy_from_repo 'spec/factories/users.rb', :repo => repo
-      gsub_file 'spec/factories/users.rb', /# confirmed_at/, "confirmed_at" if recipes.include? 'devise-confirmable'
+      gsub_file 'spec/factories/users.rb', /# confirmed_at/, "confirmed_at" if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
       copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
       copy_from_repo 'spec/controllers/users_controller_spec.rb', :repo => repo
       copy_from_repo 'spec/models/user_spec.rb', :repo => repo
@@ -128,7 +128,7 @@ after_everything do
       remove_file 'spec/helpers/users_helper_spec.rb'
     end
     ## RSPEC AND OMNIAUTH
-    if (recipes.include? 'omniauth') && (recipes.include? 'user_accounts')
+    if (prefer :authentication, 'omniauth') && (prefer :starter_app, 'users_app')
       say_wizard "copying RSpec files from the rails3-mongoid-omniauth examples"
       repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
       copy_from_repo 'spec/spec_helper.rb', :repo => repo
@@ -139,13 +139,13 @@ after_everything do
       copy_from_repo 'spec/models/user_spec.rb', :repo => repo
     end
     ## GIT
-    git :add => '.' if recipes.include? 'git'
-    git :commit => "-aqm 'rails_apps_composer: rspec files'" if recipes.include? 'git'
+    git :add => '.' if prefer :git, true
+    git :commit => "-aqm 'rails_apps_composer: rspec files'" if prefer :git, true
   end
   ### CUCUMBER ###
-  if recipes.include? 'cucumber'
+  if prefer :integration, 'cucumber'
     ## CUCUMBER AND DEVISE
-    if (recipes.include? 'devise') && (recipes.include? 'user_accounts')
+    if (prefer :authentication, 'devise') && (prefer :starter_app, 'users_app')
       say_wizard "copying Cucumber scenarios from the rails3-devise-rspec-cucumber examples"
       repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
       copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
@@ -156,7 +156,7 @@ after_everything do
       copy_from_repo 'features/users/user_show.feature', :repo => repo
       copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
       copy_from_repo 'features/support/paths.rb', :repo => repo
-      if recipes.include? 'devise-confirmable'
+      if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
         gsub_file 'features/step_definitions/user_steps.rb', /Welcome! You have signed up successfully./, "A message with a confirmation link has been sent to your email address."
         inject_into_file 'features/users/sign_in.feature', :before => '    Scenario: User signs in successfully' do
 <<-RUBY
@@ -171,8 +171,8 @@ RUBY
       end
     end
     ## GIT
-    git :add => '.' if recipes.include? 'git'
-    git :commit => "-aqm 'rails_apps_composer: cucumber files'" if recipes.include? 'git'
+    git :add => '.' if prefer :git, true
+    git :commit => "-aqm 'rails_apps_composer: cucumber files'" if prefer :git, true
   end
 end # after_everything 
   

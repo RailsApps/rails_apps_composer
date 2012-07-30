@@ -2,11 +2,14 @@ h1. CHANGELOG
 
 h2. 2.0 unreleased
 
-* reorganize recipes for easier maintenance
-* more extensive downloading of files from the example app repos on GitHub
+* extensive conditional configuration options (the 'quiz')
+* 'quiz' preferences can be set in a 'defaults' file
+* recipes reorganized for easier maintenance
+* removed recipes that are outdated or unsupported
+* more downloading of files from the example app repos on GitHub to reduce inline code
 * new 'copy_from_repo' method in helpers.erb
 * conversion of ERB files to Haml or Slim as needed in helpers.erb
-* new recipe: 'setup' allows conditional configuration options
+* new recipe: 'setup' for conditional configuration options (the 'quiz')
 * new recipe: 'readme' to build README files that provide greater detail
 * new recipe: 'gems' collects all the gems in one recipe for easier updating
 * new recipe: 'testing' combines rspec and cucumber options with fixture replacements

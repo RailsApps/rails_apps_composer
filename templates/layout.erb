@@ -23,6 +23,7 @@ end
 RUBY
 
 @recipes = <%= resolve_recipes.map(&:key).inspect %>
+@prefs = <%= resolve_preferences %>
 
 <%= render "helpers" %>
 
@@ -67,11 +68,11 @@ say_wizard "Installing gems. This will take a while."
 run 'bundle install --without production'
 say_wizard "Running 'after bundler' callbacks."
 require 'bundler/setup'
-if recipes.include? 'haml'
+if prefer :templates, 'haml'
   say_wizard "importing html2haml conversion tool"
   require 'haml/html'
 end
-if recipes.include? 'slim'
+if prefer :templates, 'slim'
   say_wizard "importing html2haml and haml2slim conversion tools"
   require 'haml/html'
   require 'haml2slim'

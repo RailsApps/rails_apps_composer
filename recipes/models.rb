@@ -4,23 +4,20 @@
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### DEVISE ###
-  if recipes.include? 'devise'
-    if recipes.include? 'mongoid'
-      if recipes.include? 'devise-confirmable'
-        raise StandardError.new "Sorry. An example app using MongoDB and devise-confirmable is not available."
-      end
-      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-devise/master/' if recipes.include? 'mongoid'
+  if prefer :authentication, 'devise'
+    if prefer :orm, 'mongoid'
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-devise/master/' if prefer :orm, 'mongoid'
     else
       generate 'migration AddNameToUsers name:string'
-      if recipes.include? 'devise-confirmable'
+      if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
         generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'
       end
       copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
     end
   end
   ### OMNIAUTH ###
-  if recipes.include? 'omniauth'
-    if recipes.include? 'mongoid'
+  if prefer :authentication, 'omniauth'
+    if prefer :orm, 'mongoid'
       copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
     else
       generate 'model User name:string email:string provider:string uid:string'
@@ -34,9 +31,9 @@ after_bundler do
     end
   end
   ### SUBDOMAINS ###
-  copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if recipes.include? 'subdomains'
+  copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains'
   ### AUTHORIZATION (insert 'rolify' after User model is created) ###
-  unless recipes.include? 'mongoid'
+  unless prefer :orm, 'mongoid'
     generate 'rolify:role Role User'
   else
     generate 'rolify:role Role User mongoid'
@@ -49,8 +46,8 @@ after_bundler do
   		  "  \\2\n  extend Rolify\n  \\1\n"
   end
   ### GIT ###
-  git :add => '.' if recipes.include? 'git'
-  git :commit => "-aqm 'rails_apps_composer: models'" if recipes.include? 'git'
+  git :add => '.' if prefer :git, true
+  git :commit => "-aqm 'rails_apps_composer: models'" if prefer :git, true
 end # after_bundler
 
 __END__

@@ -4,8 +4,8 @@
 after_everything do
   say_wizard "recipe running after everything"
   ### PREPARE SEED ###
-  if recipes.include? 'devise'
-    if recipes.include? 'devise-confirmable'
+  if prefer :authentication, 'devise'
+    if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
       ## DEVISE-CONFIRMABLE
       append_file 'db/seeds.rb' do <<-FILE
 puts 'SETTING UP DEFAULT USER LOGIN'
@@ -26,24 +26,24 @@ puts 'New user created: ' << user2.name
 FILE
       end
     end
-    if recipes.include? 'subdomains'
+    if prefer :starter_app, 'subdomains'
       gsub_file 'db/seeds.rb', /First User/, 'user1'
       gsub_file 'db/seeds.rb', /Second User/, 'user2'
     end
-    if recipes.include? 'cancan'
+    if prefer :authorization, 'cancan'
       append_file 'db/seeds.rb' do <<-FILE
 user.add_role :admin
 FILE
       end
     end
     ## DEVISE-INVITABLE
-    if recipes.include? 'devise-invitable'
+    if prefer :devise_modules, 'invitable'
       run 'bundle exec rake db:migrate'
       generate 'devise_invitable user'
     end    
   end
   ### APPLY SEED ###
-  unless recipes.include? 'mongoid'
+  unless prefer :orm, 'mongoid'
     ## MONGOID
     say_wizard "applying migrations and seeding the database"
     run 'bundle exec rake db:migrate'
@@ -56,8 +56,8 @@ FILE
   end
   run 'bundle exec rake db:seed'
   ### GIT ###
-  git :add => '.' if recipes.include? 'git'
-  git :commit => "-aqm 'rails_apps_composer: set up database'" if recipes.include? 'git'
+  git :add => '.' if prefer :git, true
+  git :commit => "-aqm 'rails_apps_composer: set up database'" if prefer :git, true
 end # after_everything
 
 __END__

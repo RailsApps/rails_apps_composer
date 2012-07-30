@@ -7,8 +7,8 @@ say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
 
 ## Git
 say_wizard "initialize git"
-recipes << 'git'
-if recipes.include? 'git'
+prefs[:git] = true unless prefs.has_key? :git
+if prefer :git, true
   begin
     remove_file '.gitignore'
     get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/gitignore.txt', '.gitignore'
@@ -29,132 +29,113 @@ end
 sqlite_detected = gemfile.include? 'sqlite3'
 
 ## Web Server
-dev_webserver = multiple_choice "Web server for development?", [["WEBrick (default)", "webrick"], 
-  ["Thin", "thin-development"], ["Unicorn", "unicorn-development"], ["Puma", "puma-development"]]
-recipes << dev_webserver
-prod_webserver = multiple_choice "Web server for production?", [["Same as development", "same"], 
-  ["Thin", "thin-production"], ["Unicorn", "unicorn-development"], ["Puma", "puma-production"]]
-if dev_webserver == 'same'
-  case prod_webserver
-    when 'thin-development'
-      recipes << 'thin-production'
-    when 'unicorn-development'
-      recipes << 'unicorn-production'
-    when 'puma-development'
-      recipes << 'puma-production'
+prefs[:dev_webserver] = multiple_choice "Web server for development?", [["WEBrick (default)", "webrick"], 
+  ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"]] unless prefs.has_key? :dev_webserver
+webserver = multiple_choice "Web server for production?", [["Same as development", "same"], 
+  ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"]] unless prefs.has_key? :prod_webserver
+if webserver == 'same'
+  case prefs[:dev_webserver]
+    when 'thin'
+      prefs[:prod_webserver] = 'thin'
+    when 'unicorn'
+      prefs[:prod_webserver] = 'unicorn'
+    when 'puma'
+      prefs[:prod_webserver] = 'puma'
   end
 else
-  recipes << prod_webserver
+  prefs[:prod_webserver] = webserver
 end
 
 ## Database Adapter
-database = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"], ["MySQL", "mysql"], ["MongoDB", "mongodb"]]
-recipes << database
-case database
+prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"], 
+  ["MySQL", "mysql"], ["MongoDB", "mongodb"]] unless prefs.has_key? :database
+case prefs[:database]
   when 'mongodb'
     unless sqlite_detected
-      orm = multiple_choice "How will you connect to MongoDB?", [["Mongoid","mongoid"]]
-      recipes << orm
+      prefs[:orm] = multiple_choice "How will you connect to MongoDB?", [["Mongoid","mongoid"]] unless prefs.has_key? :orm
     else
       raise StandardError.new "SQLite detected in the Gemfile. Use '-O' or '--skip-activerecord' as in 'rails new foo -O' if you don't want ActiveRecord and SQLite"
     end
 end
 
 ## Template Engine
-templating = multiple_choice "Template engine?", [["ERB", "erb"], ["Haml", "haml"], ["Slim", "slim"]]
-recipes << templating
+prefs[:templates] = multiple_choice "Template engine?", [["ERB", "erb"], ["Haml", "haml"], ["Slim", "slim"]] unless prefs.has_key? :templates
 
 ## Testing Framework
 if recipes.include? 'testing'
-  testing = multiple_choice "Testing framework?", [["Test::Unit", "test_unit"], ["RSpec with Capybara and Cucumber", "cucumber"], ["RSpec with Capybara and Turnip", "turnip"], ["RSpec with Capybara", "rspec"]]
-  recipes << testing
-  recipes << 'rspec' if (testing == 'cucumber') || (testing == 'turnip')
-  fixtures = multiple_choice "Fixture replacement?", [["None","none"], ["Factory Girl","factory_girl"], ["Machinist","machinist"]]
-  recipes << fixtures unless fixtures == 'none'
+  prefs[:unit_test] = multiple_choice "Unit testing?", [["Test::Unit", "test_unit"], ["RSpec", "rspec"]] unless prefs.has_key? :unit_test
+  prefs[:integration] = multiple_choice "Integration testing?", [["RSpec with Capybara", "capybara"], 
+    ["Cucumber with Capybara", "cucumber"], ["Turnip with Capybara", "turnip"]] unless prefs.has_key? :integration
+  prefs[:fixtures] = multiple_choice "Fixture replacement?", [["None","none"], ["Factory Girl","factory_girl"], ["Machinist","machinist"]] unless prefs.has_key? :fixtures
 end
 
 ## Front-end Framework
 if recipes.include? 'frontend'
-  frontend = multiple_choice "Front-end framework?", [["None", "none"], ["Twitter Bootstrap (Sass)", "bootstrap-sass"], ["Twitter Bootstrap (Less)", "bootstrap-less"], ["Zurb Foundation", "foundation"], ["Skeleton", "skeleton"], ["Just normalize CSS for consistent styling", "normalize"]]
-  recipes << frontend unless frontend == 'none'
-  if (recipes.include? 'bootstrap-sass') || (recipes.include? 'bootstrap-less')
-    recipes << 'bootstrap'
+  prefs[:frontend] = multiple_choice "Front-end framework?", [["None", "none"], ["Twitter Bootstrap", "bootstrap"], 
+    ["Zurb Foundation", "foundation"], ["Skeleton", "skeleton"], ["Just normalize CSS for consistent styling", "normalize"]] unless prefs.has_key? :frontend
+  if prefer :frontend, 'bootstrap'
+    prefs[:bootstrap] = multiple_choice "Twitter Bootstrap version?", [["Twitter Bootstrap (Less)", "less"],
+      ["Twitter Bootstrap (Sass)", "sass"]] unless prefs.has_key? :bootstrap
   end
 end
 
 ## Form Builder
-form_builder = multiple_choice "Form builder?", [["None", "none"], ["SimpleForm", "simple_form"]]
-recipes << form_builder unless form_builder == 'none'
+prefs[:form_builder] = multiple_choice "Form builder?", [["None", "none"], ["SimpleForm", "simple_form"]] unless prefs.has_key? :form_builder
 
 ## Email
 if recipes.include? 'email'
-  email_account = multiple_choice "Add support for sending email?", [["None", "none"], ["Gmail","gmail"], ["SMTP","smtp"], ["SendGrid","sendgrid"], ["Mandrill","mandrill"]]
-  recipes << email_account unless email_account == 'none'
-  recipes.delete('email') if email_account == 'none'
+  prefs[:email] = multiple_choice "Add support for sending email?", [["None", "none"], ["Gmail","gmail"], ["SMTP","smtp"], 
+    ["SendGrid","sendgrid"], ["Mandrill","mandrill"]] unless prefs.has_key? :email
+else
+  prefs[:email] = 'none'
 end
 
 ## Authentication and Authorization
 if recipes.include? 'auth'
-  authentication = multiple_choice "Authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]]
-  case authentication
+  prefs[:authentication] = multiple_choice "Authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]] unless prefs.has_key? :authentication
+  case prefs[:authentication]
     when 'devise'
-      recipes << 'devise'
-      if recipes.include? 'mongodb'
-        devise_modules = multiple_choice "Devise modules?", [["Devise with default modules","devise-standard"]]
+      if prefer :orm, 'mongoid'
+        prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"]] unless prefs.has_key? :devise_modules
       else
-        devise_modules = multiple_choice "Devise modules?", [["Devise with default modules","devise-standard"], ["Devise with Confirmable module","devise-confirmable"], ["Devise with Confirmable and Invitable modules","devise-invitable"]]
-      end
-      case devise_modules
-        when 'confirmable'
-          recipes << 'devise-confirmable'
-        when 'invitable'
-          recipes << 'devise-confirmable'
-          recipes << 'devise-invitable'
+        prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"], ["Devise with Confirmable module","confirmable"], 
+          ["Devise with Confirmable and Invitable modules","invitable"]] unless prefs.has_key? :devise_modules
       end
     when 'omniauth'
-      recipes << 'omniauth'
-      omniauth_provider = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"], ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google-oauth2"], ["Tumblr", "tumblr"]]
-      recipes << omniauth_provider
+      prefs[:omniauth_provider] = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"], 
+        ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google-oauth2"], ["Tumblr", "tumblr"]] unless prefs.has_key? :omniauth_provider
   end
-  authorization = multiple_choice "Authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]]
-  recipes << authorization unless authorization == 'none'
+  prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]] unless prefs.has_key? :authorization
 end
 
 ## MVC
 if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.include? 'views') && (recipes.include? 'routes')
-  if recipes.include? 'cancan'
-    starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], 
-      ["Home Page, User Accounts", "user_accounts"], 
-      ["Home Page, User Accounts, Admin Dashboard", "admin_dashboard"]]
-  elsif recipes.include? 'devise'
-    if recipes.include? 'mongoid'
-      starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], 
-        ["Home Page, User Accounts", "user_accounts"], 
-        ["Home Page, User Accounts, Subdomains", "subdomains"]]
+  if prefer :authorization, 'cancan'
+    prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"], 
+      ["Home Page, User Accounts", "users_app"], ["Home Page, User Accounts, Admin Dashboard", "admin_app"]] unless prefs.has_key? :starter_app
+  elsif prefer :authentication, 'devise'
+    if prefer :orm, 'mongoid'
+      prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"], 
+        ["Home Page, User Accounts", "users_app"], ["Home Page, User Accounts, Subdomains", "subdomains_app"]] unless prefs.has_key? :starter_app
     else
-      starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], 
-        ["Home Page, User Accounts", "user_accounts"]]
+      prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"], 
+        ["Home Page, User Accounts", "users_app"]] unless prefs.has_key? :starter_app
     end
-  elsif recipes.include? 'omniauth'
-    starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"], 
-      ["Home Page, User Accounts", "user_accounts"]]
+  elsif prefer :authentication, 'omniauth'
+    prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"], 
+      ["Home Page, User Accounts", "users_app"]] unless prefs.has_key? :starter_app
   else
-    starterapp = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "simple_home"]]
+    prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"]] unless prefs.has_key? :starter_app
   end
-  recipes << starterapp unless starterapp == 'none'
-  recipes << 'simple_home' if (starterapp == 'user_accounts') || (starterapp == 'admin_dashboard') || (starterapp == 'subdomains')
-  recipes << 'user_accounts' if (starterapp == 'admin_dashboard' )|| (starterapp == 'subdomains')
-  if (recipes.include? 'prelaunch') && (recipes.include? 'devise') && (recipes.include? 'cancan')
-    prelaunch_app = multiple_choice "Install a prelaunch app?", [["None", "none"], ["Prelaunch Signup App", "signup_app"]]
-    if prelaunch_app == 'signup_app'
-      recipes << 'signup_app'
-      recipes << 'devise-confirmable'
-      bulkmail = multiple_choice "Send news and announcements with a mail service?", [["None", "none"], ["MailChimp","mailchimp"]]
-      recipes << bulkmail unless bulkmail == 'none'
-      if recipes.include? 'git'
-        prelaunch_branch = multiple_choice "Git branch for the prelaunch app?", [["wip (work-in-progress)", "wip"], ["master", "master"], ["prelaunch", "prelaunch"], ["staging", "staging"]]
-        if prelaunch_branch == 'master'
-          main_branch = multiple_choice "Git branch for the main app?", [["None (delete)", "none"], ["wip (work-in-progress)", "wip"], ["edge", "edge"]]
+  if (recipes.include? 'prelaunch') && (prefer :authentication, 'devise') && (prefer :authorization, 'cancan')
+    prefs[:prelaunch_app] = multiple_choice "Install a prelaunch app?", [["None", "none"], ["Prelaunch Signup App", "signup_app"]]
+    if prefs[:prelaunch_app] == 'signup_app'
+      prefs[:devise_modules] = 'confirmable'
+      prefs[:bulkmail] = multiple_choice "Send news and announcements with a mail service?", [["None", "none"], ["MailChimp","mailchimp"]]
+      if prefer :git, true
+        prefs[:prelaunch_branch] = multiple_choice "Git branch for the prelaunch app?", [["wip (work-in-progress)", "wip"], ["master", "master"], ["prelaunch", "prelaunch"], ["staging", "staging"]]
+        if prefs[:prelaunch_branch] == 'master'
+          prefs[:main_branch] = multiple_choice "Git branch for the main app?", [["None (delete)", "none"], ["wip (work-in-progress)", "wip"], ["edge", "edge"]]
         end
       end
     end

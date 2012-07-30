@@ -1,5 +1,7 @@
 def recipes; @recipes end
 def recipe?(name); @recipes.include?(name) end
+def prefs; @prefs end
+def prefer(key, value); @prefs[key].eql? value end
 
 def say_custom(tag, text); say "\033[1m\033[36m" + tag.to_s.rjust(10) + "\033[0m" + "  #{text}" end
 def say_recipe(name); say "\033[1m\033[36m" + "recipe".rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
@@ -47,29 +49,29 @@ def before_config(&block); @before_configs[@current_recipe] = block; end
 def copy_from_repo(filename, opts = {})
   repo = 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
   repo = opts[:repo] unless opts[:repo].nil?
-  if (!opts[:recipe].nil?) && (!recipes.include? opts[:recipe])
+  if (!opts[:prefs].nil?) && (!prefs.has_value? opts[:prefs])
     return
   end
   source_filename = filename
   destination_filename = filename
-  unless opts[:recipe].nil?
-    if filename.include? opts[:recipe]
-      destination_filename = filename.gsub(/\-#{opts[:recipe]}/, '')
+  unless opts[:prefs].nil?
+    if filename.include? opts[:prefs]
+      destination_filename = filename.gsub(/\-#{opts[:prefs]}/, '')
     end
   end
-  if (recipes.include? 'haml') && (filename.include? 'views')
+  if (prefer :templates, 'haml') && (filename.include? 'views')
     remove_file destination_filename
     destination_filename = destination_filename.gsub(/.erb/, '.haml')
   end
-  if (recipes.include? 'slim') && (filename.include? 'views')
+  if (prefer :templates, 'slim') && (filename.include? 'views')
     remove_file destination_filename
     destination_filename = destination_filename.gsub(/.erb/, '.slim')
   end
   begin
     remove_file destination_filename
-    if (recipes.include? 'haml') && (filename.include? 'views')
+    if (prefer :templates, 'haml') && (filename.include? 'views')
       create_file destination_filename, html_to_haml(repo + source_filename)
-    elsif (recipes.include? 'slim') && (filename.include? 'views')
+    elsif (prefer :templates, 'slim') && (filename.include? 'views')
       create_file destination_filename, html_to_slim(repo + source_filename)
     else
       get repo + source_filename, destination_filename

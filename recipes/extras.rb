@@ -12,7 +12,7 @@ end
 if config['jsruntime']
   say_wizard "Adding 'therubyracer' JavaScript runtime gem"
   # maybe it was already added for bootstrap-less?
-  unless recipes.include? 'bootstrap-less'
+  unless prefer :bootstrap, 'less'
     gem 'therubyracer', :group => :assets, :platform => :ruby
   end
 end
@@ -59,8 +59,8 @@ after_everything do
   gsub_file 'config/routes.rb', /  #.*\n/, "\n"
   gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
   # GIT
-  git :add => '.' if recipes.include? 'git'
-  git :commit => "-aqm 'rails_apps_composer: starter app complete'" if recipes.include? 'git'
+  git :add => '.' if prefer :git, true
+  git :commit => "-aqm 'rails_apps_composer: starter app complete'" if prefer :git, true
 end
 
 __END__

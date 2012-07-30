@@ -3,7 +3,7 @@
 
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
-  if recipes.include? 'email'
+  unless prefer :email, 'none'
     ### DEVELOPMENT
     gsub_file 'config/environments/development.rb', /# Don't care if the mailer can't send/, '# ActionMailer Config'
     gsub_file 'config/environments/development.rb', /config.action_mailer.raise_delivery_errors = false/ do
@@ -40,7 +40,7 @@ RUBY
     end
   end
   ### GMAIL ACCOUNT
-  if recipes.include? 'gmail'
+  if prefer :email, 'gmail'
     gmail_configuration_text = <<-TEXT
 \n
   config.action_mailer.smtp_settings = {
@@ -57,7 +57,7 @@ TEXT
     inject_into_file 'config/environments/production.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
   end
   ### SENDGRID ACCOUNT
-  if recipes.include? 'sendgrid'
+  if prefer :email, 'sendgrid'
     sendgrid_configuration_text = <<-TEXT
 \n
   config.action_mailer.smtp_settings = {
@@ -73,7 +73,7 @@ TEXT
     inject_into_file 'config/environments/production.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
   end
     ### MANDRILL ACCOUNT
-    if recipes.include? 'mandrill'
+    if prefer :email, 'mandrill'
       mandrill_configuration_text = <<-TEXT
   \n
     config.action_mailer.smtp_settings = {
@@ -87,8 +87,8 @@ TEXT
       inject_into_file 'config/environments/production.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     end
     ### GIT
-    git :add => '.' if recipes.include? 'git'
-    git :commit => "-aqm 'rails_apps_composer: set email accounts'" if recipes.include? 'git'
+    git :add => '.' if prefer :git, true
+    git :commit => "-aqm 'rails_apps_composer: set email accounts'" if prefer :git, true
 end # after_bundler
 
 __END__

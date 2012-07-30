@@ -4,27 +4,28 @@
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### DEVISE ###
-  copy_from_repo 'app/views/devise/shared/_links.html.erb' if recipes.include? 'devise'
-  copy_from_repo 'app/views/devise/registrations/edit.html.erb' if recipes.include? 'devise'
-  copy_from_repo 'app/views/devise/registrations/new.html.erb' if recipes.include? 'devise'
+  copy_from_repo 'app/views/devise/shared/_links.html.erb' if prefer :authentication, 'devise'
+  copy_from_repo 'app/views/devise/registrations/edit.html.erb' if prefer :authentication, 'devise'
+  copy_from_repo 'app/views/devise/registrations/new.html.erb' if prefer :authentication, 'devise'
   ### HOME ###
-  copy_from_repo 'app/views/home/index.html.erb' if recipes.include? 'user_accounts'
-  copy_from_repo 'app/views/home/index-subdomains.html.erb', :recipe => 'subdomains'
+  copy_from_repo 'app/views/home/index.html.erb' if prefer :starter_app, 'users_app'
+  copy_from_repo 'app/views/home/index.html.erb' if prefer :starter_app, 'admin_app'
+  copy_from_repo 'app/views/home/index-subdomains_app.html.erb', :prefs => 'subdomains_app'
   ### USERS ###
-  if recipes.include? 'user_accounts'
+  if ['users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
     ## INDEX
     copy_from_repo 'app/views/users/index.html.erb'
     ## SHOW
     copy_from_repo 'app/views/users/show.html.erb'
-    copy_from_repo 'app/views/users/show-subdomains.html.erb', :recipe => 'subdomains'
+    copy_from_repo 'app/views/users/show-subdomains_app.html.erb', :prefs => 'subdomains_app'
     ## EDIT
-    copy_from_repo 'app/views/users/edit-omniauth.html.erb', :recipe => 'omniauth'
+    copy_from_repo 'app/views/users/edit-omniauth.html.erb', :prefs => 'omniauth'
   end
   ### PROFILES ###
-  copy_from_repo 'app/views/profiles/show-subdomains.html.erb', :recipe => 'subdomains'
+  copy_from_repo 'app/views/profiles/show-subdomains_app.html.erb', :prefs => 'subdomains_app'
   ### GIT ###
-  git :add => '.' if recipes.include? 'git'
-  git :commit => "-aqm 'rails_apps_composer: views'" if recipes.include? 'git'
+  git :add => '.' if prefer :git, true
+  git :commit => "-aqm 'rails_apps_composer: views'" if prefer :git, true
 end # after_bundler
 
 __END__
