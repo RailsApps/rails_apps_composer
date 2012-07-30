@@ -10,7 +10,8 @@ module RailsWizard
     def new(name)
       recipes, defaults = load_defaults
       recipes = ask_for_recipes(recipes)
-      run_template(name, recipes, defaults, nil)
+      gems = ask_for_gems
+      run_template(name, recipes, gems, defaults, nil)
     end
 
     desc "template TEMPLATE_FILE", "create a new Rails template"
@@ -19,7 +20,8 @@ module RailsWizard
     def template(template_name)
       recipes, defaults = load_defaults
       recipes = ask_for_recipes(recipes)
-      run_template(nil, recipes, defaults, template_name)
+      gems = ask_for_gems
+      run_template(nil, recipes, gems, defaults, template_name)
     end
 
     desc "list [CATEGORY]", "list available recipes (optionally by category)"
@@ -85,9 +87,21 @@ module RailsWizard
         recipes
       end
 
+      def ask_for_gems
+        gems = []
+        while getgem = ask("#{bold}What gem would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
+          if getgem == ''
+            break
+          else
+            gems << getgem
+          end
+        end
+        gems
+      end
+      
       #pass in name if you want to create a rails app
       #pass in file_name if you want to create a template
-      def run_template(name, recipes, defaults, file_name=nil)
+      def run_template(name, recipes, gems, defaults, file_name=nil)
         puts
         puts
         puts "#{bold}Generating#{name ? " and Running" : ''} Template..."
@@ -99,7 +113,7 @@ module RailsWizard
           file = Tempfile.new('template')
         end
         begin
-          template = RailsWizard::Template.new(recipes, defaults)
+          template = RailsWizard::Template.new(recipes, gems, defaults)
           file.write template.compile
           file.close
           if name

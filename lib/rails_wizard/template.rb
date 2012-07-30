@@ -1,11 +1,16 @@
 module RailsWizard
   class Template
-    attr_reader :recipes, :defaults
+    attr_reader :recipes, :gems, :defaults
 
-    def initialize(recipes, defaults={})
+    def initialize(recipes, gems={}, defaults={})
       @recipes = recipes.map{|r| RailsWizard::Recipe.from_mongo(r)}
       @defaults = defaults
       @prefs = defaults['prefs']
+      unless defaults['gems'].nil?
+        @gems = gems + defaults['gems']
+      else
+        @gems = gems
+      end
     end
 
     def self.template_root
@@ -21,6 +26,12 @@ module RailsWizard
     def resolve_preferences
       @resolve_preferences ||= begin
         @prefs.inspect
+      end
+    end
+
+    def resolve_gems
+      @resolve_gems ||= begin
+        @gems.inspect
       end
     end
     

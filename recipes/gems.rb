@@ -101,6 +101,11 @@ if prefer :prelaunch_app, 'signup_app'
   gem 'jquery-datatables-rails', '>= 1.10.0'
 end
 
+## Gems from a defaults file or added interactively
+gems.each do |g|
+  gem g
+end
+
 ## Git
 git :add => '.' if prefer :git, true
 git :commit => "-aqm 'rails_apps_composer: Gemfile'" if prefer :git, true

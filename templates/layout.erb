@@ -24,6 +24,7 @@ RUBY
 
 @recipes = <%= resolve_recipes.map(&:key).inspect %>
 @prefs = <%= resolve_preferences %>
+@gems = <%= resolve_gems %>
 
 <%= render "helpers" %>
 
