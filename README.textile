@@ -414,14 +414,14 @@ This gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/i
 
 Please see the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob/master/CHANGELOG.textile for a list of contributors.
 
-h2. What You Can Do
-
 Is the gem useful to you? Follow the project on Twitter:
 "@rails_apps":http://twitter.com/rails_apps
 and tweet some praise. I'd love to know you were helped out by the gem.
 
-h2. License
+h2. MIT License
 
-h4. MIT License
+"MIT License":http://www.opensource.org/licenses/mit-license
 
-The rails_apps_composer gem and its recipes are distributed under the MIT License.
+Copyright © 2012 Daniel Kehoe
+
+!https://cruel-carlota.pagodabox.com/9a7ed11e8570e461c585a7afd3722d71(githalytics.com alpha)!
