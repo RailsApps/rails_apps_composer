@@ -15,11 +15,7 @@ after_bundler do
   copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'  
   ## APPLICATION NAME
   application_layout_file = 'app/views/layouts/application.html.erb'
-  application_layout_file = 'app/views/layouts/application.html.haml' if prefer :templates, 'haml'
-  application_layout_file = 'app/views/layouts/application.html.slim' if prefer :templates, 'slim'
   navigation_partial_file = 'app/views/layouts/_navigation.html.erb'
-  navigation_partial_file = 'app/views/layouts/_navigation.html.haml' if prefer :templates, 'haml'
-  navigation_partial_file = 'app/views/layouts/_navigation.html.slim' if prefer :templates, 'slim'
   gsub_file application_layout_file, /App_Name/, "#{app_name.humanize.titleize}"
   gsub_file navigation_partial_file, /App_Name/, "#{app_name.humanize.titleize}"
   ### CSS ###
