@@ -18,8 +18,8 @@ gem 'puma', '>= 1.5.0', :group => :production if prefer :prod_webserver, 'puma'
 gem 'mongoid', '>= 3.0.1' if prefer :orm, 'mongoid'
 gem 'pg', '>= 0.14.0' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
-copy_from_repo 'database-postgresql.yml', :prefs => 'postgresql'
-copy_from_repo 'database-mysql.yml', :prefs => 'mysql'
+copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
+copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
 
 ## Template Engine
 if prefer :templates, 'haml'
