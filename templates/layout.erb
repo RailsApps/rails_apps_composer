@@ -63,10 +63,13 @@ end
 
 @current_recipe = nil
 
-# >-----------------------------[ Run Bundler ]-------------------------------<
+# >-----------------------------[ Run 'Bundle Install' ]-------------------------------<
 
 say_wizard "Installing gems. This will take a while."
 run 'bundle install --without production'
+
+# >-----------------------------[ Run 'After Bundler' Callbacks ]-------------------------------<
+
 say_wizard "Running 'after bundler' callbacks."
 require 'bundler/setup'
 if prefer :templates, 'haml'
@@ -79,6 +82,8 @@ if prefer :templates, 'slim'
   require 'haml2slim'
 end
 @after_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; b[1].call}
+
+# >-----------------------------[ Run 'After Everything' Callbacks ]-------------------------------<
 
 @current_recipe = nil
 say_wizard "Running 'after everything' callbacks."
