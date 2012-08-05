@@ -31,6 +31,5 @@ name: routes
 description: "Add routes needed for starter apps."
 author: RailsApps
 
-run_after: [controllers]
-category: other
-tags: [utilities, configuration]
+run_after: [views]
+category: mvc

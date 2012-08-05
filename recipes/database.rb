@@ -67,5 +67,4 @@ description: "Set up and initialize database."
 author: RailsApps
 
 run_after: [models]
-category: other
-tags: [utilities, configuration]
+category: initialize

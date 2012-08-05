@@ -136,5 +136,5 @@ name: gems
 description: "Add the gems your application needs."
 author: RailsApps
 
-category: other
-tags: [utilities, configuration]
+run_after: [setup]
+category: configuration

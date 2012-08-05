@@ -97,5 +97,5 @@ name: email
 description: "Configure email accounts."
 author: RailsApps
 
-category: other
-tags: [utilities, configuration]
+run_after: [setup]
+category: configuration

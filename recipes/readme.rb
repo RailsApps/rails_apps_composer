@@ -67,5 +67,5 @@ name: readme
 description: "Build a README file for your application."
 author: RailsApps
 
-category: other
-tags: [utilities, configuration]
+run_after: [setup]
+category: configuration

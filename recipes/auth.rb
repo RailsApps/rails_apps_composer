@@ -79,6 +79,5 @@ name: auth
 description: "Add authentication and authorization."
 author: RailsApps
 
-category: authentication
-exclusive: authentication
-
+run_after: [gems]
+category: auth

@@ -69,8 +69,8 @@ name: extras
 description: "Various extras."
 author: RailsApps
 
+run_after: [gems]
 category: other
-tags: [utilities, configuration]
 
 config:
   - ban_spiders:

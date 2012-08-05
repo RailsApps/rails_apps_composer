@@ -41,5 +41,4 @@ description: "Generates a Prelaunch Signup App"
 author: RailsApps
 
 run_after: [extras]
-category: other
-tags: [utilities, configuration]
+category: apps

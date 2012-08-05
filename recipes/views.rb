@@ -35,5 +35,4 @@ description: "Add views needed for starter apps."
 author: RailsApps
 
 run_after: [controllers]
-category: other
-tags: [utilities, configuration]
+category: mvc

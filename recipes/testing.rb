@@ -182,6 +182,5 @@ name: testing
 description: "Add testing framework."
 author: RailsApps
 
+run_after: [gems]
 category: testing
-
-args: ["-T"]

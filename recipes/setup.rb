@@ -148,5 +148,4 @@ name: setup
 description: "Make choices for your application."
 author: RailsApps
 
-category: other
-tags: [utilities, configuration]
+category: configuration
