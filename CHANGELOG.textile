@@ -2,14 +2,17 @@ h1. CHANGELOG
 
 h2. 2.0 unreleased
 
-* extensive conditional configuration options (the 'quiz')
+* wrote a "Guide" to provide complete documentation
+* prompt to set -T or -O args (but not when generating application templates)
+* extensive conditional configuration options with a prefs{} hash (the 'quiz')
 * 'quiz' preferences can be set in a defaults file
-* add gems at a prompt or from a defaults file
+* add gems at a prompt or from a defaults file for a gems[] array
 * recipes reorganized for easier maintenance
 * removed recipes that are outdated or unsupported
 * more downloading of files from the example app repos on GitHub to reduce inline code
 * new 'copy_from_repo' method in helpers.erb
 * conversion of ERB files to Haml or Slim by 'copy_from_repo' method
+* new recipe: 'example' as documentation
 * new recipe: 'setup' for conditional configuration options (the 'quiz')
 * new recipe: 'readme' to build README files that provide greater detail
 * new recipe: 'gems' collects all the gems in one recipe for easier updating
