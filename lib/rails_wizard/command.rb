@@ -8,10 +8,11 @@ module RailsWizard
     method_option :recipes, :type => :array, :aliases => "-r"
     method_option :defaults, :type => :string, :aliases => "-d"
     def new(name)
+      args = ask_for_args
       recipes, defaults = load_defaults
       recipes = ask_for_recipes(recipes)
       gems = ask_for_gems
-      run_template(name, recipes, gems, defaults, nil)
+      run_template(name, recipes, gems, args, defaults, nil)
     end
 
     desc "template TEMPLATE_FILE", "create a new Rails template"
@@ -21,7 +22,7 @@ module RailsWizard
       recipes, defaults = load_defaults
       recipes = ask_for_recipes(recipes)
       gems = ask_for_gems
-      run_template(nil, recipes, gems, defaults, template_name)
+      run_template(nil, recipes, gems, nil, defaults, template_name)
     end
 
     desc "list [CATEGORY]", "list available recipes (optionally by category)"
@@ -93,20 +94,42 @@ module RailsWizard
           if getgem == ''
             break
           else
-            gems << getgem
+            gems << getgem.downcase
           end
         end
         gems
       end
+
+      def ask_for_args
+        args = []
+        question = "#{bold}Would you like to skip Test::Unit? (yes for RSpec) \033[33m(y/n)\033[0m#{clear}"
+        while getT = ask(question)
+          case getT.downcase
+            when "yes", "y"
+              args << "-T"
+              break
+            when "no", "n"
+              args << ""
+              break
+          end
+        end
+        question = "#{bold}Would you like to skip Active Record? (yes for NoSQL) \033[33m(y/n)\033[0m#{clear}"
+        while getO = ask(question)
+          case getO.downcase
+            when "yes", "y"
+              args << "-O"
+              break
+            when "no", "n"
+              args << ""
+              break
+          end
+        end
+        args
+      end
       
       #pass in name if you want to create a rails app
       #pass in file_name if you want to create a template
-      def run_template(name, recipes, gems, defaults, file_name=nil)
-        puts
-        puts
-        puts "#{bold}Generating#{name ? " and Running" : ''} Template..."
-        puts
-
+      def run_template(name, recipes, gems, args, defaults, file_name=nil)
         if file_name
           file = File.new(file_name,'w')
         else
@@ -117,11 +140,15 @@ module RailsWizard
           file.write template.compile
           file.close
           if name
-            system "rails new #{name} -m #{file.path} #{template.args.join(' ')}"
+            args_list = (args | template.args).join(' ')
+            puts "Generating basic application, using:"
+            puts "\"rails new #{name} -m <temp_file> #{args_list}\""
+            system "rails new #{name} -m #{file.path} #{args_list}"
           else
-            puts "install with the command:"
-            puts
-            puts "rails new <APP_NAME> -m #{file.path} #{template.args.join(' ')}"
+            puts "Generating and saving application template..."
+            puts "Done."
+            puts "Generate a new application with the command:"
+            puts "\"rails new <APP_NAME> -m #{file.path} #{template.args.join(' ')}\""
           end
         rescue RailsWizard::UnknownRecipeError
           raise Thor::Error.new("> #{red}#{$!.message}.#{clear}")

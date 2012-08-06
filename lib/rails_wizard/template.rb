@@ -1,9 +1,10 @@
 module RailsWizard
   class Template
-    attr_reader :recipes, :gems, :defaults
+    attr_reader :recipes, :gems, :args, :defaults
 
-    def initialize(recipes, gems={}, defaults={})
+    def initialize(recipes, gems=[], args=[], defaults={})
       @recipes = recipes.map{|r| RailsWizard::Recipe.from_mongo(r)}
+      @args = args
       @defaults = defaults
       unless defaults['prefs'].nil?
         @prefs = defaults['prefs']
@@ -11,7 +12,7 @@ module RailsWizard
         @prefs = {}
       end
       unless defaults['gems'].nil?
-        @gems = gems + defaults['gems']
+        @gems = gems | defaults['gems']
       else
         @gems = gems
       end
@@ -35,7 +36,7 @@ module RailsWizard
 
     def resolve_gems
       @resolve_gems ||= begin
-        @gems.inspect
+        @gems.uniq.inspect
       end
     end
     
