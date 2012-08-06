@@ -2,9 +2,9 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/add_user.rb
 
 after_bundler do
-  
+
   say_wizard "AddUser recipe running 'after bundler'"
-  
+
   if recipes.include? 'omniauth'
     generate(:model, "user provider:string uid:string name:string email:string")
     gsub_file 'app/models/user.rb', /\bend\s*\Z/ do
@@ -19,7 +19,7 @@ RUBY
 
     # Generate models and routes for a User
     generate 'devise user'
-    
+
     if recipes.include? 'authorization'
       # create'app/models/ability.rb'
       generate 'cancan:ability'
@@ -102,7 +102,17 @@ RUBY
       end
     end
 
-    unless recipes.include? 'haml'
+    if recipes.include? 'slim'
+      # Copy Slim versions of modified Devise views
+      get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/devise/shared/_links.html.slim', 'app/views/devise/shared/_links.html.slim'
+      get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/devise/registrations/edit.html.slim', 'app/views/devise/registrations/edit.html.slim'
+      get 'https://raw.github.com/akiva/rails-application-boilerplates/master/views/devise/registrations/new.html.slim', 'app/views/devise/registrations/new.html.slim'
+    elsif recipes.include? 'haml'
+      # copy Haml versions of modified Devise views
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/shared/_links.html.haml', 'app/views/devise/shared/_links.html.haml'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/registrations/edit.html.haml', 'app/views/devise/registrations/edit.html.haml'
+      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/registrations/new.html.haml', 'app/views/devise/registrations/new.html.haml'
+    else
       # Generate Devise views (unless you are using Haml)
       run 'rails generate devise:views'
       # Modify Devise views to add 'name'
@@ -118,11 +128,6 @@ ERB
 <%= f.text_field :name %></p>
 ERB
       end
-    else
-      # copy Haml versions of modified Devise views
-      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/shared/_links.html.haml', 'app/views/devise/shared/_links.html.haml'
-      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/registrations/edit.html.haml', 'app/views/devise/registrations/edit.html.haml'
-      get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/devise-views-haml/app/views/devise/registrations/new.html.haml', 'app/views/devise/registrations/new.html.haml'
     end
 
   end

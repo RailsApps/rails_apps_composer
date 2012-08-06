@@ -75,6 +75,21 @@ HAML
       if recipes.include? 'paginate'
         append_file 'app/views/users/index.html.haml', "\n= will_paginate\n"
       end
+    elsif recipes.include? 'slim'
+      remove_file 'app/views/users/index.html.slim'
+      # There is Slim code in this script. Changing the indentation is
+      # perilous between HAMLs.
+      # We have to use single-quote-style-heredoc to avoid interpolation.
+      create_file 'app/views/users/index.html.slim' do <<-'SLIM'
+h2 Users
+ul
+- @users.each do |user|
+  li #{link_to user.email, user} signed up #{user.created_at.to_date}
+SLIM
+      end
+      if recipes.include? 'paginate'
+        append_file 'app/views/users/index.html.slim', "\n= will_paginate\n"
+      end
     else
       append_file 'app/views/users/index.html.erb' do <<-ERB
 <ul class="users">
@@ -104,6 +119,19 @@ ERB
 %p
   Email: #{@user.email if @user.email}
 HAML
+      end
+    elsif recipes.include? 'slim'
+      remove_file 'app/views/users/show.html.slim'
+      # There is Slim code in this script. Changing the indentation is
+      # perilous.
+      # We have to use single-quote-style-heredoc to avoid interpolation.
+      create_file 'app/views/users/show.html.slim' do <<-'SLIM'
+dl
+  dt User
+  dd #{@user.name}
+  dt Email
+  dd #{@user.email if @user.email}
+SLIM
       end
     else
       append_file 'app/views/users/show.html.erb' do <<-ERB
@@ -140,6 +168,19 @@ RUBY
 - @users.each do |user|
   %p User: #{link_to user.name, user}
 HAML
+      end
+    elsif recipes.include? 'slim'
+      remove_file 'app/views/home/index.html.slim'
+      # There is Slim code in this script. Changing the indentation is
+      # perilous between HAMLs.
+      # We have to use single-quote-style-heredoc to avoid interpolation.
+      create_file 'app/views/home/index.html.slim' do
+      <<-'SLIM'
+h3 Home
+ul
+- @users.each do |user|
+  li User: #{link_to user.name, user}
+SLIM
       end
     else
       remove_file 'app/views/home/index.html.erb'

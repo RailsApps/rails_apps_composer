@@ -6,6 +6,22 @@ if config['sass']
 Rails.application.config.generators.stylesheet_engine = :sass
 RUBY
     end
+    remove_file 'app/assets/stylesheets/application.css'
+    if recipes.include? 'bourbon'
+      create_file 'app/assets/stylesheets/application.css.sass' do <<-SASS
+//= require_self
+//= require_tree .
+
+@import 'bourbon'
+      SASS
+      end
+    else
+      create_file 'app/assets/stylesheets/application.css.sass' do <<-SASS
+//= require_self
+//= require_tree .
+      SASS
+      end
+    end
   end
 end
 
