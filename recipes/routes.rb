@@ -31,5 +31,6 @@ name: routes
 description: "Add routes needed for starter apps."
 author: RailsApps
 
-run_after: [views]
+requires: [setup, gems, auth, models, controllers, views]
+run_after: [setup, gems, auth, models, controllers, views]
 category: mvc

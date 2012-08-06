@@ -182,5 +182,6 @@ name: testing
 description: "Add testing framework."
 author: RailsApps
 
-run_after: [gems]
+requires: [setup, gems]
+run_after: [setup, gems]
 category: testing

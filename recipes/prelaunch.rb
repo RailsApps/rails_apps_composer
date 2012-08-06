@@ -40,5 +40,6 @@ name: prelaunch
 description: "Generates a Prelaunch Signup App"
 author: RailsApps
 
-run_after: [extras]
+requires: [setup, gems, auth, models, controllers, views, frontend, database]
+run_after: [setup, gems, auth, models, controllers, views, frontend, database]
 category: apps

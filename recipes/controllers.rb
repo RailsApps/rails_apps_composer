@@ -53,5 +53,6 @@ name: controllers
 description: "Add controllers needed for starter apps."
 author: RailsApps
 
-run_after: [models]
+requires: [setup, gems, auth, models]
+run_after: [setup, gems, auth, models]
 category: mvc

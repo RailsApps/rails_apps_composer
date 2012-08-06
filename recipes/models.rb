@@ -56,5 +56,6 @@ name: models
 description: "Add models needed for starter apps."
 author: RailsApps
 
-run_after: [auth]
+requires: [setup, gems, auth]
+run_after: [setup, gems, auth]
 category: mvc

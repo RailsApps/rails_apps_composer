@@ -69,6 +69,7 @@ name: extras
 description: "Various extras."
 author: RailsApps
 
+requires: [gems]
 run_after: [gems]
 category: other
 

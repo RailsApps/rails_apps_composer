@@ -66,5 +66,6 @@ name: database
 description: "Set up and initialize database."
 author: RailsApps
 
-run_after: [models]
+requires: [setup, gems, models]
+run_after: [setup, gems, models]
 category: initialize

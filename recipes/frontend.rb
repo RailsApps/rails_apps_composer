@@ -54,5 +54,6 @@ name: frontend
 description: "Install a front-end framework for HTML5 and CSS."
 author: RailsApps
 
-run_after: [gems]
+requires: [setup, gems]
+run_after: [setup, gems]
 category: frontend
