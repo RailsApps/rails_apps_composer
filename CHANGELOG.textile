@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.0 unreleased
 
 * wrote a "Guide" to provide complete documentation
+* diagnostics module compares user's recipe list to known working combinations
 * prompt to set -T or -O args (but not when generating application templates)
 * extensive conditional configuration options with a prefs{} hash (the 'quiz')
 * 'quiz' preferences can be set in a defaults file
