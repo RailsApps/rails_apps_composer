@@ -130,13 +130,14 @@ module RailsWizard
       #pass in name if you want to create a rails app
       #pass in file_name if you want to create a template
       def run_template(name, recipes, gems, args, defaults, file_name=nil)
+        diagnostics = RailsWizard::Diagnostics.list
         if file_name
           file = File.new(file_name,'w')
         else
           file = Tempfile.new('template')
         end
         begin
-          template = RailsWizard::Template.new(recipes, gems, defaults)
+          template = RailsWizard::Template.new(recipes, gems, diagnostics, args, defaults)
           file.write template.compile
           file.close
           if name

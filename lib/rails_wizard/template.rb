@@ -1,9 +1,10 @@
 module RailsWizard
   class Template
-    attr_reader :recipes, :gems, :args, :defaults
+    attr_reader :recipes, :gems, :diagnostics, :args, :defaults
 
-    def initialize(recipes, gems=[], args=[], defaults={})
+    def initialize(recipes, gems=[], diagnostics=[],args=[], defaults={})
       @recipes = recipes.map{|r| RailsWizard::Recipe.from_mongo(r)}
+      @diagnostics = diagnostics
       @args = args
       @defaults = defaults
       unless defaults['prefs'].nil?
@@ -39,7 +40,13 @@ module RailsWizard
         @gems.uniq.inspect
       end
     end
-    
+
+    def resolve_diagnostics
+      @resolve_diagnostics ||= begin
+        @diagnostics.inspect
+      end
+    end
+      
     # Sort the recipes list taking 'run_after' directives into account.
     def resolve_recipes
       @resolve_recipes ||= begin

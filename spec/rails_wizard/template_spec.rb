@@ -5,6 +5,8 @@ describe RailsWizard::Template do
   let(:recipe){ RailsWizard::Recipe.generate('name','# test') }
   let(:defaults){ { "some_option" => "value" } }
   let(:gems){ ['foogem'] }
+  let(:diagnostics){ [] }
+  let(:args){ [] }
 
   describe '#initialize' do
     it 'should work with classes' do
@@ -12,7 +14,7 @@ describe RailsWizard::Template do
     end
 
     it 'should accept optional defaults' do
-      subject.new([recipe], gems, defaults).defaults.should == defaults
+      subject.new([recipe], gems, diagnostics, args, defaults).defaults.should == defaults
     end
   end
 
