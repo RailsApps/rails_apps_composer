@@ -25,14 +25,18 @@ RUBY
 @recipes = <%= resolve_recipes.map(&:key).inspect %>
 @prefs = <%= resolve_preferences %>
 @gems = <%= resolve_gems %>
-@diagnostics = <%= resolve_diagnostics %>
+@diagnostics_recipes = <%= resolve_diagnostics_recipes %>
+@diagnostics_prefs = <%= resolve_diagnostics_prefs %>
+diagnostics = {}
 
 <%= render "helpers" %>
 
-if diagnostics.include? recipes.sort
+if diagnostics_recipes.sort.include? recipes.sort
+  diagnostics[:recipes] = 'success'
   say_wizard("WOOT! The recipes you've selected are known to work together.")
 else
-  say_wizard("\033[1m\033[36m" + "WARNING! " + "\033[0m" + "The recipes you've selected might not work together.")
+  diagnostics[:recipes] = 'fail'
+  say_wizard("\033[1m\033[36m" + "WARNING! The recipes you've selected might not work together." + "\033[0m")
   say_wizard("Help us out by reporting whether this combination works or fails.")
   say_wizard("Please open an issue for rails_apps_composer on GitHub.")
   say_wizard("Your new application will contain diagnostics in its README file.")
@@ -68,6 +72,14 @@ end
 <%= render 'recipe', recipe.get_binding %>
 <% end %>
 
+# >---------------------------------[ Diagnostics ]----------------------------------<
+
+if diagnostics_prefs.include? prefs
+  diagnostics[:prefs] = 'success'
+else
+  diagnostics[:prefs] = 'fail'
+end
+
 <% if custom_code? %># >-----------------------------[ Custom Code ]-------------------------------<
 
 <%= custom_code %><% end %>
@@ -101,14 +113,23 @@ say_wizard "Running 'after everything' callbacks."
 @after_everything_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; b[1].call}
 
 @current_recipe = nil
-if diagnostics.include? recipes.sort
+if diagnostics[:recipes] == 'success'
   say_wizard("WOOT! The recipes you've selected are known to work together.")
   say_wizard("If they don't, open an issue for rails_apps_composer on GitHub.")
 else
-  say_wizard("\033[1m\033[36m" + "WARNING! " + "\033[0m" + "The recipes you've selected might not work together.")
+  say_wizard("\033[1m\033[36m" + "WARNING! The recipes you've selected might not work together." + "\033[0m")
+  say_wizard("Help us out by reporting whether this combination works or fails.")
+  say_wizard("Please open an issue for rails_apps_composer on GitHub.")
+  say_wizard("Your new application will contain diagnostics in its README file.")
+end
+if diagnostics[:prefs] == 'success'
+  say_wizard("WOOT! The preferences you've selected are known to work together.")
+  say_wizard("If they don't, open an issue for rails_apps_composer on GitHub.")
+else
+  say_wizard("\033[1m\033[36m" + "WARNING! The preferences you've selected might not work together." + "\033[0m")
   say_wizard("Help us out by reporting whether this combination works or fails.")
   say_wizard("Please open an issue for rails_apps_composer on GitHub.")
   say_wizard("Your new application will contain diagnostics in its README file.")
 end
 say_wizard "Finished running the rails_apps_composer app template."
-say_wizard "Your new Rails app is ready."
+say_wizard "Your new Rails app is ready. Time to run 'bundle install'."

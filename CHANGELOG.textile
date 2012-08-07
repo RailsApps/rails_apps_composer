@@ -3,7 +3,7 @@ h1. CHANGELOG
 h2. 2.0 unreleased
 
 * wrote a "Guide" to provide complete documentation
-* diagnostics module compares user's recipe list to known working combinations
+* diagnostics module compares user's recipes and preferences to known working combinations
 * add a prefs{} hash for conditional configuration options (the 'quiz')
 * option to set 'quiz' preferences in a defaults file
 * add gems at a prompt or from a defaults file for a gems[] array
