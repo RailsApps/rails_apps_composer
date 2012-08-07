@@ -4,15 +4,14 @@ h2. 2.0 unreleased
 
 * wrote a "Guide" to provide complete documentation
 * diagnostics module compares user's recipe list to known working combinations
-* prompt to set -T or -O args (but not when generating application templates)
-* extensive conditional configuration options with a prefs{} hash (the 'quiz')
-* 'quiz' preferences can be set in a defaults file
+* add a prefs{} hash for conditional configuration options (the 'quiz')
+* option to set 'quiz' preferences in a defaults file
 * add gems at a prompt or from a defaults file for a gems[] array
-* recipes reorganized for easier maintenance
-* removed recipes that are outdated or unsupported
-* more downloading of files from the example app repos on GitHub to reduce inline code
 * new 'copy_from_repo' method in helpers.erb
-* conversion of ERB files to Haml or Slim by 'copy_from_repo' method
+* reduce inline code with more downloading of files from the example app repos on GitHub
+* conversion of ERB files to Haml or Slim with the 'copy_from_repo' method
+* remove recipes that are outdated or unsupported
+* reorganize recipes for easier maintenance
 * new recipe: 'example' as documentation
 * new recipe: 'setup' for conditional configuration options (the 'quiz')
 * new recipe: 'readme' to build README files that provide greater detail
@@ -26,6 +25,7 @@ h2. 2.0 unreleased
 * new recipe: 'routes' consolidates all routes
 * new recipe: 'frontend' is the new name for the 'html5' recipe
 * new recipe: 'database' sets up the database seed and runs migrations
+* prompt to set -T or -O args (but not when generating application templates)
 * check if SQLite is present in the Gemfile and throw an error if MongoDB is selected
 * add 'rvm' option to 'extras' recipe to greate a project-specific gemset and .rvmrc file
 * run 'bundle install --without production' in helpers.erb to avoid gems used only in production
