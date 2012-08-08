@@ -22,7 +22,7 @@ module RailsWizard
       values.merge!(defaults) if defaults
       result << "config = #{values.inspect}"
       @questions.each_pair do |key, question|
-        result << "config['#{key}'] = #{question.compile} unless config.key?('#{key}')"
+        result << "config['#{key}'] = #{question.compile} unless config.key?('#{key}') || prefs.has_key?(:#{key})"
       end
       result.join("\n")
     end

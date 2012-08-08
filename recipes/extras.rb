@@ -1,9 +1,13 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb
 
+## FORM BUILDER
 case config['form_builder']
   when 'simple_form'
     prefs[:form_builder] = 'simple_form'
+end
+case prefs[:form_builder]
+  when 'simple_form'
     gem 'simple_form'
     after_bundler do
       if prefer :frontend, 'bootstrap'
@@ -16,7 +20,11 @@ case config['form_builder']
     end
 end
 
+## BAN SPIDERS
 if config['ban_spiders']
+  prefs[:ban_spiders] = true
+end
+if prefs[:ban_spiders]
   say_wizard "Banning spiders by modifying 'public/robots.txt'"
   after_bundler do
     gsub_file 'public/robots.txt', /# User-Agent/, 'User-Agent'
@@ -24,7 +32,11 @@ if config['ban_spiders']
   end
 end
 
+## JSRUNTIME
 if config['jsruntime']
+  prefs[:jsruntime] = true
+end
+if prefs[:jsruntime]
   say_wizard "Adding 'therubyracer' JavaScript runtime gem"
   # maybe it was already added for bootstrap-less?
   unless prefer :bootstrap, 'less'
@@ -32,7 +44,11 @@ if config['jsruntime']
   end
 end
 
+## RVMRC
 if config['rvmrc']
+  prefs[:rvmrc] = true
+end
+if prefs[:rvmrc]
   # using the rvm Ruby API, see:
   # http://blog.thefrontiergroup.com.au/2010/12/a-brief-introduction-to-the-rvm-ruby-api/
   if ENV['MY_RUBY_HOME'] && ENV['MY_RUBY_HOME'].include?('rvm')
@@ -60,6 +76,7 @@ if config['rvmrc']
   gsub_file '.rvmrc', /App_Name/, "#{app_name}"
 end
 
+## AFTER_EVERYTHING
 after_everything do
   say_wizard "recipe removing unnecessary files and whitespace"
   %w{

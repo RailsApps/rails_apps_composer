@@ -74,7 +74,16 @@ end
 
 # >---------------------------------[ Diagnostics ]----------------------------------<
 
-if diagnostics_prefs.include? prefs
+# remove prefs which are diagnostically irrelevant
+redacted_prefs = prefs
+redacted_prefs.delete(:git)
+redacted_prefs.delete(:dev_webserver)
+redacted_prefs.delete(:prod_webserver)
+redacted_prefs.delete(:ban_spiders)
+redacted_prefs.delete(:jsruntime)
+redacted_prefs.delete(:rvmrc)
+
+if diagnostics_prefs.include? redacted_prefs
   diagnostics[:prefs] = 'success'
 else
   diagnostics[:prefs] = 'fail'
