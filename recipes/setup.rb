@@ -79,9 +79,6 @@ if recipes.include? 'frontend'
   end
 end
 
-## Form Builder
-prefs[:form_builder] = multiple_choice "Form builder?", [["None", "none"], ["SimpleForm", "simple_form"]] unless prefs.has_key? :form_builder
-
 ## Email
 if recipes.include? 'email'
   prefs[:email] = multiple_choice "Add support for sending email?", [["None", "none"], ["Gmail","gmail"], ["SMTP","smtp"], 

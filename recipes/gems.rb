@@ -69,9 +69,6 @@ if prefer :bootstrap, 'less'
   gem 'therubyracer', :group => :assets, :platform => :ruby
 end
 
-## Form Builder
-gem 'simple_form' if prefer :form_builder, 'simple_form'
-
 ## Email
 gem 'sendgrid' if prefer :email, 'sendgrid'
 gem 'hominid' if prefer :email, 'mandrill'
@@ -115,16 +112,6 @@ after_bundler do
   ## Database
   generate 'mongoid:config' if prefer :orm, 'mongoid'
   remove_file 'config/database.yml' if prefer :orm, 'mongoid'
-  ## Form Builder
-  if prefer :form_builder, 'simple_form'
-    if prefer :frontend, 'bootstrap'
-      say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
-      generate 'simple_form:install --bootstrap'
-    else
-      say_wizard "recipe installing simple_form"
-      generate 'simple_form:install'
-    end
-  end
   ## Git
   git :add => '.' if prefer :git, true
   git :commit => "-aqm 'rails_apps_composer: generators'" if prefer :git, true

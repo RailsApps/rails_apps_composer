@@ -1,6 +1,21 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb
 
+case config['form_builder']
+  when 'simple_form'
+    prefs[:form_builder] = 'simple_form'
+    gem 'simple_form'
+    after_bundler do
+      if prefer :frontend, 'bootstrap'
+        say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
+        generate 'simple_form:install --bootstrap'
+      else
+        say_wizard "recipe installing simple_form"
+        generate 'simple_form:install'
+      end
+    end
+end
+
 if config['ban_spiders']
   say_wizard "Banning spiders by modifying 'public/robots.txt'"
   after_bundler do
@@ -74,6 +89,10 @@ run_after: [gems]
 category: other
 
 config:
+  - form_builder:
+      type: multiple_choice
+      prompt: Use a form builder gem?
+      choices: [["None", "none"], ["SimpleForm", "simple_form"]]
   - ban_spiders:
       type: boolean
       prompt: Set a robots.txt file to ban spiders?

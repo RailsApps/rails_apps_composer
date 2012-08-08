@@ -8,7 +8,7 @@ module RailsWizard
     # collections of preferences that are known to work together
     @@prefs = []
     @@prefs << {:git=>true, :dev_webserver=>"webrick"}
-    @@prefs << {:git=>true, :dev_webserver=>"webrick", :database=>"sqlite", :templates=>"erb", :form_builder=>"none", :email=>"none"}
+    @@prefs << {:git=>true, :dev_webserver=>"webrick", :database=>"sqlite", :templates=>"erb", :email=>"none"}
     def self.recipes
       @@recipes
     end
