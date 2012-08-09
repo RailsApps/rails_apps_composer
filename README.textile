@@ -1,412 +1,314 @@
 h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer 2.0
 
+The Rails Apps Composer gem installs a command line tool to assemble a Rails application from a collection of "recipes."
+
 What you can do with the rails_apps_composer gem:
 
-* Create and maintain a starter app.
-* Make an application template that generates a complex Rails app in seconds.
+* create a starter app from the command line
+* make a reusable application template
 
-The "Rails Composer":http://railsapps.github.com/rails-composer/ tool is built with the rails_apps_composer gem. The Rails Composer tool creates the "Rails Example Applications":http://railsapps.github.com/.
+The "Rails Composer":http://railsapps.github.com/rails-composer/ tool is built with the rails_apps_composer gem. The Rails Composer tool creates the "example applications":http://railsapps.github.com/ for the "RailsApps":http://railsapps.github.com/ project.
+
+The "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html provides complete documentation:
+
+* "Overview":http://railsapps.github.com/tutorial-rails-apps-composer.html#Overview
+* "Recipes":http://railsapps.github.com/tutorial-rails-apps-composer.html#Recipes
+* "Usage":http://railsapps.github.com/tutorial-rails-apps-composer.html#Usage
+* "Diagnostics":http://railsapps.github.com/tutorial-rails-apps-composer.html#Diagnostics
+* "Hacking the Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html#Hacking
+* "Anatomy of a Recipe":http://railsapps.github.com/tutorial-rails-apps-composer.html#Anatomy
+* "Architecture":http://railsapps.github.com/tutorial-rails-apps-composer.html#Architecture
+* "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults
 
 Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
-
-h4. What's New in Version 2.0
-
-Rails_apps_composer 2.0 is significantly different from earlier versions:
-
-* improved "quiz" that sets preferences
-* recipes are based on functionality (authentication, testing) instead of gems (Devise, RSpec)
-* more downloaded template files rather than manipulation of files with 'gsub'
-* README for any starter app with details from the recipes
-
-Most important, many unsupported or outdated recipes have been removed. If you need a missing recipe, please update it and test it with version 2.0, then submit a pull request. I'm delighted to add new recipes. You'll find documentation for developers of recipes in the wiki.
-
-h4. Alternatives
-
-See a list of "Rails Application Template Projects":http://railsapps.github.com/rails-application-templates.html.
-
-The rails_apps_composer gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard (see "differences":#rails_apps_composer-differences).
-
-Notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/.
 
 h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:http://www.twitter.com/rails_apps Follow on Twitter
 
 Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. Tweet some praise if you like what you've found.
 
-h2. Purpose
+h2. What's New in Version 2.0
 
-Any developer can quickly generate a Rails web application using the @rails new@ command. In practice, experienced Rails developers typically add an assortment of useful additional packages (gems) before beginning development of any web application. A developer often uses the same set of packages to get started and may create a "starter app" that can be copied and reused for any new project.
+Rails_apps_composer 2.0 is significantly different from earlier versions:
 
-It can be a hassle to integrate some of the most commonly used gems, particularly when new versions are released and there are minor "gotchas" that interfere with gems working together. Despite the apparent convenience of creating a starter app, it can be time consuming to maintain and update a starter app as component packages evolve. This project aims to simplify the process of building and maintaining a starter app by providing mix-and-match recipes to assemble the most commonly used Rails packages.
+* the "Guide":http://railsapps.github.com/tutorial-rails-apps-composer.html provides complete documentation
+* diagnostics compare your selected recipes and preferences to known working combinations
+* the generated application README.textile file provides a diagnostics report
+* an improved "quiz" sets preferences
+* a new preferences hash makes preferences available to all recipes
+* recipes and preferences can be set in a defaults file
+* gems can be added at a prompt or from a defaults file (no need to write a recipe for many gems)
+* a new 'copy_from_repo' method adds powerful downloading of files to any recipe
+* downloading of files from the example app repos reduces the complexity of recipes
+* the 'copy_from_repo' method converts ERB files to Haml or Slim 
+* recipes have been reorganized for easier maintenance
+* recipes are based on functionality (e.g., authentication, testing) instead of gems (Devise, RSpec)
+* a prompt sets -T or -O args when generating an application
+* the 'extras' recipe creates a project-specific gemset and .rvmrc file
 
-h2. Issues
+Most important, many unsupported or outdated recipes have been removed. If your favorite recipe is missing, please update it and test it with version 2.0, then submit a pull request. I'm happy to add new recipes.
 
-Hundreds of developers are using this gem to build starter apps. As you can see from the commit log, the gem is actively maintained and the collection of recipes is growing.
+h2(#Audience). Who This Is For
 
-There is problem with all this activity, however. No developer who uses the rails_apps_composer gem uses all the recipes. And it would be very difficult to test a recipe in every possible combination. Consequently, combining some recipes may not work. We've provided some examples from the "RailsApps project":https://github.com/RailsApps that are known to work together (see "Examples"). If you're combining recipes, you'll have to experiment. Add recipes one-by-one and realize that some recipes may not be compatible.
+This gem is for experienced Rails developers who need a tool to create and maintain a Rails starter app or Rails application template. If you're regularly building Rails applications that use certain popular gems or rely on common functionality such as authentication, you can benefit from the rails_apps_composer gem.
 
-Have you found problems? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
+If you are new to Rails, try the "Rails Composer":http://railsapps.github.com/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. It is easier to use.
 
-h2. Dependencies
+h2(#Alternatives). Alternatives
 
-Before generating a new Rails app, you will need:
+The rails_apps_composer gem is derived from Michael Bleigh's "RailsWizard":https://github.com/intridea/rails_wizard gem. Early versions of the rails_apps_composer gem were a close fork of Michael Bleigh's gem; rails_apps_composer 2.0 differs substantially. Other notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/. See a list of "Rails Application Template Projects":http://railsapps.github.com/rails-application-templates.html, particularly a list of "Application template-generating gems" for similar projects.
+
+h2(#Dependencies). Dependencies
+
+Before using the rails_apps_composer gem, you will need:
 
 * The Ruby language (version 1.9.3)
 * Rails 3.1 or newer
 
-See "Installing Rails":http://railsapps.github.com/installing-rails.html for detailed instructions and advice.
+See the article "Installing Rails":http://railsapps.github.com/installing-rails.html for advice about updating Rails and your development environment.
 
-h2. Installation
+h2(#Installation). Installation
+
+I recommend installing and using rvm, the "Ruby Version Manager":https://rvm.io/, to create a new gemset for rails_apps_composer. Using an rvm gemset will make it easier to identify and isolate incompatibilities among gems.
 
 Installation is simple:
 
 @$ gem install rails_apps_composer@
 
-h2. Usage
+h2(#Usage). Usage
 
-h4. List Recipes
+These commands are summarized here for your reference. See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html for details.
+
+h3. List Recipes
+
+You can list recipes with short descriptions:
 
 <pre>
 $ rails_apps_composer list
+
+auth           # Add authentication and authorization.
+controllers    # Add controllers needed for starter apps.
+database       # Set up and initialize database.
+email          # Configure email accounts.
+extras         # Various extras.
+frontend       # Install a front-end framework for HTML5 and CSS.
+gems           # Add the gems your application needs.
+models         # Add models needed for starter apps.
+prelaunch      # Generates a Prelaunch Signup App
+readme         # Build a README file for your application.
+routes         # Add routes needed for starter apps.
+setup          # Make choices for your application.
+testing        # Add testing framework.
+views          # Add views needed for starter apps.
 </pre>
 
-You can learn more about the available recipes by browsing the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes.
+The above list is current for rails_apps_composer 2.0; later releases will contain more recipes.
 
-h4. Generate an App
+You can learn more about the available recipes by examing the source code in the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes.
 
-You'll be prompted for recipes:
+h3. Recipe Order and Interdependency
+
+The order in which you input a list or recipes determines the order of execution unless a recipe contains a @requires@ or @run_after@ directive.
+
+A recipe may contain a @requires@ directive which specifies other recipes which must be present before a recipe can run. The @requires@ constraint will force the rails_apps_composer program to load any required recipes, even if you don't add them explicitly.
+
+Recipes may also contain a @run_after@ directive. The rails_apps_composer program will organize the order of execution so that any recipes in the @run_after@ list will execute earlier. That is, the recipe will run after everything else in the list.
+
+In general, it's best to add (or list) recipes in the order they should execute as some recipes may not contain a necessary @requires@ or @run_after@ directive.
+
+See the "Anatomy of a Recipe":http://railsapps.github.com/tutorial-rails-apps-composer.html#Anatomy section in the Guide to learn about the format of a recipe.
+
+h3. Skipping Test::Unit or Active Record
+
+If you plan to use RSpec instead of Test::Unit, or use an ORM such as Mongoid instead of Active Record, you can pass the @-T@ or @-O@ flags to the @rails new@ command so it will skip Test::Unit or Active Record.
+
+When you generate an application interactively using the rails_apps_composer gem, the program will ask if you want to skip Test::Unit or Active Record.
+
+When you generate an application template, you will not be asked if you want to skip Test::Unit or Active Record. An application template runs after the @rails new@ command so it cannot set the @-T@ or @-O@ arguments.
+
+Any recipe can set the @-T@ or @-O@ arguments using the @args@ directive. However, this has no affect on application templates and is only useful when an application is generated interactively.
+
+h3. Generate an Application Interactively
+
+You'll be prompted for recipes and gems:
 
 <pre>
 $ rails_apps_composer new myapp
+
+Would you like to skip Test::Unit? (yes for RSpec) (y/n)
+Would you like to skip Active Record? (yes for NoSQL) (y/n)
+
+Available Recipes:
+apps: prelaunch
+auth: auth
+configuration: email, gems, readme, setup
+example: example
+frontend: frontend
+initialize: database
+mvc: controllers, models, routes, views
+other: extras
+testing: testing
+
+Which recipe would you like to add? (blank to finish)
+What gem would you like to add? (blank to finish)
+
+Generating basic application, using:
+"rails new myapp -m <temp_file>"
 </pre>
 
-Or provide a list of recipes:
+You will only be able to choose recipes that are contained in the rails_apps_composer gem.
+
+You can specify any gem. Any string you enter will be added as a gem in the starter app Gemfile.
+
+h3. Generate an Application from a List of Recipes
+
+Provide a list of recipes:
 
 <pre>
-$ rails_apps_composer new myapp -r haml home_page html5
+$ rails_apps_composer new myapp -r setup readme gems testing auth email models controllers views routes frontend database extras
+
+Would you like to skip Test::Unit? (yes for RSpec) (y/n)
+Would you like to skip Active Record? (yes for NoSQL) (y/n)
+What gem would you like to add? (blank to finish) 
+
+Generating basic application, using:
+"rails new myapp -m <temp_file>"
 </pre>
 
-h4. Generate an App from Defaults
+The program will prompt you for your preferences before generating an application.
+
+h3. Generate an Application from Defaults
+
+Use a defaults file for recipes, preferences, and extra gems so you don't have to provide them interactively. Then generate an application with:
 
 <pre>
-$ rails_apps_composer new myapp --defaults=~/.rac
+$ rails_apps_composer new myapp --defaults=my_defaults.yaml
 </pre>
 
-Use the @~/.rac@ file to specify a list of recipes and recipe preferences. See details below concerning the format of the defaults file.
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide to learn about the format of the defaults file.
 
-h4. Generate a Template
+h3. Generate an Application Template Interactively
 
-You may want a template to customize or share with others. See various "application templates":https://github.com/RailsApps/rails3-application-templates from the "RailsApps project":https://github.com/RailsApps. 
+You may want an application template to share with others. For an example of an application template, see the "Rails Composer":http://railsapps.github.com/rails-composer/ tool or various "application templates":https://github.com/RailsApps/rails3-application-templates from the RailsApps project.
 
-For example:
+Specify a filename for the template:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml home_page html5
+$ rails_apps_composer template ~/Desktop/template.rb
+
+Available Recipes:
+apps: prelaunch
+auth: auth
+configuration: email, gems, readme, setup
+example: example
+frontend: frontend
+initialize: database
+mvc: controllers, models, routes, views
+other: extras
+testing: testing
+
+Which recipe would you like to add? (blank to finish) 
+What gem would you like to add? (blank to finish)
+Generating and saving application template...
+Done.
+</pre>
+
+The command with the @template@ argument followed by a filename generates an application template. You can add additional recipes or gems when prompted.
+
+h3. Generate an Application Template from a List of Recipes
+
+Specify a filename for the template and provide a list of recipes:
+
+<pre>
+$ rails_apps_composer template ~/Desktop/template.rb -r setup readme gems testing auth email models controllers views routes frontend database extras
+
+What gem would you like to add? (blank to finish)
+Generating and saving application template...
+Done.
 </pre>
 
 The command with the @template@ argument followed by a filename and a list of recipes generates an application template.
 
-Generate an app from the template at any time:
+h3. Generate an Application Template from Defaults
+
+Generate an application template using a defaults file:
 
 <pre>
-$ rails new myapp -m ~/Desktop/template.txt
+$ rails_apps_composer template ~/Desktop/template.rb --defaults=my_defaults.yaml
 </pre>
 
-h4. Generate a Template from Defaults
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide to learn about the format of the defaults file.
+
+h3. Generate an Application from a Template
+
+After you've created a template file, you can generate an application from a template at any time using the @rails new@ command with the @-m@ option:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt --defaults=~/.rac
+$ rails new myapp -m ~/Desktop/template.rb
 </pre>
 
-Use the @~/.rac@ file to specify a list of recipes and recipe preferences. See details below concerning the format of the defaults file.
+The application template will prompt you for any configuration preferences requested by the recipes.
 
-h2. Generate an App
-
-Mix and match recipes to create your own customized starter app. See an annotated list of available "recipes for the rails_apps_composer gem":http://railsapps.github.com/rails-apps-recipes.html. For an up-to-date list, browse the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes to see what is available. Then provide your list of recipes to the rails_apps_composer gem using the @-r@ option and generate an app as needed. Here's an example that creates a simple app using haml:
+The @rails new@ command allows you to specify the @-T -O@ flags to skip Test::Unit files and Active Record files when you use an application template.
 
 <pre>
-$ rails_apps_composer new myapp -r haml home_page html5
+$ rails new myapp -m ~/Desktop/template.rb -T -O
 </pre>
 
-Replace @myapp@ with the name you want for your application.
-
-h2. Generate an App from Defaults
-
-If you frequently generate an app and always use the same recipes and preferences, create a defaults file and produce the same app every time. A big thank you to Bryan Stearns for contributing this feature!
-
-Generate an app from defaults:
+The @rails new@ command with the @-m@ option also allows you to specify an application template that can be downloaded via HTTP. This makes it possible to host a template on GitHub (for example) and allow anyone to generate an application from the hosted template. For example:
 
 <pre>
-$ rails_apps_composer new myapp --defaults=~/.rac
+$ rails new myapp -m https://raw.github.com/RailsApps/rails-composer/master/composer.rb
 </pre>
 
-Or generate a template from defaults:
+h2(#Diagnostics). Diagnostics
+
+The rails_apps_composer program runs diagnostics to reveal whether you've picked recipes and preferences that are known to work together.
+
+Hundreds of developers are using this gem to build starter apps. As you can see from the commit log, the gem is actively maintained and the collection of recipes is growing. There is a drawback to all this activity, however. No developer who uses the rails_apps_composer gem uses all the recipes. And it would be very difficult to test a recipe in every possible combination. Consequently, combining some recipes or preferences may not work.
+
+The rails_apps_composer gem contains an internal database of combinations of recipes and preferences that are known to work together. If you've picked recipes and preferences that are known to work together, you'll get a confirmation:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt --defaults=~/.rac
+WOOT! The recipes you've selected are known to work together.
+If they don't, open an issue for rails_apps_composer on GitHub.
+WOOT! The preferences you've selected are known to work together.
+If they don't, open an issue for rails_apps_composer on GitHub.
 </pre>
 
-Here's the format of a typical defaults file:
+You'll get a warning if you've picked a combination we don't know about:
 
 <pre>
-recipes:
-- activerecord
-- home_page
-- html5
-- sass
-- rspec
-- capybara
-- guard
-- extras
-- git
-
-activerecord:
-  database: sqlite3
-  auto_create: true
-
-devise:
-  devise: standard
-  authorization: false
-
-extras:
-  footnotes: false
-  ban_spiders: true
-  paginate: false
-  jsruntime: false
-
-guard:
-  guard: standard
-
-html5:
-  css_option: bootstrap_sass
-
-rspec:
-  rspec: true
-  fixtures: factory_girl
-
-sass:
-  sass: true
+WARNING! The recipes you've selected might not work together.
+Help us out by reporting whether this combination works or fails.
+WARNING! The preferences you've selected might not work together.
+Help us out by reporting whether this combination works or fails.
 </pre>
 
-You'll have to look in the recipe files to determine the attribute (such as @css_option@) used to specify preferences.
+Go to the GitHub repository to create an "issue":http://github.com/RailsApps/rails_apps_composer/issues and let us know if you've found a combination of recipes or preferences that work together. If you've found a combination that works together, we'll update the gem's internal database for the next public release.
 
-The list of recipes at the top will be included whenever you generate an app. The remaining hashes will be used to respond to prompts (questions) that recipes display. If there is no preference specified in the defaults file, rails_apps_composer will ask you to respond with a preference. That way, you can give yourself flexibility if you don't always have the same preference.
-
-When you run the command with the @--defaults@ option and no recipes specified on the command line, you'll see the prompt, "Which recipe would you like to add? (blank to finish)". If you want to use only your default recipes, just hit return. If you want to add a recipe for the app you are generating, just type the recipe name at the prompt. If you've provided your preferences for the recipe in your defaults file, you won't be prompted for preferences. If you haven't provided default preferences for the additional recipe, you'll be prompted normally.
-
-h2. Generate a Template
-
-The rails_apps_composer gem creates an application template as an intermediate step before generating an application. You can generate and save the application template. You may want a template to customize or share with others.
-
-Here's an example of generating an application template and saving the template to a file:
+When you generate an application, the application's *README.textile* file will contain a diagnostics report. Here's an example of the diagnostics report:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml home_page html5
+Recipes:
+["gems", "readme", "setup"]
+
+Preferences:
+{:database=>"sqlite", :templates=>"erb", :email=>"none"}
 </pre>
 
-The command with the @template@ argument followed by a filename and a list of recipes generates an application template.
+Please include the diagnostics report when you create an issue on GitHub.
 
-The rails_apps_composer gem creates an application template that can be used by the @rails new@ command with the @-m@ option. You can specify a local file as a template. For example:
+h2(#Hacking). Hacking the Gem
 
-<pre>
-$ rails new myapp -m ~/Desktop/template.txt
-</pre>
+See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html to learn how to customize the gem either for your own use or to share with others.
 
-The @raisl new@ command allows you to specify the @-T -O@ flags as needed to skip Test::Unit files and Active Record files.
+h2(#Issues). Issues
 
-The @-m@ option also allows you to specify a file that can be downloaded via HTTP. This makes it possible to host a template on GitHub (for example) and allow anyone to generate an application from the hosted template. For example:
+Any issues? Please create an "issue":http://github.com/RailsApps/rails_apps_composer/issues on GitHub. Reporting issues (and patching!) helps everyone.
 
-<pre>
-$ rails new myapp -m https://raw.github.com/RailsApps/rails3-application-templates/master/rails3-haml-html5-template.rb
-</pre>
+When you generate an application, the application's *README.textile* file will contain a diagnostics report. Please include the diagnostics report when you create an issue on GitHub.
 
-That's all it takes. You'll have a ready-to-use Rails web application in seconds.
-
-h2. Recipe Compatibility
-
-Our goal is to offer a collection of recipes that are known to work well together. The most commonly used recipes will likely work together because many developers have used the recipes and resolved any integration issues.
-
-Some of the recipes in the repository are contributed by developers who use only a few of the recipes. For example, the repository has recipes for Mongoid and OmniAuth that are known to work together. However, we don't know (for example) if the Mongoid and RailsAdmin recipes work together.
-
-The maintainers and contributors to the project can't test every combination of recipes. We rely on contributors to alert us to issues and contribute patches as needed. If you find recipes that don't combine properly, please alert us with a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues and contribute a fix if you can. 
-
-h2. Examples
-
-We use the rails_apps_composer gem to create the "Rails Example Apps":http://railsapps.github.com/ for the "RailsApps project":https://github.com/RailsApps. These example apps have been used by thousands of Rails developers. The recipes used for the RailsApps examples are well-integrated and known to work in the specific combinations listed below.
-
-h4. Template for Rails 3 + Haml + HTML5
-
-This application template will offer you a choice of Haml or ERB, give you options for a CSS front-end framework such as Twitter Bootstrap, and create a default application layout using HTML5:
-
-<pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml home_page html5 cleanup extras git
-</pre>
-
-Then generate the application:
-
-<pre>
-$ rails new myapp -m ~/Desktop/template.txt
-</pre>
-
-h4. Template for Prelaunch Signup App
-
-To build an application template for the "rails-prelaunch-signup":http://github.com/RailsApps/rails-prelaunch-signup/ example application, run the command:
-
-<pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r prelaunch_signup
-</pre>
-
-Then generate the application using the @-T@ flag.
-
-<pre>
-$ rails new rails-prelaunch-signup -m ~/Desktop/template.txt -T
-</pre>
-
-h4. Template for Rails 3 + Devise + RSpec + Cucumber
-
-To build an application template for the "rails3-devise-rspec-cucumber":http://github.com/RailsApps/rails3-devise-rspec-cucumber/ example application, run the command:
-
-<pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard action_mailer devise add_user home_page home_page_users seed_database users_page html5 simple_form cleanup extras git
-</pre>
-
-Then generate the application using the @-T@ flag.
-
-<pre>
-$ rails new rails3-devise-rspec-cucumber -m ~/Desktop/template.txt -T
-</pre>
-
-h4. Template for Rails 3 + Mongoid + Devise
-
-To build an application template for the "rails3-mongoid-devise":http://github.com/RailsApps/rails3-mongoid-devise/ example application, run the command:
-
-<pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page html5 simple_form cleanup extras git
-</pre>
-
-Then generate the application using the @-T -O@ flags.
-
-<pre>
-$ rails new rails3-mongoid-devise -m ~/Desktop/template.txt -T -O
-</pre>
-
-h4. Template for Rails 3 + Mongoid + OmniAuth
-
-To build an application template for the "rails3-mongoid-omniauth":http://github.com/RailsApps/rails3-mongoid-omniauth/ example application, run the command:
-
-<pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid seed_database omniauth home_page home_page_users html5 simple_form users_page omniauth_email cleanup extras git
-</pre>
-
-Then generate the application using the @-T -O@ flags.
-
-<pre>
-$ rails new rails3-mongoid-omniauth -m ~/Desktop/template.txt -T -O
-</pre>
-
-h4. Template for Rails 3 + Subdomains
-
-To build an application template for the "rails3-subdomains":https://github.com/RailsApps/rails3-subdomains example application, run the command:
-
-<pre>
-$ rails_apps_composer template ~/Desktop/template.txt -r haml rspec cucumber guard mongoid action_mailer devise add_user home_page home_page_users seed_database users_page subdomains html5 simple_form cleanup extras git
-</pre>
-
-Then generate the application using the @-T -O@ flags.
-
-<pre>
-$ rails new rails3-subdomains -m ~/Desktop/template.txt -T -O
-</pre>
-
-h2. Changing the Gem
-
-Your patches and improvements are welcome. Fork the repository and clone the project locally.
-
-You'll need to install the gems that are dependencies for development:
-
-<pre>
-$ gem install activesupport i18n thor mg
-</pre>
-
-Add or modify recipes as needed.
-
-To build and install the modified gem locally:
-
-<pre>
-$ gem uninstall rails_apps_composer
-$ rake gem
-$ rake gem:install
-</pre>
-
-When you are happy with your changes, "submit a pull request":https://help.github.com/articles/using-pull-requests and I will review your contribution and publish an updated version of the gem for everyone to use.
-
-h2. Writing New Recipes
-
-You can find the rails_apps_composer recipe collection in the GitHub repository's "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. If you find errors or improve a recipe you can contribute to the project by submitting a pull request or creating a "Github issue":http://github.com/RailsApps/rails_apps_composer/issues.
-
-h4. Warning: Gnarly Code Ahead!
-
-The best (and only) way to create a new recipe (or customize an existing one) is to examine several recipes to learn how they work. The "extras":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb recipe is a good place to start. Some recipes, such as the "add_user":https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/add_user.rb recipe, are very complex with multiple preferences and dependencies on other recipes.
-
-Frankly, the recipe code (and the resulting application template) can be ugly. The code is not much more than a long procedural script with conditional statements to resolve dependencies or enable preferences, interspersed with snippets of template code that is injected into files. The inline template code (for example, code that sets up a Rails "view" file) is particularly ugly because it has to be indented to conform to its destination file, often making the recipe difficult to read. Nevertheless, the project has value and many developers have contributed recipes and added features.
-
-h4. Rails Wizard Basics
-
-For more information on all available options for authoring recipes that can be read by the rails_wizard or rails_apps_composer gems, please see the "wiki for Michael Bleigh's  RailsWizard gem":https://github.com/intridea/rails_wizard/wiki.
-
-Recipes are made of up *template code* and *YAML back-matter* stored in a ruby file. The @__END__@ parsing convention is used so that each recipe is actually a valid, parseable Ruby file. The structure of a recipe looks something like this:
-
-<pre>
-gem 'supergem'
-
-after_bundler do
-  generate &quot;supergem:install&quot;
-end
-
-__END__
-
-category: templating
-name: SuperGem
-description: Installs SuperGem which is useful for things
-author: mbleigh
-</pre>
-
-h4. Rails_apps_composer Differences
-
-The rails_apps_composer gem is derived from "Michael Bleigh’s RailsWizard gem":https://github.com/intridea/rails_wizard. Many recipes provided by the rails_apps_composer gem are different from those provided by the rails_wizard gem. Applications generated with the rails_apps_composer gem are more complex; for example, they may include a home page with sign-in, sign-out navigation links.
-
-Operation of the rails_apps_composer gem differs as well. For example, the rails_wizard gem is supposed to allow specification of execution order for recipes with @run_before@ and @run_after@ configuration flags (though the "rails_wizard implentation has been reported as buggy":https://github.com/intridea/rails_wizard/issues/30). The rails_apps_composer gem supports only the @run_after@ flag; additionally, the order in which you provide the recipes sets the execution order. This makes it easier to chain a series of recipes in the order you prefer. For example,
-
-<pre>
-$ rails_apps_composer new myapp -r git haml
-</pre>
-
-installs git before haml.
-
-h4. Rails Wizard RSpec Tests
-
-The gem has RSpec tests that automatically validate each recipe in the repository, so you should run @rake spec@ as a basic syntax check. Note that these don't verify that your recipe code itself works, just that the gem could properly parse and understand your recipe file.
-
-h4. How It Works
-
-Rails generators can use any methods provided by the "Thor::Actions":http://rdoc.info/github/wycats/thor/master/Thor/Actions module. The flexibility of mixing "recipes" for application templates comes from use of the @apply@ method from the Thor::Actions module. Given a web address or a local filepath, the "apply method":http://rdoc.info/github/wycats/thor/master/Thor/Actions#apply-instance_method loads and executes a file within the context of the generator script.
-
-h2. Documentation and Support
-
-This is the only documentation.
-
-h4. Writing Recipes
-
-To understand the code in these templates, take a look at "Thor::Actions":http://rdoc.info/github/wycats/thor/master/Thor/Actions. Your recipes can use any methods provided by "Thor::Actions":http://rdoc.info/github/wycats/thor/master/Thor/Actions or "Rails::Generators::Actions":http://railsapi.com/doc/rails-v3.0.3/classes/Rails/Generators/Actions.html.
-
-h4. About Rails Application Templates
-
-"Cooking Up A Custom Rails 3 Template (11 Oct 2010) by Andrea Singh":http://blog.madebydna.com/all/code/2010/10/11/cooking-up-a-custom-rails3-template.html
-"Rails Application Templates (16 Sept 2010) by Collin Schaafsma":http://quickleft.com/blog/rails-application-templates
-"Application templates in Rails 3 (18 Sept 2009) by Ben Scofield":http://benscofield.com/2009/09/application-templates-in-rails-3/
-"Railscasts: App Templates in Rails 2.3 (9 Feb 2009) by Ryan Bates":http://railscasts.com/episodes/148-app-templates-in-rails-2-3
-"Rails templates (4 Dec 2008) by Pratik Naik":http://m.onkey.org/rails-templates
-
-h2. Credits
+h2(#Credits). Credits
 
 Daniel Kehoe maintains this gem as part of the "RailsApps Project":http://railsapps.github.com/.
 
@@ -414,13 +316,11 @@ This gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/i
 
 Please see the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob/master/CHANGELOG.textile for a list of contributors.
 
-Is the gem useful to you? Follow the project on Twitter:
-"@rails_apps":http://twitter.com/rails_apps
-and tweet some praise. I'd love to know you were helped out by the gem.
+Is the gem useful to you? Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. I'd love to know you were helped out by the gem.
 
-h2. MIT License
+h2(#License). MIT License (with restriction)
 
-"MIT License":http://www.opensource.org/licenses/mit-license
+The rails_apps_composer program is licensed under the terms of the "MIT License":http://www.opensource.org/licenses/mit-license, except portions of the program authored by Daniel Kehoe may not be used to build a website that generates an application template that can be downloaded or used to generate a web application online (for such use, ask for permission).
 
 Copyright © 2012 Daniel Kehoe
 

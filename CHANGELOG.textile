@@ -27,7 +27,7 @@ h2. 2.0 unreleased
 * new recipe: 'database' sets up the database seed and runs migrations
 * prompt to set -T or -O args (but not when generating application templates)
 * check if SQLite is present in the Gemfile and throw an error if MongoDB is selected
-* add 'rvm' option to 'extras' recipe to greate a project-specific gemset and .rvmrc file
+* add 'rvm' option to 'extras' recipe to create a project-specific gemset and .rvmrc file
 * run 'bundle install --without production' in helpers.erb to avoid gems used only in production
 
 h2. 1.5.6 unreleased
