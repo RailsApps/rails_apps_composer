@@ -47,17 +47,17 @@ Rails_apps_composer 2.0 is significantly different from earlier versions:
 
 Most important, many unsupported or outdated recipes have been removed. If your favorite recipe is missing, please update it and test it with version 2.0, then submit a pull request. I'm happy to add new recipes.
 
-h2(#Audience). Who This Is For
+h2. Who This Is For
 
 This gem is for experienced Rails developers who need a tool to create and maintain a Rails starter app or Rails application template. If you're regularly building Rails applications that use certain popular gems or rely on common functionality such as authentication, you can benefit from the rails_apps_composer gem.
 
 If you are new to Rails, try the "Rails Composer":http://railsapps.github.com/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. It is easier to use.
 
-h2(#Alternatives). Alternatives
+h2. Alternatives
 
 The rails_apps_composer gem is derived from Michael Bleigh's "RailsWizard":https://github.com/intridea/rails_wizard gem. Early versions of the rails_apps_composer gem were a close fork of Michael Bleigh's gem; rails_apps_composer 2.0 differs substantially. Other notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/. See a list of "Rails Application Template Projects":http://railsapps.github.com/rails-application-templates.html, particularly a list of "Application template-generating gems" for similar projects.
 
-h2(#Dependencies). Dependencies
+h2. Dependencies
 
 Before using the rails_apps_composer gem, you will need:
 
@@ -66,7 +66,7 @@ Before using the rails_apps_composer gem, you will need:
 
 See the article "Installing Rails":http://railsapps.github.com/installing-rails.html for advice about updating Rails and your development environment.
 
-h2(#Installation). Installation
+h2. Installation
 
 I recommend installing and using rvm, the "Ruby Version Manager":https://rvm.io/, to create a new gemset for rails_apps_composer. Using an rvm gemset will make it easier to identify and isolate incompatibilities among gems.
 
@@ -74,7 +74,7 @@ Installation is simple:
 
 @$ gem install rails_apps_composer@
 
-h2(#Usage). Usage
+h2. Usage
 
 These commands are summarized here for your reference. See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html for details.
 
@@ -260,7 +260,7 @@ The @rails new@ command with the @-m@ option also allows you to specify an appli
 $ rails new myapp -m https://raw.github.com/RailsApps/rails-composer/master/composer.rb
 </pre>
 
-h2(#Diagnostics). Diagnostics
+h2. Diagnostics
 
 The rails_apps_composer program runs diagnostics to reveal whether you've picked recipes and preferences that are known to work together.
 
@@ -298,17 +298,17 @@ Preferences:
 
 Please include the diagnostics report when you create an issue on GitHub.
 
-h2(#Hacking). Hacking the Gem
+h2. Hacking the Gem
 
 See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html to learn how to customize the gem either for your own use or to share with others.
 
-h2(#Issues). Issues
+h2. Issues
 
 Any issues? Please create an "issue":http://github.com/RailsApps/rails_apps_composer/issues on GitHub. Reporting issues (and patching!) helps everyone.
 
 When you generate an application, the application's *README.textile* file will contain a diagnostics report. Please include the diagnostics report when you create an issue on GitHub.
 
-h2(#Credits). Credits
+h2. Credits
 
 Daniel Kehoe maintains this gem as part of the "RailsApps Project":http://railsapps.github.com/.
 
@@ -318,7 +318,7 @@ Please see the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob
 
 Is the gem useful to you? Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. I'd love to know you were helped out by the gem.
 
-h2(#License). MIT License (with restriction)
+h2. MIT License (with restriction)
 
 The rails_apps_composer program is licensed under the terms of the "MIT License":http://www.opensource.org/licenses/mit-license, except portions of the program authored by Daniel Kehoe may not be used to build a website that generates an application template that can be downloaded or used to generate a web application online (for such use, ask for permission).
 

@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.0 unreleased
+h2. 2.0.1 August 8, 2012
 
 * wrote a "Guide" to provide complete documentation
 * diagnostics module compares user's recipes and preferences to known working combinations
