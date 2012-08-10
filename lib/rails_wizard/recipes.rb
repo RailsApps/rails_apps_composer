@@ -34,5 +34,15 @@ module RailsWizard
     def self.remove_from_category(category, recipe)
       (@@categories[category.to_s] ||= []).delete(recipe.key)
     end
+
+    def self.add_from_directory(directory)
+      Dir.foreach(directory) do |file|
+        path = File.join(directory, file)
+        next unless path.match /\.rb$/
+        key = File.basename(path, '.rb')
+        recipe = Recipe.generate(key, File.open(path))
+        add(recipe)
+      end
+    end
   end
 end

@@ -21,4 +21,9 @@ describe RailsWizard::Recipes do
       RailsWizard::Recipes.for('test').should be_include('recipe_test')
     end
   end
+
+  it 'should add recipes in a directory with add_from_directory' do
+    subject.add_from_directory(File.join(File.dirname(__FILE__), '..', 'test_recipes'))
+    subject.list.should include 'test_recipe_in_file'
+  end
 end

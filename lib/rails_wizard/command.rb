@@ -7,7 +7,9 @@ module RailsWizard
     desc "new APP_NAME", "create a new Rails app"
     method_option :recipes, :type => :array, :aliases => "-r"
     method_option :defaults, :type => :string, :aliases => "-d"
+    method_option :recipe_dirs, :type => :array, :aliases => "-l"
     def new(name)
+      add_recipes
       args = ask_for_args
       recipes, defaults = load_defaults
       recipes = ask_for_recipes(recipes)
@@ -18,7 +20,9 @@ module RailsWizard
     desc "template TEMPLATE_FILE", "create a new Rails template"
     method_option :recipes, :type => :array, :aliases => "-r"
     method_option :defaults, :type => :string, :aliases => "-d"
+    method_option :recipe_dirs, :type => :array, :aliases => "-l"
     def template(template_name)
+      add_recipes
       recipes, defaults = load_defaults
       recipes = ask_for_recipes(recipes)
       gems = ask_for_gems
@@ -45,6 +49,12 @@ module RailsWizard
       def red; "\033[31m" end
       def green; "\033[32m" end
       def yellow; "\033[33m" end
+
+      def add_recipes
+        if dirs = options[:recipe_dirs]
+          dirs.each { |d| Recipes.add_from_directory(d) }
+        end
+      end
 
       def load_defaults
         # Load defaults from a file; if a file specifies recipes, they'll be run *before*
