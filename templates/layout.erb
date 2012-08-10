@@ -97,8 +97,10 @@ end
 
 # >-----------------------------[ Run 'Bundle Install' ]-------------------------------<
 
+bundle_path_option = yes_wizard?("Would you like to install gems into .bundle/gems?") ? '--path .bundle/gems' : ''
+
 say_wizard "Installing gems. This will take a while."
-run 'bundle install --without production'
+run "bundle install --without production #{bundle_path_option}"
 
 # >-----------------------------[ Run 'After Bundler' Callbacks ]-------------------------------<
 
