@@ -135,6 +135,18 @@ When you generate an application template, you will not be asked if you want to 
 
 Any recipe can set the @-T@ or @-O@ arguments using the @args@ directive. However, this has no affect on application templates and is only useful when an application is generated interactively.
 
+h3. Using Local Recipes
+
+You can use local recipes you've created yourself by using the @-l@ flag and supplying the name of a directory that contains local recipes. The @-l@ flag can be combined with any other command so you can create applications or application templates, interactively or from a defaults file.
+
+For example, generate an application interactively using local recipes:
+
+<pre>
+$ rails_apps_composer new myapp -l ~/recipes/
+</pre>
+
+If you create local recipes, please consider contributing them to the project.
+
 h3. Generate an Application Interactively
 
 You'll be prompted for recipes and gems:
@@ -169,7 +181,7 @@ You can specify any gem. Any string you enter will be added as a gem in the star
 
 h3. Generate an Application from a List of Recipes
 
-Provide a list of recipes:
+Provide a list of recipes using the @-r@ flag:
 
 <pre>
 $ rails_apps_composer new myapp -r setup readme gems testing auth email models controllers views routes frontend database extras
@@ -186,13 +198,13 @@ The program will prompt you for your preferences before generating an applicatio
 
 h3. Generate an Application from Defaults
 
-Use a defaults file for recipes, preferences, and extra gems so you don't have to provide them interactively. Then generate an application with:
+Use a defaults file for recipes, preferences, and extra gems so you don't have to provide them interactively. Then generate an application using the @-d@ flag:
 
 <pre>
-$ rails_apps_composer new myapp --defaults=my_defaults.yaml
+$ rails_apps_composer new myapp -d my_defaults.yaml
 </pre>
 
-Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide to learn about the format of the defaults file.
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section below concerning the format of the defaults file.
 
 h3. Generate an Application Template Interactively
 
@@ -238,13 +250,13 @@ The command with the @template@ argument followed by a filename and a list of re
 
 h3. Generate an Application Template from Defaults
 
-Generate an application template using a defaults file:
+Generate an application template using a defaults file and the @-d@ flag:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rb --defaults=my_defaults.yaml
+$ rails_apps_composer template ~/Desktop/template.rb -d my_defaults.yaml
 </pre>
 
-Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide to learn about the format of the defaults file.
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section below concerning the format of the defaults file.
 
 h3. Generate an Application from a Template
 
