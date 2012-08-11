@@ -21,11 +21,7 @@ if prefer :git, true
 end
 
 ## Is sqlite3 in the Gemfile?
-f = File.open(destination_root() + '/Gemfile', "r")
-gemfile = ''
-f.each_line do |line|
-  gemfile += line
-end
+gemfile = File.read(destination_root() + '/Gemfile')
 sqlite_detected = gemfile.include? 'sqlite3'
 
 ## Web Server
