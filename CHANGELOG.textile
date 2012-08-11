@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.1.1 unreleased
+
+* add 'git' recipe (should precede any other recipe)
+* fixes to 'setup' and 'frontend' recipes (contributed by tomykaira)
+
 h2. 2.1.0 August 10, 2012
 
 * use local recipes (contributed by tomykaira)
