@@ -14,8 +14,8 @@ after_bundler do
   copy_from_repo 'app/views/layouts/_navigation-omniauth.html.erb', :prefs => 'omniauth'
   copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'  
   ## APPLICATION NAME
-  application_layout_file = 'app/views/layouts/application.html.erb'
-  navigation_partial_file = 'app/views/layouts/_navigation.html.erb'
+  application_layout_file = Dir['app/views/layouts/application.html.*'].first
+  navigation_partial_file = Dir['app/views/layouts/_navigation.html.*'].first
   gsub_file application_layout_file, /App_Name/, "#{app_name.humanize.titleize}"
   gsub_file navigation_partial_file, /App_Name/, "#{app_name.humanize.titleize}"
   ### CSS ###
