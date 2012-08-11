@@ -33,17 +33,19 @@ after_bundler do
   ### SUBDOMAINS ###
   copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains'
   ### AUTHORIZATION (insert 'rolify' after User model is created) ###
-  unless prefer :orm, 'mongoid'
-    generate 'rolify:role Role User'
-  else
-    generate 'rolify:role Role User mongoid'
-  	# correct the generation of rolify 3.1 with mongoid
-  	# the call to `rolify` should be *after* the inclusion of mongoid
-  	# (see https://github.com/EppO/rolify/issues/61)
-  	# This isn't needed for rolify>=3.2.0.beta4, but should cause no harm
-  	gsub_file 'app/models/user.rb',
-  		  /^\s*(rolify.*?)$\s*(include Mongoid::Document.*?)$/,
-  		  "  \\2\n  extend Rolify\n  \\1\n"
+  if prefer :authorization, 'cancan'
+    unless prefer :orm, 'mongoid'
+      generate 'rolify:role Role User'
+    else
+      generate 'rolify:role Role User mongoid'
+    	# correct the generation of rolify 3.1 with mongoid
+    	# the call to `rolify` should be *after* the inclusion of mongoid
+    	# (see https://github.com/EppO/rolify/issues/61)
+    	# This isn't needed for rolify>=3.2.0.beta4, but should cause no harm
+    	gsub_file 'app/models/user.rb',
+    		  /^\s*(rolify.*?)$\s*(include Mongoid::Document.*?)$/,
+    		  "  \\2\n  extend Rolify\n  \\1\n"
+    end
   end
   ### GIT ###
   git :add => '.' if prefer :git, true

@@ -1,4 +1,4 @@
-h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer 2.0
+h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer 2.1
 
 The Rails Apps Composer gem installs a command line tool to assemble a Rails application from a collection of "recipes."
 
@@ -6,6 +6,8 @@ What you can do with the rails_apps_composer gem:
 
 * create a starter app from the command line
 * make a reusable application template
+
+You can use local recipes as well as recipes supplied with the gem.
 
 The "Rails Composer":http://railsapps.github.com/rails-composer/ tool is built with the rails_apps_composer gem. The Rails Composer tool creates the "example applications":http://railsapps.github.com/ for the "RailsApps":http://railsapps.github.com/ project.
 
@@ -26,9 +28,15 @@ h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:htt
 
 Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. Tweet some praise if you like what you've found.
 
-h2. What's New in Version 2.0
+h2. What's New
 
-Rails_apps_composer 2.0 is significantly different from earlier versions:
+See the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob/master/CHANGELOG.textile for details.
+
+h3. Version 2.1
+
+* use local recipes
+
+h3. Version 2.0
 
 * the "Guide":http://railsapps.github.com/tutorial-rails-apps-composer.html provides complete documentation
 * diagnostics compare your selected recipes and preferences to known working combinations

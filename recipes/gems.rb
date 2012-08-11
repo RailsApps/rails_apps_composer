@@ -15,7 +15,7 @@ gem 'unicorn', '>= 4.3.1', :group => :production if prefer :prod_webserver, 'uni
 gem 'puma', '>= 1.5.0', :group => :production if prefer :prod_webserver, 'puma'
 
 ## Database Adapter
-gem 'mongoid', '>= 3.0.1' if prefer :orm, 'mongoid'
+gem 'mongoid', '>= 3.0.3' if prefer :orm, 'mongoid'
 gem 'pg', '>= 0.14.0' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
 copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
@@ -54,24 +54,24 @@ end
 if prefer :integration, 'cucumber'
   gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
   gem 'database_cleaner', '>= 0.8.0', :group => :test unless prefer :orm, 'mongoid'
-  gem 'launchy', '>= 2.1.0', :group => :test
+  gem 'launchy', '>= 2.1.2', :group => :test
 end
 gem 'turnip', '>= 1.0.0', :group => :test if prefer :integration, 'turnip'
-gem 'factory_girl_rails', '>= 3.5.0', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
-gem 'machinist', :group => :test if prefer :fixtures, 'machinist'
+gem 'factory_girl_rails', '>= 4.0.0', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
+gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
 gem 'bootstrap-sass', '>= 2.0.4.0' if prefer :bootstrap, 'sass'
-gem 'zurb-foundation', '>= 3.0.5' if prefer :frontend, 'foundation'
+gem 'zurb-foundation', '>= 3.0.8' if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
-  gem 'twitter-bootstrap-rails', '>= 2.0.3', :group => :assets
+  gem 'twitter-bootstrap-rails', '>= 2.1.1', :group => :assets
   # install gem 'therubyracer' to use Less
-  gem 'therubyracer', :group => :assets, :platform => :ruby
+  gem 'therubyracer', '>= 0.10.2', :group => :assets, :platform => :ruby
 end
 
 ## Email
-gem 'sendgrid' if prefer :email, 'sendgrid'
-gem 'hominid' if prefer :email, 'mandrill'
+gem 'sendgrid', '>= 1.0.1' if prefer :email, 'sendgrid'
+gem 'hominid', '>= 3.0.5' if prefer :email, 'mandrill'
 
 ## Authentication (Devise)
 gem 'devise', '>= 2.1.2' if prefer :authentication, 'devise'
@@ -89,7 +89,7 @@ gem 'omniauth-tumblr' if prefer :omniauth_provider, 'tumblr'
 ## Authorization 
 if prefer :authorization, 'cancan'
   gem 'cancan', '>= 1.6.8'
-  gem 'rolify', '>= 3.1.0'
+  gem 'rolify', '>= 3.2.0'
 end
 
 ## Signup App 

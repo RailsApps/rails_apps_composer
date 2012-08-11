@@ -1,5 +1,17 @@
 h1. CHANGELOG
 
+h2. 2.1.0 August 10, 2012
+
+* use local recipes (contributed by tomykaira)
+* hidden preference for alternative bundle path (can be set in the defaults file)
+* fix 'models' recipe to only install rolify when authorization is selected
+* update gem 'zurb-foundation' from 3.0.5 to 3.0.8
+* update gem 'rolify' from 3.1.0 to 3.2.0
+* update gem 'launchy' from 2.1.0 to 2.1.2
+* update gem 'factory_girl_rails' from 3.5.0 to 4.0.0
+* update gem 'mongoid' from 3.0.1 to 3.0.3
+* update gem 'twitter-bootstrap-rails' from 2.0.3 to 2.1.1
+
 h2. 2.0.1 August 8, 2012
 
 * wrote a "Guide" to provide complete documentation
