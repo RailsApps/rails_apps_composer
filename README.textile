@@ -209,7 +209,7 @@ Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and e
 
 h3. Generate an Application Template Interactively
 
-You may want an application template to share with others. For an example of an application template, see the "Rails Composer":http://railsapps.github.com/rails-composer/ tool or various "application templates":https://github.com/RailsApps/rails3-application-templates from the RailsApps project.
+You may want an application template to share with others. For an example of an application template, see the "Rails Composer":http://railsapps.github.com/rails-composer/ project.
 
 Specify a filename for the template:
 

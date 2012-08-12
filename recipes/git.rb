@@ -7,7 +7,7 @@ prefs[:git] = true unless prefs.has_key? :git
 if prefer :git, true
   begin
     remove_file '.gitignore'
-    get 'https://raw.github.com/RailsApps/rails3-application-templates/master/files/gitignore.txt', '.gitignore'
+    get 'https://raw.github.com/RailsApps/rails-composer/master/files/gitignore.txt', '.gitignore'
   rescue OpenURI::HTTPError
     say_wizard "Unable to obtain gitignore file from the repo"
   end

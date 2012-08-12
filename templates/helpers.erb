@@ -50,7 +50,7 @@ def after_everything(&block); @after_everything_blocks << [@current_recipe, bloc
 def before_config(&block); @before_configs[@current_recipe] = block; end
 
 def copy_from_repo(filename, opts = {})
-  repo = 'https://raw.github.com/RailsApps/rails3-application-templates/master/files-v2/'
+  repo = 'https://raw.github.com/RailsApps/rails-composer/master/files/'
   repo = opts[:repo] unless opts[:repo].nil?
   if (!opts[:prefs].nil?) && (!prefs.has_value? opts[:prefs])
     return

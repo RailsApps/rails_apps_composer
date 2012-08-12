@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.1.2 August 12, 2012
+
+* move repository for source files from rails3-application-templates to rails-composer
+
 h2. 2.1.1 August 11, 2012
 
 * add 'railsapps' recipe for example apps
