@@ -3,6 +3,9 @@ h1. CHANGELOG
 h2. 2.1.2 August 12, 2012
 
 * move repository for source files from rails3-application-templates to rails-composer
+* fix 'auth' recipe to modify ability.rb file when CanCan authorization is selected
+* update gem 'haml' from 3.1.6 to 3.1.7
+* update gem 'puma' from 1.5.0 to 1.6.1
 
 h2. 2.1.1 August 11, 2012
 

@@ -123,7 +123,7 @@ module RailsWizard
               break
           end
         end
-        question = "#{bold}Would you like to skip Active Record? (yes for NoSQL) \033[33m(y/n)\033[0m#{clear}"
+        question = "#{bold}Would you like to skip Active Record? (yes for MongoDB) \033[33m(y/n)\033[0m#{clear}"
         while getO = ask(question)
           case getO.downcase
             when "yes", "y"

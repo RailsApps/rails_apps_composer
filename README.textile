@@ -157,7 +157,7 @@ You'll be prompted for recipes and gems:
 $ rails_apps_composer new myapp
 
 Would you like to skip Test::Unit? (yes for RSpec) (y/n)
-Would you like to skip Active Record? (yes for NoSQL) (y/n)
+Would you like to skip Active Record? (yes for MongoDB) (y/n)
 
 Available Recipes:
 auth: auth
@@ -188,7 +188,7 @@ Provide a list of recipes using the @-r@ flag:
 $ rails_apps_composer new myapp -r git setup readme gems testing auth email models controllers views routes frontend database extras
 
 Would you like to skip Test::Unit? (yes for RSpec) (y/n)
-Would you like to skip Active Record? (yes for NoSQL) (y/n)
+Would you like to skip Active Record? (yes for MongoDB) (y/n)
 What gem would you like to add? (blank to finish) 
 
 Generating basic application, using:

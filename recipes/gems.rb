@@ -12,7 +12,7 @@ gem 'unicorn', '>= 4.3.1', :group => [:development, :test] if prefer :dev_webser
 gem 'puma', '>= 1.5.0', :group => [:development, :test] if prefer :dev_webserver, 'puma'
 gem 'thin', '>= 1.4.1', :group => :production if prefer :prod_webserver, 'thin'
 gem 'unicorn', '>= 4.3.1', :group => :production if prefer :prod_webserver, 'unicorn'
-gem 'puma', '>= 1.5.0', :group => :production if prefer :prod_webserver, 'puma'
+gem 'puma', '>= 1.6.1', :group => :production if prefer :prod_webserver, 'puma'
 
 ## Database Adapter
 gem 'mongoid', '>= 3.0.3' if prefer :orm, 'mongoid'
@@ -23,7 +23,7 @@ copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
 
 ## Template Engine
 if prefer :templates, 'haml'
-  gem 'haml', '>= 3.1.6'
+  gem 'haml', '>= 3.1.7'
   gem 'haml-rails', '>= 0.3.4', :group => :development
   # hpricot and ruby_parser are needed for conversion of HTML to Haml
   gem 'hpricot', '>= 0.8.6', :group => :development

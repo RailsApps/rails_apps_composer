@@ -35,7 +35,14 @@ case prefs[:database]
     unless sqlite_detected
       prefs[:orm] = multiple_choice "How will you connect to MongoDB?", [["Mongoid","mongoid"]] unless prefs.has_key? :orm
     else
-      raise StandardError.new "SQLite detected in the Gemfile. Use '-O' or '--skip-activerecord' as in 'rails new foo -O' if you don't want ActiveRecord and SQLite"
+      say_wizard "WARNING! SQLite gem detected in the Gemfile"
+      say_wizard "If you wish to use MongoDB you must skip Active Record."
+      say_wizard "When launching rails_apps_composer, choose 'skip Active Record'."
+      say_wizard "If using an application template, use the '-O' flag as in 'rails new foo -O'."
+      prefs[:fail] = multiple_choice "Abort or continue?", [["abort", "abort"], ["continue", "continue"]]
+      if prefer :fail, 'abort'
+        raise StandardError.new "SQLite detected in the Gemfile. Use '-O' or '--skip-activerecord' as in 'rails new foo -O' if you don't want ActiveRecord and SQLite"
+      end
     end
 end
 

@@ -57,7 +57,7 @@ RUBY
   ### CANCAN ###
   if prefer :authorization, 'cancan'
     generate 'cancan:ability'
-    if prefer :starter_app, 'admin_dashboard'
+    if prefer :starter_app, 'admin_app'
       # Limit access to the users#index page
       inject_into_file 'app/models/ability.rb', :after => "def initialize(user)\n" do <<-RUBY
     user ||= User.new # guest user (not logged in)
