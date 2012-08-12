@@ -34,7 +34,7 @@ See the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob/master
 
 h3. Version 2.1
 
-* use local recipes
+* optional local recipes
 
 h3. Version 2.0
 
@@ -97,11 +97,13 @@ auth           # Add authentication and authorization.
 controllers    # Add controllers needed for starter apps.
 database       # Set up and initialize database.
 email          # Configure email accounts.
+example        # Example of a recipe
 extras         # Various extras.
 frontend       # Install a front-end framework for HTML5 and CSS.
 gems           # Add the gems your application needs.
+git            # Initialize git for your application.
 models         # Add models needed for starter apps.
-prelaunch      # Generates a Prelaunch Signup App
+railsapps      # Install RailsApps example applications.
 readme         # Build a README file for your application.
 routes         # Add routes needed for starter apps.
 setup          # Make choices for your application.
@@ -158,9 +160,8 @@ Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for NoSQL) (y/n)
 
 Available Recipes:
-apps: prelaunch
 auth: auth
-configuration: email, gems, readme, setup
+configuration: email, gems, git, railsapps, readme, setup
 example: example
 frontend: frontend
 initialize: database
@@ -184,7 +185,7 @@ h3. Generate an Application from a List of Recipes
 Provide a list of recipes using the @-r@ flag:
 
 <pre>
-$ rails_apps_composer new myapp -r setup readme gems testing auth email models controllers views routes frontend database extras
+$ rails_apps_composer new myapp -r git setup readme gems testing auth email models controllers views routes frontend database extras
 
 Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for NoSQL) (y/n)
@@ -216,9 +217,8 @@ Specify a filename for the template:
 $ rails_apps_composer template ~/Desktop/template.rb
 
 Available Recipes:
-apps: prelaunch
 auth: auth
-configuration: email, gems, readme, setup
+configuration: email, gems, git, railsapps, readme, setup
 example: example
 frontend: frontend
 initialize: database
@@ -239,7 +239,7 @@ h3. Generate an Application Template from a List of Recipes
 Specify a filename for the template and provide a list of recipes:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rb -r setup readme gems testing auth email models controllers views routes frontend database extras
+$ rails_apps_composer template ~/Desktop/template.rb -r git setup readme gems testing auth email models controllers views routes frontend database extras
 
 What gem would you like to add? (blank to finish)
 Generating and saving application template...

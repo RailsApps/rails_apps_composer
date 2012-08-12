@@ -1,11 +1,12 @@
 h1. CHANGELOG
 
-h2. 2.1.1 unreleased
+h2. 2.1.1 August 11, 2012
 
 * add 'railsapps' recipe for example apps
 * add 'git' recipe (should precede any other recipe)
 * fixes to 'setup' and 'frontend' recipes (contributed by tomykaira)
-* fix syntax for alternative bundle path
+* fix syntax for alternative bundle path (contributed by tomykaira)
+* update gem 'mongoid' from 3.0.3 to 3.0.4
 
 h2. 2.1.0 August 10, 2012
 
