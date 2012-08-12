@@ -23,7 +23,9 @@ after_everything do
   gsub_file "README.textile", /preferences that are known/, "preferences that are NOT known" if diagnostics[:prefs] == 'fail'
   gsub_file "README.textile", /RECIPES/, recipes.sort.inspect
   gsub_file "README.textile", /PREFERENCES/, prefs.inspect
-
+  gsub_file "README", /RECIPES/, recipes.sort.inspect
+  gsub_file "README", /PREFERENCES/, prefs.inspect
+  
   # Ruby on Rails
   gsub_file "README.textile", /\* Ruby/, "* Ruby version #{RUBY_VERSION}"
   gsub_file "README.textile", /\* Rails/, "* Rails version #{Rails::VERSION::STRING}"

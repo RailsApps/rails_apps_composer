@@ -15,3 +15,11 @@ if prefer :git, true
   git :add => '.'
   git :commit => "-aqm 'rails_apps_composer: initial commit'"
 end
+
+__END__
+
+name: git
+description: "Initialize git for your application."
+author: RailsApps
+
+category: configuration
