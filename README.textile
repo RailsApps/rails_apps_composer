@@ -99,9 +99,9 @@ You can list recipes with short descriptions:
 <pre>
 $ rails_apps_composer list
 
-all            # Select all available recipes.
 auth           # Add authentication and authorization.
 controllers    # Add controllers needed for starter apps.
+core           # Select all core recipes.
 email          # Configure email accounts.
 example        # Example of a recipe.
 extras         # Various extras.
@@ -167,8 +167,8 @@ Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for MongoDB) (y/n)
 
 Available Recipes:
-all: all
 auth: auth
+collections: core
 configuration: email, gems, git, railsapps, readme, setup
 example: example
 frontend: frontend
@@ -190,10 +190,10 @@ You can specify any gem. Any string you enter will be added as a gem in the star
 
 h3. Generate an Application from a List of Recipes
 
-Provide a list of recipes using the @-r@ flag. The "all" recipe selects all available recipes:
+Provide a list of recipes using the @-r@ flag. The "core" recipe selects all available core recipes:
 
 <pre>
-$ rails_apps_composer new myapp -r all
+$ rails_apps_composer new myapp -r core
 
 Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for MongoDB) (y/n)
@@ -225,8 +225,8 @@ Specify a filename for the template:
 $ rails_apps_composer template ~/Desktop/template.rb
 
 Available Recipes:
-all: all
 auth: auth
+collections: core
 configuration: email, gems, git, railsapps, readme, setup
 example: example
 frontend: frontend

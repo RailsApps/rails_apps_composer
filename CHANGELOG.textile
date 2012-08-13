@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.1.4 August 13, 2012
+
+* renamed 'all' recipe as 'core' to select all core recipes
+* fix 'gems' recipe to modify database.yml as needed for 'postgresql' or 'mysql'
+
 h2. 2.1.3 August 13, 2012
 
 * added 'all' recipe as shortcut to selecting all recipes

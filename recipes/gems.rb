@@ -21,6 +21,8 @@ gem 'pg', '>= 0.14.0' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
 copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
 copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
+gsub_file "config/database.yml", /myapp/, "#{app_name}"
+gsub_file "config/database.yml", /root/, "#{app_name}"
 
 ## Template Engine
 if prefer :templates, 'haml'
