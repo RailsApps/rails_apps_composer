@@ -248,7 +248,7 @@ h3. Generate an Application Template from a List of Recipes
 Specify a filename for the template and provide a list of recipes:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rb -r all
+$ rails_apps_composer template ~/Desktop/template.rb -r core
 
 What gem would you like to add? (blank to finish)
 Generating and saving application template...
@@ -315,7 +315,7 @@ Help us out by reporting whether this combination works or fails.
 
 Go to the GitHub repository to create an "issue":http://github.com/RailsApps/rails_apps_composer/issues and let us know if you've found a combination of recipes or preferences that work together. If you've found a combination that works together, we'll update the gem's internal database for the next public release.
 
-When you generate an application, the application's *README.textile* file will contain a diagnostics report. Here's an example of the diagnostics report:
+It's a good idea to include the "readme" recipe when you run rails_apps_composer. If you do, the application's *README* file will contain a diagnostics report. Here's an example of the diagnostics report:
 
 <pre>
 Recipes:
