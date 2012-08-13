@@ -49,6 +49,15 @@ def after_everything(&block); @after_everything_blocks << [@current_recipe, bloc
 @before_configs = {}
 def before_config(&block); @before_configs[@current_recipe] = block; end
 
+def copy_from(source, destination)
+  begin
+    remove_file destination
+    get source, destination
+  rescue OpenURI::HTTPError
+    say_wizard "Unable to obtain #{source}"
+  end
+end
+
 def copy_from_repo(filename, opts = {})
   repo = 'https://raw.github.com/RailsApps/rails-composer/master/files/'
   repo = opts[:repo] unless opts[:repo].nil?

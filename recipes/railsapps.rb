@@ -11,6 +11,7 @@ prefs[:railsapps] = multiple_choice "Install an example application?",
 
 case prefs[:railsapps]
   when 'rails3-bootstrap-devise-cancan'
+    prefs[:git] = true
     prefs[:database] = 'sqlite'
     prefs[:templates] = 'erb'
     prefs[:unit_test] = 'rspec'
@@ -25,6 +26,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'admin_app'
     prefs[:form_builder] = 'none'
   when 'rails3-devise-rspec-cucumber'
+    prefs[:git] = true
     prefs[:database] = 'sqlite'
     prefs[:templates] = 'erb'
     prefs[:unit_test] = 'rspec'
@@ -38,6 +40,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'none'
   when 'rails3-mongoid-devise'
+    prefs[:git] = true
     prefs[:database] = 'mongodb'
     prefs[:orm] = 'mongoid'
     prefs[:templates] = 'erb'
@@ -52,6 +55,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'none'
   when 'rails3-mongoid-omniauth'
+    prefs[:git] = true
     prefs[:database] = 'mongodb'
     prefs[:orm] = 'mongoid'
     prefs[:templates] = 'erb'
@@ -66,6 +70,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'none'
   when 'rails3-subdomains'
+    prefs[:git] = true
     prefs[:database] = 'mongodb'
     prefs[:orm] = 'mongoid'
     prefs[:templates] = 'haml'
@@ -87,6 +92,6 @@ name: railsapps
 description: "Install RailsApps example applications."
 author: RailsApps
 
-requires: [auth, controllers, database, email, extras, frontend, gems, git, models, readme, routes, setup, testing, views]
+requires: [auth, controllers, email, extras, frontend, gems, git, init, models, readme, routes, setup, testing, views]
 run_after: [git]
 category: configuration

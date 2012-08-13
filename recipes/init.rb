@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/database.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/init.rb
 
 after_everything do
   say_wizard "recipe running after everything"
@@ -62,7 +62,7 @@ end # after_everything
 
 __END__
 
-name: database
+name: init
 description: "Set up and initialize database."
 author: RailsApps
 

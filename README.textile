@@ -72,7 +72,13 @@ Before using the rails_apps_composer gem, you will need:
 * The Ruby language (version 1.9.3)
 * Rails 3.1 or newer
 
+The rails_apps_composer program uses the version of Rails that is currently installed when you launch the program. If you want to use the newest Rails version, upgrade before running rails_apps_composer.
+
 See the article "Installing Rails":http://railsapps.github.com/installing-rails.html for advice about updating Rails and your development environment.
+
+h4. Database
+
+Except for SQLite, which runs by default on Mac OS X, you'll need to have a database server running before you run rails_apps_composer. This is true if you use PostgreSQL, MySQL, or MongoDB; use SQLite if you don't want to set up a database server.
 
 h2. Installation
 
@@ -93,15 +99,16 @@ You can list recipes with short descriptions:
 <pre>
 $ rails_apps_composer list
 
+all            # Select all available recipes.
 auth           # Add authentication and authorization.
 controllers    # Add controllers needed for starter apps.
-database       # Set up and initialize database.
 email          # Configure email accounts.
-example        # Example of a recipe
+example        # Example of a recipe.
 extras         # Various extras.
 frontend       # Install a front-end framework for HTML5 and CSS.
 gems           # Add the gems your application needs.
 git            # Initialize git for your application.
+init           # Set up and initialize database.
 models         # Add models needed for starter apps.
 railsapps      # Install RailsApps example applications.
 readme         # Build a README file for your application.
@@ -160,11 +167,12 @@ Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for MongoDB) (y/n)
 
 Available Recipes:
+all: all
 auth: auth
 configuration: email, gems, git, railsapps, readme, setup
 example: example
 frontend: frontend
-initialize: database
+initialize: init
 mvc: controllers, models, routes, views
 other: extras
 testing: testing
@@ -182,10 +190,10 @@ You can specify any gem. Any string you enter will be added as a gem in the star
 
 h3. Generate an Application from a List of Recipes
 
-Provide a list of recipes using the @-r@ flag:
+Provide a list of recipes using the @-r@ flag. The "all" recipe selects all available recipes:
 
 <pre>
-$ rails_apps_composer new myapp -r git setup readme gems testing auth email models controllers views routes frontend database extras
+$ rails_apps_composer new myapp -r all
 
 Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for MongoDB) (y/n)
@@ -217,11 +225,12 @@ Specify a filename for the template:
 $ rails_apps_composer template ~/Desktop/template.rb
 
 Available Recipes:
+all: all
 auth: auth
 configuration: email, gems, git, railsapps, readme, setup
 example: example
 frontend: frontend
-initialize: database
+initialize: init
 mvc: controllers, models, routes, views
 other: extras
 testing: testing
@@ -239,7 +248,7 @@ h3. Generate an Application Template from a List of Recipes
 Specify a filename for the template and provide a list of recipes:
 
 <pre>
-$ rails_apps_composer template ~/Desktop/template.rb -r git setup readme gems testing auth email models controllers views routes frontend database extras
+$ rails_apps_composer template ~/Desktop/template.rb -r all
 
 What gem would you like to add? (blank to finish)
 Generating and saving application template...

@@ -29,8 +29,10 @@ after_everything do
   # Ruby on Rails
   gsub_file "README.textile", /\* Ruby/, "* Ruby version #{RUBY_VERSION}"
   gsub_file "README.textile", /\* Rails/, "* Rails version #{Rails::VERSION::STRING}"
-
+    
   # Database
+  gsub_file "README.textile", /SQLite/, "PostgreSQL" if prefer :database, 'postgresql'
+  gsub_file "README.textile", /SQLite/, "MySQL" if prefer :database, 'mysql'
   gsub_file "README.textile", /SQLite/, "MongoDB" if prefer :database, 'mongodb'
   gsub_file "README.textile", /ActiveRecord/, "the Mongoid ORM" if prefer :orm, 'mongoid'
 

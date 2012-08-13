@@ -37,9 +37,9 @@ end # signup_app
 __END__
 
 name: prelaunch
-description: "Generates a Prelaunch Signup App"
+description: "Not implemented."
 author: RailsApps
 
-requires: [setup, gems, auth, models, controllers, views, frontend, database]
-run_after: [setup, gems, auth, models, controllers, views, frontend, database]
+requires: [setup, gems, auth, models, controllers, views, frontend, init]
+run_after: [setup, gems, auth, models, controllers, views, frontend, init]
 category: apps

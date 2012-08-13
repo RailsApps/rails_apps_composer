@@ -15,6 +15,7 @@ gem 'unicorn', '>= 4.3.1', :group => :production if prefer :prod_webserver, 'uni
 gem 'puma', '>= 1.6.1', :group => :production if prefer :prod_webserver, 'puma'
 
 ## Database Adapter
+gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 gem 'mongoid', '>= 3.0.3' if prefer :orm, 'mongoid'
 gem 'pg', '>= 0.14.0' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'

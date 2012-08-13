@@ -127,6 +127,21 @@ after_everything do
       remove_file 'spec/helpers/home_helper_spec.rb'
       remove_file 'spec/helpers/users_helper_spec.rb'
     end
+    if (prefer :authentication, 'devise') && (prefer :starter_app, 'admin_app')
+      say_wizard "copying RSpec files from the rails3-bootstrap-devise-cancan examples"
+      repo = 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
+      copy_from_repo 'spec/factories/users.rb', :repo => repo
+      gsub_file 'spec/factories/users.rb', /# confirmed_at/, "confirmed_at" if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/controllers/users_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/models/user_spec.rb', :repo => repo
+      remove_file 'spec/views/home/index.html.erb_spec.rb'
+      remove_file 'spec/views/home/index.html.haml_spec.rb'
+      remove_file 'spec/views/users/show.html.erb_spec.rb'
+      remove_file 'spec/views/users/show.html.haml_spec.rb'
+      remove_file 'spec/helpers/home_helper_spec.rb'
+      remove_file 'spec/helpers/users_helper_spec.rb'
+    end
     ## RSPEC AND OMNIAUTH
     if (prefer :authentication, 'omniauth') && (prefer :starter_app, 'users_app')
       say_wizard "copying RSpec files from the rails3-mongoid-omniauth examples"
@@ -148,6 +163,31 @@ after_everything do
     if (prefer :authentication, 'devise') && (prefer :starter_app, 'users_app')
       say_wizard "copying Cucumber scenarios from the rails3-devise-rspec-cucumber examples"
       repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
+      copy_from_repo 'features/users/sign_in.feature', :repo => repo
+      copy_from_repo 'features/users/sign_out.feature', :repo => repo
+      copy_from_repo 'features/users/sign_up.feature', :repo => repo
+      copy_from_repo 'features/users/user_edit.feature', :repo => repo
+      copy_from_repo 'features/users/user_show.feature', :repo => repo
+      copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
+      copy_from_repo 'features/support/paths.rb', :repo => repo
+      if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
+        gsub_file 'features/step_definitions/user_steps.rb', /Welcome! You have signed up successfully./, "A message with a confirmation link has been sent to your email address."
+        inject_into_file 'features/users/sign_in.feature', :before => '    Scenario: User signs in successfully' do
+<<-RUBY
+  Scenario: User has not confirmed account
+    Given I exist as an unconfirmed user
+    And I am not logged in
+    When I sign in with valid credentials
+    Then I see an unconfirmed account message
+    And I should be signed out
+RUBY
+        end
+      end
+    end
+    if (prefer :authentication, 'devise') && (prefer :starter_app, 'admin_app')
+      say_wizard "copying Cucumber scenarios from the rails3-bootstrap-devise-cancan examples"
+      repo = 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
       copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
       copy_from_repo 'features/users/sign_in.feature', :repo => repo
       copy_from_repo 'features/users/sign_out.feature', :repo => repo

@@ -45,7 +45,7 @@ end
 __END__
 
 name: example
-description: "Example of a recipe"
+description: "Example of a recipe."
 author: githubname
 
 category: example

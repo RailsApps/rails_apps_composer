@@ -36,12 +36,12 @@ RUBY
     insert_into_file 'app/assets/javascripts/application.js', "//= require foundation\n", :after => "jquery_ujs\n"
     insert_into_file 'app/assets/stylesheets/application.css.scss', " *= require foundation\n", :after => "require_self\n"
   elsif prefer :frontend, 'skeleton'
-    copy_from_repo 'app/assets/stylesheets/normalize.css.scss', :repo => 'https://raw.github.com/necolas/normalize.css/master/normalize.css'
-    copy_from_repo 'app/assets/stylesheets/base.css.scss', :repo => 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css'
-    copy_from_repo 'app/assets/stylesheets/layout.css.scss', :repo => 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css'
-    copy_from_repo 'app/assets/stylesheets/skeleton.css.scss', :repo => 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css'
+    copy_from 'https://raw.github.com/necolas/normalize.css/master/normalize.css', 'app/assets/stylesheets/normalize.css'
+    copy_from 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css', 'app/assets/stylesheets/base.css'
+    copy_from 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/layout.css', 'app/assets/stylesheets/layout.css'
+    copy_from 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/skeleton.css', 'app/assets/stylesheets/skeleton.css'
   elsif prefer :frontend, 'normalize'
-    copy_from_repo 'app/assets/stylesheets/normalize.css.scss', :repo => 'https://raw.github.com/necolas/normalize.css/master/normalize.css'
+    copy_from 'https://raw.github.com/necolas/normalize.css/master/normalize.css', 'app/assets/stylesheets/normalize.css'
   end
   ### GIT ###
   git :add => '.' if prefer :git, true

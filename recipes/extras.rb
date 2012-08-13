@@ -69,7 +69,7 @@ if prefs[:rvmrc]
   begin
     RVM.gemset_use! app_name
   rescue StandardError
-    raise "Use rvm gem 1.11.3.5 or newer."
+    raise "rvm failure: unable to use gemset #{app_name}"
   end
   run "rvm gemset list"
   copy_from_repo '.rvmrc'
@@ -92,7 +92,7 @@ after_everything do
   gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
   # GIT
   git :add => '.' if prefer :git, true
-  git :commit => "-aqm 'rails_apps_composer: starter app complete'" if prefer :git, true
+  git :commit => "-aqm 'rails_apps_composer: extras'" if prefer :git, true
 end
 
 __END__
@@ -102,7 +102,7 @@ description: "Various extras."
 author: RailsApps
 
 requires: [gems]
-run_after: [gems]
+run_after: [init, gems]
 category: other
 
 config:

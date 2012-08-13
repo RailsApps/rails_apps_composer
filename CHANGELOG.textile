@@ -1,5 +1,16 @@
 h1. CHANGELOG
 
+h2. 2.1.3 August 13, 2012
+
+* added 'all' recipe as shortcut to selecting all recipes
+* changed name of 'database' recipe to 'init' to reduce confusion
+* new 'copy_from' method in helpers.erb
+* fix 'frontend' recipe for correct downloads of 'normalize' and 'skeleton'
+* fix 'extras' recipe to run after 'database' recipe for a final git commit
+* fix 'gems' recipe to remove 'sqlite3' from the Gemfile unless 'sqlite' is selected
+* fix 'readme' recipe to show if 'postgresql' or 'mysql' is selected
+* fix 'extras' recipe for more accurate error message when rvm can't switch gemsets
+
 h2. 2.1.2 August 12, 2012
 
 * move repository for source files from rails3-application-templates to rails-composer

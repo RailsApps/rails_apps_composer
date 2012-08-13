@@ -5,12 +5,7 @@
 say_wizard "initialize git"
 prefs[:git] = true unless prefs.has_key? :git
 if prefer :git, true
-  begin
-    remove_file '.gitignore'
-    get 'https://raw.github.com/RailsApps/rails-composer/master/files/gitignore.txt', '.gitignore'
-  rescue OpenURI::HTTPError
-    say_wizard "Unable to obtain gitignore file from the repo"
-  end
+  copy_from 'https://raw.github.com/RailsApps/rails-composer/master/files/gitignore.txt', '.gitignore'
   git :init
   git :add => '.'
   git :commit => "-aqm 'rails_apps_composer: initial commit'"
