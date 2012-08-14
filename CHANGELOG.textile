@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.1.6 August 14, 2012
+
+* update 'gems' recipe to create PostgreSQL user and database 
+* update 'gems' and 'frontend' recipes to use foundation generator
+
 h2. 2.1.5 August 14, 2012
 
 * fix 'gems' recipe to modify database.yml except when 'mongoid' is selected

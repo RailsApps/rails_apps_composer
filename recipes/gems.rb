@@ -21,8 +21,15 @@ gem 'pg', '>= 0.14.0' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
 copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
 copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
-gsub_file "config/database.yml", /myapp/, "#{app_name}" unless prefer :orm, 'mongoid'
-gsub_file "config/database.yml", /root/, "#{app_name}" unless prefer :orm, 'mongoid'
+gsub_file "config/database.yml", /username: .*/, "username: #{app_name}" unless prefer :orm, 'mongoid'
+gsub_file "config/database.yml", /password: .*/, "password: #{app_name}" unless prefer :orm, 'mongoid'
+begin
+  run "createuser #{app_name}" if prefer :database, 'postgresql'
+  run 'bundle exec rake db:drop' if prefer :database, 'postgresql'
+  run 'bundle exec rake db:create:all' if prefer :database, 'postgresql'
+rescue StandardError
+  raise "unable to create a user and database for PostgreSQL"
+end
 
 ## Template Engine
 if prefer :templates, 'haml'
@@ -65,7 +72,7 @@ gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
 gem 'bootstrap-sass', '>= 2.0.4.0' if prefer :bootstrap, 'sass'
-gem 'zurb-foundation', '>= 3.0.8' if prefer :frontend, 'foundation'
+gem 'zurb-foundation', '>= 3.0.8', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   gem 'twitter-bootstrap-rails', '>= 2.1.1', :group => :assets
   # install gem 'therubyracer' to use Less
@@ -115,6 +122,8 @@ after_bundler do
   ## Database
   generate 'mongoid:config' if prefer :orm, 'mongoid'
   remove_file 'config/database.yml' if prefer :orm, 'mongoid'
+  ## Front-end Framework
+  generate 'foundation:install' if prefer :frontend, 'foundation'
   ## Git
   git :add => '.' if prefer :git, true
   git :commit => "-aqm 'rails_apps_composer: generators'" if prefer :git, true
