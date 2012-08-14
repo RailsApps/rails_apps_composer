@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.1.5 August 14, 2012
+
+* fix 'gems' recipe to modify database.yml except when 'mongoid' is selected
+* fix 'layout.erb' to enable git commits (contributed by tomykaira)
+
 h2. 2.1.4 August 13, 2012
 
 * renamed 'all' recipe as 'core' to select all core recipes
