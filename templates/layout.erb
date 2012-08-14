@@ -75,7 +75,7 @@ end
 # >---------------------------------[ Diagnostics ]----------------------------------<
 
 # remove prefs which are diagnostically irrelevant
-redacted_prefs = prefs
+redacted_prefs = prefs.clone
 redacted_prefs.delete(:git)
 redacted_prefs.delete(:dev_webserver)
 redacted_prefs.delete(:prod_webserver)
