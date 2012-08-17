@@ -1,9 +1,15 @@
 h1. CHANGELOG
 
+h2. 2.1.7 August 17, 2012
+
+* update 'gems' recipe to create MySQL database
+* update 'gems' and 'frontend' recipe to fix 'foundation'
+* update 'gems' so webserver gem is only installed once when production and dev are the same
+
 h2. 2.1.6 August 14, 2012
 
 * update 'gems' recipe to create PostgreSQL user and database 
-* update 'gems' and 'frontend' recipes to use foundation generator
+* update 'gems' and 'frontend' recipes to use 'foundation' generator
 
 h2. 2.1.5 August 14, 2012
 

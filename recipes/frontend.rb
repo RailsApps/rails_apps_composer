@@ -32,6 +32,8 @@ after_bundler do
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 RUBY
+  elsif prefer :frontend, 'foundation'
+    insert_into_file 'app/assets/stylesheets/application.css.scss', " *= require foundation_and_overrides\n", :after => "require_self\n"
   elsif prefer :frontend, 'skeleton'
     copy_from 'https://raw.github.com/necolas/normalize.css/master/normalize.css', 'app/assets/stylesheets/normalize.css'
     copy_from 'https://raw.github.com/dhgamache/Skeleton/master/stylesheets/base.css', 'app/assets/stylesheets/base.css'

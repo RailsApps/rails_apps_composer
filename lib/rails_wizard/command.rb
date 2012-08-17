@@ -36,7 +36,8 @@ module RailsWizard
       else
         recipes = RailsWizard::Recipes.list_classes
       end
-
+      puts "#{bold}#{cyan}To learn more about recipes, see#{clear}:"
+      puts "#{bold}#{cyan}http://railsapps.github.com/tutorial-rails-apps-composer.html#Recipes#{clear}\n"
       recipes.each do |recipe|
         puts recipe.key.ljust(15) + "# #{recipe.description}"
       end

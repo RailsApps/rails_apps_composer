@@ -59,7 +59,7 @@ h2. Who This Is For
 
 This gem is for experienced Rails developers who need a tool to create and maintain a Rails starter app or Rails application template. If you're regularly building Rails applications that use certain popular gems or rely on common functionality such as authentication, you can benefit from the rails_apps_composer gem.
 
-If you are new to Rails, try the "Rails Composer":http://railsapps.github.com/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. It is easier to use.
+If you are new to Rails, try the "Rails Composer":http://railsapps.github.com/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. The Rails Composer tool is easier to use; use the rails_apps_composer gem if you want a custom application template, a custom combination of recipes, or the convenience of setting a defaults file.
 
 h2. Alternatives
 
@@ -118,9 +118,9 @@ testing        # Add testing framework.
 views          # Add views needed for starter apps.
 </pre>
 
-The above list is current for rails_apps_composer 2.0; later releases will contain more recipes.
+The above list is current for rails_apps_composer 2.1; later releases will contain more recipes.
 
-You can learn more about the available recipes by examing the source code in the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes.
+See the Guide for more "detailed descriptions of recipes":http://railsapps.github.com/tutorial-rails-apps-composer.html#Recipes. You can find all available recipes in the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. Examining the recipe source code is the very best way to learn what a recipe will do.
 
 h3. Recipe Order and Interdependency
 
