@@ -153,13 +153,23 @@ after_everything do
       copy_from_repo 'spec/controllers/users_controller_spec.rb', :repo => repo
       copy_from_repo 'spec/models/user_spec.rb', :repo => repo
     end
+    ## SUBDOMAINS
+    if (prefer :authentication, 'devise') && (prefer :starter_app, 'subdomains_app')
+      say_wizard "copying RSpec files from the rails3-subdomains examples"
+      repo = 'https://raw.github.com/RailsApps/rails3-subdomains/master/'
+      copy_from_repo 'spec/spec_helper.rb', :repo => repo
+      copy_from_repo 'spec/factories/users.rb', :repo => repo
+      copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/controllers/users_controller_spec.rb', :repo => repo
+      copy_from_repo 'spec/models/user_spec.rb', :repo => repo
+    end
     ## GIT
     git :add => '.' if prefer :git, true
     git :commit => "-aqm 'rails_apps_composer: rspec files'" if prefer :git, true
   end
   ### CUCUMBER ###
   if prefer :integration, 'cucumber'
-    ## CUCUMBER AND DEVISE
+    ## CUCUMBER AND DEVISE (USERS APP)
     if (prefer :authentication, 'devise') && (prefer :starter_app, 'users_app')
       say_wizard "copying Cucumber scenarios from the rails3-devise-rspec-cucumber examples"
       repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
@@ -185,6 +195,7 @@ RUBY
         end
       end
     end
+    ## CUCUMBER AND DEVISE (ADMIN APP)
     if (prefer :authentication, 'devise') && (prefer :starter_app, 'admin_app')
       say_wizard "copying Cucumber scenarios from the rails3-bootstrap-devise-cancan examples"
       repo = 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
@@ -209,6 +220,18 @@ RUBY
 RUBY
         end
       end
+    end
+    ## CUCUMBER AND DEVISE (SUBDOMAINS APP)
+    if (prefer :authentication, 'devise') && (prefer :starter_app, 'subdomains_app')
+      say_wizard "copying RSpec files from the rails3-subdomains examples"
+      repo = 'https://raw.github.com/RailsApps/rails3-subdomains/master/'
+      copy_from_repo 'features/users/sign_in.feature', :repo => repo
+      copy_from_repo 'features/users/sign_out.feature', :repo => repo
+      copy_from_repo 'features/users/sign_up.feature', :repo => repo
+      copy_from_repo 'features/users/user_edit.feature', :repo => repo
+      copy_from_repo 'features/users/user_show.feature', :repo => repo
+      copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
+      copy_from_repo 'features/support/paths.rb', :repo => repo
     end
     ## GIT
     git :add => '.' if prefer :git, true

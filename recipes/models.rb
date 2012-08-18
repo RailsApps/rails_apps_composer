@@ -31,7 +31,7 @@ after_bundler do
     end
   end
   ### SUBDOMAINS ###
-  copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains'
+  copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
   ### AUTHORIZATION (insert 'rolify' after User model is created) ###
   if prefer :authorization, 'cancan'
     unless prefer :orm, 'mongoid'

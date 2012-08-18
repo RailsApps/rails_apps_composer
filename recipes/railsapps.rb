@@ -2,7 +2,7 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/railsapps.rb
 
 prefs[:railsapps] = multiple_choice "Install an example application?", 
-  [["let me build my own application", "none"], 
+  [["I want to build my own application", "none"], 
   ["rails3-bootstrap-devise-cancan", "rails3-bootstrap-devise-cancan"], 
   ["rails3-devise-rspec-cucumber", "rails3-devise-rspec-cucumber"], 
   ["rails3-mongoid-devise", "rails3-mongoid-devise"],

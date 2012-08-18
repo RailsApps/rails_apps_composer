@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.1.8 unreleased
+
+* fix errors in recipes to implement 'subdomains_app'
+
 h2. 2.1.7 August 17, 2012
 
 * update 'gems' recipe to create MySQL database
