@@ -25,7 +25,7 @@ if config['ban_spiders']
   prefs[:ban_spiders] = true
 end
 if prefs[:ban_spiders]
-  say_wizard "Banning spiders by modifying 'public/robots.txt'"
+  say_wizard "recipe banning spiders by modifying 'public/robots.txt'"
   after_bundler do
     gsub_file 'public/robots.txt', /# User-Agent/, 'User-Agent'
     gsub_file 'public/robots.txt', /# Disallow/, 'Disallow'
@@ -37,7 +37,7 @@ if config['jsruntime']
   prefs[:jsruntime] = true
 end
 if prefs[:jsruntime]
-  say_wizard "Adding 'therubyracer' JavaScript runtime gem"
+  say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
   # maybe it was already added for bootstrap-less?
   unless prefer :bootstrap, 'less'
     gem 'therubyracer', :group => :assets, :platform => :ruby
@@ -49,6 +49,7 @@ if config['rvmrc']
   prefs[:rvmrc] = true
 end
 if prefs[:rvmrc]
+  say_wizard "recipe creating project-specific rvm gemset and .rvmrc"
   # using the rvm Ruby API, see:
   # http://blog.thefrontiergroup.com.au/2010/12/a-brief-introduction-to-the-rvm-ruby-api/
   if ENV['MY_RUBY_HOME'] && ENV['MY_RUBY_HOME'].include?('rvm')
@@ -95,6 +96,22 @@ after_everything do
   git :commit => "-aqm 'rails_apps_composer: extras'" if prefer :git, true
 end
 
+## GITHUB
+if config['github']
+  gem 'hub', '>= 1.10.2', :require => nil, :group => [:development]
+  after_everything do
+    say_wizard "recipe creating GitHub repository"
+    git_uri = `git config remote.origin.url`.strip
+    unless git_uri.size == 0
+      say_wizard "Repository already exists:"
+      say_wizard "#{git_uri}"
+    else
+      run "hub create #{app_name}"
+      run "hub push -u origin master"
+    end
+  end
+end
+
 __END__
 
 name: extras
@@ -119,3 +136,6 @@ config:
   - rvmrc:
       type: boolean
       prompt: Create a project-specific rvm gemset and .rvmrc?
+  - github:
+      type: boolean
+      prompt: Create a GitHub repository?
