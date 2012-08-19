@@ -1,9 +1,10 @@
 h1. CHANGELOG
 
-h2. 2.1.8 unreleased
+h2. 2.1.8 August 18, 2012
 
-* add ingredient to 'extras' recipe to create a GitHub repo
+* add option to 'extras' recipe to create a GitHub repo
 * fix errors in recipes to implement 'subdomains_app'
+* fix 'gems' recipe to set database names for MySQL or PostgreSQL (contributed by Tom Scott)
 
 h2. 2.1.7 August 17, 2012
 

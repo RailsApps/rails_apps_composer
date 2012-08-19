@@ -131,6 +131,11 @@ after_bundler do
       raise "unable to create a user for PostgreSQL"
     end
   end
+  if prefer :database, 'mysql'
+    gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
+    gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
+    gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
+  end
   unless prefer :database, 'sqlite'
     affirm = multiple_choice "Drop any existing databases named #{app_name}?", 
       [["Yes (continue)",true], ["No (abort)",false]]
