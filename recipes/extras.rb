@@ -40,7 +40,7 @@ if prefs[:jsruntime]
   say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
   # maybe it was already added for bootstrap-less?
   unless prefer :bootstrap, 'less'
-    gem 'therubyracer', :group => :assets, :platform => :ruby
+    gem 'therubyracer', '>= 0.10.2', :group => :assets, :platform => :ruby
   end
 end
 
