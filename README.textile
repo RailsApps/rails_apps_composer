@@ -59,7 +59,7 @@ h2. Who This Is For
 
 This gem is for experienced Rails developers who need a tool to create and maintain a Rails starter app or Rails application template. If you're regularly building Rails applications that use certain popular gems or rely on common functionality such as authentication, you can benefit from the rails_apps_composer gem.
 
-If you are new to Rails, try the "Rails Composer":http://railsapps.github.com/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. The Rails Composer tool is easier to use; use the rails_apps_composer gem if you want a custom application template, a custom combination of recipes, or the convenience of setting a defaults file.
+If you are new to Rails, try the "Rails Composer":http://railsapps.github.com/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. The Rails Composer tool is easier to use. Use the rails_apps_composer gem if you want a custom application template, a custom combination of recipes, or the convenience of setting a defaults file.
 
 h2. Alternatives
 
@@ -70,15 +70,15 @@ h2. Dependencies
 Before using the rails_apps_composer gem, you will need:
 
 * The Ruby language (version 1.9.3)
-* Rails 3.1 or newer
+* Rails 3.2 or newer
 
 The rails_apps_composer program uses the version of Rails that is currently installed when you launch the program. If you want to use the newest Rails version, upgrade before running rails_apps_composer.
 
-See the article "Installing Rails":http://railsapps.github.com/installing-rails.html for advice about updating Rails and your development environment.
+See the article "Installing Rails":http://railsapps.github.com/installing-rails.html for advice about updating Rails and your development environment. You'll avoid many potential headaches if you review the article step by step before beginning development.
 
 h4. Database
 
-Except for SQLite, which runs by default on Mac OS X, you'll need to have a database server running before you run rails_apps_composer. This is true if you use PostgreSQL, MySQL, or MongoDB; use SQLite if you don't want to set up a database server.
+Unless you use SQLite, which runs by default on Mac OS X, you'll need to have a database server running before you run rails_apps_composer. This is true if you want to use PostgreSQL, MySQL, or MongoDB. I recommend using SQLite if you don't want to set up a database server.
 
 h2. Installation
 
@@ -122,6 +122,10 @@ The above list is current for rails_apps_composer 2.1; later releases will conta
 
 See the Guide for more "detailed descriptions of recipes":http://railsapps.github.com/tutorial-rails-apps-composer.html#Recipes. You can find all available recipes in the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. Examining the recipe source code is the very best way to learn what a recipe will do.
 
+h3. Recommended Recipes
+
+I recommend selecting the _core_ recipe if you are just getting started. The _core_ recipe installs a collection of the most useful recipes.
+
 h3. Recipe Order and Interdependency
 
 The order in which you input a list or recipes determines the order of execution unless a recipe contains a @requires@ or @run_after@ directive.
@@ -136,13 +140,15 @@ See the "Anatomy of a Recipe":http://railsapps.github.com/tutorial-rails-apps-co
 
 h3. Skipping Test::Unit or Active Record
 
-If you plan to use RSpec instead of Test::Unit, or use an ORM such as Mongoid instead of Active Record, you can pass the @-T@ or @-O@ flags to the @rails new@ command so it will skip Test::Unit or Active Record.
+If you plan to use RSpec instead of Test::Unit, or use an ORM such as Mongoid instead of Active Record, you must pass the @-T@ or @-O@ flags to the program so it will skip Test::Unit or Active Record.
 
-When you generate an application interactively using the rails_apps_composer gem, the program will ask if you want to skip Test::Unit or Active Record.
+The rails_apps_composer program will ask if you want to skip Test::Unit or Active Record when you generate an application interactively.
 
-When you generate an application template, you will not be asked if you want to skip Test::Unit or Active Record. An application template runs after the @rails new@ command so it cannot set the @-T@ or @-O@ arguments.
+Any recipe can set the @-T@ or @-O@ arguments using the @args@ directive.
 
-Any recipe can set the @-T@ or @-O@ arguments using the @args@ directive. However, this has no affect on application templates and is only useful when an application is generated interactively.
+Also, you can set @-T@ or @-O@ arguments in the defaults file.
+
+Setting @-T@ or @-O@ arguments has no affect on application templates. An application template runs after the @rails new@ command so it cannot set the @-T@ or @-O@ arguments. When you generate an application template, the program will not ask if you want to skip Test::Unit or Active Record.
 
 h3. Using Local Recipes
 
@@ -184,13 +190,17 @@ Generating basic application, using:
 "rails new myapp -m <temp_file>"
 </pre>
 
-You will only be able to choose recipes that are contained in the rails_apps_composer gem.
+If you want to skip the prompts asking about Test::Unit and Active Record, you can set these arguments in a defaults file.
+
+You will be able to choose recipes that are contained in the rails_apps_composer gem plus any local recipes you've added with the @-l@ argument.
+
+Choose the _core_ recipe if you are not sure which recipes to select.
 
 You can specify any gem. Any string you enter will be added as a gem in the starter app Gemfile.
 
 h3. Generate an Application from a List of Recipes
 
-Provide a list of recipes using the @-r@ flag. The "core" recipe selects all available core recipes:
+Provide a list of recipes using the @-r@ flag. In this example, the _core_ recipe selects all available core recipes:
 
 <pre>
 $ rails_apps_composer new myapp -r core
@@ -217,7 +227,7 @@ Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and e
 
 h3. Generate an Application Template Interactively
 
-You may want an application template to share with others. For an example of an application template, see the "Rails Composer":http://railsapps.github.com/rails-composer/ project.
+You may want an application template to share with others. For an example, see the "Rails Composer":http://railsapps.github.com/rails-composer/ project which is an application template generated from the rails_apps_composer core recipes.
 
 Specify a filename for the template:
 

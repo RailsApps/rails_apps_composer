@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.1.9 August 20, 2012
+
+* option to set '-T' or '-O' args in a default file (contributed by Michaël Witrant)
+
 h2. 2.1.8 August 18, 2012
 
 * add option to 'extras' recipe to create a GitHub repo
