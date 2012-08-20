@@ -10,8 +10,8 @@ module RailsWizard
     method_option :recipe_dirs, :type => :array, :aliases => "-l"
     def new(name)
       add_recipes
-      args = ask_for_args
       recipes, defaults = load_defaults
+      args = ask_for_args(defaults)
       recipes = ask_for_recipes(recipes)
       gems = ask_for_gems
       run_template(name, recipes, gems, args, defaults, nil)
@@ -111,30 +111,35 @@ module RailsWizard
         gems
       end
 
-      def ask_for_args
+      def ask_for_arg(question, default = nil)
+        if default.nil?
+          result = nil
+          while answer = ask(question)
+            case answer.downcase
+              when "yes", "y"
+                result = true
+                break
+              when "no", "n"
+                result = false
+                break
+            end
+          end
+          result
+        else
+          default
+        end
+      end
+      
+      def ask_for_args(defaults)
         args = []
+        default_args = defaults["args"] || {}
+        
         question = "#{bold}Would you like to skip Test::Unit? (yes for RSpec) \033[33m(y/n)\033[0m#{clear}"
-        while getT = ask(question)
-          case getT.downcase
-            when "yes", "y"
-              args << "-T"
-              break
-            when "no", "n"
-              args << ""
-              break
-          end
-        end
+        args << "-T" if ask_for_arg(question, default_args[:skip_test_unit])
+
         question = "#{bold}Would you like to skip Active Record? (yes for MongoDB) \033[33m(y/n)\033[0m#{clear}"
-        while getO = ask(question)
-          case getO.downcase
-            when "yes", "y"
-              args << "-O"
-              break
-            when "no", "n"
-              args << ""
-              break
-          end
-        end
+        args << "-O" if ask_for_arg(question, default_args[:skip_active_record])
+        
         args
       end
       
