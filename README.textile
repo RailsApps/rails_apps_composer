@@ -345,11 +345,11 @@ h2. Issues
 
 Any issues? Please create an "issue":http://github.com/RailsApps/rails_apps_composer/issues on GitHub. Reporting issues (and patching!) helps everyone.
 
-When you generate an application, the application's *README.textile* file will contain a diagnostics report. Please include the diagnostics report when you create an issue on GitHub.
+If you include the _readme_ recipe when you generate an application, the generated *README* file will contain a diagnostics report (unless the program aborts before the _readme_ recipe runs). Please include the diagnostics report when you create an issue on GitHub.
 
 h2. Credits
 
-Daniel Kehoe maintains this gem as part of the "RailsApps Project":http://railsapps.github.com/.
+Daniel Kehoe maintains this gem as part of the "RailsApps project":http://railsapps.github.com/.
 
 This gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard. The original idea and the innovative implementation is the work of Michael Bleigh.
 
