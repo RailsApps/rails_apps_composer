@@ -13,7 +13,7 @@ module RailsWizard
       recipes, defaults = load_defaults
       args = ask_for_args(defaults)
       recipes = ask_for_recipes(recipes)
-      gems = ask_for_gems
+      gems = ask_for_gems(defaults)
       run_template(name, recipes, gems, args, defaults, nil)
     end
 
@@ -99,8 +99,8 @@ module RailsWizard
         recipes
       end
 
-      def ask_for_gems
-        gems = []
+      def ask_for_gems(defaults)
+        gems = defaults["gems"] || []
         while getgem = ask("#{bold}What gem would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
           if getgem == ''
             break
