@@ -73,7 +73,7 @@ case prefs[:railsapps]
     prefs[:git] = true
     prefs[:database] = 'mongodb'
     prefs[:orm] = 'mongoid'
-    prefs[:templates] = 'haml'
+    prefs[:templates] = 'erb'
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'

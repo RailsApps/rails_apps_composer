@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.1.10 unreleased 
+
+* update 'railsapps' recipe to use erb instead of Haml for rails3-subdomains example app
+
 h2. 2.1.9 August 20, 2012
 
 * option to set '-T' or '-O' args in a default file (contributed by Michaël Witrant)
