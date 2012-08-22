@@ -19,7 +19,6 @@ after_bundler do
     ## DEVISE MODULES
     if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
       gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
-      gsub_file 'app/models/user.rb', /:remember_me/, ':remember_me, :confirmed_at'
       if prefer :orm, 'mongoid'
         gsub_file 'app/models/user.rb', /# field :confirmation_token/, "field :confirmation_token"
         gsub_file 'app/models/user.rb', /# field :confirmed_at/, "field :confirmed_at"
