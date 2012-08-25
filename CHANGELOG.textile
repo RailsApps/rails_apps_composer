@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.1.10 unreleased 
 
 * update 'railsapps' recipe to use erb instead of Haml for rails3-subdomains example app
+* fix 'models', 'auth', and 'init' recipes to handle Devise confirmable module (contributed by Vitaly Kushner)
 
 h2. 2.1.9 August 20, 2012
 
