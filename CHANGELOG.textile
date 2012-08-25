@@ -1,10 +1,13 @@
 h1. CHANGELOG
 
-h2. 2.1.10 unreleased 
+h2. 2.1.10 August 25, 2012 
 
 * update 'railsapps' recipe to allow choice of erb or Haml for all example apps
 * fix 'models', 'auth', and 'init' recipes to handle Devise confirmable module (contributed by Vitaly Kushner)
 * fix 'setup' recipe to exclude CanCan authorization when OmniAuth authentication is selected
+* update gem 'twitter-bootstrap-rails' from 2.1.1 to 2.1.3
+* update gem 'omniauth' from 1.1.0 to 1.1.1
+* update gem 'mongoid' from 3.0.4 to 3.0.5
 
 h2. 2.1.9 August 20, 2012
 

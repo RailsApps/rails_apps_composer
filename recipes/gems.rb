@@ -22,7 +22,7 @@ end
 
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
-gem 'mongoid', '>= 3.0.3' if prefer :orm, 'mongoid'
+gem 'mongoid', '>= 3.0.5' if prefer :orm, 'mongoid'
 gem 'pg', '>= 0.14.0' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
 
@@ -70,7 +70,7 @@ gem 'bootstrap-sass', '>= 2.0.4.0' if prefer :bootstrap, 'sass'
 gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundation'
 gem 'zurb-foundation', '>= 3.0.9', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
-  gem 'twitter-bootstrap-rails', '>= 2.1.1', :group => :assets
+  gem 'twitter-bootstrap-rails', '>= 2.1.3', :group => :assets
   # install gem 'therubyracer' to use Less
   gem 'therubyracer', '>= 0.10.2', :group => :assets, :platform => :ruby
 end
@@ -84,7 +84,7 @@ gem 'devise', '>= 2.1.2' if prefer :authentication, 'devise'
 gem 'devise_invitable', '>= 1.0.3' if prefer :devise_modules, 'invitable'
 
 ## Authentication (OmniAuth)
-gem 'omniauth', '>= 1.1.0' if prefer :authentication, 'omniauth'
+gem 'omniauth', '>= 1.1.1' if prefer :authentication, 'omniauth'
 gem 'omniauth-twitter' if prefer :omniauth_provider, 'twitter'
 gem 'omniauth-facebook' if prefer :omniauth_provider, 'facebook'
 gem 'omniauth-github' if prefer :omniauth_provider, 'github'
