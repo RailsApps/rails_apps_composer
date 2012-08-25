@@ -9,10 +9,11 @@ after_bundler do
       copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-devise/master/' if prefer :orm, 'mongoid'
     else
       generate 'migration AddNameToUsers name:string'
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
       if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
         generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'
+        gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
       end
-      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
     end
   end
   ### OMNIAUTH ###
