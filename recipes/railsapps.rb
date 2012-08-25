@@ -13,7 +13,6 @@ case prefs[:railsapps]
   when 'rails3-bootstrap-devise-cancan'
     prefs[:git] = true
     prefs[:database] = 'sqlite'
-    prefs[:templates] = 'erb'
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'
@@ -28,7 +27,6 @@ case prefs[:railsapps]
   when 'rails3-devise-rspec-cucumber'
     prefs[:git] = true
     prefs[:database] = 'sqlite'
-    prefs[:templates] = 'erb'
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'
@@ -43,7 +41,6 @@ case prefs[:railsapps]
     prefs[:git] = true
     prefs[:database] = 'mongodb'
     prefs[:orm] = 'mongoid'
-    prefs[:templates] = 'erb'
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'
@@ -58,7 +55,6 @@ case prefs[:railsapps]
     prefs[:git] = true
     prefs[:database] = 'mongodb'
     prefs[:orm] = 'mongoid'
-    prefs[:templates] = 'erb'
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'
@@ -73,7 +69,6 @@ case prefs[:railsapps]
     prefs[:git] = true
     prefs[:database] = 'mongodb'
     prefs[:orm] = 'mongoid'
-    prefs[:templates] = 'erb'
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'

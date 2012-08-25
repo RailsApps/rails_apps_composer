@@ -2,9 +2,9 @@ h1. CHANGELOG
 
 h2. 2.1.10 unreleased 
 
-* update 'railsapps' recipe to use erb instead of Haml for rails3-subdomains example app
+* update 'railsapps' recipe to allow choice of erb or Haml for all example apps
 * fix 'models', 'auth', and 'init' recipes to handle Devise confirmable module (contributed by Vitaly Kushner)
-* fix 'setup' recipe to exclude CanCan authorization when OmniAuth authentication is selected 
+* fix 'setup' recipe to exclude CanCan authorization when OmniAuth authentication is selected
 
 h2. 2.1.9 August 20, 2012
 
