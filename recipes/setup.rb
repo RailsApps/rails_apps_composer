@@ -90,7 +90,9 @@ if recipes.include? 'auth'
       prefs[:omniauth_provider] = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"], 
         ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google-oauth2"], ["Tumblr", "tumblr"]] unless prefs.has_key? :omniauth_provider
   end
-  prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]] unless prefs.has_key? :authorization
+  if prefer :authentication, 'devise'
+    prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]] unless prefs.has_key? :authorization
+  end
 end
 
 ## MVC
