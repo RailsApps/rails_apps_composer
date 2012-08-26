@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.2.2 unreleased
 
 * fix 'prelaunch' recipe for missing Cucumber feature file
+* improve an error message when Mongoid is selected and a SQLite gem is present
 
 h2. 2.2.1 August 26, 2012
 
