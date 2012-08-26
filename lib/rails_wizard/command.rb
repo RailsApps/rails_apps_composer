@@ -25,7 +25,7 @@ module RailsWizard
       add_recipes
       recipes, defaults = load_defaults
       recipes = ask_for_recipes(recipes)
-      gems = ask_for_gems
+      gems = ask_for_gems(defaults)
       run_template(nil, recipes, gems, nil, defaults, template_name)
     end
 
