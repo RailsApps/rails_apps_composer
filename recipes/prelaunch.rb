@@ -45,6 +45,7 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     copy_from_repo 'features/admin/send_invitations.feature', :repo => repo    
     copy_from_repo 'features/admin/view_progress.feature', :repo => repo
     copy_from_repo 'features/visitors/request_invitation.feature', :repo => repo
+    copy_from_repo 'features/users/sign_in.feature', :repo => repo
     copy_from_repo 'features/users/sign_up.feature', :repo => repo
     copy_from_repo 'features/users/user_show.feature', :repo => repo
     copy_from_repo 'features/step_definitions/admin_steps.rb', :repo => repo

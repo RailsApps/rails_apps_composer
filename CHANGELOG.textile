@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.2 unreleased
+
+* fix 'prelaunch' recipe for missing Cucumber feature file
+
 h2. 2.2.1 August 26, 2012
 
 * fix regression introduced by 1cf28c09cc4a8d11f2f1a7e5b91fce724d0a9b73 (version 2.1.10)
