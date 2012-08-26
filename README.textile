@@ -99,7 +99,6 @@ You can list recipes with short descriptions:
 <pre>
 $ rails_apps_composer list
 
-auth           # Add authentication and authorization.
 controllers    # Add controllers needed for starter apps.
 core           # Select all core recipes.
 email          # Configure email accounts.
@@ -173,7 +172,6 @@ Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for MongoDB) (y/n)
 
 Available Recipes:
-auth: auth
 collections: core
 configuration: email, gems, git, railsapps, readme, setup
 example: example
@@ -235,7 +233,6 @@ Specify a filename for the template:
 $ rails_apps_composer template ~/Desktop/template.rb
 
 Available Recipes:
-auth: auth
 collections: core
 configuration: email, gems, git, railsapps, readme, setup
 example: example

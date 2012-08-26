@@ -98,8 +98,11 @@ if prefer :authorization, 'cancan'
   gem 'rolify', '>= 3.2.0'
 end
 
+## Form Builder
+gem 'simple_form', '>= 2.0.2' if prefer :form_builder, 'simple_form'
+
 ## Signup App 
-if prefer :prelaunch_app, 'signup_app'
+if prefer :railsapps, 'rails-prelaunch-signup'
   gem 'google_visualr', '>= 2.1.2'
   gem 'jquery-datatables-rails', '>= 1.10.0'
 end
@@ -156,6 +159,16 @@ end # after_bundler
 after_bundler do
   ## Front-end Framework
   generate 'foundation:install' if prefer :frontend, 'foundation'
+  ## Form Builder
+  if prefer :form_builder, 'simple_form'
+    if prefer :frontend, 'bootstrap'
+      say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
+      generate 'simple_form:install --bootstrap'
+    else
+      say_wizard "recipe installing simple_form"
+      generate 'simple_form:install'
+    end
+  end
   ## Git
   git :add => '.' if prefer :git, true
   git :commit => "-aqm 'rails_apps_composer: generators'" if prefer :git, true

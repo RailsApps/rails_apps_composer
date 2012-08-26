@@ -1,5 +1,11 @@
 h1. CHANGELOG
 
+h2. 2.2.0 August 26, 2012
+
+* merge 'auth' recipe into 'models' recipe
+* move 'form_builder' ingredient from 'extras' recipe to 'setup' recipe
+* add 'prelaunch' recipe for rails-prelaunch-signup example app
+
 h2. 2.1.10 August 25, 2012 
 
 * update 'railsapps' recipe to allow choice of erb or Haml for all example apps

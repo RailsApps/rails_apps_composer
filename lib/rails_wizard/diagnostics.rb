@@ -15,11 +15,11 @@ module RailsWizard
     @@recipes << %w(gems git setup)
     @@recipes << %w(gems git readme setup)
     @@recipes << %w(extras gems git readme setup)
-    @@recipes << %w(auth controllers email extras frontend gems git init models railsapps readme routes setup testing views)
-    @@recipes << %w(all auth controllers email extras frontend gems git init models railsapps readme routes setup testing views)
-    @@recipes << %w(auth controllers email example extras frontend gems git init models railsapps readme routes setup testing views)
-    @@recipes << %w(auth controllers email example extras frontend gems git init models prelaunch railsapps readme routes setup testing views)
-    @@recipes << %w(all auth controllers email example extras frontend gems git init models prelaunch railsapps readme routes setup testing views)
+    @@recipes << %w(controllers email extras frontend gems git init models railsapps readme routes setup testing views)
+    @@recipes << %w(all controllers email extras frontend gems git init models railsapps readme routes setup testing views)
+    @@recipes << %w(controllers email example extras frontend gems git init models railsapps readme routes setup testing views)
+    @@recipes << %w(controllers email example extras frontend gems git init models prelaunch railsapps readme routes setup testing views)
+    @@recipes << %w(all controllers email example extras frontend gems git init models prelaunch railsapps readme routes setup testing views)
 
     ### collections of preferences that are known to work together
     @@prefs = []

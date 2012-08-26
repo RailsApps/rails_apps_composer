@@ -76,7 +76,7 @@ else
 end
 
 ## Authentication and Authorization
-if recipes.include? 'auth'
+if recipes.include? 'models'
   prefs[:authentication] = multiple_choice "Authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]] unless prefs.has_key? :authentication
   case prefs[:authentication]
     when 'devise'
@@ -94,6 +94,9 @@ if recipes.include? 'auth'
     prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]] unless prefs.has_key? :authorization
   end
 end
+
+## Form Builder
+prefs[:form_builder] = multiple_choice "Use a form builder gem?", [["None", "none"], ["SimpleForm", "simple_form"]] unless prefs.has_key? :form_builder
 
 ## MVC
 if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.include? 'views') && (recipes.include? 'routes')
@@ -113,19 +116,6 @@ if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.i
       ["Home Page, User Accounts", "users_app"]] unless prefs.has_key? :starter_app
   else
     prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"]] unless prefs.has_key? :starter_app
-  end
-  if (recipes.include? 'prelaunch') && (prefer :authentication, 'devise') && (prefer :authorization, 'cancan')
-    prefs[:prelaunch_app] = multiple_choice "Install a prelaunch app?", [["None", "none"], ["Prelaunch Signup App", "signup_app"]]
-    if prefs[:prelaunch_app] == 'signup_app'
-      prefs[:devise_modules] = 'confirmable'
-      prefs[:bulkmail] = multiple_choice "Send news and announcements with a mail service?", [["None", "none"], ["MailChimp","mailchimp"]]
-      if prefer :git, true
-        prefs[:prelaunch_branch] = multiple_choice "Git branch for the prelaunch app?", [["wip (work-in-progress)", "wip"], ["master", "master"], ["prelaunch", "prelaunch"], ["staging", "staging"]]
-        if prefs[:prelaunch_branch] == 'master'
-          prefs[:main_branch] = multiple_choice "Git branch for the main app?", [["None (delete)", "none"], ["wip (work-in-progress)", "wip"], ["edge", "edge"]]
-        end
-      end
-    end
   end
 end
 

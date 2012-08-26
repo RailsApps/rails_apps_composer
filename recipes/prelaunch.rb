@@ -1,12 +1,28 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/prelaunch.rb
 
-if prefer :prelaunch_app, 'signup_app'
-  raise StandardError.new "Sorry. The prelaunch recipe is not implemented."
+if prefer :railsapps, 'rails-prelaunch-signup'
   
-  after_bundler do
+  after_everything do
     say_wizard "recipe running after 'bundle install'"
     repo = 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/'
+
+    # >-------------------------------[ Clean up starter app ]--------------------------------<
+
+    %w{
+      public/index.html
+      app/assets/images/rails.png
+    }.each { |file| remove_file file }
+    # remove commented lines and multiple blank lines from Gemfile
+    # thanks to https://github.com/perfectline/template-bucket/blob/master/cleanup.rb
+    gsub_file 'Gemfile', /#.*\n/, "\n"
+    gsub_file 'Gemfile', /\n^\s*\n/, "\n"
+    # remove commented lines and multiple blank lines from config/routes.rb
+    gsub_file 'config/routes.rb', /  #.*\n/, "\n"
+    gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
+    # GIT
+    git :add => '.' if prefer :git, true
+    git :commit => "-aqm 'rails_apps_composer: clean up starter app'" if prefer :git, true
 
     # >-------------------------------[ Create a git branch ]--------------------------------<
     if prefer :git, true
@@ -24,22 +40,78 @@ if prefer :prelaunch_app, 'signup_app'
       end
     end
 
-    # >-------------------------------[ Create an initializer file ]--------------------------------<
-    copy_from_repo 'config/initializers/prelaunch-signup.rb', :repo => repo
-    say_wizard "PRELAUNCH_SIGNUP NOT IMPLEMENTED"
+    # >-------------------------------[ Cucumber ]--------------------------------<
+    say_wizard "copying Cucumber scenarios from the rails-prelaunch-signup examples"
+    copy_from_repo 'features/admin/send_invitations.feature', :repo => repo    
+    copy_from_repo 'features/admin/view_progress.feature', :repo => repo
+    copy_from_repo 'features/visitors/request_invitation.feature', :repo => repo
+    copy_from_repo 'features/users/sign_up.feature', :repo => repo
+    copy_from_repo 'features/users/user_show.feature', :repo => repo
+    copy_from_repo 'features/step_definitions/admin_steps.rb', :repo => repo
+    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo    
+    copy_from_repo 'features/step_definitions/visitor_steps.rb', :repo => repo
+    copy_from_repo 'config/locales/devise.en.yml', :repo => repo
 
+    # >-------------------------------[ Migrations ]--------------------------------<
+
+    generate 'migration AddOptinToUsers opt_in:boolean'
+    run 'bundle exec rake db:drop'
+    run 'bundle exec rake db:migrate'
+    run 'bundle exec rake db:test:prepare'
+    run 'bundle exec rake db:seed'
+
+    # >-------------------------------[ Models ]--------------------------------<
+
+    copy_from_repo 'app/models/user.rb', :repo => repo
+
+    # >-------------------------------[ Controllers ]--------------------------------<
+
+    copy_from_repo 'app/controllers/confirmations_controller.rb', :repo => repo
+    copy_from_repo 'app/controllers/home_controller.rb', :repo => repo
+    copy_from_repo 'app/controllers/registrations_controller.rb', :repo => repo
+    copy_from_repo 'app/controllers/users_controller.rb', :repo => repo
+
+    # >-------------------------------[ Mailers ]--------------------------------<
+    
+    generate 'mailer UserMailer'
+    copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo
+    copy_from_repo 'app/mailers/user_mailer.rb', :repo => repo
+
+    # >-------------------------------[ Views ]--------------------------------<
+
+    copy_from_repo 'app/views/devise/confirmations/show.html.erb', :repo => repo
+    copy_from_repo 'app/views/devise/mailer/confirmation_instructions.html.erb', :repo => repo
+    copy_from_repo 'app/views/devise/registrations/_thankyou.html.erb', :repo => repo
+    copy_from_repo 'app/views/devise/registrations/new.html.erb', :repo => repo
+    copy_from_repo 'app/views/devise/shared/_links.html.erb', :repo => repo
+    copy_from_repo 'app/views/home/index.html.erb', :repo => repo
+    copy_from_repo 'app/views/user_mailer/welcome_email.html.erb', :repo => repo
+    copy_from_repo 'app/views/user_mailer/welcome_email.text.erb', :repo => repo
+    copy_from_repo 'app/views/users/index.html.erb', :repo => repo
+    copy_from_repo 'public/thankyou.html', :repo => repo
+
+    # >-------------------------------[ Routes ]--------------------------------<
+    
+    copy_from_repo 'config/routes.rb', :repo => repo
+    
+    # >-------------------------------[ Assets ]--------------------------------<
+    
+    copy_from_repo 'app/assets/javascripts/application.js', :repo => repo
+    copy_from_repo 'app/assets/javascripts/users.js.coffee', :repo => repo
+    copy_from_repo 'app/assets/stylesheets/application.css.scss', :repo => repo
+    
     ### GIT ###
     git :add => '.' if prefer :git, true
     git :commit => "-aqm 'rails_apps_composer: prelaunch app'" if prefer :git, true
   end # after_bundler
-end # signup_app
+end # rails-prelaunch-signup
 
 __END__
 
 name: prelaunch
-description: "Not implemented."
+description: "Install a prelaunch-signup example application."
 author: RailsApps
 
-requires: [setup, gems, auth, models, controllers, views, frontend, init]
-run_after: [setup, gems, auth, models, controllers, views, frontend, init]
+requires: [core]
+run_after: [setup, gems, models, controllers, views, frontend, init]
 category: apps

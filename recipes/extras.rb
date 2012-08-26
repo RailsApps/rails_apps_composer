@@ -1,25 +1,6 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb
 
-## FORM BUILDER
-case config['form_builder']
-  when 'simple_form'
-    prefs[:form_builder] = 'simple_form'
-end
-case prefs[:form_builder]
-  when 'simple_form'
-    gem 'simple_form'
-    after_bundler do
-      if prefer :frontend, 'bootstrap'
-        say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
-        generate 'simple_form:install --bootstrap'
-      else
-        say_wizard "recipe installing simple_form"
-        generate 'simple_form:install'
-      end
-    end
-end
-
 ## BAN SPIDERS
 if config['ban_spiders']
   prefs[:ban_spiders] = true
@@ -107,7 +88,12 @@ if config['github']
       say_wizard "#{git_uri}"
     else
       run "hub create #{app_name}"
-      run "hub push -u origin master"
+      unless prefer :railsapps, 'rails-prelaunch-signup'
+        run "hub push -u origin master"
+      else
+        run "hub push -u origin #{prefs[:prelaunch_branch]}"
+        run "hub push -u origin #{prefs[:main_branch]}" unless prefer :main_branch, 'none'
+      end
     end
   end
 end
@@ -119,14 +105,10 @@ description: "Various extras."
 author: RailsApps
 
 requires: [gems]
-run_after: [init, gems]
+run_after: [gems, init, prelaunch]
 category: other
 
 config:
-  - form_builder:
-      type: multiple_choice
-      prompt: Use a form builder gem?
-      choices: [["None", "none"], ["SimpleForm", "simple_form"]]
   - ban_spiders:
       type: boolean
       prompt: Set a robots.txt file to ban spiders?

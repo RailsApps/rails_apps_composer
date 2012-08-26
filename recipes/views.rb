@@ -34,6 +34,6 @@ name: views
 description: "Add views needed for starter apps."
 author: RailsApps
 
-requires: [setup, gems, auth, models, controllers]
-run_after: [setup, gems, auth, models, controllers]
+requires: [setup, gems, models, controllers]
+run_after: [setup, gems, models, controllers]
 category: mvc

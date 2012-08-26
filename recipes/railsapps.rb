@@ -10,6 +10,28 @@ prefs[:railsapps] = multiple_choice "Install an example application?",
   ["rails3-subdomains", "rails3-subdomains"]] unless prefs.has_key? :railsapps
 
 case prefs[:railsapps]
+  when 'rails-prelaunch-signup'
+    prefs[:git] = true
+    prefs[:database] = 'sqlite'
+    prefs[:unit_test] = 'rspec'
+    prefs[:integration] = 'cucumber'
+    prefs[:fixtures] = 'factory_girl'
+    prefs[:frontend] = 'bootstrap'
+    prefs[:bootstrap] = 'sass'
+    prefs[:email] = 'mandrill'
+    prefs[:authentication] = 'devise'
+    prefs[:devise_modules] = 'confirmable'
+    prefs[:authorization] = 'cancan'
+    prefs[:starter_app] = 'admin_app'
+    prefs[:form_builder] = 'simple_form'
+    if prefer :git, true
+      prefs[:prelaunch_branch] = multiple_choice "Git branch for the prelaunch app?", [["wip (work-in-progress)", "wip"], ["master", "master"], ["prelaunch", "prelaunch"], ["staging", "staging"]]
+      if prefs[:prelaunch_branch] == 'master'
+        prefs[:main_branch] = multiple_choice "Git branch for the main app?", [["None", "none"], ["wip (work-in-progress)", "wip"], ["edge", "edge"]]
+      else
+        prefs[:main_branch] = 'master'
+      end
+    end
   when 'rails3-bootstrap-devise-cancan'
     prefs[:git] = true
     prefs[:database] = 'sqlite'
@@ -87,6 +109,6 @@ name: railsapps
 description: "Install RailsApps example applications."
 author: RailsApps
 
-requires: [auth, controllers, email, extras, frontend, gems, git, init, models, readme, routes, setup, testing, views]
+requires: [core]
 run_after: [git]
 category: configuration
