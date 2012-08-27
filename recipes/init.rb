@@ -46,12 +46,12 @@ FILE
   end
   ### APPLY SEED ###
   unless prefer :orm, 'mongoid'
-    ## MONGOID
+    ## ACTIVE_RECORD
     say_wizard "applying migrations and seeding the database"
     run 'bundle exec rake db:migrate'
     run 'bundle exec rake db:test:prepare'
   else
-    ## ACTIVE_RECORD
+    ## MONGOID
     say_wizard "dropping database, creating indexes and seeding the database"
     run 'bundle exec rake db:drop'
     run 'bundle exec rake db:mongoid:create_indexes'
