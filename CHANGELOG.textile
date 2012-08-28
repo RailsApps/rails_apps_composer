@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.3 unreleased
+h2. 2.2.3 August 27, 2012
 
 * fix 'setup', 'frontend', and 'controllers' recipes to allow CanCan authorization when OmniAuth authentication is selected
 
