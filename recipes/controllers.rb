@@ -8,7 +8,7 @@ after_bundler do
     copy_from_repo 'app/controllers/application_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
   end
   if prefer :authorization, 'cancan'
-    inject_into_file 'app/controllers/application_controller.rb', :before => 'end' do <<-RUBY
+    inject_into_file 'app/controllers/application_controller.rb', :before => "\nend" do <<-RUBY
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
@@ -39,6 +39,9 @@ RUBY
     filename = 'app/controllers/sessions_controller.rb'
     copy_from_repo filename, :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
     gsub_file filename, /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
+    if prefer :authorization, 'cancan'
+      inject_into_file filename, "    user.add_role :admin if User.count == 1 # make the first user an admin\n", :after => "session[:user_id] = user.id\n"
+    end
   end
   ### PROFILES_CONTROLLER ###
   copy_from_repo 'app/controllers/profiles_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'

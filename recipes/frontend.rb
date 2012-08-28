@@ -9,9 +9,17 @@ after_bundler do
   copy_from_repo 'app/views/layouts/_messages.html.erb'
   copy_from_repo 'app/views/layouts/_messages-bootstrap.html.erb', :prefs => 'bootstrap'
   copy_from_repo 'app/views/layouts/_navigation.html.erb'
-  copy_from_repo 'app/views/layouts/_navigation-devise.html.erb', :prefs => 'devise'
-  copy_from_repo 'app/views/layouts/_navigation-cancan.html.erb', :prefs => 'cancan'
-  copy_from_repo 'app/views/layouts/_navigation-omniauth.html.erb', :prefs => 'omniauth'
+  if prefer :authorization, 'cancan'
+    case prefs[:authentication]
+      when 'devise'
+        copy_from_repo 'app/views/layouts/_navigation-cancan.html.erb', :prefs => 'cancan'
+      when 'omniauth'
+        copy_from 'https://raw.github.com/RailsApps/rails-composer/master/files/app/views/layouts/_navigation-cancan-omniauth.html.erb', 'app/views/layouts/_navigation.html.erb'
+    end
+  else
+    copy_from_repo 'app/views/layouts/_navigation-devise.html.erb', :prefs => 'devise'
+    copy_from_repo 'app/views/layouts/_navigation-omniauth.html.erb', :prefs => 'omniauth'
+  end
   copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'  
   ## APPLICATION NAME
   application_layout_file = Dir['app/views/layouts/application.html.*'].first
