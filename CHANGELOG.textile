@@ -1,5 +1,13 @@
 h1. CHANGELOG
 
+h2. 2.2.4 August 29, 2012
+
+* improve 'setup' recipe to save diagnostics before anything can fail
+* improve 'setup' recipe to not offer "Twitter Bootstrap (Less)" to Windows users
+* improve 'extras' recipe to only ask Linux users about adding 'therubyracer' gem
+* fix 'setup' recipe for error introduced in version 2.2.3
+* update gem 'puma' from 1.6.1 to 1.6.2
+
 h2. 2.2.3 August 27, 2012
 
 * fix 'setup', 'frontend', and 'controllers' recipes to allow CanCan authorization when OmniAuth authentication is selected

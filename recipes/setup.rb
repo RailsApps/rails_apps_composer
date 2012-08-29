@@ -2,6 +2,8 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/setup.rb
 
 ## Ruby on Rails
+HOST_OS = RbConfig::CONFIG['host_os']
+say_wizard "Your operating system is #{HOST_OS}."
 say_wizard "You are using Ruby version #{RUBY_VERSION}."
 say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
 
@@ -62,8 +64,13 @@ if recipes.include? 'frontend'
   prefs[:frontend] = multiple_choice "Front-end framework?", [["None", "none"], ["Twitter Bootstrap", "bootstrap"], 
     ["Zurb Foundation", "foundation"], ["Skeleton", "skeleton"], ["Just normalize CSS for consistent styling", "normalize"]] unless prefs.has_key? :frontend
   if prefer :frontend, 'bootstrap'
-    prefs[:bootstrap] = multiple_choice "Twitter Bootstrap version?", [["Twitter Bootstrap (Less)", "less"],
-      ["Twitter Bootstrap (Sass)", "sass"]] unless prefs.has_key? :bootstrap
+    case HOST_OS
+      when /mswin|windows/i
+        prefs[:bootstrap] = multiple_choice "Twitter Bootstrap version?", [["Twitter Bootstrap (Sass)", "sass"]] unless prefs.has_key? :bootstrap
+      else
+        prefs[:bootstrap] = multiple_choice "Twitter Bootstrap version?", [["Twitter Bootstrap (Less)", "less"],
+          ["Twitter Bootstrap (Sass)", "sass"]] unless prefs.has_key? :bootstrap
+    end
   end
 end
 
@@ -116,6 +123,10 @@ if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.i
     prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"]] unless prefs.has_key? :starter_app
   end
 end
+
+# save diagnostics before anything can fail
+create_file "README", "RECIPES\n#{recipes.sort.inspect}\n"
+append_file "README", "PREFERENCES\n#{prefs.inspect}"
 
 __END__
 

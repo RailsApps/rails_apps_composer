@@ -10,14 +10,14 @@ insert_into_file 'Gemfile', "ruby '1.9.3'\n", :before => "gem 'rails', '3.2.6'" 
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
   gem 'thin', '>= 1.4.1' if prefer :dev_webserver, 'thin'
   gem 'unicorn', '>= 4.3.1' if prefer :dev_webserver, 'unicorn'
-  gem 'puma', '>= 1.6.1' if prefer :dev_webserver, 'puma'
+  gem 'puma', '>= 1.6.2' if prefer :dev_webserver, 'puma'
 else
   gem 'thin', '>= 1.4.1', :group => [:development, :test] if prefer :dev_webserver, 'thin'
   gem 'unicorn', '>= 4.3.1', :group => [:development, :test] if prefer :dev_webserver, 'unicorn'
-  gem 'puma', '>= 1.6.1', :group => [:development, :test] if prefer :dev_webserver, 'puma'
+  gem 'puma', '>= 1.6.2', :group => [:development, :test] if prefer :dev_webserver, 'puma'
   gem 'thin', '>= 1.4.1', :group => :production if prefer :prod_webserver, 'thin'
   gem 'unicorn', '>= 4.3.1', :group => :production if prefer :prod_webserver, 'unicorn'
-  gem 'puma', '>= 1.6.1', :group => :production if prefer :prod_webserver, 'puma'
+  gem 'puma', '>= 1.6.2', :group => :production if prefer :prod_webserver, 'puma'
 end
 
 ## Database Adapter

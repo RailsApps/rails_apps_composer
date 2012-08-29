@@ -94,7 +94,7 @@ RUBY
   end
   ## TURNIP
   if prefer :integration, 'turnip'
-    append_to_file '.rspec', '-r turnip/rspec'
+    append_file '.rspec', '-r turnip/rspec'
     inject_into_file 'spec/spec_helper.rb', "require 'turnip/capybara'\n", :after => "require 'rspec/rails'\n"
     create_file 'spec/acceptance/steps/.gitkeep'
   end

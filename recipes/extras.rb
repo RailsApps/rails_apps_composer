@@ -14,15 +14,16 @@ if prefs[:ban_spiders]
 end
 
 ## JSRUNTIME
-if config['jsruntime']
-  prefs[:jsruntime] = true
-end
-if prefs[:jsruntime]
-  say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
-  # maybe it was already added for bootstrap-less?
-  unless prefer :bootstrap, 'less'
-    gem 'therubyracer', '>= 0.10.2', :group => :assets, :platform => :ruby
-  end
+case RbConfig::CONFIG['host_os']
+  when /linux/i
+    prefs[:jsruntime] = yes_wizard? "Add 'therubyracer' JavaScript runtime (for Linux users without node.js)?" unless prefs.has_key? :jsruntime
+    if prefs[:jsruntime]
+      # was it already added for bootstrap-less?
+      unless prefer :bootstrap, 'less'
+        say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
+        gem 'therubyracer', '>= 0.10.2', :group => :assets, :platform => :ruby
+      end
+    end
 end
 
 ## RVMRC
@@ -112,9 +113,6 @@ config:
   - ban_spiders:
       type: boolean
       prompt: Set a robots.txt file to ban spiders?
-  - jsruntime:
-      type: boolean
-      prompt: Add 'therubyracer' JavaScript runtime (for Linux users without node.js)?
   - rvmrc:
       type: boolean
       prompt: Create a project-specific rvm gemset and .rvmrc?
