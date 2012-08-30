@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.5 August 29, 2012
+
+* fix 'frontend' recipe to remove application.css after twitter-bootstrap-rails creates it
+
 h2. 2.2.4 August 29, 2012
 
 * improve 'setup' recipe to save diagnostics before anything can fail

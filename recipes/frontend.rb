@@ -27,7 +27,6 @@ after_bundler do
   gsub_file application_layout_file, /App_Name/, "#{app_name.humanize.titleize}"
   gsub_file navigation_partial_file, /App_Name/, "#{app_name.humanize.titleize}"
   ### CSS ###
-  remove_file 'app/assets/stylesheets/application.css'
   copy_from_repo 'app/assets/stylesheets/application.css.scss'
   copy_from_repo 'app/assets/stylesheets/application-bootstrap.css.scss', :prefs => 'bootstrap'
   if prefer :bootstrap, 'less'
@@ -50,6 +49,7 @@ RUBY
   elsif prefer :frontend, 'normalize'
     copy_from 'https://raw.github.com/necolas/normalize.css/master/normalize.css', 'app/assets/stylesheets/normalize.css'
   end
+  remove_file 'app/assets/stylesheets/application.css'
   ### GIT ###
   git :add => '.' if prefer :git, true
   git :commit => "-aqm 'rails_apps_composer: front-end framework'" if prefer :git, true
