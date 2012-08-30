@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.6 August 30, 2012
+
+* fix 'prelaunch' recipe to correct application name in the routes.rb file
+
 h2. 2.2.5 August 29, 2012
 
 * fix 'frontend' recipe to remove application.css after twitter-bootstrap-rails creates it

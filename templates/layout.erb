@@ -83,6 +83,8 @@ redacted_prefs.delete(:templates)
 redacted_prefs.delete(:ban_spiders)
 redacted_prefs.delete(:jsruntime)
 redacted_prefs.delete(:rvmrc)
+redacted_prefs.delete(:prelaunch_branch)
+redacted_prefs.delete(:main_branch)
 
 if diagnostics_prefs.include? redacted_prefs
   diagnostics[:prefs] = 'success'
