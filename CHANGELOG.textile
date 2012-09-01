@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.7 unreleased
+
+* improve 'testing' recipe for better handling of RSpec 'spec/spec_helper.rb'
+
 h2. 2.2.6 August 30, 2012
 
 * fix 'prelaunch' recipe to correct application name in the routes.rb file
