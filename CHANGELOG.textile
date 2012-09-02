@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.7 unreleased
+h2. 2.2.7 September 1, 2012
 
 * improve 'testing' recipe for better handling of RSpec 'spec/spec_helper.rb'
 
