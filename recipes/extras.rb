@@ -34,16 +34,16 @@ if prefs[:rvmrc]
   say_wizard "recipe creating project-specific rvm gemset and .rvmrc"
   # using the rvm Ruby API, see:
   # http://blog.thefrontiergroup.com.au/2010/12/a-brief-introduction-to-the-rvm-ruby-api/
+  # https://rvm.io/integration/passenger
   if ENV['MY_RUBY_HOME'] && ENV['MY_RUBY_HOME'].include?('rvm')
     begin
-      rvm_path     = File.dirname(File.dirname(ENV['MY_RUBY_HOME']))
-      rvm_lib_path = File.join(rvm_path, 'lib')
+      gems_path = ENV['MY_RUBY_HOME'].split(/@/)[0].sub(/rubies/,'gems')
+      ENV['GEM_PATH'] = "#{gems_path}:#{gems_path}@global"
       require 'rvm'
+      RVM.use_from_path! File.dirname(File.dirname(__FILE__))
     rescue LoadError
-      raise "RVM ruby lib is currently unavailable."
+      raise "RVM gem is currently unavailable."
     end
-  else
-    raise "RVM ruby lib is currently unavailable."
   end
   say_wizard "creating RVM gemset '#{app_name}'"
   RVM.gemset_create app_name
