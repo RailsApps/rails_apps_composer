@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.9 September 10, 2012
+
+* fix 'extras' recipe to improve error reporting when creating a project-specific rvm gemset
+
 h2. 2.2.8 September 7, 2012
 
 * run 'bundle update' before everything to avoid "already activated" gem issues

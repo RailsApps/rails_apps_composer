@@ -130,8 +130,8 @@ after_bundler do
       gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
       gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
       gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
-    rescue StandardError
-      raise "unable to create a user for PostgreSQL"
+    rescue StandardError => e
+      raise "unable to create a user for PostgreSQL, reason: #{e}"
     end
   end
   if prefer :database, 'mysql'

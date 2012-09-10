@@ -51,8 +51,8 @@ if prefs[:rvmrc]
   say_wizard "switching to gemset '#{app_name}'"
   begin
     RVM.gemset_use! app_name
-  rescue StandardError
-    raise "rvm failure: unable to use gemset #{app_name}"
+  rescue StandardError => e
+    raise "rvm failure: unable to use gemset #{app_name}, reason: #{e}"
   end
   run "rvm gemset list"
   copy_from_repo '.rvmrc'
