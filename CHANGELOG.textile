@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.10 unreleased
+
+* fix 'extras' recipe to check for rvm gem version 1.11.3.5 or newer
+
 h2. 2.2.9 September 10, 2012
 
 * fix 'extras' recipe to improve error reporting when creating a project-specific rvm gemset
