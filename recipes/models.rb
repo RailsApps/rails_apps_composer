@@ -54,6 +54,7 @@ RUBY
   if prefer :authentication, 'omniauth'
     repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
     copy_from_repo 'config/initializers/omniauth.rb', :repo => repo
+    gsub_file 'config/initializers/omniauth.rb', /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
     generate 'model User name:string email:string provider:string uid:string' unless prefer :orm, 'mongoid'
     run 'bundle exec rake db:migrate' unless prefer :orm, 'mongoid' 
     copy_from_repo 'app/models/user.rb', :repo => repo  # copy the User model (Mongoid version)

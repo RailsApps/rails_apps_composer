@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.2.10 unreleased
 
 * use 'git add -A' instead of 'git add .' (and use '-qm' instead of '-aqm' for git commit)
+* fix 'models' recipe to set provider in 'config/initializers/omniauth.rb' (rails-composer issue 19)
 * fix 'models' recipe for security fix for OmniAuth (contributed by Bradley Grzesiak)
 * fix 'gems' and 'setup' recipes to correct use of google_oauth2 provider for OmniAuth (issue 117)
 * fix 'extras' recipe to check for rvm gem version 1.11.3.5 or newer
