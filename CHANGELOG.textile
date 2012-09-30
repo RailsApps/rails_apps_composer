@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.2.10 unreleased
 
+* fix 'models' recipe for security fix for OmniAuth (contributed by Bradley Grzesiak)
 * fix 'gems' and 'setup' recipes to correct use of google_oauth2 provider for OmniAuth (issue 117)
 * fix 'extras' recipe to check for rvm gem version 1.11.3.5 or newer
 
