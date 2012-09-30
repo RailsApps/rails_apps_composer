@@ -55,7 +55,7 @@ RUBY
     repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
     copy_from_repo 'config/initializers/omniauth.rb', :repo => repo
     generate 'model User name:string email:string provider:string uid:string' unless prefer :orm, 'mongoid'
-    run 'bundle exec rake db:migrate' unless prefer :orm, 'mongoid' 
+    run 'bundle exec rake db:migrate' unless prefer :orm, 'mongoid'
     copy_from_repo 'app/models/user.rb', :repo => repo  # copy the User model (Mongoid version)
     unless prefer :orm, 'mongoid'
       ## OMNIAUTH AND ACTIVE RECORD
@@ -65,6 +65,7 @@ RUBY
       gsub_file 'app/models/user.rb', /^\s*# run 'rake db:mongoid:create_indexes' to create indexes\n/, ''
       gsub_file 'app/models/user.rb', /^\s*index\(\{ email: 1 \}, \{ unique: true, background: true \}\)\n/, ''
     end
+    gsub_file 'app/models/user.rb', /^\s*attr_accessible.*:provider.*$/, '  attr_accessible :name, :email'
   end
   ### SUBDOMAINS ###
   copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
