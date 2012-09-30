@@ -89,7 +89,7 @@ gem 'omniauth-twitter' if prefer :omniauth_provider, 'twitter'
 gem 'omniauth-facebook' if prefer :omniauth_provider, 'facebook'
 gem 'omniauth-github' if prefer :omniauth_provider, 'github'
 gem 'omniauth-linkedin' if prefer :omniauth_provider, 'linkedin'
-gem 'omniauth-google-oauth2' if prefer :omniauth_provider, 'google-oauth2'
+gem 'omniauth-google-oauth2' if prefer :omniauth_provider, 'google_oauth2'
 gem 'omniauth-tumblr' if prefer :omniauth_provider, 'tumblr'
 
 ## Authorization 
