@@ -21,8 +21,8 @@ after_bundler do
   ### CORRECT APPLICATION NAME ###
   gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
   ### GIT ###
-  git :add => '.' if prefer :git, true
-  git :commit => "-aqm 'rails_apps_composer: routes'" if prefer :git, true
+  git :add => '-A' if prefer :git, true
+  git :commit => "-qm 'rails_apps_composer: routes'" if prefer :git, true
 end # after_bundler
 
 __END__

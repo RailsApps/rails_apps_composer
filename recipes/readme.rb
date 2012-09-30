@@ -71,8 +71,8 @@ after_everything do
   gsub_file "README.textile", /Authentication: None/, "Authentication: OmniAuth" if prefer :authentication, 'omniauth'
   gsub_file "README.textile", /Authorization: None/, "Authorization: CanCan" if prefer :authorization, 'cancan'
 
-  git :add => '.' if prefer :git, true
-  git :commit => "-aqm 'rails_apps_composer: add README files'" if prefer :git, true
+  git :add => '-A' if prefer :git, true
+  git :commit => "-qm 'rails_apps_composer: add README files'" if prefer :git, true
   
 end # after_everything
 

@@ -90,8 +90,8 @@ RUBY
     generate 'machinist:install'
   end
   ### GIT ###
-  git :add => '.' if prefer :git, true
-  git :commit => "-aqm 'rails_apps_composer: testing framework'" if prefer :git, true
+  git :add => '-A' if prefer :git, true
+  git :commit => "-qm 'rails_apps_composer: testing framework'" if prefer :git, true
 end # after_bundler
 
 after_everything do
@@ -148,8 +148,8 @@ after_everything do
       copy_from_repo 'spec/models/user_spec.rb', :repo => repo
     end
     ## GIT
-    git :add => '.' if prefer :git, true
-    git :commit => "-aqm 'rails_apps_composer: rspec files'" if prefer :git, true
+    git :add => '-A' if prefer :git, true
+    git :commit => "-qm 'rails_apps_composer: rspec files'" if prefer :git, true
   end
   ### CUCUMBER ###
   if prefer :integration, 'cucumber'
@@ -218,8 +218,8 @@ RUBY
       copy_from_repo 'features/support/paths.rb', :repo => repo
     end
     ## GIT
-    git :add => '.' if prefer :git, true
-    git :commit => "-aqm 'rails_apps_composer: cucumber files'" if prefer :git, true
+    git :add => '-A' if prefer :git, true
+    git :commit => "-qm 'rails_apps_composer: cucumber files'" if prefer :git, true
   end
 end # after_everything 
   

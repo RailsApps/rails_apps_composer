@@ -7,8 +7,8 @@ prefs[:git] = true unless prefs.has_key? :git
 if prefer :git, true
   copy_from 'https://raw.github.com/RailsApps/rails-composer/master/files/gitignore.txt', '.gitignore'
   git :init
-  git :add => '.'
-  git :commit => "-aqm 'rails_apps_composer: initial commit'"
+  git :add => '-A'
+  git :commit => "-qm 'rails_apps_composer: initial commit'"
 end
 
 __END__

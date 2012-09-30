@@ -58,8 +58,8 @@ FILE
   end
   run 'bundle exec rake db:seed'
   ### GIT ###
-  git :add => '.' if prefer :git, true
-  git :commit => "-aqm 'rails_apps_composer: set up database'" if prefer :git, true
+  git :add => '-A' if prefer :git, true
+  git :commit => "-qm 'rails_apps_composer: set up database'" if prefer :git, true
 end # after_everything
 
 __END__

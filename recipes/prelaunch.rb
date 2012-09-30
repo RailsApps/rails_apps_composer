@@ -21,8 +21,8 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     gsub_file 'config/routes.rb', /  #.*\n/, "\n"
     gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
     # GIT
-    git :add => '.' if prefer :git, true
-    git :commit => "-aqm 'rails_apps_composer: clean up starter app'" if prefer :git, true
+    git :add => '-A' if prefer :git, true
+    git :commit => "-qm 'rails_apps_composer: clean up starter app'" if prefer :git, true
 
     # >-------------------------------[ Create a git branch ]--------------------------------<
     if prefer :git, true
@@ -104,8 +104,8 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     copy_from_repo 'app/assets/stylesheets/application.css.scss', :repo => repo
     
     ### GIT ###
-    git :add => '.' if prefer :git, true
-    git :commit => "-aqm 'rails_apps_composer: prelaunch app'" if prefer :git, true
+    git :add => '-A' if prefer :git, true
+    git :commit => "-qm 'rails_apps_composer: prelaunch app'" if prefer :git, true
   end # after_bundler
 end # rails-prelaunch-signup
 

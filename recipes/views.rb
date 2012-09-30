@@ -24,8 +24,8 @@ after_bundler do
   ### PROFILES ###
   copy_from_repo 'app/views/profiles/show-subdomains_app.html.erb', :prefs => 'subdomains_app'
   ### GIT ###
-  git :add => '.' if prefer :git, true
-  git :commit => "-aqm 'rails_apps_composer: views'" if prefer :git, true
+  git :add => '-A' if prefer :git, true
+  git :commit => "-qm 'rails_apps_composer: views'" if prefer :git, true
 end # after_bundler
 
 __END__
