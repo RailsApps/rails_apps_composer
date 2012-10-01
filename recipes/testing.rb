@@ -8,14 +8,12 @@ after_bundler do
     say_wizard "recipe installing RSpec"
     generate 'rspec:install'
     copy_from_repo 'spec/spec_helper.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
-    unless prefer :email, 'none'
-      generate 'email_spec:steps'
-      inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
-      inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
+    generate 'email_spec:steps'
+    inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
+    inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
 RUBY
-      end
     end
     run 'rm -rf test/' # Removing test folder (not needed for RSpec)
     inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
@@ -64,11 +62,9 @@ RUBY
     generate "cucumber:install --capybara#{' --rspec' if prefer :unit_test, 'rspec'}#{' -D' if prefer :orm, 'mongoid'}"
     # make it easy to run Cucumber for single features without adding "--require features" to the command line
     gsub_file 'config/cucumber.yml', /std_opts = "/, 'std_opts = "-r features/support/ -r features/step_definitions '
-    unless prefer :email, 'none'
-      create_file 'features/support/email_spec.rb' do <<-RUBY
+    create_file 'features/support/email_spec.rb' do <<-RUBY
 require 'email_spec/cucumber'
-RUBY
-      end      
+RUBY  
     end
     ## CUCUMBER AND MONGOID
     if prefer :orm, 'mongoid'

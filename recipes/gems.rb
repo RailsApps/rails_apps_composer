@@ -54,7 +54,7 @@ if prefer :unit_test, 'rspec'
     # include RSpec matchers from the mongoid-rspec gem
     gem 'mongoid-rspec', '>= 1.4.6', :group => :test
   end
-  gem 'email_spec', '>= 1.2.1', :group => :test unless prefer :email, 'none'
+  gem 'email_spec', '>= 1.2.1', :group => :test
 end
 if prefer :integration, 'cucumber'
   gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
