@@ -124,17 +124,31 @@ after_bundler do
   remove_file 'config/database.yml' if prefer :orm, 'mongoid'
   if prefer :database, 'postgresql'
     begin
-      say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
-      run "createuser #{app_name}" if prefer :database, 'postgresql'
-      gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
-      gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
-      gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
-      gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
+      pg_username = ask_wizard("Username for PostgreSQL? (leave blank to use the app name)")
+      if pg_username.blank?
+        say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
+        run "createuser #{app_name}" if prefer :database, 'postgresql'
+        gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
+      else
+        gsub_file "config/database.yml", /username: .*/, "username: #{pg_username}"
+        pg_password = ask_wizard("Password for PostgreSQL user #{pg_username}?")
+        gsub_file "config/database.yml", /password:/, "password: #{pg_password}"
+        say_wizard "set config/database.yml for username/password #{pg_username}/#{pg_password}"
+      end
     rescue StandardError => e
       raise "unable to create a user for PostgreSQL, reason: #{e}"
     end
   end
   if prefer :database, 'mysql'
+    mysql_username = ask_wizard("Username for MySQL? (leave blank to use the app name)")
+    if mysql_username.blank?
+      gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
+    else
+      gsub_file "config/database.yml", /username: .*/, "username: #{mysql_username}"
+      mysql_password = ask_wizard("Password for MySQL user #{mysql_username}?")
+      gsub_file "config/database.yml", /password:/, "password: #{mysql_password}"
+      say_wizard "set config/database.yml for username/password #{mysql_username}/#{mysql_password}"
+    end
     gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
     gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
     gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
