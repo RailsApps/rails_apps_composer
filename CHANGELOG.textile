@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.10 unreleased
+h2. 2.2.10 September 30, 2012
 
 * use 'git add -A' instead of 'git add .' (and use '-qm' instead of '-aqm' for git commit)
 * add 'email_spec' when RSpec is selected (even when email is 'none')
