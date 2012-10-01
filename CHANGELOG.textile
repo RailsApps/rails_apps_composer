@@ -9,6 +9,13 @@ h2. 2.2.10 unreleased
 * fix 'models' recipe for security fix for OmniAuth (contributed by Bradley Grzesiak)
 * fix 'gems' and 'setup' recipes to correct use of google_oauth2 provider for OmniAuth (issue 117)
 * fix 'extras' recipe to check for rvm gem version 1.11.3.5 or newer
+* update gem 'simple_form' from 2.0.2 to 2.0.3
+* update gem 'slim' from 1.3.0 tp 1.3.2
+* update gem 'thin' from 1.4.1 tp 1.5.0
+* update gem 'jquery-datatables-rails from 1.11.0 to 1.11.1
+* update gem 'zurb-foundation' from 3.0.9 to 3.1.1
+* update gem 'mongoid' from 3.0.5 to 3.0.6
+* update gem 'factory_girl_rails' from 4.0.0 to 4.1.0
 
 h2. 2.2.9 September 10, 2012
 

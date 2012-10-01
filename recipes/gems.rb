@@ -8,21 +8,21 @@ insert_into_file 'Gemfile', "ruby '1.9.3'\n", :before => "gem 'rails', '3.2.6'" 
 
 ## Web Server
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
-  gem 'thin', '>= 1.4.1' if prefer :dev_webserver, 'thin'
+  gem 'thin', '>= 1.5.0' if prefer :dev_webserver, 'thin'
   gem 'unicorn', '>= 4.3.1' if prefer :dev_webserver, 'unicorn'
   gem 'puma', '>= 1.6.3' if prefer :dev_webserver, 'puma'
 else
-  gem 'thin', '>= 1.4.1', :group => [:development, :test] if prefer :dev_webserver, 'thin'
+  gem 'thin', '>= 1.5.0', :group => [:development, :test] if prefer :dev_webserver, 'thin'
   gem 'unicorn', '>= 4.3.1', :group => [:development, :test] if prefer :dev_webserver, 'unicorn'
   gem 'puma', '>= 1.6.3', :group => [:development, :test] if prefer :dev_webserver, 'puma'
-  gem 'thin', '>= 1.4.1', :group => :production if prefer :prod_webserver, 'thin'
+  gem 'thin', '>= 1.5.0', :group => :production if prefer :prod_webserver, 'thin'
   gem 'unicorn', '>= 4.3.1', :group => :production if prefer :prod_webserver, 'unicorn'
   gem 'puma', '>= 1.6.3', :group => :production if prefer :prod_webserver, 'puma'
 end
 
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
-gem 'mongoid', '>= 3.0.5' if prefer :orm, 'mongoid'
+gem 'mongoid', '>= 3.0.6' if prefer :orm, 'mongoid'
 gem 'pg', '>= 0.14.1' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
 
@@ -35,7 +35,7 @@ if prefer :templates, 'haml'
   gem 'ruby_parser', '>= 2.3.1', :group => :development
 end
 if prefer :templates, 'slim'
-  gem 'slim', '>= 1.3.0'
+  gem 'slim', '>= 1.3.2'
   gem 'haml2slim', '>= 0.4.6', :group => :development
   # Haml is needed for conversion of HTML to Slim
   gem 'haml', '>= 3.1.6', :group => :development
@@ -62,13 +62,13 @@ if prefer :integration, 'cucumber'
   gem 'launchy', '>= 2.1.2', :group => :test
 end
 gem 'turnip', '>= 1.0.0', :group => :test if prefer :integration, 'turnip'
-gem 'factory_girl_rails', '>= 4.0.0', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
+gem 'factory_girl_rails', '>= 4.1.0', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
 gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
 gem 'bootstrap-sass', '>= 2.1.0.0' if prefer :bootstrap, 'sass'
 gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundation'
-gem 'zurb-foundation', '>= 3.0.9', :group => :assets if prefer :frontend, 'foundation'
+gem 'zurb-foundation', '>= 3.1.1', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   gem 'twitter-bootstrap-rails', '>= 2.1.3', :group => :assets
   # install gem 'therubyracer' to use Less
@@ -99,12 +99,12 @@ if prefer :authorization, 'cancan'
 end
 
 ## Form Builder
-gem 'simple_form', '>= 2.0.2' if prefer :form_builder, 'simple_form'
+gem 'simple_form', '>= 2.0.3' if prefer :form_builder, 'simple_form'
 
 ## Signup App 
 if prefer :railsapps, 'rails-prelaunch-signup'
   gem 'google_visualr', '>= 2.1.2'
-  gem 'jquery-datatables-rails', '>= 1.11.0'
+  gem 'jquery-datatables-rails', '>= 1.11.1'
 end
 
 ## Gems from a defaults file or added interactively
