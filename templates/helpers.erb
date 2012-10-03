@@ -31,9 +31,9 @@ def no_wizard?(question); !yes_wizard?(question) end
 def multiple_choice(question, choices)
   say_custom('question', question)
   values = {}
-  choices.each_with_index do |choice,i| 
+  choices.each_with_index do |choice,i|
     values[(i + 1).to_s] = choice[1]
-    say_custom (i + 1).to_s + ')', choice[0]
+    say_custom( (i + 1).to_s + ')', choice[0] )
   end
   answer = ask_wizard("Enter your selection:") while !values.keys.include?(answer)
   values[answer]
