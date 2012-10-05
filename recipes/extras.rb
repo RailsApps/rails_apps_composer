@@ -92,6 +92,9 @@ end
 
 ## GITHUB
 if config['github']
+  prefs[:github] = true
+end
+if prefs[:github]
   gem 'hub', '>= 1.10.2', :require => nil, :group => [:development]
   after_everything do
     say_wizard "recipe creating GitHub repository"
