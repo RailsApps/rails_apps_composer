@@ -8,7 +8,7 @@ module RailsWizard
     method_option :recipes, :type => :array, :aliases => "-r"
     method_option :defaults, :type => :string, :aliases => "-d"
     method_option :recipe_dirs, :type => :array, :aliases => "-l"
-    method_option :interactive, :type => :boolean, :aliases => "-i", :default => true
+    method_option :quiet, :type => :boolean, :aliases => "-q", :default => false
     def new(name)
       add_recipes
       recipes, defaults = load_defaults
@@ -22,7 +22,7 @@ module RailsWizard
     method_option :recipes, :type => :array, :aliases => "-r"
     method_option :defaults, :type => :string, :aliases => "-d"
     method_option :recipe_dirs, :type => :array, :aliases => "-l"
-    method_option :interactive, :type => :boolean, :aliases => "-i", :default => true
+    method_option :quiet, :type => :boolean, :aliases => "-q", :default => false
     def template(template_name)
       add_recipes
       recipes, defaults = load_defaults
@@ -85,7 +85,7 @@ module RailsWizard
       def ask_for_recipes(recipes)
         if options[:recipes]
           return recipes + options[:recipes]
-        elsif !options[:interactive]
+        elsif options[:quiet]
           return recipes
         end
         while recipe = ask("#{print_recipes(recipes)}#{bold}Which recipe would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
@@ -105,7 +105,7 @@ module RailsWizard
 
       def ask_for_gems(defaults)
         gems = defaults["gems"] || []
-        if options[:interactive]
+        unless options[:quiet]
           while getgem = ask("#{bold}What gem would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
             if getgem == ''
               break

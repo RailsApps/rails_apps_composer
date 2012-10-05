@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.2.11 October 5, 2012
+
+* add optional 'quiet' flag to suppress prompts (contributed by Michael Johnston)
+* remove grouped expression warning in ruby 1.9.3 (contributed by Michael Johnston)
+
 h2. 2.2.10 September 30, 2012
 
 * use 'git add -A' instead of 'git add .' (and use '-qm' instead of '-aqm' for git commit)
