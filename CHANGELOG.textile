@@ -5,7 +5,7 @@ h2. 2.2.11 October 5, 2012
 * add optional 'quiet' flag to suppress prompts (contributed by Michael Johnston)
 * remove grouped expression warning in ruby 1.9.3 (contributed by Michael Johnston)
 * improve 'extras' recipe to allow 'github' preference
-* use doublequotes instead of singles for "git commit" to accommodate Windows (issue 123)
+* use doublequotes instead of singles for 'git commit' to accommodate Windows (issue 123)
 
 h2. 2.2.10 September 30, 2012
 

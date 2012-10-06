@@ -32,28 +32,7 @@ h2. What's New
 
 See the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob/master/CHANGELOG.textile for details.
 
-h3. Version 2.1
-
-* optional local recipes
-
-h3. Version 2.0
-
-* the "Guide":http://railsapps.github.com/tutorial-rails-apps-composer.html provides complete documentation
-* diagnostics compare your selected recipes and preferences to known working combinations
-* the generated application README.textile file provides a diagnostics report
-* an improved "quiz" sets preferences
-* a new preferences hash makes preferences available to all recipes
-* recipes and preferences can be set in a defaults file
-* gems can be added at a prompt or from a defaults file (no need to write a recipe for many gems)
-* a new 'copy_from_repo' method adds powerful downloading of files to any recipe
-* downloading of files from the example app repos reduces the complexity of recipes
-* the 'copy_from_repo' method converts ERB files to Haml or Slim 
-* recipes have been reorganized for easier maintenance
-* recipes are based on functionality (e.g., authentication, testing) instead of gems (Devise, RSpec)
-* a prompt sets -T or -O args when generating an application
-* the 'extras' recipe creates a project-specific gemset and .rvmrc file
-
-Most important, many unsupported or outdated recipes have been removed. If your favorite recipe is missing, please update it and test it with version 2.0, then submit a pull request. I'm happy to add new recipes.
+If your favorite recipe is missing, please fork the repo, add the recipe and test it, then submit a pull request. I'm happy to add new recipes.
 
 h2. Who This Is For
 
@@ -196,6 +175,8 @@ Choose the _core_ recipe if you are not sure which recipes to select.
 
 You can specify any gem. Any string you enter will be added as a gem in the starter app Gemfile.
 
+If you want to skip the prompts asking which recipe or gem you'd like to add, use the "quiet flag" parameter on the command line by adding @-q@.
+
 h3. Generate an Application from a List of Recipes
 
 Provide a list of recipes using the @-r@ flag. In this example, the _core_ recipe selects all available core recipes:
@@ -211,7 +192,7 @@ Generating basic application, using:
 "rails new myapp -m <temp_file>"
 </pre>
 
-The program will prompt you for your preferences before generating an application.
+The program will prompt you for your preferences before generating an application (unless you set the "quiet flag" @-q@).
 
 h3. Generate an Application from Defaults
 
@@ -222,6 +203,12 @@ $ rails_apps_composer new myapp -d my_defaults.yaml
 </pre>
 
 Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file.
+
+Use the "quiet flag" @-q@ if you want to skip all prompts:
+
+<pre>
+$ rails_apps_composer new myapp -q -d my_defaults.yaml
+</pre>
 
 h3. Generate an Application Template Interactively
 
@@ -262,7 +249,7 @@ Generating and saving application template...
 Done.
 </pre>
 
-The command with the @template@ argument followed by a filename and a list of recipes generates an application template.
+The command with the @template@ argument followed by a filename and a list of recipes generates an application template. Use the "quiet flag" @-q@ if you want to skip all prompts.
 
 h3. Generate an Application Template from Defaults
 
@@ -272,7 +259,7 @@ Generate an application template using a defaults file and the @-d@ flag:
 $ rails_apps_composer template ~/Desktop/template.rb -d my_defaults.yaml
 </pre>
 
-Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file.
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file. Use the "quiet flag" @-q@ if you want to skip all prompts.
 
 h3. Generate an Application from a Template
 
