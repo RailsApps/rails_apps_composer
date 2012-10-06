@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.12 unreleased
+
+* improve 'extras' recipe to add 'quiet_assets' option 
+
 h2. 2.2.11 October 5, 2012
 
 * add optional 'quiet' flag to suppress prompts (contributed by Michael Johnston)
