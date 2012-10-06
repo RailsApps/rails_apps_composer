@@ -56,7 +56,7 @@ if recipes.include? 'testing'
   prefs[:unit_test] = multiple_choice "Unit testing?", [["Test::Unit", "test_unit"], ["RSpec", "rspec"]] unless prefs.has_key? :unit_test
   prefs[:integration] = multiple_choice "Integration testing?", [["None", "none"], ["RSpec with Capybara", "capybara"], 
     ["Cucumber with Capybara", "cucumber"], ["Turnip with Capybara", "turnip"]] unless prefs.has_key? :integration
-  prefs[:fixtures] = multiple_choice "Fixture replacement?", [["None","none"], ["Factory Girl","factory_girl"], ["Machinist","machinist"]] unless prefs.has_key? :fixtures
+  prefs[:fixtures] = multiple_choice "Fixture replacement?", [["None","none"], ["Factory Girl","factory_girl"], ["Machinist","machinist"], ["Fabrication","fabrication"]] unless prefs.has_key? :fixtures
 end
 
 ## Front-end Framework
