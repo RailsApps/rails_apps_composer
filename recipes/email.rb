@@ -88,7 +88,7 @@ TEXT
     end
     ### GIT
     git :add => '-A' if prefer :git, true
-    git :commit => "-qm 'rails_apps_composer: set email accounts'" if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: set email accounts"' if prefer :git, true
 end # after_bundler
 
 __END__

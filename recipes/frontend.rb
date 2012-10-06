@@ -52,7 +52,7 @@ RUBY
   remove_file 'app/assets/stylesheets/application.css'
   ### GIT ###
   git :add => '-A' if prefer :git, true
-  git :commit => "-qm 'rails_apps_composer: front-end framework'" if prefer :git, true
+  git :commit => '-qm "rails_apps_composer: front-end framework"' if prefer :git, true
 end # after_bundler
 
 __END__

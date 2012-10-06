@@ -8,7 +8,7 @@ if prefer :git, true
   copy_from 'https://raw.github.com/RailsApps/rails-composer/master/files/gitignore.txt', '.gitignore'
   git :init
   git :add => '-A'
-  git :commit => "-qm 'rails_apps_composer: initial commit'"
+  git :commit => '-qm "rails_apps_composer: initial commit"'
 end
 
 __END__

@@ -87,7 +87,7 @@ after_everything do
   gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
   # GIT
   git :add => '-A' if prefer :git, true
-  git :commit => "-qm 'rails_apps_composer: extras'" if prefer :git, true
+  ggit :commit => '-qm "rails_apps_composer: extras"' if prefer :git, true
 end
 
 ## GITHUB

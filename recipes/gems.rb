@@ -114,7 +114,7 @@ end
 
 ## Git
 git :add => '-A' if prefer :git, true
-git :commit => "-qm 'rails_apps_composer: Gemfile'" if prefer :git, true
+git :commit => '-qm "rails_apps_composer: Gemfile"' if prefer :git, true
 
 ### CREATE DATABASE ###
 after_bundler do
@@ -166,7 +166,7 @@ after_bundler do
   run 'bundle exec rake db:create' if prefer :orm, 'mongoid'
   ## Git
   git :add => '-A' if prefer :git, true
-  git :commit => "-qm 'rails_apps_composer: create database'" if prefer :git, true
+  git :commit => '-qm "rails_apps_composer: create database"' if prefer :git, true
 end # after_bundler
 
 ### GENERATORS ###
@@ -185,7 +185,7 @@ after_bundler do
   end
   ## Git
   git :add => '-A' if prefer :git, true
-  git :commit => "-qm 'rails_apps_composer: generators'" if prefer :git, true
+  git :commit => '-qm "rails_apps_composer: generators"' if prefer :git, true
 end # after_bundler
 
 __END__

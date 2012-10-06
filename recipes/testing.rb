@@ -87,7 +87,7 @@ RUBY
   end
   ### GIT ###
   git :add => '-A' if prefer :git, true
-  git :commit => "-qm 'rails_apps_composer: testing framework'" if prefer :git, true
+  git :commit => '-qm "rails_apps_composer: testing framework"' if prefer :git, true
 end # after_bundler
 
 after_everything do
@@ -145,7 +145,7 @@ after_everything do
     end
     ## GIT
     git :add => '-A' if prefer :git, true
-    git :commit => "-qm 'rails_apps_composer: rspec files'" if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: rspec files"' if prefer :git, true
   end
   ### CUCUMBER ###
   if prefer :integration, 'cucumber'
@@ -215,7 +215,7 @@ RUBY
     end
     ## GIT
     git :add => '-A' if prefer :git, true
-    git :commit => "-qm 'rails_apps_composer: cucumber files'" if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: cucumber files"' if prefer :git, true
   end
 end # after_everything 
   
