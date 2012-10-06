@@ -138,6 +138,9 @@ after_bundler do
     rescue StandardError => e
       raise "unable to create a user for PostgreSQL, reason: #{e}"
     end
+    gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
+    gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
+    gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
   end
   if prefer :database, 'mysql'
     mysql_username = ask_wizard("Username for MySQL? (leave blank to use the app name)")
