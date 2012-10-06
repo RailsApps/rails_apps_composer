@@ -63,6 +63,7 @@ if prefer :integration, 'cucumber'
 end
 gem 'turnip', '>= 1.0.0', :group => :test if prefer :integration, 'turnip'
 gem 'factory_girl_rails', '>= 4.1.0', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
+gem 'fabrication', '>= 2.3.0', :group => [:development, :test] if prefer :fixtures, 'fabrication'
 gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
