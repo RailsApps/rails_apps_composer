@@ -321,6 +321,41 @@ Preferences:
 
 Please include the diagnostics report when you create an issue on GitHub.
 
+h2. Troubleshooting
+
+Problems? You should review the article "Installing Rails":http://railsapps.github.com/installing-rails.html to make sure you've updated all the components that are required to run Rails successfully.
+
+h4. Problems with "Could not be loaded... You have already activated..."
+
+If you get an error like this:
+
+<pre>
+Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+    composer  Running 'after bundler' callbacks.
+The template [...] could not be loaded.
+Error: You have already activated ..., but your Gemfile requires .... 
+Using bundle exec may solve this.
+</pre>
+
+It's due to conflicting gem versions. See the article "Rails Error: “You have already activated (…)”":http://railsapps.github.com/rails-error-you-have-already-activated.html.
+
+h4. Problems with "Certificate Verify Failed"
+
+Are you getting an error "OpenSSL certificate verify failed" when you try to generate a new Rails app from an application template? See suggestions to resolve the error "Certificate Verify Failed":http://railsapps.github.com/openssl-certificate-verify-failed.html.
+
+h4. Problems with "Segmentation Fault"
+
+If you get a "segfault" when you try @rails new@, try removing and reinstalling rvm.
+
+h2. Application Template Default
+
+The @rails new@ command creates a new Rails application. If you want to use an application template for every Rails application you build, you can set options for the @rails new@ command in a *.railsrc* file in your home directory. Here's how to set up a *.railsrc* file to use the Rails Composer template when you create a new Rails application:
+
+<pre>
+# ~/.railsrc
+-m https://raw.github.com/RailsApps/rails-composer/master/composer.rb
+</pre>
+
 h2. Hacking the Gem
 
 See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html to learn how to customize the gem either for your own use or to share with others.
