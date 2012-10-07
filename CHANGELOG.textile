@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.12 unreleased
+h2. 2.2.12 October 6, 2012
 
 * add MiniTest to testing options
 * add 'fabrication' gem to fixtures options (contributed by Taylor Mock)
