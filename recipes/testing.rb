@@ -9,7 +9,7 @@ after_bundler do
 
     config.generators do |g|
       #{"g.test_framework :test_unit, fixture_replacement: :fabrication" if prefer :fixtures, 'fabrication'}
-      #{"g.fixture_replacement :fabrication, dir: "test/fabricators" if prefer :fixtures, 'fabrication'}
+      #{"g.fixture_replacement :fabrication, dir: 'test/fabricators'" if prefer :fixtures, 'fabrication'}
     end
 
 RUBY
@@ -21,7 +21,7 @@ RUBY
 
     config.generators do |g|
       #{"g.test_framework :mini_test, fixture_replacement: :fabrication" if prefer :fixtures, 'fabrication'}
-      #{"g.fixture_replacement :fabrication, dir: "test/fabricators" if prefer :fixtures, 'fabrication'}
+      #{"g.fixture_replacement :fabrication, dir: 'test/fabricators'" if prefer :fixtures, 'fabrication'}
     end
 
 RUBY
