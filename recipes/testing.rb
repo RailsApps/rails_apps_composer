@@ -15,18 +15,6 @@ after_bundler do
 RUBY
     end  
   end
-  ### MINITEST ###
-  if prefer :unit_test, 'minitest'
-    inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
-
-    config.generators do |g|
-      #{"g.test_framework :mini_test, fixture_replacement: :fabrication" if prefer :fixtures, 'fabrication'}
-      #{"g.fixture_replacement :fabrication, dir: 'test/fabricators'" if prefer :fixtures, 'fabrication'}
-    end
-
-RUBY
-    end  
-  end  
   ### RSPEC ###
   if prefer :unit_test, 'rspec'
     say_wizard "recipe installing RSpec"
