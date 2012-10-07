@@ -3,6 +3,30 @@
 
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
+  ### TEST/UNIT ###
+  if prefer :unit_test, 'test_unit'
+    inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
+
+    config.generators do |g|
+      #{"g.test_framework :test_unit, fixture_replacement: :fabrication" if prefer :fixtures, 'fabrication'}
+      #{"g.fixture_replacement :fabrication, dir: "test/fabricators" if prefer :fixtures, 'fabrication'}
+    end
+
+RUBY
+    end  
+  end
+  ### MINITEST ###
+  if prefer :unit_test, 'minitest'
+    inject_into_file 'config/application.rb', :after => "Rails::Application\n" do <<-RUBY
+
+    config.generators do |g|
+      #{"g.test_framework :mini_test, fixture_replacement: :fabrication" if prefer :fixtures, 'fabrication'}
+      #{"g.fixture_replacement :fabrication, dir: "test/fabricators" if prefer :fixtures, 'fabrication'}
+    end
+
+RUBY
+    end  
+  end  
   ### RSPEC ###
   if prefer :unit_test, 'rspec'
     say_wizard "recipe installing RSpec"
@@ -20,9 +44,13 @@ RUBY
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
+      #{"g.test_framework :rspec" if prefer :fixtures, 'none'}
+      #{"g.test_framework :rspec, fixture: true" unless prefer :fixtures, 'none'}
+      #{"g.fixture_replacement :factory_girl" if prefer :fixtures, 'factory_girl'}
+      #{"g.fixture_replacement :machinist" if prefer :fixtures, 'machinist'}
+      #{"g.fixture_replacement :fabrication" if prefer :fixtures, 'fabrication'}
       g.view_specs false
       g.helper_specs false
-      #{"g.fixture_replacement :machinist" if prefer :fixtures, 'machinist'}
     end
 
 RUBY
@@ -73,6 +101,7 @@ RUBY
         "\n  DatabaseCleaner.orm = 'mongoid'"
       end
     end
+    generate 'fabrication:cucumber_steps' if prefer :fixtures, 'fabrication'
   end
   ## TURNIP
   if prefer :integration, 'turnip'
