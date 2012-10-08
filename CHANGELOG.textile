@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.2.13 unreleased
+
+* improve 'views' recipes so Devise forms use SimpleForm when selected
+* improve 'railsapps' recipes to use 'quiet_assets'
+
 h2. 2.2.12 October 6, 2012
 
 * add MiniTest to testing options

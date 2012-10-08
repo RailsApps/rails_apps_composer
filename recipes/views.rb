@@ -4,9 +4,17 @@
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### DEVISE ###
-  copy_from_repo 'app/views/devise/shared/_links.html.erb' if prefer :authentication, 'devise'
-  copy_from_repo 'app/views/devise/registrations/edit.html.erb' if prefer :authentication, 'devise'
-  copy_from_repo 'app/views/devise/registrations/new.html.erb' if prefer :authentication, 'devise'
+  if prefer :authentication, 'devise'
+    copy_from_repo 'app/views/devise/shared/_links.html.erb'
+    unless prefer :form_builder, 'simple_form'
+      copy_from_repo 'app/views/devise/registrations/edit.html.erb'
+      copy_from_repo 'app/views/devise/registrations/new.html.erb'
+    else
+      copy_from_repo 'app/views/devise/registrations/edit-simple_form.html.erb', :prefs => 'simple_form'
+      copy_from_repo 'app/views/devise/registrations/new-simple_form.html.erb', :prefs => 'simple_form'
+      copy_from_repo 'app/views/devise/sessions/new-simple_form.html.erb', :prefs => 'simple_form'
+    end
+  end
   ### HOME ###
   copy_from_repo 'app/views/home/index.html.erb' if prefer :starter_app, 'users_app'
   copy_from_repo 'app/views/home/index.html.erb' if prefer :starter_app, 'admin_app'
