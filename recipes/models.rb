@@ -72,8 +72,11 @@ RUBY
   ### AUTHORIZATION ###
   if prefer :authorization, 'cancan'
     generate 'cancan:ability'
-    if prefer :starter_app, 'admin_app' # Limit access to the users#index page
+    if prefer :starter_app, 'admin_app' 
+      # Limit access to the users#index page
       copy_from_repo 'app/models/ability.rb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
+      # allow an admin to update roles
+      insert_into_file 'app/models/user.rb', "  attr_accessible :role_ids, :as => :admin\n", :before => "  attr_accessible"
     end
     unless prefer :orm, 'mongoid'
       generate 'rolify:role Role User'

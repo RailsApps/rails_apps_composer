@@ -24,17 +24,22 @@ RUBY
     gsub_file 'app/controllers/home_controller.rb', /def index/, "def index\n    @users = User.all"
   end
   ### USERS_CONTROLLER ###
-  if ['users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
-    if prefer :authentication, 'devise'
-      copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
-    elsif prefer :authentication, 'omniauth'
-      copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-    end
-    if prefer :authorization, 'cancan'
-      inject_into_file 'app/controllers/users_controller.rb', "    authorize! :index, @user, :message => 'Not authorized as an administrator.'\n", :after => "def index\n"
-    end
+  case prefs[:starter_app]
+    when 'users_app'
+      if prefer :authentication, 'devise'
+        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
+      elsif prefer :authentication, 'omniauth'
+        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+      end
+    when 'admin_app'
+      if prefer :authentication, 'devise'
+        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
+      elsif prefer :authentication, 'omniauth'
+        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+      end
+    when 'subdomains_app'
+      copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/'
   end
-  gsub_file 'app/controllers/users_controller.rb', /before_filter :authenticate_user!/, '' if prefer :starter_app, 'subdomains_app'
   ### SESSIONS_CONTROLLER ###
   if prefer :authentication, 'omniauth'
     filename = 'app/controllers/sessions_controller.rb'

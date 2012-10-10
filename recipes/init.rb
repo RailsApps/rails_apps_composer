@@ -5,6 +5,17 @@ after_everything do
   say_wizard "recipe running after everything"
   ### PREPARE SEED ###
   if prefer :authentication, 'devise'
+    if prefer :authorization, 'cancan'
+      append_file 'db/seeds.rb' do <<-FILE
+puts 'CREATING ROLES'
+Role.create([
+  { :name => 'admin' }, 
+  { :name => 'user' }, 
+  { :name => 'VIP' }
+], :without_protection => true)
+FILE
+      end
+    end    
     if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
       ## DEVISE-CONFIRMABLE
       append_file 'db/seeds.rb' do <<-FILE
@@ -35,6 +46,7 @@ FILE
     if prefer :authorization, 'cancan'
       append_file 'db/seeds.rb' do <<-FILE
 user.add_role :admin
+user2.add_role :VIP
 FILE
       end
     end

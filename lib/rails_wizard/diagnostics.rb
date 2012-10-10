@@ -28,15 +28,17 @@ module RailsWizard
     # :dev_webserver
     # :prod_webserver
     # :templates
+    # :quiet_assets
     # :ban_spiders
     # :jsruntime
     # :rvmrc
+    # :github
     # :prelaunch_branch
     # :main_branch
     
     @@prefs = []
     @@prefs << {:railsapps=>"rails-prelaunch-signup", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"mandrill", :authentication=>"devise", :devise_modules=>"confirmable", :authorization=>"cancan", :starter_app=>"admin_app", :form_builder=>"simple_form"}
-    @@prefs << {:railsapps=>"rails3-bootstrap-devise-cancan", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"gmail", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :starter_app=>"admin_app", :form_builder=>"none"}
+    @@prefs << {:railsapps=>"rails3-bootstrap-devise-cancan", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"gmail", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :starter_app=>"admin_app", :form_builder=>"simple_form"}
     @@prefs << {:railsapps=>"rails3-devise-rspec-cucumber", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"none", :email=>"gmail", :authentication=>"devise", :devise_modules=>"default", :authorization=>"none", :starter_app=>"users_app", :form_builder=>"none"}
     @@prefs << {:railsapps=>"rails3-mongoid-devise", :database=>'mongodb', :orm=>'mongoid', :templates=>'erb', :unit_test=>'rspec', :integration=>'cucumber', :fixtures=>'factory_girl', :frontend=>'none', :email=>'gmail', :authentication=>'devise', :devise_modules=>'default', :authorization=>'none', :starter_app=>'users_app', :form_builder=>'none'}
     @@prefs << {:railsapps=>"rails3-mongoid-omniauth", :database=>'mongodb', :orm=>'mongoid', :templates=>'erb', :unit_test=>'rspec', :integration=>'cucumber', :fixtures=>'factory_girl', :frontend=>'none', :email=>'none', :authentication=>'omniauth', :omniauth_provider=>'twitter', :authorization=>'none', :starter_app=>'users_app', :form_builder=>'none'}
