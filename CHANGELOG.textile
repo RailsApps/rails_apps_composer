@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.13 unreleased
+h2. 2.2.13 October 10, 2012
 
 * add 'change roles' and 'delete user' features to admin app
 * improve 'views' recipes so Devise forms use SimpleForm when selected
