@@ -5,7 +5,7 @@ after_everything do
   say_wizard "recipe running after everything"
   ### PREPARE SEED ###
   if prefer :authentication, 'devise'
-    if prefer :authorization, 'cancan'
+    if (prefer :authorization, 'cancan') && !(prefer :railsapps, 'rails-prelaunch-signup')
       append_file 'db/seeds.rb' do <<-FILE
 puts 'CREATING ROLES'
 Role.create([
@@ -43,13 +43,19 @@ FILE
       gsub_file 'db/seeds.rb', /First User/, 'user1'
       gsub_file 'db/seeds.rb', /Second User/, 'user2'
     end
-    if prefer :authorization, 'cancan'
+    if prefer :authorization, 'cancan' && !(prefer :railsapps, 'rails-prelaunch-signup')
       append_file 'db/seeds.rb' do <<-FILE
 user.add_role :admin
 user2.add_role :VIP
 FILE
       end
     end
+    if prefer :railsapps, 'rails-prelaunch-signup'
+      append_file 'db/seeds.rb' do <<-FILE
+user.add_role :admin
+FILE
+      end
+        end
     ## DEVISE-INVITABLE
     if prefer :devise_modules, 'invitable'
       run 'bundle exec rake db:migrate'

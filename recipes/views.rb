@@ -24,7 +24,9 @@ after_bundler do
     ## INDEX
     if prefer :starter_app, 'admin_app'
       copy_from_repo 'app/views/users/index.html.erb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
-      copy_from_repo 'app/views/users/_user.html.erb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
+      unless prefer :railsapps, 'rails-prelaunch-signup' 
+        copy_from_repo 'app/views/users/_user.html.erb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
+      end
     else
       copy_from_repo 'app/views/users/index.html.erb'
     end
