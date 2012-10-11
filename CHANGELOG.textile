@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.14 unreleased
+
+* fix errors for rails-prelaunch-signup app
+
 h2. 2.2.13 October 10, 2012
 
 * add 'change roles' and 'delete user' features to admin app
