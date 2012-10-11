@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.14 unreleased
+h2. 2.2.14 October 11, 2012
 
 * fix errors for rails-prelaunch-signup app
 * minor change to prompt for 'drop any existing databases'
