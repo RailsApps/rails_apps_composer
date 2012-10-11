@@ -43,7 +43,7 @@ FILE
       gsub_file 'db/seeds.rb', /First User/, 'user1'
       gsub_file 'db/seeds.rb', /Second User/, 'user2'
     end
-    if prefer :authorization, 'cancan' && !(prefer :railsapps, 'rails-prelaunch-signup')
+    if prefer :authorization, 'cancan'
       append_file 'db/seeds.rb' do <<-FILE
 user.add_role :admin
 user2.add_role :VIP
@@ -51,11 +51,8 @@ FILE
       end
     end
     if prefer :railsapps, 'rails-prelaunch-signup'
-      append_file 'db/seeds.rb' do <<-FILE
-user.add_role :admin
-FILE
-      end
-        end
+      gsub_file 'db/seeds.rb', /user2.add_role :VIP/, ''
+    end
     ## DEVISE-INVITABLE
     if prefer :devise_modules, 'invitable'
       run 'bundle exec rake db:migrate'
