@@ -3,6 +3,8 @@ h1. CHANGELOG
 h2. 2.2.14 unreleased
 
 * fix errors for rails-prelaunch-signup app
+* minor change to prompt for 'drop any existing databases'
+* minor change to prompt for Slim
 
 h2. 2.2.13 October 10, 2012
 
