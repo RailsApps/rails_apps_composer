@@ -22,7 +22,7 @@ end
 
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
-gem 'mongoid', '>= 3.0.6' if prefer :orm, 'mongoid'
+gem 'mongoid', '>= 3.0.9' if prefer :orm, 'mongoid'
 gem 'pg', '>= 0.14.1' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
 
@@ -50,7 +50,7 @@ if prefer :unit_test, 'rspec'
   gem 'capybara', '>= 1.1.2', :group => :test if prefer :integration, 'rspec-capybara'
   if prefer :orm, 'mongoid'
     # use the database_cleaner gem to reset the test database
-    gem 'database_cleaner', '>= 0.8.0', :group => :test
+    gem 'database_cleaner', '>= 0.9.1', :group => :test
     # include RSpec matchers from the mongoid-rspec gem
     gem 'mongoid-rspec', '>= 1.4.6', :group => :test
   end
@@ -63,7 +63,7 @@ if prefer :unit_test, 'minitest'
 end
 if prefer :integration, 'cucumber'
   gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
-  gem 'database_cleaner', '>= 0.8.0', :group => :test unless prefer :orm, 'mongoid'
+  gem 'database_cleaner', '>= 0.9.1', :group => :test unless prefer :orm, 'mongoid'
   gem 'launchy', '>= 2.1.2', :group => :test
   gem 'capybara', '>= 1.1.2', :group => :test
 end
@@ -106,7 +106,7 @@ if prefer :authorization, 'cancan'
 end
 
 ## Form Builder
-gem 'simple_form', '>= 2.0.3' if prefer :form_builder, 'simple_form'
+gem 'simple_form', '>= 2.0.4' if prefer :form_builder, 'simple_form'
 
 ## Signup App 
 if prefer :railsapps, 'rails-prelaunch-signup'

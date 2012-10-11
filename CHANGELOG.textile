@@ -5,6 +5,9 @@ h2. 2.2.14 unreleased
 * fix errors for rails-prelaunch-signup app
 * minor change to prompt for 'drop any existing databases'
 * minor change to prompt for Slim
+* update gem 'mongoid' from 3.0.6 to 3.0.9
+* update gem 'simple_form' from 2.0.3 to 2.0.4
+* update gem 'database_cleaner' from 0.8.0 to 0.9.1
 
 h2. 2.2.13 October 10, 2012
 
