@@ -237,11 +237,22 @@ RUBY
   ### FABRICATION ###
   if prefer :fixtures, 'fabrication'
     say_wizard "replacing FactoryGirl fixtures with Fabrication"
-    repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber-fabrication/master/'
     remove_file 'spec/factories/users.rb'
-    copy_from_repo 'spec/fabricators/user_fabricator.rb', repo
-    gsub_file 'features/step_definitions/user_steps.rb', /@user = FactoryGirl.create(:user, email: @visitor[:email])/, '@user = Fabricate(:user, email: @visitor[:email])'
-    gsub_file 'spec/controllers/users_controller_spec.rb', /@user = FactoryGirl.create(:user)/, '@user = Fabricate(:user)'
+    remove_file 'spec/fabricators/user_fabricator.rb'
+    create_file 'spec/fabricators/user_fabricator.rb' do
+      <<-RUBY
+Fabricator(:user) do
+  name     'Test User'
+  email    'example@example.com'
+  password 'please'
+  password_confirmation 'please'
+  # required if the Devise Confirmable module is used
+  # confirmed_at Time.now
+end
+RUBY
+    end
+    gsub_file 'features/step_definitions/user_steps.rb', /@user = FactoryGirl.create\(:user, email: @visitor\[:email\]\)/, '@user = Fabricate(:user, email: @visitor[:email])'
+    gsub_file 'spec/controllers/users_controller_spec.rb', /@user = FactoryGirl.create\(:user\)/, '@user = Fabricate(:user)'
   end
 end # after_everything 
   

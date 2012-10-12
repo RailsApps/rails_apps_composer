@@ -62,6 +62,20 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'none'
     prefs[:quiet_assets] = true
+  when 'rails3-devise-rspec-cucumber-fabrication'
+    prefs[:git] = true
+    prefs[:database] = 'sqlite'
+    prefs[:unit_test] = 'rspec'
+    prefs[:integration] = 'cucumber'
+    prefs[:fixtures] = 'fabrication'
+    prefs[:frontend] = 'none'
+    prefs[:email] = 'gmail'
+    prefs[:authentication] = 'devise'
+    prefs[:devise_modules] = 'default'
+    prefs[:authorization] = 'none'
+    prefs[:starter_app] = 'users_app'
+    prefs[:form_builder] = 'none'
+    prefs[:quiet_assets] = true
   when 'rails3-mongoid-devise'
     prefs[:git] = true
     prefs[:database] = 'mongodb'
