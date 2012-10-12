@@ -234,6 +234,15 @@ RUBY
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: cucumber files"' if prefer :git, true
   end
+  ### FABRICATION ###
+  if prefer :fixtures, 'fabrication'
+    say_wizard "replacing FactoryGirl fixtures with Fabrication"
+    repo = 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber-fabrication/master/'
+    remove_file 'spec/factories/users.rb'
+    copy_from_repo 'spec/fabricators/user_fabricator.rb', repo
+    gsub_file 'features/step_definitions/user_steps.rb', /@user = FactoryGirl.create(:user, email: @visitor[:email])/, '@user = Fabricate(:user, email: @visitor[:email])'
+    gsub_file 'spec/controllers/users_controller_spec.rb', /@user = FactoryGirl.create(:user)/, '@user = Fabricate(:user)'
+  end
 end # after_everything 
   
 __END__
