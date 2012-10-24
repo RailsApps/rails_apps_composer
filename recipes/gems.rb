@@ -35,7 +35,7 @@ if prefer :templates, 'haml'
   gem 'ruby_parser', '>= 2.3.1', :group => :development
 end
 if prefer :templates, 'slim'
-  gem 'slim', '>= 1.3.2'
+  gem 'slim', '>= 1.3.3'
   gem 'haml2slim', '>= 0.4.6', :group => :development
   # Haml is needed for conversion of HTML to Slim
   gem 'haml', '>= 3.1.6', :group => :development
@@ -46,7 +46,7 @@ end
 
 ## Testing Framework
 if prefer :unit_test, 'rspec'
-  gem 'rspec-rails', '>= 2.11.0', :group => [:development, :test]
+  gem 'rspec-rails', '>= 2.11.4', :group => [:development, :test]
   gem 'capybara', '>= 1.1.2', :group => :test if prefer :integration, 'rspec-capybara'
   if prefer :orm, 'mongoid'
     # use the database_cleaner gem to reset the test database
@@ -73,11 +73,11 @@ gem 'fabrication', '>= 2.3.0', :group => [:development, :test] if prefer :fixtur
 gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
-gem 'bootstrap-sass', '>= 2.1.0.0' if prefer :bootstrap, 'sass'
+gem 'bootstrap-sass', '>= 2.1.0.1' if prefer :bootstrap, 'sass'
 gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundation'
 gem 'zurb-foundation', '>= 3.1.1', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
-  gem 'twitter-bootstrap-rails', '>= 2.1.3', :group => :assets
+  gem 'twitter-bootstrap-rails', '>= 2.1.4', :group => :assets
   # install gem 'therubyracer' to use Less
   gem 'therubyracer', '>= 0.10.2', :group => :assets, :platform => :ruby
 end
@@ -88,7 +88,7 @@ gem 'hominid', '>= 3.0.5' if prefer :email, 'mandrill'
 
 ## Authentication (Devise)
 gem 'devise', '>= 2.1.2' if prefer :authentication, 'devise'
-gem 'devise_invitable', '>= 1.0.3' if prefer :devise_modules, 'invitable'
+gem 'devise_invitable', '>= 1.1.1' if prefer :devise_modules, 'invitable'
 
 ## Authentication (OmniAuth)
 gem 'omniauth', '>= 1.1.1' if prefer :authentication, 'omniauth'
