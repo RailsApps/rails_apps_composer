@@ -26,6 +26,7 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
 
     # >-------------------------------[ Cucumber ]--------------------------------<
     say_wizard "copying Cucumber scenarios from the rails-stripe-membership-saas examples"
+    remove_file 'features/users/user_show.feature'
     copy_from_repo 'features/users/sign_in.feature', :repo => repo
     copy_from_repo 'features/users/sign_up.feature', :repo => repo
     copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo    
