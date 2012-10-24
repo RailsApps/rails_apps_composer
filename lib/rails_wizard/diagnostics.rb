@@ -18,8 +18,10 @@ module RailsWizard
     @@recipes << %w(controllers email extras frontend gems git init models railsapps readme routes setup testing views)
     @@recipes << %w(controllers core email extras frontend gems git init models railsapps readme routes setup testing views)
     @@recipes << %w(controllers core email extras frontend gems git init models prelaunch railsapps readme routes setup testing views)
+    @@recipes << %w(controllers core email extras frontend gems git init models prelaunch railsapps readme routes saas setup testing views)
     @@recipes << %w(controllers email example extras frontend gems git init models railsapps readme routes setup testing views)
     @@recipes << %w(controllers email example extras frontend gems git init models prelaunch railsapps readme routes setup testing views)
+    @@recipes << %w(controllers email example extras frontend gems git init models prelaunch railsapps readme routes saas setup testing views)
     
     ### collections of preferences that are known to work together
     
@@ -37,6 +39,7 @@ module RailsWizard
     # :main_branch
     
     @@prefs = []
+    @@prefs << {:railsapps=>"rails-stripe-membership-saas", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"mandrill", :authentication=>"devise", :devise_modules=>"confirmable", :authorization=>"cancan", :starter_app=>"admin_app", :form_builder=>"simple_form"}    
     @@prefs << {:railsapps=>"rails-prelaunch-signup", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"mandrill", :authentication=>"devise", :devise_modules=>"confirmable", :authorization=>"cancan", :starter_app=>"admin_app", :form_builder=>"simple_form"}
     @@prefs << {:railsapps=>"rails3-bootstrap-devise-cancan", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"gmail", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :starter_app=>"admin_app", :form_builder=>"simple_form"}
     @@prefs << {:railsapps=>"rails3-devise-rspec-cucumber", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"none", :email=>"gmail", :authentication=>"devise", :devise_modules=>"default", :authorization=>"none", :starter_app=>"users_app", :form_builder=>"none"}

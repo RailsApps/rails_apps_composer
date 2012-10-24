@@ -108,6 +108,12 @@ end
 ## Form Builder
 gem 'simple_form', '>= 2.0.4' if prefer :form_builder, 'simple_form'
 
+## Membership App 
+if prefer :railsapps, 'rails-stripe-membership-saas'
+  gem 'stripe', '>= 1.7.4'
+  gem 'stripe_event', '>= 0.4.0'
+end
+
 ## Signup App 
 if prefer :railsapps, 'rails-prelaunch-signup'
   gem 'google_visualr', '>= 2.1.2'

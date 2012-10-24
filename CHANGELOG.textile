@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.16 unreleased
+
+* add 'saas' recipe for rails-stripe-membership-saas example app
+
 h2. 2.2.15 October 12, 2012
 
 * use appropriate specs and features when 'fabrication' is selected (contributed by Taylor Mock)
