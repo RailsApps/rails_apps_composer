@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.16 unreleased
+h2. 2.2.16 October 24, 2012
 
 * add 'saas' recipe for rails-stripe-membership-saas example app
 * update gem 'devise_invitable' from 1.0.3 to 1.1.1
