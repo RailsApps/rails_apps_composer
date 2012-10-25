@@ -11,6 +11,11 @@ module RailsWizard
       recipe
     end
 
+    def self.clear
+      @@categories = {}
+      @@list = {}
+    end
+
     def self.[](key)
       @@list[key.to_s]
     end

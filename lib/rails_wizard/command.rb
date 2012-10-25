@@ -8,6 +8,7 @@ module RailsWizard
     method_option :recipes, :type => :array, :aliases => "-r"
     method_option :defaults, :type => :string, :aliases => "-d"
     method_option :recipe_dirs, :type => :array, :aliases => "-l"
+    method_option :no_default_recipes, :type => :boolean, :aliases => "-L"
     method_option :quiet, :type => :boolean, :aliases => "-q", :default => false
     def new(name)
       add_recipes
@@ -22,6 +23,7 @@ module RailsWizard
     method_option :recipes, :type => :array, :aliases => "-r"
     method_option :defaults, :type => :string, :aliases => "-d"
     method_option :recipe_dirs, :type => :array, :aliases => "-l"
+    method_option :no_default_recipes, :type => :boolean, :aliases => "-L"
     method_option :quiet, :type => :boolean, :aliases => "-q", :default => false
     def template(template_name)
       add_recipes
@@ -54,6 +56,7 @@ module RailsWizard
       def yellow; "\033[33m" end
 
       def add_recipes
+        Recipes.clear if options[:no_default_recipes]
         if dirs = options[:recipe_dirs]
           dirs.each { |d| Recipes.add_from_directory(d) }
         end
