@@ -19,7 +19,11 @@ module RailsWizard
     end
 
     def self.template_root
-      File.dirname(__FILE__) + '/../../templates'
+      @template_root ||= File.dirname(__FILE__) + '/../../templates'
+    end
+
+    def self.template_root=(root)
+      @template_root = root
     end
 
     def self.render(template_name, binding = nil)
