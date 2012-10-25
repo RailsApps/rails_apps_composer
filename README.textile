@@ -263,6 +263,14 @@ $ rails_apps_composer template ~/Desktop/template.rb -d my_defaults.yaml
 
 Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file. Use the "quiet flag" @-q@ if you want to skip all prompts.
 
+h3. Generate an Application Template With Your Own Layout
+
+If you want to generate an application template, but use your own layout to do so, you can use the @-t@ flag to set the directory where your templates are. Look at the @templates/@ directory in this gem to see how your templates should look.
+
+<pre>
+$ rails_apps_composer template ~/Desktop/template.rb -t ~/Desktop/my_templates
+</pre>
+
 h3. Generate an Application from a Template
 
 After you've created a template file, you can generate an application from a template at any time using the @rails new@ command with the @-m@ option:
