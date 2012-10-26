@@ -26,4 +26,12 @@ describe RailsWizard::Recipes do
     subject.add_from_directory(File.join(File.dirname(__FILE__), '..', 'test_recipes'))
     subject.list.should include 'test_recipe_in_file'
   end
+
+  describe '.clear' do
+    it 'should remove all current recipes' do
+      RailsWizard::Recipes.clear
+      subject.list.should == []
+      subject.categories.should == []
+    end
+  end
 end

@@ -140,6 +140,8 @@ $ rails_apps_composer new myapp -l ~/recipes/
 
 If you create local recipes, please consider contributing them to the project.
 
+If you want to only use your local recipes, and not include the default recipes, use the @-L@ flag.
+
 h3. Generate an Application Interactively
 
 You'll be prompted for recipes and gems:

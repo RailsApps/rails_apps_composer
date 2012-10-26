@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.17 unreleased
+
+* add '-L' flag to clear the default recipes so only local recipes are available (contributed by Clinton N. Dreisbach)
+
 h2. 2.2.16 October 24, 2012
 
 * add 'saas' recipe for rails-stripe-membership-saas example app

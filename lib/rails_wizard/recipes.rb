@@ -2,13 +2,21 @@ module RailsWizard
   module Recipes
     @@categories = {}
     @@list = {}
-    
+
     def self.add(recipe)
       RailsWizard::Recipes.const_set ActiveSupport::Inflector.camelize(recipe.key), recipe
       @@list[recipe.key] = recipe
       (@@categories[recipe.category.to_s] ||= []) << recipe.key
       @@categories[recipe.category.to_s].uniq!
       recipe
+    end
+
+    def self.clear
+      self.list.each do |recipe_key|
+        send(:remove_const, ActiveSupport::Inflector.camelize(recipe_key))
+      end
+      @@categories = {}
+      @@list = {}
     end
 
     def self.[](key)
