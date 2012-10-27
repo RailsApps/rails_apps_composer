@@ -32,6 +32,11 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo    
     copy_from_repo 'config/locales/devise.en.yml', :repo => repo
 
+    # >-------------------------------[ RSpec ]--------------------------------<
+    say_wizard "copying RSpec tests from the rails-stripe-membership-saas examples"
+    copy_from_repo 'spec/models/user_spec.rb', :repo => repo
+    copy_from_repo 'spec/controllers/content_controller_spec.rb', :repo => repo
+    
     # >-------------------------------[ Models ]--------------------------------<
     copy_from_repo 'app/models/ability.rb', :repo => repo
     copy_from_repo 'app/models/user.rb', :repo => repo
@@ -53,6 +58,7 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'app/controllers/content_controller.rb', :repo => repo
     copy_from_repo 'app/controllers/registrations_controller.rb', :repo => repo
     copy_from_repo 'app/controllers/application_controller.rb', :repo => repo
+    copy_from_repo 'app/controllers/users_controller.rb', :repo => repo
 
     # >-------------------------------[ Mailers ]--------------------------------<
     generate 'mailer UserMailer'
