@@ -7,6 +7,18 @@ describe RailsWizard::Template do
   let(:gems){ ['foogem'] }
   let(:args){ [] }
 
+  describe '.template_root' do
+    it 'returns the gem ./templates directory by default' do
+      template_root = File.expand_path(subject.template_root)
+      template_root.should == File.expand_path('../../../templates', __FILE__)
+    end
+
+    it 'can be set to another directory' do
+      subject.template_root = '/tmp/templates'
+      subject.template_root.should == '/tmp/templates'
+    end
+  end
+
   describe '#initialize' do
     it 'should work with classes' do
       subject.new([recipe], gems).recipes.should == [recipe]
