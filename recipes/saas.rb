@@ -31,11 +31,6 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'features/users/sign_up.feature', :repo => repo
     copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo    
     copy_from_repo 'config/locales/devise.en.yml', :repo => repo
-
-    # >-------------------------------[ RSpec ]--------------------------------<
-    say_wizard "copying RSpec tests from the rails-stripe-membership-saas examples"
-    copy_from_repo 'spec/models/user_spec.rb', :repo => repo
-    copy_from_repo 'spec/controllers/content_controller_spec.rb', :repo => repo
     
     # >-------------------------------[ Models ]--------------------------------<
     copy_from_repo 'app/models/ability.rb', :repo => repo
@@ -62,7 +57,6 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
 
     # >-------------------------------[ Mailers ]--------------------------------<
     generate 'mailer UserMailer'
-    copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo
     copy_from_repo 'app/mailers/user_mailer.rb', :repo => repo
 
     # >-------------------------------[ Views ]--------------------------------<
@@ -85,7 +79,13 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'app/assets/javascripts/registrations.js.erb', :repo => repo
     copy_from_repo 'app/assets/stylesheets/application.css.scss', :repo => repo
     copy_from_repo 'app/assets/stylesheets/pricing.css.scss', :repo => repo
-    
+
+    # >-------------------------------[ RSpec ]--------------------------------<
+    say_wizard "copying RSpec tests from the rails-stripe-membership-saas examples"
+    copy_from_repo 'spec/models/user_spec.rb', :repo => repo
+    copy_from_repo 'spec/controllers/content_controller_spec.rb', :repo => repo
+    copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo
+
     ### GIT ###
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: membership app"' if prefer :git, true
