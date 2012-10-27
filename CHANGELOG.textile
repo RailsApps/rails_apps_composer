@@ -5,6 +5,7 @@ h2. 2.2.17 unreleased
 * add '-t' flag to substitute local templates (contributed by Clinton N. Dreisbach)
 * add '-L' flag to clear the default recipes so only local recipes are available (contributed by Clinton N. Dreisbach)
 * fix 'testing' recipe when Fabrication is selected without Cucumber (contributed by Christopher Garvis)
+* update gem 'zurb-foundation' from 3.1.1 to 3.2.0
 
 h2. 2.2.16 October 24, 2012
 
