@@ -106,6 +106,7 @@ p {
 
 footer p {
   color: #f2f2f2;
+  font-size: 10px;
 }
 
 a {
@@ -149,13 +150,6 @@ img {
   max-width: 739px;
   padding: 5px;
   margin: 10px 0 10px 0;
-  border: 1px solid #ebebeb;
-
-  box-shadow: 0 0 5px #ebebeb;
-  -webkit-box-shadow: 0 0 5px #ebebeb;
-  -moz-box-shadow: 0 0 5px #ebebeb;
-  -o-box-shadow: 0 0 5px #ebebeb;
-  -ms-box-shadow: 0 0 5px #ebebeb;
 }
 
 pre, code {
@@ -164,7 +158,7 @@ pre, code {
   background-color: #fff;
 
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: 14px;
+  font-size: 11px;
 
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -257,11 +251,6 @@ form {
   padding: 20px;
 }
 
-img {
-  width: 100%;
-  max-width: 100%;
-}
-
 /*******************************************************************************
 Full-Width Styles
 *******************************************************************************/
@@ -308,7 +297,6 @@ Full-Width Styles
 #project_title {
   margin: 0;
   color: #fff;
-  font-size: 42px;
   font-weight: 700;
   text-shadow: #111 0px 0px 10px;
 }
@@ -321,6 +309,12 @@ Full-Width Styles
   text-shadow: #111 0px 0px 10px;
 }
 
+#header-links {
+  display: block;
+  float: left;
+  margin-top: 30px;
+}
+
 #downloads {
   position: absolute;
   width: 210px;
@@ -328,7 +322,6 @@ Full-Width Styles
   bottom: -40px;
   right: 0;
   height: 70px;
-  background: url('../images/icon_download.png') no-repeat 0% 90%;
 }
 
 .zip_download_link {
@@ -370,8 +363,47 @@ Full-Width Styles
   padding-top: 40px;
 }
 
+.imageBox {
+  margin-left: 15px;
+  margin-right: 15px;
+  display: inline-block;
+  border: none;
+  padding: 4px;
+  text-align: center; 
+  font-size: 24px;
+  font-weight: 700;
+/*  border-radius: 30px; 
+  -moz-border-radius: 30px; 
+  -webkit-border-radius: 30px; 
+  border: 5px solid #000000;*/
+}
+
 #footer_wrap {
   background: #212121;
+}
+
+
+/* Quick links
+-------------------------------------------------- */
+.quick-links {
+  min-height: 30px;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.quick-links:first-child {
+  min-height: 0;
+}
+.quick-links li {
+  display: inline;
+  margin: 0 2px;
+  color: #999;
+}
+.quick-links .github-btn,
+.quick-links .tweet-btn,
+.quick-links .follow-btn {
+  position: relative;
+  top: 5px;
 }
 
 
@@ -428,4 +460,13 @@ Small Device Styles
     font-size: 11px;
   }
 
+}
+
+/*******************************************************************************
+Custom
+*******************************************************************************/
+
+.choices {
+  font-size: 12px;
+  text-align: center;
 }
