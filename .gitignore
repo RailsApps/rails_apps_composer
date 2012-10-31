@@ -1,0 +1,5 @@
+.bundle
+Gemfile.lock
+dist/
+recipes/
+.DS_Store
