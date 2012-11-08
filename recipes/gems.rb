@@ -48,10 +48,8 @@ end
 if prefer :unit_test, 'rspec'
   gem 'rspec-rails', '>= 2.11.4', :group => [:development, :test]
   gem 'capybara', '>= 1.1.3', :group => :test if prefer :integration, 'rspec-capybara'
+  gem 'database_cleaner', '>= 0.9.1', :group => :test
   if prefer :orm, 'mongoid'
-    # use the database_cleaner gem to reset the test database
-    gem 'database_cleaner', '>= 0.9.1', :group => :test
-    # include RSpec matchers from the mongoid-rspec gem
     gem 'mongoid-rspec', '>= 1.4.6', :group => :test
   end
   gem 'email_spec', '>= 1.4.0', :group => :test
@@ -63,7 +61,7 @@ if prefer :unit_test, 'minitest'
 end
 if prefer :integration, 'cucumber'
   gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
-  gem 'database_cleaner', '>= 0.9.1', :group => :test unless prefer :orm, 'mongoid'
+  gem 'database_cleaner', '>= 0.9.1', :group => :test unless prefer :unit_test, 'rspec'
   gem 'launchy', '>= 2.1.2', :group => :test
   gem 'capybara', '>= 1.1.3', :group => :test
 end
