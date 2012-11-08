@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.18 unreleased
+
+* fix 'gems' recipe to add the less-rails gem to accommodate changes to the twitter-bootstrap-rails gem
+
 h2. 2.2.17 October 27, 2012
 
 * add '-t' flag to substitute local templates (contributed by Clinton N. Dreisbach)
