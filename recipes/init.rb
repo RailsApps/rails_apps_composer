@@ -6,7 +6,8 @@ after_everything do
   ### PREPARE SEED ###
   if prefer :authentication, 'devise'
     if (prefer :authorization, 'cancan') && !(prefer :railsapps, 'rails-prelaunch-signup')
-      append_file 'db/seeds.rb' do <<-FILE
+      unless prefer :orm, 'mongoid'
+        append_file 'db/seeds.rb' do <<-FILE
 puts 'CREATING ROLES'
 Role.create([
   { :name => 'admin' }, 
@@ -14,6 +15,17 @@ Role.create([
   { :name => 'VIP' }
 ], :without_protection => true)
 FILE
+        end
+      else
+        append_file 'db/seeds.rb' do <<-FILE
+puts 'CREATING ROLES'
+Role.mongo_session['roles'].insert([
+  { :name => 'admin' }, 
+  { :name => 'user' }, 
+  { :name => 'VIP' }
+])
+FILE
+        end
       end
     end    
     if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')

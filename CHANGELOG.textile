@@ -5,6 +5,7 @@ h2. 2.2.18 unreleased
 * fix 'gems' recipe to include 'database_cleaner' gem when RSpec is selected without Cucumber
 * fix 'gems' recipe to add the 'less-rails' gem to accommodate changes to the' twitter-bootstrap-rails' gem
 * fix 'views' recipe for 'admin_app' when 'simple_form' is not selected
+* fix 'init' recipe for 'admin_app' when 'mongoid' is selected
 * fix 'controllers' recipe so OmniAuth can be used with SQL databases as well as Mongoid
 * update gem 'mongoid' to 3.0.11
 * update gem 'capybara' to 1.1.3
