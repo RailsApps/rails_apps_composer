@@ -5,7 +5,8 @@ after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### APPLICATION_CONTROLLER ###
   if prefer :authentication, 'omniauth'
-    copy_from_repo 'app/controllers/application_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+    #copy_from_repo 'app/controllers/application_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+    copy_from_repo 'app/controllers/application_controller-omniauth.rb', :prefs => 'omniauth'
   end
   if prefer :authorization, 'cancan'
     inject_into_file 'app/controllers/application_controller.rb', :before => "\nend" do <<-RUBY
