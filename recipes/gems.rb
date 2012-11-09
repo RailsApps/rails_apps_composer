@@ -120,8 +120,8 @@ if prefer :railsapps, 'rails-prelaunch-signup'
 end
 
 ## Gems from a defaults file or added interactively
-gems.each do |g|
-  gem g
+gems.each do |g, o|
+  gem g.dup, o
 end
 
 ## Git
