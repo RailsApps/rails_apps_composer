@@ -89,6 +89,7 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     copy_from_repo 'app/views/user_mailer/welcome_email.html.erb', :repo => repo
     copy_from_repo 'app/views/user_mailer/welcome_email.text.erb', :repo => repo
     copy_from_repo 'app/views/users/index.html.erb', :repo => repo
+    remove_file 'app/views/users/_user.html.erb'
     copy_from_repo 'public/thankyou.html', :repo => repo
 
     # >-------------------------------[ Routes ]--------------------------------<

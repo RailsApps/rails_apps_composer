@@ -23,9 +23,11 @@ after_bundler do
   if ['users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
     ## INDEX
     if prefer :starter_app, 'admin_app'
-      copy_from_repo 'app/views/users/index.html.erb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
-      unless prefer :railsapps, 'rails-prelaunch-signup' 
-        copy_from_repo 'app/views/users/_user.html.erb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
+      copy_from_repo 'app/views/users/index-admin_app.html.erb', :prefs => 'admin_app'
+      unless prefer :form_builder, 'simple_form'
+        copy_from_repo 'app/views/users/_user.html.erb'
+      else
+        copy_from_repo 'app/views/users/_user-simple_form.html.erb', :prefs => 'simple_form'
       end
     else
       copy_from_repo 'app/views/users/index.html.erb'
