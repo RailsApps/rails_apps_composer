@@ -82,6 +82,7 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
 
     # >-------------------------------[ RSpec ]--------------------------------<
     say_wizard "copying RSpec tests from the rails-stripe-membership-saas examples"
+    copy_from_repo 'spec/factories/roles.rb', :repo => repo
     copy_from_repo 'spec/models/user_spec.rb', :repo => repo
     copy_from_repo 'spec/controllers/content_controller_spec.rb', :repo => repo
     copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo

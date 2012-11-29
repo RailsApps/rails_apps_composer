@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.19 November 29, 2012
+
+* fix 'saas' recipe to add missing file for RSpec tests
+
 h2. 2.2.18 November 8, 2012
 
 * fix 'gems' recipe to include 'database_cleaner' gem when RSpec is selected without Cucumber
