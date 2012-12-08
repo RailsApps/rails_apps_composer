@@ -29,7 +29,10 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     remove_file 'features/users/user_show.feature'
     copy_from_repo 'features/users/sign_in.feature', :repo => repo
     copy_from_repo 'features/users/sign_up.feature', :repo => repo
-    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo    
+    copy_from_repo 'features/users/sign_up_with_stripe.feature', :repo => repo
+    copy_from_repo 'features/users/user_edit.feature', :repo => repo
+    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
+    copy_from_repo 'features/step_definitions/form_helper_steps.rb', :repo => repo 
     copy_from_repo 'config/locales/devise.en.yml', :repo => repo
     
     # >-------------------------------[ Models ]--------------------------------<
@@ -86,6 +89,7 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'spec/models/user_spec.rb', :repo => repo
     copy_from_repo 'spec/controllers/content_controller_spec.rb', :repo => repo
     copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo
+    copy_from_repo 'spec/stripe/stripe_config_spec.rb', :repo => repo
 
     ### GIT ###
     git :add => '-A' if prefer :git, true

@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.2.19 December 7, 2012
 
 * add view helper 'display_base_errors' to accommodate SimpleForm
+* update 'saas' recipe to add Rspec and Cucumber tests
 * fix 'saas' recipe to add missing file for RSpec tests
 
 h2. 2.2.18 November 8, 2012
