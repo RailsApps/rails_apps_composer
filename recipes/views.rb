@@ -13,6 +13,7 @@ after_bundler do
       copy_from_repo 'app/views/devise/registrations/edit-simple_form.html.erb', :prefs => 'simple_form'
       copy_from_repo 'app/views/devise/registrations/new-simple_form.html.erb', :prefs => 'simple_form'
       copy_from_repo 'app/views/devise/sessions/new-simple_form.html.erb', :prefs => 'simple_form'
+      copy_from_repo 'app/helpers/application_helper-simple_form.rb', :prefs => 'simple_form'
     end
   end
   ### HOME ###
