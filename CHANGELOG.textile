@@ -5,6 +5,14 @@ h2. 2.2.19 December 7, 2012
 * add view helper 'display_base_errors' to accommodate SimpleForm
 * update 'saas' recipe to add Rspec and Cucumber tests
 * fix 'saas' recipe to add missing file for RSpec tests
+* update gem 'ruby_parser' to 3.1.0
+* update gem 'zurb-foundation' to 3.2.3
+* update gem 'devise_invitable' to 1.1.4
+* update gem 'therubyracer' to 0.11.0
+* update gem 'twitter-bootstrap-rails' to 2.1.7
+* update gem 'mongoid-rspec' to 1.5.5
+* update gem 'capybara' to 1.1.4
+* update gem 'mongoid' to 3.0.14
 
 h2. 2.2.18 November 8, 2012
 
@@ -277,6 +285,7 @@ h2. 1.5.4 July 3, 2012
 * update gem 'compass-rails' from 1.0.2 to 1.0.3
 * update gem 'bootstrap-sass' from 2.0.3 to 2.0.4.0
 * update gem 'zurb-foundation' to 3.0.2
+* update gem 'turnip' to 1.1.0
 
 h2. 1.5.3 June 26, 2012
 

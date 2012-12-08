@@ -22,7 +22,7 @@ end
 
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
-gem 'mongoid', '>= 3.0.11' if prefer :orm, 'mongoid'
+gem 'mongoid', '>= 3.0.14' if prefer :orm, 'mongoid'
 gem 'pg', '>= 0.14.1' if prefer :database, 'postgresql'
 gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
 
@@ -32,7 +32,7 @@ if prefer :templates, 'haml'
   gem 'haml-rails', '>= 0.3.5', :group => :development
   # hpricot and ruby_parser are needed for conversion of HTML to Haml
   gem 'hpricot', '>= 0.8.6', :group => :development
-  gem 'ruby_parser', '>= 3.0.1', :group => :development
+  gem 'ruby_parser', '>= 3.1.0', :group => :development
 end
 if prefer :templates, 'slim'
   gem 'slim', '>= 1.3.3'
@@ -41,31 +41,31 @@ if prefer :templates, 'slim'
   gem 'haml', '>= 3.1.6', :group => :development
   gem 'haml-rails', '>= 0.3.5', :group => :development
   gem 'hpricot', '>= 0.8.6', :group => :development
-  gem 'ruby_parser', '>= 3.0.1', :group => :development
+  gem 'ruby_parser', '>= 3.1.0', :group => :development
 end
 
 ## Testing Framework
 if prefer :unit_test, 'rspec'
   gem 'rspec-rails', '>= 2.11.4', :group => [:development, :test]
-  gem 'capybara', '>= 1.1.3', :group => :test if prefer :integration, 'rspec-capybara'
+  gem 'capybara', '>= 1.1.4', :group => :test if prefer :integration, 'rspec-capybara'
   gem 'database_cleaner', '>= 0.9.1', :group => :test
   if prefer :orm, 'mongoid'
-    gem 'mongoid-rspec', '>= 1.4.6', :group => :test
+    gem 'mongoid-rspec', '>= 1.5.5', :group => :test
   end
   gem 'email_spec', '>= 1.4.0', :group => :test
 end
 if prefer :unit_test, 'minitest'
   gem 'minitest-spec-rails', '>= 3.0.7', :group => :test
   gem 'minitest-wscolor', '>= 0.0.3', :group => :test
-  gem 'capybara', '>= 1.1.3', :group => :test if prefer :integration, 'minitest-capybara'
+  gem 'capybara', '>= 1.1.4', :group => :test if prefer :integration, 'minitest-capybara'
 end
 if prefer :integration, 'cucumber'
   gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
   gem 'database_cleaner', '>= 0.9.1', :group => :test unless prefer :unit_test, 'rspec'
   gem 'launchy', '>= 2.1.2', :group => :test
-  gem 'capybara', '>= 1.1.3', :group => :test
+  gem 'capybara', '>= 1.1.4', :group => :test
 end
-gem 'turnip', '>= 1.0.0', :group => :test if prefer :integration, 'turnip'
+gem 'turnip', '>= 1.1.0', :group => :test if prefer :integration, 'turnip'
 gem 'factory_girl_rails', '>= 4.1.0', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
 gem 'fabrication', '>= 2.3.0', :group => [:development, :test] if prefer :fixtures, 'fabrication'
 gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
@@ -73,12 +73,12 @@ gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 ## Front-end Framework
 gem 'bootstrap-sass', '>= 2.1.1.0' if prefer :bootstrap, 'sass'
 gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundation'
-gem 'zurb-foundation', '>= 3.2.0', :group => :assets if prefer :frontend, 'foundation'
+gem 'zurb-foundation', '>= 3.2.3', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   gem 'less-rails', '>= 2.2.6', :group => :assets
-  gem 'twitter-bootstrap-rails', '>= 2.1.6', :group => :assets
+  gem 'twitter-bootstrap-rails', '>= 2.1.7', :group => :assets
   # install gem 'therubyracer' to use Less
-  gem 'therubyracer', '>= 0.10.2', :group => :assets, :platform => :ruby
+  gem 'therubyracer', '>= 0.11.0', :group => :assets, :platform => :ruby
 end
 
 ## Email
@@ -87,7 +87,7 @@ gem 'hominid', '>= 3.0.5' if prefer :email, 'mandrill'
 
 ## Authentication (Devise)
 gem 'devise', '>= 2.1.2' if prefer :authentication, 'devise'
-gem 'devise_invitable', '>= 1.1.1' if prefer :devise_modules, 'invitable'
+gem 'devise_invitable', '>= 1.1.4' if prefer :devise_modules, 'invitable'
 
 ## Authentication (OmniAuth)
 gem 'omniauth', '>= 1.1.1' if prefer :authentication, 'omniauth'
