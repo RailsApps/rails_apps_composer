@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.2.19 December 7, 2012
 
+* fix issue #137: when a .railsrc file specifies a database gem, do not add it again
 * remove 'bundle update' (unnecessary) and add 'Bundler.with_clean_env do' to avoid gem clashes
 * add view helper 'display_base_errors' to accommodate SimpleForm
 * update 'saas' recipe to add Rspec and Cucumber tests
