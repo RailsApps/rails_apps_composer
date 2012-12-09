@@ -51,7 +51,7 @@ end
 ## Testing Framework
 if prefer :unit_test, 'rspec'
   gem 'rspec-rails', '>= 2.11.4', :group => [:development, :test]
-  gem 'capybara', '>= 1.1.4', :group => :test if prefer :integration, 'rspec-capybara'
+  gem 'capybara', '>= 2.0.1', :group => :test if prefer :integration, 'rspec-capybara'
   gem 'database_cleaner', '>= 0.9.1', :group => :test
   if prefer :orm, 'mongoid'
     gem 'mongoid-rspec', '>= 1.5.5', :group => :test
@@ -61,13 +61,13 @@ end
 if prefer :unit_test, 'minitest'
   gem 'minitest-spec-rails', '>= 3.0.7', :group => :test
   gem 'minitest-wscolor', '>= 0.0.3', :group => :test
-  gem 'capybara', '>= 1.1.4', :group => :test if prefer :integration, 'minitest-capybara'
+  gem 'capybara', '>= 2.0.1', :group => :test if prefer :integration, 'minitest-capybara'
 end
 if prefer :integration, 'cucumber'
   gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
   gem 'database_cleaner', '>= 0.9.1', :group => :test unless prefer :unit_test, 'rspec'
   gem 'launchy', '>= 2.1.2', :group => :test
-  gem 'capybara', '>= 1.1.4', :group => :test
+  gem 'capybara', '>= 2.0.1', :group => :test
 end
 gem 'turnip', '>= 1.1.0', :group => :test if prefer :integration, 'turnip'
 gem 'factory_girl_rails', '>= 4.1.0', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
