@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.2.21 unreleased
 
 * update gem 'capybara' to 2.0.1
+* update 'saas' recipe to add Cucumber test
 
 h2. 2.2.20 December 7, 2012
 

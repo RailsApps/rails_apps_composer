@@ -32,6 +32,7 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'features/users/sign_up.feature', :repo => repo
     copy_from_repo 'features/users/sign_up_with_stripe.feature', :repo => repo
     copy_from_repo 'features/users/user_edit.feature', :repo => repo
+    copy_from_repo 'features/users/user_delete.feature', :repo => repo
     copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
     copy_from_repo 'features/step_definitions/form_helper_steps.rb', :repo => repo 
     copy_from_repo 'config/locales/devise.en.yml', :repo => repo
