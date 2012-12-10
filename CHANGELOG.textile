@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.21 unreleased
+h2. 2.2.21 December 9, 2012
 
 * improve 'extras' recipe to add 'better_errors' option
 * update gem 'capybara' to 2.0.1
