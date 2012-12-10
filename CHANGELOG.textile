@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.2.21 unreleased
 
+* improve 'extras' recipe to add 'better_errors' option
 * update gem 'capybara' to 2.0.1
 * update 'saas' recipe to add Cucumber test
 

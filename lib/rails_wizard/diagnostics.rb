@@ -31,6 +31,7 @@ module RailsWizard
     # :prod_webserver
     # :templates
     # :quiet_assets
+    # :better_errors
     # :ban_spiders
     # :jsruntime
     # :rvmrc

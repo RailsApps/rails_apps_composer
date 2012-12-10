@@ -10,6 +10,16 @@ if prefs[:quiet_assets]
   gem 'quiet_assets', '>= 1.0.1', :group => :development
 end
 
+## BETTER ERRORS
+if config['better_errors']
+  prefs[:better_errors] = true
+end
+if prefs[:better_errors]
+  say_wizard "recipe adding better_errors gem"
+  gem 'better_errors', '>= 0.0.7', :group => :development
+  gem 'binding_of_caller', '>= 0.6.8', :group => :development
+end
+
 ## BAN SPIDERS
 if config['ban_spiders']
   prefs[:ban_spiders] = true
@@ -137,6 +147,9 @@ config:
   - quiet_assets:
       type: boolean
       prompt: Reduce assets logger noise during development?
+  - better_errors:
+      type: boolean
+      prompt: Improve error reporting with 'better_errors' during development?
   - ban_spiders:
       type: boolean
       prompt: Set a robots.txt file to ban spiders?
