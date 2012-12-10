@@ -16,7 +16,7 @@ if config['better_errors']
 end
 if prefs[:better_errors]
   say_wizard "recipe adding better_errors gem"
-  gem 'better_errors', '>= 0.0.7', :group => :development
+  gem 'better_errors', '>= 0.0.8', :group => :development
   gem 'binding_of_caller', '>= 0.6.8', :group => :development
 end
 
