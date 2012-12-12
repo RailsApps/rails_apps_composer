@@ -1,5 +1,12 @@
 h1. CHANGELOG
 
+h2. 2.2.22 December 11, 2012
+
+* option to use 'local_env.yml' file to set local environment variables
+* fix 'extras' recipe to remove 'run rvm rvmrc trust'
+* update gem 'twitter-bootstrap-rails' to 2.1.8
+* update gem 'better_errors' to 0.2.0
+
 h2. 2.2.21 December 9, 2012
 
 * improve 'extras' recipe to add 'better_errors' option

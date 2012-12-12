@@ -27,6 +27,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'admin_app'
     prefs[:form_builder] = 'simple_form'
     prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
     prefs[:better_errors] = true
   when 'rails-prelaunch-signup'
     prefs[:git] = true
@@ -43,6 +44,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'admin_app'
     prefs[:form_builder] = 'simple_form'
     prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
     prefs[:better_errors] = true
     if prefer :git, true
       prefs[:prelaunch_branch] = multiple_choice "Git branch for the prelaunch app?", [["wip (work-in-progress)", "wip"], ["master", "master"], ["prelaunch", "prelaunch"], ["staging", "staging"]]
@@ -67,6 +69,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'admin_app'
     prefs[:form_builder] = 'simple_form'
     prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
     prefs[:better_errors] = true
   when 'rails3-devise-rspec-cucumber'
     prefs[:git] = true
@@ -82,6 +85,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'none'
     prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
     prefs[:better_errors] = true
   when 'rails3-devise-rspec-cucumber-fabrication'
     prefs[:git] = true
@@ -97,6 +101,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'none'
     prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
     prefs[:better_errors] = true
   when 'rails3-mongoid-devise'
     prefs[:git] = true
@@ -113,6 +118,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'none'
     prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
     prefs[:better_errors] = true
   when 'rails3-mongoid-omniauth'
     prefs[:git] = true
@@ -129,6 +135,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'none'
     prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
     prefs[:better_errors] = true
   when 'rails3-subdomains'
     prefs[:git] = true
@@ -145,6 +152,7 @@ case prefs[:railsapps]
     prefs[:starter_app] = 'subdomains_app'
     prefs[:form_builder] = 'none'
     prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
     prefs[:better_errors] = true
 end
 

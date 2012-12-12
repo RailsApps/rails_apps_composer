@@ -10,13 +10,34 @@ if prefs[:quiet_assets]
   gem 'quiet_assets', '>= 1.0.1', :group => :development
 end
 
+## LOCAL_ENV.YML FILE
+if config['local_env_file']
+  prefs[:local_env_file] = true
+end
+if prefs[:local_env_file]
+  say_wizard "recipe creating local_env.yml file for environment variables"
+  copy_from_repo 'config/local_env.example.yml'
+  inject_into_file 'config/application.rb', :after => "config.assets.version = '1.0'\n" do <<-RUBY
+
+    # Set local environment variables from a file /config/local_env.yml
+    # See http://railsapps.github.com/rails-environment-variables.html
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      YAML.load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exists?(env_file)
+    end
+RUBY
+  end
+end
+
 ## BETTER ERRORS
 if config['better_errors']
   prefs[:better_errors] = true
 end
 if prefs[:better_errors]
   say_wizard "recipe adding better_errors gem"
-  gem 'better_errors', '>= 0.0.8', :group => :development
+  gem 'better_errors', '>= 0.2.0', :group => :development
   gem 'binding_of_caller', '>= 0.6.8', :group => :development
 end
 
@@ -66,7 +87,6 @@ if prefs[:rvmrc]
   end
   say_wizard "creating RVM gemset '#{app_name}'"
   RVM.gemset_create app_name
-  run "rvm rvmrc trust"
   say_wizard "switching to gemset '#{app_name}'"
   # RVM.gemset_use! requires rvm version 1.11.3.5 or newer
   rvm_spec =
@@ -147,6 +167,9 @@ config:
   - quiet_assets:
       type: boolean
       prompt: Reduce assets logger noise during development?
+  - local_env_file:
+      type: boolean
+      prompt: Use a local_env.yml file for environment variables?
   - better_errors:
       type: boolean
       prompt: Improve error reporting with 'better_errors' during development?

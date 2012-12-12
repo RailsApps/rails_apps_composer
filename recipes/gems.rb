@@ -80,7 +80,7 @@ gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundat
 gem 'zurb-foundation', '>= 3.2.3', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   gem 'less-rails', '>= 2.2.6', :group => :assets
-  gem 'twitter-bootstrap-rails', '>= 2.1.7', :group => :assets
+  gem 'twitter-bootstrap-rails', '>= 2.1.8', :group => :assets
   # install gem 'therubyracer' to use Less
   gem 'therubyracer', '>= 0.11.0', :group => :assets, :platform => :ruby
 end

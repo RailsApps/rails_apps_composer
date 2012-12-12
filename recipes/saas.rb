@@ -93,6 +93,13 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo
     copy_from_repo 'spec/stripe/stripe_config_spec.rb', :repo => repo
 
+    # >-------------------------------[ Extras ]--------------------------------<
+    append_file 'config/local_env.example.yml' do <<-FILE
+STRIPE_API_KEY: 'Your_Stripe_API_key'
+STRIPE_PUBLIC_KEY: 'Your_Stripe_Public_Key'
+FILE
+    end
+    
     ### GIT ###
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: membership app"' if prefer :git, true

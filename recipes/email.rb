@@ -55,6 +55,11 @@ RUBY
 TEXT
     inject_into_file 'config/environments/development.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
+    append_file 'config/local_env.example.yml' do <<-FILE
+GMAIL_USERNAME: 'Your_Username'
+GMAIL_PASSWORD: 'Your_Password'
+FILE
+    end
   end
   ### SENDGRID ACCOUNT
   if prefer :email, 'sendgrid'
@@ -71,10 +76,15 @@ TEXT
 TEXT
     inject_into_file 'config/environments/development.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
+    append_file 'config/local_env.example.yml' do <<-FILE
+SENDGRID_USERNAME: 'Your_Username'
+SENDGRID_PASSWORD: 'Your_Password'
+  FILE
+    end
   end
-    ### MANDRILL ACCOUNT
-    if prefer :email, 'mandrill'
-      mandrill_configuration_text = <<-TEXT
+  ### MANDRILL ACCOUNT
+  if prefer :email, 'mandrill'
+    mandrill_configuration_text = <<-TEXT
   \n
     config.action_mailer.smtp_settings = {
       :address   => "smtp.mandrillapp.com",
@@ -83,12 +93,17 @@ TEXT
       :password  => ENV["MANDRILL_API_KEY"]
     }
   TEXT
-      inject_into_file 'config/environments/development.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
-      inject_into_file 'config/environments/production.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
+    inject_into_file 'config/environments/development.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
+    inject_into_file 'config/environments/production.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
+    append_file 'config/local_env.example.yml' do <<-FILE
+MANDRILL_USERNAME: 'Your_Username'
+MANDRILL_API_KEY: 'Your_API_Key'
+FILE
     end
-    ### GIT
-    git :add => '-A' if prefer :git, true
-    git :commit => '-qm "rails_apps_composer: set email accounts"' if prefer :git, true
+  end
+  ### GIT
+  git :add => '-A' if prefer :git, true
+  git :commit => '-qm "rails_apps_composer: set email accounts"' if prefer :git, true
 end # after_bundler
 
 __END__
