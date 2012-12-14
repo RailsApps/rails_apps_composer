@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.23 unreleased
+
+* use 'figaro' gem instead of 'local_env.yml' file to set local environment variables
+
 h2. 2.2.22 December 11, 2012
 
 * option to use 'local_env.yml' file to set local environment variables

@@ -201,6 +201,22 @@ after_bundler do
       generate 'simple_form:install'
     end
   end
+  ## Figaro Gem
+  if prefs[:local_env_file]
+    generate 'figaro:install'
+    gsub_file 'config/application.yml', /# PUSHER_.*\n/, ''
+    gsub_file 'config/application.yml', /# STRIPE_.*\n/, ''
+    prepend_to_file 'config/application.yml' do <<-FILE
+# Add account credentials and API keys here.
+# See http://railsapps.github.com/rails-environment-variables.html
+# This file should be listed in .gitignore to keep your settings secret!
+# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
+# For example, setting:
+# GMAIL_USERNAME: Your_Gmail_Username
+# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+FILE
+    end
+  end
   ## Git
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: generators"' if prefer :git, true

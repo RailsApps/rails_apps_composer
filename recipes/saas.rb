@@ -94,9 +94,9 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'spec/stripe/stripe_config_spec.rb', :repo => repo
 
     # >-------------------------------[ Extras ]--------------------------------<
-    append_file 'config/local_env.example.yml' do <<-FILE
-STRIPE_API_KEY: 'Your_Stripe_API_key'
-STRIPE_PUBLIC_KEY: 'Your_Stripe_Public_Key'
+    append_file 'config/application.yml' do <<-FILE
+# STRIPE_API_KEY: Your_Stripe_API_key
+# STRIPE_PUBLIC_KEY: Your_Stripe_Public_Key
 FILE
     end
     

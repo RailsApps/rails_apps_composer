@@ -15,20 +15,8 @@ if config['local_env_file']
   prefs[:local_env_file] = true
 end
 if prefs[:local_env_file]
-  say_wizard "recipe creating local_env.yml file for environment variables"
-  copy_from_repo 'config/local_env.example.yml'
-  inject_into_file 'config/application.rb', :after => "config.assets.version = '1.0'\n" do <<-RUBY
-
-    # Set local environment variables from a file /config/local_env.yml
-    # See http://railsapps.github.com/rails-environment-variables.html
-    config.before_configuration do
-      env_file = File.join(Rails.root, 'config', 'local_env.yml')
-      YAML.load(File.open(env_file)).each do |key, value|
-        ENV[key.to_s] = value
-      end if File.exists?(env_file)
-    end
-RUBY
-  end
+  say_wizard "recipe creating application.yml file for environment variables"
+  gem 'figaro', '>= 0.5.0'
 end
 
 ## BETTER ERRORS
@@ -169,7 +157,7 @@ config:
       prompt: Reduce assets logger noise during development?
   - local_env_file:
       type: boolean
-      prompt: Use a local_env.yml file for environment variables?
+      prompt: Use application.yml file for environment variables?
   - better_errors:
       type: boolean
       prompt: Improve error reporting with 'better_errors' during development?

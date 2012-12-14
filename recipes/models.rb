@@ -53,9 +53,9 @@ RUBY
   ### OMNIAUTH ###
   if prefer :authentication, 'omniauth'
     repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-    append_file 'config/local_env.example.yml' do <<-FILE
-OMNIAUTH_PROVIDER_KEY: 'Your_OmniAuth_Provider_Key'
-OMNIAUTH_PROVIDER_SECRET: 'Your_OmniAuth_Provider_Secret'
+    append_file 'config/application.yml' do <<-FILE
+# OMNIAUTH_PROVIDER_KEY: Your_OmniAuth_Provider_Key
+# OMNIAUTH_PROVIDER_SECRET: Your_OmniAuth_Provider_Secret
 FILE
     end
     copy_from_repo 'config/initializers/omniauth.rb', :repo => repo
