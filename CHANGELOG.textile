@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+
+h2. 2.2.4 unreleased
+
+* add gem 'libv8' to accommodate gem 'therubyracer'
+
 h2. 2.2.23 December 14, 2012
 
 * use 'figaro' gem instead of 'local_env.yml' file to set local environment variables
