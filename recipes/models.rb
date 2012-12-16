@@ -53,11 +53,6 @@ RUBY
   ### OMNIAUTH ###
   if prefer :authentication, 'omniauth'
     repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-    append_file 'config/application.yml' do <<-FILE
-# OMNIAUTH_PROVIDER_KEY: Your_OmniAuth_Provider_Key
-# OMNIAUTH_PROVIDER_SECRET: Your_OmniAuth_Provider_Secret
-FILE
-    end
     copy_from_repo 'config/initializers/omniauth.rb', :repo => repo
     gsub_file 'config/initializers/omniauth.rb', /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
     generate 'model User name:string email:string provider:string uid:string' unless prefer :orm, 'mongoid'

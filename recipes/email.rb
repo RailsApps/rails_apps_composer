@@ -55,11 +55,6 @@ RUBY
 TEXT
     inject_into_file 'config/environments/development.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', gmail_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
-    append_file 'config/application.yml' do <<-FILE
-# GMAIL_USERNAME: Your_Username
-# GMAIL_PASSWORD: Your_Password
-FILE
-    end
   end
   ### SENDGRID ACCOUNT
   if prefer :email, 'sendgrid'
@@ -76,11 +71,6 @@ FILE
 TEXT
     inject_into_file 'config/environments/development.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', sendgrid_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
-    append_file 'config/application.yml' do <<-FILE
-# SENDGRID_USERNAME: Your_Username
-# SENDGRID_PASSWORD: Your_Password
-  FILE
-    end
   end
   ### MANDRILL ACCOUNT
   if prefer :email, 'mandrill'
@@ -95,11 +85,6 @@ TEXT
   TEXT
     inject_into_file 'config/environments/development.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
     inject_into_file 'config/environments/production.rb', mandrill_configuration_text, :after => 'config.action_mailer.default :charset => "utf-8"'
-    append_file 'config/application.yml' do <<-FILE
-# MANDRILL_USERNAME: Your_Username
-# MANDRILL_API_KEY: Your_API_Key
-FILE
-    end
   end
   ### GIT
   git :add => '-A' if prefer :git, true

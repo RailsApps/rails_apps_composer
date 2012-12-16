@@ -24,33 +24,23 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: clean up starter app"' if prefer :git, true
 
-    # >-------------------------------[ Cucumber ]--------------------------------<
-    say_wizard "copying Cucumber scenarios from the rails-stripe-membership-saas examples"
-    remove_file 'features/users/user_show.feature'
-    copy_from_repo 'features/support/paths.rb', :repo => repo
-    copy_from_repo 'features/users/sign_in.feature', :repo => repo
-    copy_from_repo 'features/users/sign_up.feature', :repo => repo
-    copy_from_repo 'features/users/sign_up_with_stripe.feature', :repo => repo
-    copy_from_repo 'features/users/user_edit.feature', :repo => repo
-    copy_from_repo 'features/users/user_delete.feature', :repo => repo
-    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
-    copy_from_repo 'features/step_definitions/form_helper_steps.rb', :repo => repo 
-    copy_from_repo 'config/locales/devise.en.yml', :repo => repo
-    
+    # >-------------------------------[ Migrations ]--------------------------------<
+    generate 'migration AddStripeToUsers customer_id:string last_4_digits:string'
+    run 'bundle exec rake db:drop'
+    run 'bundle exec rake db:migrate'
+
     # >-------------------------------[ Models ]--------------------------------<
     copy_from_repo 'app/models/ability.rb', :repo => repo
     copy_from_repo 'app/models/user.rb', :repo => repo
 
     # >-------------------------------[ Init ]--------------------------------<
+    copy_from_repo 'config/application.yml', :repo => repo
+    remove_file 'config/application.example.yml'
+    copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
     copy_from_repo 'db/seeds.rb', :repo => repo
     copy_from_repo 'config/initializers/stripe.rb', :repo => repo
-    
-    # >-------------------------------[ Migrations ]--------------------------------<
-    generate 'migration AddStripeToUsers customer_id:string last_4_digits:string'
-    run 'bundle exec rake db:drop'
-    run 'bundle exec rake db:migrate'
-    run 'bundle exec rake db:test:prepare'
     run 'bundle exec rake db:seed'
+    run 'bundle exec rake db:test:prepare'
 
     # >-------------------------------[ Controllers ]--------------------------------<
     copy_from_repo 'app/controllers/home_controller.rb', :repo => repo
@@ -93,13 +83,19 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo
     copy_from_repo 'spec/stripe/stripe_config_spec.rb', :repo => repo
 
-    # >-------------------------------[ Extras ]--------------------------------<
-    append_file 'config/application.yml' do <<-FILE
-# STRIPE_API_KEY: Your_Stripe_API_key
-# STRIPE_PUBLIC_KEY: Your_Stripe_Public_Key
-FILE
-    end
-    
+    # >-------------------------------[ Cucumber ]--------------------------------<
+    say_wizard "copying Cucumber scenarios from the rails-stripe-membership-saas examples"
+    remove_file 'features/users/user_show.feature'
+    copy_from_repo 'features/support/paths.rb', :repo => repo
+    copy_from_repo 'features/users/sign_in.feature', :repo => repo
+    copy_from_repo 'features/users/sign_up.feature', :repo => repo
+    copy_from_repo 'features/users/sign_up_with_stripe.feature', :repo => repo
+    copy_from_repo 'features/users/user_edit.feature', :repo => repo
+    copy_from_repo 'features/users/user_delete.feature', :repo => repo
+    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
+    copy_from_repo 'features/step_definitions/form_helper_steps.rb', :repo => repo 
+    copy_from_repo 'config/locales/devise.en.yml', :repo => repo
+
     ### GIT ###
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: membership app"' if prefer :git, true

@@ -40,31 +40,23 @@ if prefer :railsapps, 'rails-prelaunch-signup'
       end
     end
 
-    # >-------------------------------[ Cucumber ]--------------------------------<
-    say_wizard "copying Cucumber scenarios from the rails-prelaunch-signup examples"
-    copy_from_repo 'features/admin/send_invitations.feature', :repo => repo    
-    copy_from_repo 'features/admin/view_progress.feature', :repo => repo
-    copy_from_repo 'features/visitors/request_invitation.feature', :repo => repo
-    copy_from_repo 'features/users/sign_in.feature', :repo => repo
-    copy_from_repo 'features/users/sign_up.feature', :repo => repo
-    copy_from_repo 'features/users/user_show.feature', :repo => repo
-    copy_from_repo 'features/step_definitions/admin_steps.rb', :repo => repo
-    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo    
-    copy_from_repo 'features/step_definitions/visitor_steps.rb', :repo => repo
-    copy_from_repo 'config/locales/devise.en.yml', :repo => repo
-
     # >-------------------------------[ Migrations ]--------------------------------<
-
     generate 'migration AddOptinToUsers opt_in:boolean'
     run 'bundle exec rake db:drop'
     run 'bundle exec rake db:migrate'
-    run 'bundle exec rake db:test:prepare'
-    run 'bundle exec rake db:seed'
 
     # >-------------------------------[ Models ]--------------------------------<
 
     copy_from_repo 'app/models/user.rb', :repo => repo
 
+    # >-------------------------------[ Init ]--------------------------------<
+    copy_from_repo 'config/application.yml', :repo => repo
+    remove_file 'config/application.example.yml'
+    copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
+    copy_from_repo 'db/seeds.rb', :repo => repo
+    run 'bundle exec rake db:seed'
+    run 'bundle exec rake db:test:prepare'
+    
     # >-------------------------------[ Controllers ]--------------------------------<
 
     copy_from_repo 'app/controllers/confirmations_controller.rb', :repo => repo
@@ -93,17 +85,30 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     copy_from_repo 'public/thankyou.html', :repo => repo
 
     # >-------------------------------[ Routes ]--------------------------------<
-    
+
     copy_from_repo 'config/routes.rb', :repo => repo
     ### CORRECT APPLICATION NAME ###
     gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
     
     # >-------------------------------[ Assets ]--------------------------------<
-    
+
     copy_from_repo 'app/assets/javascripts/application.js', :repo => repo
     copy_from_repo 'app/assets/javascripts/users.js.coffee', :repo => repo
     copy_from_repo 'app/assets/stylesheets/application.css.scss', :repo => repo
-    
+
+    # >-------------------------------[ Cucumber ]--------------------------------<
+    say_wizard "copying Cucumber scenarios from the rails-prelaunch-signup examples"
+    copy_from_repo 'features/admin/send_invitations.feature', :repo => repo    
+    copy_from_repo 'features/admin/view_progress.feature', :repo => repo
+    copy_from_repo 'features/visitors/request_invitation.feature', :repo => repo
+    copy_from_repo 'features/users/sign_in.feature', :repo => repo
+    copy_from_repo 'features/users/sign_up.feature', :repo => repo
+    copy_from_repo 'features/users/user_show.feature', :repo => repo
+    copy_from_repo 'features/step_definitions/admin_steps.rb', :repo => repo
+    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo    
+    copy_from_repo 'features/step_definitions/visitor_steps.rb', :repo => repo
+    copy_from_repo 'config/locales/devise.en.yml', :repo => repo
+
     ### GIT ###
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: prelaunch app"' if prefer :git, true
