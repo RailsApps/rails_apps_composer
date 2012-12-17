@@ -82,6 +82,8 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'spec/controllers/content_controller_spec.rb', :repo => repo
     copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo
     copy_from_repo 'spec/stripe/stripe_config_spec.rb', :repo => repo
+    copy_from_repo 'spec/support/stripe_helper.rb', :repo => repo
+    copy_from_repo 'spec/support/fixtures/success.json', :repo => repo
 
     # >-------------------------------[ Cucumber ]--------------------------------<
     say_wizard "copying Cucumber scenarios from the rails-stripe-membership-saas examples"
