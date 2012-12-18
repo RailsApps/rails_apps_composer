@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.2.25 unreleased
 
 * update 'saas' recipe to add Rspec tests
+* use 'find_or_create_by_email' instead of 'find_or_create_by_name'
 
 h2. 2.2.24 December 16, 2012
 
