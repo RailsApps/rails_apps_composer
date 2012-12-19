@@ -1,10 +1,11 @@
 h1. CHANGELOG
 
-h2. 2.2.25 unreleased
+h2. 2.2.25 December 19, 2012
 
 * check for RVM before executing '.rvmrc' section of extras recipe (contributed by Errin Larsen)
 * update 'saas' recipe to add Rspec tests
 * use 'find_or_create_by_email' instead of 'find_or_create_by_name'
+* fix 'testing' recipe for Fabrication option
 
 h2. 2.2.24 December 16, 2012
 
