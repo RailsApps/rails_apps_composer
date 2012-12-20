@@ -116,7 +116,7 @@ end
 
 ## Gems from a defaults file or added interactively
 gems.each do |g|
-  gem g
+  gem(*g)
 end
 
 ## Git
