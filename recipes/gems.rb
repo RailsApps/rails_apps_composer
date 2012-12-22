@@ -22,7 +22,7 @@ end
 
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
-gem 'mongoid', '>= 3.0.14' if prefer :orm, 'mongoid'
+gem 'mongoid', '>= 3.0.15' if prefer :orm, 'mongoid'
 unless File.open('Gemfile').lines.any?{|line| line.include?('pg')}
   gem 'pg', '>= 0.14.1' if prefer :database, 'postgresql'
 end
@@ -36,16 +36,16 @@ if prefer :templates, 'haml'
   gem 'haml-rails', '>= 0.3.5', :group => :development
   # hpricot and ruby_parser are needed for conversion of HTML to Haml
   gem 'hpricot', '>= 0.8.6', :group => :development
-  gem 'ruby_parser', '>= 3.1.0', :group => :development
+  gem 'ruby_parser', '>= 3.1.1', :group => :development
 end
 if prefer :templates, 'slim'
-  gem 'slim', '>= 1.3.3'
+  gem 'slim', '>= 1.3.5'
   gem 'haml2slim', '>= 0.4.6', :group => :development
   # Haml is needed for conversion of HTML to Slim
   gem 'haml', '>= 3.1.6', :group => :development
   gem 'haml-rails', '>= 0.3.5', :group => :development
   gem 'hpricot', '>= 0.8.6', :group => :development
-  gem 'ruby_parser', '>= 3.1.0', :group => :development
+  gem 'ruby_parser', '>= 3.1.1', :group => :development
 end
 
 ## Testing Framework
@@ -75,7 +75,7 @@ gem 'fabrication', '>= 2.3.0', :group => [:development, :test] if prefer :fixtur
 gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
-gem 'bootstrap-sass', '>= 2.1.1.0' if prefer :bootstrap, 'sass'
+gem 'bootstrap-sass', '>= 2.2.2.0' if prefer :bootstrap, 'sass'
 gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundation'
 gem 'zurb-foundation', '>= 3.2.3', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'

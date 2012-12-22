@@ -4,6 +4,11 @@ h2. 2.2.26 unreleased
 
 * update 'saas' recipe with rails-recurly-subscription-saas example app
 * option to specify gem's origin for gems specified in a defaults file (contributed by Michael Johnston)
+* update gem 'bootstrap-sass' to 2.2.2.0
+* update gem 'ruby_parser' to 3.1.1
+* update gem 'slim' to 1.3.5
+* update gem 'mongoid' to 3.0.15
+* update gem 'better_errors' to 0.3.2
 
 h2. 2.2.25 December 19, 2012
 
