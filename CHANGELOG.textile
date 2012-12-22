@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.2.26 unreleased
+h2. 2.2.26 December 22, 2012
 
 * update 'saas' recipe with rails-recurly-subscription-saas example app
 * option to specify gem's origin for gems specified in a defaults file (contributed by Michael Johnston)
