@@ -103,7 +103,7 @@ gem 'omniauth-linkedin' if prefer :omniauth_provider, 'linkedin'
 gem 'omniauth-google-oauth2' if prefer :omniauth_provider, 'google_oauth2'
 gem 'omniauth-tumblr' if prefer :omniauth_provider, 'tumblr'
 
-## Authorization 
+## Authorization
 if prefer :authorization, 'cancan'
   gem 'cancan', '>= 1.6.8'
   gem 'rolify', '>= 3.2.0'
@@ -112,13 +112,20 @@ end
 ## Form Builder
 gem 'simple_form', '>= 2.0.4' if prefer :form_builder, 'simple_form'
 
-## Membership App 
+## Membership App
 if prefer :railsapps, 'rails-stripe-membership-saas'
   gem 'stripe', '>= 1.7.4'
   gem 'stripe_event', '>= 0.4.0'
 end
+if prefer :railsapps, 'rails-recurly-subscription-saas'
+  gem 'recurly', '>= 2.1.5'
+  gem 'nokogiri', '>= 1.5.5'
+  gem 'countries', '>= 0.8.4'
+  gem 'httpi', '>= 1.1.1'
+  gem 'httpclient', '>= 2.3.0.1'
+end
 
-## Signup App 
+## Signup App
 if prefer :railsapps, 'rails-prelaunch-signup'
   gem 'google_visualr', '>= 2.1.2'
   gem 'jquery-datatables-rails', '>= 1.11.2'

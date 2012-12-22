@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.2.26 unreleased
+
+* update 'saas' recipe with rails-recurly-subscription-saas example app
+* option to specify gem's origin for gems specified in a defaults file (contributed by Michael Johnston)
+
 h2. 2.2.25 December 19, 2012
 
 * check for RVM before executing '.rvmrc' section of extras recipe (contributed by Errin Larsen)
@@ -185,7 +190,7 @@ h2. 2.2.0 August 26, 2012
 * move 'form_builder' ingredient from 'extras' recipe to 'setup' recipe
 * add 'prelaunch' recipe for rails-prelaunch-signup example app
 
-h2. 2.1.10 August 25, 2012 
+h2. 2.1.10 August 25, 2012
 
 * update 'railsapps' recipe to allow choice of erb or Haml for all example apps
 * fix 'models', 'auth', and 'init' recipes to handle Devise confirmable module (contributed by Vitaly Kushner)
@@ -212,7 +217,7 @@ h2. 2.1.7 August 17, 2012
 
 h2. 2.1.6 August 14, 2012
 
-* update 'gems' recipe to create PostgreSQL user and database 
+* update 'gems' recipe to create PostgreSQL user and database
 * update 'gems' and 'frontend' recipes to use 'foundation' generator
 
 h2. 2.1.5 August 14, 2012
@@ -407,8 +412,8 @@ h2. 1.4.7 April 25, 2012
 * improve 'html5' recipe to move flash messages into partials for application layouts
 * add 'paperclip' recipe with support for mongoid and cloudfiles (contributed by merlinvn)
 * add 'cloudfiles' recipe (contributed by merlinvn)
-* improve 'extras' recipe to support mongoid for will_paginate (contributed by merlinvn) 
-* improve 'active_admin' recipe to support mongoid (contributed by merlinvn) 
+* improve 'extras' recipe to support mongoid for will_paginate (contributed by merlinvn)
+* improve 'active_admin' recipe to support mongoid (contributed by merlinvn)
 * improve 'home_page' recipe to allow use of 'slim' recipe (contributed by Guten Ye)
 * improve 'omniauth' recipe to add Tumblr to the strategy list (contributed by monfresh)
 * correct error when using Cucumber and Capybara recipes together (contributed by Alan Oliver)
@@ -461,7 +466,7 @@ h2. 1.4.1 April 2, 2012
 
 h2. 1.4.0 April 2, 2012
 
-* added template command (no longer using 'rake print') (contributed by Keenan Brock)  
+* added template command (no longer using 'rake print') (contributed by Keenan Brock)
 
 h2. 1.3.1 March 15, 2012
 
@@ -469,10 +474,10 @@ h2. 1.3.1 March 15, 2012
 
 h2. 1.3.0 March 15, 2012
 
-* implement and enable support for 'run_after' parameter (contributed by Rico Sta. Cruz) 
+* implement and enable support for 'run_after' parameter (contributed by Rico Sta. Cruz)
 * update 'omniauth' recipe to add 'omniauth-google' gem (contributed by Rico Sta. Cruz)
 * update 'compass' recipe to add 'compass-rails' gem (contributed by Rico Sta. Cruz)
-* update gem 'compass' from 0.12.rc.1 to 0.12.1 (contributed by Rico Sta. Cruz) 
+* update gem 'compass' from 0.12.rc.1 to 0.12.1 (contributed by Rico Sta. Cruz)
 * fix 'rspec' recipe to add 'factory_girl_rails' to development group (Philippe Van Eerdenbrugghe)
 * add 'active_admin' recipe (contributed by Philippe Van Eerdenbrugghe)
 * update gem 'omniauth' from 1.0.2 to 1.0.3
@@ -690,7 +695,7 @@ h2. 1.0.13 August 5, 2011
 * update gem 'mongoid' from 2.0.2 to 2.1.5
 * update gem 'factory_girl_rails' from 1.1.rc1 to 1.1.0
 * update gem 'launchy' from 0.4.0 to 2.0.5
-* update HTML5 boilerplate recipe with changed Javascript urls 
+* update HTML5 boilerplate recipe with changed Javascript urls
 
 h2. 1.0.12 July 9, 2011
 
@@ -736,8 +741,8 @@ h2. 1.0.6 June 8, 2011
 
 h2. 1.0.5 May 27, 2011
 
-* adjust Javascript and stylesheet link tags for Rails 3.1 
-* adjust CSS stylesheets location for Rails 3.1 
+* adjust Javascript and stylesheet link tags for Rails 3.1
+* adjust CSS stylesheets location for Rails 3.1
 * use HTML 5 for Haml
 * fix indentation in devise_navigation recipe for Haml
 * update gems for Rails 3.0.8 and 3.1: cucumber-rails 0.5.1, capybara 1.0.0.beta1, rspec 2.6.1
@@ -747,7 +752,7 @@ h2. 1.0.4 May 24, 2011
 
 * for Rails 3.0, use only gem versions that we know work
 * for Rails 3.1+, use optimistic versioning for gems
-* add "fix_rake" recipe for Rails 3.0 that binds the rake gem at version 0.8.7 
+* add "fix_rake" recipe for Rails 3.0 that binds the rake gem at version 0.8.7
 
 h2. 1.0.3 May 19, 2011
 
@@ -757,7 +762,7 @@ h2. 1.0.3 May 19, 2011
 
 h2. 1.0.0 May 17, 2011
 
-* rename project from rails3_devise_wizard to rails_apps_composer and move to new repo at "http://github.com/RailsApps/":http://github.com/RailsApps/ 
+* rename project from rails3_devise_wizard to rails_apps_composer and move to new repo at "http://github.com/RailsApps/":http://github.com/RailsApps/
 
 h2. 0.3.2 May 17, 2011
 

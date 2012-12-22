@@ -101,7 +101,9 @@ FILE
     run 'bundle exec rake db:drop'
     run 'bundle exec rake db:mongoid:create_indexes'
   end
-  run 'bundle exec rake db:seed'
+  unless prefer :railsapps, 'rails-recurly-subscription-saas'
+    run 'bundle exec rake db:seed'
+  end
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: set up database"' if prefer :git, true

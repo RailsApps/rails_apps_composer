@@ -36,7 +36,9 @@ RUBY
       end
     else
       ## DEVISE AND ACTIVE RECORD
-      generate 'migration AddNameToUsers name:string'
+      unless prefer :railsapps, 'rails-recurly-subscription-saas'
+        generate 'migration AddNameToUsers name:string'
+      end
       copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
       if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
         gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
@@ -56,7 +58,7 @@ RUBY
     copy_from_repo 'config/initializers/omniauth.rb', :repo => repo
     gsub_file 'config/initializers/omniauth.rb', /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
     generate 'model User name:string email:string provider:string uid:string' unless prefer :orm, 'mongoid'
-    run 'bundle exec rake db:migrate' unless prefer :orm, 'mongoid' 
+    run 'bundle exec rake db:migrate' unless prefer :orm, 'mongoid'
     copy_from_repo 'app/models/user.rb', :repo => repo  # copy the User model (Mongoid version)
     unless prefer :orm, 'mongoid'
       ## OMNIAUTH AND ACTIVE RECORD
@@ -72,7 +74,7 @@ RUBY
   ### AUTHORIZATION ###
   if prefer :authorization, 'cancan'
     generate 'cancan:ability'
-    if prefer :starter_app, 'admin_app' 
+    if prefer :starter_app, 'admin_app'
       # Limit access to the users#index page
       copy_from_repo 'app/models/ability.rb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
       # allow an admin to update roles
@@ -82,13 +84,13 @@ RUBY
       generate 'rolify:role Role User'
     else
       generate 'rolify:role Role User mongoid'
-    	# correct the generation of rolify 3.1 with mongoid
-    	# the call to `rolify` should be *after* the inclusion of mongoid
-    	# (see https://github.com/EppO/rolify/issues/61)
-    	# This isn't needed for rolify>=3.2.0.beta4, but should cause no harm
-    	gsub_file 'app/models/user.rb',
-    		  /^\s*(rolify.*?)$\s*(include Mongoid::Document.*?)$/,
-    		  "  \\2\n  extend Rolify\n  \\1\n"
+      # correct the generation of rolify 3.1 with mongoid
+      # the call to `rolify` should be *after* the inclusion of mongoid
+      # (see https://github.com/EppO/rolify/issues/61)
+      # This isn't needed for rolify>=3.2.0.beta4, but should cause no harm
+      gsub_file 'app/models/user.rb',
+          /^\s*(rolify.*?)$\s*(include Mongoid::Document.*?)$/,
+          "  \\2\n  extend Rolify\n  \\1\n"
     end
   end
   ### GIT ###

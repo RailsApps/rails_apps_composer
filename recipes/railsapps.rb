@@ -1,18 +1,42 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/railsapps.rb
 
-prefs[:railsapps] = multiple_choice "Install an example application?", 
-  [["I want to build my own application", "none"], 
-  ["rails-stripe-membership-saas", "rails-stripe-membership-saas"], 
-  ["rails-prelaunch-signup", "rails-prelaunch-signup"], 
-  ["rails3-bootstrap-devise-cancan", "rails3-bootstrap-devise-cancan"], 
-  ["rails3-devise-rspec-cucumber", "rails3-devise-rspec-cucumber"], 
+prefs[:railsapps] = multiple_choice "Install an example application?",
+  [["I want to build my own application", "none"],
+  ["membership/subscription/saas", "saas"],
+  ["rails-prelaunch-signup", "rails-prelaunch-signup"],
+  ["rails3-bootstrap-devise-cancan", "rails3-bootstrap-devise-cancan"],
+  ["rails3-devise-rspec-cucumber", "rails3-devise-rspec-cucumber"],
   ["rails3-mongoid-devise", "rails3-mongoid-devise"],
   ["rails3-mongoid-omniauth", "rails3-mongoid-omniauth"],
   ["rails3-subdomains", "rails3-subdomains"]] unless prefs.has_key? :railsapps
 
 case prefs[:railsapps]
+  when 'saas'
+    prefs[:railsapps] = multiple_choice "Billing with Stripe or Recurly?",
+      [["Stripe", "rails-stripe-membership-saas"],
+      ["Recurly", "rails-recurly-subscription-saas"]]
+end
+
+case prefs[:railsapps]
   when 'rails-stripe-membership-saas'
+    prefs[:git] = true
+    prefs[:database] = 'sqlite'
+    prefs[:unit_test] = 'rspec'
+    prefs[:integration] = 'cucumber'
+    prefs[:fixtures] = 'factory_girl'
+    prefs[:frontend] = 'bootstrap'
+    prefs[:bootstrap] = 'sass'
+    prefs[:email] = 'gmail'
+    prefs[:authentication] = 'devise'
+    prefs[:devise_modules] = 'default'
+    prefs[:authorization] = 'cancan'
+    prefs[:starter_app] = 'admin_app'
+    prefs[:form_builder] = 'simple_form'
+    prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
+    prefs[:better_errors] = true
+  when 'rails-recurly-subscription-saas'
     prefs[:git] = true
     prefs[:database] = 'sqlite'
     prefs[:unit_test] = 'rspec'
