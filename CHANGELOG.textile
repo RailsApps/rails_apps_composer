@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.27 unreleased
+
+* accommodate html2haml bug with an ugly workaround (https://github.com/RailsApps/rails-composer/issues/55)
+
 h2. 2.2.26 December 22, 2012
 
 * update 'saas' recipe with rails-recurly-subscription-saas example app
