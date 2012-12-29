@@ -22,6 +22,7 @@ RUBY
 	run "rake assets:precompile"
 	git :add => "."
 	git :commit => "-a -m 'initial commit for heroku'"
+	run "git push origin master"
 	run "git push heroku master"
 	
 	# SET ENVIRONMENT VARIABLES BEFORE SEEDING DB
