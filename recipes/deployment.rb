@@ -4,6 +4,7 @@ after_everything do
 	gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
 	gem 'pg', :group => :production
 	gem 'sqlite3', :group => [:development, :test]
+	run 'bundle install'
 
 	gsub_file 'config/application.rb', /config.assets.enabled = true/ do
 	<<-RUBY
