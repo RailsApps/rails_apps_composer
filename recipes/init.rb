@@ -79,7 +79,7 @@ FILE
   end
   ## DEVISE-CONFIRMABLE
   if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
-    append_file 'db/seeds.rb', 'user.confirm!'
+    append_file 'db/seeds.rb', "user.confirm!\n"
   end
   if (prefer :authorization, 'cancan') && !(prefer :authentication, 'omniauth')
     append_file 'db/seeds.rb', 'user.add_role :admin'
