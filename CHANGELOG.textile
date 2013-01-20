@@ -2,10 +2,10 @@ h1. CHANGELOG
 
 h2. 2.2.28 January 20, 2013
 
-* fix 'init' recipe for 'application.yml' to accommodate Devise default minimum password length of eight
-* fix 'init' recipe to correct 'seeds.rb' error for Devise Confirmable option (contributed by Rémy Hannequin)
-* fix 'testing' recipe for Fabrication to accommodate longer password default in Devise (contributed by Samson Ootoovak)
 * Devise default minimum password length is now eight (Devise 2.2.0)
+* fix 'init' recipe for 'application.yml' to accommodate Devise default minimum password length of eight
+* fix 'testing' recipe for Fabrication to accommodate longer password default in Devise (contributed by Samson Ootoovak)
+* fix 'init' recipe to correct 'seeds.rb' error for Devise Confirmable option (contributed by Rémy Hannequin)
 * update gem 'minitest-spec-rails' to 4.3.6
 * update gem 'therubyracer' to 0.11.3
 * update gem 'devise' to 2.2.2
