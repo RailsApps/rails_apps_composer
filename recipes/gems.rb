@@ -50,16 +50,16 @@ end
 
 ## Testing Framework
 if prefer :unit_test, 'rspec'
-  gem 'rspec-rails', '>= 2.11.4', :group => [:development, :test]
+  gem 'rspec-rails', '>= 2.12.2', :group => [:development, :test]
   gem 'capybara', '>= 2.0.1', :group => :test if prefer :integration, 'rspec-capybara'
   gem 'database_cleaner', '>= 0.9.1', :group => :test
   if prefer :orm, 'mongoid'
-    gem 'mongoid-rspec', '>= 1.5.5', :group => :test
+    gem 'mongoid-rspec', '>= 1.5.6', :group => :test
   end
   gem 'email_spec', '>= 1.4.0', :group => :test
 end
 if prefer :unit_test, 'minitest'
-  gem 'minitest-spec-rails', '>= 3.0.7', :group => :test
+  gem 'minitest-spec-rails', '>= 4.3.6', :group => :test
   gem 'minitest-wscolor', '>= 0.0.3', :group => :test
   gem 'capybara', '>= 2.0.1', :group => :test if prefer :integration, 'minitest-capybara'
 end
@@ -77,13 +77,13 @@ gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 ## Front-end Framework
 gem 'bootstrap-sass', '>= 2.2.2.0' if prefer :bootstrap, 'sass'
 gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundation'
-gem 'zurb-foundation', '>= 3.2.3', :group => :assets if prefer :frontend, 'foundation'
+gem 'zurb-foundation', '>= 3.2.4', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   gem 'less-rails', '>= 2.2.6', :group => :assets
   gem 'twitter-bootstrap-rails', '>= 2.1.8', :group => :assets
   # install gem 'therubyracer' to use Less
   gem 'libv8', '>= 3.11.8'
-  gem 'therubyracer', '>= 0.11.0', :group => :assets, :platform => :ruby, :require => 'v8'
+  gem 'therubyracer', '>= 0.11.3', :group => :assets, :platform => :ruby, :require => 'v8'
 end
 
 ## Email
@@ -91,7 +91,7 @@ gem 'sendgrid', '>= 1.0.1' if prefer :email, 'sendgrid'
 gem 'hominid', '>= 3.0.5' if prefer :email, 'mandrill'
 
 ## Authentication (Devise)
-gem 'devise', '>= 2.1.2' if prefer :authentication, 'devise'
+gem 'devise', '>= 2.2.2' if prefer :authentication, 'devise'
 gem 'devise_invitable', '>= 1.1.4' if prefer :devise_modules, 'invitable'
 
 ## Authentication (OmniAuth)

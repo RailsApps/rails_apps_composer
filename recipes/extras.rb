@@ -16,7 +16,7 @@ if config['local_env_file']
 end
 if prefs[:local_env_file]
   say_wizard "recipe creating application.yml file for environment variables"
-  gem 'figaro', '>= 0.5.0'
+  gem 'figaro', '>= 0.5.3'
 end
 
 ## BETTER ERRORS
@@ -50,7 +50,7 @@ case RbConfig::CONFIG['host_os']
       unless prefer :bootstrap, 'less'
         say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
         gem 'libv8', '>= 3.11.8'
-        gem 'therubyracer', '>= 0.11.0', :group => :assets, :platform => :ruby, :require => 'v8'
+        gem 'therubyracer', '>= 0.11.3', :group => :assets, :platform => :ruby, :require => 'v8'
       end
     end
 end
