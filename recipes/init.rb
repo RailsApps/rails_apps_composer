@@ -22,7 +22,7 @@ after_everything do
   append_file 'config/application.yml' do <<-FILE
 ADMIN_NAME: First User
 ADMIN_EMAIL: user@example.com
-ADMIN_PASSWORD: password
+ADMIN_PASSWORD: changeme
 FILE
   end
   ## AUTHENTICATION

@@ -13,7 +13,7 @@ after_bundler do
     end
 
 RUBY
-    end  
+    end
   end
   ### RSPEC ###
   if prefer :unit_test, 'rspec'
@@ -244,8 +244,8 @@ RUBY
 Fabricator(:user) do
   name     'Test User'
   email    'example@example.com'
-  password 'password'
-  password_confirmation 'password'
+  password 'changeme'
+  password_confirmation 'changeme'
   # required if the Devise Confirmable module is used
   # confirmed_at Time.now
 end
@@ -258,8 +258,8 @@ RUBY
       gsub_file 'spec/controllers/users_controller_spec.rb', /@user = FactoryGirl.create\(:user\)/, '@user = Fabricate(:user)'
     end
   end
-end # after_everything 
-  
+end # after_everything
+
 __END__
 
 name: testing
