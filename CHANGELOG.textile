@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.2.30 January 20, 2013
+
+* replace 'find_or_create_by_email' with 'create!' in 'db/seeds.rb' when using Mongoid
+* update gem 'mongoid' to 3.0.18
+* update gem 'capybara' to 2.0.2
 
 h2. 2.2.29 January 20, 2013
 
