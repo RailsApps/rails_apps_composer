@@ -3,7 +3,12 @@ h1. CHANGELOG
 h2. 2.2.31 January 30, 2013
 
 * fix 'testing' recipe to accommodate change from 'factory_girl_rails' 4.1.0 to 4.2.0
-* update gem 'factory_girl_rails' from 4.1.0 to 4.2.0
+* update gem 'factory_girl_rails' to 4.2.0
+* update gem 'devise' to 2.2.3
+* update gem 'mongoid-rspec' to 1.6.0
+* update gem 'zurb-foundation' to 3.2.5
+* update gem 'devise_invitable' to 1.1.5
+* update gem 'mongoid' to 3.0.19
 
 h2. 2.2.30 January 20, 2013
 
