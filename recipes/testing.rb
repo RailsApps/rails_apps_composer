@@ -34,7 +34,7 @@ RUBY
     config.generators do |g|
       #{"g.test_framework :rspec" if prefer :fixtures, 'none'}
       #{"g.test_framework :rspec, fixture: true" unless prefer :fixtures, 'none'}
-      #{"g.fixture_replacement :factory_girl" if prefer :fixtures, 'factory_girl'}
+      #{"g.fixture_replacement :factory_girl, dir: 'spec/factories'" if prefer :fixtures, 'factory_girl'}
       #{"g.fixture_replacement :machinist" if prefer :fixtures, 'machinist'}
       #{"g.fixture_replacement :fabrication" if prefer :fixtures, 'fabrication'}
       g.view_specs false
