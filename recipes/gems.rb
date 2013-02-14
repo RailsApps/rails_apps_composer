@@ -22,7 +22,7 @@ end
 
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
-gem 'mongoid', '>= 3.0.19' if prefer :orm, 'mongoid'
+gem 'mongoid', '>= 3.1.0' if prefer :orm, 'mongoid'
 unless File.open('Gemfile').lines.any?{|line| line.include?('pg')}
   gem 'pg', '>= 0.14.1' if prefer :database, 'postgresql'
 end
@@ -54,14 +54,14 @@ if prefer :unit_test, 'rspec'
   gem 'email_spec', '>= 1.4.0', :group => :test
 end
 if prefer :unit_test, 'minitest'
-  gem 'minitest-spec-rails', '>= 4.3.6', :group => :test
+  gem 'minitest-spec-rails', '>= 4.3.8', :group => :test
   gem 'minitest-wscolor', '>= 0.0.3', :group => :test
   gem 'capybara', '>= 2.0.2', :group => :test if prefer :integration, 'minitest-capybara'
 end
 if prefer :integration, 'cucumber'
   gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
   gem 'database_cleaner', '>= 0.9.1', :group => :test unless prefer :unit_test, 'rspec'
-  gem 'launchy', '>= 2.1.2', :group => :test
+  gem 'launchy', '>= 2.2.0', :group => :test
   gem 'capybara', '>= 2.0.2', :group => :test
 end
 gem 'turnip', '>= 1.1.0', :group => :test if prefer :integration, 'turnip'
@@ -70,12 +70,12 @@ gem 'fabrication', '>= 2.3.0', :group => [:development, :test] if prefer :fixtur
 gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
-gem 'bootstrap-sass', '>= 2.2.2.0' if prefer :bootstrap, 'sass'
+gem 'bootstrap-sass', '>= 2.3.0.0' if prefer :bootstrap, 'sass'
 gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundation'
 gem 'zurb-foundation', '>= 3.2.5', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   gem 'less-rails', '>= 2.2.6', :group => :assets
-  gem 'twitter-bootstrap-rails', '>= 2.1.8', :group => :assets
+  gem 'twitter-bootstrap-rails', '>= 2.2.3', :group => :assets
   # install gem 'therubyracer' to use Less
   gem 'libv8', '>= 3.11.8'
   gem 'therubyracer', '>= 0.11.3', :group => :assets, :platform => :ruby, :require => 'v8'
@@ -90,7 +90,7 @@ gem 'devise', '>= 2.2.3' if prefer :authentication, 'devise'
 gem 'devise_invitable', '>= 1.1.5' if prefer :devise_modules, 'invitable'
 
 ## Authentication (OmniAuth)
-gem 'omniauth', '>= 1.1.1' if prefer :authentication, 'omniauth'
+gem 'omniauth', '>= 1.1.3' if prefer :authentication, 'omniauth'
 gem 'omniauth-twitter' if prefer :omniauth_provider, 'twitter'
 gem 'omniauth-facebook' if prefer :omniauth_provider, 'facebook'
 gem 'omniauth-github' if prefer :omniauth_provider, 'github'
@@ -109,11 +109,11 @@ gem 'simple_form', '>= 2.0.4' if prefer :form_builder, 'simple_form'
 
 ## Membership App
 if prefer :railsapps, 'rails-stripe-membership-saas'
-  gem 'stripe', '>= 1.7.4'
+  gem 'stripe', '>= 1.7.10'
   gem 'stripe_event', '>= 0.4.0'
 end
 if prefer :railsapps, 'rails-recurly-subscription-saas'
-  gem 'recurly', '>= 2.1.5'
+  gem 'recurly', '>= 2.1.8'
   gem 'nokogiri', '>= 1.5.5'
   gem 'countries', '>= 0.8.4'
   gem 'httpi', '>= 1.1.1'
