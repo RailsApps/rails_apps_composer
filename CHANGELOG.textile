@@ -1,5 +1,11 @@
 h1. CHANGELOG
 
+h2. 2.2.32 February 14, 2013
+
+* add gem 'html2haml' version 1.0.0
+* update gem 'haml-rails' to 0.4
+* update gem 'slim' to 2.0.0.pre.6
+
 h2. 2.2.31 January 30, 2013
 
 * fix 'testing' recipe to accommodate change from 'factory_girl_rails' 4.1.0 to 4.2.0

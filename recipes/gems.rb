@@ -32,20 +32,15 @@ end
 
 ## Template Engine
 if prefer :templates, 'haml'
-  gem 'haml', '>= 3.1.7'
-  gem 'haml-rails', '>= 0.3.5', :group => :development
-  # hpricot and ruby_parser are needed for conversion of HTML to Haml
-  gem 'hpricot', '>= 0.8.6', :group => :development
-  gem 'ruby_parser', '>= 3.1.1', :group => :development
+  gem 'haml-rails', '>= 0.4'
+  gem 'html2haml', '>= 1.0.0', :group => :development
 end
 if prefer :templates, 'slim'
-  gem 'slim', '>= 1.3.5'
+  gem 'slim', '>= 2.0.0.pre.6'
   gem 'haml2slim', '>= 0.4.6', :group => :development
   # Haml is needed for conversion of HTML to Slim
-  gem 'haml', '>= 3.1.6', :group => :development
-  gem 'haml-rails', '>= 0.3.5', :group => :development
-  gem 'hpricot', '>= 0.8.6', :group => :development
-  gem 'ruby_parser', '>= 3.1.1', :group => :development
+  gem 'haml-rails', '>= 0.4', :group => :development
+  gem 'html2haml', '>= 1.0.0', :group => :development
 end
 
 ## Testing Framework
