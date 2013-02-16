@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.33 February 16, 2013
+
+* fix color for question prompt (https://github.com/RailsApps/rails_apps_composer/issues/161)
+
 h2. 2.2.32 February 14, 2013
 
 * add gem 'html2haml' version 1.0.0

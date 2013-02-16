@@ -11,7 +11,7 @@ def say_recipe(name); say "\033[1m\033[36m" + "recipe".rjust(10) + "\033[0m" + "
 def say_wizard(text); say_custom(@current_recipe || 'composer', text) end
 
 def ask_wizard(question)
-  ask "\033[1m\033[30m\033[46m" + (@current_recipe || "prompt").rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
+  ask "\033[1m\033[36m" + (@current_recipe || "prompt").rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
 end
 
 def yes_wizard?(question)
