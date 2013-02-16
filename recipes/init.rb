@@ -17,30 +17,34 @@ after_everything do
     when 'mandrill'
       credentials = "MANDRILL_USERNAME: Your_Username\nMANDRILL_API_KEY: Your_API_Key\n"
   end
-  append_file 'config/application.yml', credentials
-  ## DEFAULT USER
-  append_file 'config/application.yml' do <<-FILE
+  append_file 'config/application.yml', credentials if prefs[:local_env_file]
+  if prefs[:local_env_file]
+    ## DEFAULT USER
+    append_file 'config/application.yml' do <<-FILE
 ADMIN_NAME: First User
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
 FILE
-  end
-  ## AUTHENTICATION
-  if prefer :authentication, 'omniauth'
-    append_file 'config/application.yml' do <<-FILE
+    end
+    ## AUTHENTICATION
+    if prefer :authentication, 'omniauth'
+      append_file 'config/application.yml' do <<-FILE
 OMNIAUTH_PROVIDER_KEY: Your_OmniAuth_Provider_Key
 OMNIAUTH_PROVIDER_SECRET: Your_OmniAuth_Provider_Secret
 FILE
+      end
     end
-  end
-  ## AUTHORIZATION
-  if (prefer :authorization, 'cancan')
-    append_file 'config/application.yml', "ROLES: [admin, user, VIP]\n"
+    ## AUTHORIZATION
+    if (prefer :authorization, 'cancan')
+      append_file 'config/application.yml', "ROLES: [admin, user, VIP]\n"
+    end
   end
   ### SUBDOMAINS ###
   copy_from_repo 'config/application.yml', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
   ### APPLICATION.EXAMPLE.YML ###
-  copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
+  if prefs[:local_env_file]
+    copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
+  end
   ### DATABASE SEED ###
   append_file 'db/seeds.rb' do <<-FILE
 # Environment variables (ENV['...']) are set in the file config/application.yml.
