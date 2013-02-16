@@ -2,7 +2,7 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/prelaunch.rb
 
 if prefer :railsapps, 'rails-prelaunch-signup'
-  
+
   after_everything do
     say_wizard "recipe running after 'bundle install'"
     repo = 'https://raw.github.com/RailsApps/rails-prelaunch-signup/master/'
@@ -56,7 +56,7 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     copy_from_repo 'db/seeds.rb', :repo => repo
     run 'bundle exec rake db:seed'
     run 'bundle exec rake db:test:prepare'
-    
+
     # >-------------------------------[ Controllers ]--------------------------------<
 
     copy_from_repo 'app/controllers/confirmations_controller.rb', :repo => repo
@@ -65,7 +65,7 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     copy_from_repo 'app/controllers/users_controller.rb', :repo => repo
 
     # >-------------------------------[ Mailers ]--------------------------------<
-    
+
     generate 'mailer UserMailer'
     copy_from_repo 'spec/mailers/user_mailer_spec.rb', :repo => repo
     copy_from_repo 'app/mailers/user_mailer.rb', :repo => repo
@@ -89,7 +89,7 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     copy_from_repo 'config/routes.rb', :repo => repo
     ### CORRECT APPLICATION NAME ###
     gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
-    
+
     # >-------------------------------[ Assets ]--------------------------------<
 
     copy_from_repo 'app/assets/javascripts/application.js', :repo => repo
@@ -98,14 +98,14 @@ if prefer :railsapps, 'rails-prelaunch-signup'
 
     # >-------------------------------[ Cucumber ]--------------------------------<
     say_wizard "copying Cucumber scenarios from the rails-prelaunch-signup examples"
-    copy_from_repo 'features/admin/send_invitations.feature', :repo => repo    
+    copy_from_repo 'features/admin/send_invitations.feature', :repo => repo
     copy_from_repo 'features/admin/view_progress.feature', :repo => repo
     copy_from_repo 'features/visitors/request_invitation.feature', :repo => repo
     copy_from_repo 'features/users/sign_in.feature', :repo => repo
     copy_from_repo 'features/users/sign_up.feature', :repo => repo
     copy_from_repo 'features/users/user_show.feature', :repo => repo
     copy_from_repo 'features/step_definitions/admin_steps.rb', :repo => repo
-    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo    
+    copy_from_repo 'features/step_definitions/user_steps.rb', :repo => repo
     copy_from_repo 'features/step_definitions/visitor_steps.rb', :repo => repo
     copy_from_repo 'config/locales/devise.en.yml', :repo => repo
 

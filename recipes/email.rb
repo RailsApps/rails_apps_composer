@@ -17,9 +17,9 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 RUBY
     end
     ### TEST
-    inject_into_file 'config/environments/test.rb', :before => "\nend" do 
+    inject_into_file 'config/environments/test.rb', :before => "\nend" do
   <<-RUBY
-\n  
+\n
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }
 RUBY

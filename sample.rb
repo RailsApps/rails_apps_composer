@@ -1,8 +1,8 @@
 # >---------------------------[ Install Command ]-----------------------------<
-#  rails new APP_NAME -m http://railswizard.local/b9755a02fbf7886df8b2.rb 
+#  rails new APP_NAME -m http://railswizard.local/b9755a02fbf7886df8b2.rb
 # >---------------------------------------------------------------------------<
 #
-#            _____       _ _   __          ___                  _ 
+#            _____       _ _   __          ___                  _
 #           |  __ \     (_) |  \ \        / (_)                | |
 #           | |__) |__ _ _| |___\ \  /\  / / _ ______ _ _ __ __| |
 #           |  _  // _` | | / __|\ \/  \/ / | |_  / _` | '__/ _` |
@@ -29,7 +29,7 @@ Rails.application.config.generators do |g|
 end
 RUBY
 
-recipes = ["activerecord", "devise", "prototype"] 
+recipes = ["activerecord", "devise", "prototype"]
 
 def say_custom(tag, text); say "\033[1m\033[36m" + tag.to_s.rjust(10) + "\033[0m" + "  #{text}" end
 def say_recipe(name); say "\033[1m\033[36m" + "recipe".rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
@@ -52,7 +52,7 @@ def no_wizard?(question); !yes_wizard?(question) end
 def multiple_choice(question, choices)
   say_custom('question', question)
   values = {}
-  choices.each_with_index do |choice,i| 
+  choices.each_with_index do |choice,i|
     values[(i + 1).to_s] = choice[1]
     say_custom (i + 1).to_s + '.', choice[0]
   end
@@ -74,4 +74,3 @@ say_wizard "Running Bundler install. This will take a while."
 run 'bundle install'
 say_wizard "Running after Bundler callbacks."
 @after_blocks.each{|b| b.call}
-

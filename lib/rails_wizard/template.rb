@@ -55,7 +55,7 @@ module RailsWizard
         RailsWizard::Diagnostics.prefs.inspect
       end
     end
-    
+
     # Sort the recipes list taking 'run_after' directives into account.
     def resolve_recipes
       @resolve_recipes ||= begin
@@ -81,7 +81,7 @@ module RailsWizard
 
     def recipes_with_dependencies
       @recipes_with_dependencies ||= recipe_classes
-      
+
       added_more = false
       for recipe in recipe_classes
         recipe.requires.each do |requirement|

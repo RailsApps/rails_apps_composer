@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{A gem with recipes to create Rails application templates you can use to generate Rails starter apps.}
 
   s.rubyforge_project = "rails_apps_composer"
-  
+
   s.add_dependency "i18n"
   s.add_dependency "activesupport", ">= 3.0.0"
   s.add_dependency "thor"
@@ -23,9 +23,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "activesupport", ">= 3.0.0"
   s.add_development_dependency "i18n"
 
-  s.files         = Dir["lib/**/*.rb", "recipes/*.rb", "README.textile", "version.rb", "templates/*"] 
-  s.test_files    = Dir["spec/**/*"] 
+  s.files         = Dir["lib/**/*.rb", "recipes/*.rb", "README.textile", "version.rb", "templates/*"]
+  s.test_files    = Dir["spec/**/*"]
   s.executables   = ["rails_apps_composer"]
   s.require_paths = ["lib"]
 end
-

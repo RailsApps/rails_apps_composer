@@ -20,7 +20,7 @@ after_bundler do
     copy_from_repo 'app/views/layouts/_navigation-devise.html.erb', :prefs => 'devise'
     copy_from_repo 'app/views/layouts/_navigation-omniauth.html.erb', :prefs => 'omniauth'
   end
-  copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'  
+  copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'
   ## APPLICATION NAME
   application_layout_file = Dir['app/views/layouts/application.html.*'].first
   navigation_partial_file = Dir['app/views/layouts/_navigation.html.*'].first

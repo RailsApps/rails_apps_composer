@@ -16,7 +16,7 @@ after_bundler do
   end
 RUBY
     end
-  end  
+  end
   ### HOME_CONTROLLER ###
   if ['home_app','users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
     generate(:controller, "home index")

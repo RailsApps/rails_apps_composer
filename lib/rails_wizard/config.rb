@@ -7,7 +7,7 @@ module RailsWizard
     def initialize(schema, defaults=nil)
       @questions = ActiveSupport::OrderedHash.new
       @defaults = defaults
-      schema.each do |hash| 
+      schema.each do |hash|
         key = hash.keys.first
         details = hash.values.first
 
@@ -68,7 +68,7 @@ module RailsWizard
     end
 
     class TrueFalse < Prompt
-      def question 
+      def question
         "yes_wizard?(#{prompt.inspect})"
       end
     end
@@ -76,7 +76,7 @@ module RailsWizard
     class MultipleChoice < Prompt
       def question
         "multiple_choice(#{prompt.inspect}, #{@details['choices'].inspect})"
-      end 
+      end
     end
 
     QUESTION_TYPES = {

@@ -58,7 +58,7 @@ config:
       type: boolean
       prompt: Do you also want to test your application on Mars?
       if: space_test
-      if_recipe: mars_lander      
+      if_recipe: mars_lander
   - test_count:
       type: string
       prompt: How many times would you like to repeat the test?
