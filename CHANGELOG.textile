@@ -1,5 +1,13 @@
 h1. CHANGELOG
 
+h2. 2.2.34 February 20, 2013
+
+* update gem 'mongoid' to 3.1.1
+* update gem 'twitter-bootstrap-rails' to 2.2.4
+* update gem 'binding_of_caller' to 0.7.1
+* update gem 'html2haml' to 1.0.1
+* minor fix to 'init' recipe
+
 h2. 2.2.33 February 16, 2013
 
 * fix color for question prompt (https://github.com/RailsApps/rails_apps_composer/issues/161)

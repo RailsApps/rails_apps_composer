@@ -4,7 +4,7 @@
 ### GEMFILE ###
 
 ## Ruby on Rails
-insert_into_file 'Gemfile', "ruby '1.9.3'\n", :before => "gem 'rails', '3.2.6'" if prefer :deploy, 'heroku'
+insert_into_file('Gemfile', "ruby '1.9.3'\n", before: /^ *gem 'rails'/, force: false) if prefer :deploy, 'heroku'
 
 ## Web Server
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
@@ -22,7 +22,7 @@ end
 
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
-gem 'mongoid', '>= 3.1.0' if prefer :orm, 'mongoid'
+gem 'mongoid', '>= 3.1.1' if prefer :orm, 'mongoid'
 unless File.open('Gemfile').lines.any?{|line| line.include?('pg')}
   gem 'pg', '>= 0.14.1' if prefer :database, 'postgresql'
 end
@@ -33,14 +33,14 @@ end
 ## Template Engine
 if prefer :templates, 'haml'
   gem 'haml-rails', '>= 0.4'
-  gem 'html2haml', '>= 1.0.0', :group => :development
+  gem 'html2haml', '>= 1.0.1', :group => :development
 end
 if prefer :templates, 'slim'
   gem 'slim', '>= 2.0.0.pre.6'
   gem 'haml2slim', '>= 0.4.6', :group => :development
   # Haml is needed for conversion of HTML to Slim
   gem 'haml-rails', '>= 0.4', :group => :development
-  gem 'html2haml', '>= 1.0.0', :group => :development
+  gem 'html2haml', '>= 1.0.1', :group => :development
 end
 
 ## Testing Framework
@@ -75,7 +75,7 @@ gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundat
 gem 'zurb-foundation', '>= 3.2.5', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   gem 'less-rails', '>= 2.2.6', :group => :assets
-  gem 'twitter-bootstrap-rails', '>= 2.2.3', :group => :assets
+  gem 'twitter-bootstrap-rails', '>= 2.2.4', :group => :assets
   # install gem 'therubyracer' to use Less
   gem 'libv8', '>= 3.11.8'
   gem 'therubyracer', '>= 0.11.3', :group => :assets, :platform => :ruby, :require => 'v8'
