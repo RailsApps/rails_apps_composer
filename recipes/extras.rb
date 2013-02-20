@@ -1,6 +1,59 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb
 
+## RVMRC
+rvmrc_detected = false
+if File.exist?('.rvmrc')
+  rvmrc_file = File.read('.rvmrc')
+  rvmrc_detected = rvmrc_file.include? app_name
+end
+unless rvmrc_detected
+  prefs[:rvmrc] = yes_wizard? "Create a project-specific rvm gemset and .rvmrc?"
+end
+if prefs[:rvmrc]
+  if which("rvm")
+    say_wizard "recipe creating project-specific rvm gemset and .rvmrc"
+    # using the rvm Ruby API, see:
+    # http://blog.thefrontiergroup.com.au/2010/12/a-brief-introduction-to-the-rvm-ruby-api/
+    # https://rvm.io/integration/passenger
+    if ENV['MY_RUBY_HOME'] && ENV['MY_RUBY_HOME'].include?('rvm')
+      begin
+        gems_path = ENV['MY_RUBY_HOME'].split(/@/)[0].sub(/rubies/,'gems')
+        ENV['GEM_PATH'] = "#{gems_path}:#{gems_path}@global"
+        require 'rvm'
+        RVM.use_from_path! File.dirname(File.dirname(__FILE__))
+      rescue LoadError
+        raise "RVM gem is currently unavailable."
+      end
+    end
+    say_wizard "creating RVM gemset '#{app_name}'"
+    RVM.gemset_create app_name
+    say_wizard "switching to gemset '#{app_name}'"
+    # RVM.gemset_use! requires rvm version 1.11.3.5 or newer
+    rvm_spec =
+      if Gem::Specification.respond_to?(:find_by_name)
+        Gem::Specification.find_by_name("rvm")
+      else
+        Gem.source_index.find_name("rvm").last
+      end
+      unless rvm_spec.version > Gem::Version.create('1.11.3.4')
+        say_wizard "rvm gem version: #{rvm_spec.version}"
+        raise "Please update rvm gem to 1.11.3.5 or newer"
+      end
+    begin
+      RVM.gemset_use! app_name
+    rescue => e
+      say_wizard "rvm failure: unable to use gemset #{app_name}, reason: #{e}"
+      raise
+    end
+    run "rvm gemset list"
+    copy_from_repo '.rvmrc'
+    gsub_file '.rvmrc', /App_Name/, "#{app_name}"
+  else
+    say_wizard "WARNING! RVM does not appear to be available."
+  end
+end
+
 ## QUIET ASSETS
 if config['quiet_assets']
   prefs[:quiet_assets] = true
@@ -53,54 +106,6 @@ case RbConfig::CONFIG['host_os']
         gem 'therubyracer', '>= 0.11.3', :group => :assets, :platform => :ruby, :require => 'v8'
       end
     end
-end
-
-## RVMRC
-if config['rvmrc']
-  prefs[:rvmrc] = true
-end
-if prefs[:rvmrc]
-  if which("rvm")
-    say_wizard "recipe creating project-specific rvm gemset and .rvmrc"
-    # using the rvm Ruby API, see:
-    # http://blog.thefrontiergroup.com.au/2010/12/a-brief-introduction-to-the-rvm-ruby-api/
-    # https://rvm.io/integration/passenger
-    if ENV['MY_RUBY_HOME'] && ENV['MY_RUBY_HOME'].include?('rvm')
-      begin
-        gems_path = ENV['MY_RUBY_HOME'].split(/@/)[0].sub(/rubies/,'gems')
-        ENV['GEM_PATH'] = "#{gems_path}:#{gems_path}@global"
-        require 'rvm'
-        RVM.use_from_path! File.dirname(File.dirname(__FILE__))
-      rescue LoadError
-        raise "RVM gem is currently unavailable."
-      end
-    end
-    say_wizard "creating RVM gemset '#{app_name}'"
-    RVM.gemset_create app_name
-    say_wizard "switching to gemset '#{app_name}'"
-    # RVM.gemset_use! requires rvm version 1.11.3.5 or newer
-    rvm_spec =
-      if Gem::Specification.respond_to?(:find_by_name)
-        Gem::Specification.find_by_name("rvm")
-      else
-        Gem.source_index.find_name("rvm").last
-      end
-      unless rvm_spec.version > Gem::Version.create('1.11.3.4')
-        say_wizard "rvm gem version: #{rvm_spec.version}"
-        raise "Please update rvm gem to 1.11.3.5 or newer"
-      end
-    begin
-      RVM.gemset_use! app_name
-    rescue => e
-      say_wizard "rvm failure: unable to use gemset #{app_name}, reason: #{e}"
-      raise
-    end
-    run "rvm gemset list"
-    copy_from_repo '.rvmrc'
-    gsub_file '.rvmrc', /App_Name/, "#{app_name}"
-  else
-    say_wizard "WARNING! RVM does not appear to be available."
-  end
 end
 
 ## AFTER_EVERYTHING
@@ -157,21 +162,18 @@ run_after: [gems, init, prelaunch]
 category: other
 
 config:
-  - quiet_assets:
-      type: boolean
-      prompt: Reduce assets logger noise during development?
-  - local_env_file:
-      type: boolean
-      prompt: Use application.yml file for environment variables?
-  - better_errors:
-      type: boolean
-      prompt: Improve error reporting with 'better_errors' during development?
   - ban_spiders:
       type: boolean
       prompt: Set a robots.txt file to ban spiders?
-  - rvmrc:
-      type: boolean
-      prompt: Create a project-specific rvm gemset and .rvmrc?
   - github:
       type: boolean
       prompt: Create a GitHub repository?
+  - local_env_file:
+      type: boolean
+      prompt: Use application.yml file for environment variables?
+  - quiet_assets:
+      type: boolean
+      prompt: Reduce assets logger noise during development?
+  - better_errors:
+      type: boolean
+      prompt: Improve error reporting with 'better_errors' during development?

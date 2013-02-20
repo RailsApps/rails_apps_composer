@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.2.34 February 20, 2013
 
+* in 'extras' recipe, don't ask about adding .rvmrc file if it already exists
 * don't install 'binding_of_caller' gem in non-MRI/Rubinius Ruby implementations (contributed by dalton)
 * update gem 'mongoid' to 3.1.1
 * update gem 'twitter-bootstrap-rails' to 2.2.4
