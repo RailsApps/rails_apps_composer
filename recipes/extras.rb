@@ -26,7 +26,7 @@ end
 if prefs[:better_errors]
   say_wizard "recipe adding better_errors gem"
   gem 'better_errors', '>= 0.6.0', :group => :development
-  gem 'binding_of_caller', '>= 0.7.1', :group => :development
+  gem 'binding_of_caller', '>= 0.7.1', :group => :development, :platforms => [:mri_19, :rbx]
 end
 
 ## BAN SPIDERS

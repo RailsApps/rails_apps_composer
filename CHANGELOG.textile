@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.2.34 February 20, 2013
 
+* don't install 'binding_of_caller' gem in non-MRI/Rubinius Ruby implementations (contributed by dalton)
 * update gem 'mongoid' to 3.1.1
 * update gem 'twitter-bootstrap-rails' to 2.2.4
 * update gem 'binding_of_caller' to 0.7.1
