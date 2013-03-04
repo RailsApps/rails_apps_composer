@@ -7,7 +7,7 @@ if File.exist?('.rvmrc')
   rvmrc_file = File.read('.rvmrc')
   rvmrc_detected = rvmrc_file.include? app_name
 end
-unless rvmrc_detected || prefs[:rvmrc]
+unless rvmrc_detected || !prefs[:rvmrc]
   prefs[:rvmrc] = yes_wizard? "Create a project-specific rvm gemset and .rvmrc?"
 end
 if prefs[:rvmrc]
