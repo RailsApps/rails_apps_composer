@@ -1,4 +1,4 @@
-h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer 2.1
+h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer
 
 The Rails Apps Composer gem installs a command line tool to assemble a Rails application from a collection of "recipes."
 
@@ -48,8 +48,8 @@ h2. Dependencies
 
 Before using the rails_apps_composer gem, you will need:
 
-* The Ruby language (version 1.9.3)
-* Rails 3.2 or newer
+* The Ruby language (version 1.9.3 or 2.0.0)
+* Rails 3.2 (Rails 4.0 is not yet supported)
 
 The rails_apps_composer program uses the version of Rails that is currently installed when you launch the program. If you want to use the newest Rails version, upgrade before running rails_apps_composer.
 
@@ -61,11 +61,25 @@ Unless you use SQLite, which runs by default on Mac OS X, you'll need to have a 
 
 h2. Installation
 
-I recommend installing and using rvm, the "Ruby Version Manager":https://rvm.io/, to create a new gemset for rails_apps_composer. Using an rvm gemset will make it easier to identify and isolate incompatibilities among gems.
+I recommend installing and using RVM, the "Ruby Version Manager":https://rvm.io/, to create a new gemset for rails_apps_composer. Using an RVM gemset will make it easier to identify and isolate incompatibilities among gems. RVM will install Ruby and set up a global gemset with a minimal set of gems.
+
+If you are using RVM, create a gemset for using rails_apps_composer:
+
+<pre>
+$ rvm use ruby-2.0.0@rails_apps_composer --create
+</pre>
+
+You'll need to add Rails before running rails_apps_composer:
+
+<pre>
+$ gem install rails
+</pre>
 
 Installation is simple:
 
-@$ gem install rails_apps_composer@
+<pre>
+$ gem install rails_apps_composer
+</pre>
 
 h2. Usage
 
@@ -355,7 +369,7 @@ Are you getting an error "OpenSSL certificate verify failed" when you try to gen
 
 h4. Problems with "Segmentation Fault"
 
-If you get a "segfault" when you try @rails new@, try removing and reinstalling rvm.
+If you get a "segfault" when you try @rails new@, try removing and reinstalling RVM.
 
 h2. Application Template Default
 
@@ -390,13 +404,13 @@ h2. MIT License (with restriction)
 
 The rails_apps_composer program is licensed under the terms of the "MIT License":http://www.opensource.org/licenses/mit-license, except portions of the program authored by Daniel Kehoe may not be used to build a website that generates an application template that can be downloaded or used to generate a web application online (for such use, ask for permission).
 
-Copyright © 2012 Daniel Kehoe
+Copyright © 2012-2013 Daniel Kehoe
 
 h2. Useful Links
 
 |_. Getting Started |_. Articles |_. Tutorials |
-| "Rails Tutorial":https://tutorials.railsapps.org/rails-tutorial (recommendations) | "Heroku and Rails":http://railsapps.github.com/rails-heroku-tutorial.html | "Devise with CanCan and Twitter Bootstrap":https://tutorials.railsapps.org/rails3-bootstrap-devise-cancan |
-| "Rails":http://railsapps.github.com/rails.html (resources)| "Twitter Bootstrap and Rails":http://railsapps.github.com/twitter-bootstrap-rails.html | "Rails Membership Site with Stripe":https://tutorials.railsapps.org/rails-stripe-membership-saas |
+| "Rails Tutorial":https://tutorials.railsapps.org/rails-tutorial | "Heroku and Rails":http://railsapps.github.com/rails-heroku-tutorial.html | "Devise with CanCan and Twitter Bootstrap":https://tutorials.railsapps.org/rails3-bootstrap-devise-cancan |
+| "Ruby and Rails":http://railsapps.github.com/ruby-and-rails.html | "Twitter Bootstrap and Rails":http://railsapps.github.com/twitter-bootstrap-rails.html | "Rails Membership Site with Stripe":https://tutorials.railsapps.org/rails-stripe-membership-saas |
 | "Installing Rails":http://railsapps.github.com/installing-rails.html | "JavaScript and Rails":http://railsapps.github.com/rails-javascript-include-external.html | "Rails Subscription Site with Recurly":https://tutorials.railsapps.org/rails-recurly-subscription-saas |
 | "Updating Rails":http://railsapps.github.com/updating-rails.html | "Rails Environment Variables":http://railsapps.github.com/rails-environment-variables.html | "Startup Prelaunch Signup Application":http://railsapps.github.com/tutorial-rails-prelaunch-signup.html |
 | "Rails Composer":http://railsapps.github.com/rails-composer/ | "Git and GitHub with Rails":http://railsapps.github.com/rails-git.html | "Devise with RSpec and Cucumber":http://railsapps.github.com/tutorial-rails-devise-rspec-cucumber.html |
