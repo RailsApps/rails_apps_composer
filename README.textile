@@ -87,6 +87,14 @@ You may have trouble if you install the rails_apps_composer gem by including it 
 
 h2. Usage
 
+For a simple demonstration of what the gem can do:
+
+<pre>
+$ rails_apps_composer new myapp -r core
+</pre>
+
+h2. Usage Options
+
 These commands are summarized here for your reference. See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html for details.
 
 h3. List Recipes
