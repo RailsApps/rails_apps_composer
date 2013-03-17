@@ -60,7 +60,7 @@ if config['quiet_assets']
 end
 if prefs[:quiet_assets]
   say_wizard "recipe setting quiet_assets for reduced asset pipeline logging"
-  gem 'quiet_assets', '>= 1.0.1', :group => :development
+  gem 'quiet_assets', '>= 1.0.2', :group => :development
 end
 
 ## LOCAL_ENV.YML FILE
@@ -69,7 +69,7 @@ if config['local_env_file']
 end
 if prefs[:local_env_file]
   say_wizard "recipe creating application.yml file for environment variables"
-  gem 'figaro', '>= 0.5.3'
+  gem 'figaro', '>= 0.6.3'
 end
 
 ## BETTER ERRORS
@@ -78,7 +78,7 @@ if config['better_errors']
 end
 if prefs[:better_errors]
   say_wizard "recipe adding better_errors gem"
-  gem 'better_errors', '>= 0.6.0', :group => :development
+  gem 'better_errors', '>= 0.7.2', :group => :development
   gem 'binding_of_caller', '>= 0.7.1', :group => :development, :platforms => [:mri_19, :rbx]
 end
 

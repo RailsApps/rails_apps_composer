@@ -4,7 +4,7 @@
 ### GEMFILE ###
 
 ## Ruby on Rails
-insert_into_file('Gemfile', "ruby '1.9.3'\n", before: /^ *gem 'rails'/, force: false) if prefer :deploy, 'heroku'
+insert_into_file('Gemfile', "ruby '#{RUBY_VERSION}'\n", :before => /^ *gem 'rails'/, force: false) if prefer :deploy, 'heroku'
 
 ## Web Server
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
@@ -22,11 +22,11 @@ end
 
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
-gem 'mongoid', '>= 3.1.1' if prefer :orm, 'mongoid'
-unless File.open('Gemfile').lines.any?{|line| line.include?('pg')}
+gem 'mongoid', '>= 3.1.2' if prefer :orm, 'mongoid'
+unless File.open('Gemfile').each {|line| line.include?('pg')}
   gem 'pg', '>= 0.14.1' if prefer :database, 'postgresql'
 end
-unless File.open('Gemfile').lines.any?{|line| line.include?('mysql2')}
+unless File.open('Gemfile').each {|line| line.include?('mysql2')}
   gem 'mysql2', '>= 0.3.11' if prefer :database, 'mysql'
 end
 
@@ -47,9 +47,9 @@ end
 if prefer :unit_test, 'rspec'
   gem 'rspec-rails', '>= 2.12.2', :group => [:development, :test]
   gem 'capybara', '>= 2.0.2', :group => :test if prefer :integration, 'rspec-capybara'
-  gem 'database_cleaner', '>= 0.9.1', :group => :test
+  gem 'database_cleaner', '>= 1.0.0.RC1', :group => :test
   if prefer :orm, 'mongoid'
-    gem 'mongoid-rspec', '>= 1.6.0', :group => :test
+    gem 'mongoid-rspec', '>= 1.7.0', :group => :test
   end
   gem 'email_spec', '>= 1.4.0', :group => :test
 end
@@ -59,8 +59,8 @@ if prefer :unit_test, 'minitest'
   gem 'capybara', '>= 2.0.2', :group => :test if prefer :integration, 'minitest-capybara'
 end
 if prefer :integration, 'cucumber'
-  gem 'cucumber-rails', '>= 1.3.0', :group => :test, :require => false
-  gem 'database_cleaner', '>= 0.9.1', :group => :test unless prefer :unit_test, 'rspec'
+  gem 'cucumber-rails', '>= 1.3.1', :group => :test, :require => false
+  gem 'database_cleaner', '>= 1.0.0.RC1', :group => :test unless prefer :unit_test, 'rspec'
   gem 'launchy', '>= 2.2.0', :group => :test
   gem 'capybara', '>= 2.0.2', :group => :test
 end
@@ -72,7 +72,7 @@ gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
 ## Front-end Framework
 gem 'bootstrap-sass', '>= 2.3.0.0' if prefer :bootstrap, 'sass'
 gem 'compass-rails', '>= 1.0.3', :group => :assets if prefer :frontend, 'foundation'
-gem 'zurb-foundation', '>= 3.2.5', :group => :assets if prefer :frontend, 'foundation'
+gem 'zurb-foundation', '>= 4.0.8', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   gem 'less-rails', '>= 2.2.6', :group => :assets
   gem 'twitter-bootstrap-rails', '>= 2.2.4', :group => :assets
@@ -100,29 +100,29 @@ gem 'omniauth-tumblr' if prefer :omniauth_provider, 'tumblr'
 
 ## Authorization
 if prefer :authorization, 'cancan'
-  gem 'cancan', '>= 1.6.8'
+  gem 'cancan', '>= 1.6.9'
   gem 'rolify', '>= 3.2.0'
 end
 
 ## Form Builder
-gem 'simple_form', '>= 2.0.4' if prefer :form_builder, 'simple_form'
+gem 'simple_form', '>= 2.1.0' if prefer :form_builder, 'simple_form'
 
 ## Membership App
 if prefer :railsapps, 'rails-stripe-membership-saas'
-  gem 'stripe', '>= 1.7.10'
+  gem 'stripe', '>= 1.7.11'
   gem 'stripe_event', '>= 0.4.0'
 end
 if prefer :railsapps, 'rails-recurly-subscription-saas'
   gem 'recurly', '>= 2.1.8'
   gem 'nokogiri', '>= 1.5.5'
-  gem 'countries', '>= 0.8.4'
+  gem 'countries', '>= 0.9.2'
   gem 'httpi', '>= 1.1.1'
-  gem 'httpclient', '>= 2.3.0.1'
+  gem 'httpclient', '>= 2.3.3'
 end
 
 ## Signup App
 if prefer :railsapps, 'rails-prelaunch-signup'
-  gem 'google_visualr', '>= 2.1.2'
+  gem 'google_visualr', '>= 2.1.7'
   gem 'jquery-datatables-rails', '>= 1.11.2'
 end
 
