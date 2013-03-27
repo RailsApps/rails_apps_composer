@@ -63,39 +63,25 @@ h4. Database
 
 Unless you use SQLite, which runs by default on Mac OS X, you'll need to have a database server running before you run rails_apps_composer. This is true if you want to use PostgreSQL, MySQL, or MongoDB. I recommend using SQLite if you don't want to set up a database server.
 
-h2. Installation
+h2. Installation and Usage
 
 I recommend installing and using RVM, the "Ruby Version Manager":https://rvm.io/, to create a new gemset for rails_apps_composer. Using an RVM gemset will make it easier to identify and isolate incompatibilities among gems. RVM will install Ruby and set up a global gemset with a minimal set of gems.
 
-If you are using RVM, create a gemset for using rails_apps_composer:
+Here's how to generate a new Rails application using the Rails Composer tool and RVM:
 
 <pre>
-$ rvm use ruby-2.0.0@rails_apps_composer --create
-</pre>
-
-You'll need to add Rails before running rails_apps_composer:
-
-<pre>
-$ gem install rails
-</pre>
-
-Installation is simple:
-
-<pre>
+$ mkdir myapp
+$ cd myapp
+$ rvm use ruby-2.0.0@myapp --rvmrc --create
 $ gem install rails_apps_composer
+$ rails_apps_composer new . -r core
 </pre>
+
+You'll avoid conflicts with outdated gem versions by creating a new folder for your application, then creating a new RVM gemset, installing rails_apps_composer, and then using rails_apps_composer to create a new application.
 
 h3. Troubleshooting
 
 You may have trouble if you install the rails_apps_composer gem by including it in a Gemfile and running Bundler (reported in "issue 114":https://github.com/RailsApps/rails_apps_composer/issues/114).
-
-h2. Usage
-
-For a simple demonstration of what the gem can do:
-
-<pre>
-$ rails_apps_composer new myapp -r core
-</pre>
 
 h2. Usage Options
 
@@ -418,7 +404,7 @@ Is the gem useful to you? Follow the project on Twitter: "@rails_apps":http://tw
 
 h2. MIT License (with restriction)
 
-The rails_apps_composer program is licensed under the terms of the "MIT License":http://www.opensource.org/licenses/mit-license, except portions of the program authored by Daniel Kehoe may not be used to build a website that generates an application template that can be downloaded or used to generate a web application online (for such use, ask for permission).
+"MIT License":http://www.opensource.org/licenses/mit-license
 
 Copyright © 2012-2013 Daniel Kehoe
 

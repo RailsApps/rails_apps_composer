@@ -8,7 +8,7 @@ if File.exist?('.rvmrc')
   rvmrc_detected = rvmrc_file.include? app_name
 end
 unless rvmrc_detected || prefs[:rvmrc]
-  prefs[:rvmrc] = yes_wizard? "Create a project-specific rvm gemset and .rvmrc?"
+  prefs[:rvmrc] = yes_wizard? "Use or create a project-specific rvm gemset and .rvmrc?"
 end
 if prefs[:rvmrc]
   if which("rvm")
@@ -49,6 +49,7 @@ if prefs[:rvmrc]
     run "rvm gemset list"
     copy_from_repo '.rvmrc'
     gsub_file '.rvmrc', /App_Name/, "#{app_name}"
+    gsub_file '.rvmrc', /-2.0.0/, "-#{RUBY_VERSION}"
   else
     say_wizard "WARNING! RVM does not appear to be available."
   end

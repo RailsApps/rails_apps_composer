@@ -1,5 +1,17 @@
 h1. CHANGELOG
 
+h2. 2.2.37 March 26, 2013
+
+* accommodate old Ruby syntax in 'gems' recipe
+* fix 'gems' recipe to provide 'pg' or 'mysql2' gems if requested
+* update gem 'pg' to 0.15.0
+* update gem 'capybara' to 2.0.3
+* update gem 'zurb-foundation' to 4.0.9
+
+h2. 2.2.36 March 17, 2013
+
+* in 'extras' recipe, set correct Ruby version in .rvmrc file
+
 h2. 2.2.35 March 17, 2013
 
 * in 'extras' recipe, allow rvmrc option to be set in default file (contributed by Alex Takitani)
