@@ -72,12 +72,13 @@ Here's how to generate a new Rails application using the Rails Composer tool and
 <pre>
 $ mkdir myapp
 $ cd myapp
-$ rvm use ruby-2.0.0@myapp --rvmrc --create
+$ rvm use ruby-2.0.0@myapp --ruby-version --create
+$ gem install rails
 $ gem install rails_apps_composer
 $ rails_apps_composer new . -r core
 </pre>
 
-You'll avoid conflicts with outdated gem versions by creating a new folder for your application, then creating a new RVM gemset, installing rails_apps_composer, and then using rails_apps_composer to create a new application.
+This approach avoids conflicts with outdated gem versions that may be active in your shell environment.
 
 h3. Troubleshooting
 

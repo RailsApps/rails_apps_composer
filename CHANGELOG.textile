@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.38 March 29, 2013
+
+* in 'extras' recipe, use .ruby-version and .ruby-gemset instead of .rvmrc file
+
 h2. 2.2.37 March 26, 2013
 
 * accommodate old Ruby syntax in 'gems' recipe
