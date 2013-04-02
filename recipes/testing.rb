@@ -102,6 +102,11 @@ RUBY
     say_wizard "generating blueprints file for 'machinist'"
     generate 'machinist:install'
   end
+  ### GUARD
+  if prefer :continuous_testing, 'guard'
+    say_wizard "recipe initializing Guard"
+    run 'bundle exec guard init'
+  end
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: testing framework"' if prefer :git, true
