@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.39 April 2, 2013
+
+* support for continuous testing using Guard (contributed by Paavo Leinonen)
+
 h2. 2.2.38 March 29, 2013
 
 * in 'extras' recipe, use .ruby-version and .ruby-gemset instead of .rvmrc file
