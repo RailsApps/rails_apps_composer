@@ -1,4 +1,6 @@
 h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer
+!https://badge.fury.io/rb/rails_apps_composer.png!:http://badge.fury.io/rb/rails_apps_composer
+!https://travis-ci.org/RailsApps/rails_apps_composer.png!:https://travis-ci.org/RailsApps/rails_apps_composer
 
 The Rails Apps Composer gem installs a command line tool to assemble a Rails application from a collection of "recipes."
 
