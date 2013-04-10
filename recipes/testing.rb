@@ -102,10 +102,35 @@ RUBY
     say_wizard "generating blueprints file for 'machinist'"
     generate 'machinist:install'
   end
-  ### GUARD
+  ### GUARD AND TRAVIS CI
   if prefer :continuous_testing, 'guard'
     say_wizard "recipe initializing Guard"
     run 'bundle exec guard init'
+  end
+  if prefer :continuous_testing, 'travis'
+    say_wizard "generating .travis.yml"
+    create_file '.travis.yml' do
+<<-TRAVIS
+# For more information on getting started with Travis CI - http://about.travis-ci.org/docs/user/getting-started/
+# Customizing your build environment and configuration - http://about.travis-ci.org/docs/user/languages/ruby/
+language: ruby
+rvm:
+#{RUBY_VERSION}
+TRAVIS
+    end
+  end
+  if prefer :continuous_testing, 'guard-travis'
+    say_wizard "recipe initializing Guard and generating .travis.yml"
+    run 'bundle exec guard init'
+    create_file '.travis.yml' do
+<<-TRAVIS
+# For more information on getting started with Travis CI - http://about.travis-ci.org/docs/user/getting-started/
+# Customizing your build environment and configuration - http://about.travis-ci.org/docs/user/languages/ruby/
+language: ruby
+rvm:
+#{RUBY_VERSION}
+TRAVIS
+    end
   end
   ### GIT ###
   git :add => '-A' if prefer :git, true
