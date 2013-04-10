@@ -72,6 +72,19 @@ if prefer :continuous_testing, 'guard'
   gem 'rb-fsevent', '>= 0.9.3', :group => :development, :require => false
   gem 'rb-fchange', '>= 0.0.6', :group => :development, :require => false
 end
+if prefer :continuous_testing, 'travis'
+  gem 'rake', '>= 0.9.2', :group => :test
+end
+if prefer :continuous_testing, 'guard-travis'
+  gem 'guard-bundler', '>= 1.0.0', :group => :development
+  gem 'guard-cucumber', '>= 1.4.0', :group => :development if prefer :integration, 'cucumber'
+  gem 'guard-rails', '>= 0.4.0', :group => :development
+  gem 'guard-rspec', '>= 2.5.2', :group => :development if prefer :unit_test, 'rspec'
+  gem 'rb-inotify', '>= 0.9.0', :group => :development, :require => false
+  gem 'rb-fsevent', '>= 0.9.3', :group => :development, :require => false
+  gem 'rb-fchange', '>= 0.0.6', :group => :development, :require => false
+  gem 'rake', '>= 0.9.2', :group => :test
+end
 gem 'factory_girl_rails', '>= 4.2.0', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
 gem 'fabrication', '>= 2.3.0', :group => [:development, :test] if prefer :fixtures, 'fabrication'
 gem 'machinist', '>= 2.0', :group => :test if prefer :fixtures, 'machinist'
