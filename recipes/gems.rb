@@ -73,7 +73,7 @@ if prefer :continuous_testing, 'guard'
   gem 'rb-fchange', '>= 0.0.6', :group => :development, :require => false
 end
 if prefer :continuous_testing, 'travis'
-  gem 'rake', '>= 0.9.2', :group => :test
+  gem 'rake', '>= 0.9.2', :group => :development
 end
 if prefer :continuous_testing, 'guard-travis'
   gem 'guard-bundler', '>= 1.0.0', :group => :development
