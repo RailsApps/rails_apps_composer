@@ -90,7 +90,6 @@ end
 
 ## Email
 gem 'sendgrid', '>= 1.0.1' if prefer :email, 'sendgrid'
-gem 'hominid', '>= 3.0.5' if prefer :email, 'mandrill'
 
 ## Authentication (Devise)
 gem 'devise', '>= 2.2.3' if prefer :authentication, 'devise'
@@ -129,8 +128,7 @@ end
 
 ## Signup App
 if prefer :railsapps, 'rails-prelaunch-signup'
-  gem 'google_visualr', '>= 2.1.7'
-  gem 'jquery-datatables-rails', '>= 1.11.2'
+  gem 'gibbon', '>= 0.4.2'
 end
 
 ## Gems from a defaults file or added interactively

@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.40 April 19, 2013
+
+* update recipe for rails-prelaunch-signup app
+
 h2. 2.2.39 April 2, 2013
 
 * support for continuous testing using Guard (contributed by Paavo Leinonen)
