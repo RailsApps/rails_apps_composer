@@ -1,4 +1,4 @@
-h1. !http://railsapps.github.com/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer
+h1. !http://railsapps.github.io/images/rails-36x36.jpg(Rails Apps Composer Gem)! Rails Apps Composer
 !https://badge.fury.io/rb/rails_apps_composer.png!:http://badge.fury.io/rb/rails_apps_composer !https://travis-ci.org/RailsApps/rails_apps_composer.png!:https://travis-ci.org/RailsApps/rails_apps_composer
 
 The Rails Apps Composer gem installs a command line tool to assemble a Rails application from a collection of "recipes."
@@ -10,24 +10,24 @@ What you can do with the rails_apps_composer gem:
 
 You can use local recipes as well as recipes supplied with the gem.
 
-The "Rails Composer":http://railsapps.github.com/rails-composer/ tool is built with the rails_apps_composer gem. The Rails Composer tool creates the "example applications":http://railsapps.github.com/ for the "RailsApps":http://railsapps.github.com/ project.
+The "Rails Composer":http://railsapps.github.io/rails-composer/ tool is built with the rails_apps_composer gem. The Rails Composer tool creates the "example applications":http://railsapps.github.io/ for the "RailsApps":http://railsapps.github.io/ project.
 
-The "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html provides complete documentation:
+The "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html provides complete documentation:
 
-* "Overview":http://railsapps.github.com/tutorial-rails-apps-composer.html#Overview
-* "Recipes":http://railsapps.github.com/tutorial-rails-apps-composer.html#Recipes
-* "Usage":http://railsapps.github.com/tutorial-rails-apps-composer.html#Usage
-* "Diagnostics":http://railsapps.github.com/tutorial-rails-apps-composer.html#Diagnostics
-* "Hacking the Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html#Hacking
-* "Anatomy of a Recipe":http://railsapps.github.com/tutorial-rails-apps-composer.html#Anatomy
-* "Architecture":http://railsapps.github.com/tutorial-rails-apps-composer.html#Architecture
-* "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults
+* "Overview":http://railsapps.github.io/tutorial-rails-apps-composer.html#Overview
+* "Recipes":http://railsapps.github.io/tutorial-rails-apps-composer.html#Recipes
+* "Usage":http://railsapps.github.io/tutorial-rails-apps-composer.html#Usage
+* "Diagnostics":http://railsapps.github.io/tutorial-rails-apps-composer.html#Diagnostics
+* "Hacking the Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html#Hacking
+* "Anatomy of a Recipe":http://railsapps.github.io/tutorial-rails-apps-composer.html#Anatomy
+* "Architecture":http://railsapps.github.io/tutorial-rails-apps-composer.html#Architecture
+* "Defaults File":http://railsapps.github.io/tutorial-rails-apps-composer.html#Defaults
 
 Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
 h3. From the RailsApps Project
 
-The "RailsApps project":http://railsapps.github.com/ provides example applications that developers use as starter apps. Hundreds of developers use the apps, report problems as they arise, and propose solutions. Rails changes frequently; each application is known to work and serves as your personal "reference implementation" so you can stay up to date. Each is accompanied by a tutorial so there is no mystery code. Maintenance and development of the RailsApps applications is supported by subscriptions to the "RailsApps tutorials":https://tutorials.railsapps.org.
+The "RailsApps project":http://railsapps.github.io/ provides example applications that developers use as starter apps. Hundreds of developers use the apps, report problems as they arise, and propose solutions. Rails changes frequently; each application is known to work and serves as your personal "reference implementation" so you can stay up to date. Each is accompanied by a tutorial so there is no mystery code. Maintenance and development of the RailsApps applications is supported by subscriptions to the "RailsApps tutorials":https://tutorials.railsapps.org.
 
 h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:http://www.twitter.com/rails_apps Follow on Twitter
 
@@ -43,11 +43,11 @@ h2. Who This Is For
 
 This gem is for experienced Rails developers who need a tool to create and maintain a Rails starter app or Rails application template. If you're regularly building Rails applications that use certain popular gems or rely on common functionality such as authentication, you can benefit from the rails_apps_composer gem.
 
-If you are new to Rails, try the "Rails Composer":http://railsapps.github.com/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. The Rails Composer tool is easier to use. Use the rails_apps_composer gem if you want a custom application template, a custom combination of recipes, or the convenience of setting a defaults file.
+If you are new to Rails, try the "Rails Composer":http://railsapps.github.io/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. The Rails Composer tool is easier to use. Use the rails_apps_composer gem if you want a custom application template, a custom combination of recipes, or the convenience of setting a defaults file.
 
 h2. Alternatives
 
-The rails_apps_composer gem is derived from Michael Bleigh's "RailsWizard":https://github.com/intridea/rails_wizard gem. Early versions of the rails_apps_composer gem were a close fork of Michael Bleigh's gem; rails_apps_composer 2.0 differs substantially. Other notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/. See a list of "Rails Application Template Projects":http://railsapps.github.com/rails-application-templates.html, particularly a list of "Application template-generating gems" for similar projects.
+The rails_apps_composer gem is derived from Michael Bleigh's "RailsWizard":https://github.com/intridea/rails_wizard gem. Early versions of the rails_apps_composer gem were a close fork of Michael Bleigh's gem; rails_apps_composer 2.0 differs substantially. Other notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/. See a list of "Rails Application Template Projects":http://railsapps.github.io/rails-application-templates.html, particularly a list of "Application template-generating gems" for similar projects.
 
 h2. Dependencies
 
@@ -58,7 +58,7 @@ Before using the rails_apps_composer gem, you will need:
 
 The rails_apps_composer program uses the version of Rails that is currently installed when you launch the program. If you want to use the newest Rails version, upgrade before running rails_apps_composer.
 
-See the article "Installing Rails":http://railsapps.github.com/installing-rails.html for advice about updating Rails and your development environment. You'll avoid many potential headaches if you review the article step by step before beginning development.
+See the article "Installing Rails":http://railsapps.github.io/installing-rails.html for advice about updating Rails and your development environment. You'll avoid many potential headaches if you review the article step by step before beginning development.
 
 h4. Database
 
@@ -87,7 +87,7 @@ You may have trouble if you install the rails_apps_composer gem by including it 
 
 h2. Usage Options
 
-These commands are summarized here for your reference. See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html for details.
+These commands are summarized here for your reference. See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html for details.
 
 h3. List Recipes
 
@@ -116,7 +116,7 @@ views          # Add views needed for starter apps.
 
 The above list is current for rails_apps_composer 2.1; later releases will contain more recipes.
 
-See the Guide for more "detailed descriptions of recipes":http://railsapps.github.com/tutorial-rails-apps-composer.html#Recipes. You can find all available recipes in the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. Examining the recipe source code is the very best way to learn what a recipe will do.
+See the Guide for more "detailed descriptions of recipes":http://railsapps.github.io/tutorial-rails-apps-composer.html#Recipes. You can find all available recipes in the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. Examining the recipe source code is the very best way to learn what a recipe will do.
 
 h3. Recommended Recipes
 
@@ -132,7 +132,7 @@ Recipes may also contain a @run_after@ directive. The rails_apps_composer progra
 
 In general, it's best to add (or list) recipes in the order they should execute as some recipes may not contain a necessary @requires@ or @run_after@ directive.
 
-See the "Anatomy of a Recipe":http://railsapps.github.com/tutorial-rails-apps-composer.html#Anatomy section in the Guide to learn about the format of a recipe.
+See the "Anatomy of a Recipe":http://railsapps.github.io/tutorial-rails-apps-composer.html#Anatomy section in the Guide to learn about the format of a recipe.
 
 h3. Skipping Test::Unit or Active Record
 
@@ -222,7 +222,7 @@ Use a defaults file for recipes, preferences, and extra gems so you don't have t
 $ rails_apps_composer new myapp -d my_defaults.yaml
 </pre>
 
-Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file.
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.io/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file.
 
 Use the "quiet flag" @-q@ if you want to skip all prompts:
 
@@ -232,7 +232,7 @@ $ rails_apps_composer new myapp -q -d my_defaults.yaml
 
 h3. Generate an Application Template Interactively
 
-You may want an application template to share with others. For an example, see the "Rails Composer":http://railsapps.github.com/rails-composer/ project which is an application template generated from the rails_apps_composer core recipes.
+You may want an application template to share with others. For an example, see the "Rails Composer":http://railsapps.github.io/rails-composer/ project which is an application template generated from the rails_apps_composer core recipes.
 
 Specify a filename for the template:
 
@@ -279,7 +279,7 @@ Generate an application template using a defaults file and the @-d@ flag:
 $ rails_apps_composer template ~/Desktop/template.rb -d my_defaults.yaml
 </pre>
 
-Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.com/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file. Use the "quiet flag" @-q@ if you want to skip all prompts.
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.io/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file. Use the "quiet flag" @-q@ if you want to skip all prompts.
 
 h3. Generate an Application Template With Your Own Layout
 
@@ -351,7 +351,7 @@ Please include the diagnostics report when you create an issue on GitHub.
 
 h2. Troubleshooting
 
-Problems? You should review the article "Installing Rails":http://railsapps.github.com/installing-rails.html to make sure you've updated all the components that are required to run Rails successfully.
+Problems? You should review the article "Installing Rails":http://railsapps.github.io/installing-rails.html to make sure you've updated all the components that are required to run Rails successfully.
 
 h4. Problems with "Could not be loaded... You have already activated..."
 
@@ -365,11 +365,11 @@ Error: You have already activated ..., but your Gemfile requires ....
 Using bundle exec may solve this.
 </pre>
 
-It's due to conflicting gem versions. See the article "Rails Error: “You have already activated (…)”":http://railsapps.github.com/rails-error-you-have-already-activated.html.
+It's due to conflicting gem versions. See the article "Rails Error: “You have already activated (…)”":http://railsapps.github.io/rails-error-you-have-already-activated.html.
 
 h4. Problems with "Certificate Verify Failed"
 
-Are you getting an error "OpenSSL certificate verify failed" when you try to generate a new Rails app from an application template? See suggestions to resolve the error "Certificate Verify Failed":http://railsapps.github.com/openssl-certificate-verify-failed.html.
+Are you getting an error "OpenSSL certificate verify failed" when you try to generate a new Rails app from an application template? See suggestions to resolve the error "Certificate Verify Failed":http://railsapps.github.io/openssl-certificate-verify-failed.html.
 
 h4. Problems with "Segmentation Fault"
 
@@ -386,7 +386,7 @@ The @rails new@ command creates a new Rails application. If you want to use an a
 
 h2. Hacking the Gem
 
-See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.com/tutorial-rails-apps-composer.html to learn how to customize the gem either for your own use or to share with others.
+See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html to learn how to customize the gem either for your own use or to share with others.
 
 h2. Issues
 
@@ -396,7 +396,7 @@ If you include the _readme_ recipe when you generate an application, the generat
 
 h2. Credits
 
-Daniel Kehoe maintains this gem as part of the "RailsApps project":http://railsapps.github.com/.
+Daniel Kehoe maintains this gem as part of the "RailsApps project":http://railsapps.github.io/.
 
 This gem is derived from "Michael Bleigh's RailsWizard gem":https://github.com/intridea/rails_wizard. The original idea and the innovative implementation is the work of Michael Bleigh.
 
@@ -413,16 +413,16 @@ Copyright © 2012-2013 Daniel Kehoe
 h2. Useful Links
 
 |_. Getting Started |_. Articles |_. Tutorials |
-| "Rails Tutorial":https://tutorials.railsapps.org/rails-tutorial | "Heroku and Rails":http://railsapps.github.com/rails-heroku-tutorial.html | "Devise with CanCan and Twitter Bootstrap":https://tutorials.railsapps.org/rails3-bootstrap-devise-cancan |
-| "Ruby and Rails":http://railsapps.github.com/ruby-and-rails.html | "Twitter Bootstrap and Rails":http://railsapps.github.com/twitter-bootstrap-rails.html | "Rails Membership Site with Stripe":https://tutorials.railsapps.org/rails-stripe-membership-saas |
-| "Installing Rails":http://railsapps.github.com/installing-rails.html | "JavaScript and Rails":http://railsapps.github.com/rails-javascript-include-external.html | "Rails Subscription Site with Recurly":https://tutorials.railsapps.org/rails-recurly-subscription-saas |
-| "Updating Rails":http://railsapps.github.com/updating-rails.html | "Rails Environment Variables":http://railsapps.github.com/rails-environment-variables.html | "Startup Prelaunch Signup Application":http://railsapps.github.com/tutorial-rails-prelaunch-signup.html |
-| "Rails Composer":http://railsapps.github.com/rails-composer/ | "Git and GitHub with Rails":http://railsapps.github.com/rails-git.html | "Devise with RSpec and Cucumber":http://railsapps.github.com/tutorial-rails-devise-rspec-cucumber.html |
-| "Rails Examples":http://railsapps.github.com/ | "Send Email with Rails":http://railsapps.github.com/rails-send-email.html | "Devise with Mongoid":http://railsapps.github.com/tutorial-rails-mongoid-devise.html |
-| "Rails Starter Apps":http://railsapps.github.com/rails-examples-tutorials.html | "Haml and Rails":http://railsapps.github.com/rails-haml.html | "OmniAuth with Mongoid":http://railsapps.github.com/tutorial-rails-mongoid-omniauth.html |
-| | "Rails Application Layout":http://railsapps.github.com/rails-default-application-layout.html | "Subdomains with Devise":http://railsapps.github.com/tutorial-rails-subdomains.html |
-| | "HTML5 Boilerplate for Rails":http://railsapps.github.com/rails-html5-boilerplate.html | |
-| | "Example Gemfiles for Rails":http://railsapps.github.com/rails-3-2-example-gemfile.html | |
-| | "Rails Application Templates":http://railsapps.github.com/rails-application-templates.html | |
+| "Rails Tutorial":https://tutorials.railsapps.org/rails-tutorial | "Heroku and Rails":http://railsapps.github.io/rails-heroku-tutorial.html | "Devise with CanCan and Twitter Bootstrap":https://tutorials.railsapps.org/rails3-bootstrap-devise-cancan |
+| "Ruby and Rails":http://railsapps.github.io/ruby-and-rails.html | "Twitter Bootstrap and Rails":http://railsapps.github.io/twitter-bootstrap-rails.html | "Rails Membership Site with Stripe":https://tutorials.railsapps.org/rails-stripe-membership-saas |
+| "Installing Rails":http://railsapps.github.io/installing-rails.html | "JavaScript and Rails":http://railsapps.github.io/rails-javascript-include-external.html | "Rails Subscription Site with Recurly":https://tutorials.railsapps.org/rails-recurly-subscription-saas |
+| "Updating Rails":http://railsapps.github.io/updating-rails.html | "Rails Environment Variables":http://railsapps.github.io/rails-environment-variables.html | "Startup Prelaunch Signup Application":http://railsapps.github.io/tutorial-rails-prelaunch-signup.html |
+| "Rails Composer":http://railsapps.github.io/rails-composer/ | "Git and GitHub with Rails":http://railsapps.github.io/rails-git.html | "Devise with RSpec and Cucumber":http://railsapps.github.io/tutorial-rails-devise-rspec-cucumber.html |
+| "Rails Examples":http://railsapps.github.io/ | "Send Email with Rails":http://railsapps.github.io/rails-send-email.html | "Devise with Mongoid":http://railsapps.github.io/tutorial-rails-mongoid-devise.html |
+| "Rails Starter Apps":http://railsapps.github.io/rails-examples-tutorials.html | "Haml and Rails":http://railsapps.github.io/rails-haml.html | "OmniAuth with Mongoid":http://railsapps.github.io/tutorial-rails-mongoid-omniauth.html |
+| | "Rails Application Layout":http://railsapps.github.io/rails-default-application-layout.html | "Subdomains with Devise":http://railsapps.github.io/tutorial-rails-subdomains.html |
+| | "HTML5 Boilerplate for Rails":http://railsapps.github.io/rails-html5-boilerplate.html | |
+| | "Example Gemfiles for Rails":http://railsapps.github.io/rails-3-2-example-gemfile.html | |
+| | "Rails Application Templates":http://railsapps.github.io/rails-application-templates.html | |
 
 !https://cruel-carlota.pagodabox.com/1f4f51c551cd90489a558e5fe4d91fff(githalytics.com alpha)!

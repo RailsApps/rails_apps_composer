@@ -48,7 +48,7 @@ FILE
   ### DATABASE SEED ###
   append_file 'db/seeds.rb' do <<-FILE
 # Environment variables (ENV['...']) are set in the file config/application.yml.
-# See http://railsapps.github.com/rails-environment-variables.html
+# See http://railsapps.github.io/rails-environment-variables.html
 FILE
   end
   if (prefer :authorization, 'cancan')
