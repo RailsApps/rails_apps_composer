@@ -2,9 +2,15 @@ require 'spec_helper'
 
 describe RailsWizard::Recipes do
   subject{ RailsWizard::Recipes }
-  let(:recipe){ RailsWizard::Recipe.generate("recipe_test", "# Testing", :name => "Test Recipe", :category => "test", :description => "Just a test.")}
+  let(:recipe) do
+    RailsWizard::Recipe.generate( "recipe_test", "# Testing", {
+        :category    =>        'test',
+        :description => 'Just a test.',
+        :name        =>        'Test Recipe',
+        } )
+  end
 
-  before(:all) do
+  before do
     RailsWizard::Recipes.add(recipe)
   end
 
