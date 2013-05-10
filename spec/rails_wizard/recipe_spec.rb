@@ -78,9 +78,19 @@ RUBY
   describe ".from_mongo" do
     context "when asked for a known recipe" do
       let(:recipe_key) {'recipe_example'}
-      let(:recipe) { RailsWizard::Recipe.generate(recipe_key, "# this is a test", :category => 'example', :name => "RailsWizard Example") }
-      let(:recipe_klass) { Kernel.const_get("RailsWizard").const_get("Recipes").const_get("RecipeExample") }
-      before :all do
+      let(:recipe) do
+        RailsWizard::Recipe.generate( recipe_key, '# this is a test', {
+            :category => 'example',
+            :name     => 'RailsWizard Example',
+            } )
+      end
+      let(:recipe_klass) do
+        Kernel.const_get('RailsWizard'  ).
+               const_get('Recipes'      ).
+               const_get('RecipeExample')
+      end
+
+      before do
         RailsWizard::Recipes.add(recipe)
       end
       context "by key" do
