@@ -37,134 +37,140 @@ module RailsWizard
 
     desc "list [CATEGORY]", "list available recipes (optionally by category)"
     def list(category = nil)
-      if category
-        recipes = RailsWizard::Recipes.for(category).map{|r| RailsWizard::Recipe.from_mongo(r) }
+      recipes = if category
+        RailsWizard::Recipes.for(category).map{|e| RailsWizard::Recipe.from_mongo e}
       else
-        recipes = RailsWizard::Recipes.list_classes
+        RailsWizard::Recipes.list_classes
       end
-      puts "#{bold}#{cyan}To learn more about recipes, see#{clear}:"
-      puts "#{bold}#{cyan}http://railsapps.github.io/tutorial-rails-apps-composer.html#Recipes#{clear}\n"
-      recipes.each do |recipe|
-        puts recipe.key.ljust(15) + "# #{recipe.description}"
-      end
+      address = 'http://railsapps.github.io/tutorial-rails-apps-composer.html#Recipes'
+      say("To learn more about recipes, see:\n#{address}", [:bold, :cyan])
+# https://github.com/wycats/thor/blob/master/lib/thor/shell/basic.rb
+      recipes.each{|e| say("#{e.key.ljust 15}# #{e.description}")}
     end
 
     no_tasks do
-      def cyan; "\033[36m" end
-      def clear; "\033[0m" end
-      def bold; "\033[1m" end
-      def red; "\033[31m" end
-      def green; "\033[32m" end
-      def yellow; "\033[33m" end
 
       def add_recipes
         Recipes.clear if options[:no_default_recipes]
         if dirs = options[:recipe_dirs]
-          dirs.each { |d| Recipes.add_from_directory(d) }
+          dirs.each {|d| Recipes.add_from_directory d}
         end
       end
 
       def load_defaults
         # Load defaults from a file; if a file specifies recipes, they'll be run *before*
         # any on the command line (or prompted for)..
-        defaults = if options[:defaults]
-          File.open(options[:defaults]) {|f| YAML.load(f) }
-        else
-          {}
-        end
+        return [[], {}] unless options[:defaults]
+        defaults = File.open(options[:defaults]) {|f| YAML.load(f) }
         recipes = defaults.delete('recipes') { [] }
         [recipes, defaults]
       end
 
       def print_recipes(recipes)
-        puts
-        puts "#{bold}#{cyan}Available Recipes#{clear}:"
+        say("\nAvailable Recipes:", [:bold, :cyan])
         RailsWizard::Recipes.categories.each do |category|
-          puts "#{bold}#{cyan}#{category}#{clear}: " +RailsWizard::Recipes.for(category).collect {|recipe|
-            recipes.include?(recipe) ? "#{green}#{bold}#{recipe}#{clear}" : recipe
-          }.join(', ')
+          say("#{category} ", [:bold, :cyan])
+          a = RailsWizard::Recipes.for(category)
+          a.each_with_index do |e,i|
+            s = (a.length - 1 == i) ? "#{e}" : "#{e}, "
+            if recipes.include?(e)
+              say(s, [:bold, :green])
+            else
+              say(s)
+            end
+          end
         end
-        puts
       end
 
       def ask_for_recipes(recipes)
-        if options[:recipes]
-          return recipes + options[:recipes]
-        elsif options[:quiet]
-          return recipes
-        end
-        while recipe = ask("#{print_recipes(recipes)}#{bold}Which recipe would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
-          if recipe == ''
-            break
-          elsif recipes.include?(recipe)
+        return recipes + options[:recipes] if options[:recipes]
+        return recipes if options[:quiet]
+        loop do
+          recipe = prompt_for_recipes(recipes)
+          break if '' == recipe
+          case
+          when recipes.include?(recipe)
             recipes -= [recipe]
-          elsif RailsWizard::Recipes.list.include?(recipe)
+          when RailsWizard::Recipes.list.include?(recipe)
             recipes << recipe
           else
-            puts
-            puts "> #{red}Invalid recipe, please try again.#{clear}"
+            say("\n> Invalid recipe, please try again.", :red)
           end
         end
         recipes
       end
 
+      def prompt_for_recipes(recipes)
+        print_recipes(recipes)
+        say("\nWhich recipe would you like to add? ", :bold)
+        ask('(blank to finish)', :yellow)
+      end
+
       def ask_for_gems(defaults)
         gems = defaults["gems"] || []
-        unless options[:quiet]
-          while getgem = ask("#{bold}What gem would you like to add? #{clear}#{yellow}(blank to finish)#{clear}")
-            if getgem == ''
-              break
-            else
-              gems << getgem.downcase
-            end
-          end
+        return gems if options[:quiet]
+        loop do
+          getgem = prompt_for_gems
+          break if '' == getgem
+          gems << getgem.downcase
         end
         gems
       end
 
+      def prompt_for_gems
+        say('What gem would you like to add? ', :bold)
+        ask('(blank to finish)', :yellow)
+      end
+
       def ask_for_arg(question, default = nil)
-        if default.nil?
-          result = nil
-          while answer = ask(question)
-            case answer.downcase
-              when "yes", "y"
-                result = true
-                break
-              when "no", "n"
-                result = false
-                break
-            end
+        return default unless default.nil?
+        say("#{question} ", :bold)
+        result = nil
+        loop do
+          answer = ask('(y/n)', :yellow)
+          case answer.downcase
+          when "yes", "y"
+            result = true
+            break
+          when "no", "n"
+            result = false
+            break
           end
-          result
-        else
-          default
         end
+        result
       end
 
       def ask_for_args(defaults)
         args = []
         default_args = defaults["args"] || {}
+        s = 'Would you like to skip'
 
-        question = "#{bold}Would you like to skip Test::Unit? (yes for RSpec) \033[33m(y/n)\033[0m#{clear}"
+        question = "#{s} Test::Unit? (yes for RSpec)"
         args << "-T" if ask_for_arg(question, default_args[:skip_test_unit])
 
-        question = "#{bold}Would you like to skip Active Record? (yes for MongoDB) \033[33m(y/n)\033[0m#{clear}"
+        question = "#{s} Active Record? (yes for MongoDB)"
         args << "-O" if ask_for_arg(question, default_args[:skip_active_record])
 
         args
       end
 
+      def make_red(s)
+# http://en.wikipedia.org/wiki/ANSI_escape_code
+# http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Literals#Backslash_Notation
+        "\e[31m#{s}\e[0m"
+      end
+
       #pass in name if you want to create a rails app
       #pass in file_name if you want to create a template
       def run_template(name, recipes, gems, args, defaults, file_name=nil)
-        if options[:template_root]
-          RailsWizard::Template.template_root = options[:template_root]
+        if opt = options[:template_root]
+          RailsWizard::Template.template_root = opt
         end
 
-        if file_name
-          file = File.new(file_name,'w')
+        file = if file_name
+          File.new(file_name,'w')
         else
-          file = Tempfile.new('template')
+          Tempfile.new('template')
         end
         begin
           template = RailsWizard::Template.new(recipes, gems, args, defaults)
@@ -172,17 +178,17 @@ module RailsWizard
           file.close
           if name
             args_list = (args | template.args).join(' ')
-            puts "Generating basic application, using:"
-            puts "\"rails new #{name} -m <temp_file> #{args_list}\""
+            say('Generating basic application, using: ')
+            say("\"rails new #{name} -m <temp_file> #{args_list}\"")
             system "rails new #{name} -m #{file.path} #{args_list}"
           else
-            puts "Generating and saving application template..."
-            puts "Done."
-            puts "Generate a new application with the command:"
-            puts "\"rails new <APP_NAME> -m #{file.path} #{template.args.join(' ')}\""
+            say('Generating and saving application template... ')
+            say('Done. ')
+            say('Generate a new application with the command: ')
+            say("\"rails new <APP_NAME> -m #{file.path} #{template.args.join ' '}\"")
           end
         rescue RailsWizard::UnknownRecipeError
-          raise Thor::Error.new("> #{red}#{$!.message}.#{clear}")
+          raise Thor::Error.new(make_red("> #{$!.message}."))
         ensure
           file.unlink unless file_name
         end
