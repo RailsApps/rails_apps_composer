@@ -77,33 +77,31 @@ RUBY
 
   describe ".from_mongo" do
     context "when asked for a known recipe" do
-      let(:recipe_key) {'recipe_example'}
-      let(:recipe) do
-        RailsWizard::Recipe.generate( recipe_key, '# this is a test', {
+      before(:all) do
+        @recipe_key = 'recipe_example'
+        @recipe = RailsWizard::Recipe.generate(@recipe_key, '# this is a test', {
             :category => 'example',
             :name     => 'RailsWizard Example',
             } )
-      end
-      let(:recipe_klass) do
-        Kernel.const_get('RailsWizard'  ).
-               const_get('Recipes'      ).
-               const_get('RecipeExample')
+        RailsWizard::Recipes.add(@recipe)
+        @recipe_klass = Kernel.
+            const_get('RailsWizard'  ).
+            const_get('Recipes'      ).
+            const_get('RecipeExample')
       end
 
-      before do
-        RailsWizard::Recipes.add(recipe)
-      end
       context "by key" do
         it "returns the recipe" do
-          RailsWizard::Recipe.from_mongo(recipe_key).should == recipe_klass
+          RailsWizard::Recipe.from_mongo(@recipe_key).should == @recipe_klass
         end
       end
       context "by class" do
         it "returns the recipe" do
-          RailsWizard::Recipe.from_mongo(recipe_klass).should == recipe_klass
+          RailsWizard::Recipe.from_mongo(@recipe_klass).should == @recipe_klass
         end
       end
     end
+
     context "when asked for an unknown recipe" do
       it "raises an UnknownRecipeError" do
         expect { RailsWizard::Recipe.from_mongo("foo") }.to raise_error RailsWizard::UnknownRecipeError, "No recipe found with name 'foo'"
