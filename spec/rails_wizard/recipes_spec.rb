@@ -2,20 +2,18 @@ require 'spec_helper'
 
 describe RailsWizard::Recipes do
   subject{ RailsWizard::Recipes }
-  let(:recipe) do
-    RailsWizard::Recipe.generate( "recipe_test", "# Testing", {
+
+  before(:all) do
+    @recipe = RailsWizard::Recipe.generate( "recipe_test", "# Testing", {
         :category    =>        'test',
         :description => 'Just a test.',
         :name        =>        'Test Recipe',
         } )
-  end
-
-  before do
-    RailsWizard::Recipes.add(recipe)
+    RailsWizard::Recipes.add(@recipe)
   end
 
   it '.list_classes should include recipe classes' do
-    subject.list_classes.should be_include(recipe)
+    subject.list_classes.should be_include(@recipe)
   end
 
   it '.list should include recipe keys' do
