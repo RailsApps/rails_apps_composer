@@ -1,39 +1,41 @@
-def recipes; @recipes end
-def recipe?(name); @recipes.include?(name) end
-def prefs; @prefs end
-def prefer(key, value); @prefs[key].eql? value end
-def gems; @gems end
-def diagnostics_recipes; @diagnostics_recipes end
-def diagnostics_prefs; @diagnostics_prefs end
+def diagnostics_prefs()   @diagnostics_prefs      end
+def diagnostics_recipes() @diagnostics_recipes    end
+def gems()                @gems                   end
+def prefs()               @prefs                  end
+def recipes()             @recipes                end
+def prefer(key, value)    @prefs[key].eql? value  end
+def recipe?(name)         @recipes.include? name  end
 
-def say_custom(tag, text); say "\033[1m\033[36m" + tag.to_s.rjust(10) + "\033[0m" + "  #{text}" end
-def say_recipe(name); say "\033[1m\033[36m" + "recipe".rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
-def say_wizard(text); say_custom(@current_recipe || 'composer', text) end
-
-def ask_wizard(question)
-  ask "\033[1m\033[36m" + (@current_recipe || "prompt").rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
-end
+# https://github.com/wycats/thor/blob/master/lib/thor/shell/color.rb
+def say_prefix() s=@current_recipe || 'composer';  say("#{       s.rjust 10} ", [:bold, :cyan])                     end
+def say_custom(tag, text, color=nil)               say("#{tag.to_s.rjust 10} ", [:bold, :cyan]);  say(text, color)  end
+def say_wizard(     text, color=nil)  say_prefix;                                                 say(text, color)  end
+def ask_wizard(question)              say_prefix;  ask("  #{question}",         [:bold, :cyan])                     end
+def say_recipe(name)                               say_custom('recipe',  "Running #{name} recipe...")               end
 
 def yes_wizard?(question)
-  answer = ask_wizard(question + " \033[33m(y/n)\033[0m")
-  case answer.downcase
-    when "yes", "y"
-      true
-    when "no", "n"
-      false
-    else
-      yes_wizard?(question)
+  result = nil # Define in scope.
+  loop do
+    say_wizard("  #{question} ", :cyan)
+    case ask('(y/n)', :yellow).downcase
+    when 'yes', 'y'
+      result = true
+      break
+    when 'no', 'n'
+      result = false
+      break
+    end
   end
+  result
 end
-
-def no_wizard?(question); !yes_wizard?(question) end
+def no_wizard?(question) !yes_wizard?(question) end
 
 def multiple_choice(question, choices)
   say_custom('question', question)
   values = {}
   choices.each_with_index do |choice,i|
     values[(i + 1).to_s] = choice[1]
-    say_custom( (i + 1).to_s + ')', choice[0] )
+    say_custom((i + 1).to_s + ')', choice[0])
   end
   answer = ask_wizard("Enter your selection:") while !values.keys.include?(answer)
   values[answer]
@@ -43,76 +45,83 @@ end
 @configs = {}
 
 @after_blocks = []
-def after_bundler(&block); @after_blocks << [@current_recipe, block]; end
+def after_bundler(   &block)             @after_blocks << [@current_recipe, block]  end
+
 @after_everything_blocks = []
-def after_everything(&block); @after_everything_blocks << [@current_recipe, block]; end
+def after_everything(&block)  @after_everything_blocks << [@current_recipe, block]  end
+
 @before_configs = {}
-def before_config(&block); @before_configs[@current_recipe] = block; end
+def before_config(   &block)  @before_configs[@current_recipe] = block              end
 
 def copy_from(source, destination)
   begin
-    remove_file destination
-    get source, destination
+    remove_file(destination)
+    get(source, destination)
   rescue OpenURI::HTTPError
     say_wizard "Unable to obtain #{source}"
   end
 end
 
 def copy_from_repo(filename, opts = {})
-  repo = 'https://raw.github.com/RailsApps/rails-composer/master/files/'
-  repo = opts[:repo] unless opts[:repo].nil?
-  if (!opts[:prefs].nil?) && (!prefs.has_value? opts[:prefs])
-    return
-  end
-  source_filename = filename
-  destination_filename = filename
-  unless opts[:prefs].nil?
-    if filename.include? opts[:prefs]
-      destination_filename = filename.gsub(/\-#{opts[:prefs]}/, '')
+  return unless opts[:prefs].nil? || prefs.has_value?(opts[:prefs])
+  repo = opts[:repo] || 'https://raw.github.com/RailsApps/rails-composer/master/files/'
+  destination = source = filename
+  destination = destination.gsub(/\-#{opts[:prefs]}/, '') if destination.include? opts[:prefs]
+  if destination.include? 'views'
+    s = case
+    when prefer(:templates, 'haml') then '.haml'
+    when prefer(:templates, 'slim') then '.slim'
+    else nil end
+    if s
+      remove_file(destination)
+      destination = destination.gsub(/.erb\z/, s)
     end
-  end
-  if (prefer :templates, 'haml') && (filename.include? 'views')
-    remove_file destination_filename
-    destination_filename = destination_filename.gsub(/.erb/, '.haml')
-  end
-  if (prefer :templates, 'slim') && (filename.include? 'views')
-    remove_file destination_filename
-    destination_filename = destination_filename.gsub(/.erb/, '.slim')
   end
   begin
-    remove_file destination_filename
-    if (prefer :templates, 'haml') && (filename.include? 'views')
-      create_file destination_filename, html_to_haml(repo + source_filename)
-    elsif (prefer :templates, 'slim') && (filename.include? 'views')
-      create_file destination_filename, html_to_slim(repo + source_filename)
+    remove_file(destination)
+    unless destination.include? 'views'
+      get(repo + source, destination)
     else
-      get repo + source_filename, destination_filename
+# https://github.com/wycats/thor/blob/master/lib/thor/actions/create_file.rb
+      case
+      when prefer(:templates, 'haml')
+        create_file(destination, html_to_haml(repo + source))
+      when prefer(:templates, 'slim')
+        create_file(destination, html_to_slim(repo + source))
+      end
     end
   rescue OpenURI::HTTPError
-    say_wizard "Unable to obtain #{source_filename} from the repo #{repo}"
+    say_wizard "Unable to obtain #{source} from the repo #{repo}"
   end
 end
 
 def html_to_haml(source)
   begin
-    html = open(source) {|input| input.binmode.read }
+    html = Kernel.open(source) {|input| input.binmode.read }
     Haml::HTML.new(html, :erb => true, :xhtml => true).render
   rescue RubyParser::SyntaxError
     say_wizard "Ignoring RubyParser::SyntaxError"
     # special case to accommodate https://github.com/RailsApps/rails-composer/issues/55
-    html = open(source) {|input| input.binmode.read }
-    say_wizard "applying patch" if html.include? 'card_month'
-    say_wizard "applying patch" if html.include? 'card_year'
-    html = html.gsub(/, {add_month_numbers: true}, {name: nil, id: "card_month"}/, '')
-    html = html.gsub(/, {start_year: Date\.today\.year, end_year: Date\.today\.year\+10}, {name: nil, id: "card_year"}/, '')
+    html = Kernel.open(source) {|input| input.binmode.read }
+    say_wizard "applying patch" if html.include?('card_month') ||
+                                   html.include?('card_year' )
+    [
+        /, {add_month_numbers: true}, {name: nil, id: "card_month"}/  ,
+        /, {start_year: Date\.today\.year, end_year: Date\.today\.year\+10}, {name: nil, id: "card_year"}/  ,
+    ].each{|r| html = html.gsub(r,'')}
     result = Haml::HTML.new(html, :erb => true, :xhtml => true).render
-    result = result.gsub(/select_month nil/, "select_month nil, {add_month_numbers: true}, {name: nil, id: \"card_month\"}")
-    result = result.gsub(/select_year nil/, "select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: \"card_year\"}")
+    [
+        /select_month nil/,
+        /select_year nil/,
+    ].zip([
+        'select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}',
+        'select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}',
+    ]).each{|r,s| result = result.gsub(r,s)}
   end
 end
 
 def html_to_slim(source)
-  html = open(source) {|input| input.binmode.read }
+  html = Kernel.open(source) {|input| input.binmode.read }
   haml = Haml::HTML.new(html, :erb => true, :xhtml => true).render
   Haml2Slim.convert!(haml)
 end
@@ -127,5 +136,5 @@ def which(cmd)
       return exe if File.executable? exe
     end
   end
-  return nil
+  nil
 end
