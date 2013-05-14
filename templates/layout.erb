@@ -38,10 +38,10 @@ diagnostics = {}
 
 if diagnostics_recipes.sort.include? recipes.sort
   diagnostics[:recipes] = 'success'
-  say_wizard('WOOT! The recipes you\'ve selected are known to work together.')
+  say_wizard("WOOT! The recipes you've selected are known to work together.")
 else
   diagnostics[:recipes] = 'fail'
-  say_wizard('WARNING! The recipes you\'ve selected might not work together.', [:bold, :cyan])
+  say_wizard("\033[1m\033[36m" + "WARNING! The recipes you've selected might not work together." + "\033[0m")
   say_wizard("Help us out by reporting whether this combination works or fails.")
   say_wizard("Please open an issue for rails_apps_composer on GitHub.")
   say_wizard("Your new application will contain diagnostics in its README file.")
@@ -139,19 +139,19 @@ say_wizard "Running 'after everything' callbacks."
 
 @current_recipe = nil
 if diagnostics[:recipes] == 'success'
-  say_wizard('WOOT! The recipes you\'ve selected are known to work together.')
+  say_wizard("WOOT! The recipes you've selected are known to work together.")
   say_wizard("If they don't, open an issue for rails_apps_composer on GitHub.")
 else
-  say_wizard('WARNING! The recipes you\'ve selected might not work together.', [:bold, :cyan])
+  say_wizard("\033[1m\033[36m" + "WARNING! The recipes you've selected might not work together." + "\033[0m")
   say_wizard("Help us out by reporting whether this combination works or fails.")
   say_wizard("Please open an issue for rails_apps_composer on GitHub.")
   say_wizard("Your new application will contain diagnostics in its README file.")
 end
 if diagnostics[:prefs] == 'success'
-  say_wizard("WOOT! The preferences you\'ve selected are known to work together.")
+  say_wizard("WOOT! The preferences you've selected are known to work together.")
   say_wizard("If they don't, open an issue for rails_apps_composer on GitHub.")
 else
-  say_wizard('WARNING! The preferences you\'ve selected might not work together.', [:bold, :cyan])
+  say_wizard("\033[1m\033[36m" + "WARNING! The preferences you've selected might not work together." + "\033[0m")
   say_wizard("Help us out by reporting whether this combination works or fails.")
   say_wizard("Please open an issue for rails_apps_composer on GitHub.")
   say_wizard("Your new application will contain diagnostics in its README file.")
