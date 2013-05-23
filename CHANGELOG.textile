@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.2.41 May 23, 2013
+
+* update recipe for rails-prelaunch-signup app (add selenium-webdriver gem)
+
 h2. 2.2.40 April 19, 2013
 
 * update recipe for rails-prelaunch-signup app
