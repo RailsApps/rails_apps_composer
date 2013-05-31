@@ -14,9 +14,9 @@ sqlite_detected = gemfile.include? 'sqlite3'
 ## Web Server
 prefs[:dev_webserver] = multiple_choice "Web server for development?", [["WEBrick (default)", "webrick"],
   ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"]] unless prefs.has_key? :dev_webserver
-webserver = multiple_choice "Web server for production?", [["Same as development", "same"],
+prefs[:prod_webserver] = multiple_choice "Web server for production?", [["Same as development", "same"],
   ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"]] unless prefs.has_key? :prod_webserver
-if webserver == 'same'
+if prefs[:prod_webserver] == 'same'
   case prefs[:dev_webserver]
     when 'thin'
       prefs[:prod_webserver] = 'thin'
@@ -25,8 +25,6 @@ if webserver == 'same'
     when 'puma'
       prefs[:prod_webserver] = 'puma'
   end
-else
-  prefs[:prod_webserver] = webserver
 end
 
 ## Database Adapter
