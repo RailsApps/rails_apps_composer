@@ -129,7 +129,7 @@ end
 ## Signup App
 if prefer :railsapps, 'rails-prelaunch-signup'
   gem 'gibbon', '>= 0.4.2'
-  gem 'capybara-webkit', '~> 1.0.0'
+  gem 'capybara-webkit', '~> 1.0.0', :group => :test
 end
 
 ## Gems from a defaults file or added interactively
