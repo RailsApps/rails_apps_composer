@@ -103,6 +103,7 @@ gem 'omniauth-github' if prefer :omniauth_provider, 'github'
 gem 'omniauth-linkedin' if prefer :omniauth_provider, 'linkedin'
 gem 'omniauth-google-oauth2' if prefer :omniauth_provider, 'google_oauth2'
 gem 'omniauth-tumblr' if prefer :omniauth_provider, 'tumblr'
+gem 'omniauth-meetup' if prefer :omniauth_provider, 'meetup'
 
 ## Authorization
 if prefer :authorization, 'cancan'

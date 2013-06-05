@@ -65,8 +65,18 @@ RUBY
       gsub_file 'app/models/user.rb', /class User/, 'class User < ActiveRecord::Base'
       gsub_file 'app/models/user.rb', /^\s*include Mongoid::Document\n/, ''
       gsub_file 'app/models/user.rb', /^\s*field.*\n/, ''
+    else
+      if prefer :collect_user_email, false
+        gsub_file 'app/models/user.rb', /^\s*field :email, type: String\n/, ''
+      end
+    end
+    if (prefer :collect_user_email, false) || !(prefer :orm, 'mongoid')
       gsub_file 'app/models/user.rb', /^\s*# run 'rake db:mongoid:create_indexes' to create indexes\n/, ''
       gsub_file 'app/models/user.rb', /^\s*index\(\{ email: 1 \}, \{ unique: true, background: true \}\)\n/, ''
+    end
+    if prefer :collect_user_email, false
+      gsub_file 'app/models/user.rb', /^(\s*attr_accessible :provider, :uid, :name), :email(\n)/, '\\1\\2'
+      gsub_file 'app/models/user.rb', /^\s*user\.email =.*\n/, ''
     end
   end
   ### SUBDOMAINS ###

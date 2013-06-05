@@ -35,9 +35,19 @@ after_bundler do
     end
     ## SHOW
     copy_from_repo 'app/views/users/show.html.erb'
+    if prefer :collect_user_email, false
+      unless (prefer :templates, 'haml') || (prefer :templates, 'slim')
+        gsub_file  'app/views/users/show.html.erb', /^\s*<p>Email:.*\n/, ''
+      end
+    end
     copy_from_repo 'app/views/users/show-subdomains_app.html.erb', :prefs => 'subdomains_app'
     ## EDIT
     copy_from_repo 'app/views/users/edit-omniauth.html.erb', :prefs => 'omniauth'
+    if prefer :collect_user_email, false
+      unless (prefer :templates, 'haml') || (prefer :templates, 'slim')
+        gsub_file 'app/views/users/edit.html.erb', /^\s*<%= f\.label :email.*?^\s*<br \/>$\n/m, ''
+      end
+    end
   end
   ### PROFILES ###
   copy_from_repo 'app/views/profiles/show-subdomains_app.html.erb', :prefs => 'subdomains_app'
