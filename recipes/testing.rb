@@ -151,7 +151,17 @@ after_everything do
       say_wizard "copying RSpec files from the rails3-mongoid-omniauth examples"
       repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
       copy_from_repo 'spec/factories/users.rb', :repo => repo
+      gsub_file      'spec/factories/users.rb',
+        /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
       copy_from_repo 'spec/controllers/sessions_controller_spec.rb', :repo => repo
+      gsub_file      'spec/controllers/sessions_controller_spec.rb',
+        /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
+      if prefer :collect_user_email, false
+        gsub_file    'spec/controllers/sessions_controller_spec.rb',
+          /^(\s*it "redirects )new (users )with blank email to fill in their email(" do\n)/, '\\1\\2back to root_url\\3'
+        gsub_file    'spec/controllers/sessions_controller_spec.rb',
+          /^\s*page.should have_content\('Please enter your email address'\)$.*?^\s*visit '\/signin'$\n/m, ''
+      end
       copy_from_repo 'spec/controllers/home_controller_spec.rb', :repo => repo
       copy_from_repo 'spec/controllers/users_controller_spec.rb', :repo => repo
       copy_from_repo 'spec/models/user_spec.rb', :repo => repo

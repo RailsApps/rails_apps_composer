@@ -9,7 +9,9 @@ prefs[:railsapps] = multiple_choice "Install an example application?",
   ["rails3-devise-rspec-cucumber", "rails3-devise-rspec-cucumber"],
   ["rails3-mongoid-devise", "rails3-mongoid-devise"],
   ["rails3-mongoid-omniauth", "rails3-mongoid-omniauth"],
-  ["rails3-subdomains", "rails3-subdomains"]] unless prefs.has_key? :railsapps
+  ["rails3-subdomains", "rails3-subdomains"],
+  ["rails3-mongoid-omniauth-meetup", "rails3-mongoid-omniauth-meetup"],
+  ] unless prefs.has_key? :railsapps
 
 case prefs[:railsapps]
   when 'saas'
@@ -161,6 +163,24 @@ case prefs[:railsapps]
     prefs[:quiet_assets] = true
     prefs[:local_env_file] = true
     prefs[:better_errors] = true
+  when 'rails3-mongoid-omniauth-meetup'
+    prefs[:git] = true
+    prefs[:database] = 'mongodb'
+    prefs[:orm] = 'mongoid'
+    prefs[:unit_test] = 'rspec'
+    prefs[:integration] = 'cucumber'
+    prefs[:fixtures] = 'factory_girl'
+    prefs[:frontend] = 'none'
+    prefs[:email] = 'none'
+    prefs[:authentication] = 'omniauth'
+    prefs[:omniauth_provider] = 'meetup'
+    prefs[:authorization] = 'none'
+    prefs[:starter_app] = 'users_app'
+    prefs[:form_builder] = 'none'
+    prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
+    prefs[:better_errors] = true
+    prefs[:collect_user_email] = false
   when 'rails3-subdomains'
     prefs[:git] = true
     prefs[:database] = 'mongodb'

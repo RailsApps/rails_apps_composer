@@ -46,6 +46,13 @@ RUBY
     filename = 'app/controllers/sessions_controller.rb'
     copy_from_repo filename, :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
     gsub_file filename, /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
+    if prefer :collect_user_email, false
+      gsub_file filename, /^\s*if user.email.blank\?$.*?^\s*end$\n/m do
+    <<-RUBY
+    redirect_to root_url, :notice => 'Signed in!'
+RUBY
+      end
+    end
     if prefer :authorization, 'cancan'
       inject_into_file filename, "    user.add_role :admin if User.count == 1 # make the first user an admin\n", :after => "session[:user_id] = user.id\n"
     end
