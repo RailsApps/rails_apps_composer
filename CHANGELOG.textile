@@ -1,5 +1,11 @@
 h1. CHANGELOG
 
+h2. 2.2.42 June 20, 2013
+
+* fix prod_webserver handling (contributed by Vitaly Kushner)
+* update recipe for rails-prelaunch-signup app (only require capybara-webkit in test)
+* update recipe for rails-prelaunch-signup app (replace selenium with capybara-webkit)
+
 h2. 2.2.41 May 23, 2013
 
 * update recipe for rails-prelaunch-signup app (add selenium-webdriver gem)
