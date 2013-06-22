@@ -1,5 +1,11 @@
 h1. CHANGELOG
 
+h2. 2.2.43 June 21, 2013
+
+* don't specify gem versions (Bundler manages updates)
+* assign gems to groups in Gemfile (contributed by R2dR)
+* add source signposts to generated templates (contributed by Mark D. Blackwell)
+
 h2. 2.2.42 June 20, 2013
 
 * fix prod_webserver handling (contributed by Vitaly Kushner)

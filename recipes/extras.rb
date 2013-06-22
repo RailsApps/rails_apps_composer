@@ -72,7 +72,7 @@ if config['quiet_assets']
 end
 if prefs[:quiet_assets]
   say_wizard "recipe setting quiet_assets for reduced asset pipeline logging"
-  gem 'quiet_assets', '>= 1.0.2', :group => :development
+  add_gem 'quiet_assets', :group => :development
 end
 
 ## LOCAL_ENV.YML FILE
@@ -81,7 +81,7 @@ if config['local_env_file']
 end
 if prefs[:local_env_file]
   say_wizard "recipe creating application.yml file for environment variables"
-  gem 'figaro', '>= 0.6.3'
+  add_gem 'figaro'
 end
 
 ## BETTER ERRORS
@@ -90,8 +90,8 @@ if config['better_errors']
 end
 if prefs[:better_errors]
   say_wizard "recipe adding better_errors gem"
-  gem 'better_errors', '>= 0.7.2', :group => :development
-  gem 'binding_of_caller', '>= 0.7.1', :group => :development, :platforms => [:mri_19, :rbx]
+  add_gem 'better_errors', :group => :development
+  add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_19, :rbx]
 end
 
 ## BAN SPIDERS
@@ -114,8 +114,8 @@ case RbConfig::CONFIG['host_os']
       # was it already added for bootstrap-less?
       unless prefer :bootstrap, 'less'
         say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
-        gem 'libv8', '>= 3.11.8'
-        gem 'therubyracer', '>= 0.11.3', :group => :assets, :platform => :ruby, :require => 'v8'
+        add_gem 'libv8'
+        add_gem 'therubyracer', :group => :assets, :platform => :ruby, :require => 'v8'
       end
     end
 end
@@ -144,7 +144,7 @@ if config['github']
   prefs[:github] = true
 end
 if prefs[:github]
-  gem 'hub', '>= 1.10.2', :require => nil, :group => [:development]
+  add_gem 'hub', :require => nil, :group => [:development]
   after_everything do
     say_wizard "recipe creating GitHub repository"
     git_uri = `git config remote.origin.url`.strip
