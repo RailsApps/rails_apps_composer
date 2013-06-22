@@ -2,7 +2,7 @@ h1. CHANGELOG
 
 h2. 2.3.0 June 22, 2013
 
-* allow Rails 4.0 use and warn to check for GitHub issues
+* allow Rails 4.0, warn to check for GitHub issues
 * don't specify gem versions (Bundler manages updates)
 * assign gems to groups in Gemfile (contributed by R2dR)
 * add source signposts to generated templates (contributed by Mark D. Blackwell)
