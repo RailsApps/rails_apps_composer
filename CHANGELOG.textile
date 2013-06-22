@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.3.1 June 22, 2013
+
+* add 'simple-test' example application to diagnose issue #220
+
 h2. 2.3.0 June 22, 2013
 
 * allow Rails 4.0, warn to check for GitHub issues
