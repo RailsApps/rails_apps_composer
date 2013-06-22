@@ -1,10 +1,13 @@
-# ><%= "[ #{name} ]".center(75,'-') %><
-
+# ><%= ' templates/recipe.erb '.center(75,'-').chomp %>start<
+# ><%=            "[ #{name} ]".center(75,'-').chomp %><
 @current_recipe = "<%= key %>"
 @before_configs["<%= key %>"].call if @before_configs["<%= key %>"]
 say_recipe '<%= name %>'
-
-<%= config.compile if config %>
-@configs[@current_recipe] = config
+<%=
+config.compile + "\n" if config
+%>@configs[@current_recipe] = config
+# ><%=   " recipes/#{name}.rb ".center(75,'-').chomp %>start<
 
 <%= template %>
+# ><%=   " recipes/#{name}.rb ".center(75,'-').chomp %>end<
+# ><%= ' templates/recipe.erb '.center(75,'-').chomp %>end<
