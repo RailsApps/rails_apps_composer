@@ -83,7 +83,7 @@ add_gem 'zurb-foundation', :group => :assets if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   add_gem 'less-rails', :group => :assets
   add_gem 'twitter-bootstrap-rails', :group => :assets
-  # install add_gem 'therubyracer' to use Less
+  # install gem 'therubyracer' to use Less
   add_gem 'libv8'
   add_gem 'therubyracer', :group => :assets, :platform => :ruby, :require => 'v8'
 end
