@@ -53,8 +53,10 @@ h2. Dependencies
 
 Before using the rails_apps_composer gem, you will need:
 
-* The Ruby language (version 1.9.3 or 2.0.0)
-* Rails 3.2 (Rails 4.0 is not yet supported)
+* The Ruby language (version 2.0.0)
+* Rails 3.2
+
+Rails 4.0.0 will not work due to an unresolved "issue involving a minitest gem version conflict":https://github.com/RailsApps/rails_apps_composer/issues/220.
 
 The rails_apps_composer program uses the version of Rails that is currently installed when you launch the program. If you want to use the newest Rails version, upgrade before running rails_apps_composer.
 
