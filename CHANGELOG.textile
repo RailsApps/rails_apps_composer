@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.3.2 June 24, 2013
+
+* attempt to resolve issue #148 and #220 (failures caused by conflicting gem versions)
+
 h2. 2.3.1 June 22, 2013
 
 * add 'simple-test' example application to diagnose issue #220

@@ -200,7 +200,6 @@ end
 # >-----------------------------[ Run 'After Bundler' Callbacks ]-------------------------------<
 
 say_wizard "Running 'after bundler' callbacks."
-require 'bundler/setup'
 if prefer :templates, 'haml'
   say_wizard "importing html2haml conversion tool"
   require 'html2haml'
