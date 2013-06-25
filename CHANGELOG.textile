@@ -5,6 +5,7 @@ h2. 2.4.0 June 24, 2013
 * preliminary menus for Rails 4.0
 * add 'apps4' recipe with 'learn-rails' example application
 * remove 'simple-test' example application
+* add the Ruby version to the Gemfile
 
 h2. 2.3.2 June 24, 2013
 
