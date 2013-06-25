@@ -1,12 +1,6 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/apps4.rb
 
-if prefer :apps4, 'simple-test'
-  after_everything do
-    say_wizard "recipe running after 'bundle install'"
-  end # after_bundler
-end # simple-test
-
 if prefer :apps4, 'learn-rails'
 
   # >-------------------------------[ Gems ]--------------------------------<
