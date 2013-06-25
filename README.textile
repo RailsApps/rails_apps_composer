@@ -54,9 +54,7 @@ h2. Dependencies
 Before using the rails_apps_composer gem, you will need:
 
 * The Ruby language (version 2.0.0)
-* Rails 3.2
-
-Rails 4.0.0 will not work due to an unresolved "issue involving a minitest gem version conflict":https://github.com/RailsApps/rails_apps_composer/issues/220.
+* Rails 3.2 or Rails 4.0
 
 The rails_apps_composer program uses the version of Rails that is currently installed when you launch the program. If you want to use the newest Rails version, upgrade before running rails_apps_composer.
 
@@ -70,7 +68,7 @@ h2. Installation and Usage
 
 I recommend installing and using RVM, the "Ruby Version Manager":https://rvm.io/, to create a new gemset for rails_apps_composer. Using an RVM gemset will make it easier to identify and isolate incompatibilities among gems. RVM will install Ruby and set up a global gemset with a minimal set of gems.
 
-Here's how to generate a new Rails application using the Rails Composer tool and RVM:
+Here's how to generate a new Rails application using rails_apps_composer and RVM:
 
 <pre>
 $ mkdir myapp
