@@ -14,13 +14,12 @@ when "3"
     ["rails3-subdomains", "rails3-subdomains"]] unless prefs.has_key? :railsapps
 when "4"
   prefs[:apps4] = multiple_choice "Install an example application for Rails 4.0?",
-    [["simple-test", "simple-test"],
-    ["I want to build my own application", "none"],
-    ["Build a RailsApps starter application", "railsapps"],
-    ["Build a contributed application", "contributed_app"]] unless prefs.has_key? :apps4
+    [["Build a RailsApps starter application", "railsapps"],
+    ["Build a contributed application", "contributed_app"],
+    ["I want to build my own application", "none"]] unless prefs.has_key? :apps4
   case prefs[:apps4]
     when 'railsapps'
-      prefs[:apps4] = multiple_choice "Only one starter app is currently available.",
+      prefs[:apps4] = multiple_choice "One starter app is available for Rails 4.0. More to come.",
         [["learn-rails", "learn-rails"]]
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
