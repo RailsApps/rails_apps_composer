@@ -9,6 +9,19 @@ end # simple-test
 
 if prefer :apps4, 'learn-rails'
 
+  # >-------------------------------[ Gems ]--------------------------------<
+
+  add_gem 'activerecord-tableless'
+  add_gem 'high_voltage'
+  add_gem 'gibbon'
+  gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
+  add_gem 'sqlite3', :group => :development
+  add_gem 'pg', :group => :production
+  add_gem 'thin', :group => :production
+  add_gem 'rails_on_heroku', :group => :production
+
+  # >-------------------------------[ after_everything ]--------------------------------<
+
   after_everything do
     say_wizard "recipe running after 'bundle install'"
     repo = 'https://raw.github.com/RailsApps/learn-rails/master/'
@@ -26,17 +39,6 @@ if prefer :apps4, 'learn-rails'
     # GIT
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: clean up starter app"' if prefer :git, true
-
-    # >-------------------------------[ Gems ]--------------------------------<
-
-    add_gem 'activerecord-tableless'
-    add_gem 'high_voltage'
-    add_gem 'gibbon'
-    gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
-    add_gem 'sqlite3', :group => :development
-    add_gem 'pg', :group => :production
-    add_gem 'thin', :group => :production
-    add_gem 'rails_on_heroku', :group => :production
 
     # >-------------------------------[ Models ]--------------------------------<
 

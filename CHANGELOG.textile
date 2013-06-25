@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.4.0 June 24, 2013
+
+* add 'apps4' recipe with 'learn-rails' example application
+* remove 'simple-test' example application
+
 h2. 2.3.2 June 24, 2013
 
 * attempt to resolve issue #148 and #220 (failures caused by conflicting gem versions)
