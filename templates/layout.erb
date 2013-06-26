@@ -196,7 +196,8 @@ if prefs.has_key? :bundle_path
 else
   run 'bundle install --without production'
 end
-
+say_wizard "Updating gem paths."
+Gem.clear_paths
 # >-----------------------------[ Run 'After Bundler' Callbacks ]-------------------------------<
 
 say_wizard "Running 'after bundler' callbacks."

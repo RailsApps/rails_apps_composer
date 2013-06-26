@@ -61,6 +61,8 @@ YAML.load(ENV['ROLES']).each do |role|
 end
 FILE
       end
+      ## Fix db seed for Rails 4.0
+      gsub_file 'db/seeds.rb', /{ :name => role }/, 'role' if Rails::VERSION::MAJOR.to_s == "4"
     else
       append_file 'db/seeds.rb' do <<-FILE
 puts 'ROLES'
