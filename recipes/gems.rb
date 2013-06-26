@@ -114,11 +114,7 @@ if prefer :authorization, 'cancan'
 end
 
 ## Form Builder
-if Rails::VERSION::MAJOR.to_s == "4"
-  add_gem 'simple_form', '~> 3.0.0.rc' if prefer :form_builder, 'simple_form'
-else
-  add_gem 'simple_form' if prefer :form_builder, 'simple_form'
-end
+add_gem 'simple_form' if prefer :form_builder, 'simple_form'
 
 ## Membership App
 if prefer :railsapps, 'rails-stripe-membership-saas'
