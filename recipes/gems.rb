@@ -20,6 +20,9 @@ else
   add_gem 'puma', :group => :production if prefer :prod_webserver, 'puma'
 end
 
+## Rails 4.0 attr_accessible Compatibility
+add_gem 'protected_attributes' if Rails::VERSION::MAJOR.to_s == "4"
+
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 add_gem 'mongoid' if prefer :orm, 'mongoid'
@@ -111,7 +114,11 @@ if prefer :authorization, 'cancan'
 end
 
 ## Form Builder
-add_gem 'simple_form' if prefer :form_builder, 'simple_form'
+if Rails::VERSION::MAJOR.to_s == "4"
+  add_gem 'simple_form', '~> 3.0.0.rc' if prefer :form_builder, 'simple_form'
+else
+  add_gem 'simple_form' if prefer :form_builder, 'simple_form'
+end
 
 ## Membership App
 if prefer :railsapps, 'rails-stripe-membership-saas'

@@ -1,5 +1,13 @@
 h1. CHANGELOG
 
+h2. 2.4.1 June 25, 2013
+
+* add 'protected_attributes' gem for Rails 4.0
+* fix devise 'routes.rb' file for Rails 4.0
+* fix cancan 'seeds.rb' file for Rails 4.0
+* add gem paths reload command to fix 'html2haml' requirement
+* upgrade 'simple_form' gem to '3.0.0.rc' for Rails 4.0
+
 h2. 2.4.0 June 24, 2013
 
 * preliminary menus for Rails 4.0
