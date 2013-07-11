@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.3 July 11, 2013
+
+* fix specs to replace deprecated stub! and mock
+
 h2. 2.4.2 July 11, 2013
 
 * add 'rails-bootstrap' example application to the 'apps4' recipe
