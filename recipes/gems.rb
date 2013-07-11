@@ -6,6 +6,11 @@
 ## Ruby on Rails
 insert_into_file('Gemfile', "ruby '#{RUBY_VERSION}'\n", :before => /^ *gem 'rails'/, :force => false)
 
+## Cleanup
+# remove the 'sdoc' gem
+gsub_file 'Gemfile', /group :doc do/, ''
+gsub_file 'Gemfile', /\s*gem 'sdoc', require: false\nend/, ''
+
 ## Web Server
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
   add_gem 'thin' if prefer :dev_webserver, 'thin'
@@ -21,10 +26,14 @@ else
 end
 
 ## Rails 4.0 attr_accessible Compatibility
-add_gem 'protected_attributes' if Rails::VERSION::MAJOR.to_s == "4"
+if prefer :apps4, false
+  add_gem 'protected_attributes' if Rails::VERSION::MAJOR.to_s == "4"
+end
 
 ## Database Adapter
-gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
+unless prefer :database, 'default'
+  gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
+end
 add_gem 'mongoid' if prefer :orm, 'mongoid'
 gsub_file 'Gemfile', /gem 'pg'.*/, ''
 add_gem 'pg' if prefer :database, 'postgresql'
@@ -115,7 +124,7 @@ end
 
 ## Form Builder
 if Rails::VERSION::MAJOR.to_s == "4"
-  add_gem 'simple_form', '~> 3.0.0.rc' if prefer :form_builder, 'simple_form'
+  add_gem 'simple_form', '>= 3.0.0.rc' if prefer :form_builder, 'simple_form'
 else
   add_gem 'simple_form' if prefer :form_builder, 'simple_form'
 end
@@ -150,57 +159,59 @@ git :commit => '-qm "rails_apps_composer: Gemfile"' if prefer :git, true
 
 ### CREATE DATABASE ###
 after_bundler do
-  copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
-  copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
-  generate 'mongoid:config' if prefer :orm, 'mongoid'
-  remove_file 'config/database.yml' if prefer :orm, 'mongoid'
-  if prefer :database, 'postgresql'
-    begin
-      pg_username = ask_wizard("Username for PostgreSQL? (leave blank to use the app name)")
-      if pg_username.blank?
-        say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
-        run "createuser #{app_name}" if prefer :database, 'postgresql'
+  unless prefer :database, 'default'
+    copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
+    copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
+    generate 'mongoid:config' if prefer :orm, 'mongoid'
+    remove_file 'config/database.yml' if prefer :orm, 'mongoid'
+    if prefer :database, 'postgresql'
+      begin
+        pg_username = ask_wizard("Username for PostgreSQL? (leave blank to use the app name)")
+        if pg_username.blank?
+          say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
+          run "createuser #{app_name}" if prefer :database, 'postgresql'
+          gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
+        else
+          gsub_file "config/database.yml", /username: .*/, "username: #{pg_username}"
+          pg_password = ask_wizard("Password for PostgreSQL user #{pg_username}?")
+          gsub_file "config/database.yml", /password:/, "password: #{pg_password}"
+          say_wizard "set config/database.yml for username/password #{pg_username}/#{pg_password}"
+        end
+      rescue StandardError => e
+        raise "unable to create a user for PostgreSQL, reason: #{e}"
+      end
+      gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
+      gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
+      gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
+    end
+    if prefer :database, 'mysql'
+      mysql_username = ask_wizard("Username for MySQL? (leave blank to use the app name)")
+      if mysql_username.blank?
         gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
       else
-        gsub_file "config/database.yml", /username: .*/, "username: #{pg_username}"
-        pg_password = ask_wizard("Password for PostgreSQL user #{pg_username}?")
-        gsub_file "config/database.yml", /password:/, "password: #{pg_password}"
-        say_wizard "set config/database.yml for username/password #{pg_username}/#{pg_password}"
+        gsub_file "config/database.yml", /username: .*/, "username: #{mysql_username}"
+        mysql_password = ask_wizard("Password for MySQL user #{mysql_username}?")
+        gsub_file "config/database.yml", /password:/, "password: #{mysql_password}"
+        say_wizard "set config/database.yml for username/password #{mysql_username}/#{mysql_password}"
       end
-    rescue StandardError => e
-      raise "unable to create a user for PostgreSQL, reason: #{e}"
+      gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
+      gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
+      gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
     end
-    gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
-    gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
-    gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
-  end
-  if prefer :database, 'mysql'
-    mysql_username = ask_wizard("Username for MySQL? (leave blank to use the app name)")
-    if mysql_username.blank?
-      gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
-    else
-      gsub_file "config/database.yml", /username: .*/, "username: #{mysql_username}"
-      mysql_password = ask_wizard("Password for MySQL user #{mysql_username}?")
-      gsub_file "config/database.yml", /password:/, "password: #{mysql_password}"
-      say_wizard "set config/database.yml for username/password #{mysql_username}/#{mysql_password}"
+    unless prefer :database, 'sqlite'
+      affirm = yes_wizard? "Drop any existing databases named #{app_name}?"
+      if affirm
+        run 'bundle exec rake db:drop'
+      else
+        raise "aborted at user's request"
+      end
     end
-    gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
-    gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
-    gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
+    run 'bundle exec rake db:create:all' unless prefer :orm, 'mongoid'
+    run 'bundle exec rake db:create' if prefer :orm, 'mongoid'
+    ## Git
+    git :add => '-A' if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: create database"' if prefer :git, true
   end
-  unless prefer :database, 'sqlite'
-    affirm = yes_wizard? "Drop any existing databases named #{app_name}?"
-    if affirm
-      run 'bundle exec rake db:drop'
-    else
-      raise "aborted at user's request"
-    end
-  end
-  run 'bundle exec rake db:create:all' unless prefer :orm, 'mongoid'
-  run 'bundle exec rake db:create' if prefer :orm, 'mongoid'
-  ## Git
-  git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: create database"' if prefer :git, true
 end # after_bundler
 
 ### GENERATORS ###

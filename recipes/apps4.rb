@@ -22,7 +22,6 @@ if prefer :apps4, 'learn-rails'
 
     # >-------------------------------[ Clean up starter app ]--------------------------------<
 
-    gsub_file 'Gemfile', /gem 'sdoc'/, "# gem 'sdoc'"
     # remove commented lines and multiple blank lines from Gemfile
     # thanks to https://github.com/perfectline/template-bucket/blob/master/cleanup.rb
     gsub_file 'Gemfile', /#.*\n/, "\n"
@@ -83,6 +82,70 @@ if prefer :apps4, 'learn-rails'
     git :commit => '-qm "rails_apps_composer: learn-rails app"' if prefer :git, true
   end # after_bundler
 end # learn-rails
+
+if prefer :apps4, 'rails-bootstrap'
+
+  # >-------------------------------[ Gems ]--------------------------------<
+
+  add_gem 'high_voltage'
+
+  # >-------------------------------[ after_everything ]--------------------------------<
+
+  after_everything do
+    say_wizard "recipe running after 'bundle install'"
+    repo = 'https://raw.github.com/RailsApps/rails-bootstrap/master/'
+
+    # >-------------------------------[ Clean up starter app ]--------------------------------<
+
+    # remove commented lines and multiple blank lines from Gemfile
+    # thanks to https://github.com/perfectline/template-bucket/blob/master/cleanup.rb
+    gsub_file 'Gemfile', /#.*\n/, "\n"
+    gsub_file 'Gemfile', /\n^\s*\n/, "\n"
+    # remove commented lines and multiple blank lines from config/routes.rb
+    gsub_file 'config/routes.rb', /  #.*\n/, "\n"
+    gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
+    # GIT
+    git :add => '-A' if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: clean up starter app"' if prefer :git, true
+
+    # >-------------------------------[ Models ]--------------------------------<
+
+    copy_from_repo 'app/models/visitor.rb', :repo => repo
+
+    # >-------------------------------[ Init ]--------------------------------<
+    copy_from_repo 'config/application.yml', :repo => repo
+    remove_file 'config/application.example.yml'
+    copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
+
+    # >-------------------------------[ Controllers ]--------------------------------<
+
+    copy_from_repo 'app/controllers/visitors_controller.rb', :repo => repo
+
+    # >-------------------------------[ Views ]--------------------------------<
+
+    copy_from_repo 'app/views/layouts/_messages.html.erb', :repo => repo
+    copy_from_repo 'app/views/layouts/_navigation.html.erb', :repo => repo
+    copy_from_repo 'app/views/layouts/application.html.erb', :repo => repo
+    copy_from_repo 'app/views/pages/about.html.erb', :repo => repo
+    copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
+
+    # >-------------------------------[ Routes ]--------------------------------<
+
+    copy_from_repo 'config/routes.rb', :repo => repo
+    ### CORRECT APPLICATION NAME ###
+    gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
+
+    # >-------------------------------[ Assets ]--------------------------------<
+
+    copy_from_repo 'app/assets/javascripts/application.js', :repo => repo
+    copy_from_repo 'app/assets/stylesheets/application.css.scss', :repo => repo
+    copy_from_repo 'app/assets/stylesheets/bootstrap_and_overrides.css.scss', :repo => repo
+
+    ### GIT ###
+    git :add => '-A' if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: rails-bootstrap app"' if prefer :git, true
+  end # after_bundler
+end # rails-bootstrap
 
 __END__
 

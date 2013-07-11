@@ -19,8 +19,9 @@ when "4"
     ["I want to build my own application", "none"]] unless prefs.has_key? :apps4
   case prefs[:apps4]
     when 'railsapps'
-      prefs[:apps4] = multiple_choice "One starter app is available for Rails 4.0. More to come.",
-        [["learn-rails", "learn-rails"]]
+      prefs[:apps4] = multiple_choice "Starter apps for Rails 4.0. More to come.",
+        [["learn-rails", "learn-rails"],
+        ["rails-bootstrap", "rails-bootstrap"]]
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
         [["continue", "none"]]
@@ -53,13 +54,30 @@ case prefs[:apps4]
     prefs[:continuous_testing] = false
   when 'learn-rails'
     prefs[:git] = true
-    prefs[:database] = 'sqlite'
+    prefs[:database] = 'default'
     prefs[:unit_test] = false
     prefs[:integration] = false
     prefs[:fixtures] = false
     prefs[:frontend] = 'bootstrap'
     prefs[:bootstrap] = 'sass'
     prefs[:email] = 'gmail'
+    prefs[:authentication] = false
+    prefs[:devise_modules] = false
+    prefs[:authorization] = false
+    prefs[:starter_app] = false
+    prefs[:form_builder] = 'simple_form'
+    prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
+    prefs[:better_errors] = true
+  when 'rails-bootstrap'
+    prefs[:git] = true
+    prefs[:database] = 'default'
+    prefs[:unit_test] = false
+    prefs[:integration] = false
+    prefs[:fixtures] = false
+    prefs[:frontend] = 'bootstrap'
+    prefs[:bootstrap] = 'sass'
+    prefs[:email] = 'none'
     prefs[:authentication] = false
     prefs[:devise_modules] = false
     prefs[:authorization] = false

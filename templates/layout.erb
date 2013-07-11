@@ -25,11 +25,6 @@
 
 # >----------------------------[ Initial Setup ]------------------------------<
 
-initializer 'generators.rb', <<-RUBY
-Rails.application.config.generators do |g|
-end
-RUBY
-
 module Gemfile
   class GemInfo
     def initialize(name) @name=name; @group=[]; @opts={}; end

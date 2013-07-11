@@ -1,5 +1,11 @@
 h1. CHANGELOG
 
+h2. 2.4.2 July 10, 2013
+
+* add 'rails-bootstrap' example application to the 'apps4' recipe
+* remove creation of 'generators.rb' file (it was never used) from 'layout.erb'
+* remove 'sdoc' gem from Rails 4 generated Gemfile
+
 h2. 2.4.1 June 25, 2013
 
 * add 'protected_attributes' gem for Rails 4.0

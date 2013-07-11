@@ -20,11 +20,13 @@ after_everything do
   append_file 'config/application.yml', credentials if prefs[:local_env_file]
   if prefs[:local_env_file]
     ## DEFAULT USER
-    append_file 'config/application.yml' do <<-FILE
+    unless prefer :starter_app, false
+      append_file 'config/application.yml' do <<-FILE
 ADMIN_NAME: First User
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
 FILE
+      end
     end
     ## AUTHENTICATION
     if prefer :authentication, 'omniauth'
@@ -46,10 +48,12 @@ FILE
     copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
   end
   ### DATABASE SEED ###
-  append_file 'db/seeds.rb' do <<-FILE
-# Environment variables (ENV['...']) are set in the file config/application.yml.
+  if prefs[:local_env_file]
+    append_file 'db/seeds.rb' do <<-FILE
+# Environment variables (ENV['...']) can be set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
 FILE
+    end
   end
   if (prefer :authorization, 'cancan')
     unless prefer :orm, 'mongoid'
@@ -99,10 +103,12 @@ FILE
   end
   ### APPLY DATABASE SEED ###
   unless prefer :orm, 'mongoid'
-    ## ACTIVE_RECORD
-    say_wizard "applying migrations and seeding the database"
-    run 'bundle exec rake db:migrate'
-    run 'bundle exec rake db:test:prepare'
+    unless prefer :database, 'default'
+      ## ACTIVE_RECORD
+      say_wizard "applying migrations and seeding the database"
+      run 'bundle exec rake db:migrate'
+      run 'bundle exec rake db:test:prepare'
+    end
   else
     ## MONGOID
     say_wizard "dropping database, creating indexes and seeding the database"
