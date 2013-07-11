@@ -36,7 +36,7 @@ describe RailsWizard::Template do
 
     subject do
       @template = RailsWizard::Template.new([])
-      @template.stub!(:recipes_with_dependencies).and_return(@recipes)
+      @template.stub(:recipes_with_dependencies).and_return(@recipes)
       @template.resolve_recipes.map { |r| r.key }
     end
 
@@ -56,16 +56,16 @@ describe RailsWizard::Template do
 
   describe '#recipes_with_dependencies' do
     def r(*deps)
-      mock(:Class, :requires => deps, :superclass => RailsWizard::Recipe)
+      double(:Class, :requires => deps, :superclass => RailsWizard::Recipe)
     end
 
     subject do
-      @template = RailsWizard::Template.new([]) 
-      @template.stub!(:recipes).and_return(@recipes)
-      @template.stub!(:recipe_classes).and_return(@recipes)
+      @template = RailsWizard::Template.new([])
+      @template.stub(:recipes).and_return(@recipes)
+      @template.stub(:recipe_classes).and_return(@recipes)
       @template
     end
-    
+
     it 'should return the same number recipes if none have dependencies' do
       @recipes = [r, r]
       subject.recipes_with_dependencies.size.should == 2
