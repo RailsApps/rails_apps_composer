@@ -404,7 +404,7 @@ Please see the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob
 
 Is the gem useful to you? Follow the project on Twitter: "@rails_apps":http://twitter.com/rails_apps. I'd love to know you were helped out by the gem.
 
-h2. MIT License (with restriction)
+h2. MIT License
 
 "MIT License":http://www.opensource.org/licenses/mit-license
 
