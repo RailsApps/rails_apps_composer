@@ -11,7 +11,7 @@ if File.exist?('.ruby-gemset')
   rvmrc_file = File.read('.ruby-gemset')
   rvmrc_detected = rvmrc_file.include? app_name
 end
-unless rvmrc_detected || prefs[:rvmrc]
+unless rvmrc_detected || (prefs.has_key? :rvmrc)
   prefs[:rvmrc] = yes_wizard? "Use or create a project-specific rvm gemset?"
 end
 if prefs[:rvmrc]
