@@ -1,18 +1,24 @@
 h1. Contributing
 
-Do you want to contribute something to rails_apps_composer? Here's how you can help.
+Do you want to contribute something to the rails_apps_composer gem? Here's how you can help.
 
 h2. Timeliness
 
-The current maintainer for the project, "Daniel Kehoe":https://github.com/DanielKehoe, works fulltime on the RailsApps project, which includes updating rails_apps_composer as well as maintaining "example applications":http://railsapps.github.io/ and writing "tutorials":http://railsapps.github.io/.
+We realize it is important to respond to your issues and contributions as quickly as possible because it shows we care about your efforts and keeps the project alive and growing.
 
-Whether it is an email, a pull request that corrects an error, or contribution of a new feature, he will try to respond as soon as possible.
+The current maintainer for the project, "Daniel Kehoe":https://github.com/DanielKehoe, works fulltime on the RailsApps project, which includes updating the rails_apps_composer gem as well as maintaining "example applications":http://railsapps.github.io/ and writing "tutorials":http://railsapps.github.io/.
 
-In general, he updates the rails_apps_composer gem approximately monthly. The priority is fixing bugs that impact large numbers of users, as well as adding features that directly support creation of the RailsApps example applications.
+He will try to respond as soon as possible, whether you send an email, make a pull request that corrects an error, or contribute a new feature.
+
+In general, he updates the rails_apps_composer gem approximately monthly. His priority is fixing bugs that impact large numbers of users, as well as adding features that directly support creation of the RailsApps example applications.
 
 We love to receive pull requests for new recipes and significant new features. However, it is not always possible to evaluate and include significant new contributions right away, as much as we might like to. So we ask for your patience as we work through any backlog.
 
 h2. Background
+
+Be sure to carefully read the section in the "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html titled "Hacking the Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html#Hacking.
+
+The rails_apps_composer gem is complex and unwieldly but it is documented throroughly.
 
 h3. Used by the RailsApps Project
 
@@ -24,8 +30,8 @@ The rails_apps_composer gem creates the Rails Composer application template from
 $ rails_apps_composer template ~/mypath/railsapps/rails-composer/composer.rb -r core
 </pre>
 
-Each time I release a new version of the rails_apps_composer gem, I generate and release a new version of the Rails Composer tool. Often, at the same time, I generate new versions of each of the RailsApps
-example applications using the new Rails Composer application template. Then I run tests on each of example applications.
+Each time we release a new version of the rails_apps_composer gem, we generate and release a new version of the Rails Composer tool. Often, at the same time, we generate new versions of each of the RailsApps
+example applications using the new Rails Composer application template. Then we run tests on each of example applications.
 
 It's important to realize that the RSpec tests built into the rails_apps_composer gem are NOT adequate to ensure that all the example applications run without problems. The only way to know for sure that changes to the rails_apps_composer gem have not broken any example applications is to regenerate each example application and run its test suite. We do not have an automated test suite to test them all.
 
@@ -33,13 +39,13 @@ That is one reason why there is often a delay between the time you submit a new 
 
 h3. Application Templates for Others
 
-Many developers use the rails_apps_composer gem to create their own application templates. This includes consultants and enterprise developers who maintain their own preferred starter applications. In general, if new features are significant and useful to the community, I will include them in the gem, even if they are not used by the RailsApps example applications.
+Many developers use the rails_apps_composer gem to create their own application templates. This includes consultants and enterprise developers who maintain their own preferred starter applications. In general, if new features are significant and useful to the community, we will include them in the gem, even if they are not used by the RailsApps example applications.
 
 h3. Rails Composer
 
 Many more developers use the "generic" Rails Composer tool to generate starter applications. The Rails Composer tool will create any of the RailsApps example applications. It also has a "build your own application" option.
 
-The "build your own application" option is largely experimental. That means there are some combinations of options that may not work together. We like to debug the problems and include fixes in the rails_apps_composer recipes when we encounter these integration issues.
+The "build your own application" option is largely experimental. There are some combinations of options that may not work together. We like to debug the problems and include fixes in the rails_apps_composer recipes when we encounter these integration issues.
 
 h2. Issues
 
@@ -57,7 +63,7 @@ GitHub helps you make improvements to the project by allowing forking, branches,
 
 "Pull request":https://help.github.com/articles/using-pull-requests means you tell us that you have a fix or a feature to add.
 
-Here's a helpful "article":http://gun.io/blog/how-to-github-fork-branch-and-pull-request/ on how to fork, branch, and make a pull request.
+See a helpful "article":http://gun.io/blog/how-to-github-fork-branch-and-pull-request/ on how to fork, branch, and make a pull request.
 
 h3. Fork
 
@@ -124,7 +130,7 @@ Make a GitHub pull request to tell use about your new feature or fixes.
 
 On GitHub, visit your forked version of the repository and select the branch you've created.
 
-Above the list of files and the information about the most recent commit, you'll find a gray bar that includes the "Pull Request" link. Click "Pull Request" nad GitHub will show you a review of all the differences between your version and the original.
+Above the list of files and the information about the most recent commit, you'll find a gray bar that includes the "Pull Request" link. Click "Pull Request" and GitHub will show you a review of all the differences between your version and the original.
 
 Click the message "Click to create a pull request for this comparison."
 
@@ -135,6 +141,29 @@ The maintainer of the project will immediately receive an email message that you
 It could be a few hours or a few days before you hear from the maintainer. We promise we'll reply as soon as we can.
 
 No matter what you've contributed, small fix or large feature, you have our grateful appreciation for your interest and help.
+
+h2. Testing
+
+If you can write a test suite for the changes you've made, it would be very much appreciated.
+
+That said, if you are not experienced at writing tests, your contributions are still welcome.
+
+Enter @rake spec@ to run the existing test suite.
+
+The existing test suite is primarily a "sanity check" to make sure recipes conform to general requirements.
+
+The test suite does not test if the recipes actually generate working Rails applications.
+
+At this time, it's necessary to individually test any applications generated by the rails_apps_composer gem. Sad to say, that means regression testing of the rails_apps_composer gem has to performed manually.
+
+h2. Documentation
+
+It is your responsibility to help update the documentation if you have contributed new features or changed the behavior of existing functionality.
+
+At a minimum, you must indicate where the documentation should be changed, both in the README and in the
+"Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html.
+
+We'll help with the documentation but you must help by giving us something to start with.
 
 h2. Coding Standards
 

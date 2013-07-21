@@ -45,6 +45,8 @@ This gem is for experienced Rails developers who need a tool to create and maint
 
 If you are new to Rails, try the "Rails Composer":http://railsapps.github.io/rails-composer/ tool instead. It provides an application template that is generated from the rails_apps_composer gem's core recipes. The Rails Composer tool is easier to use. Use the rails_apps_composer gem if you want a custom application template, a custom combination of recipes, or the convenience of setting a defaults file.
 
+See the "CONTRIBUTING":https://github.com/RailsApps/rails_apps_composer/blob/master/CONTRIBUTING.textile file for details about how you can contribute fixes or new features.
+
 h2. Alternatives
 
 The rails_apps_composer gem is derived from Michael Bleigh's "RailsWizard":https://github.com/intridea/rails_wizard gem. Early versions of the rails_apps_composer gem were a close fork of Michael Bleigh's gem; rails_apps_composer 2.0 differs substantially. Other notable alternatives are Dr. Nic Williams's "App Scrolls":http://appscrolls.org/ and Daniel Davey's "app_drone":http://drone.bz/. See a list of "Rails Application Template Projects":http://railsapps.github.io/rails-application-templates.html, particularly a list of "Application template-generating gems" for similar projects.
@@ -387,6 +389,8 @@ The @rails new@ command creates a new Rails application. If you want to use an a
 h2. Hacking the Gem
 
 See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html to learn how to customize the gem either for your own use or to share with others.
+
+See the "CONTRIBUTING":https://github.com/RailsApps/rails_apps_composer/blob/master/CONTRIBUTING.textile file for details about how you can contribute fixes or new features.
 
 h2. Issues
 
