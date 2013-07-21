@@ -85,7 +85,7 @@ If your fix is very tiny, like correction of a typo, you don't need to create a 
 
 For fixes or features of any complexity, you must create a branch so we can examine and review your code before we add it to the main trunk.
 
-GitHub explains how to "create a branch from your web browser":https://help.github.com/articles/creating-and-deleting-branches-within-your-repository.
+GitHub explains how to "create a branch from your web browser":https://help.github.com/articles/creating-and-deleting-branches-within-your-repository but it is easier to do it from the command line after cloning the project to your local machine.
 
 Here's how to create a branch from the command line:
 
@@ -94,6 +94,14 @@ $ git checkout -b myfeature
 </pre>
 
 The command creates a new branch named "myfeature" and switches to it, analogous to copying all your files to a new directory and moving to work in the new directory (though that is not really what happens with Git).
+
+As soon as you've created your new branch, push it to your GitHub fork:
+
+<pre>
+$ git push -u origin myfeature
+</pre>
+
+The branch is now on GitHub as well as on your local machine.
 
 You can see a list of all your branches:
 
@@ -110,19 +118,13 @@ $ git commit -m "work in progress"
 
 You can make multiple commits as you continue your work.
 
-When the changes are complete, merge the working branch to “master” and squash the commits so you have just one commit for the entire feature:
+When you've completed your work, be sure to push the changes in the branch up to GitHub:
 
 <pre>
-$ git checkout master
-$ git merge --squash myfeature
-$ git commit -m "implement my feature"
+$ git push origin myfeature
 </pre>
 
-You can delete the working branch after the pull request is accepted:
-
-<pre>
-$ git branch -D myfeature
-</pre>
+Now your fork on GitHub has a branch with your changes and you can make a pull request.
 
 h3. Pull Requests
 
@@ -141,6 +143,18 @@ The maintainer of the project will immediately receive an email message that you
 It could be a few hours or a few days before you hear from the maintainer. We promise we'll reply as soon as we can.
 
 No matter what you've contributed, small fix or large feature, you have our grateful appreciation for your interest and help.
+
+h3. Updating Pull Requests
+
+If you continue to work in your branch after making a pull request, the changes will be reflected in the pull request until it is accepted.
+
+h3. Cleanup
+
+If you created a working branch, you can delete it after the pull request is accepted:
+
+<pre>
+$ git branch -D myfeature
+</pre>
 
 h2. Testing
 
