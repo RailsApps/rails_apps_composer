@@ -1,6 +1,14 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/railsapps.rb
 
+raise if (defined? defaults) || (defined? preferences) # Shouldn't happen.
+if options[:verbose]
+  print "\nrecipes: ";p recipes
+  print "\ngems: "   ;p gems
+  print "\nprefs: "  ;p prefs
+  print "\nconfig: " ;p config
+end
+
 case Rails::VERSION::MAJOR.to_s
 when "3"
   prefs[:railsapps] = multiple_choice "Install an example application for Rails 3.2?",
@@ -148,12 +156,20 @@ case prefs[:railsapps]
     prefs[:local_env_file] = true
     prefs[:better_errors] = true
     if prefer :git, true
-      prefs[:prelaunch_branch] = multiple_choice "Git branch for the prelaunch app?", [["wip (work-in-progress)", "wip"], ["master", "master"], ["prelaunch", "prelaunch"], ["staging", "staging"]]
-      if prefs[:prelaunch_branch] == 'master'
-        prefs[:main_branch] = multiple_choice "Git branch for the main app?", [["None", "none"], ["wip (work-in-progress)", "wip"], ["edge", "edge"]]
+      prefs[:prelaunch_branch] = multiple_choice "Git branch for the prelaunch app?",
+        [["wip (work-in-progress)", "wip"],
+        ["master", "master"],
+        ["prelaunch", "prelaunch"],
+        ["staging", "staging"]] unless prefs.has_key? :prelaunch_branch
+
+      prefs[:main_branch] = unless 'master' == prefs[:prelaunch_branch]
+        'master'
       else
-        prefs[:main_branch] = 'master'
-      end
+        multiple_choice "Git branch for the main app?",
+          [["None", "none"],
+          ["wip (work-in-progress)", "wip"],
+          ["edge", "edge"]]
+      end unless prefs.has_key? :main_branch
     end
   when 'rails3-bootstrap-devise-cancan'
     prefs[:git] = true
