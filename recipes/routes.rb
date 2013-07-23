@@ -14,7 +14,7 @@ after_bundler do
     if prefer :authentication, 'devise'
       copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
       ## Rails 4.0 doesn't allow two 'root' routes
-      gsub_file 'config/routes.rb', /authenticated :user do\n.*\n.*\n  /, '' if Rails::VERSION::MAJOR.to_s == "4"
+      gsub_file 'config/routes.rb', /authenticated :user do\n.*\n.*\n  /, '' if rails_4?
     end
     ## OMNIAUTH
     copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/' if prefer :authentication, 'omniauth'

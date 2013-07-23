@@ -11,7 +11,7 @@ insert_into_file('Gemfile', "ruby '#{RUBY_VERSION}'\n", :before => /^ *gem 'rail
 gsub_file 'Gemfile', /group :doc do/, ''
 gsub_file 'Gemfile', /\s*gem 'sdoc', require: false\nend/, ''
 
-assets_group = Rails::VERSION::MAJOR.to_s == "4" ? nil : :assets
+assets_group = rails_4? ? nil : :assets
 
 ## Web Server
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
@@ -29,7 +29,7 @@ end
 
 ## Rails 4.0 attr_accessible Compatibility
 if prefer :apps4, false
-  add_gem 'protected_attributes' if Rails::VERSION::MAJOR.to_s == "4"
+  add_gem 'protected_attributes' if rails_4?
 end
 
 ## Database Adapter
@@ -125,7 +125,7 @@ if prefer :authorization, 'cancan'
 end
 
 ## Form Builder
-if Rails::VERSION::MAJOR.to_s == "4"
+if rails_4?
   add_gem 'simple_form', '>= 3.0.0.rc' if prefer :form_builder, 'simple_form'
 else
   add_gem 'simple_form' if prefer :form_builder, 'simple_form'

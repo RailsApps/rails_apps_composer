@@ -39,7 +39,7 @@ RUBY
       unless prefer :railsapps, 'rails-recurly-subscription-saas'
         generate 'migration AddNameToUsers name:string'
       end
-      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/' unless Rails::VERSION::MAJOR.to_s == "4"
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/' unless rails_4?
       if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
         gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
         generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'

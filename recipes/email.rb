@@ -4,7 +4,7 @@
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
   unless prefer :email, 'none'
-    if Rails::VERSION::MAJOR.to_s == "4"
+    if rails_4?
       send_email_text = <<-TEXT
   # Send email in development mode.
   config.action_mailer.perform_deliveries = true
