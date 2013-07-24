@@ -40,6 +40,136 @@ task :run => :clean do
   end
 end
 
+namespace :mega do
+  require File.expand_path('../megatest/bash_scripts.rb', __FILE__)
+
+# For method 'sh', see http://rake.rubyforge.org/classes/FileUtils.html#M000018
+
+  desc  'Safely clone the Rails Example App repositories'
+  task :clone do
+    puts '+Safely cloning Rails Example App repositories'
+    s = SET_CLONED_DIRECTORY_SCRIPT + CLONE_APP_REPOSITORIES_SCRIPT
+    sh(s){|_,result| raise unless result.to_i.zero?}
+  end
+
+  task :create_dir_for_generated_apps do
+    puts '+Creating the directory to contain generated Rails Example Apps'
+    location = '../generated'
+    f1 = FileList[location].existing
+    raise "Directory '#{location}' must not exist; rename it" unless f1.empty?
+    ::Dir.mkdir location
+  end
+
+  task :create_repo_list do
+    puts '+Creating the list of Rails Example Apps'
+    s = SET_GENERATED_DIRECTORY_SCRIPT + CREATE_REPOSITORY_LIST_SCRIPT
+    sh(s){|_,result| raise unless result.to_i.zero?}
+  end
+
+  desc  'Generate the Rails Example Apps'
+  task :generate do
+    puts '+Generating Rails Example Apps'
+    s = SET_GENERATED_DIRECTORY_SCRIPT + GENERATE_APPS_SCRIPT
+    Bundler.with_clean_env do
+      sh(s){|_,result| raise unless result.to_i.zero?}
+    end
+  end
+
+  desc 'Run the mega-test'
+  task :test => %w[
+      mega:create_dir_for_generated_apps
+      mega:create_repo_list
+      mega:generate
+      mega:generated:migrate
+      mega:generated:env_vars
+      mega:generated:test
+      ] do
+    puts "\nCongratulations! Your megatest is successfully complete.\n\n"
+  end
+
+  namespace :cloned do
+    desc      'Make cloned Rails Example Apps read service-key environment variables'
+    task :env_vars do
+      puts '+Making cloned Rails Example Apps read service-key environment variables'
+      s = SET_CLONED_DIRECTORY_SCRIPT + MAKE_APPS_READ_SERVICE_ENV_VARS_SCRIPT
+      sh(s){|_,result| raise unless result.to_i.zero?}
+    end
+
+    desc   "Fetch the cloned Rails Example App updates"
+    task :fetch do
+      puts "+Fetching cloned Rails Example App updates"
+      s = SET_CLONED_DIRECTORY_SCRIPT + FETCH_APP_UPDATES_SCRIPT
+      sh(s){|_,result| raise unless result.to_i.zero?}
+    end
+
+    desc   "Show the cloned Rails Example Apps' git status"
+    task :git_status do
+      puts "+Showing cloned Rails Example Apps' git status"
+      s = SET_CLONED_DIRECTORY_SCRIPT + SHOW_APPS_GIT_STATUS_SCRIPT
+      sh(s){|_,result| raise unless result.to_i.zero?}
+    end
+
+    desc      'Migrate cloned Rails Example App databases'
+    task :migrate do
+      puts '+Migrating cloned Rails Example App databases'
+      s = SET_CLONED_DIRECTORY_SCRIPT + MIGRATE_APP_DATABASES_SCRIPT
+      Bundler.with_clean_env do
+        sh(s){|_,result| raise unless result.to_i.zero?}
+      end
+    end
+
+    desc   "Rebase the cloned Rails Example Apps' updates"
+    task :rebase do
+      puts "+Rebasing cloned Rails Example Apps' updates"
+      s = SET_CLONED_DIRECTORY_SCRIPT + REBASE_APP_UPDATES_SCRIPT
+      sh(s){|_,result| raise unless result.to_i.zero?}
+    end
+
+    desc   "List the cloned Rails Example Apps' remotes"
+    task :remote do
+      puts '+Listing cloned Rails Example App remotes'
+      s = SET_CLONED_DIRECTORY_SCRIPT + LIST_APP_REMOTES_SCRIPT
+      sh(s){|_,result| raise unless result.to_i.zero?}
+    end
+
+    desc   'Test the cloned Rails Example Apps'
+    task :test do
+      puts '+Testing cloned Rails Example Apps'
+      s = SET_CLONED_DIRECTORY_SCRIPT + TEST_APPS_SCRIPT
+      Bundler.with_clean_env do
+        sh(s){|_,result| raise unless result.to_i.zero?}
+      end
+    end
+  end
+
+  namespace :generated do
+    desc      'Make generated Rails Example Apps read service-key environment variables'
+    task :env_vars do
+      puts '+Making generated Rails Example Apps read service-key environment variables'
+      s = SET_GENERATED_DIRECTORY_SCRIPT + MAKE_APPS_READ_SERVICE_ENV_VARS_SCRIPT
+      sh(s){|_,result| raise unless result.to_i.zero?}
+    end
+
+    desc      'Migrate generated Rails Example App databases'
+    task :migrate do
+      puts '+Migrating generated Rails Example App databases'
+      s = SET_GENERATED_DIRECTORY_SCRIPT + MIGRATE_APP_DATABASES_SCRIPT
+      Bundler.with_clean_env do
+        sh(s){|_,result| raise unless result.to_i.zero?}
+      end
+    end
+
+    desc   'Test the generated Rails Example Apps'
+    task :test do
+      puts '+Testing generated Rails Example Apps'
+      s = SET_GENERATED_DIRECTORY_SCRIPT + TEST_APPS_SCRIPT
+      Bundler.with_clean_env do
+        sh(s){|_,result| raise unless result.to_i.zero?}
+      end
+    end
+  end
+end
+
 desc "Prints out a template from the provided recipes."
 task :print do
   require 'rails_wizard'
