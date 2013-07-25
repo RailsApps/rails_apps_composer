@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/RailsApps/rails_apps_composer"
   s.summary     = %q{A version of the RailsWizard gem with custom recipes for Rails starter apps.}
   s.description = %q{A gem with recipes to create Rails application templates you can use to generate Rails starter apps.}
+  s.license     = 'MIT'
 
   s.rubyforge_project = "rails_apps_composer"
 

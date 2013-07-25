@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. unreleased July 24, 2013
+
+* specify MIT license in the gemspec (closes issue #228)
+
 h2. 2.4.3 July 11, 2013
 
 * fix specs to replace deprecated stub! and mock
