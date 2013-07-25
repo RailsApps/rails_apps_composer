@@ -28,9 +28,9 @@ else
 end
 
 ## Rails 4.0 attr_accessible Compatibility
-if prefer :apps4, false
-  add_gem 'protected_attributes' if rails_4?
-end
+# if prefer :apps4, false
+#   add_gem 'protected_attributes' if rails_4?
+# end
 
 ## Database Adapter
 unless prefer :database, 'default'
