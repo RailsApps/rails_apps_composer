@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. unreleased July 24, 2013
 
+* add 'google_drive' gem to 'learn-rails' example application
 * remove 'protected_attributes' gem for Rails 4.0
 * remove requirement for 'libv8' gem when using 'therubyracer' (contributed by Nicola Lorusso)
 * don't specify assets gem group if using Rails 4 (contributed by jconley88)
