@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. unreleased July 24, 2013
+h2. 2.4.4 July 24, 2013
 
 * improve fix for CanCan 'seeds.rb' file for Rails 4.0
 * add 'google_drive' gem to 'learn-rails' example application
