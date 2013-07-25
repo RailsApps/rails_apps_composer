@@ -11,6 +11,8 @@ insert_into_file('Gemfile', "ruby '#{RUBY_VERSION}'\n", :before => /^ *gem 'rail
 gsub_file 'Gemfile', /group :doc do/, ''
 gsub_file 'Gemfile', /\s*gem 'sdoc', require: false\nend/, ''
 
+assets_group = rails_4? ? nil : :assets
+
 ## Web Server
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
   add_gem 'thin' if prefer :dev_webserver, 'thin'
@@ -27,7 +29,7 @@ end
 
 ## Rails 4.0 attr_accessible Compatibility
 if prefer :apps4, false
-  add_gem 'protected_attributes' if Rails::VERSION::MAJOR.to_s == "4"
+  add_gem 'protected_attributes' if rails_4?
 end
 
 ## Database Adapter
@@ -90,14 +92,14 @@ add_gem 'machinist', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
 add_gem 'bootstrap-sass' if prefer :bootstrap, 'sass'
-add_gem 'compass-rails', :group => :assets if prefer :frontend, 'foundation'
-add_gem 'zurb-foundation', :group => :assets if prefer :frontend, 'foundation'
+add_gem 'compass-rails', :group => assets_group if prefer :frontend, 'foundation'
+add_gem 'zurb-foundation', :group => assets_group if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
-  add_gem 'less-rails', :group => :assets
-  add_gem 'twitter-bootstrap-rails', :group => :assets
+  add_gem 'less-rails', :group => assets_group
+  add_gem 'twitter-bootstrap-rails', :group => assets_group
   # install gem 'therubyracer' to use Less
   add_gem 'libv8'
-  add_gem 'therubyracer', :group => :assets, :platform => :ruby, :require => 'v8'
+  add_gem 'therubyracer', :group => assets_group, :platform => :ruby, :require => 'v8'
 end
 
 ## Email
@@ -123,7 +125,7 @@ if prefer :authorization, 'cancan'
 end
 
 ## Form Builder
-if Rails::VERSION::MAJOR.to_s == "4"
+if rails_4?
   add_gem 'simple_form', '>= 3.0.0.rc' if prefer :form_builder, 'simple_form'
 else
   add_gem 'simple_form' if prefer :form_builder, 'simple_form'
