@@ -2,6 +2,10 @@ h1. CHANGELOG
 
 h2. unreleased July 24, 2013
 
+* remove requirement for 'libv8' gem when using 'therubyracer' (contributed by Nicola Lorusso)
+* don't specify assets gem group if using Rails 4 (contributed by jconley88)
+* don't add attr_accessible for Devise in Rails 4 (contributed by jconley88)
+* refactored Rails 4 check into helper method (contributed by jconley88)
 * specify MIT license in the gemspec (closes issue #228)
 
 h2. 2.4.3 July 11, 2013
