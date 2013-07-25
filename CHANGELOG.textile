@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. unreleased July 24, 2013
 
+* improve fix for CanCan 'seeds.rb' file for Rails 4.0
 * add 'google_drive' gem to 'learn-rails' example application
 * remove 'protected_attributes' gem for Rails 4.0
 * remove requirement for 'libv8' gem when using 'therubyracer' (contributed by Nicola Lorusso)
@@ -23,11 +24,11 @@ h2. 2.4.2 July 11, 2013
 
 h2. 2.4.1 June 25, 2013
 
-* add 'protected_attributes' gem for Rails 4.0
-* fix devise 'routes.rb' file for Rails 4.0
-* fix cancan 'seeds.rb' file for Rails 4.0
-* add gem paths reload command to fix 'html2haml' requirement
-* upgrade 'simple_form' gem to '3.0.0.rc' for Rails 4.0
+* add 'protected_attributes' gem for Rails 4.0 (contributed by Vasily Ponomarev)
+* fix Devise 'routes.rb' file for Rails 4.0 (contributed by Vasily Ponomarev)
+* fix CanCan 'seeds.rb' file for Rails 4.0 (contributed by Vasily Ponomarev)
+* add gem paths reload command to fix 'html2haml' requirement (contributed by Vasily Ponomarev)
+* upgrade 'simple_form' gem to '3.0.0.rc' for Rails 4.0 (contributed by Vasily Ponomarev)
 
 h2. 2.4.0 June 24, 2013
 
