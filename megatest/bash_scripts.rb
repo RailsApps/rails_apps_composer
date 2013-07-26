@@ -5,16 +5,18 @@
 
 CLONE_APP_REPOSITORIES_SCRIPT = <<BASH
 # Clone Rails Example App repositories:
-  repositories=`cat repo-list`
+  repositories=$(cat repo-list)
   for repo in $repositories; do
-    echo $repo:
-    if ! test -d $repo; then
-      (
-        set -o xtrace
-        git clone git@github.com:RailsApps/$repo.git
-        cd $repo
-        git remote rename origin upstream
-      )
+    if test $repo != rails_apps_composer; then
+      echo $repo:
+      if ! test -d $repo; then
+        (
+          set -o xtrace
+          git clone git@github.com:RailsApps/$repo.git
+          cd $repo
+          git remote rename origin upstream
+        )
+      fi
     fi
   done
 )
@@ -39,7 +41,7 @@ BASH
 
 FETCH_APP_UPDATES_SCRIPT = <<BASH
 # Fetch Rails Example App updates:
-  repositories=`cat repo-list`
+  repositories=$(cat repo-list)
   for repo in $repositories; do
     echo
     echo $repo:
@@ -57,16 +59,17 @@ BASH
 
 GENERATE_APPS_SCRIPT = <<BASH
 # Generate Rails Example Apps:
-  repositories=`cat repo-list`
+  repositories=$(cat repo-list)
   for repo in $repositories; do
     if ! (( test $repo = rails_apps_composer ||
             test $repo = rails-composer )); then
       echo $repo:
       (
         set -o xtrace
-        rm --recursive --force $directory/$repo
+# On Mac OS X (& NetBSD), 'rm' lacks --force and --recursive (as spelled-out options).
+        rm -rf $directory/$repo
         rails_apps_composer new $directory/$repo --quiet --verbose\\
-        --recipes=`echo $repo | sed s/-/_/g`_testing_recipe railsapps\\
+        --recipes=$(echo $repo | sed s/-/_/g)_testing_recipe railsapps\\
         --recipe-dirs=rails_apps_composer/megatest/config\\
            --defaults=rails_apps_composer/megatest/config/$repo.yml
       )
@@ -77,7 +80,7 @@ BASH
 
 LIST_APP_REMOTES_SCRIPT = <<BASH
 # List Rails Example App remotes:
-  repositories=`cat repo-list`
+  repositories=$(cat repo-list)
   for repo in $repositories; do
     echo
     echo $repo:
@@ -91,14 +94,14 @@ BASH
 
 MAKE_APPS_READ_SERVICE_ENV_VARS_SCRIPT = <<BASH
 # Make Rails Example Apps read service key environment variables:
-  sed_changes=' {
-       s/replace_with_your_recurly_api_key/<%= ENV[%q{rac_test_RECURLY_API_KEY}] %>/
-s/replace_with_your_recurly_js_private_key/<%= ENV[%q{rac_test_RECURLY_JS_PRIVATE_KEY}] %>/
-                     s/Your_Stripe_API_key/<%= ENV[%q{rac_test_STRIPE_API_KEY}] %>/
-                  s/Your_Stripe_Public_Key/<%= ENV[%q{rac_test_STRIPE_PUBLIC_KEY}] %>/
-} '
-  substitute='sed --in-place $sed_changes config/application.yml'
-  repositories=`cat repo-list`
+  sed_commands=$(pwd)/sed-commands.txt
+  cat > $sed_commands <<CAT
+       s/replace_with_your_recurly_api_key/<%= ENV[ %q{rac_test_RECURLY_API_KEY}        ] %>/
+s/replace_with_your_recurly_js_private_key/<%= ENV[ %q{rac_test_RECURLY_JS_PRIVATE_KEY} ] %>/
+                     s/Your_Stripe_API_key/<%= ENV[ %q{rac_test_STRIPE_API_KEY}         ] %>/
+                  s/Your_Stripe_Public_Key/<%= ENV[ %q{rac_test_STRIPE_PUBLIC_KEY}      ] %>/
+CAT
+  repositories=$(cat repo-list)
   for repo in $repositories; do
     if ! (( test $repo = rails_apps_composer ||
             test $repo = rails-composer )); then
@@ -110,7 +113,8 @@ s/replace_with_your_recurly_js_private_key/<%= ENV[%q{rac_test_RECURLY_JS_PRIVAT
         set -o xtrace
         git checkout --quiet master
         set +o errexit
-        $substitute; true
+# On Mac OS X (& NetBSD), 'sed' lacks --file and --in-place (as spelled-out options).
+        sed -if $sed_commands config/application.yml; true
       )
       if test $repo = rails-prelaunch-signup; then
         echo
@@ -119,17 +123,18 @@ s/replace_with_your_recurly_js_private_key/<%= ENV[%q{rac_test_RECURLY_JS_PRIVAT
           set -o xtrace
           git checkout --quiet wip
           set +o errexit
-          $substitute; true
+          sed -if $sed_commands config/application.yml; true
         )
       fi
     fi
   done
+  rm -f $sed_commands
 )
 BASH
 
 MIGRATE_APP_DATABASES_SCRIPT = <<BASH
 # Migrate Rails Example App databases:
-  repositories=`cat repo-list`
+  repositories=$(cat repo-list)
   for repo in $repositories; do
     if ! (( test $repo = rails_apps_composer ||
             test $repo = rails-composer )); then
@@ -159,7 +164,7 @@ BASH
 
 REBASE_APP_UPDATES_SCRIPT = <<BASH
 # Rebase Rails Example App updates:
-  repositories=`cat repo-list`
+  repositories=$(cat repo-list)
   for repo in $repositories; do
     echo
     echo $repo:
@@ -204,7 +209,7 @@ BASH
 
 SHOW_APPS_GIT_STATUS_SCRIPT = <<BASH
 # Show Rails Example Apps' git status
-  repositories=`cat repo-list`
+  repositories=$(cat repo-list)
   for repo in $repositories; do
     echo
     (
@@ -219,13 +224,11 @@ BASH
 
 TEST_APPS_SCRIPT = <<BASH
 # Test Rails Example Apps:
-  repositories=`cat repo-list`
+  repositories=$(cat repo-list)
   for repo in $repositories; do
-    if test $repo != rails-composer; then
+    if ! (( test $repo = rails_apps_composer ||
+            test $repo = rails-composer )); then
       (
-        if test $repo = rails_apps_composer; then
-          export directory=.
-        fi
         echo $directory/$repo:
         cd $directory/$repo
         pwd
