@@ -41,6 +41,13 @@ RUBY
     when 'subdomains_app'
       copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/'
   end
+  ### REGISTRATIONS_CONTROLLER ###
+  if rails_4?
+    if ['users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
+      ## accommodate strong parameters in Rails 4
+      copy_from_repo 'app/controllers/registrations_controller-devise.rb', :prefs => 'devise'
+    end
+  end
   ### SESSIONS_CONTROLLER ###
   if prefer :authentication, 'omniauth'
     filename = 'app/controllers/sessions_controller.rb'

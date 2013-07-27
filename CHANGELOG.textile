@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.5 July 27, 2013
+
+* accommodate strong parameters in Rails 4 with Devise
+
 h2. 2.4.4 July 24, 2013
 
 * improve fix for CanCan 'seeds.rb' file for Rails 4.0
