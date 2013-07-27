@@ -84,7 +84,7 @@ namespace :mega do
       mega:generated:env_vars
       mega:generated:test
       ] do
-    puts "\nCongratulations! Your megatest is successfully complete.\n\n"
+    puts "\nCongratulations! Your megatest has successfully completed.\n\n"
   end
 
   namespace :cloned do
