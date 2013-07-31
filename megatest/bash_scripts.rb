@@ -106,6 +106,7 @@ BASH
 MAKE_APPS_READ_SERVICE_ENV_VARS_SCRIPT = <<BASH
 # Make Rails Example Apps read service key environment variables:
   sed_commands=`pwd`/sed-commands.txt
+  export sed_commands
   cat > $sed_commands <<CAT
        s/replace_with_your_recurly_api_key/<%= ENV[ %q{rac_test_RECURLY_API_KEY}        ] %>/
 s/replace_with_your_recurly_js_private_key/<%= ENV[ %q{rac_test_RECURLY_JS_PRIVATE_KEY} ] %>/
@@ -124,9 +125,9 @@ CAT
         pwd
         set -x # xtrace
         git checkout --quiet master
-        set +e # errexit
 # On Mac OS X (& NetBSD), 'sed' lacks --file and --in-place (as spelled-out options).
-        sed -if $sed_commands config/application.yml; true
+# On GNU/Linux, 'sed' lacks the ability to read -if (letter options combined together).
+        sed -f $sed_commands -i config/application.yml
       )
       if test $repo = rails-prelaunch-signup; then
         echo
@@ -134,13 +135,12 @@ CAT
           cd $directory/$repo
           set -x # xtrace
           git checkout --quiet wip
-          set +e # errexit
-          sed -if $sed_commands config/application.yml; true
+          sed -f $sed_commands -i config/application.yml
         )
       fi
     fi
   done
-  rm -f $sed_commands
+# rm -f $sed_commands
 )
 BASH
 
