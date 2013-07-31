@@ -182,6 +182,8 @@ desc "uninstall rails_apps_composer gem and install a new version"
 task :reinstall do
   Rake::Task['clobber'].invoke
   Rake::Task['gem'].invoke
-  Rake::Task['gem:install'].invoke
+  Bundler.with_clean_env do
+    Rake::Task['gem:install'].invoke
+  end
   puts "installed new rails_apps_composer #{RailsWizard::VERSION}"
 end
