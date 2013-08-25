@@ -59,7 +59,7 @@ end
 if prefer :unit_test, 'rspec'
   add_gem 'rspec-rails', :group => [:development, :test]
   add_gem 'capybara', :group => :test if prefer :integration, 'rspec-capybara'
-  add_gem 'database_cleaner', :group => :test
+  add_gem 'database_cleaner', '1.0.1', :group => :test
   if prefer :orm, 'mongoid'
     add_gem 'mongoid-rspec', :group => :test
   end
@@ -72,7 +72,7 @@ if prefer :unit_test, 'minitest'
 end
 if prefer :integration, 'cucumber'
   add_gem 'cucumber-rails', :group => :test, :require => false
-  add_gem 'database_cleaner', :group => :test unless prefer :unit_test, 'rspec'
+  add_gem 'database_cleaner', '1.0.1', :group => :test unless prefer :unit_test, 'rspec'
   add_gem 'launchy', :group => :test
   add_gem 'capybara', :group => :test
 end

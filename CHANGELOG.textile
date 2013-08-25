@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.4.6 unreleased
 
+* lock gem 'database_cleaner' at 1.0.1 (https://github.com/bmabey/database_cleaner/issues/224)
 * add 'megatest' feature (contributed by Mark D. Blackwell)
 
 h2. 2.4.5 July 27, 2013
