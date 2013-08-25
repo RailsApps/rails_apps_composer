@@ -36,7 +36,11 @@ end
 unless prefer :database, 'default'
   gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 end
-add_gem 'mongoid' if prefer :orm, 'mongoid'
+if rails_4?
+  add_gem 'mongoid', '~> 4', github: 'mongoid/mongoid' if prefer :orm, 'mongoid'
+else
+  add_gem 'mongoid' if prefer :orm, 'mongoid'
+end
 gsub_file 'Gemfile', /gem 'pg'.*/, ''
 add_gem 'pg' if prefer :database, 'postgresql'
 gsub_file 'Gemfile', /gem 'mysql2'.*/, ''
@@ -61,7 +65,11 @@ if prefer :unit_test, 'rspec'
   add_gem 'capybara', :group => :test if prefer :integration, 'rspec-capybara'
   add_gem 'database_cleaner', '1.0.1', :group => :test
   if prefer :orm, 'mongoid'
-    add_gem 'mongoid-rspec', :group => :test
+    if rails_4?
+      add_gem 'mongoid-rspec', '>= 1.6.0', github: 'evansagge/mongoid-rspec', :group => :test
+    else
+      add_gem 'mongoid-rspec', :group => :test
+    end
   end
   add_gem 'email_spec', :group => :test
 end

@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.4.6 unreleased
 
+* workaround for mongoid with Rails 4 (contributed by Rodrigo Russo)
 * lock gem 'database_cleaner' at 1.0.1 (https://github.com/bmabey/database_cleaner/issues/224)
 * add 'megatest' feature (contributed by Mark D. Blackwell)
 
