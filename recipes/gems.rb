@@ -200,8 +200,8 @@ after_bundler do
       gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
     end
     unless prefer :database, 'sqlite'
-      affirm = yes_wizard? "Drop any existing databases named #{app_name}?"
-      if affirm
+      if (prefs.has_key? :drop_database) ? prefs[:drop_database] :
+          (yes_wizard? "Drop any existing databases named #{app_name}?")
         run 'bundle exec rake db:drop'
       else
         raise "aborted at user's request"

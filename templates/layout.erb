@@ -205,13 +205,13 @@ say_wizard "importing html2haml and haml2slim conversion tools"
   require 'html2haml'
   require 'haml2slim'
 end
-@after_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; b[1].call}
+@after_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; puts @current_recipe; b[1].call}
 
 # >-----------------------------[ Run 'After Everything' Callbacks ]-------------------------------<
 
 @current_recipe = nil
 say_wizard "Running 'after everything' callbacks."
-@after_everything_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; b[1].call}
+@after_everything_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; puts @current_recipe; b[1].call}
 
 @current_recipe = nil
 if diagnostics[:recipes] == 'success'
