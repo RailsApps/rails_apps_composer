@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.7 unreleased
+
+* fix Compass for using Foundation on Rails 4 (contributed by Mathias)
+
 h2. 2.4.6 August 25, 2013
 
 * workaround for mongoid with Rails 4 (contributed by Rodrigo Russo)
