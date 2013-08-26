@@ -216,7 +216,7 @@ after_bundler do
     end
     unless prefer :database, 'sqlite'
       if (prefs.has_key? :drop_database) ? prefs[:drop_database] :
-          (yes_wizard? "Drop any existing databases named #{app_name}?")
+          (yes_wizard? "Okay to drop all existing databases named #{app_name}? 'No' will abort immediately!")
         run 'bundle exec rake db:drop'
       else
         raise "aborted at user's request"
