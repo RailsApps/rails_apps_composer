@@ -6,6 +6,7 @@ h2. 2.4.7 unreleased
 * eliminate Devise Invitable module as an option for Rails 4 (closes #243)
 * improve prompt when asking for permission to drop existing databases
 * only generate Cucumber steps using 'email_spec' when Cucumber is selected (closes #234)
+* adjust routes when OmniAuth authentication is used with Rails 4 (https://github.com/RailsApps/rails-composer/issues/111)
 
 h2. 2.4.6 August 25, 2013
 

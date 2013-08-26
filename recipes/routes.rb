@@ -19,7 +19,10 @@ after_bundler do
       gsub_file 'config/routes.rb', /devise_for :users/, 'devise_for :users, :controllers => {:registrations => "registrations"}' if rails_4?
     end
     ## OMNIAUTH
-    copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/' if prefer :authentication, 'omniauth'
+    if prefer :authentication, 'omniauth'
+      copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+      gsub_file 'config/routes.rb', /match/, 'get' if rails_4?
+    end
   end
   ### SUBDOMAINS ###
   copy_from_repo 'lib/subdomain.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
