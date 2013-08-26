@@ -100,7 +100,14 @@ add_gem 'machinist', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
 add_gem 'bootstrap-sass' if prefer :bootstrap, 'sass'
-add_gem 'compass-rails', :group => assets_group if prefer :frontend, 'foundation'
+if prefer :frontend, 'foundation'
+  if rails_4?
+    add_gem 'compass-rails', :group => assets_group, "~> 2.0.alpha.0"
+  else
+    add_gem 'compass-rails', :group => assets_group
+  end
+end
+#add_gem 'compass-rails', :group => assets_group if prefer :frontend, 'foundation'
 add_gem 'zurb-foundation', :group => assets_group if prefer :frontend, 'foundation'
 if prefer :bootstrap, 'less'
   add_gem 'less-rails', :group => assets_group
