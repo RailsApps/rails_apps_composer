@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.7 unreleased
+h2. 2.4.7 August 26, 2013
 
 * fix Compass for using Foundation on Rails 4 (contributed by Mathias)
 * eliminate Devise Invitable module as an option for Rails 4 (closes #243)
