@@ -20,7 +20,7 @@ RUBY
     say_wizard "recipe installing RSpec"
     generate 'rspec:install'
     copy_from_repo 'spec/spec_helper.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
-    generate 'email_spec:steps'
+    generate 'email_spec:steps' if prefer :integration, 'cucumber'
     inject_into_file 'spec/spec_helper.rb', "require 'email_spec'\n", :after => "require 'rspec/rails'\n"
     inject_into_file 'spec/spec_helper.rb', :after => "RSpec.configure do |config|\n" do <<-RUBY
   config.include(EmailSpec::Helpers)

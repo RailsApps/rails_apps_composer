@@ -5,6 +5,7 @@ h2. 2.4.7 unreleased
 * fix Compass for using Foundation on Rails 4 (contributed by Mathias)
 * eliminate Devise Invitable module as an option for Rails 4 (closes #243)
 * improve prompt when asking for permission to drop existing databases
+* only generate Cucumber steps using 'email_spec' when Cucumber is selected (closes #234)
 
 h2. 2.4.6 August 25, 2013
 
