@@ -115,8 +115,10 @@ FILE
     run 'bundle exec rake db:drop'
     run 'bundle exec rake db:mongoid:create_indexes'
   end
-  unless prefer :railsapps, 'rails-recurly-subscription-saas'
-    run 'bundle exec rake db:seed'
+  unless prefs[:skeep_seeds]
+    unless prefer :railsapps, 'rails-recurly-subscription-saas'
+      run 'bundle exec rake db:seed'
+    end
   end
   ### GIT ###
   git :add => '-A' if prefer :git, true
