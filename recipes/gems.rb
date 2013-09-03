@@ -182,14 +182,14 @@ after_bundler do
     remove_file 'config/database.yml' if prefer :orm, 'mongoid'
     if prefer :database, 'postgresql'
       begin
-        pg_username = ask_wizard("Username for PostgreSQL? (leave blank to use the app name)")
+        pg_username = prefs[:pg_username] || ask_wizard("Username for PostgreSQL?(leave blank to use the app name)")
         if pg_username.blank?
           say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
           run "createuser #{app_name}" if prefer :database, 'postgresql'
           gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
         else
           gsub_file "config/database.yml", /username: .*/, "username: #{pg_username}"
-          pg_password = ask_wizard("Password for PostgreSQL user #{pg_username}?")
+          pg_password = prefs[:pg_password] || ask_wizard("Password for PostgreSQL user #{pg_username}?")
           gsub_file "config/database.yml", /password:/, "password: #{pg_password}"
           say_wizard "set config/database.yml for username/password #{pg_username}/#{pg_password}"
         end
@@ -201,12 +201,12 @@ after_bundler do
       gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
     end
     if prefer :database, 'mysql'
-      mysql_username = ask_wizard("Username for MySQL? (leave blank to use the app name)")
+      mysql_username = prefs[:mysql_username] || ask_wizard("Username for MySQL? (leave blank to use the app name)")
       if mysql_username.blank?
         gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
       else
         gsub_file "config/database.yml", /username: .*/, "username: #{mysql_username}"
-        mysql_password = ask_wizard("Password for MySQL user #{mysql_username}?")
+        mysql_password = prefs[:mysql_password] || ask_wizard("Password for MySQL user #{mysql_username}?")
         gsub_file "config/database.yml", /password:/, "password: #{mysql_password}"
         say_wizard "set config/database.yml for username/password #{mysql_username}/#{mysql_password}"
       end
