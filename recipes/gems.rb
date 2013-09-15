@@ -99,7 +99,11 @@ add_gem 'fabrication', :group => [:development, :test] if prefer :fixtures, 'fab
 add_gem 'machinist', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
-add_gem 'bootstrap-sass' if prefer :bootstrap, 'sass'
+if rails_4?
+  add_gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass' if prefer :bootstrap, 'sass'
+else
+  add_gem 'bootstrap-sass', '~> 2.3.2.2', if prefer :bootstrap, 'sass'
+end
 if prefer :frontend, 'foundation'
   if rails_4?
     add_gem 'compass-rails', '~> 2.0.alpha.0', :group => assets_group
