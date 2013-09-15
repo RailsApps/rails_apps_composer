@@ -102,7 +102,7 @@ add_gem 'machinist', :group => :test if prefer :fixtures, 'machinist'
 if rails_4?
   add_gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass' if prefer :bootstrap, 'sass'
 else
-  add_gem 'bootstrap-sass', '~> 2.3.2.2', if prefer :bootstrap, 'sass'
+  add_gem 'bootstrap-sass', '~> 2.3.2.2' if prefer :bootstrap, 'sass'
 end
 if prefer :frontend, 'foundation'
   if rails_4?
