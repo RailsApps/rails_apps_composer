@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.10 September 16, 2013
+
+* revert to use Bootstrap 2.3 until SimpleForm supports Bootstrap 3
+
 h2. 2.4.9 September 15, 2013
 
 * use Bootstrap 3 when Rails 4.0 is used; for Rails 3.2 use Bootstrap 2.3
