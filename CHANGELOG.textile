@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.11 Unreleased
+
+* use rails_layout gem to set up layout files for Twitter Bootstrap 2.3
+
 h2. 2.4.10 September 16, 2013
 
 * revert to use Bootstrap 2.3 until SimpleForm supports Bootstrap 3

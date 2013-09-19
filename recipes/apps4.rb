@@ -54,12 +54,15 @@ if prefer :apps4, 'learn-rails'
     generate 'mailer UserMailer'
     copy_from_repo 'app/mailers/user_mailer.rb', :repo => repo
 
+    # >-------------------------------[ Layouts ]--------------------------------<
+
+    if prefer :frontend, 'bootstrap'
+      generate 'layout:bootstrap2'
+    end
+
     # >-------------------------------[ Views ]--------------------------------<
 
     copy_from_repo 'app/views/contacts/new.html.erb', :repo => repo
-    copy_from_repo 'app/views/layouts/_messages.html.erb', :repo => repo
-    copy_from_repo 'app/views/layouts/_navigation.html.erb', :repo => repo
-    copy_from_repo 'app/views/layouts/application.html.erb', :repo => repo
     copy_from_repo 'app/views/pages/about.html.erb', :repo => repo
     copy_from_repo 'app/views/user_mailer/contact_email.html.erb', :repo => repo
     copy_from_repo 'app/views/user_mailer/contact_email.text.erb', :repo => repo
@@ -122,11 +125,14 @@ if prefer :apps4, 'rails-bootstrap'
 
     copy_from_repo 'app/controllers/visitors_controller.rb', :repo => repo
 
+    # >-------------------------------[ Layouts ]--------------------------------<
+
+    if prefer :frontend, 'bootstrap'
+      generate 'layout:bootstrap2'
+    end
+
     # >-------------------------------[ Views ]--------------------------------<
 
-    copy_from_repo 'app/views/layouts/_messages.html.erb', :repo => repo
-    copy_from_repo 'app/views/layouts/_navigation.html.erb', :repo => repo
-    copy_from_repo 'app/views/layouts/application.html.erb', :repo => repo
     copy_from_repo 'app/views/pages/about.html.erb', :repo => repo
     copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
 
