@@ -64,6 +64,7 @@ if prefer :apps4, 'learn-rails'
 
     # >-------------------------------[ Layouts ]--------------------------------<
 
+    # if view files were installed previously, navogation links will be created
     if prefer :frontend, 'bootstrap'
       generate 'layout bootstrap2 -f'
     end
@@ -132,6 +133,7 @@ if prefer :apps4, 'rails-bootstrap'
 
     # >-------------------------------[ Layouts ]--------------------------------<
 
+    # if view files were installed previously, navogation links will be created
     if prefer :frontend, 'bootstrap'
       generate 'layout bootstrap2 -f'
     end
