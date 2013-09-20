@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.11 Unreleased
+h2. 2.4.11 September 19, 2013
 
 * use rails_layout gem to set up layout files for Twitter Bootstrap 2.3
 
