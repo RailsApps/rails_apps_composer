@@ -115,7 +115,7 @@ if prefer :apps4, 'rails-bootstrap'
 
     # >-------------------------------[ Models ]--------------------------------<
 
-    copy_from_repo 'app/models/visitor.rb', :repo => repo
+    # no models
 
     # >-------------------------------[ Init ]--------------------------------<
     copy_from_repo 'config/application.yml', :repo => repo
