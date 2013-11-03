@@ -111,11 +111,8 @@ case RbConfig::CONFIG['host_os']
   when /linux/i
     prefs[:jsruntime] = yes_wizard? "Add 'therubyracer' JavaScript runtime (for Linux users without node.js)?" unless prefs.has_key? :jsruntime
     if prefs[:jsruntime]
-      # was it already added for bootstrap-less?
-      unless prefer :bootstrap, 'less'
-        say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
-        add_gem 'therubyracer', :group => :assets, :platform => :ruby
-      end
+      say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
+      add_gem 'therubyracer', :platform => :ruby
     end
 end
 

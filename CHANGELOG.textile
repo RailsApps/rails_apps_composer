@@ -1,5 +1,13 @@
 h1. CHANGELOG
 
+h2. 2.4.12 November 2, 2013
+
+* use the 'rails_layout' gem to set up a front-end framework
+* drop option to use LESS with Twitter Bootstrap (offer Sass version only)
+* 'learn-rails' app uses Zurb Foundation 4.0 instead of Twitter Bootstrap 2.3
+* upgrade 'simple_form' gem to '3.0.0'
+* remove 'bundle_path' preference used with 'bundle install' (https://github.com/RailsApps/rails-composer/issues/138)
+
 h2. 2.4.11 September 19, 2013
 
 * use rails_layout gem to set up layout files for Twitter Bootstrap 2.3

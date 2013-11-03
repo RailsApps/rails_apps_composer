@@ -13,7 +13,7 @@ if prefer :apps4, 'learn-rails'
   add_gem 'sqlite3', :group => :development
   add_gem 'pg', :group => :production
   add_gem 'thin', :group => :production
-  add_gem 'rails_on_heroku', :group => :production
+  add_gem 'rails_12factor', :group => :production
 
   # >-------------------------------[ after_everything ]--------------------------------<
 
@@ -61,13 +61,7 @@ if prefer :apps4, 'learn-rails'
     copy_from_repo 'app/views/user_mailer/contact_email.html.erb', :repo => repo
     copy_from_repo 'app/views/user_mailer/contact_email.text.erb', :repo => repo
     copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
-
-    # >-------------------------------[ Layouts ]--------------------------------<
-
-    # if view files were installed previously, navogation links will be created
-    if prefer :frontend, 'bootstrap'
-      generate 'layout bootstrap2 -f'
-    end
+    copy_from_repo 'app/views/layouts/_navigation.html.erb', :repo => repo
 
     # >-------------------------------[ Routes ]--------------------------------<
 
@@ -77,10 +71,7 @@ if prefer :apps4, 'learn-rails'
 
     # >-------------------------------[ Assets ]--------------------------------<
 
-    copy_from_repo 'app/assets/javascripts/application.js', :repo => repo
     copy_from_repo 'app/assets/javascripts/segmentio.js', :repo => repo
-    copy_from_repo 'app/assets/stylesheets/application.css.scss', :repo => repo
-    copy_from_repo 'app/assets/stylesheets/bootstrap_and_overrides.css.scss', :repo => repo
 
     ### GIT ###
     git :add => '-A' if prefer :git, true
@@ -130,13 +121,7 @@ if prefer :apps4, 'rails-bootstrap'
 
     copy_from_repo 'app/views/pages/about.html.erb', :repo => repo
     copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
-
-    # >-------------------------------[ Layouts ]--------------------------------<
-
-    # if view files were installed previously, navogation links will be created
-    if prefer :frontend, 'bootstrap'
-      generate 'layout bootstrap2 -f'
-    end
+    copy_from_repo 'app/views/layouts/_navigation.html.erb', :repo => repo
 
     # >-------------------------------[ Routes ]--------------------------------<
 
@@ -146,9 +131,7 @@ if prefer :apps4, 'rails-bootstrap'
 
     # >-------------------------------[ Assets ]--------------------------------<
 
-    copy_from_repo 'app/assets/javascripts/application.js', :repo => repo
-    copy_from_repo 'app/assets/stylesheets/application.css.scss', :repo => repo
-    copy_from_repo 'app/assets/stylesheets/bootstrap_and_overrides.css.scss', :repo => repo
+    # no assets
 
     ### GIT ###
     git :add => '-A' if prefer :git, true

@@ -99,21 +99,20 @@ add_gem 'fabrication', :group => [:development, :test] if prefer :fixtures, 'fab
 add_gem 'machinist', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
-add_gem 'bootstrap-sass', '~> 2.3.2.2' if prefer :bootstrap, 'sass'
-add_gem 'rails_layout', :group => :development if prefer :bootstrap, 'sass'
-if prefer :frontend, 'foundation'
-  if rails_4?
-    add_gem 'compass-rails', '~> 2.0.alpha.0'
-  else
-    add_gem 'compass-rails', :group => assets_group
-  end
-end
-add_gem 'zurb-foundation', :group => assets_group if prefer :frontend, 'foundation'
-if prefer :bootstrap, 'less'
-  add_gem 'less-rails', :group => assets_group
-  add_gem 'twitter-bootstrap-rails', :group => assets_group
-  # install gem 'therubyracer' to use Less
-  add_gem 'therubyracer', :group => assets_group, :platform => :ruby
+add_gem 'rails_layout', :group => :development
+case prefs[:frontend]
+  when 'bootstrap2'
+    add_gem 'bootstrap-sass', '~> 2.3.2.2'
+  when 'bootstrap3'
+    add_gem 'bootstrap-sass', '>= 3.0.0.0'
+  when 'foundation4'
+    if rails_4?
+      add_gem 'zurb-foundation'
+      add_gem 'compass-rails', '~> 2.0.alpha.0'
+    else
+      add_gem 'zurb-foundation', :group => assets_group
+      add_gem 'compass-rails', '~> 1.0.3', :group => assets_group
+    end
 end
 
 ## Email
@@ -139,11 +138,7 @@ if prefer :authorization, 'cancan'
 end
 
 ## Form Builder
-if rails_4?
-  add_gem 'simple_form', '>= 3.0.0.rc' if prefer :form_builder, 'simple_form'
-else
-  add_gem 'simple_form' if prefer :form_builder, 'simple_form'
-end
+add_gem 'simple_form' if prefer :form_builder, 'simple_form'
 
 ## Membership App
 if prefer :railsapps, 'rails-stripe-membership-saas'
@@ -232,16 +227,21 @@ end # after_bundler
 
 ### GENERATORS ###
 after_bundler do
-  ## Front-end Framework
-  generate 'foundation:install' if prefer :frontend, 'foundation'
   ## Form Builder
   if prefer :form_builder, 'simple_form'
-    if prefer :frontend, 'bootstrap'
-      say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
-      generate 'simple_form:install --bootstrap'
-    else
-      say_wizard "recipe installing simple_form"
-      generate 'simple_form:install'
+    case prefs[:frontend]
+      when 'bootstrap2'
+        say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
+        generate 'simple_form:install --bootstrap'
+      when 'bootstrap3'
+        say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
+        generate 'simple_form:install --bootstrap'
+      when 'foundation4'
+        say_wizard "recipe installing simple_form for use with Zurb Foundation"
+        generate 'simple_form:install --foundation'
+      else
+        say_wizard "recipe installing simple_form"
+        generate 'simple_form:install'
     end
   end
   ## Figaro Gem
@@ -257,6 +257,7 @@ after_bundler do
 # For example, setting:
 # GMAIL_USERNAME: Your_Gmail_Username
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+
 FILE
     end
   end

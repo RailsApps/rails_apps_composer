@@ -48,7 +48,6 @@ case prefs[:apps4]
     prefs[:integration] = false
     prefs[:fixtures] = false
     prefs[:frontend] = false
-    prefs[:bootstrap] = false
     prefs[:email] = false
     prefs[:authentication] = false
     prefs[:devise_modules] = false
@@ -66,8 +65,7 @@ case prefs[:apps4]
     prefs[:unit_test] = false
     prefs[:integration] = false
     prefs[:fixtures] = false
-    prefs[:frontend] = 'bootstrap'
-    prefs[:bootstrap] = 'sass'
+    prefs[:frontend] = 'foundation4'
     prefs[:email] = 'gmail'
     prefs[:authentication] = false
     prefs[:devise_modules] = false
@@ -83,8 +81,7 @@ case prefs[:apps4]
     prefs[:unit_test] = false
     prefs[:integration] = false
     prefs[:fixtures] = false
-    prefs[:frontend] = 'bootstrap'
-    prefs[:bootstrap] = 'sass'
+    prefs[:frontend] = 'bootstrap2'
     prefs[:email] = 'none'
     prefs[:authentication] = false
     prefs[:devise_modules] = false
@@ -110,8 +107,7 @@ case prefs[:railsapps]
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'
-    prefs[:frontend] = 'bootstrap'
-    prefs[:bootstrap] = 'sass'
+    prefs[:frontend] = 'bootstrap2'
     prefs[:email] = 'gmail'
     prefs[:authentication] = 'devise'
     prefs[:devise_modules] = 'default'
@@ -127,8 +123,7 @@ case prefs[:railsapps]
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'
-    prefs[:frontend] = 'bootstrap'
-    prefs[:bootstrap] = 'sass'
+    prefs[:frontend] = 'bootstrap2'
     prefs[:email] = 'gmail'
     prefs[:authentication] = 'devise'
     prefs[:devise_modules] = 'default'
@@ -144,8 +139,7 @@ case prefs[:railsapps]
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'
-    prefs[:frontend] = 'bootstrap'
-    prefs[:bootstrap] = 'sass'
+    prefs[:frontend] = 'bootstrap2'
     prefs[:email] = 'mandrill'
     prefs[:authentication] = 'devise'
     prefs[:devise_modules] = 'confirmable'
@@ -177,8 +171,7 @@ case prefs[:railsapps]
     prefs[:unit_test] = 'rspec'
     prefs[:integration] = 'cucumber'
     prefs[:fixtures] = 'factory_girl'
-    prefs[:frontend] = 'bootstrap'
-    prefs[:bootstrap] = 'sass'
+    prefs[:frontend] = 'bootstrap2'
     prefs[:email] = 'gmail'
     prefs[:authentication] = 'devise'
     prefs[:devise_modules] = 'default'
