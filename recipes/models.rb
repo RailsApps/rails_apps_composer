@@ -12,7 +12,7 @@ after_bundler do
     generate 'devise user' # create the User model
     if prefer :orm, 'mongoid'
       ## DEVISE AND MONGOID
-      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-devise/master/'
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-devise/master/' unless rails_4?
       if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
         gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
         gsub_file 'app/models/user.rb', /# field :confirmation_token/, "field :confirmation_token"
