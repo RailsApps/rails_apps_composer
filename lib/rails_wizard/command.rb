@@ -67,7 +67,7 @@ module RailsWizard
         # Load defaults from a file; if a file specifies recipes, they'll be run *before*
         # any on the command line (or prompted for)..
         return [[], {}] unless options[:defaults]
-        defaults = File.open(options[:defaults]) {|f| YAML.load(f) }
+        defaults = Kernel.open(options[:defaults]) {|f| YAML.load(f) }
         recipes = defaults.delete('recipes') { [] }
         [recipes, defaults]
       end
