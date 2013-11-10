@@ -9,6 +9,12 @@ if prefer :git, true
   git :init
   git :add => '-A'
   git :commit => '-qm "rails_apps_composer: initial commit"'
+else
+  after_everything do
+    say_wizard "removing .gitignore and .gitkeep files"
+    git_files = Dir[File.join('**','.gitkeep')] + Dir[File.join('**','.gitignore')]
+    File.unlink git_files
+  end
 end
 
 __END__
