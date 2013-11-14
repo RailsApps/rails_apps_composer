@@ -1,8 +1,8 @@
 h1. CHANGELOG
 
-h2. 2.4.13 unreleased
+h2. 2.4.13 November 14, 2013
 
-*
+* use the 'rails_layout' gem to generate navigation links
 * remove .gitignore and .gitkeep files unless git recipe is chosen (contributed by Mike Połtyn)
 * option to load defaults via HTTP instead of file (contributed by Arnaud Sellenet)
 * don't copy the user model from the rails3-mongoid-devise repo (contributed by Arnaud Sellenet)

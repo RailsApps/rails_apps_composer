@@ -15,24 +15,29 @@ after_bundler do
       generate 'layout foundation4 -f'
   end
 
-  # specialized navigation partials
-  if prefer :authorization, 'cancan'
-    case prefs[:authentication]
-      when 'devise'
-        copy_from_repo 'app/views/layouts/_navigation-cancan.html.erb', :prefs => 'cancan'
-      when 'omniauth'
-        copy_from 'https://raw.github.com/RailsApps/rails-composer/master/files/app/views/layouts/_navigation-cancan-omniauth.html.erb', 'app/views/layouts/_navigation.html.erb'
+  ### GIT ###
+  git :add => '-A' if prefer :git, true
+  git :commit => '-qm "rails_apps_composer: front-end framework"' if prefer :git, true
+end # after_bundler
+
+after_everything do
+  say_wizard "recipe running after everything"
+  # create navigation links using the rails_layout gem
+  generate 'navigation -f'
+  # replace with specialized navigation partials
+  if prefer :authentication, 'omniauth'
+    if prefer :authorization, 'cancan'
+      copy_from 'https://raw.github.com/RailsApps/rails-composer/master/files/app/views/layouts/_navigation-cancan-omniauth.html.erb', 'app/views/layouts/_navigation.html.erb'
+    else
+      copy_from_repo 'app/views/layouts/_navigation-omniauth.html.erb', :prefs => 'omniauth'
     end
-  else
-    copy_from_repo 'app/views/layouts/_navigation-devise.html.erb', :prefs => 'devise'
-    copy_from_repo 'app/views/layouts/_navigation-omniauth.html.erb', :prefs => 'omniauth'
   end
   copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'
 
   ### GIT ###
   git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: front-end framework"' if prefer :git, true
-end # after_bundler
+  git :commit => '-qm "rails_apps_composer: navigation links"' if prefer :git, true
+end # after_everything
 
 __END__
 
