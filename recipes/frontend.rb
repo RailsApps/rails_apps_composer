@@ -13,6 +13,8 @@ after_bundler do
       generate 'layout bootstrap3 -f'
     when 'foundation4'
       generate 'layout foundation4 -f'
+    when 'foundation5'
+      generate 'layout foundation5 -f'
   end
 
   ### GIT ###

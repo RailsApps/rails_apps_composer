@@ -107,12 +107,14 @@ case prefs[:frontend]
     add_gem 'bootstrap-sass', '>= 3.0.0.0'
   when 'foundation4'
     if rails_4?
-      add_gem 'zurb-foundation'
+      add_gem 'zurb-foundation', '~> 4.3.2'
       add_gem 'compass-rails', '~> 2.0.alpha.0'
     else
-      add_gem 'zurb-foundation', :group => assets_group
+      add_gem 'zurb-foundation', '~> 4.3.2', :group => assets_group
       add_gem 'compass-rails', '~> 1.0.3', :group => assets_group
     end
+  when 'foundation5'
+    add_gem 'foundation-rails'
 end
 
 ## Email

@@ -60,8 +60,10 @@ end
 
 ## Front-end Framework
 if recipes.include? 'frontend'
-  prefs[:frontend] = multiple_choice "Front-end framework?", [["None", "none"], ["Zurb Foundation 4.0", "foundation4"],
-    ["Twitter Bootstrap 3.0", "bootstrap3"], ["Twitter Bootstrap 2.3", "bootstrap2"], ["Simple CSS", "simple"]] unless prefs.has_key? :frontend
+  prefs[:frontend] = multiple_choice "Front-end framework?", [["None", "none"],
+    ["Zurb Foundation 5.0", "foundation5"], ["Zurb Foundation 4.0", "foundation4"],
+    ["Twitter Bootstrap 3.0", "bootstrap3"], ["Twitter Bootstrap 2.3", "bootstrap2"],
+    ["Simple CSS", "simple"]] unless prefs.has_key? :frontend
 end
 
 ## Email
