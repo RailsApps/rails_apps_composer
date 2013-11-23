@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.14 November 22, 2013
+
+* support Zurb Foundation 5
+
 h2. 2.4.13 November 14, 2013
 
 * use the 'rails_layout' gem to generate navigation links
