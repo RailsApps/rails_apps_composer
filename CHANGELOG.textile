@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.4.15 December 8, 2013
+
+* use Zurb Foundation 4 for 'learn-rails' example application
+* gem 'compass-rails' 2.0.alpha.0 was yanked, use version 1.1.2
+
 h2. 2.4.14 November 22, 2013
 
 * support Zurb Foundation 5
