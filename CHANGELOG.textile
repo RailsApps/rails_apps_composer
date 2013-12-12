@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.16 December 11, 2013
+
+* update 'rails-bootstrap' example application to use Bootstrap 3.0
+
 h2. 2.4.15 December 8, 2013
 
 * use Zurb Foundation 4 for 'learn-rails' example application
