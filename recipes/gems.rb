@@ -52,7 +52,7 @@ if prefer :templates, 'haml'
   add_gem 'html2haml', :group => :development
 end
 if prefer :templates, 'slim'
-  add_gem 'slim'
+  add_gem 'slim-rails'
   add_gem 'haml2slim', :group => :development
   # Haml is needed for conversion of HTML to Slim
   add_gem 'haml-rails', :group => :development
