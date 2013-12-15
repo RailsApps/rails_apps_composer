@@ -65,7 +65,6 @@ case prefs[:apps4]
     prefs[:unit_test] = false
     prefs[:integration] = false
     prefs[:fixtures] = false
-    prefs[:frontend] = 'foundation4'
     prefs[:email] = 'gmail'
     prefs[:authentication] = false
     prefs[:devise_modules] = false

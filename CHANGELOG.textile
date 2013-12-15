@@ -1,5 +1,11 @@
 h1. CHANGELOG
 
+h2. 2.4.17 unreleased
+
+* allow choice of front-end framework when building 'learn-rails' example
+* use 'slim-rails' gem
+* remove temporary Haml gems from Gemfile when Slim is selected
+
 h2. 2.4.16 December 11, 2013
 
 * update 'rails-bootstrap' example application to use Bootstrap 3.0

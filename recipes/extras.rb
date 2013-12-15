@@ -125,7 +125,6 @@ after_everything do
   }.each { |file| remove_file file }
   # remove temporary Haml gems from Gemfile when Slim is selected
   if prefer :templates, 'slim'
-    gsub_file 'Gemfile', /  gem 'haml-rails'\n/, "\n"
     gsub_file 'Gemfile', /  gem 'haml2slim'\n/, "\n"
     gsub_file 'Gemfile', /  gem 'html2haml'\n/, "\n"
   end
