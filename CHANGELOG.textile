@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.17 unreleased
+h2. 2.4.17 December 15, 2013
 
 * allow choice of front-end framework when building 'learn-rails' example
 * use 'slim-rails' gem
