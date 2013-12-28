@@ -2,7 +2,6 @@ h1. CHANGELOG
 
 h2. 2.4.18 December 28, 2013
 
-* use edge version of html2haml (suggested by Ernest Bursa)
 * fix for mongoid gem
 * added 'createdb' flag to user creation for PostgreSQL (contributed by Tristan Lohman)
 * update Mandrill API key to match Heroku style (contributed by Stephan Meyers)

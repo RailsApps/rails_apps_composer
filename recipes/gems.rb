@@ -51,12 +51,12 @@ add_gem 'mysql2' if prefer :database, 'mysql'
 ## Template Engine
 if prefer :templates, 'haml'
   add_gem 'haml-rails'
-  add_gem 'html2haml', :group => :development, :github => 'haml/html2haml'
+  add_gem 'html2haml', :group => :development
 end
 if prefer :templates, 'slim'
   add_gem 'slim-rails'
   add_gem 'haml2slim', :group => :development
-  add_gem 'html2haml', :group => :development, :github => 'haml/html2haml'
+  add_gem 'html2haml', :group => :development
 end
 
 ## Testing Framework
