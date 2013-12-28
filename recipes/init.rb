@@ -15,7 +15,7 @@ after_everything do
     when 'sendgrid'
       credentials = "SENDGRID_USERNAME: Your_Username\nSENDGRID_PASSWORD: Your_Password\n"
     when 'mandrill'
-      credentials = "MANDRILL_USERNAME: Your_Username\nMANDRILL_API_KEY: Your_API_Key\n"
+      credentials = "MANDRILL_USERNAME: Your_Username\nMANDRILL_APIKEY: Your_API_Key\n"
   end
   append_file 'config/application.yml', credentials if prefs[:local_env_file]
   if prefs[:local_env_file]

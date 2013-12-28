@@ -17,10 +17,12 @@ assets_group = rails_4? ? nil : :assets
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
   add_gem 'thin' if prefer :dev_webserver, 'thin'
   add_gem 'unicorn' if prefer :dev_webserver, 'unicorn'
+  add_gem 'unicorn-rails' if prefer :dev_webserver, 'unicorn'
   add_gem 'puma' if prefer :dev_webserver, 'puma'
 else
   add_gem 'thin', :group => [:development, :test] if prefer :dev_webserver, 'thin'
   add_gem 'unicorn', :group => [:development, :test] if prefer :dev_webserver, 'unicorn'
+  add_gem 'unicorn-rails', :group => [:development, :test] if prefer :dev_webserver, 'unicorn'
   add_gem 'puma', :group => [:development, :test] if prefer :dev_webserver, 'puma'
   add_gem 'thin', :group => :production if prefer :prod_webserver, 'thin'
   add_gem 'unicorn', :group => :production if prefer :prod_webserver, 'unicorn'
@@ -37,7 +39,7 @@ unless prefer :database, 'default'
   gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 end
 if rails_4?
-  add_gem 'mongoid', '~> 4', github: 'mongoid/mongoid' if prefer :orm, 'mongoid'
+  add_gem 'mongoid', github: 'mongoid/mongoid' if prefer :orm, 'mongoid'
 else
   add_gem 'mongoid' if prefer :orm, 'mongoid'
 end
@@ -49,12 +51,12 @@ add_gem 'mysql2' if prefer :database, 'mysql'
 ## Template Engine
 if prefer :templates, 'haml'
   add_gem 'haml-rails'
-  add_gem 'html2haml', :group => :development
+  add_gem 'html2haml', :group => :development, :github => 'haml/html2haml'
 end
 if prefer :templates, 'slim'
   add_gem 'slim-rails'
   add_gem 'haml2slim', :group => :development
-  add_gem 'html2haml', :group => :development
+  add_gem 'html2haml', :group => :development, :github => 'haml/html2haml'
 end
 
 ## Testing Framework
@@ -180,7 +182,7 @@ after_bundler do
         pg_username = prefs[:pg_username] || ask_wizard("Username for PostgreSQL?(leave blank to use the app name)")
         if pg_username.blank?
           say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
-          run "createuser #{app_name}" if prefer :database, 'postgresql'
+          run "createuser --createdb #{app_name}" if prefer :database, 'postgresql'
           gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
         else
           gsub_file "config/database.yml", /username: .*/, "username: #{pg_username}"
