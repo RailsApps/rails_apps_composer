@@ -25,16 +25,6 @@ The "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-r
 
 Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
-h4. !http://railsapps.github.io/images/join/join-railsapps.png(Join RailsApps)!:http://railsapps.github.io/
-
-h4. What is the RailsApps Project?
-
-The "RailsApps project":http://railsapps.github.io/ provides example applications that developers use as starter apps. Hundreds of developers use the apps, report problems as they arise, and propose solutions. Rails changes frequently; each application is known to work and serves as your personal "reference implementation." Each application is accompanied by a tutorial so there is no mystery code. Support for the project comes from subscribers. Please accept our invitation to "join the RailsApps project":http://railsapps.github.io/.
-
-h4. If You Are New to Rails
-
-If you're new to Rails, see "What is Ruby on Rails?":http://railsapps.github.io/what-is-ruby-rails.html, the book "Learn Ruby on Rails":http://learn-rails.com/learn-ruby-on-rails.html, and recommendations for a "Rails tutorial":https://tutorials.railsapps.org/rails-tutorial.
-
 h2. What's New
 
 See the "CHANGELOG":https://github.com/RailsApps/rails_apps_composer/blob/master/CHANGELOG.textile for details.
