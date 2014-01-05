@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.19 unreleased
+
+*
+
 h2. 2.4.18 December 28, 2013
 
 * fix for mongoid gem

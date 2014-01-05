@@ -1,6 +1,8 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/apps4.rb
 
+### LEARN-RAILS ####
+
 if prefer :apps4, 'learn-rails'
 
   # >-------------------------------[ Gems ]--------------------------------<
@@ -79,6 +81,8 @@ if prefer :apps4, 'learn-rails'
     git :commit => '-qm "rails_apps_composer: learn-rails app"' if prefer :git, true
   end # after_bundler
 end # learn-rails
+
+### RAILS-BOOTSTRAP ####
 
 if prefer :apps4, 'rails-bootstrap'
 
