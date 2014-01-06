@@ -29,7 +29,8 @@ when "4"
     when 'railsapps'
       prefs[:apps4] = multiple_choice "Starter apps for Rails 4.0. More to come.",
         [["learn-rails", "learn-rails"],
-        ["rails-bootstrap", "rails-bootstrap"]]
+        ["rails-bootstrap", "rails-bootstrap"],
+        ["rails-devise", "rails-devise"]]
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
         [["continue", "none"]]
@@ -86,6 +87,18 @@ case prefs[:apps4]
     prefs[:devise_modules] = false
     prefs[:authorization] = false
     prefs[:starter_app] = false
+    prefs[:form_builder] = 'simple_form'
+    prefs[:quiet_assets] = true
+    prefs[:local_env_file] = true
+    prefs[:better_errors] = true
+  when 'rails-devise'
+    prefs[:git] = true
+    prefs[:unit_test] = false
+    prefs[:integration] = false
+    prefs[:fixtures] = false
+    prefs[:authentication] = 'devise'
+    prefs[:authorization] = false
+    prefs[:starter_app] = 'users_app'
     prefs[:form_builder] = 'simple_form'
     prefs[:quiet_assets] = true
     prefs[:local_env_file] = true

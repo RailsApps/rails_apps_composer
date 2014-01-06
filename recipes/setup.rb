@@ -68,8 +68,11 @@ end
 
 ## Email
 if recipes.include? 'email'
-  prefs[:email] = multiple_choice "Add support for sending email?", [["None", "none"], ["Gmail","gmail"], ["SMTP","smtp"],
-    ["SendGrid","sendgrid"], ["Mandrill","mandrill"]] unless prefs.has_key? :email
+  unless prefs.has_key? :email
+    say_wizard "The Devise 'forgot password' feature requires email." if prefer :authentication, 'devise'
+    prefs[:email] = multiple_choice "Add support for sending email?", [["None", "none"], ["Gmail","gmail"], ["SMTP","smtp"],
+      ["SendGrid","sendgrid"], ["Mandrill","mandrill"]]
+  end
 else
   prefs[:email] = 'none'
 end

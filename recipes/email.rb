@@ -5,11 +5,23 @@ after_bundler do
   say_wizard "recipe running after 'bundle install'"
   unless prefer :email, 'none'
     if rails_4?
-      send_email_text = <<-TEXT
+      dev_email_text = <<-TEXT
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
   # Send email in development mode.
   config.action_mailer.perform_deliveries = true
 TEXT
-      inject_into_file 'config/environments/development.rb', send_email_text, :after => "config.assets.debug = true"
+      prod_email_text = <<-TEXT
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'example.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+TEXT
+      inject_into_file 'config/environments/development.rb', dev_email_text, :after => "config.assets.debug = true"
+      inject_into_file 'config/environments/production.rb', prod_email_text, :after => "config.active_support.deprecation = :notify"
     else
       ### DEVELOPMENT
       gsub_file 'config/environments/development.rb', /# Don't care if the mailer can't send/, '# ActionMailer Config'
