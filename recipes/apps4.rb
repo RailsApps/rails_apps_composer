@@ -82,9 +82,9 @@ if prefer :apps4, 'learn-rails'
   end # after_bundler
 end # learn-rails
 
-### RAILS-BOOTSTRAP ####
+### RAILS-BOOTSTRAP or RAILS-FOUNDATION ####
 
-if prefer :apps4, 'rails-bootstrap'
+if (prefer :apps4, 'rails-bootstrap') || (prefer :apps4, 'rails-foundation')
 
   # >-------------------------------[ Gems ]--------------------------------<
 
@@ -94,7 +94,8 @@ if prefer :apps4, 'rails-bootstrap'
 
   after_everything do
     say_wizard "recipe running after 'bundle install'"
-    repo = 'https://raw.github.com/RailsApps/rails-bootstrap/master/'
+    repo = 'https://raw.github.com/RailsApps/rails-bootstrap/master/' if prefer :apps4, 'rails-bootstrap'
+    repo = 'https://raw.github.com/RailsApps/rails-foundation/master/' if prefer :apps4, 'rails-foundation'
 
     # >-------------------------------[ Clean up starter app ]--------------------------------<
 
@@ -140,8 +141,11 @@ if prefer :apps4, 'rails-bootstrap'
     # no assets
 
     ### GIT ###
-    git :add => '-A' if prefer :git, true
-    git :commit => '-qm "rails_apps_composer: rails-bootstrap app"' if prefer :git, true
+    if prefer :git, true
+      git :add => '-A'
+      git :commit => '-qm "rails_apps_composer: rails-bootstrap app"' if prefer :apps4, 'rails-bootstrap'
+      git :commit => '-qm "rails_apps_composer: rails-foundation app"' if prefer :apps4, 'rails-foundation'
+    end
   end # after_bundler
 end # rails-bootstrap
 
