@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.19 unreleased
+h2. 2.4.19 January 5, 2014
 
 * add 'rails-devise' example application
 * add 'rails-foundation' example application
