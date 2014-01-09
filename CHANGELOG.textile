@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.20 January 9, 2014
+
+* change commands to use 'rails_layout' gem version 1.0.0
+
 h2. 2.4.19 January 5, 2014
 
 * add 'rails-devise' example application

@@ -64,7 +64,7 @@ if prefer :apps4, 'learn-rails'
     copy_from_repo 'app/views/user_mailer/contact_email.text.erb', :repo => repo
     copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
     # create navigation links using the rails_layout gem
-    generate 'navigation -f'
+    generate 'layout:navigation -f'
 
     # >-------------------------------[ Routes ]--------------------------------<
 
@@ -128,7 +128,7 @@ if (prefer :apps4, 'rails-bootstrap') || (prefer :apps4, 'rails-foundation')
     copy_from_repo 'app/views/pages/about.html.erb', :repo => repo
     copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
     # create navigation links using the rails_layout gem
-    generate 'navigation -f'
+    generate 'layout:navigation -f'
 
     # >-------------------------------[ Routes ]--------------------------------<
 
