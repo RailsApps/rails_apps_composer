@@ -15,12 +15,6 @@ after_bundler do
       copy_from_repo 'app/views/devise/sessions/new-simple_form.html.erb', :prefs => 'simple_form'
       copy_from_repo 'app/helpers/application_helper-simple_form.rb', :prefs => 'simple_form'
     end
-    case prefs[:frontend]
-      when 'bootstrap3'
-        generate 'layout:devise bootstrap3 -f'
-      when 'foundation5'
-        generate 'layout:devise foundation5 -f'
-    end
   end
   ### HOME ###
   copy_from_repo 'app/views/home/index.html.erb' if prefer :starter_app, 'users_app'

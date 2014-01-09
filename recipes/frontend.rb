@@ -16,6 +16,15 @@ after_bundler do
     when 'foundation5'
       generate 'layout:install foundation5 -f'
   end
+  # generate Devise views with appropriate styling
+  if prefer :authentication, 'devise'
+    case prefs[:frontend]
+      when 'bootstrap3'
+        generate 'layout:devise bootstrap3 -f'
+      when 'foundation5'
+        generate 'layout:devise foundation5 -f'
+    end
+  end
 
   ### GIT ###
   git :add => '-A' if prefer :git, true
