@@ -27,13 +27,13 @@ RUBY
   ### USERS_CONTROLLER ###
   case prefs[:starter_app]
     when 'users_app'
-      if prefer :authentication, 'devise'
+      if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
         copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
       elsif prefer :authentication, 'omniauth'
         copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
       end
     when 'admin_app'
-      if prefer :authentication, 'devise'
+      if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
         copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
       elsif prefer :authentication, 'omniauth'
         copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'

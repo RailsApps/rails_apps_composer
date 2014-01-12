@@ -79,11 +79,21 @@ FILE
     end
   end
   ## DEVISE-DEFAULT
-  if prefer :authentication, 'devise'
+  if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
     append_file 'db/seeds.rb' do <<-FILE
 puts 'DEFAULT USERS'
 user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
+FILE
+    end
+    # Mongoid doesn't have a 'find_or_create_by' method
+    gsub_file 'db/seeds.rb', /find_or_create_by_email/, 'create!' if prefer :orm, 'mongoid'
+  end
+  if prefer :apps4, 'rails-devise'
+    append_file 'db/seeds.rb' do <<-FILE
+puts 'DEFAULT USERS'
+user = User.find_or_create_by_email :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+puts 'user: ' << user.email
 FILE
     end
     # Mongoid doesn't have a 'find_or_create_by' method

@@ -115,8 +115,7 @@ case prefs[:apps4]
     prefs[:fixtures] = false
     prefs[:authentication] = 'devise'
     prefs[:authorization] = false
-    prefs[:starter_app] = 'users_app'
-    prefs[:form_builder] = 'simple_form'
+    prefs[:starter_app] = false
     prefs[:quiet_assets] = true
     prefs[:local_env_file] = true
     prefs[:better_errors] = true

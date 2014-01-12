@@ -11,7 +11,7 @@ after_bundler do
   ### USER_ACCOUNTS ###
   if ['users_app','admin_app'].include? prefs[:starter_app]
     ## DEVISE
-    if prefer :authentication, 'devise'
+    if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
       copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
       ## Rails 4.0 doesn't allow two 'root' routes
       gsub_file 'config/routes.rb', /authenticated :user do\n.*\n.*\n  /, '' if rails_4?

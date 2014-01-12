@@ -4,7 +4,7 @@
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### DEVISE ###
-  if prefer :authentication, 'devise'
+  if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
     copy_from_repo 'app/views/devise/shared/_links.html.erb'
     unless prefer :form_builder, 'simple_form'
       copy_from_repo 'app/views/devise/registrations/edit.html.erb'
