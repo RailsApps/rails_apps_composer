@@ -12,16 +12,16 @@ You can use local recipes as well as recipes supplied with the gem.
 
 The "Rails Composer":http://railsapps.github.io/rails-composer/ tool is built with the rails_apps_composer gem. The Rails Composer tool creates the "example applications":http://railsapps.github.io/ for the "RailsApps":http://railsapps.github.io/ project.
 
-The "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html provides complete documentation:
+The "Guide to the Rails Apps Composer Gem":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer provides complete documentation:
 
-* "Overview":http://railsapps.github.io/tutorial-rails-apps-composer.html#Overview
-* "Recipes":http://railsapps.github.io/tutorial-rails-apps-composer.html#Recipes
-* "Usage":http://railsapps.github.io/tutorial-rails-apps-composer.html#Usage
-* "Diagnostics":http://railsapps.github.io/tutorial-rails-apps-composer.html#Diagnostics
-* "Hacking the Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html#Hacking
-* "Anatomy of a Recipe":http://railsapps.github.io/tutorial-rails-apps-composer.html#Anatomy
-* "Architecture":http://railsapps.github.io/tutorial-rails-apps-composer.html#Architecture
-* "Defaults File":http://railsapps.github.io/tutorial-rails-apps-composer.html#Defaults
+* "Overview":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Overview
+* "Recipes":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Recipes
+* "Usage":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Usage
+* "Diagnostics":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Diagnostics
+* "Hacking the Gem":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Hacking
+* "Anatomy of a Recipe":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Anatomy
+* "Architecture":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Architecture
+* "Defaults File":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Defaults
 
 Any issues? Please create a "GitHub issue":http://github.com/RailsApps/rails_apps_composer/issues.
 
@@ -81,7 +81,7 @@ You may have trouble if you install the rails_apps_composer gem by including it 
 
 h2. Usage Options
 
-These commands are summarized here for your reference. See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html for details.
+These commands are summarized here for your reference. See the "Guide to the Rails Apps Composer Gem":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer for details.
 
 h3. List Recipes
 
@@ -110,7 +110,7 @@ views          # Add views needed for starter apps.
 
 The above list is current for rails_apps_composer 2.1; later releases will contain more recipes.
 
-See the Guide for more "detailed descriptions of recipes":http://railsapps.github.io/tutorial-rails-apps-composer.html#Recipes. You can find all available recipes in the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. Examining the recipe source code is the very best way to learn what a recipe will do.
+See the Guide for more "detailed descriptions of recipes":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Recipes. You can find all available recipes in the repository "recipes directory":https://github.com/RailsApps/rails_apps_composer/tree/master/recipes. Examining the recipe source code is the very best way to learn what a recipe will do.
 
 h3. Recommended Recipes
 
@@ -126,7 +126,7 @@ Recipes may also contain a @run_after@ directive. The rails_apps_composer progra
 
 In general, it's best to add (or list) recipes in the order they should execute as some recipes may not contain a necessary @requires@ or @run_after@ directive.
 
-See the "Anatomy of a Recipe":http://railsapps.github.io/tutorial-rails-apps-composer.html#Anatomy section in the Guide to learn about the format of a recipe.
+See the "Anatomy of a Recipe":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Anatomy section in the Guide to learn about the format of a recipe.
 
 h3. Skipping Test::Unit or Active Record
 
@@ -216,7 +216,7 @@ Use a defaults file for recipes, preferences, and extra gems so you don't have t
 $ rails_apps_composer new myapp -d my_defaults.yaml
 </pre>
 
-Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.io/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file.
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Defaults section in the Guide concerning the format of the defaults file.
 
 Use the "quiet flag" @-q@ if you want to skip all prompts:
 
@@ -273,7 +273,7 @@ Generate an application template using a defaults file and the @-d@ flag:
 $ rails_apps_composer template ~/Desktop/template.rb -d my_defaults.yaml
 </pre>
 
-Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":http://railsapps.github.io/tutorial-rails-apps-composer.html#Defaults section in the Guide concerning the format of the defaults file. Use the "quiet flag" @-q@ if you want to skip all prompts.
+Use the @my_defaults.yaml@ file to specify a list of recipes, preferences, and extra gems. You can use any name (and file extension) for the file. See the "Defaults File":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#Defaults section in the Guide concerning the format of the defaults file. Use the "quiet flag" @-q@ if you want to skip all prompts.
 
 h3. Generate an Application Template With Your Own Layout
 
@@ -380,7 +380,7 @@ The @rails new@ command creates a new Rails application. If you want to use an a
 
 h2. Hacking the Gem
 
-See the "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html to learn how to customize the gem either for your own use or to share with others.
+See the "Guide to the Rails Apps Composer Gem":https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer to learn how to customize the gem either for your own use or to share with others.
 
 See the "CONTRIBUTING":https://github.com/RailsApps/rails_apps_composer/blob/master/CONTRIBUTING.textile file for details about how you can contribute fixes or new features.
 
@@ -404,7 +404,7 @@ h2. MIT License
 
 "MIT License":http://www.opensource.org/licenses/mit-license
 
-Copyright © 2012-2013 Daniel Kehoe
+Copyright © 2012-2014 Daniel Kehoe
 
 h2. Useful Links
 
