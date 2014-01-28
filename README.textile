@@ -70,6 +70,8 @@ If you choose the option of creating or using a project-specific RVM gemset, you
 
 If you answer "yes" to creating a project-specific gemset and you don't have the rvm gem installed, you will get an error during the generation process saying RVM cannot be loaded.
 
+Other gems which may be optionally used by rails_apps_composer, dependent upon which configuration options you choose (e.g. html2haml), are used after the rvm gemset is switched, and will thus be added to the rails app's Gemfile and used from that runtime.
+
 h2. Installation and Usage
 
 I recommend installing and using RVM, the "Ruby Version Manager":https://rvm.io/, to create a new gemset for rails_apps_composer. Using an RVM gemset will make it easier to identify and isolate incompatibilities among gems. RVM will install Ruby and set up a global gemset with a minimal set of gems.
