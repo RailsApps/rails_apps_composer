@@ -247,7 +247,7 @@ after_bundler do
     end
   end
   ## Figaro Gem
-  if prefs[:local_env_file]
+  if prefer :local_env_file, 'figaro'
     generate 'figaro:install'
     gsub_file 'config/application.yml', /# PUSHER_.*\n/, ''
     gsub_file 'config/application.yml', /# STRIPE_.*\n/, ''
@@ -258,6 +258,19 @@ after_bundler do
 # Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
 # For example, setting:
 # GMAIL_USERNAME: Your_Gmail_Username
+# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+
+FILE
+    end
+  end
+  ## Foreman Gem
+  if prefer :local_env_file, 'foreman'
+    create_file '.env' do <<-FILE
+# Add account credentials and API keys here.
+# This file should be listed in .gitignore to keep your settings secret!
+# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
+# For example, setting:
+# GMAIL_USERNAME=Your_Gmail_Username
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 
 FILE

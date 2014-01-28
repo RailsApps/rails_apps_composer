@@ -77,11 +77,19 @@ end
 
 ## LOCAL_ENV.YML FILE
 if config['local_env_file']
-  prefs[:local_env_file] = true
+  case config['local_env_file']
+  when 'figaro'
+    prefs[:local_env_file] = 'figaro'
+  when 'foreman'
+    prefs[:local_env_file] = 'foreman'
+  end
 end
-if prefs[:local_env_file]
-  say_wizard "recipe creating application.yml file for environment variables"
+if prefer :local_env_file, 'figaro'
+  say_wizard "recipe creating application.yml file for environment variables with figaro"
   add_gem 'figaro'
+elsif prefer :local_env_file, 'foreman'
+  say_wizard "recipe creating .env file for development environment variables with foreman"
+  add_gem 'foreman', :group => :development
 end
 
 ## BETTER ERRORS
@@ -182,8 +190,9 @@ config:
       type: boolean
       prompt: Create a GitHub repository?
   - local_env_file:
-      type: boolean
-      prompt: Use application.yml file for environment variables?
+      type: multiple_choice
+      prompt: Use file for environment variables?
+      choices: [ [None, none], [Use application.yml with Figaro, figaro], [Use .env with Foreman, foreman] ]
   - quiet_assets:
       type: boolean
       prompt: Reduce assets logger noise during development?
