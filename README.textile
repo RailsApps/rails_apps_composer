@@ -58,9 +58,15 @@ h4. Database
 
 Unless you use SQLite, which runs by default on Mac OS X, you'll need to have a database server running before you run rails_apps_composer. This is true if you want to use PostgreSQL, MySQL, or MongoDB. I recommend using SQLite if you don't want to set up a database server.
 
-h4. RVM
+h4. Gemsets and RVM
 
-If using the project-specific RVM gemset from the "extras" recipe, both RVM and the "rvm" gem are needed to be installed as well.
+Ordinarily, when you create a new Rails application, you work with a single set of gems. Before you create your Rails application, the rails gem must be installed in your Ruby environment. If you wish to use rails_apps_composer commands to generate a Rails application or template, you must also install the rails_apps_composer gem.
+
+The rails_apps_composer gem uses the @rails new@ command to create a new Rails application. The rails_apps_composer gem modifies the new Gemfile and runs Bundler to install the gems you want in your new application. The gems will be installed in your current Ruby environment (and must not conflict with other gems already installed).
+
+Some developers like to use RVM, the "Ruby Version Manager":https://rvm.io/, to manage gemsets. The "extras" recipe offers an option of creating or using a project-specific RVM gemset. That means rails_apps_composer will switch from an initial gemset to a new gemset during the process of creating your new application. If you choose the option of using the project-specific RVM gemset from the "extras" recipe, before you start you must be using RVM and you must install the rvm gem in addition to the rails and rails_apps_composer gems.
+
+If you choose the option of creating or using a project-specific RVM gemset, you will use two gemsets. First, the gems installed in the current Ruby environment (including rails and rails_apps_composer and perhaps rvm). Second, after the @rails new@ command creates a Gemfile, and before Bundler installs the gems you want, rails_apps_composer will use the rvm gem to use or create a new gemset that is specific to your new project.
 
 h2. Installation and Usage
 
