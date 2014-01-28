@@ -5,7 +5,13 @@ case config['admin']
     prefs[:admin] = 'rails_admin'
 end
 
-gem 'activeadmin' if prefer :admin, 'activeadmin'
+if prefer :admin, 'activeadmin'
+  if Rails::VERSION::MAJOR.to_s == "4"
+    gem 'activeadmin', github: 'gregbell/active_admin'
+  else
+    gem 'activeadmin'
+  end
+end
 gem 'rails_admin' if prefer :admin, 'rails_admin'
 
 after_bundler do
