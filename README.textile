@@ -68,6 +68,8 @@ Some developers like to use RVM, the "Ruby Version Manager":https://rvm.io/, to 
 
 If you choose the option of creating or using a project-specific RVM gemset, you will use two gemsets. First, the gems installed in the current Ruby environment (including rails and rails_apps_composer and perhaps rvm). Second, after the @rails new@ command creates a Gemfile, and before Bundler installs the gems you want, rails_apps_composer will use the rvm gem to use or create a new gemset that is specific to your new project.
 
+If you answer "yes" to creating a project-specific gemset and you don't have the rvm gem installed, you will get an error during the generation process saying RVM cannot be loaded.
+
 h2. Installation and Usage
 
 I recommend installing and using RVM, the "Ruby Version Manager":https://rvm.io/, to create a new gemset for rails_apps_composer. Using an RVM gemset will make it easier to identify and isolate incompatibilities among gems. RVM will install Ruby and set up a global gemset with a minimal set of gems.
