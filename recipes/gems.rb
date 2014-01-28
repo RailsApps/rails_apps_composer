@@ -180,6 +180,7 @@ after_bundler do
     if prefer :database, 'postgresql'
       begin
         pg_username = prefs[:pg_username] || ask_wizard("Username for PostgreSQL?(leave blank to use the app name)")
+        pg_host = prefs[:pg_username] || ask_wizard("Host for PostgreSQL in database.yml? (leave blank to use default socket connection)")
         if pg_username.blank?
           say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
           run "createuser --createdb #{app_name}" if prefer :database, 'postgresql'
@@ -189,6 +190,10 @@ after_bundler do
           pg_password = prefs[:pg_password] || ask_wizard("Password for PostgreSQL user #{pg_username}?")
           gsub_file "config/database.yml", /password:/, "password: #{pg_password}"
           say_wizard "set config/database.yml for username/password #{pg_username}/#{pg_password}"
+        end
+        if pg_host.present?
+          gsub_file "config/database.yml", /#host: localhost/, "host: #{pg_host}"
+          gsub_file "config/database.yml", /test:/, "test:\n  host: #{pg_host}"
         end
       rescue StandardError => e
         raise "unable to create a user for PostgreSQL, reason: #{e}"
