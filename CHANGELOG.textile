@@ -1,8 +1,8 @@
 h1. CHANGELOG
 
-h2. 2.4.22 unreleased
+h2. 2.4.22 January 28, 2014
 
-* new recipe to install either 'activeadmin' or 'rails_admin' gems (contributed by Steve Schwartz)
+* new recipe for 'activeadmin' or 'rails_admin' (contributed by Steve Schwartz)
 * added 'foreman' as alternative to Figaro gem (contributed by Steve Schwartz)
 * added postgres host config prompt (contributed by Steve Schwartz)
 
