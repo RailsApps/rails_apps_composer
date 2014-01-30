@@ -21,10 +21,12 @@ after_everything do
   # Diagnostics
   gsub_file "README.textile", /recipes that are known/, "recipes that are NOT known" if diagnostics[:recipes] == 'fail'
   gsub_file "README.textile", /preferences that are known/, "preferences that are NOT known" if diagnostics[:prefs] == 'fail'
-  gsub_file "README.textile", /RECIPES/, recipes.sort.inspect
-  gsub_file "README.textile", /PREFERENCES/, prefs.inspect
-  gsub_file "README", /RECIPES/, recipes.sort.inspect
-  gsub_file "README", /PREFERENCES/, prefs.inspect
+  print_recipes = recipes.sort.map { |r| "\n* #{r}" }.join('')
+  print_preferences = prefs.map { |k, v| "\n* #{k}: #{v}" }.join('')
+  gsub_file "README.textile", /RECIPES/, print_recipes
+  gsub_file "README.textile", /PREFERENCES/, print_preferences
+  gsub_file "README", /RECIPES/, print_recipes
+  gsub_file "README", /PREFERENCES/, print_preferences
 
   # Ruby on Rails
   gsub_file "README.textile", /\* Ruby/, "* Ruby version #{RUBY_VERSION}"
