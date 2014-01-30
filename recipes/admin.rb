@@ -9,7 +9,7 @@ case config['admin']
 end
 
 if prefer :admin, 'activeadmin'
-  if Rails::VERSION::MAJOR.to_s == "4"
+  if rails_4?
     gem 'activeadmin', github: 'gregbell/active_admin'
   else
     gem 'activeadmin'
@@ -18,7 +18,7 @@ end
 gem 'rails_admin' if prefer :admin, 'rails_admin'
 
 after_bundler do
-  if prefer :admin, 'active_admin'
+  if prefer :admin, 'activeadmin'
     say_wizard "recipe installing activeadmin"
     generate 'active_admin:install'
   end
@@ -26,6 +26,9 @@ after_bundler do
     say_wizard "recipe installing rails_admin"
     generate 'rails_admin:install'
   end
+  ### GIT
+  git :add => '-A' if prefer :git, true
+  git :commit => %Q(-qm "rails_apps_composer: installed #{prefs[:admin]}") if prefer :git, true
 end
 
 __END__
