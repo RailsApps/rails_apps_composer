@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.23 unreleased
+
+* change display of recipes and preferences in README (contributed by Steve Schwartz)
+
 h2. 2.4.22 January 28, 2014
 
 * new recipe for 'activeadmin' or 'rails_admin' (contributed by Steve Schwartz)
