@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.4.23 unreleased
 
+* new recipe 'email_dev' for mailcatcher and mail_view (contributed by Steve Schwartz)
 * fixes for 'activeadmin' recipe (contributed by Steve Schwartz)
 * add Foreman procfile (contributed by Steve Schwartz)
 * use 'foreman run' to get ENV variables if Foreman is selected (contributed by Steve Schwartz)
