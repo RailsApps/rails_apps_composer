@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.4.23 unreleased
 
+* don't send emails in development mode (contributed by Steve Schwartz)
 * new recipe 'email_dev' for mailcatcher and mail_view (contributed by Steve Schwartz)
 * fixes for 'activeadmin' recipe (contributed by Steve Schwartz)
 * add Foreman procfile (contributed by Steve Schwartz)
