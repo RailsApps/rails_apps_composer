@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.4.23 unreleased
 
+* fixes for 'activeadmin' recipe (contributed by Steve Schwartz)
 * add Foreman procfile (contributed by Steve Schwartz)
 * use 'foreman run' to get ENV variables if Foreman is selected (contributed by Steve Schwartz)
 * change display of recipes and preferences in README (contributed by Steve Schwartz)
