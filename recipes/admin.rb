@@ -9,7 +9,7 @@ case config['admin']
 end
 
 if prefer :admin, 'activeadmin'
-  if Rails::VERSION::MAJOR.to_s == "4"
+  if rails_4?
     gem 'activeadmin', github: 'gregbell/active_admin'
   else
     gem 'activeadmin'
