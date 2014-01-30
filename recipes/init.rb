@@ -138,7 +138,11 @@ FILE
   end
   ## DEVISE-INVITABLE
   if prefer :devise_modules, 'invitable'
-    run 'bundle exec rake db:migrate'
+    if prefer :local_env_file, 'foreman'
+      run 'foreman run bundle exec rake db:migrate'
+    else
+      run 'bundle exec rake db:migrate'
+    end
     generate 'devise_invitable user'
   end
   ### APPLY DATABASE SEED ###
@@ -146,18 +150,32 @@ FILE
     unless prefer :database, 'default'
       ## ACTIVE_RECORD
       say_wizard "applying migrations and seeding the database"
-      run 'bundle exec rake db:migrate'
-      run 'bundle exec rake db:test:prepare'
+      if prefer :local_env_file, 'foreman'
+        run 'foreman run bundle exec rake db:migrate'
+        run 'foreman run bundle exec rake db:test:prepare'
+      else
+        run 'bundle exec rake db:migrate'
+        run 'bundle exec rake db:test:prepare'
+      end
     end
   else
     ## MONGOID
     say_wizard "dropping database, creating indexes and seeding the database"
-    run 'bundle exec rake db:drop'
-    run 'bundle exec rake db:mongoid:create_indexes'
+    if prefer :local_env_file, 'foreman'
+      run 'foreman run bundle exec rake db:drop'
+      run 'foreman run bundle exec rake db:mongoid:create_indexes'
+    else
+      run 'bundle exec rake db:drop'
+      run 'bundle exec rake db:mongoid:create_indexes'
+    end
   end
   unless prefs[:skip_seeds]
     unless prefer :railsapps, 'rails-recurly-subscription-saas'
-      run 'bundle exec rake db:seed'
+      if prefer :local_env_file, 'foreman'
+        run 'foreman run bundle exec rake db:seed'
+      else
+        run 'bundle exec rake db:seed'
+      end
     end
   end
   ### GIT ###
