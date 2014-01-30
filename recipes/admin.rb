@@ -26,6 +26,9 @@ after_bundler do
     say_wizard "recipe installing rails_admin"
     generate 'rails_admin:install'
   end
+  ### GIT
+  git :add => '-A' if prefer :git, true
+  git :commit => %Q(-qm "rails_apps_composer: installed #{prefs[:admin]}") if prefer :git, true
 end
 
 __END__
