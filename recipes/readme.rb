@@ -74,8 +74,8 @@ after_everything do
   gsub_file "README.md", /Authorization: None/, "Authorization: CanCan" if prefer :authorization, 'cancan'
 
   # Admin
-  append_file "README.md", "\nAdmin\n-----\n\n Admin: ActiveAdmin" if prefer :admin, 'activeadmin'
-  append_file "README.md", "\nAdmin\n-----\n\n Admin: RailsAdmin" if prefer :admin, 'rails_admin'
+  gsub_file "README.md", /Admin: None/, "Admin: ActiveAdmin" if prefer :admin, 'activeadmin'
+  gsub_file "README.md", /Admin: None/, "Admin: RailsAdmin" if prefer :admin, 'rails_admin'
 
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: add README files"' if prefer :git, true
