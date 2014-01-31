@@ -10,12 +10,12 @@ end
 
 if prefer :admin, 'activeadmin'
   if rails_4?
-    gem 'activeadmin', github: 'gregbell/active_admin'
+    add_gem 'activeadmin', github: 'gregbell/active_admin'
   else
-    gem 'activeadmin'
+    add_gem 'activeadmin'
   end
 end
-gem 'rails_admin' if prefer :admin, 'rails_admin'
+add_gem 'rails_admin' if prefer :admin, 'rails_admin'
 
 after_bundler do
   if prefer :admin, 'activeadmin'
