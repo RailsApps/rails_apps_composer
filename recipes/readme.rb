@@ -62,10 +62,13 @@ after_everything do
     gsub_file "README.md", /Gmail/, "SMTP" if prefer :email, 'smtp'
     gsub_file "README.md", /Gmail/, "SendGrid" if prefer :email, 'sendgrid'
     gsub_file "README.md", /Gmail/, "Mandrill" if prefer :email, 'mandrill'
+    gsub_file "README.md", /Email delivery is disabled in development./, "Email delivery is configured via MailCatcher in development." if prefer :mailcatcher, true
+    insert_into_file 'README.md', "\nEmail rendering in development enabled via MailView.", :after => /Email delivery is.*\n/ if prefer :mail_view, true
   else
     gsub_file "README.md", /Email/, ""
     gsub_file "README.md", /-----/, ""
     gsub_file "README.md", /The application is configured to send email using a Gmail account./, ""
+    gsub_file "README.md", /Email delivery is disabled in development./, ""
   end
 
   # Authentication and Authorization
