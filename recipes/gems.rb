@@ -66,7 +66,7 @@ if prefer :unit_test, 'rspec'
   add_gem 'database_cleaner', '1.0.1', :group => :test
   if prefer :orm, 'mongoid'
     if rails_4?
-      add_gem 'mongoid-rspec', '>= 1.6.0', github: 'evansagge/mongoid-rspec', :group => :test
+      add_gem 'mongoid-rspec', '>= 1.10.0', :group => :test
     else
       add_gem 'mongoid-rspec', :group => :test
     end
