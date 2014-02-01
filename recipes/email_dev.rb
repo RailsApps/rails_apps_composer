@@ -6,12 +6,12 @@ prefs[:mail_view] = true if config['mail_view']
 
 if prefs[:mailcatcher]
   if rails_4?
-    gem 'mailcatcher', github: 'sj26/mailcatcher', group: :development
+    add_gem 'mailcatcher', github: 'sj26/mailcatcher', group: :development
   else
-    gem 'mailcatcher', group: :development
+    add_gem 'mailcatcher', group: :development
   end
 end
-gem 'mail_view', group: :development if prefs[:mail_view]
+add_gem 'mail_view', group: :development if prefs[:mail_view]
 
 after_bundler do
   if prefs[:mailcatcher]
