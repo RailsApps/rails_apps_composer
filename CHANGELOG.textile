@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.4.24 unreleased
 
+* fix Rolify generator
 * use Markdown for README (contributed by Steve Schwartz)
 
 h2. 2.4.23 January 30, 2014
