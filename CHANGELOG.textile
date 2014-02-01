@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.24 unreleased
+h2. 2.4.24 February 1, 2014
 
 * fix issue with mongoid-rspec version
 * fix Rolify generator
