@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.25 unreleased
+
+* set email ports to 587 instead of 25 (contributed by mazlix)
+
 h2. 2.4.24 February 1, 2014
 
 * fix issue with mongoid-rspec version
