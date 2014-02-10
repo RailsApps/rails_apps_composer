@@ -82,7 +82,7 @@ TEXT
 \n
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",
-    port: 25,
+    port: 587,
     domain: ENV["DOMAIN_NAME"],
     authentication: "plain",
     user_name: ENV["SENDGRID_USERNAME"],
@@ -98,7 +98,7 @@ TEXT
   \n
     config.action_mailer.smtp_settings = {
       :address   => "smtp.mandrillapp.com",
-      :port      => 25,
+      :port      => 587,
       :user_name => ENV["MANDRILL_USERNAME"],
       :password  => ENV["MANDRILL_APIKEY"]
     }
