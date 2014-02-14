@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.4.25 unreleased
 
+* add support for Phusion Passenger
 * add 'rails-omniauth' example application to 'apps4' recipe
 * set email ports to 587 instead of 25 (contributed by mazlix)
 
