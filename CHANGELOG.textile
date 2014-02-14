@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.25 unreleased
+h2. 2.4.25 February 13, 2014
 
 * add support for Phusion Passenger
 * add 'rails-omniauth' example application to 'apps4' recipe
