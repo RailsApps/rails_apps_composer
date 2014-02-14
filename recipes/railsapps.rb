@@ -31,7 +31,8 @@ when "4"
         [["learn-rails", "learn-rails"],
         ["rails-bootstrap", "rails-bootstrap"],
         ["rails-foundation", "rails-foundation"],
-        ["rails-devise", "rails-devise"]]
+        ["rails-devise", "rails-devise"],
+        ["rails-omniauth", "rails-omniauth"]]
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
         [["continue", "none"]]
@@ -116,6 +117,19 @@ case prefs[:apps4]
     prefs[:authentication] = 'devise'
     prefs[:authorization] = false
     prefs[:starter_app] = false
+    prefs[:quiet_assets] = true
+    prefs[:local_env_file] = 'figaro'
+    prefs[:better_errors] = true
+  when 'rails-omniauth'
+    prefs[:git] = true
+    prefs[:unit_test] = false
+    prefs[:integration] = false
+    prefs[:fixtures] = false
+    prefs[:email] = 'none'
+    prefs[:authentication] = 'omniauth'
+    prefs[:authorization] = 'none'
+    prefs[:starter_app] = false
+    prefs[:form_builder] = 'none'
     prefs[:quiet_assets] = true
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true

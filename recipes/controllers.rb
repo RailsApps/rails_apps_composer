@@ -5,8 +5,7 @@ after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### APPLICATION_CONTROLLER ###
   if prefer :authentication, 'omniauth'
-    #copy_from_repo 'app/controllers/application_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-    copy_from_repo 'app/controllers/application_controller-omniauth.rb', :prefs => 'omniauth'
+    copy_from_repo 'app/controllers/application_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
   end
   if prefer :authorization, 'cancan'
     inject_into_file 'app/controllers/application_controller.rb', :before => "\nend" do <<-RUBY
@@ -19,10 +18,7 @@ RUBY
   end
   ### HOME_CONTROLLER ###
   if ['home_app','users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
-    generate(:controller, "home index")
-  end
-  if ['users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
-    gsub_file 'app/controllers/home_controller.rb', /def index/, "def index\n    @users = User.all"
+    generate(:controller, "home")
   end
   ### USERS_CONTROLLER ###
   case prefs[:starter_app]
@@ -30,13 +26,21 @@ RUBY
       if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
         copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
       elsif prefer :authentication, 'omniauth'
-        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+        if rails_4?
+          copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
+        else
+          copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+        end
       end
     when 'admin_app'
       if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
         copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
       elsif prefer :authentication, 'omniauth'
-        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+        if rails_4?
+          copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
+        else
+          copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+        end
       end
     when 'subdomains_app'
       copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/'
@@ -51,7 +55,7 @@ RUBY
   ### SESSIONS_CONTROLLER ###
   if prefer :authentication, 'omniauth'
     filename = 'app/controllers/sessions_controller.rb'
-    copy_from_repo filename, :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+    copy_from_repo filename, :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
     gsub_file filename, /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
     if prefer :authorization, 'cancan'
       inject_into_file filename, "    user.add_role :admin if User.count == 1 # make the first user an admin\n", :after => "session[:user_id] = user.id\n"

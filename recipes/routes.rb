@@ -20,8 +20,11 @@ after_bundler do
     end
     ## OMNIAUTH
     if prefer :authentication, 'omniauth'
-      copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-      gsub_file 'config/routes.rb', /match/, 'get' if rails_4?
+      if rails_4?
+        copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
+      else
+        copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+      end
     end
   end
   ### SUBDOMAINS ###

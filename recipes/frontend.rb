@@ -36,13 +36,6 @@ after_everything do
   # create navigation links using the rails_layout gem
   generate 'layout:navigation -f'
   # replace with specialized navigation partials
-  if prefer :authentication, 'omniauth'
-    if prefer :authorization, 'cancan'
-      copy_from 'https://raw.github.com/RailsApps/rails-composer/master/files/app/views/layouts/_navigation-cancan-omniauth.html.erb', 'app/views/layouts/_navigation.html.erb'
-    else
-      copy_from_repo 'app/views/layouts/_navigation-omniauth.html.erb', :prefs => 'omniauth'
-    end
-  end
   copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'
 
   ### GIT ###
