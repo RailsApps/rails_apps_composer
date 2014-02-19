@@ -84,7 +84,7 @@ if config['local_env_file']
     prefs[:local_env_file] = 'foreman'
   end
 end
-if prefer :local_env_file, 'figaro'
+if prefer :local_env_file, 'figaro' and not rails_4_1?
   say_wizard "recipe creating application.yml file for environment variables with figaro"
   add_gem 'figaro'
 elsif prefer :local_env_file, 'foreman'

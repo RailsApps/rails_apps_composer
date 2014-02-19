@@ -255,7 +255,7 @@ after_bundler do
     end
   end
   ## Figaro Gem
-  if prefer :local_env_file, 'figaro'
+  if prefer :local_env_file, 'figaro' and not rails_4_1?
     generate 'figaro:install'
     gsub_file 'config/application.yml', /# PUSHER_.*\n/, ''
     gsub_file 'config/application.yml', /# STRIPE_.*\n/, ''

@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.26 February 18, 2014
+
+* don't install the Figaro gem under Rails 4.1
+
 h2. 2.4.25 February 13, 2014
 
 * add support for Phusion Passenger
