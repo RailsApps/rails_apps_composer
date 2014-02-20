@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.4.27 unreleased
 
+* for Rails 4.1, use Devise master pending next release of Devise (see issue #282)
 * specify 'foundation-rails 5.0.3.1' pending resolution of issue #281
 
 h2. 2.4.26 February 18, 2014

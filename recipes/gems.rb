@@ -124,7 +124,13 @@ end
 add_gem 'sendgrid' if prefer :email, 'sendgrid'
 
 ## Authentication (Devise)
-add_gem 'devise' if prefer :authentication, 'devise'
+if prefer :authentication, 'devise'
+  if rails_4_1?
+    add_gem 'devise', "github: 'plataformatec/devise'"
+  else
+    add_gem 'devise'
+  end
+end
 add_gem 'devise_invitable' if prefer :devise_modules, 'invitable'
 
 ## Authentication (OmniAuth)
