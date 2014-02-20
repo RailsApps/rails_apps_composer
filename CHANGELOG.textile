@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.27 unreleased
+
+* specify 'foundation-rails 5.0.3.1' pending resolution of issue #281
+
 h2. 2.4.26 February 18, 2014
 
 * don't install the Figaro gem under Rails 4.1
