@@ -126,7 +126,7 @@ add_gem 'sendgrid' if prefer :email, 'sendgrid'
 ## Authentication (Devise)
 if prefer :authentication, 'devise'
   if rails_4_1?
-    add_gem 'devise', "github: 'plataformatec/devise'"
+    add_gem 'devise', :github => 'plataformatec/devise'
   else
     add_gem 'devise'
   end
