@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.28 unreleased
+h2. 2.4.28 February 20, 2014
 
 * issue #282 resolved, newest Devise release supports Rails 4.1
 
