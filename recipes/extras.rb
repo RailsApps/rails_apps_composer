@@ -84,9 +84,13 @@ if config['local_env_file']
     prefs[:local_env_file] = 'foreman'
   end
 end
-if prefer :local_env_file, 'figaro' and not rails_4_1?
+if prefer :local_env_file, 'figaro'
   say_wizard "recipe creating application.yml file for environment variables with figaro"
-  add_gem 'figaro'
+  if rails_4_1?
+    add_gem 'figaro', :github => 'laserlemon/figaro'
+  else
+    add_gem 'figaro'
+  end
 elsif prefer :local_env_file, 'foreman'
   say_wizard "recipe creating .env file for development environment variables with foreman"
   add_gem 'foreman', :group => :development
@@ -191,8 +195,8 @@ config:
       prompt: Create a GitHub repository?
   - local_env_file:
       type: multiple_choice
-      prompt: Use file for environment variables?
-      choices: [ [None, none], [Use application.yml with Figaro, figaro], [Use .env with Foreman, foreman] ]
+      prompt: Add gem and file for environment variables?
+      choices: [ [None, none], [Add .env with Foreman, foreman], [Add application.yml with Figaro, figaro]]
   - quiet_assets:
       type: boolean
       prompt: Reduce assets logger noise during development?

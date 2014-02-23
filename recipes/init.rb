@@ -19,7 +19,7 @@ after_everything do
   end
   append_file 'config/application.yml', credentials if prefer :local_env_file, 'figaro' and not rails_4_1?
   append_file '.env', credentials.gsub(': ', '=') if prefer :local_env_file, 'foreman'
-  if prefer :local_env_file, 'figaro' and not rails_4_1?
+  if prefer :local_env_file, 'figaro'
     ## DEFAULT USER
     unless prefer :starter_app, false
       append_file 'config/application.yml' do <<-FILE
@@ -67,13 +67,13 @@ FILE
   ### SUBDOMAINS ###
   copy_from_repo 'config/application.yml', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
   ### APPLICATION.EXAMPLE.YML ###
-  if prefer :local_env_file, 'figaro' and not rails_4_1?
+  if prefer :local_env_file, 'figaro'
     copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
   elsif prefer :local_env_file, 'foreman'
     copy_file destination_root + '/.env', destination_root + '/.env.example'
   end
   ### DATABASE SEED ###
-  if prefer :local_env_file, 'figaro' and not rails_4_1?
+  if prefer :local_env_file, 'figaro'
     append_file 'db/seeds.rb' do <<-FILE
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
