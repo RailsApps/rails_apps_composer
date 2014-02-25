@@ -159,12 +159,6 @@ if prefer :apps4, 'rails-devise'
     say_wizard "recipe running after 'bundle install'"
     repo = 'https://raw.github.com/RailsApps/rails-devise/master/'
 
-    # >-------------------------------[ Init ]--------------------------------<
-
-    copy_from_repo 'config/application.yml', :repo => repo
-    remove_file 'config/application.example.yml'
-    copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
-
     # >-------------------------------[ Controllers ]--------------------------------<
 
     copy_from_repo 'app/controllers/home_controller.rb', :repo => repo
@@ -219,12 +213,6 @@ if prefer :apps4, 'rails-omniauth'
   after_bundler do
     say_wizard "recipe running after 'bundle install'"
     repo = 'https://raw.github.com/RailsApps/rails-omniauth/master/'
-
-    # >-------------------------------[ Init ]--------------------------------<
-
-    copy_from_repo 'config/application.yml', :repo => repo
-    remove_file 'config/application.example.yml'
-    copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
 
     # >-------------------------------[ Models ]--------------------------------<
 

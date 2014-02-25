@@ -27,12 +27,16 @@ when "4"
     ["I want to build my own application", "none"]] unless prefs.has_key? :apps4
   case prefs[:apps4]
     when 'railsapps'
-      prefs[:apps4] = multiple_choice "Starter apps for Rails 4.0. More to come.",
-        [["learn-rails", "learn-rails"],
-        ["rails-bootstrap", "rails-bootstrap"],
-        ["rails-foundation", "rails-foundation"],
-        ["rails-devise", "rails-devise"],
-        ["rails-omniauth", "rails-omniauth"]]
+      if rails_4_1?
+      prefs[:apps4] = multiple_choice "Starter apps for Rails 4.1. More to come.",
+        [["rails-devise", "rails-devise"]]
+      else
+        prefs[:apps4] = multiple_choice "Starter apps for Rails 4.0. More to come.",
+          [["learn-rails", "learn-rails"],
+          ["rails-bootstrap", "rails-bootstrap"],
+          ["rails-foundation", "rails-foundation"],
+          ["rails-omniauth", "rails-omniauth"]]
+      end
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
         [["continue", "none"]]
@@ -118,7 +122,7 @@ case prefs[:apps4]
     prefs[:authorization] = false
     prefs[:starter_app] = false
     prefs[:quiet_assets] = true
-    prefs[:local_env_file] = 'figaro'
+    prefs[:local_env_file] = false
     prefs[:better_errors] = true
   when 'rails-omniauth'
     prefs[:git] = true

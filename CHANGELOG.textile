@@ -2,7 +2,8 @@ h1. CHANGELOG
 
 h2. 2.4.29 unreleased
 
-* for Rails 4.1, use the Figaro master pending next release of Figaro
+* update 'rails-devise' example application for Rails 4.1
+* for Rails 4.1, use the Figaro master pending next release of Figaro (fixes #280)
 
 h2. 2.4.28 February 20, 2014
 

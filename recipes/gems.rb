@@ -263,7 +263,7 @@ after_bundler do
 # Add account credentials and API keys here.
 # See http://railsapps.github.io/rails-environment-variables.html
 # This file should be listed in .gitignore to keep your settings secret!
-# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
+# Each entry sets a local environment variable.
 # For example, setting:
 # GMAIL_USERNAME: Your_Gmail_Username
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
@@ -276,7 +276,7 @@ FILE
     create_file '.env' do <<-FILE
 # Add account credentials and API keys here.
 # This file should be listed in .gitignore to keep your settings secret!
-# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
+# Each entry sets a local environment variable.
 # For example, setting:
 # GMAIL_USERNAME=Your_Gmail_Username
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
