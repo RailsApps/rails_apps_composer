@@ -49,8 +49,8 @@ after_everything do
   gsub_file "README.md", /RSpec/, "RSpec and Machinist" if prefer :fixtures, 'machinist'
 
   # Front-end Framework
-  gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Twitter Bootstrap 2.3 (Sass)" if prefer :frontend, 'bootstrap2'
-  gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Twitter Bootstrap 3.0 (Sass)" if prefer :frontend, 'bootstrap3'
+  gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Bootstrap 2.3 (Sass)" if prefer :frontend, 'bootstrap2'
+  gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Bootstrap 3.0 (Sass)" if prefer :frontend, 'bootstrap3'
   gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Zurb Foundation 4" if prefer :frontend, 'foundation4'
   gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Zurb Foundation 5" if prefer :frontend, 'foundation5'
 

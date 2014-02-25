@@ -241,10 +241,10 @@ after_bundler do
   if prefer :form_builder, 'simple_form'
     case prefs[:frontend]
       when 'bootstrap2'
-        say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
+        say_wizard "recipe installing simple_form for use with Bootstrap"
         generate 'simple_form:install --bootstrap'
       when 'bootstrap3'
-        say_wizard "recipe installing simple_form for use with Twitter Bootstrap"
+        say_wizard "recipe installing simple_form for use with Bootstrap"
         generate 'simple_form:install --bootstrap'
       when 'foundation4'
         say_wizard "recipe installing simple_form for use with Zurb Foundation"

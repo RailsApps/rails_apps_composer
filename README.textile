@@ -422,9 +422,9 @@ Copyright © 2012-2014 Daniel Kehoe
 h2. Useful Links
 
 |_. Getting Started |_. Articles |_. Tutorials |
-| "Learn Rails":http://learn-rails.com/ | "Twitter Bootstrap and Rails":http://railsapps.github.io/twitter-bootstrap-rails.html | "Rails and Bootstrap":http://railsapps.github.io/rails-bootstrap/ |
+| "Learn Rails":http://learn-rails.com/ | "Bootstrap and Rails":http://railsapps.github.io/twitter-bootstrap-rails.html | "Rails and Bootstrap":http://railsapps.github.io/rails-bootstrap/ |
 | "Ruby and Rails":http://railsapps.github.io/ruby-and-rails.html | "Analytics for Rails":http://railsapps.github.io/rails-google-analytics.html | |
-| "What is Ruby on Rails?":http://railsapps.github.io/what-is-ruby-rails.html | "Heroku and Rails":http://railsapps.github.io/rails-heroku-tutorial.html | "Devise with CanCan and Twitter Bootstrap":https://tutorials.railsapps.org/rails3-bootstrap-devise-cancan |
+| "What is Ruby on Rails?":http://railsapps.github.io/what-is-ruby-rails.html | "Heroku and Rails":http://railsapps.github.io/rails-heroku-tutorial.html | "Devise with CanCan and Bootstrap":https://tutorials.railsapps.org/rails3-bootstrap-devise-cancan |
 | "Rails Tutorial":https://tutorials.railsapps.org/rails-tutorial | "JavaScript and Rails":http://railsapps.github.io/rails-javascript-include-external.html | "Rails Membership Site with Stripe":https://tutorials.railsapps.org/rails-stripe-membership-saas |
 | "Installing Rails":http://railsapps.github.io/installing-rails.html | "Rails Environment Variables":http://railsapps.github.io/rails-environment-variables.html | "Rails Subscription Site with Recurly":https://tutorials.railsapps.org/rails-recurly-subscription-saas |
 | "Updating Rails":http://railsapps.github.io/updating-rails.html | "Git and Rails":http://railsapps.github.io/rails-git.html | "Startup Prelaunch Signup Application":http://railsapps.github.io/tutorial-rails-prelaunch-signup.html |
