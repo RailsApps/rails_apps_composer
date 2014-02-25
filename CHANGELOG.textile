@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.31 unreleased
+
+* generate Devise registration forms after database migrations are complete
+
 h2. 2.4.30 February 24, 2014
 
 * change prompts

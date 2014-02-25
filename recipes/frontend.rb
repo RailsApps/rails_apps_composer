@@ -16,32 +16,11 @@ after_bundler do
     when 'foundation5'
       generate 'layout:install foundation5 -f'
   end
-  # generate Devise views with appropriate styling
-  if prefer :authentication, 'devise'
-    case prefs[:frontend]
-      when 'bootstrap3'
-        generate 'layout:devise bootstrap3 -f'
-      when 'foundation5'
-        generate 'layout:devise foundation5 -f'
-    end
-  end
 
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: front-end framework"' if prefer :git, true
 end # after_bundler
-
-after_everything do
-  say_wizard "recipe running after everything"
-  # create navigation links using the rails_layout gem
-  generate 'layout:navigation -f'
-  # replace with specialized navigation partials
-  copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'
-
-  ### GIT ###
-  git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: navigation links"' if prefer :git, true
-end # after_everything
 
 __END__
 
