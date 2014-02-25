@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.30 February 24, 2014
+
+* change prompts
+
 h2. 2.4.29 February 24, 2014
 
 * update 'rails-devise' example application for Rails 4.1
