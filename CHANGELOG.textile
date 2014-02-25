@@ -4,6 +4,7 @@ h2. 2.4.29 unreleased
 
 * update 'rails-devise' example application for Rails 4.1
 * for Rails 4.1, use the Figaro master pending next release of Figaro (fixes #280)
+* remove 'rake db:test:prepare' (deprecated)
 
 h2. 2.4.28 February 20, 2014
 

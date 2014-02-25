@@ -40,7 +40,6 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
     copy_from_repo 'db/seeds.rb', :repo => repo
     copy_from_repo 'config/initializers/stripe.rb', :repo => repo
     run 'bundle exec rake db:seed'
-    run 'bundle exec rake db:test:prepare'
 
     # >-------------------------------[ Controllers ]--------------------------------<
     copy_from_repo 'app/controllers/home_controller.rb', :repo => repo
@@ -143,7 +142,6 @@ if prefer :railsapps, 'rails-recurly-subscription-saas'
     copy_from_repo 'db/seeds.rb', :repo => repo
     copy_from_repo 'config/initializers/recurly.rb', :repo => repo
     run 'bundle exec rake db:seed'
-    run 'bundle exec rake db:test:prepare'
 
     # >-------------------------------[ Controllers ]--------------------------------<
     copy_from_repo 'app/controllers/home_controller.rb', :repo => repo

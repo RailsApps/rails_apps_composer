@@ -142,10 +142,8 @@ FILE
       say_wizard "applying migrations and seeding the database"
       if prefer :local_env_file, 'foreman'
         run 'foreman run bundle exec rake db:migrate'
-        run 'foreman run bundle exec rake db:test:prepare'
       else
         run 'bundle exec rake db:migrate'
-        run 'bundle exec rake db:test:prepare'
       end
     end
   else

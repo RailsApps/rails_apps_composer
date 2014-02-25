@@ -50,7 +50,6 @@ if prefer :railsapps, 'rails-prelaunch-signup'
     copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
     copy_from_repo 'db/seeds.rb', :repo => repo
     run 'bundle exec rake db:seed'
-    run 'bundle exec rake db:test:prepare'
 
     # >-------------------------------[ Controllers ]--------------------------------<
 
