@@ -43,7 +43,7 @@ if prefer :railsapps, 'rails-stripe-membership-saas'
 
     # >-------------------------------[ Controllers ]--------------------------------<
     copy_from_repo 'app/controllers/home_controller.rb', :repo => repo
-    generate 'controller content silver gold platinum --skip-stylesheets --skip-javascripts'
+    generate 'controller content silver gold platinum --skip-assets --skip-helper'
     copy_from_repo 'app/controllers/content_controller.rb', :repo => repo
     copy_from_repo 'app/controllers/registrations_controller.rb', :repo => repo
     copy_from_repo 'app/controllers/application_controller.rb', :repo => repo
@@ -145,7 +145,7 @@ if prefer :railsapps, 'rails-recurly-subscription-saas'
 
     # >-------------------------------[ Controllers ]--------------------------------<
     copy_from_repo 'app/controllers/home_controller.rb', :repo => repo
-    generate 'controller content silver gold platinum --skip-stylesheets --skip-javascripts'
+    generate 'controller content silver gold platinum --skip-assets --skip-helper'
     copy_from_repo 'app/controllers/content_controller.rb', :repo => repo
     copy_from_repo 'app/controllers/registrations_controller.rb', :repo => repo
     copy_from_repo 'app/controllers/application_controller.rb', :repo => repo

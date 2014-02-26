@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.4.32 unreleased
 
 * update 'rails-omniauth' example application for Rails 4.1
+* skip helpers and assets when generating a controller
 
 h2. 2.4.31 February 24, 2014
 

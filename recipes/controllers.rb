@@ -18,7 +18,7 @@ RUBY
   end
   ### HOME_CONTROLLER ###
   if ['home_app','users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
-    generate(:controller, "home")
+    generate 'controller home --skip-assets --skip-helper'
   end
   ### USERS_CONTROLLER ###
   case prefs[:starter_app]
