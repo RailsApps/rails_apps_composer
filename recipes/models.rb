@@ -54,16 +54,18 @@ RUBY
   end
   ### OMNIAUTH ###
   if prefer :authentication, 'omniauth'
-    repo = 'https://raw.github.com/RailsApps/rails-omniauth/master/'
-    copy_from_repo 'config/initializers/omniauth.rb', :repo => repo
+    if rails_4_1?
+      copy_from_repo 'config/initializers/omniauth.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
+    else
+      copy_from_repo 'config/initializers/omniauth.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
+    end
     gsub_file 'config/initializers/omniauth.rb', /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
     if prefer :orm, 'mongoid'
-      repo = 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-      copy_from_repo 'app/models/user.rb', :repo => repo
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
     else
       generate 'model User name:string email:string provider:string uid:string'
       run 'bundle exec rake db:migrate'
-      copy_from_repo 'app/models/user.rb', :repo => repo
+      copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
     end
   end
   ### SUBDOMAINS ###

@@ -29,13 +29,13 @@ when "4"
     when 'railsapps'
       if rails_4_1?
       prefs[:apps4] = multiple_choice "Starter apps for Rails 4.1. More to come.",
-        [["rails-devise", "rails-devise"]]
+        [["rails-devise", "rails-devise"],
+        ["rails-omniauth", "rails-omniauth"]]
       else
-        prefs[:apps4] = multiple_choice "Starter apps for Rails 4.0. More to come.",
+        prefs[:apps4] = multiple_choice "Starter apps for Rails 4.0. Use Rails 4.1 for more.",
           [["learn-rails", "learn-rails"],
           ["rails-bootstrap", "rails-bootstrap"],
-          ["rails-foundation", "rails-foundation"],
-          ["rails-omniauth", "rails-omniauth"]]
+          ["rails-foundation", "rails-foundation"]]
       end
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
@@ -133,9 +133,8 @@ case prefs[:apps4]
     prefs[:authentication] = 'omniauth'
     prefs[:authorization] = 'none'
     prefs[:starter_app] = false
-    prefs[:form_builder] = 'none'
     prefs[:quiet_assets] = true
-    prefs[:local_env_file] = 'figaro'
+    prefs[:local_env_file] = false
     prefs[:better_errors] = true
 end
 
