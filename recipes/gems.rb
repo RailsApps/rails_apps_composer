@@ -141,6 +141,7 @@ if prefer :authorization, 'cancan'
   add_gem 'cancan'
   add_gem 'rolify'
 end
+add_gem 'pundit' if prefer :authorization, 'pundit'
 
 ## Form Builder
 add_gem 'simple_form' if prefer :form_builder, 'simple_form'

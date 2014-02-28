@@ -7,6 +7,9 @@ after_bundler do
   if prefer :authentication, 'omniauth'
     copy_from_repo 'app/controllers/application_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
   end
+  if prefer :authorization, 'pundit'
+    copy_from_repo 'app/controllers/application_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
+  end
   if prefer :authorization, 'cancan'
     inject_into_file 'app/controllers/application_controller.rb', :before => "\nend" do <<-RUBY
 \n
@@ -41,6 +44,10 @@ RUBY
         else
           copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
         end
+      end
+      if prefer :authorization, 'pundit'
+        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
+        copy_from_repo 'app/policies/user_policy.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
       end
     when 'subdomains_app'
       copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/'

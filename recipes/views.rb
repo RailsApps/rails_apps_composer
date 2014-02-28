@@ -37,7 +37,15 @@ after_bundler do
     copy_from_repo 'app/views/users/show.html.erb'
     copy_from_repo 'app/views/users/show-subdomains_app.html.erb', :prefs => 'subdomains_app'
     ## EDIT
-    copy_from_repo 'app/views/users/edit.html.erb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
+    if prefer :authentication, 'omniauth'
+      copy_from_repo 'app/views/users/edit.html.erb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
+    end
+  end
+  if (prefer :authorization, 'pundit') and  (prefer :starter_app, 'admin_app')
+    repo = 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
+    copy_from_repo 'app/views/users/_user.html.erb', :repo => repo
+    copy_from_repo 'app/views/users/index.html.erb', :repo => repo
+    copy_from_repo 'app/views/users/show.html.erb', :repo => repo
   end
   ### PROFILES ###
   copy_from_repo 'app/views/profiles/show-subdomains_app.html.erb', :prefs => 'subdomains_app'

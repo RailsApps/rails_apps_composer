@@ -71,6 +71,10 @@ RUBY
   ### SUBDOMAINS ###
   copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
   ### AUTHORIZATION ###
+  if prefer :authorization, 'pundit'
+    generate 'migration AddRoleToUsers role:integer'
+    copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
+  end
   if prefer :authorization, 'cancan'
     generate 'cancan:ability'
     if prefer :starter_app, 'admin_app'

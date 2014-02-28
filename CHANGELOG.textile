@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.33 unreleased
+
+* add 'rails-devise-pundit' example application to 'apps4' recipe
+
 h2. 2.4.32 February 26, 2014
 
 * update 'rails-omniauth' example application for Rails 4.1

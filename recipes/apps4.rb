@@ -204,6 +204,51 @@ if prefer :apps4, 'rails-devise'
   end # after_bundler
 end # rails-devise
 
+### RAILS-DEVISE-PUNDIT ####
+
+if prefer :apps4, 'rails-devise-pundit'
+
+  # >-------------------------------[ after_bundler ]--------------------------------<
+
+  after_bundler do
+    say_wizard "recipe running after 'bundle install'"
+    repo = 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
+
+    # >-------------------------------[ Controllers ]--------------------------------<
+
+    copy_from_repo 'app/controllers/home_controller.rb', :repo => repo
+
+    # >-------------------------------[ Views ]--------------------------------<
+
+    copy_from_repo 'app/views/home/index.html.erb', :repo => repo
+
+  end
+
+  # >-------------------------------[ after_everything ]--------------------------------<
+
+  after_everything do
+    say_wizard "recipe running after 'bundle install'"
+
+    # >-------------------------------[ Clean up starter app ]--------------------------------<
+
+    # remove commented lines and multiple blank lines from Gemfile
+    # thanks to https://github.com/perfectline/template-bucket/blob/master/cleanup.rb
+    gsub_file 'Gemfile', /#.*\n/, "\n"
+    gsub_file 'Gemfile', /\n^\s*\n/, "\n"
+    # remove commented lines and multiple blank lines from config/routes.rb
+    gsub_file 'config/routes.rb', /  #.*\n/, "\n"
+    gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
+    # GIT
+    git :add => '-A' if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: clean up starter app"' if prefer :git, true
+
+    ### GIT ###
+    git :add => '-A' if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: learn-rails app"' if prefer :git, true
+
+  end # after_bundler
+end # rails-devise-pundit
+
 ### RAILS-OMNIAUTH ####
 
 if prefer :apps4, 'rails-omniauth'

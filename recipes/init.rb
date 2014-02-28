@@ -71,7 +71,12 @@ after_everything do
   ### DATABASE SEED ###
   if (prefer :authentication, 'devise') and (rails_4_1?)
     copy_from_repo 'db/seeds.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise/master/'
-    copy_from_repo 'app/services/create_admin_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise/master/'
+    unless prefer :authorization, 'pundit'
+      copy_from_repo 'app/services/create_admin_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise/master/'
+    end
+  end
+  if prefer :authorization, 'pundit'
+    copy_from_repo 'app/services/create_admin_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
   end
   if prefer :local_env_file, 'figaro'
     append_file 'db/seeds.rb' do <<-FILE

@@ -29,8 +29,9 @@ when "4"
     when 'railsapps'
       if rails_4_1?
       prefs[:apps4] = multiple_choice "Starter apps for Rails 4.1. More to come.",
-        [["rails-devise", "rails-devise"],
-        ["rails-omniauth", "rails-omniauth"]]
+        [["rails-omniauth", "rails-omniauth"],
+        ["rails-devise", "rails-devise"],
+        ["rails-devise-pundit", "rails-devise-pundit"]]
       else
         prefs[:apps4] = multiple_choice "Starter apps for Rails 4.0. Use Rails 4.1 for more.",
           [["learn-rails", "learn-rails"],
@@ -121,6 +122,17 @@ case prefs[:apps4]
     prefs[:authentication] = 'devise'
     prefs[:authorization] = false
     prefs[:starter_app] = false
+    prefs[:quiet_assets] = true
+    prefs[:local_env_file] = false
+    prefs[:better_errors] = true
+  when 'rails-devise-pundit'
+    prefs[:git] = true
+    prefs[:unit_test] = false
+    prefs[:integration] = false
+    prefs[:fixtures] = false
+    prefs[:authentication] = 'devise'
+    prefs[:authorization] = 'pundit'
+    prefs[:starter_app] = 'admin_app'
     prefs[:quiet_assets] = true
     prefs[:local_env_file] = false
     prefs[:better_errors] = true
