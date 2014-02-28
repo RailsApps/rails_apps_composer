@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.33 unreleased
+h2. 2.4.33 February 27, 2014
 
 * add 'rails-devise-pundit' example application to 'apps4' recipe
 
