@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.34 unreleased
+h2. 2.4.34 March 1, 2014
 
 * update 'rails-foundation' example application for Rails 4.1
 
