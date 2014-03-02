@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.36 unreleased
+
+* fix error when 'SMTP' is selected as an email option (fixes #286)
+
 h2. 2.4.35 March 1, 2014
 
 * update 'rails-bootstrap' example application for Rails 4.1
