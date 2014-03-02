@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.36 unreleased
+h2. 2.4.36 March 2, 2014
 
 * fix error when 'SMTP' is selected as an email option (fixes #286)
 
