@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.35 unreleased
+
+* update 'rails-bootstrap' example application for Rails 4.1
+
 h2. 2.4.34 March 1, 2014
 
 * update 'rails-foundation' example application for Rails 4.1
