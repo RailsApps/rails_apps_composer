@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.37 unreleased
+
+* no need to specify foundation-rails version (foundation-rails 5.2.0.0 fixes #281)
+
 h2. 2.4.36 March 2, 2014
 
 * fix error when 'SMTP' is selected as an email option (fixes #286)
