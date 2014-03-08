@@ -1,8 +1,9 @@
 h1. CHANGELOG
 
-h2. 2.4.38 March 7, 2014
+h2. 2.4.38 unreleased
 
 * support option for 'Devise confirmable' with Rails 4.1 and Pundit (fixes #287)
+* send emails in development mode (reverts #272)
 
 h2. 2.4.37 March 6, 2014
 
