@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.38 March 7, 2014
+
+* support option for 'Devise confirmable' with Rails 4.1 and Pundit (fixes #287)
+
 h2. 2.4.37 March 6, 2014
 
 * no need to specify foundation-rails version (foundation-rails 5.2.0.0 fixes #281)

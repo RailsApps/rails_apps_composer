@@ -74,6 +74,10 @@ RUBY
   if prefer :authorization, 'pundit'
     generate 'migration AddRoleToUsers role:integer'
     copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
+    if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
+      gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
+      generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'
+    end
   end
   if prefer :authorization, 'cancan'
     generate 'cancan:ability'
