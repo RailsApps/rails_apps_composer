@@ -8,8 +8,6 @@ prefs[:prod_webserver] = 'same'
 prefs[:rvmrc] = false
 prefs[:templates] = 'erb'
 
-
-
 prefs[:gems] = %w[ selenium-webdriver ]
 prefs[:railsapps] = 'rails-recurly-subscription-saas'
 say_wizard "selected rails-recurly-subscription-saas testing recipe"

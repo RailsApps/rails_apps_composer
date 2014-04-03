@@ -8,8 +8,6 @@ prefs[:prod_webserver] = 'same'
 prefs[:rvmrc] = false
 prefs[:templates] = 'erb'
 
-
-
 prefs[:gems] = %w[ selenium-webdriver ]
 prefs[:railsapps] = 'rails-stripe-membership-saas'
 say_wizard "selected rails-stripe-membership-saas testing recipe"

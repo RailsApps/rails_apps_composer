@@ -8,8 +8,6 @@ prefs[:prod_webserver] = 'same'
 prefs[:rvmrc] = false
 prefs[:templates] = 'erb'
 
-
-
 prefs[:gems] = []
 prefs[:railsapps] = 'rails3-subdomains'
 say_wizard "selected rails3-subdomains testing recipe"

@@ -8,8 +8,6 @@ prefs[:prod_webserver] = 'same'
 prefs[:rvmrc] = false
 prefs[:templates] = 'erb'
 
-
-
 prefs[:gems] = []
 prefs[:railsapps] = 'rails3-devise-rspec-cucumber'
 say_wizard "selected rails3-devise-rspec-cucumber testing recipe"
