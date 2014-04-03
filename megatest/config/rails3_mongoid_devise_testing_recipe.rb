@@ -8,8 +8,6 @@ prefs[:prod_webserver] = 'same'
 prefs[:rvmrc] = false
 prefs[:templates] = 'erb'
 
-
-
 prefs[:gems] = []
 prefs[:railsapps] = 'rails3-mongoid-devise'
 say_wizard "selected rails3-mongoid-devise testing recipe"

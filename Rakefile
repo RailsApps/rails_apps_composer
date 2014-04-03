@@ -75,7 +75,7 @@ namespace :mega do
     end
   end
 
-  desc 'Run the mega-test'
+  desc 'Run the megatest, after setup (for internal use)'
   task :test => %w[
       mega:create_dir_for_generated_apps
       mega:create_repo_list
@@ -118,7 +118,7 @@ namespace :mega do
       end
     end
 
-    desc   "Rebase the cloned Rails Example Apps' updates"
+    desc  "Rebase the cloned Rails Example Apps' updates"
     task :rebase do
       puts "+Rebasing cloned Rails Example Apps' updates"
       s = SET_CLONED_DIRECTORY_SCRIPT + REBASE_APP_UPDATES_SCRIPT
@@ -167,6 +167,30 @@ namespace :mega do
         sh(s){|_,result| raise unless result.to_i.zero?}
       end
     end
+  end
+end
+
+desc 'Run the megatest'
+task :megatest do
+
+# In order to use Rails 3, you may need to adjust the "activesupport" line in
+# rails_apps_composer.gemspec. Currently, rails_apps_composer seems not to
+# support Rails 3.
+
+# "set -e" means "errexit".
+
+  RUN_MEGATEST_SCRIPT = <<BASH
+(
+set -e
+bundle update activesupport
+gem uninstall rails_apps_composer -x
+bundle exec rake reinstall
+rm -rf ../generated
+bundle exec rake mega:test --trace
+)
+BASH
+  Bundler.with_clean_env do
+    ::Kernel.exec RUN_MEGATEST_SCRIPT # Replace the current process.
   end
 end
 

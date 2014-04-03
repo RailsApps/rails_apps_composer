@@ -29,11 +29,15 @@ CLONE_APP_REPOSITORIES_SCRIPT = <<BASH
 )
 BASH
 
-CREATE_REPOSITORY_LIST_SCRIPT = <<BASH
-# Create the repository list (keep utilities first):
-  cat > repo-list <<HERE
+=begin
+# Utilities:
 rails_apps_composer
 rails-composer
+
+# Obsolete Rails 3 apps:
+Which apps are obsolete?
+
+# Can these work?
 rails3-bootstrap-devise-cancan
 rails3-devise-rspec-cucumber
 rails3-mongoid-devise
@@ -42,6 +46,14 @@ rails3-subdomains
 rails-prelaunch-signup
 rails-recurly-subscription-saas
 rails-stripe-membership-saas
+=end
+
+CREATE_REPOSITORY_LIST_SCRIPT = <<BASH
+# Create the repository list (keep utilities first):
+  cat > repo-list <<HERE
+rails_apps_composer
+rails-composer
+rails-omniauth
 HERE
 )
 BASH
