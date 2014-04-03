@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.39 April 3, 2014
+
+* update 'megatest' feature to Rails 4.1 and Ruby 2.1 (contributed by Mark D. Blackwell)
+
 h2. 2.4.38 March 7, 2014
 
 * support option for 'Devise confirmable' with Rails 4.1 and Pundit (fixes #287)
