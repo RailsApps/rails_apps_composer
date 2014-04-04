@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.40 April 4, 2014
+
+* add MRI 2.1 to platforms for binding_of_caller gem (contributed by Chad Ingram)
+
 h2. 2.4.39 April 3, 2014
 
 * update 'megatest' feature to Rails 4.1 and Ruby 2.1 (contributed by Mark D. Blackwell)
