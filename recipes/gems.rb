@@ -184,7 +184,7 @@ after_bundler do
     if prefer :database, 'postgresql'
       begin
         pg_username = prefs[:pg_username] || ask_wizard("Username for PostgreSQL?(leave blank to use the app name)")
-        pg_host = prefs[:pg_username] || ask_wizard("Host for PostgreSQL in database.yml? (leave blank to use default socket connection)")
+        pg_host = prefs[:pg_host] || ask_wizard("Host for PostgreSQL in database.yml? (leave blank to use default socket connection)")
         if pg_username.blank?
           say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
           run "createuser --createdb #{app_name}" if prefer :database, 'postgresql'
