@@ -1,7 +1,8 @@
 h1. CHANGELOG
 
-h2. 2.4.41 unreleased
+h2. 2.4.41 April 11, 2014
 
+* updates for Rails 4.1.0 final
 * fix for retrieving postgres host value in prefs (contributed by Atsushi Hamtaro Ishida)
 
 h2. 2.4.40 April 4, 2014
