@@ -29,14 +29,14 @@ when "4"
     when 'railsapps'
       if rails_4_1?
         prefs[:apps4] = prefs[:rails_4_1_starter_app] || (multiple_choice "Starter apps for Rails 4.1. More to come.",
-        [["rails-bootstrap", "rails-bootstrap"],
+        [["learn-rails", "learn-rails"],
+        ["rails-bootstrap", "rails-bootstrap"],
         ["rails-foundation", "rails-foundation"],
         ["rails-omniauth", "rails-omniauth"],
         ["rails-devise", "rails-devise"],
         ["rails-devise-pundit", "rails-devise-pundit"]])
       else
-        prefs[:apps4] = multiple_choice "Please upgrade to Rails 4.1 for more starter apps.",
-          [["learn-rails", "learn-rails"]]
+        say_wizard "Please upgrade to Rails 4.1 to get the starter apps."
       end
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
@@ -68,20 +68,27 @@ case prefs[:apps4]
     prefs[:ban_spiders] = false
     prefs[:continuous_testing] = false
   when 'learn-rails'
+    prefs[:dev_webserver] = 'webrick'
+    prefs[:prod_webserver] = 'same'
+    prefs[:templates] = 'erb'
     prefs[:git] = true
     prefs[:database] = 'default'
     prefs[:unit_test] = false
     prefs[:integration] = false
     prefs[:fixtures] = false
+    prefs[:frontend] = 'foundation5'
     prefs[:email] = 'gmail'
     prefs[:authentication] = false
     prefs[:devise_modules] = false
     prefs[:authorization] = false
     prefs[:starter_app] = false
     prefs[:form_builder] = 'simple_form'
+    prefs[:continuous_testing] = false
     prefs[:quiet_assets] = true
-    prefs[:local_env_file] = 'figaro'
+    prefs[:local_env_file] = 'none'
     prefs[:better_errors] = true
+    prefs[:ban_spiders] = false
+    prefs[:github] = false
   when 'rails-bootstrap'
     prefs[:git] = true
     prefs[:database] = 'default'

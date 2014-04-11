@@ -42,9 +42,7 @@ if prefer :apps4, 'learn-rails'
     copy_from_repo 'app/models/visitor.rb', :repo => repo
 
     # >-------------------------------[ Init ]--------------------------------<
-    copy_from_repo 'config/application.yml', :repo => repo
-    remove_file 'config/application.example.yml'
-    copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
+    copy_from_repo 'config/secrets.yml', :repo => repo
 
     # >-------------------------------[ Controllers ]--------------------------------<
 
@@ -69,8 +67,6 @@ if prefer :apps4, 'learn-rails'
     # >-------------------------------[ Routes ]--------------------------------<
 
     copy_from_repo 'config/routes.rb', :repo => repo
-    ### CORRECT APPLICATION NAME ###
-    gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
 
     # >-------------------------------[ Assets ]--------------------------------<
 

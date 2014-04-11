@@ -5,58 +5,52 @@ after_everything do
   say_wizard "recipe running after everything"
   case prefs[:email]
     when 'none'
-      secrets_d_email = secrets_p_email = foreman_email = ''
+      secrets_email = foreman_email = ''
     when 'smtp'
-      secrets_d_email = secrets_p_email = foreman_email = ''
+      secrets_email = foreman_email = ''
     when 'gmail'
-      secrets_d_email = "  gmail_username: Your_Username\n  gmail_password: Your_Password\n"
-      secrets_p_email = "  gmail_username: <%= ENV[\"GMAIL_USERNAME\"] %>\n  gmail_password: <%= ENV[\"GMAIL_PASSWORD\"] %>\n"
+      secrets_email = "  email_provider_username: <%= ENV[\"GMAIL_USERNAME\"] %>\n  email_provider_password: <%= ENV[\"GMAIL_PASSWORD\"] %>\n"
       foreman_email = "GMAIL_USERNAME=Your_Username\nGMAIL_PASSWORD=Your_Password\n"
     when 'sendgrid'
-      secrets_d_email = "  sendgrid_username: Your_Username\n  sendgrid_password: Your_Password\n"
-      secrets_p_email = "  sendgrid_username: <%= ENV[\"SENDGRID_USERNAME\"] %>\n  sendgrid_password: <%= ENV[\"SENDGRID_PASSWORD\"] %>\n"
+      secrets_email = "  email_provider_username: <%= ENV[\"SENDGRID_USERNAME\"] %>\n  email_provider_password: <%= ENV[\"SENDGRID_PASSWORD\"] %>\n"
       foreman_email = "SENDGRID_USERNAME=Your_Username\nSENDGRID_PASSWORD=Your_Password\n"
     when 'mandrill'
-      secrets_d_email = "  mandrill_username: Your_Username\n  mandrill_apikey: Your_API_Key\n"
-      secrets_p_email = "  mandrill_username: <%= ENV[\"MANDRILL_USERNAME\"] %>\n  mandrill_apikey: <%= ENV[\"MANDRILL_APIKEY\"] %>\n"
+      secrets_email = "  email_provider_username: <%= ENV[\"MANDRILL_USERNAME\"] %>\n  email_provider_apikey: <%= ENV[\"MANDRILL_APIKEY\"] %>\n"
       foreman_email = "MANDRILL_USERNAME=Your_Username\nMANDRILL_APIKEY=Your_API_Key\n"
   end
   figaro_email  = foreman_email.gsub('=', ': ')
-  secrets_d_devise = "  admin_name: First User\n  admin_email: user@example.com\n  admin_password: changeme\n"
-  secrets_p_devise = "  admin_name: <%= ENV[\"ADMIN_NAME\"] %>\n  admin_email: <%= ENV[\"ADMIN_EMAIL\"] %>\n  admin_password: <%= ENV[\"ADMIN_PASSWORD\"] %>\n"
+  secrets_devise = "  admin_name: <%= ENV[\"ADMIN_NAME\"] %>\n  admin_email: <%= ENV[\"ADMIN_EMAIL\"] %>\n  admin_password: <%= ENV[\"ADMIN_PASSWORD\"] %>\n"
   foreman_devise = "ADMIN_NAME=First User\nADMIN_EMAIL=user@example.com\nADMIN_PASSWORD=changeme\n"
   figaro_devise  = foreman_devise.gsub('=', ': ')
-  secrets_d_omniauth = "  omniauth_provider_key: Your_Provider_Key\n  omniauth_provider_secret: Your_Provider_Secret\n"
-  secrets_p_omniauth = "  omniauth_provider_key: <%= ENV[\"OMNIAUTH_PROVIDER_KEY\"] %>\n  omniauth_provider_secret: <%= ENV[\"OMNIAUTH_PROVIDER_SECRET\"] %>\n"
+  secrets_omniauth = "  omniauth_provider_key: <%= ENV[\"OMNIAUTH_PROVIDER_KEY\"] %>\n  omniauth_provider_secret: <%= ENV[\"OMNIAUTH_PROVIDER_SECRET\"] %>\n"
   foreman_omniauth = "OMNIAUTH_PROVIDER_KEY: Your_Provider_Key\nOMNIAUTH_PROVIDER_SECRET: Your_Provider_Secret\n"
   figaro_omniauth  = foreman_omniauth.gsub('=', ': ')
-  secrets_d_cancan = "  roles: [admin, user, VIP]\n" # unnecessary? CanCan will not be used with Rails 4.1?
-  secrets_p_cancan = "  roles: <%= ENV[\"ROLES\"] %>\n" # unnecessary? CanCan will not be used with Rails 4.1?
+  secrets_cancan = "  roles: <%= ENV[\"ROLES\"] %>\n" # unnecessary? CanCan will not be used with Rails 4.1?
   foreman_cancan = "ROLES=[admin, user, VIP]\n\n"
   figaro_cancan = foreman_cancan.gsub('=', ': ')
   ## EMAIL
-  inject_into_file 'config/secrets.yml', secrets_d_email, :after => "development:\n" if rails_4_1?
-  inject_into_file 'config/secrets.yml', secrets_p_email, :after => "production:\n" if rails_4_1?
+  inject_into_file 'config/secrets.yml', secrets_email, :after => "development:\n" if rails_4_1?
+  inject_into_file 'config/secrets.yml', secrets_email, :after => "production:\n" if rails_4_1?
   append_file '.env', foreman_email if prefer :local_env_file, 'foreman'
   append_file 'config/application.yml', figaro_email if prefer :local_env_file, 'figaro'
   ## DEVISE
   if prefer :authentication, 'devise'
-    inject_into_file 'config/secrets.yml', secrets_d_devise, :after => "development:\n" if rails_4_1?
-    inject_into_file 'config/secrets.yml', secrets_p_devise, :after => "production:\n" if rails_4_1?
+    inject_into_file 'config/secrets.yml', secrets_devise, :after => "development:\n" if rails_4_1?
+    inject_into_file 'config/secrets.yml', secrets_devise, :after => "production:\n" if rails_4_1?
     append_file '.env', foreman_devise if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_devise if prefer :local_env_file, 'figaro'
   end
   ## OMNIAUTH
   if prefer :authentication, 'omniauth'
-    inject_into_file 'config/secrets.yml', secrets_d_omniauth, :after => "development:\n" if rails_4_1?
-    inject_into_file 'config/secrets.yml', secrets_p_omniauth, :after => "production:\n" if rails_4_1?
+    inject_into_file 'config/secrets.yml', secrets_omniauth, :after => "development:\n" if rails_4_1?
+    inject_into_file 'config/secrets.yml', secrets_omniauth, :after => "production:\n" if rails_4_1?
     append_file '.env', foreman_omniauth if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_omniauth if prefer :local_env_file, 'figaro'
   end
   ## CANCAN
   if (prefer :authorization, 'cancan')
-    inject_into_file 'config/secrets.yml', secrets_d_cancan, :after => "development:\n" if rails_4_1?
-    inject_into_file 'config/secrets.yml', secrets_p_cancan, :after => "production:\n" if rails_4_1?
+    inject_into_file 'config/secrets.yml', secrets_cancan, :after => "development:\n" if rails_4_1?
+    inject_into_file 'config/secrets.yml', secrets_cancan, :after => "production:\n" if rails_4_1?
     append_file '.env', foreman_cancan if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_cancan if prefer :local_env_file, 'figaro'
   end

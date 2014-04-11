@@ -22,6 +22,8 @@ TEXT
 TEXT
       inject_into_file 'config/environments/development.rb', dev_email_text, :after => "config.assets.debug = true"
       inject_into_file 'config/environments/production.rb', prod_email_text, :after => "config.active_support.deprecation = :notify"
+      gsub_file 'config/environments/production.rb', /'example.com'/, 'Rails.application.secrets.domain_name' if rails_4_1?
+
     else
       ### DEVELOPMENT
       gsub_file 'config/environments/development.rb', /# Don't care if the mailer can't send/, '# ActionMailer Config'
@@ -59,9 +61,35 @@ RUBY
       end
     end
   end
-  ### GMAIL ACCOUNT
-  if prefer :email, 'gmail'
-    gmail_configuration_text = <<-TEXT
+  if rails_4_1?
+    email_configuration_text = <<-TEXT
+\n
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: Rails.application.secrets.domain_name,
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: Rails.application.secrets.email_provider_username,
+    password: Rails.application.secrets.email_provider_password
+  }
+TEXT
+    inject_into_file 'config/environments/development.rb', email_configuration_text, :after => "config.assets.debug = true"
+    inject_into_file 'config/environments/production.rb', email_configuration_text, :after => "config.active_support.deprecation = :notify"
+    case :email
+      when 'sendgrid'
+        gsub_file 'config/environments/development.rb', /smtp.gmail.com/, 'smtp.sendgrid.net'
+        gsub_file 'config/environments/production.rb', /smtp.gmail.com/, 'smtp.sendgrid.net'
+      when 'mandrill'
+        gsub_file 'config/environments/development.rb', /smtp.gmail.com/, 'smtp.mandrillapp.com'
+        gsub_file 'config/environments/production.rb', /smtp.gmail.com/, 'smtp.mandrillapp.com'
+        gsub_file 'config/environments/development.rb', /email_provider_password/, 'email_provider_apikey'
+        gsub_file 'config/environments/production.rb', /email_provider_password/, 'email_provider_apikey'
+    end
+  else
+    ### GMAIL ACCOUNT
+    if prefer :email, 'gmail'
+      gmail_configuration_text = <<-TEXT
 \n
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
@@ -73,12 +101,12 @@ RUBY
     password: ENV["GMAIL_PASSWORD"]
   }
 TEXT
-    inject_into_file 'config/environments/development.rb', gmail_configuration_text, :after => "config.assets.debug = true"
-    inject_into_file 'config/environments/production.rb', gmail_configuration_text, :after => "config.active_support.deprecation = :notify"
-  end
-  ### SENDGRID ACCOUNT
-  if prefer :email, 'sendgrid'
-    sendgrid_configuration_text = <<-TEXT
+      inject_into_file 'config/environments/development.rb', gmail_configuration_text, :after => "config.assets.debug = true"
+      inject_into_file 'config/environments/production.rb', gmail_configuration_text, :after => "config.active_support.deprecation = :notify"
+    end
+    ### SENDGRID ACCOUNT
+    if prefer :email, 'sendgrid'
+      sendgrid_configuration_text = <<-TEXT
 \n
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",
@@ -89,22 +117,23 @@ TEXT
     password: ENV["SENDGRID_PASSWORD"]
   }
 TEXT
-    inject_into_file 'config/environments/development.rb', sendgrid_configuration_text, :after => "config.assets.debug = true"
-    inject_into_file 'config/environments/production.rb', sendgrid_configuration_text, :after => "config.active_support.deprecation = :notify"
-  end
-  ### MANDRILL ACCOUNT
-  if prefer :email, 'mandrill'
-    mandrill_configuration_text = <<-TEXT
-  \n
-    config.action_mailer.smtp_settings = {
-      :address   => "smtp.mandrillapp.com",
-      :port      => 587,
-      :user_name => ENV["MANDRILL_USERNAME"],
-      :password  => ENV["MANDRILL_APIKEY"]
-    }
-  TEXT
-    inject_into_file 'config/environments/development.rb', mandrill_configuration_text, :after => "config.assets.debug = true"
-    inject_into_file 'config/environments/production.rb', mandrill_configuration_text, :after => "config.active_support.deprecation = :notify"
+      inject_into_file 'config/environments/development.rb', sendgrid_configuration_text, :after => "config.assets.debug = true"
+      inject_into_file 'config/environments/production.rb', sendgrid_configuration_text, :after => "config.active_support.deprecation = :notify"
+    end
+    ### MANDRILL ACCOUNT
+    if prefer :email, 'mandrill'
+      mandrill_configuration_text = <<-TEXT
+\n
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587,
+    :user_name => ENV["MANDRILL_USERNAME"],
+    :password  => ENV["MANDRILL_APIKEY"]
+  }
+TEXT
+      inject_into_file 'config/environments/development.rb', mandrill_configuration_text, :after => "config.assets.debug = true"
+      inject_into_file 'config/environments/production.rb', mandrill_configuration_text, :after => "config.active_support.deprecation = :notify"
+    end
   end
   ### GIT
   git :add => '-A' if prefer :git, true

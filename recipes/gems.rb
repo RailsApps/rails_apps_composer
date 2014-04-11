@@ -247,6 +247,9 @@ after_bundler do
       when 'bootstrap3'
         say_wizard "recipe installing simple_form for use with Bootstrap"
         generate 'simple_form:install --bootstrap'
+      when 'foundation5'
+        say_wizard "recipe installing simple_form for use with Zurb Foundation"
+        generate 'simple_form:install --foundation'
       when 'foundation4'
         say_wizard "recipe installing simple_form for use with Zurb Foundation"
         generate 'simple_form:install --foundation'
