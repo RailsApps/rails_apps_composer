@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.41 unreleased
+
+* fix for retrieving postgres host value in prefs (contributed by Atsushi Hamtaro Ishida)
+
 h2. 2.4.40 April 4, 2014
 
 * add MRI 2.1 to platforms for binding_of_caller gem (contributed by Chad Ingram)
