@@ -106,6 +106,16 @@ if prefs[:better_errors]
   add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_19, :mri_20, :mri_21, :rbx]
 end
 
+# Pry
+if config['pry']
+  prefs[:pry] = true
+end
+if prefs[:pry]
+  say_wizard "recipe adding pry-rails gem"
+  add_gem 'pry-rails', :group => [:development, :test]
+  add_gem 'pry-rescue', :group => [:development, :test]
+end
+
 ## BAN SPIDERS
 if config['ban_spiders']
   prefs[:ban_spiders] = true
@@ -203,3 +213,6 @@ config:
   - better_errors:
       type: boolean
       prompt: Improve error reporting with 'better_errors' during development?
+  - pry:
+      type: boolean
+      prompt: Use 'pry' as console replacement during development and test?
