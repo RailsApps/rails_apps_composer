@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.43 unreleased
+h2. 2.4.43 April 12, 2014
 
 * add pry as an option (contributed by Stefan Wienert)
 * add recipe for deployment with Capistrano (contributed by Stefan Wienert)
