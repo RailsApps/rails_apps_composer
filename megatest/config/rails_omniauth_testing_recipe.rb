@@ -17,6 +17,8 @@ prefs[:gems] = []
 prefs[:apps4] = 'railsapps'
 prefs[:railsapps]             = 'rails-omniauth'
 prefs[:rails_4_1_starter_app] = 'rails-omniauth'
+prefs[:pry] = true
+prefs[:deployment] = 'capistrano3'
 say_wizard             "selected rails-omniauth testing recipe"
 __END__
 name:                            rails_omniauth_testing_recipe
