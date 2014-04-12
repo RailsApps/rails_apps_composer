@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.44 unreleased
+
+* fix email recipe to restore correct behavior for 'none' option
+
 h2. 2.4.43 April 12, 2014
 
 * add pry as an option (contributed by Stefan Wienert)
