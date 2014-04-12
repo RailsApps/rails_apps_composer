@@ -2,6 +2,8 @@ h1. CHANGELOG
 
 h2. 2.4.44 unreleased
 
+* use 'example.com' for domain_name in secrets.yml file
+* fix for rails-omniauth secrets.yml file
 * fix email recipe to restore correct behavior for 'none' option
 
 h2. 2.4.43 April 12, 2014
