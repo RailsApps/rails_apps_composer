@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.4.42 unreleased
+h2. 2.4.42 April 11, 2014
 
 * add 'domain_name' to 'config/secrets.yml' file
 
