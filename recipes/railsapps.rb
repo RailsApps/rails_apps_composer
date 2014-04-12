@@ -66,6 +66,7 @@ case prefs[:apps4]
     prefs[:local_env_file] = 'none'
     prefs[:better_errors] = false
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
     prefs[:ban_spiders] = false
     prefs[:continuous_testing] = false
   when 'learn-rails'
@@ -89,6 +90,7 @@ case prefs[:apps4]
     prefs[:local_env_file] = 'none'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
     prefs[:ban_spiders] = false
     prefs[:github] = false
   when 'rails-bootstrap'
@@ -108,6 +110,7 @@ case prefs[:apps4]
     prefs[:local_env_file] = false
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails-foundation'
     prefs[:git] = true
     prefs[:database] = 'default'
@@ -125,6 +128,7 @@ case prefs[:apps4]
     prefs[:local_env_file] = false
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails-devise'
     prefs[:git] = true
     prefs[:unit_test] = false
@@ -137,6 +141,7 @@ case prefs[:apps4]
     prefs[:local_env_file] = false
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails-devise-pundit'
     prefs[:git] = true
     prefs[:unit_test] = false
@@ -149,6 +154,7 @@ case prefs[:apps4]
     prefs[:local_env_file] = false
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails-omniauth'
     prefs[:git] = true
     prefs[:unit_test] = false
@@ -162,6 +168,7 @@ case prefs[:apps4]
     prefs[:local_env_file] = false
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
 end
 
 case prefs[:railsapps]
@@ -189,6 +196,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails-recurly-subscription-saas'
     prefs[:git] = true
     prefs[:database] = 'sqlite'
@@ -206,6 +214,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails-prelaunch-signup'
     prefs[:git] = true
     prefs[:database] = 'sqlite'
@@ -223,6 +232,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
     if prefer :git, true
       prefs[:prelaunch_branch] = multiple_choice "Git branch for the prelaunch app?",
         [["wip (work-in-progress)", "wip"],
@@ -256,6 +266,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails3-devise-rspec-cucumber'
     prefs[:git] = true
     prefs[:database] = 'sqlite'
@@ -273,6 +284,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails3-devise-rspec-cucumber-fabrication'
     prefs[:git] = true
     prefs[:database] = 'sqlite'
@@ -290,6 +302,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails3-mongoid-devise'
     prefs[:git] = true
     prefs[:database] = 'mongodb'
@@ -308,6 +321,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails3-mongoid-omniauth'
     prefs[:git] = true
     prefs[:database] = 'mongodb'
@@ -326,6 +340,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
   when 'rails3-subdomains'
     prefs[:git] = true
     prefs[:database] = 'mongodb'
@@ -344,6 +359,7 @@ case prefs[:railsapps]
     prefs[:local_env_file] = 'figaro'
     prefs[:better_errors] = true
     prefs[:pry] = false
+    prefs[:deployment] = 'none'
 end
 
 __END__

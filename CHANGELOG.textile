@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h2. 2.4.43 unreleased
+
+* add pry as an option (contributed by Stefan Wienert)
+* add recipe for deployment with Capistrano (contributed by Stefan Wienert)
+
 h2. 2.4.42 April 11, 2014
 
 * add 'domain_name' to 'config/secrets.yml' file
