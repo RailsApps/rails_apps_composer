@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.4.42 unreleased
+
+* add 'domain_name' to 'config/secrets.yml' file
+
 h2. 2.4.41 April 11, 2014
 
 * updates for Rails 4.1.0 final
