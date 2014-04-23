@@ -23,6 +23,9 @@ module RailsWizard
     @@recipes << %w(controllers email example extras frontend gems git init models prelaunch railsapps readme routes setup testing views)
     @@recipes << %w(controllers email example extras frontend gems git init models prelaunch railsapps readme routes saas setup testing views)
     @@recipes << %w(apps4 controllers core email extras frontend gems git init models prelaunch railsapps readme routes saas setup testing views)
+    @@recipes << %w(apps4 controllers core email extras frontend gems git init models prelaunch railsapps readme routes saas setup testing tests4 views)
+    @@recipes << %w(apps4 controllers core deployment email extras frontend gems git init models prelaunch railsapps readme routes saas setup testing views)
+    @@recipes << %w(apps4 controllers core deployment email extras frontend gems git init models prelaunch railsapps readme routes saas setup testing tests4 views)
 
     ### collections of preferences that are known to work together
 

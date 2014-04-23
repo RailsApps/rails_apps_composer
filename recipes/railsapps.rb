@@ -75,9 +75,6 @@ case prefs[:apps4]
     prefs[:templates] = 'erb'
     prefs[:git] = true
     prefs[:database] = 'default'
-    prefs[:unit_test] = false
-    prefs[:integration] = false
-    prefs[:fixtures] = false
     prefs[:frontend] = 'foundation5'
     prefs[:email] = 'gmail'
     prefs[:authentication] = false
@@ -85,7 +82,6 @@ case prefs[:apps4]
     prefs[:authorization] = false
     prefs[:starter_app] = false
     prefs[:form_builder] = 'simple_form'
-    prefs[:continuous_testing] = false
     prefs[:quiet_assets] = true
     prefs[:local_env_file] = 'none'
     prefs[:better_errors] = true
@@ -96,9 +92,6 @@ case prefs[:apps4]
   when 'rails-bootstrap'
     prefs[:git] = true
     prefs[:database] = 'default'
-    prefs[:unit_test] = false
-    prefs[:integration] = false
-    prefs[:fixtures] = false
     prefs[:frontend] = 'bootstrap3'
     prefs[:email] = 'none'
     prefs[:authentication] = false
@@ -114,9 +107,6 @@ case prefs[:apps4]
   when 'rails-foundation'
     prefs[:git] = true
     prefs[:database] = 'default'
-    prefs[:unit_test] = false
-    prefs[:integration] = false
-    prefs[:fixtures] = false
     prefs[:frontend] = 'foundation5'
     prefs[:email] = 'none'
     prefs[:authentication] = false
@@ -131,9 +121,6 @@ case prefs[:apps4]
     prefs[:deployment] = 'none'
   when 'rails-devise'
     prefs[:git] = true
-    prefs[:unit_test] = false
-    prefs[:integration] = false
-    prefs[:fixtures] = false
     prefs[:authentication] = 'devise'
     prefs[:authorization] = false
     prefs[:starter_app] = false
@@ -144,9 +131,6 @@ case prefs[:apps4]
     prefs[:deployment] = 'none'
   when 'rails-devise-pundit'
     prefs[:git] = true
-    prefs[:unit_test] = false
-    prefs[:integration] = false
-    prefs[:fixtures] = false
     prefs[:authentication] = 'devise'
     prefs[:authorization] = 'pundit'
     prefs[:starter_app] = 'admin_app'
@@ -157,9 +141,6 @@ case prefs[:apps4]
     prefs[:deployment] = 'none'
   when 'rails-omniauth'
     prefs[:git] = true
-    prefs[:unit_test] = false
-    prefs[:integration] = false
-    prefs[:fixtures] = false
     prefs[:email] = 'none'
     prefs[:authentication] = 'omniauth'
     prefs[:authorization] = 'none'

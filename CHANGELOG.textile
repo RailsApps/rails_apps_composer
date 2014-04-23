@@ -2,8 +2,9 @@ h1. CHANGELOG
 
 h2. 2.5.0 unreleased
 
+* add 'tests4' recipe for simplified setup of test framework
 * remove devise_invitable option (pending fix of https://github.com/scambra/devise_invitable/issues/447)
-* remove Mongoid as an option for Rails 4.1 (lacks community support)
+* remove Mongoid as an option for Rails 4.1 (pending further community support)
 
 h2. 2.4.44 April 12, 2014
 
