@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.5.0 unreleased
+h2. 2.5.0 April 22, 2014
 
 * add 'tests4' recipe for simplified setup of test framework
 * remove devise_invitable option (pending fix of https://github.com/scambra/devise_invitable/issues/447)
