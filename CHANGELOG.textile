@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.5.0 unreleased
+
+* remove Mongoid as an option for Rails 4.1 (lacks community support)
+
 h2. 2.4.44 April 12, 2014
 
 * use 'example.com' for domain_name in secrets.yml file

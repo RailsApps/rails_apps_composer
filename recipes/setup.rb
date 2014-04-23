@@ -34,8 +34,13 @@ if prefs[:prod_webserver] == 'same'
 end
 
 ## Database Adapter
-prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
-  ["MySQL", "mysql"], ["MongoDB", "mongodb"]] unless prefs.has_key? :database
+if rails_4_1?
+  prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
+    ["MySQL", "mysql"]] unless prefs.has_key? :database
+else
+  prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
+    ["MySQL", "mysql"], ["MongoDB", "mongodb"]] unless prefs.has_key? :database
+end
 case prefs[:database]
   when 'mongodb'
     unless sqlite_detected
