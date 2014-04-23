@@ -96,14 +96,8 @@ if recipes.include? 'models'
       if prefer :orm, 'mongoid'
         prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"]] unless prefs.has_key? :devise_modules
       else
-        if rails_4?
-          prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"],
-          ["Devise with Confirmable module","confirmable"],
-          ["Devise with Confirmable and Invitable modules","invitable"]] unless prefs.has_key? :devise_modules
-        else
-          prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"],
-          ["Devise with Confirmable module","confirmable"]] unless prefs.has_key? :devise_modules
-        end
+        prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"],
+        ["Devise with Confirmable module","confirmable"]] unless prefs.has_key? :devise_modules
       end
     when 'omniauth'
       prefs[:omniauth_provider] = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"],

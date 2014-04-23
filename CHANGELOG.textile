@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h2. 2.5.0 unreleased
 
+* remove devise_invitable option (pending fix of https://github.com/scambra/devise_invitable/issues/447)
 * remove Mongoid as an option for Rails 4.1 (lacks community support)
 
 h2. 2.4.44 April 12, 2014
