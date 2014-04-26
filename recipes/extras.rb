@@ -103,7 +103,16 @@ end
 if prefs[:better_errors]
   say_wizard "recipe adding better_errors gem"
   add_gem 'better_errors', :group => :development
-  add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_19, :mri_20, :mri_21, :rbx]
+  if RUBY_ENGINE == 'ruby'
+    case RUBY_VERSION.split('.')[0] + "." + RUBY_VERSION.split('.')[1]
+      when '2.1'
+        add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_21]
+      when '2.0'
+        add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_20]
+      when '1.9'
+        add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_19]
+    end
+  end
 end
 
 # Pry
