@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.5.1 unreleased
+
+* use 'rails_apps_testing' gem to configure RSpec and friends in 'tests4' recipe
+
 h2. 2.5.0 April 22, 2014
 
 * add 'tests4' recipe for simplified setup of test framework
