@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.0 unreleased
+
+* use 'rails_apps_pages' gem to set up controllers, views, and routing in the 'apps4' recipe
+
 h2. 2.5.1 April 26, 2014
 
 * use 'rails_apps_testing' gem to configure RSpec and friends in 'tests4' recipe

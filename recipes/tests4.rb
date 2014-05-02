@@ -20,7 +20,7 @@ end # after_bundler
 
 after_everything do
   say_wizard "recipe running after everything"
-  if prefer :authentication, 'devise'
+  if (prefer :authentication, 'devise') && (prefer :tests, 'rspec')
     generate 'testing:configure devise -f'
   end
 end # after_everything

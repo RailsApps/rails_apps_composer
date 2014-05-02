@@ -133,7 +133,7 @@ case prefs[:apps4]
     prefs[:git] = true
     prefs[:authentication] = 'devise'
     prefs[:authorization] = 'pundit'
-    prefs[:starter_app] = 'admin_app'
+    prefs[:starter_app] = false
     prefs[:quiet_assets] = true
     prefs[:local_env_file] = false
     prefs[:better_errors] = true
