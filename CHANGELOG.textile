@@ -2,7 +2,8 @@ h1. CHANGELOG
 
 h2. 2.6.0 unreleased
 
-* create individual recipes for example apps (remove 'apps4' recipe)
+* add 'rails-signup-download' example application
+* create individual recipes for example apps (and remove 'apps4' recipe)
 * use 'rails_apps_pages' gem to set up controllers, views, and routing for example apps
 * fix 'domain_name' environment variable in 'secrets.yml' file
 

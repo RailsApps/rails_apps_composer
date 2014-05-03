@@ -34,7 +34,8 @@ when "4"
         ["rails-foundation", "rails-foundation"],
         ["rails-omniauth", "rails-omniauth"],
         ["rails-devise", "rails-devise"],
-        ["rails-devise-pundit", "rails-devise-pundit"]])
+        ["rails-devise-pundit", "rails-devise-pundit"],
+        ["rails-signup-download", "rails-signup-download"]])
       else
         say_wizard "Please upgrade to Rails 4.1 to get the starter apps."
       end
