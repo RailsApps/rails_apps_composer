@@ -9,13 +9,13 @@ after_everything do
     when 'smtp'
       secrets_email = foreman_email = ''
     when 'gmail'
-      secrets_email = "  email_provider_username: <%= ENV[\"GMAIL_USERNAME\"] %>\n  email_provider_password: <%= ENV[\"GMAIL_PASSWORD\"] %>\n  domain_name: example.com"
-       foreman_email = "GMAIL_USERNAME=Your_Username\nGMAIL_PASSWORD=Your_Password\nDOMAIN_NAME=example.com\n"
+      secrets_email = "  email_provider_username: <%= ENV[\"GMAIL_USERNAME\"] %>\n  email_provider_password: <%= ENV[\"GMAIL_PASSWORD\"] %>"
+      foreman_email = "GMAIL_USERNAME=Your_Username\nGMAIL_PASSWORD=Your_Password\nDOMAIN_NAME=example.com\n"
     when 'sendgrid'
-      secrets_email = "  email_provider_username: <%= ENV[\"SENDGRID_USERNAME\"] %>\n  email_provider_password: <%= ENV[\"SENDGRID_PASSWORD\"] %>\n  domain_name: example.com"
+      secrets_email = "  email_provider_username: <%= ENV[\"SENDGRID_USERNAME\"] %>\n  email_provider_password: <%= ENV[\"SENDGRID_PASSWORD\"] %>"
       foreman_email = "SENDGRID_USERNAME=Your_Username\nSENDGRID_PASSWORD=Your_Password\nDOMAIN_NAME=example.com\n"
     when 'mandrill'
-      secrets_email = "  email_provider_username: <%= ENV[\"MANDRILL_USERNAME\"] %>\n  email_provider_apikey: <%= ENV[\"MANDRILL_APIKEY\"] %>\n  domain_name: example.com"
+      secrets_email = "  email_provider_username: <%= ENV[\"MANDRILL_USERNAME\"] %>\n  email_provider_apikey: <%= ENV[\"MANDRILL_APIKEY\"] %>"
       foreman_email = "MANDRILL_USERNAME=Your_Username\nMANDRILL_APIKEY=Your_API_Key\nDOMAIN_NAME=example.com\n"
   end
   figaro_email  = foreman_email.gsub('=', ': ')
@@ -30,6 +30,8 @@ after_everything do
   foreman_cancan = "ROLES=[admin, user, VIP]\n\n"
   figaro_cancan = foreman_cancan.gsub('=', ': ')
   ## EMAIL
+  inject_into_file 'config/secrets.yml', "\n" + "  domain_name: example.com", :after => "development:" if rails_4_1?
+  inject_into_file 'config/secrets.yml', "\n" + "  domain_name: <%= ENV[\"DOMAIN_NAME\"] %>", :after => "production:" if rails_4_1?
   inject_into_file 'config/secrets.yml', "\n" + secrets_email, :after => "development:" if rails_4_1?
   ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
   inject_into_file 'config/secrets.yml', "\n" + secrets_email + " ", :after => "production:" if rails_4_1?

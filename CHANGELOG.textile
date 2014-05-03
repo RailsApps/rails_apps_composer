@@ -3,6 +3,7 @@ h1. CHANGELOG
 h2. 2.6.0 unreleased
 
 * use 'rails_apps_pages' gem to set up controllers, views, and routing in the 'apps4' recipe
+* fix 'domain_name' environment variable in 'secrets.yml' file
 
 h2. 2.5.1 April 26, 2014
 
