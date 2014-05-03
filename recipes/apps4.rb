@@ -66,65 +66,19 @@ if prefer :apps4, 'learn-rails'
 end # learn-rails
 
 ### RAILS-BOOTSTRAP or RAILS-FOUNDATION ####
-
 if (prefer :apps4, 'rails-bootstrap') || (prefer :apps4, 'rails-foundation')
-
-  # >-------------------------------[ Gems ]--------------------------------<
-
   add_gem 'high_voltage'
-
-  # >-------------------------------[ after_everything ]--------------------------------<
-
-  after_everything do
-    say_wizard "recipe running after 'bundle install'"
-    repo = 'https://raw.github.com/RailsApps/rails-bootstrap/master/' if prefer :apps4, 'rails-bootstrap'
-    repo = 'https://raw.github.com/RailsApps/rails-foundation/master/' if prefer :apps4, 'rails-foundation'
-
-    # >-------------------------------[ Models ]--------------------------------<
-
-    # no models
-
-    # >-------------------------------[ Init ]--------------------------------<
-    copy_from_repo 'config/application.yml', :repo => repo
-    remove_file 'config/application.example.yml'
-    copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
-
-    # >-------------------------------[ Controllers ]--------------------------------<
-
-    copy_from_repo 'app/controllers/visitors_controller.rb', :repo => repo
-
-    # >-------------------------------[ Views ]--------------------------------<
-
-    copy_from_repo 'app/views/pages/about.html.erb', :repo => repo
-    copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
-    # create navigation links using the rails_layout gem
+  after_bundler do
+    generate 'pages:home -f'
+    generate 'pages:about -f'
     generate 'layout:navigation -f'
-
-    # >-------------------------------[ Routes ]--------------------------------<
-
-    copy_from_repo 'config/routes.rb', :repo => repo
-    ### CORRECT APPLICATION NAME ###
-    gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
-
-    # >-------------------------------[ Assets ]--------------------------------<
-
-    # no assets
-
-    ### GIT ###
-    if prefer :git, true
-      git :add => '-A'
-      git :commit => '-qm "rails_apps_composer: rails-bootstrap app"' if prefer :apps4, 'rails-bootstrap'
-      git :commit => '-qm "rails_apps_composer: rails-foundation app"' if prefer :apps4, 'rails-foundation'
-    end
-  end # after_bundler
-end # rails-bootstrap
+  end
+end
 
 ### RAILS-DEVISE ####
 if prefer :apps4, 'rails-devise'
   after_bundler do
     generate 'pages:users -f'
-    git :add => '-A' if prefer :git, true
-    git :commit => '-qm "rails_apps_composer: rails-devise"' if prefer :git, true
   end
 end
 
@@ -132,8 +86,6 @@ end
 if prefer :apps4, 'rails-devise-pundit'
   after_bundler do
     generate 'pages:authorized -f'
-    git :add => '-A' if prefer :git, true
-    git :commit => '-qm "rails_apps_composer: rails-devise-pundit"' if prefer :git, true
   end
 end
 
@@ -183,7 +135,7 @@ after_everything do
   generate 'clean:gemfile'
   generate 'clean:routes'
   git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: clean up Gemfile and routes file"' if prefer :git, true
+  git :commit => "-qm \"rails_apps_composer: #{prefs[:apps4]}\"" if prefer :git, true
 end
 
 __END__
