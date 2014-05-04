@@ -21,6 +21,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:prod_webserver] = 'same'
   prefs[:pry] = false
   prefs[:quiet_assets] = true
+  prefs[:secrets] = ['owner_email', 'mailchimp_list_id', 'mailchimp_api_key']
   prefs[:starter_app] = false
   prefs[:templates] = 'erb'
   prefs[:tests] = false
@@ -44,9 +45,6 @@ if prefer :apps4, 'learn-rails'
 
     copy_from_repo 'app/models/contact.rb', :repo => repo
     copy_from_repo 'app/models/visitor.rb', :repo => repo
-
-    # >-------------------------------[ Init ]--------------------------------<
-    copy_from_repo 'config/secrets.yml', :repo => repo
 
     # >-------------------------------[ Controllers ]--------------------------------<
 

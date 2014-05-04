@@ -3,6 +3,12 @@
 
 after_everything do
   say_wizard "recipe running after everything"
+  prefs[:secrets].each do |secret|
+    env_var = "  #{secret}: <%= ENV[\"#{secret.upcase}\"] %>"
+    inject_into_file 'config/secrets.yml', "\n" + env_var, :after => "development:" if rails_4_1?
+    ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
+    inject_into_file 'config/secrets.yml', "\n" + env_var + " ", :after => "production:" if rails_4_1?
+  end
   case prefs[:email]
     when 'none'
       secrets_email = foreman_email = ''
