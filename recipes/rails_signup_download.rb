@@ -8,7 +8,6 @@ if prefer :apps4, 'rails-signup-download'
   prefs[:deployment] = 'none'
   prefs[:devise_modules] = false
   prefs[:form_builder] = false
-  prefs[:frontend] = 'bootstrap3'
   prefs[:git] = true
   prefs[:local_env_file] = false
   prefs[:pry] = false
