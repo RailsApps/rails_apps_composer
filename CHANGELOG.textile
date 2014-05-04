@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.6.1 unreleased
+h2. 2.6.1 May 4, 2014
 
 * fix error introduced by 'secrets' preference setting
 * remove warning about incompatible recipes; add a welcome banner
