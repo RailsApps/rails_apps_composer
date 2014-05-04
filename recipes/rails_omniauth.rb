@@ -39,8 +39,6 @@ if prefer :apps4, 'rails-omniauth'
     # >-------------------------------[ Routes ]--------------------------------<
 
     copy_from_repo 'config/routes.rb', :repo => repo
-    # correct application name
-    gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
 
   end
 end
