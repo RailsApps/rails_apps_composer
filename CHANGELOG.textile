@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.1 unreleased
+
+* remove warning about incompatible recipes; add a welcome banner
+
 h2. 2.6.0 May 4, 2014
 
 * no need to set app name in 'config/routes.rb' file for Rails 4.1
