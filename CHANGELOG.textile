@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.6.2 unreleased
+h2. 2.6.2 May 4, 2014
 
 * don't include 'domain_name' in 'secrets.yml' file unless email option is selected
 * remove temporary rails_apps_pages gem during cleanup phase
