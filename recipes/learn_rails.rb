@@ -74,10 +74,6 @@ if prefer :apps4, 'learn-rails'
 
     copy_from_repo 'app/assets/javascripts/segmentio.js', :repo => repo
 
-    # >-------------------------------[ Cleanup ]--------------------------------<
-
-    gsub_file 'Gemfile', /.*gem 'rails_apps_pages'\n/, ''
-
   end
 end
 

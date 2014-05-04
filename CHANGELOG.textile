@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.2 unreleased
+
+* remove temporary rails_apps_pages gem during cleanup phase
+
 h2. 2.6.1 May 4, 2014
 
 * fix error introduced by 'secrets' preference setting

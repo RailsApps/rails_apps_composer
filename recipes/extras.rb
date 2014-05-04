@@ -156,9 +156,11 @@ after_everything do
   }.each { |file| remove_file file }
   # remove temporary Haml gems from Gemfile when Slim is selected
   if prefer :templates, 'slim'
-    gsub_file 'Gemfile', /  gem 'haml2slim'\n/, "\n"
-    gsub_file 'Gemfile', /  gem 'html2haml'\n/, "\n"
+    gsub_file 'Gemfile', /.*gem 'haml2slim'\n/, "\n"
+    gsub_file 'Gemfile', /.*gem 'html2haml'\n/, "\n"
   end
+  # remove temporary rails_apps_pages gem
+  gsub_file 'Gemfile', /.*gem 'rails_apps_pages'\n/, ''
   # remove commented lines and multiple blank lines from Gemfile
   # thanks to https://github.com/perfectline/template-bucket/blob/master/cleanup.rb
   gsub_file 'Gemfile', /#.*\n/, "\n"
