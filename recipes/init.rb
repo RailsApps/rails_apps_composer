@@ -38,13 +38,15 @@ after_everything do
   foreman_cancan = "ROLES=[admin, user, VIP]\n\n"
   figaro_cancan = foreman_cancan.gsub('=', ': ')
   ## EMAIL
-  inject_into_file 'config/secrets.yml', "\n" + "  domain_name: example.com", :after => "development:" if rails_4_1?
-  inject_into_file 'config/secrets.yml', "\n" + "  domain_name: <%= ENV[\"DOMAIN_NAME\"] %>", :after => "production:" if rails_4_1?
-  inject_into_file 'config/secrets.yml', "\n" + secrets_email, :after => "development:" if rails_4_1?
-  ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
-  inject_into_file 'config/secrets.yml', "\n" + secrets_email + " ", :after => "production:" if rails_4_1?
-  append_file '.env', foreman_email if prefer :local_env_file, 'foreman'
-  append_file 'config/application.yml', figaro_email if prefer :local_env_file, 'figaro'
+  unless prefer :email, 'none'
+    inject_into_file 'config/secrets.yml', "\n" + "  domain_name: example.com", :after => "development:" if rails_4_1?
+    inject_into_file 'config/secrets.yml', "\n" + "  domain_name: <%= ENV[\"DOMAIN_NAME\"] %>", :after => "production:" if rails_4_1?
+    inject_into_file 'config/secrets.yml', "\n" + secrets_email, :after => "development:" if rails_4_1?
+    ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
+    inject_into_file 'config/secrets.yml', "\n" + secrets_email + " ", :after => "production:" if rails_4_1?
+    append_file '.env', foreman_email if prefer :local_env_file, 'foreman'
+    append_file 'config/application.yml', figaro_email if prefer :local_env_file, 'figaro'
+  end
   ## DEVISE
   if prefer :authentication, 'devise'
     inject_into_file 'config/secrets.yml', "\n" + secrets_d_devise, :after => "development:" if rails_4_1?
