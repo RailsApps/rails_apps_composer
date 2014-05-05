@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.3 unreleased
+
+* no need to set app name in 'config/routes.rb' file for Rails 4.1
+
 h2. 2.6.2 May 4, 2014
 
 * don't include 'domain_name' in 'secrets.yml' file unless email option is selected
