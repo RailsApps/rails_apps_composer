@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.6.3 unreleased
+h2. 2.6.3 May 4, 2014
 
 * no need to set app name in 'config/routes.rb' file for Rails 4.1
 
