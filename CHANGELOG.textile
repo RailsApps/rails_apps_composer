@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.4 May 6, 2014
+
+* in 'extras' recipe, remove gems used to assist rails_apps_composer
+
 h2. 2.6.3 May 4, 2014
 
 * no need to set app name in 'config/routes.rb' file for Rails 4.1
