@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.5 unreleased
+
+* in 'models' recipe, need to run 'rake db:migrate' immediately after adding migrations
+
 h2. 2.6.4 May 6, 2014
 
 * in 'extras' recipe, remove gems used to assist rails_apps_composer
