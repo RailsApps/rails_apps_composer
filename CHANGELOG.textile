@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.6 May 11, 2014
+
+* change prompts for selection menu
+
 h2. 2.6.5 May 10, 2014
 
 * in 'models' recipe, need to run 'rake db:migrate' immediately after adding migrations
