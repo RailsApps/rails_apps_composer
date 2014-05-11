@@ -31,6 +31,11 @@ if prefer :apps4, 'rails-signup-download'
 
     copy_from_repo 'config/routes.rb', :repo => repo
 
+    # >-------------------------------[ Tests ]--------------------------------<
+
+    copy_from_repo 'spec/features/users/product_acquisition_spec.rb', :repo => repo
+    copy_from_repo 'spec/controllers/products_controller_spec.rb', :repo => repo
+
   end
 end
 

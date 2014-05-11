@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.7 unreleased
+
+* add tests for 'rails_signup_download' app
+
 h2. 2.6.6 May 11, 2014
 
 * change prompts for selection menu
