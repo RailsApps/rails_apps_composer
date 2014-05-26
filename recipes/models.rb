@@ -6,7 +6,7 @@ after_bundler do
   ### DEVISE ###
   if prefer :authentication, 'devise'
     # prevent logging of password_confirmation
-    gsub_file 'config/application.rb', /:password/, ':password, :password_confirmation'
+    gsub_file 'config/initializers/filter_parameter_logging.rb', /:password/, ':password, :password_confirmation'
     generate 'devise:install'
     generate 'devise_invitable:install' if prefer :devise_modules, 'invitable'
     generate 'devise user' # create the User model

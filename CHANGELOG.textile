@@ -2,6 +2,8 @@ h1. CHANGELOG
 
 h2. 2.6.7 unreleased
 
+* for Devise, set 'config.mailer_sender' in 'config/initializers/devise.rb' file
+* for Devise, add 'password_confirmation' to 'config/initializers/filter_parameter_logging.rb' file
 * add tests for 'rails_signup_download' app
 
 h2. 2.6.6 May 11, 2014

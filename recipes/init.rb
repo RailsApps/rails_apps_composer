@@ -53,6 +53,7 @@ after_everything do
     inject_into_file 'config/secrets.yml', "\n" + secrets_p_devise, :after => "production:" if rails_4_1?
     append_file '.env', foreman_devise if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_devise if prefer :local_env_file, 'figaro'
+    gsub_file 'config/initializers/devise.rb', /'please-change-me-at-config-initializers-devise@example.com'/, "'no-reply@' + Rails.application.secrets.domain_name"
   end
   ## OMNIAUTH
   if prefer :authentication, 'omniauth'
