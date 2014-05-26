@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.6.7 unreleased
+h2. 2.6.7 May 26, 2014
 
 * for Devise, set 'config.mailer_sender' in 'config/initializers/devise.rb' file
 * for Devise, add 'password_confirmation' to 'config/initializers/filter_parameter_logging.rb' file
