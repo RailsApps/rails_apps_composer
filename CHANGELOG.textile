@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.9 unreleased
+
+* for Devise, need 'domain_name' even without the email option (contributed by Jimmy Zhang)
+
 h2. 2.6.8 May 26, 2014
 
 * for Devise, add 'domain_name' to 'secrets.yml' file for tests
