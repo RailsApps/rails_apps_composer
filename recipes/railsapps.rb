@@ -41,7 +41,7 @@ when "4"
       end
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
-        [["continue", "railsapps"]]
+        [["create custom application", "railsapps"]]
   end
 end
 

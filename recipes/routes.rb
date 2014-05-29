@@ -30,7 +30,10 @@ after_bundler do
   ### SUBDOMAINS ###
   copy_from_repo 'lib/subdomain.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
   copy_from_repo 'config/routes.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
-  unless rails_4_1?
+  if rails_4_1?
+    # replaces application name copied from rails3-devise-rspec-cucumber repo
+    gsub_file 'config/routes.rb', /^.*.routes.draw do/, "Rails.application.routes.draw do"
+  else
     # correct application name
     gsub_file 'config/routes.rb', /^.*.routes.draw do/, "#{app_const}.routes.draw do"
   end

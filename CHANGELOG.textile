@@ -2,7 +2,9 @@ h1. CHANGELOG
 
 h2. 2.6.9 unreleased
 
+* for custom application option with Devise, fixes https://github.com/RailsApps/rails-composer/issues/178
 * for Devise, need 'domain_name' even without the email option (contributed by Jimmy Zhang)
+* improve menu when 'Contributed applications' is selected
 
 h2. 2.6.8 May 26, 2014
 
