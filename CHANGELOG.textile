@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.10 unreleased
+
+* revise 'rails-omniauth' recipe
+
 h2. 2.6.9 May 29, 2014
 
 * for custom application option with Devise, fixes https://github.com/RailsApps/rails-composer/issues/178
