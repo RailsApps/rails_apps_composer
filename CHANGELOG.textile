@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h2. 2.6.10 unreleased
+h2. 2.6.10 May 31, 2014
 
 * revise 'rails-omniauth' recipe
 
