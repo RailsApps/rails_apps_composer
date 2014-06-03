@@ -69,7 +69,7 @@ end
 if rails_4_1?
   if prefer :tests, 'rspec'
     add_gem 'rails_apps_testing', :group => :development
-    add_gem 'rspec-rails', '>= 3.0.0.beta2', :group => [:development, :test]
+    add_gem 'rspec-rails', :group => [:development, :test]
     add_gem 'factory_girl_rails', :group => [:development, :test]
     add_gem 'faker', :group => :test
     add_gem 'capybara', :group => :test
