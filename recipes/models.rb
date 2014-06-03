@@ -5,8 +5,10 @@ after_bundler do
   say_wizard "recipe running after 'bundle install'"
   ### DEVISE ###
   if prefer :authentication, 'devise'
-    # prevent logging of password_confirmation
-    gsub_file 'config/initializers/filter_parameter_logging.rb', /:password/, ':password, :password_confirmation'
+    if rails_4_1?
+      # prevent logging of password_confirmation
+      gsub_file 'config/initializers/filter_parameter_logging.rb', /:password/, ':password, :password_confirmation'
+    end
     generate 'devise:install'
     generate 'devise_invitable:install' if prefer :devise_modules, 'invitable'
     generate 'devise user' # create the User model
