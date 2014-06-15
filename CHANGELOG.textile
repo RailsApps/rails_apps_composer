@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h2. 2.6.13 June 14, 2014
+
+* generate RSpec tests for Pundit with the rails_apps_testing gem
+
 h2. 2.6.12 June 6, 2014
 
 * generate RSpec tests for OmniAuth with the rails_apps_testing gem
