@@ -5,6 +5,9 @@ end
 after_bundler do
   if prefs[:default_locale].present?
     gsub_file 'config/application.rb', /# config.i18n.default_locale.*$/, "config.i18n.default_locale = :#{prefs[:default_locale]}"
+    locale_filename = "config/locales/#{prefs[:default_locale]}.yml"
+    create_file locale_filename
+    append_to_file locale_filename, "#{prefs[:default_locale]}:"
   end
 end
 
