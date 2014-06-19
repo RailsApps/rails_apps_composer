@@ -105,7 +105,7 @@ end
 case prefs[:pages]
   when 'about'
     add_gem 'high_voltage'
-  when 'about-users'
+  when 'about+users'
     add_gem 'high_voltage'
 end
 

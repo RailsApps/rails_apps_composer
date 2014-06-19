@@ -98,7 +98,7 @@ if recipes.include? 'pages'
   prefs[:pages] = multiple_choice "Add pages?", [["None", "none"],
     ["Home", "home"], ["Home and About", "about"],
     ["Home and Users", "users"],
-    ["Home, About, and Users", "about-users"]] unless prefs.has_key? :pages
+    ["Home, About, and Users", "about+users"]] unless prefs.has_key? :pages
 end
 
 # save diagnostics before anything can fail

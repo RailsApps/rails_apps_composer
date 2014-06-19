@@ -6,9 +6,13 @@ after_everything do
   case prefs[:pages]
     when 'home'
       generate 'pages:home -f'
-    when 'about','about-users'
+    when 'about'
       generate 'pages:about -f'
-    when 'users','about-users'
+    when 'users'
+      generate 'pages:users -f'
+      generate 'pages:authorized -f' if (prefer :authorization, 'pundit') && (prefer :authentication, 'devise')
+    when 'about+users'
+      generate 'pages:about -f'
       generate 'pages:users -f'
       generate 'pages:authorized -f' if (prefer :authorization, 'pundit') && (prefer :authentication, 'devise')
   end
