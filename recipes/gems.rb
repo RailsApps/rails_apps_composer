@@ -80,37 +80,6 @@ if rails_4_1?
       add_gem 'rb-fchange', :group => :development, :require => false
     end
   end
-else
-  if prefer :unit_test, 'rspec'
-    add_gem 'rspec-rails', :group => [:development, :test]
-    add_gem 'capybara', :group => :test if prefer :integration, 'rspec-capybara'
-    add_gem 'database_cleaner', '1.0.1', :group => :test
-    add_gem 'email_spec', :group => :test
-  end
-  if prefer :unit_test, 'minitest'
-    add_gem 'minitest-spec-rails', :group => :test
-    add_gem 'minitest-wscolor', :group => :test
-    add_gem 'capybara', :group => :test if prefer :integration, 'minitest-capybara'
-  end
-  if prefer :integration, 'cucumber'
-    add_gem 'cucumber-rails', :group => :test, :require => false
-    add_gem 'database_cleaner', '1.0.1', :group => :test unless prefer :unit_test, 'rspec'
-    add_gem 'launchy', :group => :test
-    add_gem 'capybara', :group => :test
-  end
-  add_gem 'turnip', '>= 1.1.0', :group => :test if prefer :integration, 'turnip'
-  if prefer :continuous_testing, 'guard'
-    add_gem 'guard-bundler', :group => :development
-    add_gem 'guard-cucumber', :group => :development if prefer :integration, 'cucumber'
-    add_gem 'guard-rails', :group => :development
-    add_gem 'guard-rspec', :group => :development if prefer :unit_test, 'rspec'
-    add_gem 'rb-inotify', :group => :development, :require => false
-    add_gem 'rb-fsevent', :group => :development, :require => false
-    add_gem 'rb-fchange', :group => :development, :require => false
-  end
-  add_gem 'factory_girl_rails', :group => [:development, :test] if prefer :fixtures, 'factory_girl'
-  add_gem 'fabrication', :group => [:development, :test] if prefer :fixtures, 'fabrication'
-  add_gem 'machinist', :group => :test if prefer :fixtures, 'machinist'
 end
 
 ## Front-end Framework

@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.0 unreleased
 
+* remove 'testing' recipe (partly replaced by 'tests4' recipe)
 * remove options for Rails 3.2 example applications
 * remove Mongoid-specific code
 

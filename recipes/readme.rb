@@ -43,10 +43,7 @@ after_everything do
   gsub_file "README.md", /ERB/, "Slim" if prefer :templates, 'slim'
 
   # Testing Framework
-  gsub_file "README.md", /Test::Unit/, "RSpec" if prefer :unit_test, 'rspec'
-  gsub_file "README.md", /RSpec/, "RSpec and Cucumber" if prefer :integration, 'cucumber'
-  gsub_file "README.md", /RSpec/, "RSpec and Factory Girl" if prefer :fixtures, 'factory_girl'
-  gsub_file "README.md", /RSpec/, "RSpec and Machinist" if prefer :fixtures, 'machinist'
+  gsub_file "README.md", /Test::Unit/, "RSpec" if prefer :tests, 'rspec'
 
   # Front-end Framework
   gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Bootstrap 2.3 (Sass)" if prefer :frontend, 'bootstrap2'
