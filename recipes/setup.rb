@@ -37,24 +37,6 @@ end
 if rails_4_1?
   prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
     ["MySQL", "mysql"]] unless prefs.has_key? :database
-else
-  prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
-    ["MySQL", "mysql"], ["MongoDB", "mongodb"]] unless prefs.has_key? :database
-end
-case prefs[:database]
-  when 'mongodb'
-    unless sqlite_detected
-      prefs[:orm] = multiple_choice "How will you connect to MongoDB?", [["Mongoid","mongoid"]] unless prefs.has_key? :orm
-    else
-      say_wizard "WARNING! SQLite gem detected in the Gemfile"
-      say_wizard "If you wish to use MongoDB you must skip Active Record."
-      say_wizard "If using rails_apps_composer, choose 'skip Active Record'."
-      say_wizard "If using Rails Composer or an application template, use the '-O' flag as in 'rails new foo -O'."
-      prefs[:fail] = multiple_choice "Abort or continue?", [["abort", "abort"], ["continue", "continue"]]
-      if prefer :fail, 'abort'
-        raise StandardError.new "SQLite detected in the Gemfile. Use '-O' or '--skip-activerecord' as in 'rails new foo -O' if you don't want ActiveRecord and SQLite"
-      end
-    end
 end
 
 ## Template Engine
