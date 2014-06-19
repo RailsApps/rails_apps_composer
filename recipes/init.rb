@@ -103,26 +103,13 @@ FILE
     end
   end
   if (prefer :authorization, 'cancan')
-    unless prefer :orm, 'mongoid'
-      append_file 'db/seeds.rb' do <<-FILE
-puts 'ROLES'
-YAML.load(ENV['ROLES']).each do |role|
-  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
-  puts 'role: ' << role
-end
-FILE
-      end
-      ## Fix db seed for Rails 4.0
-      gsub_file 'db/seeds.rb', /{ :name => role }, :without_protection => true/, 'role' if rails_4?
-    else
-      append_file 'db/seeds.rb' do <<-FILE
+    append_file 'db/seeds.rb' do <<-FILE
 puts 'ROLES'
 YAML.load(ENV['ROLES']).each do |role|
   Role.mongo_session['roles'].insert({ :name => role })
   puts 'role: ' << role
 end
 FILE
-      end
     end
   end
   ## DEVISE-DEFAULT
@@ -133,8 +120,6 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 FILE
     end
-    # Mongoid doesn't have a 'find_or_create_by' method
-    gsub_file 'db/seeds.rb', /find_or_create_by_email/, 'create!' if prefer :orm, 'mongoid'
   end
   ## DEVISE-CONFIRMABLE
   if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
@@ -157,25 +142,13 @@ FILE
     generate 'devise_invitable user'
   end
   ### APPLY DATABASE SEED ###
-  unless prefer :orm, 'mongoid'
-    unless prefer :database, 'default'
-      ## ACTIVE_RECORD
-      say_wizard "applying migrations and seeding the database"
-      if prefer :local_env_file, 'foreman'
-        run 'foreman run bundle exec rake db:migrate'
-      else
-        run 'bundle exec rake db:migrate'
-      end
-    end
-  else
-    ## MONGOID
-    say_wizard "dropping database, creating indexes and seeding the database"
+  unless prefer :database, 'default'
+    ## ACTIVE_RECORD
+    say_wizard "applying migrations and seeding the database"
     if prefer :local_env_file, 'foreman'
-      run 'foreman run bundle exec rake db:drop'
-      run 'foreman run bundle exec rake db:mongoid:create_indexes'
+      run 'foreman run bundle exec rake db:migrate'
     else
-      run 'bundle exec rake db:drop'
-      run 'bundle exec rake db:mongoid:create_indexes'
+      run 'bundle exec rake db:migrate'
     end
   end
   unless prefs[:skip_seeds]

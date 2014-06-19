@@ -105,12 +105,8 @@ if recipes.include? 'models'
   prefs[:authentication] = multiple_choice "Authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]] unless prefs.has_key? :authentication
   case prefs[:authentication]
     when 'devise'
-      if prefer :orm, 'mongoid'
-        prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"]] unless prefs.has_key? :devise_modules
-      else
-        prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"],
-        ["Devise with Confirmable module","confirmable"]] unless prefs.has_key? :devise_modules
-      end
+      prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"],
+      ["Devise with Confirmable module","confirmable"]] unless prefs.has_key? :devise_modules
     when 'omniauth'
       prefs[:omniauth_provider] = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"],
         ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google_oauth2"], ["Tumblr", "tumblr"]] unless prefs.has_key? :omniauth_provider
@@ -133,13 +129,8 @@ if (recipes.include? 'models') && (recipes.include? 'controllers') && (recipes.i
     prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"],
       ["Home Page, User Accounts", "users_app"], ["Home Page, User Accounts, Admin Dashboard", "admin_app"]] unless prefs.has_key? :starter_app
   elsif prefer :authentication, 'devise'
-    if prefer :orm, 'mongoid'
-      prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"],
-        ["Home Page, User Accounts", "users_app"], ["Home Page, User Accounts, Subdomains", "subdomains_app"]] unless prefs.has_key? :starter_app
-    else
-      prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"],
-        ["Home Page, User Accounts", "users_app"]] unless prefs.has_key? :starter_app
-    end
+    prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"],
+      ["Home Page, User Accounts", "users_app"]] unless prefs.has_key? :starter_app
   elsif prefer :authentication, 'omniauth'
     prefs[:starter_app] = multiple_choice "Install a starter app?", [["None", "none"], ["Home Page", "home_app"],
       ["Home Page, User Accounts", "users_app"]] unless prefs.has_key? :starter_app

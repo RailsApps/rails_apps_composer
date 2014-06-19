@@ -43,23 +43,6 @@ RUBY
 
 RUBY
     end
-    ## RSPEC AND MONGOID
-    if prefer :orm, 'mongoid'
-      # remove ActiveRecord artifacts
-      gsub_file 'spec/spec_helper.rb', /config.fixture_path/, '# config.fixture_path'
-      gsub_file 'spec/spec_helper.rb', /config.use_transactional_fixtures/, '# config.use_transactional_fixtures'
-      # remove either possible occurrence of "require rails/test_unit/railtie"
-      gsub_file 'config/application.rb', /require 'rails\/test_unit\/railtie'/, '# require "rails/test_unit/railtie"'
-      gsub_file 'config/application.rb', /require "rails\/test_unit\/railtie"/, '# require "rails/test_unit/railtie"'
-      # configure RSpec to use matchers from the mongoid-rspec gem
-      create_file 'spec/support/mongoid.rb' do
-      <<-RUBY
-RSpec.configure do |config|
-  config.include Mongoid::Matchers
-end
-RUBY
-      end
-    end
     ## RSPEC AND DEVISE
     if prefer :authentication, 'devise'
       # add Devise test helpers
@@ -75,19 +58,11 @@ RUBY
   ### CUCUMBER ###
   if prefer :integration, 'cucumber'
     say_wizard "recipe installing Cucumber"
-    generate "cucumber:install --capybara#{' --rspec' if prefer :unit_test, 'rspec'}#{' -D' if prefer :orm, 'mongoid'}"
     # make it easy to run Cucumber for single features without adding "--require features" to the command line
     gsub_file 'config/cucumber.yml', /std_opts = "/, 'std_opts = "-r features/support/ -r features/step_definitions '
     create_file 'features/support/email_spec.rb' do <<-RUBY
 require 'email_spec/cucumber'
 RUBY
-    end
-    ## CUCUMBER AND MONGOID
-    if prefer :orm, 'mongoid'
-      gsub_file 'features/support/env.rb', /transaction/, "truncation"
-      inject_into_file 'features/support/env.rb', :after => 'begin' do
-        "\n  DatabaseCleaner.orm = 'mongoid'"
-      end
     end
     generate 'fabrication:cucumber_steps' if prefer :fixtures, 'fabrication'
   end

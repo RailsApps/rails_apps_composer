@@ -41,11 +41,6 @@ end
 unless prefer :database, 'default'
   gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 end
-if rails_4?
-  add_gem 'mongoid', github: 'mongoid/mongoid' if prefer :orm, 'mongoid'
-else
-  add_gem 'mongoid' if prefer :orm, 'mongoid'
-end
 gsub_file 'Gemfile', /gem 'pg'.*/, ''
 add_gem 'pg' if prefer :database, 'postgresql'
 gsub_file 'Gemfile', /gem 'mysql2'.*/, ''
@@ -90,13 +85,6 @@ else
     add_gem 'rspec-rails', :group => [:development, :test]
     add_gem 'capybara', :group => :test if prefer :integration, 'rspec-capybara'
     add_gem 'database_cleaner', '1.0.1', :group => :test
-    if prefer :orm, 'mongoid'
-      if rails_4?
-        add_gem 'mongoid-rspec', '>= 1.10.0', :group => :test
-      else
-        add_gem 'mongoid-rspec', :group => :test
-      end
-    end
     add_gem 'email_spec', :group => :test
   end
   if prefer :unit_test, 'minitest'
@@ -203,8 +191,6 @@ after_bundler do
   unless prefer :database, 'default'
     copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
     copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
-    generate 'mongoid:config' if prefer :orm, 'mongoid'
-    remove_file 'config/database.yml' if prefer :orm, 'mongoid'
     if prefer :database, 'postgresql'
       begin
         pg_username = prefs[:pg_username] || ask_wizard("Username for PostgreSQL?(leave blank to use the app name)")
@@ -252,8 +238,7 @@ after_bundler do
         raise "aborted at user's request"
       end
     end
-    run 'bundle exec rake db:create:all' unless prefer :orm, 'mongoid'
-    run 'bundle exec rake db:create' if prefer :orm, 'mongoid'
+    run 'bundle exec rake db:create:all'
     ## Git
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: create database"' if prefer :git, true
