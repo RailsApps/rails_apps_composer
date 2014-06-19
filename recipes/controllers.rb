@@ -19,46 +19,6 @@ after_bundler do
 RUBY
     end
   end
-  ### HOME_CONTROLLER ###
-  if ['home_app','users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
-    generate 'controller home --skip-assets --skip-helper'
-  end
-  ### USERS_CONTROLLER ###
-  case prefs[:starter_app]
-    when 'users_app'
-      if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
-        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/'
-      elsif prefer :authentication, 'omniauth'
-        if rails_4?
-          copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
-        else
-          copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-        end
-      end
-    when 'admin_app'
-      if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise')
-        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
-      elsif prefer :authentication, 'omniauth'
-        if rails_4?
-          copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
-        else
-          copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-mongoid-omniauth/master/'
-        end
-      end
-      if prefer :authorization, 'pundit'
-        copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
-        copy_from_repo 'app/policies/user_policy.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
-      end
-    when 'subdomains_app'
-      copy_from_repo 'app/controllers/users_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/'
-  end
-  ### REGISTRATIONS_CONTROLLER ###
-  if rails_4?
-    if ['users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
-      ## accommodate strong parameters in Rails 4
-      copy_from_repo 'app/controllers/registrations_controller-devise.rb', :prefs => 'devise'
-    end
-  end
   ### SESSIONS_CONTROLLER ###
   if prefer :authentication, 'omniauth'
     filename = 'app/controllers/sessions_controller.rb'
@@ -68,8 +28,6 @@ RUBY
       inject_into_file filename, "    user.add_role :admin if User.count == 1 # make the first user an admin\n", :after => "session[:user_id] = user.id\n"
     end
   end
-  ### PROFILES_CONTROLLER ###
-  copy_from_repo 'app/controllers/profiles_controller.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: controllers"' if prefer :git, true

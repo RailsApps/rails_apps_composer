@@ -12,7 +12,6 @@ if prefer :apps4, 'rails-omniauth'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
-  prefs[:starter_app] = false
   add_gem 'high_voltage'
 
   after_everything do

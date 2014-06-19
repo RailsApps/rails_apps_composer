@@ -16,39 +16,6 @@ after_bundler do
       copy_from_repo 'app/helpers/application_helper-simple_form.rb', :prefs => 'simple_form'
     end
   end
-  ### HOME ###
-  copy_from_repo 'app/views/home/index.html.erb' if prefer :starter_app, 'users_app'
-  copy_from_repo 'app/views/home/index.html.erb' if prefer :starter_app, 'admin_app'
-  copy_from_repo 'app/views/home/index-subdomains_app.html.erb', :prefs => 'subdomains_app'
-  ### USERS ###
-  if ['users_app','admin_app','subdomains_app'].include? prefs[:starter_app]
-    ## INDEX
-    if prefer :starter_app, 'admin_app'
-      copy_from_repo 'app/views/users/index-admin_app.html.erb', :prefs => 'admin_app'
-      unless prefer :form_builder, 'simple_form'
-        copy_from_repo 'app/views/users/_user.html.erb'
-      else
-        copy_from_repo 'app/views/users/_user-simple_form.html.erb', :prefs => 'simple_form'
-      end
-    else
-      copy_from_repo 'app/views/users/index.html.erb'
-    end
-    ## SHOW
-    copy_from_repo 'app/views/users/show.html.erb'
-    copy_from_repo 'app/views/users/show-subdomains_app.html.erb', :prefs => 'subdomains_app'
-    ## EDIT
-    if prefer :authentication, 'omniauth'
-      copy_from_repo 'app/views/users/edit.html.erb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
-    end
-  end
-  if (prefer :authorization, 'pundit') and  (prefer :starter_app, 'admin_app')
-    repo = 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
-    copy_from_repo 'app/views/users/_user.html.erb', :repo => repo
-    copy_from_repo 'app/views/users/index.html.erb', :repo => repo
-    copy_from_repo 'app/views/users/show.html.erb', :repo => repo
-  end
-  ### PROFILES ###
-  copy_from_repo 'app/views/profiles/show-subdomains_app.html.erb', :prefs => 'subdomains_app'
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: views"' if prefer :git, true

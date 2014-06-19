@@ -10,7 +10,6 @@ if prefer :apps4, 'rails-devise-pundit'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
-  prefs[:starter_app] = false
   after_everything do
     generate 'pages:authorized -f'
   end

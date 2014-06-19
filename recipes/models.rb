@@ -33,8 +33,6 @@ after_bundler do
     run 'bundle exec rake db:migrate'
     copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
   end
-  ### SUBDOMAINS ###
-  copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
   ### AUTHORIZATION ###
   if prefer :authorization, 'pundit'
     generate 'migration AddRoleToUsers role:integer'
@@ -46,12 +44,6 @@ after_bundler do
   end
   if prefer :authorization, 'cancan'
     generate 'cancan:ability'
-    if prefer :starter_app, 'admin_app'
-      # Limit access to the users#index page
-      copy_from_repo 'app/models/ability.rb', :repo => 'https://raw.github.com/RailsApps/rails3-bootstrap-devise-cancan/master/'
-      # allow an admin to update roles
-      insert_into_file 'app/models/user.rb', "  attr_accessible :role_ids, :as => :admin\n", :before => "  attr_accessible"
-    end
     generate 'rolify Role User'
   end
   ### GIT ###

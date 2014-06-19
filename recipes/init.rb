@@ -72,8 +72,6 @@ after_everything do
     append_file '.env', foreman_cancan if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_cancan if prefer :local_env_file, 'figaro'
   end
-  ### SUBDOMAINS (FIGARO ONLY) ###
-  copy_from_repo 'config/application.yml', :repo => 'https://raw.github.com/RailsApps/rails3-subdomains/master/' if prefer :starter_app, 'subdomains_app'
   ### EXAMPLE FILE FOR FOREMAN AND FIGARO ###
   if prefer :local_env_file, 'figaro'
     copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
@@ -173,8 +171,6 @@ FILE
   end
   # create navigation links using the rails_layout gem
   generate 'layout:navigation -f'
-  # replace with specialized navigation partials
-  copy_from_repo 'app/views/layouts/_navigation-subdomains_app.html.erb', :prefs => 'subdomains_app'
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: navigation links"' if prefer :git, true

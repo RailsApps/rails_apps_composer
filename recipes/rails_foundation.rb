@@ -15,7 +15,6 @@ if prefer :apps4, 'rails-foundation'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
-  prefs[:starter_app] = false
   add_gem 'high_voltage'
   after_everything do
     generate 'pages:home -f'
