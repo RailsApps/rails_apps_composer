@@ -158,25 +158,6 @@ add_gem 'pundit' if prefer :authorization, 'pundit'
 ## Form Builder
 add_gem 'simple_form' if prefer :form_builder, 'simple_form'
 
-## Membership App
-if prefer :railsapps, 'rails-stripe-membership-saas'
-  add_gem 'stripe'
-  add_gem 'stripe_event'
-end
-if prefer :railsapps, 'rails-recurly-subscription-saas'
-  add_gem 'recurly'
-  add_gem 'nokogiri'
-  add_gem 'countries'
-  add_gem 'httpi'
-  add_gem 'httpclient'
-end
-
-## Signup App
-if prefer :railsapps, 'rails-prelaunch-signup'
-  add_gem 'gibbon'
-  add_gem 'capybara-webkit', :group => :test
-end
-
 ## Gems from a defaults file or added interactively
 gems.each do |g|
   gem(*g)

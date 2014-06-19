@@ -13,9 +13,7 @@ after_bundler do
     generate 'devise_invitable:install' if prefer :devise_modules, 'invitable'
     generate 'devise user' # create the User model
     ## DEVISE AND ACTIVE RECORD
-    unless prefer :railsapps, 'rails-recurly-subscription-saas'
-      generate 'migration AddNameToUsers name:string'
-    end
+    generate 'migration AddNameToUsers name:string'
     copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails3-devise-rspec-cucumber/master/' unless rails_4?
     if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
       gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"

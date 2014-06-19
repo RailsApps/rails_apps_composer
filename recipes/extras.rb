@@ -188,12 +188,7 @@ if prefs[:github]
       say_wizard "#{git_uri}"
     else
       run "hub create #{app_name}"
-      unless prefer :railsapps, 'rails-prelaunch-signup'
-        run "hub push -u origin master"
-      else
-        run "hub push -u origin #{prefs[:prelaunch_branch]}"
-        run "hub push -u origin #{prefs[:main_branch]}" unless prefer :main_branch, 'none'
-      end
+      run "hub push -u origin master"
     end
   end
 end

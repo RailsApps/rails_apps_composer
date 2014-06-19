@@ -152,12 +152,10 @@ FILE
     end
   end
   unless prefs[:skip_seeds]
-    unless prefer :railsapps, 'rails-recurly-subscription-saas'
-      if prefer :local_env_file, 'foreman'
-        run 'foreman run bundle exec rake db:seed'
-      else
-        run 'bundle exec rake db:seed'
-      end
+    if prefer :local_env_file, 'foreman'
+      run 'foreman run bundle exec rake db:seed'
+    else
+      run 'bundle exec rake db:seed'
     end
   end
   ### GIT ###

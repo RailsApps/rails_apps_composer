@@ -23,6 +23,5 @@ requires: [git, railsapps,
   email,
   models, controllers, views, routes,
   frontend,
-  init, prelaunch, saas,
-  extras, deployment]
+  init, extras, deployment]
 category: collections
