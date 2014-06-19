@@ -2,8 +2,9 @@ h1. CHANGELOG
 
 h3. 3.0.0 unreleased
 
+* add 'pages' recipe
 * replace recipes 'model, view, controller' with recipes 'devise, omniauth, pundit'
-* remove 'starter_app' option (to be replaced by rails_apps_pages generated pages)
+* remove 'starter_app' option (replaced by 'pages' recipe)
 * remove 'testing' recipe (partly replaced by 'tests4' recipe)
 * remove options for Rails 3.2 example applications
 * remove MongoDB option from database choices

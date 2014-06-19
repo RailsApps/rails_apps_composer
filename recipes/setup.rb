@@ -93,6 +93,14 @@ end
 ## Form Builder
 prefs[:form_builder] = multiple_choice "Use a form builder gem?", [["None", "none"], ["SimpleForm", "simple_form"]] unless prefs.has_key? :form_builder
 
+## Pages
+if recipes.include? 'pages'
+  prefs[:pages] = multiple_choice "Add pages?", [["None", "none"],
+    ["Home", "home"], ["Home and About", "about"],
+    ["Home and Users", "users"],
+    ["Home, About, and Users", "about-users"]] unless prefs.has_key? :pages
+end
+
 # save diagnostics before anything can fail
 create_file "README", "RECIPES\n#{recipes.sort.inspect}\n"
 append_file "README", "PREFERENCES\n#{prefs.inspect}"

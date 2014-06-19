@@ -200,7 +200,7 @@ description: "Various extras."
 author: RailsApps
 
 requires: [gems]
-run_after: [gems, init, prelaunch]
+run_after: [gems, init]
 category: other
 
 config:

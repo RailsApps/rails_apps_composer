@@ -10,9 +10,7 @@ if prefer :apps4, 'rails-devise'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
-  after_everything do
-    generate 'pages:users -f'
-  end
+  prefs[:pages] = 'users'
 end
 
 __END__

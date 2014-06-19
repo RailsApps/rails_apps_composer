@@ -29,5 +29,5 @@ description: "Install a front-end framework for HTML5 and CSS."
 author: RailsApps
 
 requires: [setup, gems]
-run_after: [setup, gems]
+run_after: [setup, gems, devise, omniauth, pundit]
 category: frontend

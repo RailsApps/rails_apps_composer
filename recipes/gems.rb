@@ -101,6 +101,14 @@ case prefs[:frontend]
     add_gem 'foundation-rails'
 end
 
+## Pages
+case prefs[:pages]
+  when 'about'
+    add_gem 'high_voltage'
+  when 'about-users'
+    add_gem 'high_voltage'
+end
+
 ## Email
 add_gem 'sendgrid' if prefer :email, 'sendgrid'
 

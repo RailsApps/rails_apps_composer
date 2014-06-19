@@ -15,12 +15,7 @@ if prefer :apps4, 'rails-bootstrap'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
-  add_gem 'high_voltage'
-  after_everything do
-    generate 'pages:home -f'
-    generate 'pages:about -f'
-    generate 'layout:navigation -f'
-  end
+  prefs[:pages] = 'about'
 end
 
 __END__

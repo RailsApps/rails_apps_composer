@@ -22,6 +22,6 @@ requires: [git, railsapps,
   tests4,
   email,
   devise, omniauth, pundit,
-  frontend,
+  frontend, pages,
   init, extras, deployment]
 category: collections

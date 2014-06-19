@@ -146,6 +146,6 @@ name: email
 description: "Configure email accounts."
 author: RailsApps
 
-requires: [setup]
-run_after: [setup]
+requires: [setup, gems]
+run_after: [setup, gems]
 category: configuration

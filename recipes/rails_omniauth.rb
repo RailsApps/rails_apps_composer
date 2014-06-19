@@ -11,13 +11,7 @@ if prefer :apps4, 'rails-omniauth'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
-  add_gem 'high_voltage'
-  after_everything do
-    generate 'pages:users -f'
-    generate 'pages:about -f'
-    generate 'layout:navigation -f'
-    repo = 'https://raw.github.com/RailsApps/rails-omniauth/master/'
-  end
+  prefs[:pages] = 'about-users'
 end
 
 __END__

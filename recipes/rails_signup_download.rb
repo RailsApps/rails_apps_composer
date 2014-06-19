@@ -12,9 +12,8 @@ if prefer :apps4, 'rails-signup-download'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
+  prefs[:pages] = 'users'
   after_everything do
-    generate 'pages:authorized -f'
-
     repo = 'https://raw.github.com/RailsApps/rails-signup-download/master/'
 
     # >-------------------------------[ Controllers ]--------------------------------<
