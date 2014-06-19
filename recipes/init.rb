@@ -182,6 +182,6 @@ name: init
 description: "Set up and initialize database."
 author: RailsApps
 
-requires: [setup, gems, models]
-run_after: [setup, gems, models]
+requires: [setup, gems, devise, omniauth]
+run_after: [setup, gems, devise, omniauth]
 category: initialize

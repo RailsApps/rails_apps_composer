@@ -2,7 +2,6 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_omniauth.rb
 
 if prefer :apps4, 'rails-omniauth'
-
   prefs[:authentication] = 'omniauth'
   prefs[:authorization] = 'none'
   prefs[:better_errors] = true
@@ -13,21 +12,11 @@ if prefer :apps4, 'rails-omniauth'
   prefs[:pry] = false
   prefs[:quiet_assets] = true
   add_gem 'high_voltage'
-
   after_everything do
     generate 'pages:users -f'
     generate 'pages:about -f'
     generate 'layout:navigation -f'
     repo = 'https://raw.github.com/RailsApps/rails-omniauth/master/'
-
-    # >-------------------------------[ Models ]--------------------------------<
-
-    copy_from_repo 'app/models/user.rb', :repo => repo
-
-    # >-------------------------------[ Routes ]--------------------------------<
-
-    copy_from_repo 'config/routes.rb', :repo => repo
-
   end
 end
 

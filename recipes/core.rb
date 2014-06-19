@@ -21,7 +21,7 @@ requires: [git, railsapps,
   setup, readme, gems,
   tests4,
   email,
-  models, controllers, views,
+  devise, omniauth, pundit,
   frontend,
   init, extras, deployment]
 category: collections

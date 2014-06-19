@@ -75,7 +75,7 @@ else
 end
 
 ## Authentication and Authorization
-if recipes.include? 'models'
+if (recipes.include? 'devise') || (recipes.include? 'omniauth')
   prefs[:authentication] = multiple_choice "Authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]] unless prefs.has_key? :authentication
   case prefs[:authentication]
     when 'devise'
@@ -85,12 +85,8 @@ if recipes.include? 'models'
       prefs[:omniauth_provider] = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"],
         ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google_oauth2"], ["Tumblr", "tumblr"]] unless prefs.has_key? :omniauth_provider
   end
-  unless prefs.has_key? :authorization
-    if rails_4_1?
-      prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["Pundit", "pundit"]]
-    else
-      prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["CanCan with Rolify", "cancan"]]
-    end
+  unless prefer :authentication, 'omniauth' # TODO -- implement pundit for omniauth
+    prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["Pundit", "pundit"]] unless prefs.has_key? :authorization
   end
 end
 
