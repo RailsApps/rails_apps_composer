@@ -1,8 +1,8 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/init.rb
 
-after_everything do
-  say_wizard "recipe running after everything"
+stage_three do
+  say_wizard "recipe stage three"
   if (!prefs[:secrets].nil?)
     prefs[:secrets].each do |secret|
       env_var = "  #{secret}: <%= ENV[\"#{secret.upcase}\"] %>"
@@ -136,7 +136,7 @@ FILE
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: navigation links"' if prefer :git, true
-end # after_everything
+end
 
 __END__
 

@@ -116,7 +116,7 @@ say_wizard("\033[1m\033[36m" + "                             \| \|   \| \|" + "\
 say_wizard("\033[1m\033[36m" + "                             \| \|   \| \|" + "\033[0m")
 say_wizard("\033[1m\033[36m" + '' + "\033[0m")
 say_wizard("\033[1m\033[36m" + "Rails Composer, open source, supported by subscribers." + "\033[0m")
-say_wizard("\033[1m\033[36m" + "Please join RailsApps and support development of Rails Composer." + "\033[0m")
+say_wizard("\033[1m\033[36m" + "Please join RailsApps to support development of Rails Composer." + "\033[0m")
 say_wizard("Need help? Ask on Stack Overflow with the tag \'railsapps.\'")
 say_wizard("Your new application will contain diagnostics in its README file.")
 
@@ -199,9 +199,9 @@ say_wizard "Installing gems. This will take a while."
 run 'bundle install --without production'
 say_wizard "Updating gem paths."
 Gem.clear_paths
-# >-----------------------------[ Run 'After Bundler' Callbacks ]-------------------------------<
+# >-----------------------------[ Run 'stage_two' Callbacks ]-------------------------------<
 
-say_wizard "Running 'after bundler' callbacks."
+say_wizard "Stage Two (running recipe 'stage_two' callbacks)."
 if prefer :templates, 'haml'
   say_wizard "importing html2haml conversion tool"
   require 'html2haml'
@@ -213,11 +213,11 @@ say_wizard "importing html2haml and haml2slim conversion tools"
 end
 @after_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; puts @current_recipe; b[1].call}
 
-# >-----------------------------[ Run 'After Everything' Callbacks ]-------------------------------<
+# >-----------------------------[ Run 'stage_three' Callbacks ]-------------------------------<
 
 @current_recipe = nil
-say_wizard "Running 'after everything' callbacks."
-@after_everything_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; puts @current_recipe; b[1].call}
+say_wizard "Stage Three (running recipe 'stage_three' callbacks)."
+@stage_three_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; puts @current_recipe; b[1].call}
 
 @current_recipe = nil
 say_wizard("Your new application will contain diagnostics in its README file.")

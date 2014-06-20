@@ -61,7 +61,7 @@ def multiple_choice(question, choices)
 end
 
 @after_blocks = []
-def after_bundler(&block); @after_blocks << block; end
+def stage_two(&block); @after_blocks << block; end
 
 
 say_wizard ask_wizard("What do you want to know?")

@@ -1,8 +1,8 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/tests.rb
 
-after_bundler do
-  say_wizard "recipe running after 'bundle install'"
+stage_two do
+  say_wizard "recipe stage two"
   if prefer :tests, 'rspec'
     say_wizard "recipe installing RSpec"
     generate 'testing:configure rspec -f'
@@ -15,8 +15,8 @@ after_bundler do
   git :commit => '-qm "rails_apps_composer: testing framework"' if prefer :git, true
 end
 
-after_everything do
-  say_wizard "recipe running after everything"
+stage_three do
+  say_wizard "recipe stage three"
   if (prefer :authentication, 'devise') && (prefer :tests, 'rspec')
     generate 'testing:configure devise -f'
   end

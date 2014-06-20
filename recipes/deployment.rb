@@ -13,7 +13,7 @@ if prefer :deployment, 'capistrano3'
   add_gem 'capistrano-bundler', group: :development
   add_gem 'capistrano-rails', '~> 1.1.0', group: :development
   add_gem 'capistrano-rails-console', group: :development
-  after_bundler do
+  stage_two do
     say_wizard 'recipe capistrano file'
     run 'bundle exec cap install'
   end

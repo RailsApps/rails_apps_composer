@@ -1,8 +1,8 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/email.rb
 
-after_bundler do
-  say_wizard "recipe running after 'bundle install'"
+stage_two do
+  say_wizard "recipe stage two"
   unless prefer :email, 'none'
     ## ACTIONMAILER CONFIG
     dev_email_text = <<-TEXT
@@ -52,7 +52,7 @@ TEXT
   ### GIT
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: set email accounts"' if prefer :git, true
-end # after_bundler
+end
 
 __END__
 

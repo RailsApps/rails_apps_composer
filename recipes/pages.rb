@@ -1,8 +1,8 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/pages.rb
 
-after_everything do
-  say_wizard "recipe running after everything"
+stage_three do
+  say_wizard "recipe stage three"
   case prefs[:pages]
     when 'home'
       generate 'pages:home -f'

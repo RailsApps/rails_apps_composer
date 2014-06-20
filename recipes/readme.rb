@@ -1,8 +1,8 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/readme.rb
 
-after_everything do
-  say_wizard "recipe running after everything"
+stage_three do
+  say_wizard "recipe stage three"
 
   # remove default READMEs
   %w{
@@ -80,7 +80,7 @@ after_everything do
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: add README files"' if prefer :git, true
 
-end # after_everything
+end
 
 __END__
 

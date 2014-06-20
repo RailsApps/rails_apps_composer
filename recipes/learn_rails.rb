@@ -37,8 +37,8 @@ if prefer :apps4, 'learn-rails'
   add_gem 'thin', :group => :production
   add_gem 'rails_12factor', :group => :production
 
-  after_everything do
-
+  stage_three do
+    say_wizard "recipe stage three"
     repo = 'https://raw.github.com/RailsApps/learn-rails/master/'
 
     # >-------------------------------[ Models ]--------------------------------<

@@ -13,7 +13,7 @@ if prefer :admin, 'activeadmin'
 end
 add_gem 'rails_admin' if prefer :admin, 'rails_admin'
 
-after_bundler do
+stage_two do
   if prefer :admin, 'activeadmin'
     say_wizard "recipe installing activeadmin"
     generate 'active_admin:install'

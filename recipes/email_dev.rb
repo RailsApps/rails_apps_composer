@@ -9,7 +9,7 @@ if prefs[:mailcatcher]
 end
 add_gem 'mail_view', group: :development if prefs[:mail_view]
 
-after_bundler do
+stage_two do
   if prefs[:mailcatcher]
     say_wizard "recipe installing mailcatcher"
     create_file 'config/initializers/mailcatcher.rb' do <<-RUBY

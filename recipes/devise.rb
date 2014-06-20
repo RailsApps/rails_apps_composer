@@ -1,8 +1,8 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/devise.rb
 
-after_bundler do
-  say_wizard "recipe running after 'bundle install'"
+stage_two do
+  say_wizard "recipe stage two"
   if prefer :authentication, 'devise'
     # prevent logging of password_confirmation
     gsub_file 'config/initializers/filter_parameter_logging.rb', /:password/, ':password, :password_confirmation'

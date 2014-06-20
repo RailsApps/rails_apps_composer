@@ -127,7 +127,7 @@ git :add => '-A' if prefer :git, true
 git :commit => '-qm "rails_apps_composer: Gemfile"' if prefer :git, true
 
 ### CREATE DATABASE ###
-after_bundler do
+stage_two do
   unless prefer :database, 'default'
     copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
     copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
@@ -183,10 +183,10 @@ after_bundler do
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: create database"' if prefer :git, true
   end
-end # after_bundler
+end
 
 ### GENERATORS ###
-after_bundler do
+stage_two do
   ## Form Builder
   if prefer :form_builder, 'simple_form'
     case prefs[:frontend]
@@ -250,7 +250,7 @@ FILE
   ## Git
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: generators"' if prefer :git, true
-end # after_bundler
+end
 
 __END__
 

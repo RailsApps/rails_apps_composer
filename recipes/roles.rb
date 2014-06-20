@@ -1,8 +1,8 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/roles.rb
 
-after_bundler do
-  say_wizard "recipe running after 'bundle install'"
+stage_two do
+  say_wizard "recipe stage two"
   if prefer :authorization, 'pundit'
     generate 'migration AddRoleToUsers role:integer'
     role_boilerplate = "  enum role: [:user, :vip, :admin]\n  after_initialize :set_default_role, :if => :new_record?\n\n"

@@ -127,7 +127,7 @@ if config['ban_spiders']
 end
 if prefs[:ban_spiders]
   say_wizard "recipe banning spiders by modifying 'public/robots.txt'"
-  after_bundler do
+  stage_two do
     gsub_file 'public/robots.txt', /# User-Agent/, 'User-Agent'
     gsub_file 'public/robots.txt', /# Disallow/, 'Disallow'
   end
@@ -143,8 +143,8 @@ case RbConfig::CONFIG['host_os']
     end
 end
 
-## AFTER_EVERYTHING
-after_everything do
+stage_three do
+  say_wizard "recipe stage three"
   say_wizard "recipe removing unnecessary files and whitespace"
   %w{
     public/index.html
@@ -176,7 +176,8 @@ if config['github']
 end
 if prefs[:github]
   add_gem 'hub', :require => nil, :group => [:development]
-  after_everything do
+  stage_three do
+    say_wizard "recipe stage three"
     say_wizard "recipe creating GitHub repository"
     git_uri = `git config remote.origin.url`.strip
     unless git_uri.size == 0
