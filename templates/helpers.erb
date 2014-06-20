@@ -10,14 +10,6 @@ def say_custom(tag, text); say "\033[1m\033[36m" + tag.to_s.rjust(10) + "\033[0m
 def say_recipe(name); say "\033[1m\033[36m" + "recipe".rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
 def say_wizard(text); say_custom(@current_recipe || 'composer', text) end
 
-def rails_4?
-  Rails::VERSION::MAJOR.to_s == "4"
-end
-
-def rails_4_1?
-  Rails::VERSION::MAJOR.to_s == "4" && Rails::VERSION::MINOR.to_s == "1"
-end
-
 def ask_wizard(question)
   ask "\033[1m\033[36m" + (@current_recipe || "prompt").rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
 end

@@ -9,11 +9,7 @@ case config['admin']
 end
 
 if prefer :admin, 'activeadmin'
-  if rails_4?
-    add_gem 'activeadmin', github: 'gregbell/active_admin'
-  else
-    add_gem 'activeadmin'
-  end
+  add_gem 'activeadmin'
 end
 add_gem 'rails_admin' if prefer :admin, 'rails_admin'
 

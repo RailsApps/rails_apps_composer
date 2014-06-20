@@ -34,25 +34,21 @@ if prefs[:prod_webserver] == 'same'
 end
 
 ## Database Adapter
-if rails_4_1?
-  prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
-    ["MySQL", "mysql"]] unless prefs.has_key? :database
-end
+prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
+  ["MySQL", "mysql"]] unless prefs.has_key? :database
 
 ## Template Engine
 prefs[:templates] = multiple_choice "Template engine?", [["ERB", "erb"], ["Haml", "haml"], ["Slim", "slim"]] unless prefs.has_key? :templates
 
 ## Testing Framework
-if rails_4_1?
-  if recipes.include? 'tests4'
-    prefs[:tests] = multiple_choice "Test framework?", [["None", "none"],
-      ["RSpec with Capybara", "rspec"]] unless prefs.has_key? :tests
-    case prefs[:tests]
-      when 'rspec'
-        say_wizard "Adding DatabaseCleaner, FactoryGirl, Faker, Launchy, Selenium"
-        prefs[:continuous_testing] = multiple_choice "Continuous testing?", [["None", "none"], ["Guard", "guard"]] unless prefs.has_key? :continuous_testing
-      end
-  end
+if recipes.include? 'tests4'
+  prefs[:tests] = multiple_choice "Test framework?", [["None", "none"],
+    ["RSpec with Capybara", "rspec"]] unless prefs.has_key? :tests
+  case prefs[:tests]
+    when 'rspec'
+      say_wizard "Adding DatabaseCleaner, FactoryGirl, Faker, Launchy, Selenium"
+      prefs[:continuous_testing] = multiple_choice "Continuous testing?", [["None", "none"], ["Guard", "guard"]] unless prefs.has_key? :continuous_testing
+    end
 end
 
 ## Front-end Framework

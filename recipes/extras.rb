@@ -86,11 +86,7 @@ if config['local_env_file']
 end
 if prefer :local_env_file, 'figaro'
   say_wizard "recipe creating application.yml file for environment variables with figaro"
-  if rails_4_1?
-    add_gem 'figaro', :github => 'laserlemon/figaro'
-  else
-    add_gem 'figaro'
-  end
+  add_gem 'figaro', '>= 1.0.0.rc1'
 elsif prefer :local_env_file, 'foreman'
   say_wizard "recipe creating .env file for development environment variables with foreman"
   add_gem 'foreman', :group => :development

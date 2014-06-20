@@ -71,7 +71,7 @@ after_everything do
   # Authentication and Authorization
   gsub_file "README.md", /Authentication: None/, "Authentication: Devise" if prefer :authentication, 'devise'
   gsub_file "README.md", /Authentication: None/, "Authentication: OmniAuth" if prefer :authentication, 'omniauth'
-  gsub_file "README.md", /Authorization: None/, "Authorization: CanCan" if prefer :authorization, 'cancan'
+  gsub_file "README.md", /Authorization: None/, "Authorization: Pundit" if prefer :authorization, 'pundit'
 
   # Admin
   gsub_file "README.md", /Admin: None/, "Admin: ActiveAdmin" if prefer :admin, 'activeadmin'

@@ -5,8 +5,8 @@ after_bundler do
   say_wizard "recipe running after 'bundle install'"
   if prefer :authorization, 'pundit'
     generate 'migration AddRoleToUsers role:integer'
-    role_boilerplate = "  enum role: [:user, :vip, :admin]\nafter_initialize :set_default_role, :if => :new_record?\n"
-    role_boilerplate << "  def set_default_role\n    self.role ||= :user\n  end\n" if prefer :authentication, 'devise'
+    role_boilerplate = "  enum role: [:user, :vip, :admin]\n  after_initialize :set_default_role, :if => :new_record?\n\n"
+    role_boilerplate << "  def set_default_role\n    self.role ||= :user\n  end\n\n" if prefer :authentication, 'devise'
     if prefer :authentication, 'omniauth'
       role_boilerplate << <<-RUBY
   def set_default_role

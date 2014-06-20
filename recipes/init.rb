@@ -3,7 +3,7 @@
 
 after_everything do
   say_wizard "recipe running after everything"
-  if (!prefs[:secrets].nil?) and rails_4_1?
+  if (!prefs[:secrets].nil?)
     prefs[:secrets].each do |secret|
       env_var = "  #{secret}: <%= ENV[\"#{secret.upcase}\"] %>"
       inject_into_file 'config/secrets.yml', "\n" + env_var, :after => "development:"
@@ -34,43 +34,32 @@ after_everything do
   secrets_omniauth = "  omniauth_provider_key: <%= ENV[\"OMNIAUTH_PROVIDER_KEY\"] %>\n  omniauth_provider_secret: <%= ENV[\"OMNIAUTH_PROVIDER_SECRET\"] %>"
   foreman_omniauth = "OMNIAUTH_PROVIDER_KEY: Your_Provider_Key\nOMNIAUTH_PROVIDER_SECRET: Your_Provider_Secret\n"
   figaro_omniauth  = foreman_omniauth.gsub('=', ': ')
-  secrets_cancan = "  roles: <%= ENV[\"ROLES\"] %>" # unnecessary? CanCan will not be used with Rails 4.1?
-  foreman_cancan = "ROLES=[admin, user, VIP]\n\n"
-  figaro_cancan = foreman_cancan.gsub('=', ': ')
   ## EMAIL
-  inject_into_file 'config/secrets.yml', "\n" + "  domain_name: example.com", :after => "development:" if rails_4_1?
-  inject_into_file 'config/secrets.yml', "\n" + "  domain_name: <%= ENV[\"DOMAIN_NAME\"] %>", :after => "production:" if rails_4_1?
-  inject_into_file 'config/secrets.yml', "\n" + secrets_email, :after => "development:" if rails_4_1?
+  inject_into_file 'config/secrets.yml', "\n" + "  domain_name: example.com", :after => "development:"
+  inject_into_file 'config/secrets.yml', "\n" + "  domain_name: <%= ENV[\"DOMAIN_NAME\"] %>", :after => "production:"
+  inject_into_file 'config/secrets.yml', "\n" + secrets_email, :after => "development:"
   unless prefer :email, 'none'
     ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
-    inject_into_file 'config/secrets.yml', "\n" + secrets_email + " ", :after => "production:" if rails_4_1?
+    inject_into_file 'config/secrets.yml', "\n" + secrets_email + " ", :after => "production:"
     append_file '.env', foreman_email if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_email if prefer :local_env_file, 'figaro'
   end
   ## DEVISE
   if prefer :authentication, 'devise'
-    inject_into_file 'config/secrets.yml', "\n" + '  domain_name: example.com' + " ", :after => "test:" if rails_4_1?
-    inject_into_file 'config/secrets.yml', "\n" + secrets_d_devise, :after => "development:" if rails_4_1?
-    inject_into_file 'config/secrets.yml', "\n" + secrets_p_devise, :after => "production:" if rails_4_1?
+    inject_into_file 'config/secrets.yml', "\n" + '  domain_name: example.com' + " ", :after => "test:"
+    inject_into_file 'config/secrets.yml', "\n" + secrets_d_devise, :after => "development:"
+    inject_into_file 'config/secrets.yml', "\n" + secrets_p_devise, :after => "production:"
     append_file '.env', foreman_devise if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_devise if prefer :local_env_file, 'figaro'
     gsub_file 'config/initializers/devise.rb', /'please-change-me-at-config-initializers-devise@example.com'/, "'no-reply@' + Rails.application.secrets.domain_name"
   end
   ## OMNIAUTH
   if prefer :authentication, 'omniauth'
-    inject_into_file 'config/secrets.yml', "\n" + secrets_omniauth, :after => "development:" if rails_4_1?
+    inject_into_file 'config/secrets.yml', "\n" + secrets_omniauth, :after => "development:"
     ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
-    inject_into_file 'config/secrets.yml', "\n" + secrets_omniauth + " ", :after => "production:" if rails_4_1?
+    inject_into_file 'config/secrets.yml', "\n" + secrets_omniauth + " ", :after => "production:"
     append_file '.env', foreman_omniauth if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_omniauth if prefer :local_env_file, 'figaro'
-  end
-  ## CANCAN
-  if (prefer :authorization, 'cancan')
-    inject_into_file 'config/secrets.yml', "\n" + secrets_cancan, :after => "development:" if rails_4_1?
-    ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
-    inject_into_file 'config/secrets.yml', "\n" + secrets_cancan + " ", :after => "production:" if rails_4_1?
-    append_file '.env', foreman_cancan if prefer :local_env_file, 'foreman'
-    append_file 'config/application.yml', figaro_cancan if prefer :local_env_file, 'figaro'
   end
   ### EXAMPLE FILE FOR FOREMAN AND FIGARO ###
   if prefer :local_env_file, 'figaro'
@@ -79,7 +68,7 @@ after_everything do
     copy_file destination_root + '/.env', destination_root + '/.env.example'
   end
   ### DATABASE SEED ###
-  if (prefer :authentication, 'devise') and (rails_4_1?)
+  if prefer :authentication, 'devise'
     copy_from_repo 'db/seeds.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise/master/'
     if prefer :authorization, 'pundit'
       copy_from_repo 'app/services/create_admin_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
@@ -99,35 +88,9 @@ FILE
 FILE
     end
   end
-  if (prefer :authorization, 'cancan')
-    append_file 'db/seeds.rb' do <<-FILE
-puts 'ROLES'
-YAML.load(ENV['ROLES']).each do |role|
-  Role.mongo_session['roles'].insert({ :name => role })
-  puts 'role: ' << role
-end
-FILE
-    end
-  end
-  ## DEVISE-DEFAULT
-  if (prefer :authentication, 'devise') and (not prefer :apps4, 'rails-devise') and (not rails_4_1?)
-    append_file 'db/seeds.rb' do <<-FILE
-puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-puts 'user: ' << user.name
-FILE
-    end
-  end
   ## DEVISE-CONFIRMABLE
   if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
-    if rails_4_1?
-      inject_into_file 'app/services/create_admin_service.rb', "        user.confirm!\n", :after => "user.password_confirmation = Rails.application.secrets.admin_password\n"
-    else
-      append_file 'db/seeds.rb', "user.confirm!\n"
-    end
-  end
-  if (prefer :authorization, 'cancan') && !(prefer :authentication, 'omniauth')
-    append_file 'db/seeds.rb', 'user.add_role :admin'
+    inject_into_file 'app/services/create_admin_service.rb', "        user.confirm!\n", :after => "user.password_confirmation = Rails.application.secrets.admin_password\n"
   end
   ## DEVISE-INVITABLE
   if prefer :devise_modules, 'invitable'

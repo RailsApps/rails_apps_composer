@@ -11,8 +11,6 @@ insert_into_file('Gemfile', "ruby '#{RUBY_VERSION}'\n", :before => /^ *gem 'rail
 gsub_file 'Gemfile', /group :doc do/, ''
 gsub_file 'Gemfile', /\s*gem 'sdoc', require: false\nend/, ''
 
-assets_group = rails_4? ? nil : :assets
-
 ## Web Server
 if (prefs[:dev_webserver] == prefs[:prod_webserver])
   add_gem 'thin' if prefer :dev_webserver, 'thin'
@@ -31,11 +29,6 @@ else
   add_gem 'puma', :group => :production if prefer :prod_webserver, 'puma'
   add_gem 'passenger', :group => :production if prefer :prod_webserver, 'passenger_standalone'
 end
-
-## Rails 4.0 attr_accessible Compatibility
-# if prefer :apps4, false
-#   add_gem 'protected_attributes' if rails_4?
-# end
 
 ## Database Adapter
 unless prefer :database, 'default'
@@ -61,24 +54,22 @@ if prefer :templates, 'slim'
 end
 
 ## Testing Framework
-if rails_4_1?
-  if prefer :tests, 'rspec'
-    add_gem 'rails_apps_testing', :group => :development
-    add_gem 'rspec-rails', :group => [:development, :test]
-    add_gem 'factory_girl_rails', :group => [:development, :test]
-    add_gem 'faker', :group => :test
-    add_gem 'capybara', :group => :test
-    add_gem 'database_cleaner', :group => :test
-    add_gem 'launchy', :group => :test
-    add_gem 'selenium-webdriver', :group => :test
-    if prefer :continuous_testing, 'guard'
-      add_gem 'guard-bundler', :group => :development
-      add_gem 'guard-rails', :group => :development
-      add_gem 'guard-rspec', :group => :development
-      add_gem 'rb-inotify', :group => :development, :require => false
-      add_gem 'rb-fsevent', :group => :development, :require => false
-      add_gem 'rb-fchange', :group => :development, :require => false
-    end
+if prefer :tests, 'rspec'
+  add_gem 'rails_apps_testing', :group => :development
+  add_gem 'rspec-rails', :group => [:development, :test]
+  add_gem 'factory_girl_rails', :group => [:development, :test]
+  add_gem 'faker', :group => :test
+  add_gem 'capybara', :group => :test
+  add_gem 'database_cleaner', :group => :test
+  add_gem 'launchy', :group => :test
+  add_gem 'selenium-webdriver', :group => :test
+  if prefer :continuous_testing, 'guard'
+    add_gem 'guard-bundler', :group => :development
+    add_gem 'guard-rails', :group => :development
+    add_gem 'guard-rspec', :group => :development
+    add_gem 'rb-inotify', :group => :development, :require => false
+    add_gem 'rb-fsevent', :group => :development, :require => false
+    add_gem 'rb-fchange', :group => :development, :require => false
   end
 end
 
@@ -90,13 +81,8 @@ case prefs[:frontend]
   when 'bootstrap3'
     add_gem 'bootstrap-sass'
   when 'foundation4'
-    if rails_4?
-      add_gem 'zurb-foundation', '~> 4.3.2'
-      add_gem 'compass-rails', '~> 1.1.2'
-    else
-      add_gem 'zurb-foundation', '~> 4.3.2', :group => assets_group
-      add_gem 'compass-rails', '~> 1.0.3', :group => assets_group
-    end
+    add_gem 'zurb-foundation', '~> 4.3.2'
+    add_gem 'compass-rails', '~> 1.1.2'
   when 'foundation5'
     add_gem 'foundation-rails'
 end
@@ -126,10 +112,6 @@ add_gem 'omniauth-google-oauth2' if prefer :omniauth_provider, 'google_oauth2'
 add_gem 'omniauth-tumblr' if prefer :omniauth_provider, 'tumblr'
 
 ## Authorization
-if prefer :authorization, 'cancan'
-  add_gem 'cancan'
-  add_gem 'rolify'
-end
 add_gem 'pundit' if prefer :authorization, 'pundit'
 
 ## Form Builder

@@ -2,6 +2,8 @@ h1. CHANGELOG
 
 h3. 3.0.0 unreleased
 
+* no longer supporting Rails 4.0 and earlier, remove Rails 4.1 logic
+* remove code for CanCan
 * support Pundit for authorization with OmniAuth
 * add 'pages' recipe
 * remove 'starter_app' option (replaced by 'pages' recipe)
