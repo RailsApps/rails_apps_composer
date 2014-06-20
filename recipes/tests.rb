@@ -1,5 +1,5 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/tests4.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/tests.rb
 
 after_bundler do
   say_wizard "recipe running after 'bundle install'"
@@ -30,7 +30,7 @@ end
 
 __END__
 
-name: tests4
+name: tests
 description: "Add testing framework."
 author: RailsApps
 

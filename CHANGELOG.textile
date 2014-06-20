@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.0 unreleased
 
+* rename 'tests4' recipe to 'tests'
 * no longer supporting Rails 4.0 and earlier, remove Rails 4.1 logic
 * remove code for CanCan
 * support Pundit for authorization with OmniAuth

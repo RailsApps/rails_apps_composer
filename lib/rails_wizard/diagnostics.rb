@@ -23,10 +23,10 @@ module RailsWizard
     @@recipes << %w(email example extras frontend gems git init railsapps readme setup testing)
     @@recipes << %w(email example extras frontend gems git init railsapps readme setup testing)
     @@recipes << %w(apps4 core email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(apps4 core email extras frontend gems git init railsapps readme setup tests4)
+    @@recipes << %w(apps4 core email extras frontend gems git init railsapps readme setup tests)
     @@recipes << %w(apps4 core deployment email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(apps4 core deployment email extras frontend gems git init railsapps readme setup tests4)
-    @@recipes << %w(apps4 core deployment devise email extras frontend gems git init omniauth pundit railsapps readme setup tests4)
+    @@recipes << %w(apps4 core deployment email extras frontend gems git init railsapps readme setup tests)
+    @@recipes << %w(apps4 core deployment devise email extras frontend gems git init omniauth pundit railsapps readme setup tests)
 
     ### collections of preferences that are known to work together
 

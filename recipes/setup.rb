@@ -41,7 +41,7 @@ prefs[:database] = multiple_choice "Database used in development?", [["SQLite", 
 prefs[:templates] = multiple_choice "Template engine?", [["ERB", "erb"], ["Haml", "haml"], ["Slim", "slim"]] unless prefs.has_key? :templates
 
 ## Testing Framework
-if recipes.include? 'tests4'
+if recipes.include? 'tests'
   prefs[:tests] = multiple_choice "Test framework?", [["None", "none"],
     ["RSpec with Capybara", "rspec"]] unless prefs.has_key? :tests
   case prefs[:tests]
