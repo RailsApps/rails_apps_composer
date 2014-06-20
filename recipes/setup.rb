@@ -85,9 +85,7 @@ if (recipes.include? 'devise') || (recipes.include? 'omniauth')
       prefs[:omniauth_provider] = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"],
         ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google_oauth2"], ["Tumblr", "tumblr"]] unless prefs.has_key? :omniauth_provider
   end
-  unless prefer :authentication, 'omniauth' # TODO -- implement pundit for omniauth
-    prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["Pundit", "pundit"]] unless prefs.has_key? :authorization
-  end
+  prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["Pundit", "pundit"]] unless prefs.has_key? :authorization
 end
 
 ## Form Builder

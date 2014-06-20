@@ -10,11 +10,11 @@ after_everything do
       generate 'pages:about -f'
     when 'users'
       generate 'pages:users -f'
-      generate 'pages:authorized -f' if (prefer :authorization, 'pundit') && (prefer :authentication, 'devise')
+      generate 'pages:authorized -f' if prefer :authorization, 'pundit'
     when 'about+users'
       generate 'pages:about -f'
       generate 'pages:users -f'
-      generate 'pages:authorized -f' if (prefer :authorization, 'pundit') && (prefer :authentication, 'devise')
+      generate 'pages:authorized -f' if prefer :authorization, 'pundit'
   end
   generate 'layout:navigation -f'
   ### GIT ###
