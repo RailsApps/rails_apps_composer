@@ -14,6 +14,7 @@ end
 add_gem 'rails_admin' if prefer :admin, 'rails_admin'
 
 stage_two do
+  say_wizard "recipe stage two"
   if prefer :admin, 'activeadmin'
     say_wizard "recipe installing activeadmin"
     generate 'active_admin:install'

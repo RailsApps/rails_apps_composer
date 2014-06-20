@@ -128,6 +128,8 @@ git :commit => '-qm "rails_apps_composer: Gemfile"' if prefer :git, true
 
 ### CREATE DATABASE ###
 stage_two do
+  say_wizard "recipe stage two"
+  say_wizard "configuring database"
   unless prefer :database, 'default'
     copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
     copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
@@ -187,6 +189,8 @@ end
 
 ### GENERATORS ###
 stage_two do
+  say_wizard "recipe stage two"
+  say_wizard "running generators"
   ## Form Builder
   if prefer :form_builder, 'simple_form'
     case prefs[:frontend]

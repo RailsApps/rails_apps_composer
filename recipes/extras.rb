@@ -128,6 +128,7 @@ end
 if prefs[:ban_spiders]
   say_wizard "recipe banning spiders by modifying 'public/robots.txt'"
   stage_two do
+    say_wizard "recipe stage two"
     gsub_file 'public/robots.txt', /# User-Agent/, 'User-Agent'
     gsub_file 'public/robots.txt', /# Disallow/, 'Disallow'
   end

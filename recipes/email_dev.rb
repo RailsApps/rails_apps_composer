@@ -10,6 +10,7 @@ end
 add_gem 'mail_view', group: :development if prefs[:mail_view]
 
 stage_two do
+  say_wizard "recipe stage two"
   if prefs[:mailcatcher]
     say_wizard "recipe installing mailcatcher"
     create_file 'config/initializers/mailcatcher.rb' do <<-RUBY
