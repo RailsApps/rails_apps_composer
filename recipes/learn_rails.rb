@@ -25,6 +25,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:templates] = 'erb'
   prefs[:tests] = false
   prefs[:pages] = 'none'
+  prefs[:locale] = 'none'
 
   # gems
   add_gem 'activerecord-tableless'

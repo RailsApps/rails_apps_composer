@@ -18,10 +18,10 @@ requires: [git, railsapps,
   rails_devise,
   rails_devise_pundit,
   rails_signup_download,
-  setup, readme, gems,
+  setup, locale, readme, gems,
   tests,
   email,
   devise, omniauth, roles,
   frontend, pages,
-  init, extras, locale, deployment]
+  init, extras, deployment]
 category: collections

@@ -12,6 +12,7 @@ if prefer :apps4, 'rails-omniauth'
   prefs[:pry] = false
   prefs[:quiet_assets] = true
   prefs[:pages] = 'about+users'
+  prefs[:locale] = 'none'
 end
 
 __END__

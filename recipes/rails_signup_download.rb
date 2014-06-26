@@ -13,6 +13,7 @@ if prefer :apps4, 'rails-signup-download'
   prefs[:pry] = false
   prefs[:quiet_assets] = true
   prefs[:pages] = 'users'
+  prefs[:locale] = 'none'
   stage_three do
     say_wizard "recipe stage three"
     repo = 'https://raw.github.com/RailsApps/rails-signup-download/master/'

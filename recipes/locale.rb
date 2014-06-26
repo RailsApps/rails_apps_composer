@@ -1,13 +1,14 @@
 unless prefs[:locale]
   prefs[:locale] = ask_wizard('Set a locale? Enter nothing for English, or es, de, etc:')
+  prefs[:locale] = 'none' unless prefs[:locale].present?
 end
 
-if prefs[:locale].present?
+unless prefer :locale, 'none'
   add_gem 'devise-i18n' if prefer :authentication, 'devise'
 end
 
 stage_two do
-  if prefs[:locale].present?
+  unless prefer :locale, 'none'
     gsub_file 'config/application.rb', /# config.i18n.default_locale.*$/, "config.i18n.default_locale = :#{prefs[:locale]}"
     locale_filename = "config/locales/#{prefs[:locale]}.yml"
     create_file locale_filename
@@ -23,4 +24,4 @@ author: hedgesky
 
 category: other
 requires: [setup]
-run_after: [setup, extras]
+run_after: [setup]

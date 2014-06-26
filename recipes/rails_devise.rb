@@ -11,6 +11,7 @@ if prefer :apps4, 'rails-devise'
   prefs[:pry] = false
   prefs[:quiet_assets] = true
   prefs[:pages] = 'users'
+  prefs[:locale] = 'none'
 end
 
 __END__
