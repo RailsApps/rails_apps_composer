@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.1 unreleased
+h3. 3.0.1 June 26, 2014
 
 * add 'locale' recipe (contributed by hedgesky)
 * restore devise_invitable option
