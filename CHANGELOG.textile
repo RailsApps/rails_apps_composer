@@ -4,6 +4,7 @@ h3. 3.0.1 unreleased
 
 * add 'locale' recipe (contributed by hedgesky)
 * restore devise_invitable option
+* remove 'capture email' feature from 'rails-omniauth' recipe
 
 h3. 3.0.0 June 20, 2014
 

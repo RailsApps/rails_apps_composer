@@ -7,7 +7,7 @@ stage_two do
     repo = 'https://raw.github.com/RailsApps/rails-omniauth/master/'
     copy_from_repo 'config/initializers/omniauth.rb', :repo => repo
     gsub_file 'config/initializers/omniauth.rb', /twitter/, prefs[:omniauth_provider] unless prefer :omniauth_provider, 'twitter'
-    generate 'model User name:string email:string provider:string uid:string'
+    generate 'model User name:string provider:string uid:string'
     run 'bundle exec rake db:migrate'
     copy_from_repo 'app/models/user.rb', :repo => 'https://raw.github.com/RailsApps/rails-omniauth/master/'
     copy_from_repo 'app/controllers/application_controller.rb', :repo => repo
