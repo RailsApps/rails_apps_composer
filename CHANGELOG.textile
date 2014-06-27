@@ -1,10 +1,14 @@
 h1. CHANGELOG
 
+h3. 3.0.2 June 26, 2014
+
+* fix routes error in 'omniauth' recipe
+
 h3. 3.0.1 June 26, 2014
 
 * add 'locale' recipe (contributed by hedgesky)
 * restore devise_invitable option
-* remove 'capture email' feature from 'rails-omniauth' recipe
+* remove 'capture email' feature from 'omniauth' recipe
 
 h3. 3.0.0 June 20, 2014
 
