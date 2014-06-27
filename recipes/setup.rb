@@ -76,7 +76,8 @@ if (recipes.include? 'devise') || (recipes.include? 'omniauth')
   case prefs[:authentication]
     when 'devise'
       prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"],
-      ["Devise with Confirmable module","confirmable"]] unless prefs.has_key? :devise_modules
+      ["Devise with Confirmable module","confirmable"],
+      ["Devise with Confirmable and Invitable modules","invitable"]] unless prefs.has_key? :devise_modules
     when 'omniauth'
       prefs[:omniauth_provider] = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"],
         ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google_oauth2"], ["Tumblr", "tumblr"]] unless prefs.has_key? :omniauth_provider
