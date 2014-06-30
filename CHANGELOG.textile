@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.4 unreleased
 
+* improve tests for Devise confirmable
 * fix email settings for Sendgrid and Mandrill (fixes #302)
 * raise error with versions older than Rails 4.1
 
