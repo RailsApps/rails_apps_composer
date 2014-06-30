@@ -38,7 +38,7 @@ TEXT
 TEXT
     inject_into_file 'config/environments/development.rb', email_configuration_text, :after => "config.assets.debug = true"
     inject_into_file 'config/environments/production.rb', email_configuration_text, :after => "config.active_support.deprecation = :notify"
-    case :email
+    case prefs[:email]
       when 'sendgrid'
         gsub_file 'config/environments/development.rb', /smtp.gmail.com/, 'smtp.sendgrid.net'
         gsub_file 'config/environments/production.rb', /smtp.gmail.com/, 'smtp.sendgrid.net'

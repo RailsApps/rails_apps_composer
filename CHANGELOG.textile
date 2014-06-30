@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.4 unreleased
 
+* fix email settings for Sendgrid and Mandrill (fixes #302)
 * raise error with versions older than Rails 4.1
 
 h3. 3.0.3 June 26, 2014
