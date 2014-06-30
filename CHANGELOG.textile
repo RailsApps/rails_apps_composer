@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.4 unreleased
+h3. 3.0.4 June 29, 2014
 
 * improve tests for Devise confirmable
 * fix email settings for Sendgrid and Mandrill (fixes #302)
