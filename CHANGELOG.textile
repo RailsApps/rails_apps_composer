@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.4 unreleased
+
+* raise error with versions older than Rails 4.1
+
 h3. 3.0.3 June 26, 2014
 
 * revert 'omniauth' recipe (make the change in rails_apps_pages instead)

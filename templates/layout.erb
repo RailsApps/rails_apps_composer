@@ -126,23 +126,20 @@ else
   diagnostics[:recipes] = 'fail'
 end
 
-# this application template only supports Rails version 3.1 and newer
+# this application template only supports Rails version 4.1 and newer
 case Rails::VERSION::MAJOR.to_s
 when "3"
-  case Rails::VERSION::MINOR.to_s
-  when "0"
-    say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported. Try 3.1 or newer."
-    raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported. Try 3.1 or newer."
-  end
+    say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported. Use Rails 4.1 or newer."
+    raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported. Use Rails 4.1 or newer."
 when "4"
-  say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
   case Rails::VERSION::MINOR.to_s
   when "0"
-    say_wizard "Please upgrade to Rails 4.1 or newer."
+    say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported. Use Rails 4.1 or newer."
+    raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported. Use Rails 4.1 or newer."
   end
 else
-  say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported."
-  raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported."
+  say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported. Use Rails 4.1 or newer."
+  raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported. Use Rails 4.1 or newer."
 end
 
 # >---------------------------[ Autoload Modules/Classes ]-----------------------------<
