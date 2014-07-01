@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.5 unreleased
+h3. 3.0.5 June 30, 2014
 
 * add rails-mailinglist-signup example application
 
