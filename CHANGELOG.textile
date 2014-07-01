@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.5 unreleased
+
+* add rails-mailinglist-signup example application
+
 h3. 3.0.4 June 29, 2014
 
 * improve tests for Devise confirmable

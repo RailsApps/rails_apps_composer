@@ -27,6 +27,7 @@ when "4"
         [["learn-rails", "learn-rails"],
         ["rails-bootstrap", "rails-bootstrap"],
         ["rails-foundation", "rails-foundation"],
+        ["rails-mailinglist-signup", "rails-mailinglist-signup"],
         ["rails-omniauth", "rails-omniauth"],
         ["rails-devise", "rails-devise"],
         ["rails-devise-pundit", "rails-devise-pundit"],
