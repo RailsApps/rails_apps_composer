@@ -19,7 +19,7 @@ when "4"
   else
     prefs[:apps4] = multiple_choice "Build a starter application?",
       [["Build a RailsApps example application", "railsapps"],
-      ["Contributed applications (none available)", "contributed_app"],
+      ["Contributed applications", "contributed_app"],
       ["Custom application (experimental)", "none"]] unless prefs.has_key? :apps4
     case prefs[:apps4]
       when 'railsapps'
@@ -33,8 +33,9 @@ when "4"
         ["rails-devise-pundit", "rails-devise-pundit"],
         ["rails-signup-download", "rails-signup-download"]])
       when 'contributed_app'
-        prefs[:apps4] = multiple_choice "No contributed applications are available.",
-          [["create custom application", "railsapps"]]
+        prefs[:apps4] = multiple_choice "Contributed applications.",
+        [["rails-omniauth-mongoid", "rails-omniauth-mongoid"],
+        ["create custom application", "railsapps"]]
     end
   end
 end

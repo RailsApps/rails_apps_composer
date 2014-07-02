@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 'bruzos' branch unreleased
+
+* add rails-omniauth-mongoid example application
+
 h3. 3.0.6 July 2, 2014
 
 * fix generation of routes for OmniAuth
