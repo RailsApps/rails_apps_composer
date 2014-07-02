@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.6 July 2, 2014
+
+* fix generation of routes for OmniAuth
+
 h3. 3.0.5 June 30, 2014
 
 * add rails-mailinglist-signup example application
