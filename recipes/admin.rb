@@ -9,9 +9,10 @@ case config['admin']
 end
 
 if prefer :admin, 'activeadmin'
-  add_gem 'activeadmin'
+  add_gem 'activeadmin', github: 'gregbell/active_admin'
+elsif prefer :admin, 'rails_admin'
+  add_gem 'rails_admin'
 end
-add_gem 'rails_admin' if prefer :admin, 'rails_admin'
 
 stage_two do
   say_wizard "recipe stage two"
