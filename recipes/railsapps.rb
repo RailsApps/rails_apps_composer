@@ -39,6 +39,17 @@ when "4"
   end
 end
 
+unless prefs[:announcements]
+  say_loud '', 'Get on the mailing list for Rails Composer news?'
+  prefs[:announcements] = ask_wizard('Enter your email address:')
+  if prefs[:announcements].present?
+    system "curl --silent http://mailinglist.railscomposer.com/api -d'visitor[email]=#{prefs[:announcements]}' > /dev/null"
+    prefs[:announcements] = 'mailinglist'
+  else
+    prefs[:announcements] = 'none'
+  end
+end
+
 __END__
 
 name: railsapps
