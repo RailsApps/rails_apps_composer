@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.7 unreleased
+
+* specify GitHub repo for ActiveAdmin (contributed by Christopher Haupt)
+
 h3. 3.0.7 July 5, 2014
 
 * option to join the Rails Composer mailing list
