@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.7 unreleased
+h3. 3.0.8 July 7, 2014
 
 * allow Pundit option when no authentication is chosen (fixes #310)
 * specify GitHub repo for ActiveAdmin (contributed by Christopher Haupt)
