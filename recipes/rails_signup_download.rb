@@ -20,6 +20,7 @@ if prefer :apps4, 'rails-signup-download'
 
     # >-------------------------------[ Controllers ]--------------------------------<
 
+    copy_from_repo 'app/controllers/visitors_controller.rb', :repo => repo
     copy_from_repo 'app/controllers/products_controller.rb', :repo => repo
 
     # >-------------------------------[ Views ]--------------------------------<
