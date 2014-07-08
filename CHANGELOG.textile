@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.9 unreleased
+h3. 3.0.9 July 8, 2014
 
 * generate pages in stage two (fix for rails-signup-download recipe)
 
