@@ -18,7 +18,7 @@ h2. Background
 
 Be sure to carefully read the section in the "Guide to the Rails Apps Composer Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html titled "Hacking the Gem":http://railsapps.github.io/tutorial-rails-apps-composer.html#Hacking.
 
-The rails_apps_composer gem is complex and unwieldly but it is documented throroughly.
+The rails_apps_composer gem is complex and unwieldy but it is documented thoroughly.
 
 h3. Used by the RailsApps Project
 
