@@ -24,5 +24,5 @@ requires: [git, railsapps,
   email,
   devise, omniauth, roles,
   frontend, pages,
-  init, extras, deployment]
+  init, analytics, extras, deployment]
 category: collections
