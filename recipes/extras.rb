@@ -50,7 +50,6 @@ if prefs[:rvmrc]
       say_wizard "rvm failure: unable to use gemset #{app_name}, reason: #{e}"
       raise
     end
-    run "rvm gemset list"
     if File.exist?('.ruby-version')
       say_wizard ".ruby-version file already exists"
     else
