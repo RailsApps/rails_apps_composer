@@ -28,7 +28,7 @@ author: zealot128
 
 category: development
 requires: [setup]
-run_after: [extras]
+run_after: [init]
 args: -T
 
 config:
