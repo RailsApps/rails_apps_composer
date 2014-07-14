@@ -11,71 +11,147 @@ stage_three do
     doc/README_FOR_APP
   }.each { |file| remove_file file }
 
-  # add placeholder READMEs and humans.txt file
-  copy_from_repo 'public/humans.txt'
-  copy_from_repo 'README'
-  copy_from_repo 'README.md'
-  gsub_file "README", /App_Name/, "#{app_name.humanize.titleize}"
-  gsub_file "README.md", /App_Name/, "#{app_name.humanize.titleize}"
-
-  # Diagnostics
-  gsub_file "README.md", /recipes that are known/, "recipes that are NOT known" if diagnostics[:recipes] == 'fail'
-  gsub_file "README.md", /preferences that are known/, "preferences that are NOT known" if diagnostics[:prefs] == 'fail'
-  print_recipes = recipes.sort.map { |r| "\n* #{r}" }.join('')
-  print_preferences = prefs.map { |k, v| "\n* #{k}: #{v}" }.join('')
-  gsub_file "README.md", /RECIPES/, print_recipes
-  gsub_file "README.md", /PREFERENCES/, print_preferences
-  gsub_file "README", /RECIPES/, print_recipes
-  gsub_file "README", /PREFERENCES/, print_preferences
-
-  # Ruby on Rails
-  gsub_file "README.md", /\* Ruby/, "* Ruby version #{RUBY_VERSION}"
-  gsub_file "README.md", /\* Rails/, "* Rails version #{Rails::VERSION::STRING}"
-
-  # Database
-  gsub_file "README.md", /SQLite/, "PostgreSQL" if prefer :database, 'postgresql'
-  gsub_file "README.md", /SQLite/, "MySQL" if prefer :database, 'mysql'
-  gsub_file "README.md", /SQLite/, "MongoDB" if prefer :database, 'mongodb'
-  gsub_file "README.md", /ActiveRecord/, "the Mongoid ORM" if prefer :orm, 'mongoid'
-
-  # Template Engine
-  gsub_file "README.md", /ERB/, "Haml" if prefer :templates, 'haml'
-  gsub_file "README.md", /ERB/, "Slim" if prefer :templates, 'slim'
-
-  # Testing Framework
-  gsub_file "README.md", /Test::Unit/, "RSpec" if prefer :tests, 'rspec'
-
-  # Front-end Framework
-  gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Bootstrap 2.3 (Sass)" if prefer :frontend, 'bootstrap2'
-  gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Bootstrap 3.0 (Sass)" if prefer :frontend, 'bootstrap3'
-  gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Zurb Foundation 4" if prefer :frontend, 'foundation4'
-  gsub_file "README.md", /Front-end Framework: None/, "Front-end Framework: Zurb Foundation 5" if prefer :frontend, 'foundation5'
-
-  # Form Builder
-  gsub_file "README.md", /Form Builder: None/, "Form Builder: SimpleForm" if prefer :form_builder, 'simple_form'
-
-  # Email
-  unless prefer :email, 'none'
-    gsub_file "README.md", /Gmail/, "SMTP" if prefer :email, 'smtp'
-    gsub_file "README.md", /Gmail/, "SendGrid" if prefer :email, 'sendgrid'
-    gsub_file "README.md", /Gmail/, "Mandrill" if prefer :email, 'mandrill'
-    gsub_file "README.md", /Email delivery is disabled in development./, "Email delivery is configured via MailCatcher in development." if prefer :mailcatcher, true
-    insert_into_file 'README.md', "\nEmail rendering in development enabled via MailView.", :after => /Email delivery is.*\n/ if prefer :mail_view, true
-  else
-    gsub_file "README.md", /Email/, ""
-    gsub_file "README.md", /-----/, ""
-    gsub_file "README.md", /The application is configured to send email using a Gmail account./, ""
-    gsub_file "README.md", /Email delivery is disabled in development./, ""
+  # add diagnostics to README
+  create_file 'README', "#{app_name.humanize.titleize}\n================\n\n"
+  append_to_file 'README' do <<-TEXT
+Rails Composer, open source, supported by subscribers.
+Please join RailsApps to support development of Rails Composer.
+Need help? Ask on Stack Overflow with the tag 'railsapps.'
+Problems? Submit an issue: https://github.com/RailsApps/rails_apps_composer/issues
+Your application contains diagnostics in this README file.
+Please provide a copy of this README file when reporting any issues.
+\n
+TEXT
+  end
+  append_to_file 'README' do <<-TEXT
+option  Build a starter application?
+choose  Enter your selection: [#{prefs[:apps4]}]
+option  Get on the mailing list for Rails Composer news?
+choose  Enter your selection: [#{prefs[:announcements]}]
+option  Web server for development?
+choose  Enter your selection: [#{prefs[:dev_webserver]}]
+option  Web server for production?
+choose  Enter your selection: [#{prefs[:prod_webserver]}]
+option  Database used in development?
+choose  Enter your selection: [#{prefs[:database]}]
+option  Template engine?
+choose  Enter your selection: [#{prefs[:templates]}]
+option  Test framework?
+choose  Enter your selection: [#{prefs[:tests]}]
+option  Continuous testing?
+choose  Enter your selection: [#{prefs[:continuous_testing]}]
+option  Front-end framework?
+choose  Enter your selection: [#{prefs[:frontend]}]
+option  Add support for sending email?
+choose  Enter your selection: [#{prefs[:email]}]
+option  Authentication?
+choose  Enter your selection: [#{prefs[:authentication]}]
+option  Devise modules?
+choose  Enter your selection: [#{prefs[:devise_modules]}]
+option  OmniAuth provider?
+choose  Enter your selection: [#{prefs[:omniauth_provider]}]
+option  Authorization?
+choose  Enter your selection: [#{prefs[:authorization]}]
+option  Use a form builder gem?
+choose  Enter your selection: [#{prefs[:form_builder]}]
+option  Add pages?
+choose  Enter your selection: [#{prefs[:pages]}]
+option  Set a locale?
+choose  Enter your selection: [#{prefs[:locale]}]
+option  Install page-view analytics?
+choose  Enter your selection: [#{prefs[:analytics]}]
+option  Add a deployment mechanism?
+choose  Enter your selection: [#{prefs[:deployment]}]
+option  Set a robots.txt file to ban spiders?
+choose  Enter your selection: [#{prefs[:ban_spiders]}]
+option  Create a GitHub repository? (y/n)
+choose  Enter your selection: [#{prefs[:github]}]
+option  Add gem and file for environment variables?
+choose  Enter your selection: [#{prefs[:local_env_file]}]
+option  Reduce assets logger noise during development?
+choose  Enter your selection: [#{prefs[:quiet_assets]}]
+option  Improve error reporting with 'better_errors' during development?
+choose  Enter your selection: [#{prefs[:better_errors]}]
+option  Use 'pry' as console replacement during development and test?
+choose  Enter your selection: [#{prefs[:pry]}]
+option  Use or create a project-specific rvm gemset?
+choose  Enter your selection: [#{prefs[:rvmrc]}]
+TEXT
   end
 
-  # Authentication and Authorization
-  gsub_file "README.md", /Authentication: None/, "Authentication: Devise" if prefer :authentication, 'devise'
-  gsub_file "README.md", /Authentication: None/, "Authentication: OmniAuth" if prefer :authentication, 'omniauth'
-  gsub_file "README.md", /Authorization: None/, "Authorization: Pundit" if prefer :authorization, 'pundit'
+  create_file 'public/humans.txt' do <<-TEXT
+/* the humans responsible & colophon */
+/* humanstxt.org */
 
-  # Admin
-  gsub_file "README.md", /Admin: None/, "Admin: ActiveAdmin" if prefer :admin, 'activeadmin'
-  gsub_file "README.md", /Admin: None/, "Admin: RailsAdmin" if prefer :admin, 'rails_admin'
+
+/* TEAM */
+  <your title>: <your name>
+  Site:
+  Twitter:
+  Location:
+
+/* THANKS */
+  Daniel Kehoe (@rails_apps) for the RailsApps project
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: jQuery
+  Software: Ruby on Rails
+
+/* GENERATED BY */
+Rails Composer: http://railscomposer.com/
+TEXT
+  end
+
+  create_file 'README.md', "#{app_name.humanize.titleize}\n================\n\n"
+  append_to_file 'README.md' do <<-TEXT
+This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
+provided by the [RailsApps Project](http://railsapps.github.io/).
+
+Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
+
+Problems? Issues?
+-----------
+
+Need help? Ask on Stack Overflow with the tag 'railsapps.'
+
+Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
+
+If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
+and include the diagnostics.
+
+Ruby on Rails
+-------------
+
+This application requires:
+
+- Ruby #{RUBY_VERSION}
+- Rails #{Rails::VERSION::STRING}
+
+Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
+
+Getting Started
+---------------
+
+Documentation and Support
+-------------------------
+
+Issues
+-------------
+
+Similar Projects
+----------------
+
+Contributing
+------------
+
+Credits
+-------
+
+License
+-------
+TEXT
+  end
 
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: add README files"' if prefer :git, true

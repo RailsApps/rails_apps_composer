@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.10 unreleased
 
+* improve diagnostics in README (fixes #304)
 * run 'deployment' recipe before 'extras' recipe
 * don't run 'rvm gemset list' in 'extras' recipe
 * change highlighting of prompts
