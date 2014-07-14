@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.10 unreleased
+h3. 3.0.10 July 13, 2014
 
 * improve diagnostics in README (fixes #304)
 * run 'deployment' recipe before 'extras' recipe
