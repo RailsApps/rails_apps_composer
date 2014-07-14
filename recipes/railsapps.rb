@@ -23,7 +23,7 @@ when "4"
       ["Custom application (experimental)", "none"]] unless prefs.has_key? :apps4
     case prefs[:apps4]
       when 'railsapps'
-        prefs[:apps4] = prefs[:rails_4_1_starter_app] || (multiple_choice "Starter apps for Rails 4.1. More to come.",
+        prefs[:apps4] = prefs[:rails_4_1_starter_app] || (multiple_choice "Choose a starter application.",
         [["learn-rails", "learn-rails"],
         ["rails-bootstrap", "rails-bootstrap"],
         ["rails-foundation", "rails-foundation"],

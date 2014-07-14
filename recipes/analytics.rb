@@ -1,7 +1,7 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/analytics.rb
 
-prefs[:analytics] = multiple_choice "Page-view analytics?", [["None", "none"],
+prefs[:analytics] = multiple_choice "Install page-view analytics?", [["None", "none"],
   ["Google Analytics", "ga"],
   ["Segment.io", "segmentio"]] unless prefs.has_key? :analytics
 case prefs[:analytics]

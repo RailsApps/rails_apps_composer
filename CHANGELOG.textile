@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.10 unreleased
 
+* change highlighting of prompts
 * add 'analytics' recipe for Segment.io and Google Analytics
 
 h3. 3.0.9 July 8, 2014
