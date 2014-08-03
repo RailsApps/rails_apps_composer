@@ -33,6 +33,7 @@ stage_three do
     end
     if prefer :authorization, 'pundit'
       generate 'testing:configure pundit -f'
+      remove_file 'spec/policies/user_policy_spec.rb' unless %w(users about+users).include?(prefs[:pages])
 
       if (prefer :authentication, 'devise') &&\
         ((prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable'))
