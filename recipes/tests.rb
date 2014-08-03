@@ -17,21 +17,28 @@ end
 
 stage_three do
   say_wizard "recipe stage three"
-  if (prefer :authentication, 'devise') && (prefer :tests, 'rspec')
-    generate 'testing:configure devise -f'
-    if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
-      inject_into_file 'spec/factories/users.rb', '    confirmed_at Time.now', :after => 'factory :user do'
-      default_url = '  config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }'
-      inject_into_file 'config/environments/test.rb', default_url, :after => "delivery_method = :test\n"
-      gsub_file 'spec/features/users/user_edit_spec.rb', /successfully./, 'successfully,'
-      gsub_file 'spec/features/visitors/sign_up_spec.rb', /Welcome! You have signed up successfully./, 'A message with a confirmation'
+  if prefer :tests, 'rspec'
+    if prefer :authentication, 'devise'
+      generate 'testing:configure devise -f'
+      if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
+        inject_into_file 'spec/factories/users.rb', "    confirmed_at Time.now\n", :after => "factory :user do\n"
+        default_url = '  config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }'
+        inject_into_file 'config/environments/test.rb', default_url, :after => "delivery_method = :test\n"
+        gsub_file 'spec/features/users/user_edit_spec.rb', /successfully./, 'successfully,'
+        gsub_file 'spec/features/visitors/sign_up_spec.rb', /Welcome! You have signed up successfully./, 'A message with a confirmation'
+      end
     end
-  end
-  if (prefer :authentication, 'omniauth') && (prefer :tests, 'rspec')
-    generate 'testing:configure omniauth -f'
-  end
-  if (prefer :authorization, 'pundit') && (prefer :tests, 'rspec')
-    generate 'testing:configure pundit -f'
+    if prefer :authentication, 'omniauth'
+      generate 'testing:configure omniauth -f'
+    end
+    if prefer :authorization, 'pundit'
+      generate 'testing:configure pundit -f'
+
+      if (prefer :authentication, 'devise') &&\
+        ((prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable'))
+        inject_into_file 'spec/factories/users.rb', "    confirmed_at Time.now\n", :after => "factory :user do\n"
+      end
+    end
   end
 end
 
