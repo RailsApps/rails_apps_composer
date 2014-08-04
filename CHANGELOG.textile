@@ -2,7 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.11 unreleased
 
-* fix tests when Devise and Pundit are selected without user pages (contributed by mengqing)
+* fix tests when Devise is selected without user pages (contributed by mengqing)
 * fix tests when Devise and Pundit are selected with Devise Confirmable (contributed by mengqing)
 
 h3. 3.0.10 July 13, 2014
