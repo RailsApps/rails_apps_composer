@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.12 unreleased
+
+* add 'faker' gem to development environment when RSpec is selected (contributed by ailnlv)
+
 h3. 3.0.11 August 3, 2014
 
 * fix tests when Devise is selected without user pages (contributed by mengqing)
