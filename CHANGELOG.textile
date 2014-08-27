@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.12 unreleased
+h3. 3.0.12 August 26, 2014
 
 * add 'faker' gem to development environment when RSpec is selected (contributed by ailnlv)
 * remove 'rails_mailinglist_signup' example app from menu pending release of Rails 4.2
