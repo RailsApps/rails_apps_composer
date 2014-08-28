@@ -3,7 +3,7 @@
 
 stage_two do
   say_wizard "recipe stage two"
-  if prefer :authorization, 'pundit'
+  if (prefer :authorization, 'roles') || (prefer :authorization, 'pundit')
     if prefer :authentication, 'none'
       generate 'model User email:string'
       run 'bundle exec rake db:migrate'

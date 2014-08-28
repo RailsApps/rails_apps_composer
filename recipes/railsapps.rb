@@ -29,6 +29,7 @@ when "4"
         ["rails-foundation", "rails-foundation"],
         ["rails-omniauth", "rails-omniauth"],
         ["rails-devise", "rails-devise"],
+        ["rails-devise-roles", "rails-devise-roles"],
         ["rails-devise-pundit", "rails-devise-pundit"],
         ["rails-signup-download", "rails-signup-download"]])
       when 'contributed_app'

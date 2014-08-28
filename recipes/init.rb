@@ -70,7 +70,9 @@ stage_three do
   ### DATABASE SEED ###
   if prefer :authentication, 'devise'
     copy_from_repo 'db/seeds.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise/master/'
-    if prefer :authorization, 'pundit'
+    if prefer :authorization, 'roles'
+      copy_from_repo 'app/services/create_admin_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-roles/master/'
+    elsif prefer :authorization, 'pundit'
       copy_from_repo 'app/services/create_admin_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise-pundit/master/'
     else
       copy_from_repo 'app/services/create_admin_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise/master/'

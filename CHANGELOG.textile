@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h3. 3.0.13 August 27, 2014
+
+* add 'rails-devise-roles' example application
+* add 'Simple role-based' authorization option
+
 h3. 3.0.12 August 26, 2014
 
 * add 'faker' gem to development environment when RSpec is selected (contributed by ailnlv)
@@ -108,7 +113,7 @@ h3. 2.6.7 May 26, 2014
 
 * for Devise, set 'config.mailer_sender' in 'config/initializers/devise.rb' file
 * for Devise, add 'password_confirmation' to 'config/initializers/filter_parameter_logging.rb' file
-* add tests for 'rails_signup_download' app
+* add tests for 'rails-signup-download' app
 
 h3. 2.6.6 May 11, 2014
 

@@ -10,10 +10,12 @@ stage_two do
       generate 'pages:about -f'
     when 'users'
       generate 'pages:users -f'
+      generate 'pages:roles -f' if prefer :authorization, 'roles'
       generate 'pages:authorized -f' if prefer :authorization, 'pundit'
     when 'about+users'
       generate 'pages:about -f'
       generate 'pages:users -f'
+      generate 'pages:roles -f' if prefer :authorization, 'roles'
       generate 'pages:authorized -f' if prefer :authorization, 'pundit'
   end
   generate 'layout:navigation -f'
