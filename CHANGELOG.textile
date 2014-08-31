@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.14 August 31, 2014
+
+* use role-based authorization for 'rails-signup-download' app
+
 h3. 3.0.13 August 27, 2014
 
 * add 'rails-devise-roles' example application
