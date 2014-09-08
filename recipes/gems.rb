@@ -99,7 +99,14 @@ end
 add_gem 'sendgrid' if prefer :email, 'sendgrid'
 
 ## Authentication (Devise)
-add_gem 'devise' if prefer :authentication, 'devise'
+if prefer :authentication, 'devise'
+  case Rails::VERSION::MINOR.to_s
+  when "2"
+    add_gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'lm-rails-4-2'
+  else
+    add_gem 'devise'
+  end
+end
 add_gem 'devise_invitable' if prefer :devise_modules, 'invitable'
 
 ## Authentication (OmniAuth)

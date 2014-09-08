@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.15 unreleased
+
+* accommodate Devise for Rails 4.2.0.beta1
+
 h3. 3.0.14 August 31, 2014
 
 * use role-based authorization for 'rails-signup-download' app
