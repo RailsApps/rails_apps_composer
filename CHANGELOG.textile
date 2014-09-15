@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.16 September 14, 2014
+
+* add Upmin option for an admin interface
+
 h3. 3.0.15 September 8, 2014
 
 * accommodate Devise for Rails 4.2.0.beta1

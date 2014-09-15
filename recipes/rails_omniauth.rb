@@ -4,6 +4,7 @@
 if prefer :apps4, 'rails-omniauth'
   prefs[:authentication] = 'omniauth'
   prefs[:authorization] = 'none'
+  prefs[:dashboard] = 'none'
   prefs[:better_errors] = true
   prefs[:deployment] = 'none'
   prefs[:email] = 'none'

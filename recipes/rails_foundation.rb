@@ -4,6 +4,7 @@
 if prefer :apps4, 'rails-foundation'
   prefs[:authentication] = false
   prefs[:authorization] = false
+  prefs[:dashboard] = 'none'
   prefs[:better_errors] = true
   prefs[:database] = 'default'
   prefs[:deployment] = 'none'
