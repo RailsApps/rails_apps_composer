@@ -32,7 +32,7 @@ end
 RUBY
     end
     if prefer(:local_env_file, 'foreman') && File.exists?('Procfile.dev')
-      append_file 'Procfile.dev', 'mail: mailcatcher --foreground'
+      append_file 'Procfile.dev', "mail: mailcatcher --foreground\n"
     end
     ### GIT
     git :add => '-A' if prefer :git, true
