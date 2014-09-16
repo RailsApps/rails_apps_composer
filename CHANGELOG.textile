@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.17 September 16, 2014
+
+* fix for Procfile create or update (contributed by Dima Lunich)
+
 h3. 3.0.16 September 14, 2014
 
 * add Upmin option for an admin interface
