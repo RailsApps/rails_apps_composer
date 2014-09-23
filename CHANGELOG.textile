@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.18 unreleased
+h3. 3.0.18 September 22, 2014
 
 * add Heroku option to 'deployment' recipe
 * removed 'default' database preference and replaced with 'sqlite'
