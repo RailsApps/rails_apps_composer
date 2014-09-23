@@ -5,7 +5,6 @@ if prefer :apps4, 'rails-devise-roles'
   prefs[:authentication] = 'devise'
   prefs[:authorization] = 'roles'
   prefs[:better_errors] = true
-  prefs[:deployment] = 'none'
   prefs[:git] = true
   prefs[:local_env_file] = false
   prefs[:pry] = false

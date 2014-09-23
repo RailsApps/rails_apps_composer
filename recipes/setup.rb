@@ -34,6 +34,7 @@ if prefs[:prod_webserver] == 'same'
 end
 
 ## Database Adapter
+prefs[:database] = "sqlite" if prefer :database, 'default'
 prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
   ["MySQL", "mysql"]] unless prefs.has_key? :database
 

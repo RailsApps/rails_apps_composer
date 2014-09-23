@@ -31,8 +31,8 @@ else
 end
 
 ## Database Adapter
-unless prefer :database, 'default'
-  gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
+unless prefer :database, 'sqlite'
+  gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
 end
 gsub_file 'Gemfile', /gem 'pg'.*/, ''
 add_gem 'pg' if prefer :database, 'postgresql'
@@ -140,7 +140,7 @@ git :commit => '-qm "rails_apps_composer: Gemfile"' if prefer :git, true
 stage_two do
   say_wizard "recipe stage two"
   say_wizard "configuring database"
-  unless prefer :database, 'default'
+  unless prefer :database, 'sqlite'
     copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
     copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
     if prefer :database, 'postgresql'

@@ -162,6 +162,8 @@ stage_three do
   # thanks to https://github.com/perfectline/template-bucket/blob/master/cleanup.rb
   gsub_file 'Gemfile', /#.*\n/, "\n"
   gsub_file 'Gemfile', /\n^\s*\n/, "\n"
+  remove_file 'Gemfile.lock'
+  run 'bundle install --without production'
   # remove commented lines and multiple blank lines from config/routes.rb
   gsub_file 'config/routes.rb', /  #.*\n/, "\n"
   gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"

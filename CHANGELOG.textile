@@ -1,5 +1,11 @@
 h1. CHANGELOG
 
+h3. 3.0.18 unreleased
+
+* add Heroku option to 'deployment' recipe
+* removed 'default' database preference and replaced with 'sqlite'
+* remove 'Gemfile.lock' and run 'bundle install' in final stage
+
 h3. 3.0.17 September 16, 2014
 
 * fix for Procfile create or update (contributed by Dima Lunich)

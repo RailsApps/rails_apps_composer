@@ -6,7 +6,6 @@ if prefer :apps4, 'rails-mailinglist-signup'
   prefs[:authorization] = false
   prefs[:dashboard] = 'none'
   prefs[:better_errors] = true
-  prefs[:deployment] = 'none'
   prefs[:devise_modules] = false
   prefs[:form_builder] = 'simple_form'
   prefs[:git] = true

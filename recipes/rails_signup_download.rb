@@ -5,7 +5,6 @@ if prefer :apps4, 'rails-signup-download'
   prefs[:authentication] = 'devise'
   prefs[:authorization] = 'roles'
   prefs[:better_errors] = true
-  prefs[:deployment] = 'none'
   prefs[:devise_modules] = false
   prefs[:form_builder] = false
   prefs[:git] = true

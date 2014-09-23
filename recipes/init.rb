@@ -104,7 +104,7 @@ FILE
     generate 'devise_invitable user'
   end
   ### APPLY DATABASE SEED ###
-  unless prefer :database, 'default'
+  if File.exists?('db/migrate')
     ## ACTIVE_RECORD
     say_wizard "applying migrations and seeding the database"
     if prefer :local_env_file, 'foreman'
