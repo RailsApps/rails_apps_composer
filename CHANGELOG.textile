@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.19 unreleased
+
+* accommodate new version of Figaro gem (closes #319)
+
 h3. 3.0.18 September 22, 2014
 
 * add Heroku option to 'deployment' recipe

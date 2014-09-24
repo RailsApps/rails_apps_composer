@@ -223,7 +223,7 @@ stage_two do
   end
   ## Figaro Gem
   if prefer :local_env_file, 'figaro'
-    generate 'figaro:install'
+    run 'figaro install'
     gsub_file 'config/application.yml', /# PUSHER_.*\n/, ''
     gsub_file 'config/application.yml', /# STRIPE_.*\n/, ''
     prepend_to_file 'config/application.yml' do <<-FILE
