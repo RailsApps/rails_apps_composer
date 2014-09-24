@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.20 September 24, 2014
+
+* specify 'foundation-rails' gem version for https://github.com/zurb/foundation/issues/5811
+
 h3. 3.0.19 September 24, 2014
 
 * accommodate new version of Figaro gem (closes #319)
