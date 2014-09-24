@@ -3,6 +3,7 @@ h1. CHANGELOG
 h3. 3.0.19 unreleased
 
 * accommodate new version of Figaro gem (closes #319)
+* improve generation of 'app.json' file for Heroku Button deployment
 
 h3. 3.0.18 September 22, 2014
 
