@@ -142,14 +142,6 @@ TEXT
       gsub_file 'app.json', /"scripts": {/,
           "\"scripts\": {\"postdeploy\": \"bundle exec rake db:migrate; bundle exec rake db:seed\""
     end
-    gsub_file 'config/database.yml', /production:.*$\n.*$\n.*$/, ""
-    append_file 'config/database.yml' do <<-TEXT
-production:
-  <<: *default
-  adapter: postgresql
-  encoding: unicode
-TEXT
-    end
   end
 end
 

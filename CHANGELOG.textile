@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.21 September 25, 2014
+
+* no need to change the 'config/database.yml' file for Heroku
+
 h3. 3.0.20 September 24, 2014
 
 * specify 'foundation-rails' gem version for https://github.com/zurb/foundation/issues/5811
