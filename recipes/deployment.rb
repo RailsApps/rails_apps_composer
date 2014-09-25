@@ -90,12 +90,12 @@ TEXT
       append_file 'app.json' do <<-TEXT
     "OMNIAUTH_PROVIDER_KEY": {
       "description": "Credentials from Twitter, Facebook, or another provider.",
-      "value": "user@example.com",
+      "value": "some_long_key",
       "required": false
     },
     "OMNIAUTH_PROVIDER_SECRET": {
       "description": "Credentials from Twitter, Facebook, or another provider.",
-      "value": "changeme",
+      "value": "some_long_key",
       "required": false
     },
 TEXT
@@ -116,16 +116,6 @@ TEXT
     "DOMAIN_NAME": {
       "description": "Required for sending mail. Give an app name or use a custom domain.",
       "value": "myapp.herokuapp.com",
-      "required": false
-    },
-TEXT
-      end
-    end
-    if prefer :apps4, 'learn-rails'
-      append_file 'app.json' do <<-TEXT
-    "OWNER_EMAIL": {
-      "description": "Destination for messages sent from the application's contact form.",
-      "value": "user@example.com",
       "required": false
     },
 TEXT
