@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.22 September 28, 2014
+
+* issue resolved, no need to specify 'foundation-rails' gem version
+
 h3. 3.0.21 September 25, 2014
 
 * no need to change the 'config/database.yml' file for Heroku
