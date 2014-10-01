@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.23 unreleased
+
+* fix 'deployment' recipe to accommodate Heroku and PostgreSQL
+
 h3. 3.0.22 September 28, 2014
 
 * issue resolved, no need to specify 'foundation-rails' gem version
