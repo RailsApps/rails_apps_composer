@@ -158,8 +158,7 @@ stage_two do
           say_wizard "set config/database.yml for username/password #{pg_username}/#{pg_password}"
         end
         if pg_host.present?
-          gsub_file "config/database.yml", /#host: localhost/, "host: #{pg_host}"
-          gsub_file "config/database.yml", /test:/, "test:\n  host: #{pg_host}"
+          gsub_file "config/database.yml", /  host:     localhost/, "  host:     #{pg_host}"
         end
       rescue StandardError => e
         raise "unable to create a user for PostgreSQL, reason: #{e}"

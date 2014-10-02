@@ -1,7 +1,8 @@
 h1. CHANGELOG
 
-h3. 3.0.23 unreleased
+h3. 3.0.23 October 1, 2014
 
+* fix handling of optional hostname for PostgreSQL (closes #314)
 * fix 'deployment' recipe to accommodate Heroku and PostgreSQL
 
 h3. 3.0.22 September 28, 2014
