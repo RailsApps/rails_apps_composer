@@ -23,15 +23,29 @@ when "4"
       ["Custom application (experimental)", "none"]] unless prefs.has_key? :apps4
     case prefs[:apps4]
       when 'railsapps'
-        prefs[:apps4] = prefs[:rails_4_1_starter_app] || (multiple_choice "Choose a starter application.",
-        [["learn-rails", "learn-rails"],
-        ["rails-bootstrap", "rails-bootstrap"],
-        ["rails-foundation", "rails-foundation"],
-        ["rails-omniauth", "rails-omniauth"],
-        ["rails-devise", "rails-devise"],
-        ["rails-devise-roles", "rails-devise-roles"],
-        ["rails-devise-pundit", "rails-devise-pundit"],
-        ["rails-signup-download", "rails-signup-download"]])
+        case Rails::VERSION::MINOR.to_s
+        when "2"
+          prefs[:apps4] = multiple_choice "Choose a starter application.",
+          [["learn-rails", "learn-rails"],
+          ["rails-bootstrap", "rails-bootstrap"],
+          ["rails-foundation", "rails-foundation"],
+          ["rails-mailinglist-signup", "rails-mailinglist-signup"],
+          ["rails-omniauth", "rails-omniauth"],
+          ["rails-devise", "rails-devise"],
+          ["rails-devise-roles", "rails-devise-roles"],
+          ["rails-devise-pundit", "rails-devise-pundit"],
+          ["rails-signup-download", "rails-signup-download"]]
+        else
+          prefs[:apps4] = multiple_choice "Choose a starter application.",
+          [["learn-rails", "learn-rails"],
+          ["rails-bootstrap", "rails-bootstrap"],
+          ["rails-foundation", "rails-foundation"],
+          ["rails-omniauth", "rails-omniauth"],
+          ["rails-devise", "rails-devise"],
+          ["rails-devise-roles", "rails-devise-roles"],
+          ["rails-devise-pundit", "rails-devise-pundit"],
+          ["rails-signup-download", "rails-signup-download"]]
+        end
       when 'contributed_app'
         prefs[:apps4] = multiple_choice "No contributed applications are available.",
           [["create custom application", "railsapps"]]

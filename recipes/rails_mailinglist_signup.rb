@@ -6,7 +6,6 @@ if prefer :apps4, 'rails-mailinglist-signup'
   prefs[:authorization] = false
   prefs[:dashboard] = 'none'
   prefs[:better_errors] = true
-  prefs[:devise_modules] = false
   prefs[:form_builder] = 'simple_form'
   prefs[:git] = true
   prefs[:local_env_file] = false
@@ -17,7 +16,6 @@ if prefer :apps4, 'rails-mailinglist-signup'
   prefs[:locale] = 'none'
 
   # gems
-  add_gem 'activejob', github: 'rails/activejob'
   add_gem 'gibbon'
   add_gem 'sucker_punch'
 
