@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.24 unreleased
+h3. 3.0.24 October 17, 2014
 
 * restore 'rails_mailinglist_signup' example app for Rails 4.2
 * no need to specify GitHub source for Devise gem for Rails 4.2
