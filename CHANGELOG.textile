@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.25 October 18, 2014
+
+* add options to 'rails_bootstrap' and 'rails_foundation' recipes to allow choice of database and SimpleForm
+
 h3. 3.0.24 October 17, 2014
 
 * restore 'rails_mailinglist_signup' example app for Rails 4.2
