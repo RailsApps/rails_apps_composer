@@ -1,7 +1,7 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_mailinglist_signup.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_mailinglist_activejob.rb
 
-if prefer :apps4, 'rails-mailinglist-signup'
+if prefer :apps4, 'rails-mailinglist-activejob'
   prefs[:authentication] = false
   prefs[:authorization] = false
   prefs[:dashboard] = 'none'
@@ -26,7 +26,7 @@ if prefer :apps4, 'rails-mailinglist-signup'
 
   stage_three do
     say_wizard "recipe stage three"
-    repo = 'https://raw.github.com/RailsApps/rails-mailinglist-signup/master/'
+    repo = 'https://raw.github.com/RailsApps/rails-mailinglist-activejob/master/'
 
     # >-------------------------------[ Config ]---------------------------------<
 
@@ -63,8 +63,8 @@ end
 
 __END__
 
-name: rails_mailinglist_signup
-description: "rails_mailinglist_signup starter application"
+name: rails_mailinglist_activejob
+description: "rails_mailinglist_activejob starter application"
 author: RailsApps
 
 requires: [core]

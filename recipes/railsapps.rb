@@ -29,7 +29,7 @@ when "4"
           [["learn-rails", "learn-rails"],
           ["rails-bootstrap", "rails-bootstrap"],
           ["rails-foundation", "rails-foundation"],
-          ["rails-mailinglist-signup", "rails-mailinglist-signup"],
+          ["rails-mailinglist-activejob", "rails-mailinglist-activejob"],
           ["rails-omniauth", "rails-omniauth"],
           ["rails-devise", "rails-devise"],
           ["rails-devise-roles", "rails-devise-roles"],

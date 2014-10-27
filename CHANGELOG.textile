@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.26 October 27, 2014
+
+* rename 'rails_mailinglist_signup' to ''rails_mailinglist_activejob'
+
 h3. 3.0.25 October 18, 2014
 
 * add options to 'rails_bootstrap' and 'rails_foundation' recipes to allow choice of database and SimpleForm
