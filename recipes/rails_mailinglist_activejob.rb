@@ -47,10 +47,12 @@ if prefer :apps4, 'rails-mailinglist-activejob'
 
     # >-------------------------------[ Views ]--------------------------------<
 
+    remove_file 'app/views/visitors/index.html.erb'
     copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
 
     # >-------------------------------[ Routes ]-------------------------------<
 
+    gsub_file 'config/routes.rb', /  root to: 'visitors#index'\n/, ''
     inject_into_file 'config/routes.rb', "  root to: 'visitors#new'\n", :after => "routes.draw do\n"
     route = '  resources :visitors, only: [:new, :create]'
     inject_into_file 'config/routes.rb', route + "\n", :after => "routes.draw do\n"
