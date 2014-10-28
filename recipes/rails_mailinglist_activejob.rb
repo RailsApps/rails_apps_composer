@@ -12,11 +12,12 @@ if prefer :apps4, 'rails-mailinglist-activejob'
   prefs[:pry] = false
   prefs[:quiet_assets] = true
   prefs[:secrets] = ['mailchimp_list_id', 'mailchimp_api_key']
-  prefs[:pages] = 'none'
+  prefs[:pages] = 'about'
   prefs[:locale] = 'none'
 
   # gems
   add_gem 'gibbon'
+  add_gem 'high_voltage'
   add_gem 'sucker_punch'
 
   stage_two do
