@@ -43,8 +43,7 @@ when "4"
           ["rails-omniauth", "rails-omniauth"],
           ["rails-devise", "rails-devise"],
           ["rails-devise-roles", "rails-devise-roles"],
-          ["rails-devise-pundit", "rails-devise-pundit"],
-          ["rails-signup-download", "rails-signup-download"]]
+          ["rails-devise-pundit", "rails-devise-pundit"]]
         end
       when 'contributed_app'
         prefs[:apps4] = multiple_choice "No contributed applications are available.",

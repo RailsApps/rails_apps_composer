@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.27 November 9, 2014
+
+* add mailing list to rails-signup-download example application
+
 h3. 3.0.26 October 27, 2014
 
 * rename 'rails_mailinglist_signup' to ''rails_mailinglist_activejob'
