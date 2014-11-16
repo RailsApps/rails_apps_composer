@@ -34,7 +34,8 @@ when "4"
           ["rails-devise", "rails-devise"],
           ["rails-devise-roles", "rails-devise-roles"],
           ["rails-devise-pundit", "rails-devise-pundit"],
-          ["rails-signup-download", "rails-signup-download"]]
+          ["rails-signup-download", "rails-signup-download"],
+          ["rails-stripe-checkout", "rails-stripe-checkout"]]
         else
           prefs[:apps4] = multiple_choice "Choose a starter application.",
           [["learn-rails", "learn-rails"],

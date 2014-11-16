@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.28 unreleased
+
+* add 'rails-stripe-checkout' example application
+
 h3. 3.0.27 November 9, 2014
 
 * add mailing list to rails-signup-download example application
