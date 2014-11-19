@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.28 unreleased
 
+* fix for 'locale' recipe (contributed by Carlos Eduardo Rodrigues Diógenes)
 * add 'rails-stripe-checkout' example application
 
 h3. 3.0.27 November 9, 2014
