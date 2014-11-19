@@ -12,7 +12,12 @@ if prefer :apps4, 'rails-stripe-checkout'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
-  prefs[:secrets] = ['stripe_publishable_key', 'stripe_api_key', 'mailchimp_list_id', 'mailchimp_api_key']
+  prefs[:secrets] = ['product_price',
+    'product_title',
+    'stripe_publishable_key',
+    'stripe_api_key',
+    'mailchimp_list_id',
+    'mailchimp_api_key']
   prefs[:pages] = 'users'
   prefs[:locale] = 'none'
 
