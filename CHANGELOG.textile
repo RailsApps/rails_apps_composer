@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.28 unreleased
+h3. 3.0.28 November 19, 2014
 
 * add 'spring-commands-rspec' gem for testing (contributed by Carlos Eduardo Rodrigues Diógenes)
 * fix for 'locale' recipe (contributed by Carlos Eduardo Rodrigues Diógenes)
