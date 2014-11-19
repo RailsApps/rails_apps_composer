@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.28 unreleased
 
+* add 'spring-commands-rspec' gem for testing (contributed by Carlos Eduardo Rodrigues Diógenes)
 * fix for 'locale' recipe (contributed by Carlos Eduardo Rodrigues Diógenes)
 * add 'rails-stripe-checkout' example application
 

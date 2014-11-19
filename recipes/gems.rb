@@ -57,6 +57,7 @@ end
 if prefer :tests, 'rspec'
   add_gem 'rails_apps_testing', :group => :development
   add_gem 'rspec-rails', :group => [:development, :test]
+  add_gem 'spring-commands-rspec', :group => :development
   add_gem 'factory_girl_rails', :group => [:development, :test]
   add_gem 'faker', :group => [:development, :test]
   add_gem 'capybara', :group => :test
