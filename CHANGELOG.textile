@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.29 unreleased
+
+* substitute backtick for a single quote in 'readme' recipe (contributed by DamirSvrtan)
+
 h3. 3.0.28 November 19, 2014
 
 * add 'spring-commands-rspec' gem for testing (contributed by Carlos Eduardo Rodrigues Diógenes)
