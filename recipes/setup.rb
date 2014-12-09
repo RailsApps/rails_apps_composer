@@ -18,20 +18,7 @@ prefs[:dev_webserver] = multiple_choice "Web server for development?", [["WEBric
 prefs[:prod_webserver] = multiple_choice "Web server for production?", [["Same as development", "same"],
   ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
   ["Phusion Passenger (Standalone)", "passenger_standalone"]] unless prefs.has_key? :prod_webserver
-if prefs[:prod_webserver] == 'same'
-  case prefs[:dev_webserver]
-    when 'thin'
-      prefs[:prod_webserver] = 'thin'
-    when 'unicorn'
-      prefs[:prod_webserver] = 'unicorn'
-    when 'puma'
-      prefs[:prod_webserver] = 'puma'
-    when 'passenger'
-      prefs[:prod_webserver] = 'passenger'
-    when 'passenger_standalone'
-      prefs[:prod_webserver] = 'passenger_standalone'
-  end
-end
+prefs[:prod_webserver] = prefs[:dev_webserver] if prefs[:prod_webserver] == 'same'
 
 ## Database Adapter
 prefs[:database] = "sqlite" if prefer :database, 'default'
