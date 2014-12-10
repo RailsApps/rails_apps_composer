@@ -2,6 +2,7 @@ h1. CHANGELOG
 
 h3. 3.0.29 unreleased
 
+* improved assignment of prefs[:prod_webserver] (contributed by Jose Ney Guerrero)
 * substitute backtick for a single quote in 'readme' recipe (contributed by DamirSvrtan)
 
 h3. 3.0.28 November 19, 2014
