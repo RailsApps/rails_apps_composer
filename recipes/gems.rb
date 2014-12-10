@@ -8,8 +8,12 @@ insert_into_file('Gemfile', "ruby '#{RUBY_VERSION}'\n", :before => /^ *gem 'rail
 
 ## Cleanup
 # remove the 'sdoc' gem
-gsub_file 'Gemfile', /group :doc do/, ''
-gsub_file 'Gemfile', /\s*gem 'sdoc', require: false\nend/, ''
+if Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR >= 2
+  gsub_file 'Gemfile', /gem 'sdoc',\s+'~> 0.4.0',\s+group: :doc/, ''
+else
+  gsub_file 'Gemfile', /group :doc do/, ''
+  gsub_file 'Gemfile', /\s*gem 'sdoc', require: false\nend/, ''
+end
 
 ## Web Server
 if (prefs[:dev_webserver] == prefs[:prod_webserver])

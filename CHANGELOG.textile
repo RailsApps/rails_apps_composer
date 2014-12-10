@@ -2,6 +2,8 @@ h1. CHANGELOG
 
 h3. 3.0.29 unreleased
 
+* improve 'extras' recipe to add 'rubocop' option (contributed by Jason Yeo)
+* remove sdoc for Rails 4.2 (contributed by Jason Yeo)
 * improved assignment of prefs[:prod_webserver] (contributed by Jose Ney Guerrero)
 * substitute backtick for a single quote in 'readme' recipe (contributed by DamirSvrtan)
 

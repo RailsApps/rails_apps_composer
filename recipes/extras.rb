@@ -120,6 +120,16 @@ if prefs[:pry]
   add_gem 'pry-rescue', :group => [:development, :test]
 end
 
+## Rubocop
+if config['rubocop']
+  prefs[:rubocop] = true
+end
+if prefs[:rubocop]
+  say_wizard "recipe adding rubocop gem and basic .rubocop.yml"
+  add_gem 'rubocop', :group => [:development, :test]
+  copy_from_repo '.rubocop.yml'
+end
+
 ## BAN SPIDERS
 if config['ban_spiders']
   prefs[:ban_spiders] = true
@@ -222,3 +232,6 @@ config:
   - pry:
       type: boolean
       prompt: Use 'pry' as console replacement during development and test?
+  - rubocop:
+      type: boolean
+      prompt: Use 'rubocop' to ensure that your code conforms to the Ruby style guide?
