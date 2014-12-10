@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.29 unreleased
+h3. 3.0.29 December 9, 2014
 
 * improve 'extras' recipe to add 'rubocop' option (contributed by Jason Yeo)
 * remove sdoc for Rails 4.2 (contributed by Jason Yeo)
