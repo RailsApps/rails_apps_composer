@@ -129,7 +129,7 @@ add_gem 'simple_form' if prefer :form_builder, 'simple_form'
 
 ## Gems from a defaults file or added interactively
 gems.each do |g|
-  gem(*g)
+  add_gem(*g)
 end
 
 ## Git
