@@ -35,9 +35,7 @@ else
 end
 
 ## Database Adapter
-unless prefer :database, 'sqlite'
-  gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
-end
+gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 gsub_file 'Gemfile', /gem 'pg'.*/, ''
 add_gem 'pg' if prefer :database, 'postgresql'
 gsub_file 'Gemfile', /gem 'mysql2'.*/, ''

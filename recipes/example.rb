@@ -16,14 +16,7 @@ if config['space_test']
   end
   # the @config@ hash is only available to the recipe
   # the @prefs{}@ hash is available to all the recipes
-  case config['orbit']
-    when 'leo'
-      prefs[:test_orbit] = 'leo'
-    when 'spy'
-      prefs[:test_orbit] = 'spy'
-    when 'gps'
-      prefs[:test_orbit] = 'gps'
-  end
+  prefs[:test_orbit] = config['orbit']
 end
 
 stage_two do
