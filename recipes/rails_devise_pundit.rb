@@ -11,6 +11,7 @@ if prefer :apps4, 'rails-devise-pundit'
   prefs[:quiet_assets] = true
   prefs[:pages] = 'users'
   prefs[:locale] = 'none'
+  prefs[:rubocop] = false
 end
 
 __END__

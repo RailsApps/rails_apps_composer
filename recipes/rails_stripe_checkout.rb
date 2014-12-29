@@ -20,6 +20,7 @@ if prefer :apps4, 'rails-stripe-checkout'
     'mailchimp_api_key']
   prefs[:pages] = 'users'
   prefs[:locale] = 'none'
+  prefs[:rubocop] = false
 
   # gems
   add_gem 'gibbon'

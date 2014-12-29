@@ -14,6 +14,7 @@ if prefer :apps4, 'rails-signup-download'
   prefs[:secrets] = ['mailchimp_list_id', 'mailchimp_api_key']
   prefs[:pages] = 'users'
   prefs[:locale] = 'none'
+  prefs[:rubocop] = false
 
   # gems
   add_gem 'gibbon'

@@ -15,6 +15,7 @@ if prefer :apps4, 'rails-bootstrap'
   prefs[:quiet_assets] = true
   prefs[:pages] = 'about'
   prefs[:locale] = 'none'
+  prefs[:rubocop] = false
 end
 
 __END__
