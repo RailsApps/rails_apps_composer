@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.30 December 29, 2014
+
+* suggest upgrade to Rails 4.2 for Rails 4.1 users
+
 h3. 3.0.29 December 9, 2014
 
 * improve 'extras' recipe to add 'rubocop' option (contributed by Jason Yeo)
