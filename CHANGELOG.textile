@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.32 December 29, 2014
+
+* 'learn-rails' recipe no longer needs gems 'activerecord-tableless' or 'thin'
+
 h3. 3.0.31 December 29, 2014
 
 * set 'rubocop' option to false for RailsApps example apps
