@@ -42,8 +42,8 @@ end
 ## Front-end Framework
 if recipes.include? 'frontend'
   prefs[:frontend] = multiple_choice "Front-end framework?", [["None", "none"],
-    ["Bootstrap 3.2", "bootstrap3"], ["Bootstrap 2.3", "bootstrap2"],
-    ["Zurb Foundation 5.4", "foundation5"], ["Zurb Foundation 4.0", "foundation4"],
+    ["Bootstrap 3.3", "bootstrap3"], ["Bootstrap 2.3", "bootstrap2"],
+    ["Zurb Foundation 5.5", "foundation5"], ["Zurb Foundation 4.0", "foundation4"],
     ["Simple CSS", "simple"]] unless prefs.has_key? :frontend
 end
 
