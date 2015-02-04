@@ -9,7 +9,9 @@ stage_two do
     generate 'devise:install'
     generate 'devise_invitable:install' if prefer :devise_modules, 'invitable'
     generate 'devise user' # create the User model
-    generate 'migration AddNameToUsers name:string' unless prefer :apps4, 'rails-stripe-checkout'
+    unless (prefer :apps4, 'rails-stripe-checkout') || (prefer :apps4, 'rails-stripe-coupons')
+      generate 'migration AddNameToUsers name:string'
+    end
     if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
       gsub_file 'app/models/user.rb', /:registerable,/, ":registerable, :confirmable,"
       generate 'migration AddConfirmableToUsers confirmation_token:string confirmed_at:datetime confirmation_sent_at:datetime unconfirmed_email:string'

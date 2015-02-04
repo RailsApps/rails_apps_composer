@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.33 February 4, 2015
+
+* add 'rails-stripe-coupons' example application
+
 h3. 3.0.32 December 29, 2014
 
 * 'learn-rails' recipe no longer needs gems 'activerecord-tableless' or 'thin'
