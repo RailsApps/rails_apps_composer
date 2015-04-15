@@ -36,7 +36,8 @@ when "4"
           ["rails-devise-pundit", "rails-devise-pundit"],
           ["rails-signup-download", "rails-signup-download"],
           ["rails-stripe-checkout", "rails-stripe-checkout"],
-          ["rails-stripe-coupons", "rails-stripe-coupons"]]
+          ["rails-stripe-coupons", "rails-stripe-coupons"],
+          ["rails-stripe-membership-saas", "rails-stripe-membership-saas"]]
         else
           prefs[:apps4] = multiple_choice "Upgrade to Rails 4.2 for more choices.",
           [["learn-rails", "learn-rails"],

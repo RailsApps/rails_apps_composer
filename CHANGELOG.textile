@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.34 April 15, 2015
+
+* add 'rails-stripe-membership-saas' example application
+
 h3. 3.0.33 February 4, 2015
 
 * add 'rails-stripe-coupons' example application

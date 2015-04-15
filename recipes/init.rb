@@ -91,6 +91,13 @@ puts 'CREATED PROMOTIONAL CODES'
 FILE
     end
   end
+  if prefer :apps4, 'rails-stripe-membership-saas'
+    append_file 'db/seeds.rb' do <<-FILE
+CreatePlanService.new.call
+puts 'CREATED PLANS'
+FILE
+    end
+  end
   if prefer :local_env_file, 'figaro'
     append_file 'db/seeds.rb' do <<-FILE
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
@@ -151,6 +158,10 @@ FILE
   if prefer :apps4, 'rails-stripe-coupons'
     inject_into_file 'app/views/layouts/_navigation_links.html.erb', ", data: { no_turbolink: true }", :after => "new_user_registration_path"
     inject_into_file 'app/views/layouts/_navigation_links.html.erb', "\n    <li><%= link_to 'Coupons', coupons_path %></li>", :after => "users_path %></li>"
+  end
+  if prefer :apps4, 'rails-stripe-membership-saas'
+    inject_into_file 'app/views/layouts/_navigation_links.html.erb', ", data: { no_turbolink: true }", :after => "new_user_registration_path"
+    copy_from_repo 'app/views/devise/registrations/edit.html.erb', :repo => 'https://raw.github.com/RailsApps/rails-stripe-membership-saas/master/'
   end
   ### GIT ###
   git :add => '-A' if prefer :git, true

@@ -9,7 +9,7 @@ stage_two do
     generate 'devise:install'
     generate 'devise_invitable:install' if prefer :devise_modules, 'invitable'
     generate 'devise user' # create the User model
-    unless (prefer :apps4, 'rails-stripe-checkout') || (prefer :apps4, 'rails-stripe-coupons')
+    unless :apps4.to_s.include? 'rails-stripe-'
       generate 'migration AddNameToUsers name:string'
     end
     if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
