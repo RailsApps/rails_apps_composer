@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.35 April 16, 2015
+
+* fix error with Haml::HTML (contributed by Matthew Orahood)
+
 h3. 3.0.34 April 15, 2015
 
 * add 'rails-stripe-membership-saas' example application
