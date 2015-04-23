@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.36 April 23, 2015
+
+* install bundler gem (because it is no longer automatically installed by RVM)
+
 h3. 3.0.35 April 16, 2015
 
 * fix error with Haml::HTML (contributed by Matthew Orahood)
