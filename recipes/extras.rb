@@ -130,6 +130,20 @@ if prefs[:rubocop]
   copy_from_repo '.rubocop.yml'
 end
 
+## Disable Turbolinks
+if config['disable_turbolinks']
+  prefs[:disable_turbolinks] = true
+end
+if prefs[:disable_turbolinks]
+  say_wizard "recipe removing support for Rails Turbolinks"
+  stage_two do
+    say_wizard "recipe stage two"
+    gsub_file 'Gemfile', /gem 'turbolinks'\n/, ''
+    gsub_file 'app/assets/javascripts/application.js', "//= require turbolinks\n", ''
+    gsub_file 'app/views/layouts/application.html.erb', /, 'data-turbolinks-track' => true/, ''
+  end
+end
+
 ## BAN SPIDERS
 if config['ban_spiders']
   prefs[:ban_spiders] = true
@@ -213,6 +227,9 @@ run_after: [gems, init]
 category: other
 
 config:
+  - disable_turbolinks:
+      type: boolean
+      prompt: Disable Rails Turbolinks?
   - ban_spiders:
       type: boolean
       prompt: Set a robots.txt file to ban spiders?

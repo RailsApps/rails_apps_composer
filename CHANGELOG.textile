@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h3. 3.0.37 April 24, 2015
+
+* option to remove Rails Turbolinks
+* disable Turbolinks for 'rails-stripe-membership-saas' example application
+
 h3. 3.0.36 April 23, 2015
 
 * install bundler gem (because it is no longer automatically installed by RVM)

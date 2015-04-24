@@ -12,6 +12,7 @@ if prefer :apps4, 'rails-stripe-membership-saas'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
+  prefs[:disable_turbolinks] = true
   prefs[:secrets] = ['stripe_publishable_key',
     'stripe_api_key',
     'mailchimp_list_id',
