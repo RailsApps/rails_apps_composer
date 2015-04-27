@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+
+h3. 3.0.38 April 27, 2015
+
+* accommodate Haml and Slim when disabling Turbolinks
+
 h3. 3.0.37 April 24, 2015
 
 * option to remove Rails Turbolinks
