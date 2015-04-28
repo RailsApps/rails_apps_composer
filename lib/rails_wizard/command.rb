@@ -48,7 +48,7 @@ module RailsWizard
       else
         RailsWizard::Recipes.list_classes
       end
-      address = 'http://railsapps.github.io/tutorial-rails-apps-composer.html#Recipes'
+      address = 'https://github.com/RailsApps/rails_apps_composer/wiki/tutorial-rails-apps-composer#recipes'
       say("To learn more about recipes, see:\n#{address}", [:bold, :cyan])
 # https://github.com/wycats/thor/blob/master/lib/thor/shell/basic.rb
       recipes.each{|e| say("#{e.key.ljust 15}# #{e.description}")}
