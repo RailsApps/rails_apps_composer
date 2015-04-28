@@ -63,8 +63,8 @@ stage_three do
   end
   ## rails-stripe-coupons
   if prefer :apps4, 'rails-stripe-coupons'
-    gsub_file 'config/secrets.yml', /<%= ENV\["PRODUCT_TITLE"] %>/, 'What is Ruby on Rails'
-    gsub_file 'config/secrets.yml', /<%= ENV\["PRODUCT_PRICE"] %>/, '995'
+    gsub_file 'config/secrets.yml', /<%= ENV\["PRODUCT_TITLE"\] %>/, 'What is Ruby on Rails'
+    gsub_file 'config/secrets.yml', /<%= ENV\["PRODUCT_PRICE"\] %>/, '995'
   end
   ### EXAMPLE FILE FOR FOREMAN AND FIGARO ###
   if prefer :local_env_file, 'figaro'
