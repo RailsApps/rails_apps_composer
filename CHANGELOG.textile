@@ -1,5 +1,8 @@
 h1. CHANGELOG
 
+h3. 3.0.39 April 28, 2015
+
+* use 'ENV.fetch' instead of 'ENV' to reveal configuration issues
 
 h3. 3.0.38 April 27, 2015
 
