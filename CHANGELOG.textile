@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.40 May 10, 2015
+
+* add a temporary file 'config/railscomposer.yml' with configuration settings
+
 h3. 3.0.39 April 28, 2015
 
 * use 'ENV.fetch' instead of 'ENV' to reveal configuration issues

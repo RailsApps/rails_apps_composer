@@ -89,9 +89,37 @@ if recipes.include? 'pages'
     ["Home, About, and Users", "about+users"]] unless prefs.has_key? :pages
 end
 
-# save diagnostics before anything can fail
-create_file "README", "RECIPES\n#{recipes.sort.inspect}\n"
-append_file "README", "PREFERENCES\n#{prefs.inspect}"
+# save configuration before anything can fail
+create_file 'config/railscomposer.yml', "# This application was generated with Rails Composer\n\n"
+append_to_file 'config/railscomposer.yml' do <<-TEXT
+apps4: [#{prefs[:apps4]}]
+announcements: [#{prefs[:announcements]}]
+dev_webserver: [#{prefs[:dev_webserver]}]
+prod_webserver: [#{prefs[:prod_webserver]}]
+database: [#{prefs[:database]}]
+templates: [#{prefs[:templates]}]
+tests: [#{prefs[:tests]}]
+continuous_testing: [#{prefs[:continuous_testing]}]
+frontend: [#{prefs[:frontend]}]
+email: [#{prefs[:email]}]
+authentication: [#{prefs[:authentication]}]
+devise_modules: [#{prefs[:devise_modules]}]
+omniauth_provider: [#{prefs[:omniauth_provider]}]
+authorization: [#{prefs[:authorization]}]
+form_builder: [#{prefs[:form_builder]}]
+pages: [#{prefs[:pages]}]
+locale: [#{prefs[:locale]}]
+analytics: [#{prefs[:analytics]}]
+deployment: [#{prefs[:deployment]}]
+ban_spiders: [#{prefs[:ban_spiders]}]
+github: [#{prefs[:github]}]
+local_env_file: [#{prefs[:local_env_file]}]
+quiet_assets: [#{prefs[:quiet_assets]}]
+better_errors: [#{prefs[:better_errors]}]
+pry: [#{prefs[:pry]}]
+rvmrc: [#{prefs[:rvmrc]}]
+TEXT
+end
 
 __END__
 
