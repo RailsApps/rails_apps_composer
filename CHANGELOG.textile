@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.41 May 31, 2015
+
+* remove 'ENV.fetch' and restore 'ENV' to avoid errors during 'rake db:migrate'
+
 h3. 3.0.40 May 10, 2015
 
 * add a temporary file 'config/railscomposer.yml' with configuration settings
