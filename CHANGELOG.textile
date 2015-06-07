@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.0.42 unreleased
+h3. 3.0.42 June 7, 2015
 
 * update 'learn-rails' recipe for application version 2.2.0
 * correct Foreman .env OmniAuth configuration in 'init' recipe (closes #335)
