@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.0.42 unreleased
+
+* update 'learn-rails' recipe for application version 2.2.0
+
 h3. 3.0.41 May 31, 2015
 
 * remove 'ENV.fetch' and restore 'ENV' to avoid errors during 'rake db:migrate'
