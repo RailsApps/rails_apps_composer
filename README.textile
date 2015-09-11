@@ -387,8 +387,7 @@ h2. Application Template Default
 The @rails new@ command creates a new Rails application. If you want to use an application template for every Rails application you build, you can set options for the @rails new@ command in a *.railsrc* file in your home directory. Here's how to set up a *.railsrc* file to use the Rails Composer template when you create a new Rails application:
 
 <pre>
-# ~/.railsrc
--m https://raw.github.com/RailsApps/rails-composer/master/composer.rb
+echo '-m https://raw.github.com/RailsApps/rails-composer/master/composer.rb' > ~/.railsrc
 </pre>
 
 h2. Hacking the Gem
