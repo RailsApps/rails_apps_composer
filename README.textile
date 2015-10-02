@@ -47,8 +47,8 @@ h2. Dependencies
 
 Before using the rails_apps_composer gem, you will need:
 
-* The Ruby language (version 2.1.1)
-* Rails (versions 4.1, 4.0, or 3.2)
+* The Ruby language (version 2.2)
+* Rails (versions 4.2)
 
 The rails_apps_composer program uses the version of Rails that is currently installed when you launch the program. If you want to use the newest Rails version, upgrade before running rails_apps_composer.
 
@@ -434,5 +434,3 @@ h2. Useful Links
 | "Rails Composer":http://railsapps.github.io/rails-composer/ |                                        "Rails Application Templates":http://railsapps.github.io/rails-application-templates.html |
 | "Rails Examples":http://railsapps.github.io/ |                                                       "Rails Product Planning":http://railsapps.github.io/rails-product-planning.html |
 | "Rails Starter Apps":http://railsapps.github.io/rails-examples-tutorials.html |                      "Rails Project Management":http://railsapps.github.io/rails-project-management.html |
-
-!https://cruel-carlota.pagodabox.com/1f4f51c551cd90489a558e5fe4d91fff(githalytics.com alpha)!
