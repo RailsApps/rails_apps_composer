@@ -8,8 +8,8 @@ end
 
 __END__
 
-name: inker_auth
-description: "Add Inker Auth for authentication"
+name: dotenv
+description: "Adds dotenv gem and .env file"
 author: akolas
 
 requires: [setup, gems]
