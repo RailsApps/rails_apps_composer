@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+
+h3. 3.0.43 October 19, 2015
+
+* downgrade mysql2 gem due to Rails issue https://github.com/rails/rails/issues/21544
+
 h3. 3.0.42 June 7, 2015
 
 * update 'learn-rails' recipe for application version 2.2.0
