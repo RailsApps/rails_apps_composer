@@ -1,6 +1,10 @@
 h1. CHANGELOG
 
 
+h3. 3.0.44 October 26, 2015
+
+* merged pull requests from jsyeo, neydroid, mli, vfonic
+
 h3. 3.0.43 October 19, 2015
 
 * downgrade mysql2 gem due to Rails issue https://github.com/rails/rails/issues/21544
