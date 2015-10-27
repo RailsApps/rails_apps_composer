@@ -89,6 +89,36 @@ if recipes.include? 'pages'
     ["Home, About, and Users", "about+users"]] unless prefs.has_key? :pages
 end
 
+## Bootstrap Page Templates
+if recipes.include? 'pages'
+  if prefs[:frontend] == 'bootstrap3'
+    prefs[:layouts] = multiple_choice "Add Bootstrap page templates?", [["None", "none"],
+    ["1 Col Portfolio", "one_col_portfolio"],
+    ["2 Col Portfolio", "two_col_portfolio"],
+    ["3 Col Portfolio", "three_col_portfolio"],
+    ["4 Col Portfolio", "four_col_portfolio"],
+    ["Bare", "bare"],
+    ["Blog Home", "blog_home"],
+    ["Business Casual", "business_casual"],
+    ["Business Frontpage", "business_frontpage"],
+    ["Clean Blog", "clean_blog"],
+    ["Full Width Pics", "full_width_pics"],
+    ["Heroic Features", "heroic_features"],
+    ["Landing Page", "landing_page"],
+    ["Modern Business", "modern_business"],
+    ["One Page Wonder", "one_page_wonder"],
+    ["Portfolio Item", "portfolio_item"],
+    ["Round About", "round_about"],
+    ["Shop Homepage", "shop_homepage"],
+    ["Shop Item", "shop_item"],
+    ["Simple Sidebar", "simple_sidebar"],
+    ["Small Business", "small_business"],
+    ["Stylish Portfolio", "stylish_portfolio"],
+    ["The Big Picture", "the_big_picture"],
+    ["Thumbnail Gallery", "thumbnail_gallery"]] unless prefs.has_key? :layouts
+  end
+end
+
 # save configuration before anything can fail
 create_file 'config/railscomposer.yml', "# This application was generated with Rails Composer\n\n"
 append_to_file 'config/railscomposer.yml' do <<-TEXT
@@ -108,6 +138,7 @@ omniauth_provider: [#{prefs[:omniauth_provider]}]
 authorization: [#{prefs[:authorization]}]
 form_builder: [#{prefs[:form_builder]}]
 pages: [#{prefs[:pages]}]
+layouts: [#{prefs[:layouts]}]
 locale: [#{prefs[:locale]}]
 analytics: [#{prefs[:analytics]}]
 deployment: [#{prefs[:deployment]}]
