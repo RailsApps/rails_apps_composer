@@ -20,6 +20,13 @@ stage_two do
   end
   generate 'pages:upmin -f' if prefer :dashboard, 'upmin'
   generate 'layout:navigation -f'
+  ### GIT ###
+  git :add => '-A' if prefer :git, true
+  git :commit => '-qm "rails_apps_composer: add pages"' if prefer :git, true
+end
+
+stage_four do
+  say_wizard "recipe stage four"
   case prefs[:layouts]
     when 'bare'
       generate 'theme:bare -f'
@@ -70,7 +77,7 @@ stage_two do
   end
   ### GIT ###
   git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: add pages"' if prefer :git, true
+  git :commit => '-qm "rails_apps_composer: add Bootstrap page layouts"' if prefer :git, true
 end
 
 __END__

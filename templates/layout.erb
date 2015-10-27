@@ -218,6 +218,12 @@ end
 say_wizard "Stage Three (running recipe 'stage_three' callbacks)."
 @stage_three_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; puts @current_recipe; b[1].call}
 
+# >-----------------------------[ Run 'stage_four' Callbacks ]-------------------------------<
+
+@current_recipe = nil
+say_wizard "Stage Four (running recipe 'stage_four' callbacks)."
+@stage_four_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; puts @current_recipe; b[1].call}
+
 @current_recipe = nil
 say_wizard("Your new application will contain diagnostics in its README file.")
 say_wizard("When reporting an issue on GitHub, include the README diagnostics.")

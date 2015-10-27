@@ -158,8 +158,8 @@ case RbConfig::CONFIG['host_os']
     end
 end
 
-stage_three do
-  say_wizard "recipe stage three"
+stage_four do
+  say_wizard "recipe stage four"
   say_wizard "recipe removing unnecessary files and whitespace"
   %w{
     public/index.html

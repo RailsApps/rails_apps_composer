@@ -51,6 +51,8 @@ end
 def stage_two(&block); @after_blocks << [@current_recipe, block]; end
 @stage_three_blocks = []
 def stage_three(&block); @stage_three_blocks << [@current_recipe, block]; end
+@stage_four_blocks = []
+def stage_four(&block); @stage_four_blocks << [@current_recipe, block]; end
 @before_configs = {}
 def before_config(&block); @before_configs[@current_recipe] = block; end
 
