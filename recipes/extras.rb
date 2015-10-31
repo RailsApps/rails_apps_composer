@@ -73,7 +73,7 @@ if prefs[:quiet_assets]
 end
 
 ## LOCAL_ENV.YML FILE
-prefs[:local_env_file] = config['local_env_file'] unless config['local_env_file'] = 'none'
+prefs[:local_env_file] = config['local_env_file'] unless (config['local_env_file'] == 'none')
 
 if prefer :local_env_file, 'figaro'
   say_wizard "recipe creating application.yml file for environment variables with figaro"
