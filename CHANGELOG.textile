@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h3. 3.1.0 unreleased
+
+* added a 'stage four' sequence to accommodate Bootstrap page layouts
+* added Bootstrap page layouts using the rails_apps_pages gem
+* removed a redundant 'bundle install' step
 
 h3. 3.0.44 October 26, 2015
 

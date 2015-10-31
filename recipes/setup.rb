@@ -92,6 +92,7 @@ end
 ## Bootstrap Page Templates
 if recipes.include? 'pages'
   if prefs[:frontend] == 'bootstrap3'
+    say_wizard "Which Bootstrap page template? Visit startbootstrap.com."
     prefs[:layouts] = multiple_choice "Add Bootstrap page templates?", [["None", "none"],
     ["1 Col Portfolio", "one_col_portfolio"],
     ["2 Col Portfolio", "two_col_portfolio"],
