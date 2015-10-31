@@ -77,7 +77,7 @@ prefs[:local_env_file] = config['local_env_file'] unless (config['local_env_file
 
 if prefer :local_env_file, 'figaro'
   say_wizard "recipe creating application.yml file for environment variables with figaro"
-  add_gem 'figaro', '>= 1.0.0.rc1'
+  add_gem 'figaro', '~> 1.1.1'
 elsif prefer :local_env_file, 'foreman'
   say_wizard "recipe creating .env file for development environment variables with foreman"
   add_gem 'foreman', :group => :development
