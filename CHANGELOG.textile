@@ -1,10 +1,12 @@
 h1. CHANGELOG
 
-h3. 3.1.0 unreleased
+h3. 3.1.0 October 31, 2015
 
 * added a 'stage four' sequence to accommodate Bootstrap page layouts
 * added Bootstrap page layouts using the rails_apps_pages gem
 * removed a redundant 'bundle install' step
+* fix issue #349 typo in conditional
+* version number not needed for Figaro gem
 
 h3. 3.0.44 October 26, 2015
 
