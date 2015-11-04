@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.1 unreleased
+
+* include gem 'high_voltage' so Bootstrap templates will work with all example apps
+
 h3. 3.1.0 October 31, 2015
 
 * added a 'stage four' sequence to accommodate Bootstrap page layouts
