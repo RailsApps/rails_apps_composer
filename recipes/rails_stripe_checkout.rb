@@ -18,7 +18,7 @@ if prefer :apps4, 'rails-stripe-checkout'
     'stripe_api_key',
     'mailchimp_list_id',
     'mailchimp_api_key']
-  prefs[:pages] = 'users'
+  prefs[:pages] = 'about+users'
   prefs[:locale] = 'none'
   prefs[:rubocop] = false
 

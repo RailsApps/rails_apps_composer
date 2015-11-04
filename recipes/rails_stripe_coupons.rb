@@ -18,13 +18,12 @@ if prefer :apps4, 'rails-stripe-coupons'
     'product_title',
     'mailchimp_list_id',
     'mailchimp_api_key']
-  prefs[:pages] = 'users'
+  prefs[:pages] = 'about+users'
   prefs[:locale] = 'none'
   prefs[:rubocop] = false
 
   # gems
   add_gem 'gibbon'
-  add_gem 'high_voltage'
   add_gem 'stripe'
   add_gem 'sucker_punch'
 

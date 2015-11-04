@@ -10,7 +10,7 @@ if prefer :apps4, 'rails-devise'
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:quiet_assets] = true
-  prefs[:pages] = 'users'
+  prefs[:pages] = 'about+users'
   prefs[:locale] = 'none'
   prefs[:rubocop] = false
 end
