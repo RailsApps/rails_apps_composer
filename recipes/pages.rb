@@ -19,7 +19,6 @@ stage_two do
       generate 'pages:authorized -f' if prefer :authorization, 'pundit'
   end
   generate 'pages:upmin -f' if prefer :dashboard, 'upmin'
-  generate 'layout:navigation -f'
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: add pages"' if prefer :git, true
