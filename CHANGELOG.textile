@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.1.1 unreleased
+h3. 3.1.1 November 6, 2015
 
 * include gem 'high_voltage' so Bootstrap templates will work with all example apps
 * move auth links to a new partial to accommodate Bootstrap templates
