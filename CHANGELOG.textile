@@ -4,6 +4,7 @@ h3. 3.1.1 unreleased
 
 * include gem 'high_voltage' so Bootstrap templates will work with all example apps
 * move auth links to a new partial to accommodate Bootstrap templates
+* update pitch for support
 
 h3. 3.1.0 October 31, 2015
 
