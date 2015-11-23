@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.3 November 23, 2015
+
+* improve format of file 'config/railscomposer.yml' containing configuration settings
+
 h3. 3.1.2 November 23, 2015
 
 * include gem 'administrate' from the good folks at thoughtbot
