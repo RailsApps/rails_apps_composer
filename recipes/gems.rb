@@ -107,8 +107,9 @@ if prefer :authentication, 'devise'
     add_gem 'devise_invitable' if prefer :devise_modules, 'invitable'
 end
 
-## Administratative Interface (Upmin)
+## Administratative Interface
 add_gem 'upmin-admin' if prefer :dashboard, 'upmin'
+add_gem 'administrate' if prefer :dashboard, 'administrate'
 
 ## Authentication (OmniAuth)
 add_gem 'omniauth' if prefer :authentication, 'omniauth'
