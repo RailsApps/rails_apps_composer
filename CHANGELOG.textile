@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.4 December 19, 2015
+
+* preliminary support for Rails 5.0.0.beta1
+
 h3. 3.1.3 November 23, 2015
 
 * improve format of file 'config/railscomposer.yml' containing configuration settings

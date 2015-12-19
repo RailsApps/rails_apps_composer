@@ -128,9 +128,11 @@ end
 
 # this application template only supports Rails version 4.1 and newer
 case Rails::VERSION::MAJOR.to_s
+when "5"
+  say_wizard "You are using Rails version #{Rails::VERSION::STRING}. Please report any issues."
 when "3"
-    say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported. Use Rails 4.1 or newer."
-    raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported. Use Rails 4.1 or newer."
+  say_wizard "You are using Rails version #{Rails::VERSION::STRING} which is not supported. Use Rails 4.1 or newer."
+  raise StandardError.new "Rails #{Rails::VERSION::STRING} is not supported. Use Rails 4.1 or newer."
 when "4"
   case Rails::VERSION::MINOR.to_s
   when "0"
