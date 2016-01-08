@@ -7,6 +7,9 @@ if prefer :admin, 'activeadmin'
   add_gem 'activeadmin', '~> 1.0.0.pre2'
 elsif prefer :admin, 'rails_admin'
   add_gem 'rails_admin'
+elsif prefer :admin, 'administrate'
+  add_gem 'administrate', '~> 0.1.2' #Adding administrate
+
 end
 
 stage_two do
@@ -19,6 +22,9 @@ stage_two do
     say_wizard "recipe installing rails_admin"
     generate 'rails_admin:install'
   end
+  if prefer :admin, 'administrate'
+    say_wizard "recipe installing administrate"
+    generate 'administrate:install'
   ### GIT
   git :add => '-A' if prefer :git, true
   git :commit => %Q(-qm "rails_apps_composer: installed #{prefs[:admin]}") if prefer :git, true
@@ -28,7 +34,7 @@ __END__
 
 name: admin
 description: "Adding rails admin gem to your application"
-author: JangoSteve
+author: JangoSteve, Bishisht Bhatta
 
 category: admin
 requires: [setup]
@@ -39,4 +45,4 @@ config:
   - admin:
       type: multiple_choice
       prompt: Install admin gem?
-      choices: [ ["None", "none"], ["ActiveAdmin", "activeadmin"], ["RailsAdmin", "rails_admin"] ]
+      choices: [ ["None", "none"], ["ActiveAdmin", "activeadmin"], ["RailsAdmin", "rails_admin"], ["Administrate by Thoughtbot", "administrate"] ]
