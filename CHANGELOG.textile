@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h3. 3.1.5 January 30, 2015
+
+* don't use 'foundation-rails' gem version 6 for Foundation 5
+* 'learn-rails' application uses Mandrill not Gmail now
+
 h3. 3.1.4 December 19, 2015
 
 * preliminary support for Rails 5.0.0.beta1
