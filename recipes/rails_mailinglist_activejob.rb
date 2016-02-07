@@ -18,7 +18,11 @@ if prefer :apps4, 'rails-mailinglist-activejob'
 
   # gems
   add_gem 'gibbon'
-  add_gem 'high_voltage'
+  if Rails::VERSION::MAJOR == 5
+    add_gem 'high_voltage', github: 'thoughtbot/high_voltage'
+  else
+    add_gem 'high_voltage'
+  end
   add_gem 'sucker_punch'
 
   stage_two do

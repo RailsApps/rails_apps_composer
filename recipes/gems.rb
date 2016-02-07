@@ -93,9 +93,17 @@ end
 ## Pages
 case prefs[:pages]
   when 'about'
-    add_gem 'high_voltage'
+    if Rails::VERSION::MAJOR == 5
+      add_gem 'high_voltage', github: 'thoughtbot/high_voltage'
+    else
+      add_gem 'high_voltage'
+    end
   when 'about+users'
-    add_gem 'high_voltage'
+    if Rails::VERSION::MAJOR == 5
+      add_gem 'high_voltage', github: 'thoughtbot/high_voltage'
+    else
+      add_gem 'high_voltage'
+    end
 end
 
 ## Email

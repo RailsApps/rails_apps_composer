@@ -102,6 +102,7 @@ Rails Composer: http://railscomposer.com/
 TEXT
   end
 
+  remove_file 'README.md'
   create_file 'README.md', "#{app_name.humanize.titleize}\n================\n\n"
 
   if prefer :deployment, 'heroku'

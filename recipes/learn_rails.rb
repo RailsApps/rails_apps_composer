@@ -32,7 +32,11 @@ if prefer :apps4, 'learn-rails'
   prefs[:disable_turbolinks] = false
 
   # gems
-  add_gem 'high_voltage'
+  if Rails::VERSION::MAJOR == 5
+    add_gem 'high_voltage', github: 'thoughtbot/high_voltage'
+  else
+    add_gem 'high_voltage'
+  end
   add_gem 'gibbon'
   gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
   add_gem 'sqlite3', :group => :development

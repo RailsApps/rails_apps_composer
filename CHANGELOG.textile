@@ -1,6 +1,11 @@
 h1. CHANGELOG
 
-h3. 3.1.5 January 30, 2015
+h3. 3.1.6 February 7, 2016
+
+* use 'high_voltage' gem from GitHub master with Rails 5.0
+* handle existing README.md file in Rails 5.0
+
+h3. 3.1.5 January 30, 2016
 
 * don't use 'foundation-rails' gem version 6 for Foundation 5
 * 'learn-rails' application uses Mandrill not Gmail now
