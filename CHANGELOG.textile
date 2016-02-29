@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.7 February 29, 2016
+
+* 'learn-rails' application now uses SendGrid not Mandrill
+
 h3. 3.1.6 February 7, 2016
 
 * use 'high_voltage' gem from GitHub master with Rails 5.0
@@ -8,7 +12,7 @@ h3. 3.1.6 February 7, 2016
 h3. 3.1.5 January 30, 2016
 
 * don't use 'foundation-rails' gem version 6 for Foundation 5
-* 'learn-rails' application uses Mandrill not Gmail now
+* 'learn-rails' application now uses Mandrill not Gmail
 
 h3. 3.1.4 December 19, 2015
 
