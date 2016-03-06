@@ -4,20 +4,26 @@
 ## Ruby on Rails
 HOST_OS = RbConfig::CONFIG['host_os']
 say_wizard "Your operating system is #{HOST_OS}."
-say_wizard "You are using Ruby version #{RUBY_VERSION}."
-say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
+say_wizard "You are using Ruby version: #{RUBY_VERSION}."
+say_wizard "You are using Rails version: #{Rails::VERSION::STRING}."
 
 ## Is sqlite3 in the Gemfile?
 gemfile = File.read(destination_root() + '/Gemfile')
 sqlite_detected = gemfile.include? 'sqlite3'
 
-## Web Server
+## Web Server ##
+
+# Select for development
 prefs[:dev_webserver] = multiple_choice "Web server for development?", [["WEBrick (default)", "webrick"],
   ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
   ["Phusion Passenger (Standalone)", "passenger_standalone"]] unless prefs.has_key? :dev_webserver
+
+# Select for production
 prefs[:prod_webserver] = multiple_choice "Web server for production?", [["Same as development", "same"],
   ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
   ["Phusion Passenger (Standalone)", "passenger_standalone"]] unless prefs.has_key? :prod_webserver
+
+# A cool trick comparing if two arrays are 'same'
 prefs[:prod_webserver] = prefs[:dev_webserver] if prefs[:prod_webserver] == 'same'
 
 ## Database Adapter
@@ -66,6 +72,7 @@ if (recipes.include? 'devise') || (recipes.include? 'omniauth')
       prefs[:devise_modules] = multiple_choice "Devise modules?", [["Devise with default modules","default"],
       ["Devise with Confirmable module","confirmable"],
       ["Devise with Confirmable and Invitable modules","invitable"]] unless prefs.has_key? :devise_modules
+
     when 'omniauth'
       prefs[:omniauth_provider] = multiple_choice "OmniAuth provider?", [["Facebook", "facebook"], ["Twitter", "twitter"], ["GitHub", "github"],
         ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google_oauth2"], ["Tumblr", "tumblr"]] unless prefs.has_key? :omniauth_provider

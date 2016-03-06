@@ -1,5 +1,6 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/analytics.rb
+# If you want to use other analytics engine add them here and you are ready to go. 
 
 prefs[:analytics] = multiple_choice "Install page-view analytics?", [["None", "none"],
   ["Google Analytics", "ga"],
