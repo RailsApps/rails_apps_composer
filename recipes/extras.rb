@@ -46,6 +46,18 @@ if prefs[:rvmrc]
       end
     begin
       RVM.gemset_use! app_name
+      current_gemset = RVM.gemset_name
+      if current_gemset != app_name
+        case
+        # TODO: Need to update this to check current directory from where `rails_apps_composer new` command is run, not directory of __FILE__ or new rails app
+        when File.exists?(File.join(Dir.pwd, '.rvmrc')) || File.exists?(File.join(Dir.pwd, '.ruby-gemset'))
+          raise "Run command from directory with no .rvmrc or .ruby-gemset file."
+        when defined? Bundler
+          raise "Run command without using Bundler."
+        else
+          raise "Make sure to run without using .rvmrc, .ruby-gemset, or Gemfile."
+        end
+      end
     rescue => e
       say_wizard "rvm failure: unable to use gemset #{app_name}, reason: #{e}"
       raise
