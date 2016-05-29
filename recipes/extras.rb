@@ -228,7 +228,7 @@ config:
   - local_env_file:
       type: multiple_choice
       prompt: Add gem and file for environment variables?
-      choices: [ [None, none], [Add .env with Foreman, foreman], [Add application.yml with Figaro, figaro]]
+      choices: [ [None, none], [Add .env with Foreman, foreman]]
   - quiet_assets:
       type: boolean
       prompt: Reduce assets logger noise during development?
