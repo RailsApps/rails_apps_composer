@@ -12,11 +12,11 @@ gemfile = File.read(destination_root() + '/Gemfile')
 sqlite_detected = gemfile.include? 'sqlite3'
 
 ## Web Server
-prefs[:dev_webserver] = multiple_choice "Web server for development?", [["WEBrick (default)", "webrick"],
-  ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
+prefs[:dev_webserver] = multiple_choice "Web server for development?", [["Puma (default)", "puma"],
+  ["Thin", "thin"], ["Unicorn", "unicorn"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
   ["Phusion Passenger (Standalone)", "passenger_standalone"]] unless prefs.has_key? :dev_webserver
 prefs[:prod_webserver] = multiple_choice "Web server for production?", [["Same as development", "same"],
-  ["Thin", "thin"], ["Unicorn", "unicorn"], ["Puma", "puma"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
+  ["Thin", "thin"], ["Unicorn", "unicorn"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
   ["Phusion Passenger (Standalone)", "passenger_standalone"]] unless prefs.has_key? :prod_webserver
 prefs[:prod_webserver] = prefs[:dev_webserver] if prefs[:prod_webserver] == 'same'
 
