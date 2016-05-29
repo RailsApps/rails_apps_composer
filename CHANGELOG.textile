@@ -1,5 +1,11 @@
 h1. CHANGELOG
 
+
+h3. 3.1.8 May 29, 2016
+
+* remove Figaro as an option (closes rails-composer issue #209)
+* remove option to create an RVM gemset
+
 h3. 3.1.7 February 29, 2016
 
 * 'learn-rails' application now uses SendGrid not Mandrill
