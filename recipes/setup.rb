@@ -148,7 +148,6 @@ development:
   ban_spiders: #{prefs[:ban_spiders]}
   github: #{prefs[:github]}
   local_env_file: #{prefs[:local_env_file]}
-  quiet_assets: #{prefs[:quiet_assets]}
   better_errors: #{prefs[:better_errors]}
   pry: #{prefs[:pry]}
   rvmrc: #{prefs[:rvmrc]}

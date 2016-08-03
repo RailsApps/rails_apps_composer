@@ -10,7 +10,6 @@ if prefer :apps4, 'rails-mailinglist-activejob'
   prefs[:git] = true
   prefs[:local_env_file] = false
   prefs[:pry] = false
-  prefs[:quiet_assets] = true
   prefs[:secrets] = ['mailchimp_list_id', 'mailchimp_api_key']
   prefs[:pages] = 'about'
   prefs[:locale] = 'none'
@@ -18,11 +17,7 @@ if prefer :apps4, 'rails-mailinglist-activejob'
 
   # gems
   add_gem 'gibbon'
-  if Rails::VERSION::MAJOR == 5
-    add_gem 'high_voltage', github: 'thoughtbot/high_voltage'
-  else
-    add_gem 'high_voltage'
-  end
+  add_gem 'high_voltage'
   add_gem 'sucker_punch'
 
   stage_two do

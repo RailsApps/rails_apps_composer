@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.9 August 3, 2016
+
+* remove 'quiet_assets' gem (deprecated for Rails 5.0, see https://github.com/evrone/quiet_assets#deprecation)
+* use published 'high_voltage' gem (not from GitHub master)
 
 h3. 3.1.8 May 29, 2016
 

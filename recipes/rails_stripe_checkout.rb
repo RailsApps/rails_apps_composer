@@ -11,7 +11,6 @@ if prefer :apps4, 'rails-stripe-checkout'
   prefs[:git] = true
   prefs[:local_env_file] = false
   prefs[:pry] = false
-  prefs[:quiet_assets] = true
   prefs[:secrets] = ['product_price',
     'product_title',
     'stripe_publishable_key',

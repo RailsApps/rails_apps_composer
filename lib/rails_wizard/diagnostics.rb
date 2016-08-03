@@ -41,7 +41,6 @@ module RailsWizard
     # :main_branch
     # :prelaunch_branch
     # :prod_webserver
-    # :quiet_assets
     # :rvmrc
     # :templates
 

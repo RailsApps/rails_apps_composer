@@ -21,7 +21,6 @@ if prefer :apps4, 'learn-rails'
   prefs[:local_env_file] = 'none'
   prefs[:prod_webserver] = 'same'
   prefs[:pry] = false
-  prefs[:quiet_assets] = true
   prefs[:secrets] = ['owner_email', 'mailchimp_list_id', 'mailchimp_api_key']
   prefs[:templates] = 'erb'
   prefs[:tests] = false
@@ -32,11 +31,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:disable_turbolinks] = false
 
   # gems
-  if Rails::VERSION::MAJOR == 5
-    add_gem 'high_voltage', github: 'thoughtbot/high_voltage'
-  else
-    add_gem 'high_voltage'
-  end
+  add_gem 'high_voltage'
   add_gem 'gibbon'
   gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
   add_gem 'sqlite3', :group => :development

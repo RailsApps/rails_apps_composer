@@ -1,13 +1,6 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb
 
-## QUIET ASSETS
-prefs[:quiet_assets] = true if config['quiet_assets']
-if prefs[:quiet_assets]
-  say_wizard "recipe setting quiet_assets for reduced asset pipeline logging"
-  add_gem 'quiet_assets', :group => :development
-end
-
 ## LOCAL_ENV.YML FILE
 prefs[:local_env_file] = config['local_env_file'] unless (config['local_env_file'] == 'none')
 
@@ -165,9 +158,6 @@ config:
       type: multiple_choice
       prompt: Add gem and file for environment variables?
       choices: [ [None, none], [Add .env with Foreman, foreman]]
-  - quiet_assets:
-      type: boolean
-      prompt: Reduce assets logger noise during development?
   - better_errors:
       type: boolean
       prompt: Improve error reporting with 'better_errors' during development?
