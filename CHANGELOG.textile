@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.10 September 5, 2016
+
+* add Bootstrap 4 option
+
 h3. 3.1.9 August 3, 2016
 
 * remove 'quiet_assets' gem (deprecated for Rails 5.0, see https://github.com/evrone/quiet_assets#deprecation)

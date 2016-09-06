@@ -80,6 +80,8 @@ case prefs[:frontend]
     add_gem 'bootstrap-sass', '~> 2.3.2.2'
   when 'bootstrap3'
     add_gem 'bootstrap-sass'
+  when 'bootstrap4'
+    add_gem 'bootstrap', '~> 4.0.0.alpha3.1'
   when 'foundation4'
     add_gem 'zurb-foundation', '~> 4.3.2'
     add_gem 'compass-rails', '~> 1.1.2'
@@ -205,6 +207,8 @@ stage_two do
       when 'bootstrap3'
         say_wizard "recipe installing simple_form for use with Bootstrap"
         generate 'simple_form:install --bootstrap'
+      when 'bootstrap4'
+        say_wizard "simple_form not yet available for use with Bootstrap 4"
       when 'foundation5'
         say_wizard "recipe installing simple_form for use with Zurb Foundation"
         generate 'simple_form:install --foundation'

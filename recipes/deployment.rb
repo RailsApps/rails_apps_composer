@@ -31,6 +31,7 @@ TEXT
     append_file 'app.json', '    "RailsApps",' + "\n" + '    "starter",' + "\n" if prefs.keys.include?(:apps4)
     append_file 'app.json', '    "RSpec",' + "\n" if prefer :tests, 'rspec'
     append_file 'app.json', '    "Bootstrap",' + "\n" if prefer :frontend, 'bootstrap3'
+    append_file 'app.json', '    "Bootstrap",' + "\n" if prefer :frontend, 'bootstrap4'
     append_file 'app.json', '    "Foundation",' + "\n" if prefer :frontend, 'pundit'
     append_file 'app.json', '    "authentication",' + "\n" + '    "Devise",' + "\n" if prefer :authentication, 'devise'
     append_file 'app.json', '    "authentication",' + "\n" + '    "OmniAuth",' + "\n" if prefer :authentication, 'omniauth'

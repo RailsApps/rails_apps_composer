@@ -11,6 +11,8 @@ stage_two do
       generate 'layout:install bootstrap2 -f'
     when 'bootstrap3'
       generate 'layout:install bootstrap3 -f'
+    when 'bootstrap4'
+      generate 'layout:install bootstrap4 -f'
     when 'foundation4'
       generate 'layout:install foundation4 -f'
     when 'foundation5'

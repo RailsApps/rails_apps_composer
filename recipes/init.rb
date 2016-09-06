@@ -149,12 +149,18 @@ FILE
     case prefs[:frontend]
       when 'bootstrap3'
         generate 'layout:devise bootstrap3 -f'
+      when 'bootstrap4'
+        generate 'layout:devise bootstrap3 -f'
       when 'foundation5'
         generate 'layout:devise foundation5 -f'
     end
   end
   # create navigation links using the rails_layout gem
-  generate 'layout:navigation -f'
+  if prefs[:frontend] == 'bootstrap4'
+    generate 'layout:navigation bootstrap4 -f'
+  else
+    generate 'layout:navigation -f'
+  end
   if prefer :apps4, 'rails-stripe-coupons'
     inject_into_file 'app/views/layouts/_nav_links_for_auth.html.erb', ", data: { no_turbolink: true }", :after => "new_user_registration_path"
     inject_into_file 'app/views/layouts/_nav_links_for_auth.html.erb', "\n    <li><%= link_to 'Coupons', coupons_path %></li>", :after => "users_path %></li>"

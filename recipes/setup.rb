@@ -42,7 +42,7 @@ end
 ## Front-end Framework
 if recipes.include? 'frontend'
   prefs[:frontend] = multiple_choice "Front-end framework?", [["None", "none"],
-    ["Bootstrap 3.3", "bootstrap3"], ["Bootstrap 2.3", "bootstrap2"],
+    ["Bootstrap 4.0", "bootstrap4"], ["Bootstrap 3.3", "bootstrap3"], ["Bootstrap 2.3", "bootstrap2"],
     ["Zurb Foundation 5.5", "foundation5"], ["Zurb Foundation 4.0", "foundation4"],
     ["Simple CSS", "simple"]] unless prefs.has_key? :frontend
 end
@@ -80,7 +80,10 @@ if (recipes.include? 'devise') || (recipes.include? 'omniauth')
 end
 
 ## Form Builder
-prefs[:form_builder] = multiple_choice "Use a form builder gem?", [["None", "none"], ["SimpleForm", "simple_form"]] unless prefs.has_key? :form_builder
+## (no simple_form for Bootstrap 4 yet)
+unless prefs[:frontend] == 'bootstrap4'
+  prefs[:form_builder] = multiple_choice "Use a form builder gem?", [["None", "none"], ["SimpleForm", "simple_form"]] unless prefs.has_key? :form_builder
+end
 
 ## Pages
 if recipes.include? 'pages'

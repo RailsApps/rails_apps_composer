@@ -8,13 +8,14 @@ if prefer :apps4, 'rails-bootstrap'
   prefs[:better_errors] = true
   prefs[:devise_modules] = false
   prefs[:email] = 'none'
-  prefs[:frontend] = 'bootstrap3'
   prefs[:git] = true
   prefs[:local_env_file] = false
   prefs[:pry] = false
   prefs[:pages] = 'about'
   prefs[:locale] = 'none'
   prefs[:rubocop] = false
+  prefs[:frontend] = multiple_choice "Front-end framework?",
+    [["Bootstrap 4.0", "bootstrap4"], ["Bootstrap 3.3", "bootstrap3"]] unless prefs.has_key? :frontend
 end
 
 __END__
