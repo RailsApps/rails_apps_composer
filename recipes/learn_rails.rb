@@ -15,7 +15,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:dev_webserver] = 'webrick'
   prefs[:email] = 'sendgrid'
   prefs[:form_builder] = 'simple_form'
-  prefs[:frontend] = 'foundation5'
+  prefs[:frontend] = 'bootstrap3'
   prefs[:github] = false
   prefs[:git] = true
   prefs[:local_env_file] = 'none'
