@@ -16,6 +16,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:email] = 'sendgrid'
   prefs[:form_builder] = 'simple_form'
   prefs[:frontend] = 'bootstrap3'
+  prefs[:pages] = 'none'
   prefs[:github] = false
   prefs[:git] = true
   prefs[:local_env_file] = 'none'
@@ -76,7 +77,10 @@ if prefer :apps4, 'learn-rails'
     # >-------------------------------[ Tests ]--------------------------------<
 
     copy_from_repo 'test/test_helper.rb', :repo => repo
+    copy_from_repo 'test/integration/home_page_test.rb', :repo => repo
+    copy_from_repo 'test/models/visitor_test.rb', :repo => repo
 
+    run 'bundle exec rake db:migrate'
   end
 end
 

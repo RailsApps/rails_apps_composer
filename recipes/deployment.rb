@@ -12,7 +12,6 @@ if prefer :deployment, 'heroku'
     add_gem 'sqlite3', group: [:development, :test]
     add_gem 'pg', group: :production
   end
-  add_gem 'rails_12factor', group: :production
   stage_three do
     say_wizard "recipe stage three"
     say_wizard "precompiling assets for Heroku"
