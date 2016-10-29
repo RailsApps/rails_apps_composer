@@ -3,6 +3,7 @@ h1. CHANGELOG
 h3. 3.1.13 October 29, 2016
 
 * use bootstrap3 not foundation for learn-rails recipe
+* add test helper for learn-rails recipe
 
 h3. 3.1.12 October 29, 2016
 
