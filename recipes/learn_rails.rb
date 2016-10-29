@@ -12,7 +12,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:database] = 'sqlite'
   prefs[:deployment] = 'heroku'
   prefs[:devise_modules] = false
-  prefs[:dev_webserver] = 'webrick'
+  prefs[:dev_webserver] = 'puma'
   prefs[:email] = 'sendgrid'
   prefs[:form_builder] = 'simple_form'
   prefs[:frontend] = 'bootstrap3'

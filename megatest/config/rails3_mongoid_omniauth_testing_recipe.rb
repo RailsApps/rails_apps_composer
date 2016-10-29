@@ -1,6 +1,6 @@
 prefs[:ban_spiders] = false
 prefs[:continuous_testing] = 'none'
-prefs[:dev_webserver] = 'webrick'
+prefs[:dev_webserver] = 'puma'
 prefs[:drop_database] = true
 prefs[:github] = false
 prefs[:jsruntime] = false
