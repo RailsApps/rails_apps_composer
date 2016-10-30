@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.15 October 30, 2016
+
+* no Bootstrap page templates needed for learn-rails recipe (fix)
+
 h3. 3.1.14 October 29, 2016
 
 * remove rails_12factor gem not needed for Rails 5
