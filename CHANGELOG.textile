@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.18 October 30, 2016
+
+* Segment.io now named Segment.com
+
 h3. 3.1.17 October 30, 2016
 
 * no need for app.json file when 'Deploy to Heroku' button is gone

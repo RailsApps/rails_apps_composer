@@ -3,12 +3,12 @@
 
 prefs[:analytics] = multiple_choice "Install page-view analytics?", [["None", "none"],
   ["Google Analytics", "ga"],
-  ["Segment.io", "segmentio"]] unless prefs.has_key? :analytics
+  ["Segment.com", "segmentio"]] unless prefs.has_key? :analytics
 case prefs[:analytics]
   when 'ga'
     ga_id = ask_wizard('Google Analytics ID?')
   when 'segmentio'
-    segmentio_api_key = ask_wizard('Segment.io API key?')
+    segmentio_api_key = ask_wizard('Segment.com Write Key?')
 end
 
 stage_two do
@@ -33,7 +33,7 @@ end
 __END__
 
 name: analytics
-description: "Add JavaScript files for Segment.io or Google Analytics"
+description: "Add JavaScript files for Segment.com or Google Analytics"
 author: RailsApps
 
 requires: [setup, gems]

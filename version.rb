@@ -1,3 +1,3 @@
 module RailsWizard
-  VERSION = "3.1.17"
+  VERSION = "3.1.18"
 end
