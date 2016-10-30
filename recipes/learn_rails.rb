@@ -34,6 +34,8 @@ if prefer :apps4, 'learn-rails'
   # gems
   add_gem 'high_voltage'
   add_gem 'gibbon'
+  add_gem 'minitest-spec-rails'
+  add_gem 'minitest-rails-capybara'
   gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
   add_gem 'sqlite3', :group => :development
 

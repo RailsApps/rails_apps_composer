@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.16 October 30, 2016
+
+* add minitest gem to learn-rails recipe
+
 h3. 3.1.15 October 30, 2016
 
 * no Bootstrap page templates needed for learn-rails recipe (fix)
