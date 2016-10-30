@@ -14,8 +14,6 @@ if prefer :deployment, 'heroku'
   end
   stage_three do
     say_wizard "recipe stage three"
-    say_wizard "precompiling assets for Heroku"
-    run 'RAILS_ENV=production rake assets:precompile'
     say_wizard "creating app.json file for Heroku Button"
     create_file 'app.json' do <<-TEXT
 {
