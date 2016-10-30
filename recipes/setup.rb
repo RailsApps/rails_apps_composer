@@ -74,7 +74,7 @@ if (recipes.include? 'devise') || (recipes.include? 'omniauth')
   if prefer :authentication, 'devise'
     if (prefer :authorization, 'roles') || (prefer :authorization, 'pundit')
       prefs[:dashboard] = multiple_choice "Admin interface for database?", [["None", "none"],
-        ["Thoughtbot Administrate", "administrate"], ["Upmin", "upmin"]] unless prefs.has_key? :dashboard
+        ["Thoughtbot Administrate", "administrate"]] unless prefs.has_key? :dashboard
     end
   end
 end

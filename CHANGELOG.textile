@@ -3,6 +3,7 @@ h1. CHANGELOG
 h3. 3.1.18 October 30, 2016
 
 * Segment.io now named Segment.com
+* Upmin Admin is no longer actively maintained
 
 h3. 3.1.17 October 30, 2016
 

@@ -18,7 +18,6 @@ stage_two do
       generate 'pages:roles -f' if prefer :authorization, 'roles'
       generate 'pages:authorized -f' if prefer :authorization, 'pundit'
   end
-  generate 'pages:upmin -f' if prefer :dashboard, 'upmin'
   generate 'administrate:install' if prefer :dashboard, 'administrate'
   ### GIT ###
   git :add => '-A' if prefer :git, true

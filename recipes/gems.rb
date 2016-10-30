@@ -104,7 +104,6 @@ if prefer :authentication, 'devise'
 end
 
 ## Administratative Interface
-add_gem 'upmin-admin' if prefer :dashboard, 'upmin'
 add_gem 'administrate' if prefer :dashboard, 'administrate'
 
 ## Authentication (OmniAuth)
