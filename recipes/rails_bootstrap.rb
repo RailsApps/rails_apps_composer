@@ -16,6 +16,7 @@ if prefer :apps4, 'rails-bootstrap'
   prefs[:rubocop] = false
   prefs[:frontend] = multiple_choice "Front-end framework?",
     [["Bootstrap 4.0", "bootstrap4"], ["Bootstrap 3.3", "bootstrap3"]] unless prefs.has_key? :frontend
+  prefs[:rvmrc] = true
 end
 
 __END__

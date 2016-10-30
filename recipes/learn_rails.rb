@@ -30,6 +30,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:analytics] = 'none'
   prefs[:rubocop] = false
   prefs[:disable_turbolinks] = false
+  prefs[:rvmrc] = true
 
   # gems
   add_gem 'high_voltage'

@@ -1,6 +1,20 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb
 
+## RVMRC
+if prefs[:rvmrc]
+   if File.exist?('.ruby-version')
+     say_wizard ".ruby-version file already exists"
+   else
+     create_file '.ruby-version', "#{RUBY_VERSION}\n"
+   end
+   if File.exist?('.ruby-gemset')
+     say_wizard ".ruby-gemset file already exists"
+   else
+     create_file '.ruby-gemset', "#{app_name}\n"
+   end
+end
+
 ## LOCAL_ENV.YML FILE
 prefs[:local_env_file] = config['local_env_file'] unless (config['local_env_file'] == 'none')
 

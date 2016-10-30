@@ -15,6 +15,7 @@ if prefer :apps4, 'rails-foundation'
   prefs[:pages] = 'about'
   prefs[:locale] = 'none'
   prefs[:rubocop] = false
+  prefs[:rvmrc] = true
 end
 
 __END__

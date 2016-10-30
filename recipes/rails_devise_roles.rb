@@ -11,6 +11,7 @@ if prefer :apps4, 'rails-devise-roles'
   prefs[:pages] = 'about+users'
   prefs[:locale] = 'none'
   prefs[:rubocop] = false
+  prefs[:rvmrc] = true
 end
 
 __END__

@@ -14,6 +14,7 @@ if prefer :apps4, 'rails-signup-download'
   prefs[:pages] = 'about+users'
   prefs[:locale] = 'none'
   prefs[:rubocop] = false
+  prefs[:rvmrc] = true
 
   # gems
   add_gem 'gibbon'
