@@ -4,6 +4,7 @@ h3. 3.1.16 October 30, 2016
 
 * add minitest gem to learn-rails recipe
 * no need to precompile assets for Heroku with Rails 5
+* I doubt that anyone uses the 'Deploy to Heroku' Button
 
 h3. 3.1.15 October 30, 2016
 
