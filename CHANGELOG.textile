@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.19 November 22, 2016
+
+* add gem 'bourbon' for the administrate option
+
 h3. 3.1.18 October 30, 2016
 
 * Segment.io now named Segment.com
