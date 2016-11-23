@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.20 November 23, 2016
+
+* generate 'administrate:install' at stage four
+
 h3. 3.1.19 November 22, 2016
 
 * add gem 'bourbon' for the administrate option
