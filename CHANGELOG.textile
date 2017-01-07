@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.21 November 23, 2016
+
+* accommodate Rails 5.0.1 (fixes https://github.com/RailsApps/rails-composer/issues/261)
+
 h3. 3.1.20 November 23, 2016
 
 * generate 'administrate:install' at stage four
