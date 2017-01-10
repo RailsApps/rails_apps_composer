@@ -7,14 +7,8 @@ stage_two do
   case prefs[:frontend]
     when 'simple'
       generate 'layout:install simple -f'
-    when 'bootstrap2'
-      generate 'layout:install bootstrap2 -f'
-    when 'bootstrap3'
-      generate 'layout:install bootstrap3 -f'
     when 'bootstrap4'
       generate 'layout:install bootstrap4 -f'
-    when 'foundation4'
-      generate 'layout:install foundation4 -f'
     when 'foundation5'
       generate 'layout:install foundation5 -f'
   end

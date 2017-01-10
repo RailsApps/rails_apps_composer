@@ -42,10 +42,6 @@ add_gem 'mysql2', '~> 0.3.18' if prefer :database, 'mysql'
 add_gem 'rails_apps_pages', :group => :development if prefs[:apps4]
 
 ## Template Engine
-if prefer :templates, 'haml'
-  add_gem 'haml-rails'
-  add_gem 'html2haml', :group => :development
-end
 if prefer :templates, 'slim'
   add_gem 'slim-rails'
   add_gem 'haml2slim', :group => :development
@@ -76,15 +72,8 @@ end
 ## Front-end Framework
 add_gem 'rails_layout', :group => :development
 case prefs[:frontend]
-  when 'bootstrap2'
-    add_gem 'bootstrap-sass', '~> 2.3.2.2'
-  when 'bootstrap3'
-    add_gem 'bootstrap-sass'
   when 'bootstrap4'
     add_gem 'bootstrap', '~> 4.0.0.alpha3.1'
-  when 'foundation4'
-    add_gem 'zurb-foundation', '~> 4.3.2'
-    add_gem 'compass-rails', '~> 1.1.2'
   when 'foundation5'
     add_gem 'foundation-rails', '~> 5.5'
 end
@@ -200,18 +189,9 @@ stage_two do
   ## Form Builder
   if prefer :form_builder, 'simple_form'
     case prefs[:frontend]
-      when 'bootstrap2'
-        say_wizard "recipe installing simple_form for use with Bootstrap"
-        generate 'simple_form:install --bootstrap'
-      when 'bootstrap3'
-        say_wizard "recipe installing simple_form for use with Bootstrap"
-        generate 'simple_form:install --bootstrap'
       when 'bootstrap4'
         say_wizard "simple_form not yet available for use with Bootstrap 4"
       when 'foundation5'
-        say_wizard "recipe installing simple_form for use with Zurb Foundation"
-        generate 'simple_form:install --foundation'
-      when 'foundation4'
         say_wizard "recipe installing simple_form for use with Zurb Foundation"
         generate 'simple_form:install --foundation'
       else

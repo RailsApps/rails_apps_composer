@@ -5,6 +5,7 @@
 say_wizard "initialize git"
 prefs[:git] = true unless prefs.has_key? :git
 if prefer :git, true
+  #TODO: Change gitignor example
   copy_from 'https://raw.github.com/RailsApps/rails-composer/master/files/gitignore.txt', '.gitignore'
   git :init
   git :add => '-A'

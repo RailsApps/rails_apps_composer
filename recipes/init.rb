@@ -61,11 +61,6 @@ stage_three do
     append_file '.env', foreman_omniauth if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_omniauth if prefer :local_env_file, 'figaro'
   end
-  ## rails-stripe-coupons
-  if prefer :apps4, 'rails-stripe-coupons'
-    gsub_file 'config/secrets.yml', /<%= ENV\["PRODUCT_TITLE"\] %>/, 'What is Ruby on Rails'
-    gsub_file 'config/secrets.yml', /<%= ENV\["PRODUCT_PRICE"\] %>/, '995'
-  end
   ### EXAMPLE FILE FOR FOREMAN AND FIGARO ###
   if prefer :local_env_file, 'figaro'
     copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
@@ -83,21 +78,7 @@ stage_three do
       copy_from_repo 'app/services/create_admin_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-devise/master/'
     end
   end
-  if prefer :apps4, 'rails-stripe-coupons'
-    copy_from_repo 'app/services/create_couponcodes_service.rb', :repo => 'https://raw.github.com/RailsApps/rails-stripe-coupons/master/'
-    append_file 'db/seeds.rb' do <<-FILE
-CreateCouponcodesService.new.call
-puts 'CREATED PROMOTIONAL CODES'
-FILE
-    end
-  end
-  if prefer :apps4, 'rails-stripe-membership-saas'
-    append_file 'db/seeds.rb' do <<-FILE
-CreatePlanService.new.call
-puts 'CREATED PLANS'
-FILE
-    end
-  end
+
   if prefer :local_env_file, 'figaro'
     append_file 'db/seeds.rb' do <<-FILE
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
@@ -147,8 +128,6 @@ FILE
   # generate Devise views with appropriate styling
   if prefer :authentication, 'devise'
     case prefs[:frontend]
-      when 'bootstrap3'
-        generate 'layout:devise bootstrap3 -f'
       when 'bootstrap4'
         generate 'layout:devise bootstrap3 -f'
       when 'foundation5'
@@ -160,14 +139,6 @@ FILE
     generate 'layout:navigation bootstrap4 -f'
   else
     generate 'layout:navigation -f'
-  end
-  if prefer :apps4, 'rails-stripe-coupons'
-    inject_into_file 'app/views/layouts/_nav_links_for_auth.html.erb', ", data: { no_turbolink: true }", :after => "new_user_registration_path"
-    inject_into_file 'app/views/layouts/_nav_links_for_auth.html.erb', "\n    <li><%= link_to 'Coupons', coupons_path %></li>", :after => "users_path %></li>"
-  end
-  if prefer :apps4, 'rails-stripe-membership-saas'
-    inject_into_file 'app/views/layouts/_nav_links_for_auth.html.erb', ", data: { no_turbolink: true }", :after => "new_user_registration_path"
-    copy_from_repo 'app/views/devise/registrations/edit.html.erb', :repo => 'https://raw.github.com/RailsApps/rails-stripe-membership-saas/master/'
   end
   ### GIT ###
   git :add => '-A' if prefer :git, true
