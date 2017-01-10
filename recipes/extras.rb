@@ -80,17 +80,6 @@ if prefs[:disable_turbolinks]
   end
 end
 
-## BAN SPIDERS
-prefs[:ban_spiders] = true if config['ban_spiders']
-if prefs[:ban_spiders]
-  say_wizard "recipe banning spiders by modifying 'public/robots.txt'"
-  stage_two do
-    say_wizard "recipe stage two"
-    gsub_file 'public/robots.txt', /# User-Agent/, 'User-Agent'
-    gsub_file 'public/robots.txt', /# Disallow/, 'Disallow'
-  end
-end
-
 ## JSRUNTIME
 case RbConfig::CONFIG['host_os']
   when /linux/i
@@ -162,9 +151,6 @@ config:
   - disable_turbolinks:
       type: boolean
       prompt: Disable Rails Turbolinks?
-  - ban_spiders:
-      type: boolean
-      prompt: Set a robots.txt file to ban spiders?
   - github:
       type: boolean
       prompt: Create a GitHub repository?
