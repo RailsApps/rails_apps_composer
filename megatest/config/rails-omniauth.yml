@@ -1,3 +1,4 @@
 args:
   :skip_test_unit: false
   :skip_active_record: false
+  :skip_turbolinks: false

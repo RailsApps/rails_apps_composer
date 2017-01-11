@@ -157,6 +157,9 @@ module RailsWizard
         question = "#{s} Active Record? (yes for MongoDB)"
         args << "-O" if ask_for_arg(question, default_args[:skip_active_record])
 
+        question = "#{s} Turbolinks? (enabled by default in rails 4)"
+        args << "--skip-turbolinks" if ask_for_arg(question, default_args[:skip_turbolinks])
+
         args
       end
 

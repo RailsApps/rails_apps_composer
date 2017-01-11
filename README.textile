@@ -176,6 +176,7 @@ $ rails_apps_composer new myapp
 
 Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for MongoDB) (y/n)
+Would you like to skip Turbolinks? (enabled by default in rails 4) (y/n)
 
 Available Recipes:
 collections: core
@@ -213,6 +214,7 @@ $ rails_apps_composer new myapp -r core
 
 Would you like to skip Test::Unit? (yes for RSpec) (y/n)
 Would you like to skip Active Record? (yes for MongoDB) (y/n)
+Would you like to skip Turbolinks? (enabled by default in rails 4) (y/n)
 What gem would you like to add? (blank to finish)
 
 Generating basic application, using:
