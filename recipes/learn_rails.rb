@@ -14,7 +14,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:devise_modules] = false
   prefs[:dev_webserver] = 'puma'
   prefs[:email] = 'sendgrid'
-  prefs[:form_builder] = 'simple_form'
+  prefs[:form_builder] = false
   prefs[:frontend] = 'bootstrap3'
   prefs[:layouts] = 'none'
   prefs[:pages] = 'none'

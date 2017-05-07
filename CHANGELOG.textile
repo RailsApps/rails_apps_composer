@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h3. 3.1.23 May 7, 2017
+
+* SimpleForm is incompatible with Rails 5.1
+* 'learn-rails' application no longer uses SimpleForm
+
 h3. 3.1.22 April 27, 2017
 
 * announce Kickstarter campaign
