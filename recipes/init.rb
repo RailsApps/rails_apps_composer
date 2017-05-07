@@ -8,7 +8,7 @@ stage_three do
       env_var = "  #{secret}: <%= ENV[\"#{secret.upcase}\"] %>"
       inject_into_file 'config/secrets.yml', "\n" + env_var, :after => "development:"
       ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
-      inject_into_file 'config/secrets.yml', "\n" + env_var + " ", :after => "production:"
+      inject_into_file 'config/secrets.yml', "\n" + env_var + " ", :after => "\n" + "production:"
     end
   end
   case prefs[:email]
