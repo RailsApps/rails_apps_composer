@@ -3,6 +3,7 @@ h1. CHANGELOG
 h3. 3.1.25 May 15, 2017
 
 * add jQuery option via gem or yarn (because Rails 5.1 drops jQuery and Bootstrap needs it)
+* remove 'minitest-rails-capybara' gem from learn-rails recipe (not needed for Rails 5.1)
 
 h3. 3.1.24 May 7, 2017
 
