@@ -37,6 +37,7 @@ if prefer :apps4, 'learn-rails'
   else
     # Rails 5.0 version uses SimpleForm
     prefs[:form_builder] = 'simple_form'
+    add_gem 'minitest-rails-capybara', :group => :test
   end
 
   # gems
