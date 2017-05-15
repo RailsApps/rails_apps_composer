@@ -16,6 +16,7 @@ if prefer :apps4, 'learn-rails'
   prefs[:email] = 'sendgrid'
   prefs[:form_builder] = false
   prefs[:frontend] = 'bootstrap3'
+  prefs[:jquery] = 'gem'
   prefs[:layouts] = 'none'
   prefs[:pages] = 'none'
   prefs[:github] = false

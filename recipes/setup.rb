@@ -47,6 +47,19 @@ if recipes.include? 'frontend'
     ["Simple CSS", "simple"]] unless prefs.has_key? :frontend
 end
 
+## jQuery
+if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
+  if prefs[:frontend] == 'none'
+    prefs[:jquery] = multiple_choice "Add jQuery?", [["No", "none"],
+      ["Add jquery-rails gem", "gem"],
+      ["Add using yarn", "yarn"]] unless prefs.has_key? :jquery
+  else
+    prefs[:jquery] = multiple_choice "How to install jQuery?",
+      [["Add jquery-rails gem", "gem"],
+      ["Add using yarn", "yarn"]] unless prefs.has_key? :jquery
+  end
+end
+
 ## Email
 if recipes.include? 'email'
   unless prefs.has_key? :email
@@ -83,19 +96,6 @@ end
 ## (no simple_form for Bootstrap 4 yet)
 unless prefs[:frontend] == 'bootstrap4'
   prefs[:form_builder] = multiple_choice "Use a form builder gem?", [["None", "none"], ["SimpleForm (incompatible with Rails 5.1)", "simple_form"]] unless prefs.has_key? :form_builder
-end
-
-## jQuery
-if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
-  if prefs[:frontend] == 'none'
-    prefs[:jquery] = multiple_choice "Add jQuery?", [["No", "none"],
-      ["Add jquery-rails gem", "gem"],
-      ["Add using yarn", "yarn"]] unless prefs.has_key? :jquery
-  else
-    prefs[:jquery] = multiple_choice "How to install jQuery?",
-      [["Add jquery-rails gem", "gem"],
-      ["Add using yarn", "yarn"]] unless prefs.has_key? :jquery
-  end
 end
 
 ## Pages
