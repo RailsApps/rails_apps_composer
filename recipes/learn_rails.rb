@@ -14,7 +14,6 @@ if prefer :apps4, 'learn-rails'
   prefs[:devise_modules] = false
   prefs[:dev_webserver] = 'puma'
   prefs[:email] = 'sendgrid'
-  prefs[:form_builder] = false
   prefs[:frontend] = 'bootstrap3'
   prefs[:jquery] = 'gem'
   prefs[:layouts] = 'none'
@@ -32,6 +31,13 @@ if prefer :apps4, 'learn-rails'
   prefs[:rubocop] = false
   prefs[:disable_turbolinks] = false
   prefs[:rvmrc] = true
+
+  if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
+    prefs[:form_builder] = false
+  else
+    # Rails 5.0 version uses SimpleForm
+    prefs[:form_builder] = 'simple_form'
+  end
 
   # gems
   add_gem 'high_voltage'
@@ -61,11 +67,19 @@ if prefer :apps4, 'learn-rails'
 
     # >-------------------------------[ Views ]--------------------------------<
 
-    copy_from_repo 'app/views/contacts/new.html.erb', :repo => repo
+    if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
+      copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
+      copy_from_repo 'app/views/contacts/new.html.erb', :repo => repo
+    else
+      # Rails 5.0 version uses SimpleForm
+      copy_from_repo 'app/views/visitors/new.html.erb', :repo => 'https://raw.githubusercontent.com/RailsApps/learn-rails/rails50/'
+      copy_from_repo 'app/views/contacts/new.html.erb', :repo => 'https://raw.githubusercontent.com/RailsApps/learn-rails/rails50/'
+    end
+
     copy_from_repo 'app/views/pages/about.html.erb', :repo => repo
     copy_from_repo 'app/views/user_mailer/contact_email.html.erb', :repo => repo
     copy_from_repo 'app/views/user_mailer/contact_email.text.erb', :repo => repo
-    copy_from_repo 'app/views/visitors/new.html.erb', :repo => repo
+
     # create navigation links using the rails_layout gem
     generate 'layout:navigation -f'
 
