@@ -15,7 +15,6 @@ if prefer :apps4, 'learn-rails'
   prefs[:dev_webserver] = 'puma'
   prefs[:email] = 'sendgrid'
   prefs[:frontend] = 'bootstrap3'
-  prefs[:jquery] = 'gem'
   prefs[:layouts] = 'none'
   prefs[:pages] = 'none'
   prefs[:github] = false
@@ -34,6 +33,7 @@ if prefer :apps4, 'learn-rails'
 
   if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
     prefs[:form_builder] = false
+    prefs[:jquery] = 'gem'
   else
     # Rails 5.0 version uses SimpleForm
     prefs[:form_builder] = 'simple_form'
