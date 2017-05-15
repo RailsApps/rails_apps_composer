@@ -89,6 +89,14 @@ case prefs[:frontend]
     add_gem 'foundation-rails', '~> 5.5'
 end
 
+## jQuery
+case prefs[:jquery]
+  when 'gem'
+    add_gem 'jquery-rails'
+  when 'yarn'
+    run 'bundle exec yarn add jquery'
+end
+
 ## Pages
 case prefs[:pages]
   when 'about'

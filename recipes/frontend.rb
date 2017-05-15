@@ -17,6 +17,12 @@ stage_two do
       generate 'layout:install foundation4 -f'
     when 'foundation5'
       generate 'layout:install foundation5 -f'
+    else
+      case prefs[:jquery]
+        when 'gem', 'yarn'
+        say_wizard "modifying application.js for jQuery"
+        insert_into_file('app/assets/javascripts/application.js', "//= require jquery\n", :before => /^ *\/\/= require rails-ujs/, :force => false)
+      end
   end
 
   ### GIT ###
