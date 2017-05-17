@@ -31,7 +31,7 @@ prefs[:templates] = multiple_choice "Template engine?", [["ERB", "erb"], ["Haml"
 ## Testing Framework
 if recipes.include? 'tests'
   prefs[:tests] = multiple_choice "Test framework?", [["None", "none"],
-    ["RSpec with Capybara", "rspec"]] unless prefs.has_key? :tests
+    ["RSpec", "rspec"]] unless prefs.has_key? :tests
   case prefs[:tests]
     when 'rspec'
       say_wizard "Adding DatabaseCleaner, FactoryGirl, Faker, Launchy, Selenium"
