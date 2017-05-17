@@ -3,7 +3,7 @@ h1. CHANGELOG
 h3. 3.1.27 May 17, 2017
 
 * remove gem 'capybara' for Rails 5.1 (already included in Rails 5.1)
-* remove gem 'selenium-webdriver'for Rails 5.1 (already included in Rails 5.1)
+* remove gem 'selenium-webdriver' for Rails 5.1 (already included in Rails 5.1)
 * update gem 'bootstrap' to 4.0.0.alpha6
 
 h3. 3.1.26 May 15, 2017
