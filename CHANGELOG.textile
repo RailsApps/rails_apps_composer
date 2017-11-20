@@ -1,5 +1,10 @@
 h1. CHANGELOG
 
+h3. 3.1.28 November 20, 2017
+
+* fix uninitialized constant error for Tempfile (thanks @shaoyangyu!)
+* changed call to 'confirm!' to 'confirm' in recipes/init.rb to fix the Devise confirmable module (thanks @tomelam!)
+
 h3. 3.1.27 May 17, 2017
 
 * remove gem 'capybara' for Rails 5.1 (already included in Rails 5.1)
