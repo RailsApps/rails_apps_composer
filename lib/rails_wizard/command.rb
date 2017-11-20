@@ -1,5 +1,6 @@
 require 'rails_wizard'
 require 'thor'
+require 'tempfile'
 
 module RailsWizard
   class Command < Thor
