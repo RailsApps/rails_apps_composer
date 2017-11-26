@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.29 November 26, 2017
+
+* factory_girl_rails gem is now named factory_bot_rails
+
 h3. 3.1.28 November 20, 2017
 
 * fix uninitialized constant error for Tempfile (thanks @shaoyangyu!)
