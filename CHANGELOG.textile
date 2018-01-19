@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.30 January 19, 2018
+
+* for Rails 5.2 and newer, create 'config/secrets.yml' file
+
 h3. 3.1.29 November 26, 2017
 
 * factory_girl_rails gem is now named factory_bot_rails

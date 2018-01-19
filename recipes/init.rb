@@ -4,6 +4,8 @@
 stage_three do
   say_wizard "recipe stage three"
   if (!prefs[:secrets].nil?)
+    copy_from_repo 'config/secrets.yml' if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 2
+    copy_from_repo 'config/secrets.yml' if Rails::VERSION::MAJOR >= 6
     prefs[:secrets].each do |secret|
       env_var = "  #{secret}: <%= ENV[\"#{secret.upcase}\"] %>"
       inject_into_file 'config/secrets.yml', "\n" + env_var, :after => "development:"
