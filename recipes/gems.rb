@@ -34,10 +34,19 @@ end
 ## Database Adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 gsub_file 'Gemfile', /gem 'pg'.*/, ''
-add_gem 'pg' if prefer :database, 'postgresql'
+if prefer :database, 'postgresql'
+  if Rails::VERSION::MAJOR < 5
+    add_gem 'pg', '~> 0.18'
+  else
+    if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR <= 1 && Rails::VERSION::MINOR <= 5
+      add_gem 'pg', '~> 0.18'
+    else
+      add_gem 'pg'
+    end
+  end
+end
 gsub_file 'Gemfile', /gem 'mysql2'.*/, ''
 add_gem 'mysql2', '~> 0.3.18' if prefer :database, 'mysql'
-
 ## Gem to set up controllers, views, and routing in the 'apps4' recipe
 add_gem 'rails_apps_pages', :group => :development if prefs[:apps4]
 

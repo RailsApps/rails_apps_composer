@@ -1,8 +1,13 @@
 h1. CHANGELOG
 
+h3. 3.1.31 February 9, 2018
+
+* for Rails 5.2 and newer, create 'config/secrets.yml' file whether or not the secrets preference is set
+* use 'pg' gem version 0.18 for Rails 5.1.4 and older (fixes https://github.com/RailsApps/rails_apps_composer/issues/368)
+
 h3. 3.1.30 January 19, 2018
 
-* for Rails 5.2 and newer, create 'config/secrets.yml' file
+* for Rails 5.2 and newer, create 'config/secrets.yml' file if the secrets preference is set
 
 h3. 3.1.29 November 26, 2017
 
