@@ -92,7 +92,7 @@ case prefs[:frontend]
   when 'bootstrap3'
     add_gem 'bootstrap-sass'
   when 'bootstrap4'
-    add_gem 'bootstrap', '~> 4.0.0.alpha6'
+    add_gem 'bootstrap', '~> 4.0.0'
   when 'foundation4'
     add_gem 'zurb-foundation', '~> 4.3.2'
     add_gem 'compass-rails', '~> 1.1.2'

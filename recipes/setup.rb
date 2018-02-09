@@ -6,6 +6,7 @@ HOST_OS = RbConfig::CONFIG['host_os']
 say_wizard "Your operating system is #{HOST_OS}."
 say_wizard "You are using Ruby version #{RUBY_VERSION}."
 say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
+say_wizard "Rails Composer built using rails_apps_composer #{RailsWizard.VERSION}."
 
 ## Is sqlite3 in the Gemfile?
 gemfile = File.read(destination_root() + '/Gemfile')
@@ -95,7 +96,7 @@ end
 ## Form Builder
 ## (no simple_form for Bootstrap 4 yet)
 unless prefs[:frontend] == 'bootstrap4'
-  prefs[:form_builder] = multiple_choice "Use a form builder gem?", [["None", "none"], ["SimpleForm (incompatible with Rails 5.1)", "simple_form"]] unless prefs.has_key? :form_builder
+  prefs[:form_builder] = multiple_choice "Use a form builder gem?", [["None", "none"], ["SimpleForm", "simple_form"]] unless prefs.has_key? :form_builder
 end
 
 ## Pages
