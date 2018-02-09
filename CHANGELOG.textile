@@ -4,7 +4,6 @@ h3. 3.1.32 February 9, 2018
 
 * Bootstrap 4 was released Jan 18, 2018 so no need to specify '~> 4.0.0.alpha6'
 * no need to warn about SimpleForm being incompatible with Rails 5.1
-* show the version of rails_apps_composer when Rails Composer runs
 
 h3. 3.1.31 February 9, 2018
 

@@ -6,7 +6,6 @@ HOST_OS = RbConfig::CONFIG['host_os']
 say_wizard "Your operating system is #{HOST_OS}."
 say_wizard "You are using Ruby version #{RUBY_VERSION}."
 say_wizard "You are using Rails version #{Rails::VERSION::STRING}."
-say_wizard "Rails Composer built using rails_apps_composer #{RailsWizard.VERSION}."
 
 ## Is sqlite3 in the Gemfile?
 gemfile = File.read(destination_root() + '/Gemfile')
