@@ -1,6 +1,6 @@
 h1. CHANGELOG
 
-h3. 3.1.33 February 13, 2018
+h3. 3.1.33 February 21, 2018
 
 * remove 'rails_stripe_membership_saas' option from example applications (no longer supported)
 
