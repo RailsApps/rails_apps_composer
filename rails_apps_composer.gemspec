@@ -15,12 +15,12 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "rails_apps_composer"
 
-  s.add_dependency "i18n", '~> 0.6'
-  s.add_dependency "activesupport", '~> 4.0'
-  s.add_dependency "thor", '~> 0.18'
-  s.add_dependency "rake", '~> 10.1'
-  s.add_development_dependency "rspec", '~> 2.14'
-  s.add_development_dependency "mg", '~> 0.0', '>= 0.0.8'
+  s.add_dependency "i18n", '~> 0.7'
+  s.add_dependency "activesupport", '~> 5.1'
+  s.add_dependency "thor", '~> 0.20'
+  s.add_dependency "rake", '~> 12.3'
+  s.add_development_dependency "rspec", '~> 3.7'
+  s.add_development_dependency "mg", '0.0.8'
 
   s.files         = Dir["lib/**/*.rb", "recipes/*.rb", "README.textile", "version.rb", "templates/*"]
   s.test_files    = Dir["spec/**/*"]
