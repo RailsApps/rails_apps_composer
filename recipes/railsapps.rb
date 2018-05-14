@@ -31,7 +31,7 @@ when "5"
         ["rails-stripe-coupons", "rails-stripe-coupons"]]
     when 'contributed_app'
       prefs[:apps4] = multiple_choice "No contributed applications are available.",
-        [["create custom application", "railsapps"]]
+        [["rails-signup-thankyou", "rails-signup-thankyou"]]
   end
 when "3"
   say_wizard "Please upgrade to Rails 4.1 or newer."

@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.34 May 14, 2018
+
+* add rails-signup-thankyou contributed application 
+
 h3. 3.1.33 February 21, 2018
 
 * remove 'rails_stripe_membership_saas' option from example applications (no longer supported)
