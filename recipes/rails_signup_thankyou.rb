@@ -6,12 +6,12 @@ if prefer :apps4, 'rails-signup-thankyou'
   prefs[:authorization] = 'roles'
   prefs[:dashboard] = 'none'
   prefs[:ban_spiders] = false
-  prefs[:better_errors] = false
+  prefs[:better_errors] = true
   prefs[:database] = 'sqlite'
-  prefs[:deployment] = 'heroku'
+  prefs[:deployment] = 'none'
   prefs[:devise_modules] = false
   prefs[:dev_webserver] = 'puma'
-  prefs[:email] = 'sendgrid'
+  prefs[:email] = 'none'
   prefs[:frontend] = 'bootstrap3'
   prefs[:layouts] = 'none'
   prefs[:pages] = 'none'
@@ -23,12 +23,14 @@ if prefer :apps4, 'rails-signup-thankyou'
   prefs[:secrets] = ['mailchimp_list_id', 'mailchimp_api_key']
   prefs[:pages] = 'about+users'
   prefs[:templates] = 'erb'
-  prefs[:tests] = false
+  prefs[:tests] = 'none'
   prefs[:locale] = 'none'
   prefs[:analytics] = 'none'
   prefs[:rubocop] = false
   prefs[:disable_turbolinks] = false
   prefs[:rvmrc] = true
+  prefs[:form_builder] = false
+  prefs[:jquery] = 'gem'
 
   # gems
   add_gem 'gibbon'
@@ -61,7 +63,7 @@ if prefer :apps4, 'rails-signup-thankyou'
 
     copy_from_repo 'app/views/visitors/index.html.erb', :repo => repo
     copy_from_repo 'app/views/products/product.pdf', :repo => repo
-    copy_from_repo 'app/views/thank_you/index.html', :repo => repo
+    copy_from_repo 'app/views/thank_you/index.html.erb', :repo => repo
 
     # >-------------------------------[ Routes ]--------------------------------<
 

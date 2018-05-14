@@ -13,7 +13,7 @@ case Rails::VERSION::MAJOR.to_s
 when "5"
   prefs[:apps4] = multiple_choice "Build a starter application?",
     [["Build a RailsApps example application", "railsapps"],
-    ["Contributed applications (none available)", "contributed_app"],
+    ["Contributed applications", "contributed_app"],
     ["Custom application (experimental)", "none"]] unless prefs.has_key? :apps4
   case prefs[:apps4]
     when 'railsapps'
@@ -30,7 +30,7 @@ when "5"
         ["rails-stripe-checkout", "rails-stripe-checkout"],
         ["rails-stripe-coupons", "rails-stripe-coupons"]]
     when 'contributed_app'
-      prefs[:apps4] = multiple_choice "No contributed applications are available.",
+      prefs[:apps4] = multiple_choice "Choose a starter application.",
         [["rails-signup-thankyou", "rails-signup-thankyou"]]
   end
 when "3"
