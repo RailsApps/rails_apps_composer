@@ -46,7 +46,17 @@ if prefer :database, 'postgresql'
   end
 end
 gsub_file 'Gemfile', /gem 'mysql2'.*/, ''
-add_gem 'mysql2', '~> 0.3.18' if prefer :database, 'mysql'
+if prefer :database, 'mysql'
+  if Rails::VERSION::MAJOR < 5
+    add_gem 'mysql2', '~> 0.3.18' if prefer :database, 'mysql'
+  else
+    if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR <= 1
+      add_gem 'mysql2', '~> 0.3.18' if prefer :database, 'mysql'
+    else
+      add_gem 'mysql2', '< 0.6.0', '>= 0.4.4'
+    end
+  end
+end
 ## Gem to set up controllers, views, and routing in the 'apps4' recipe
 add_gem 'rails_apps_pages', :group => :development if prefs[:apps4]
 
