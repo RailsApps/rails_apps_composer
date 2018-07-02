@@ -76,6 +76,13 @@ if prefs[:rubocop]
   copy_from_repo '.rubocop.yml'
 end
 
+## Bullet
+prefs[:bullet] = true if config['bullet']
+if prefs[:bullet]
+  say_wizard "recipe adding bullet"
+  add_gem 'bullet', :group => [:development]
+end
+
 ## Disable Turbolinks
 if config['disable_turbolinks']
   prefs[:disable_turbolinks] = true
@@ -192,7 +199,7 @@ config:
   - local_env_file:
       type: multiple_choice
       prompt: Add gem and file for environment variables?
-      choices: [ [None, none], [Add .env with Foreman, foreman]]
+      choices: [ [None, none], [Add .env with Foreman, foreman], [Add application.yml with Figaro, figaro]]
   - better_errors:
       type: boolean
       prompt: Improve error reporting with 'better_errors' during development?
@@ -205,3 +212,6 @@ config:
   - rubocop:
       type: boolean
       prompt: Use 'rubocop' to ensure that your code conforms to the Ruby style guide?
+  - bullet:
+      type: boolean
+      prompt: Use 'bullet' to detect eager loading or unused eager loading?
