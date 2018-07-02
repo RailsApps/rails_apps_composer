@@ -18,6 +18,14 @@ end
 stage_three do
   say_wizard "recipe stage three"
   if prefer :tests, 'rspec'
+    insert_into_file "spec/rails_helper.rb", "require 'capybara/rails'\n", :after => "require 'rspec/rails'\n"
+    append_to_file 'spec/rails_helper.rb', 
+      "Shoulda::Matchers.configure do |config|\n
+        config.integrate do |with|\n
+          with.test_framework :rspec\n
+          with.library :rails\n
+        end\n
+      end"
     if prefer :authentication, 'devise'
       generate 'testing:configure devise -f'
       if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
