@@ -51,6 +51,23 @@ if prefs[:pry]
   add_gem 'pry-rescue', :group => [:development, :test]
 end
 
+# Pry-byebug
+prefs[:pry_byebug] = true if config['pry_byebug']
+if prefs[:pry_byebug]
+  say_wizard "recipe adding pry-byebug gem"
+  add_gem 'pry-byebug', :group => [:development, :test]
+
+  stage_two do 
+    create_file '.pryrc', 
+    "if defined?(PryByebug)\n
+      Pry.commands.alias_command 'c', 'continue'\n
+      Pry.commands.alias_command 's', 'step'\n
+      Pry.commands.alias_command 'n', 'next'\n
+      Pry.commands.alias_command 'f', 'finish'\n
+    end"
+  end
+end
+
 ## Rubocop
 prefs[:rubocop] = true if config['rubocop']
 if prefs[:rubocop]
@@ -182,6 +199,9 @@ config:
   - pry:
       type: boolean
       prompt: Use 'pry' as console replacement during development and test?
+  - pry_byebug:
+      type: boolean
+      prompt: Implements 'binding.pry' as an alternative to byebug?
   - rubocop:
       type: boolean
       prompt: Use 'rubocop' to ensure that your code conforms to the Ruby style guide?
