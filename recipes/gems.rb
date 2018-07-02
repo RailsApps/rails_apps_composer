@@ -68,10 +68,9 @@ if prefer :tests, 'rspec'
   add_gem 'spring-commands-rspec', :group => :development
   add_gem 'factory_bot_rails', :group => [:development, :test]
   add_gem 'faker', :group => [:development, :test]
-  unless Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
-    add_gem 'capybara', :group => :test
-    add_gem 'selenium-webdriver', :group => :test
-  end
+  add_gem 'shoulda-matchers', :group => [:test]
+  add_gem 'capybara', :group => :test
+  add_gem 'selenium-webdriver', :group => :test
   add_gem 'database_cleaner', :group => :test
   add_gem 'launchy', :group => :test
   if prefer :continuous_testing, 'guard'
@@ -226,7 +225,8 @@ stage_two do
         say_wizard "recipe installing simple_form for use with Bootstrap"
         generate 'simple_form:install --bootstrap'
       when 'bootstrap4'
-        say_wizard "simple_form not yet available for use with Bootstrap 4"
+        say_wizard "recipe installing simple_form for use with Bootstrap"
+        generate 'simple_form:install --bootstrap'
       when 'foundation5'
         say_wizard "recipe installing simple_form for use with Zurb Foundation"
         generate 'simple_form:install --foundation'
