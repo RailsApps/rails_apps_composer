@@ -225,7 +225,8 @@ stage_two do
         say_wizard "recipe installing simple_form for use with Bootstrap"
         generate 'simple_form:install --bootstrap'
       when 'bootstrap4'
-        say_wizard "simple_form not yet available for use with Bootstrap 4"
+        say_wizard "recipe installing simple_form for use with Bootstrap"
+        generate 'simple_form:install --bootstrap'
       when 'foundation5'
         say_wizard "recipe installing simple_form for use with Zurb Foundation"
         generate 'simple_form:install --foundation'
