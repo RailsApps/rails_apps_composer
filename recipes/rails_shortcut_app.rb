@@ -30,6 +30,7 @@ if prefer :apps4, 'rails-shortcut-app'
   prefs[:rvmrc] = true
   prefs[:form_builder] = false
   prefs[:jquery] = 'gem'
+end
 
 __END__
 
