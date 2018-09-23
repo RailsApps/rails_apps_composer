@@ -31,6 +31,39 @@ if prefer :apps4, 'rails-signup-thankyou'
   prefs[:form_builder] = false
   prefs[:jquery] = 'gem'
 
+  stage_three do
+    say_wizard "recipe stage three"
+    repo = 'https://raw.github.com/RailsApps/rails-signup-thankyou/master/'
+
+    # >-------------------------------[ Models ]--------------------------------<
+
+    copy_from_repo 'app/models/user.rb', :repo => repo
+
+    # >-------------------------------[ Controllers ]--------------------------------<
+
+    copy_from_repo 'app/controllers/application_controller.rb', :repo => repo
+    copy_from_repo 'app/controllers/visitors_controller.rb', :repo => repo
+    copy_from_repo 'app/controllers/products_controller.rb', :repo => repo
+    copy_from_repo 'app/controllers/thank_you_controller.rb', :repo => repo
+
+    # >-------------------------------[ Views ]--------------------------------<
+
+    copy_from_repo 'app/views/visitors/index.html.erb', :repo => repo
+    copy_from_repo 'app/views/products/product.pdf', :repo => repo
+    copy_from_repo 'app/views/thank_you/index.html.erb', :repo => repo
+
+    # >-------------------------------[ Routes ]--------------------------------<
+
+    copy_from_repo 'config/routes.rb', :repo => repo
+
+    # >-------------------------------[ Tests ]--------------------------------<
+
+    copy_from_repo 'spec/features/users/product_acquisition_spec.rb', :repo => repo
+    copy_from_repo 'spec/controllers/products_controller_spec.rb', :repo => repo
+
+  end
+end
+
 __END__
 
 name: rails_signup_thankyou
