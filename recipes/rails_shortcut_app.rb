@@ -1,7 +1,7 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_signup_thankyou.rb
+# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_shortcut_app.rb
 
-if prefer :apps4, 'rails-signup-thankyou'
+if prefer :apps4, 'rails-shortcut-app'
   prefs[:authentication] = 'devise'
   prefs[:authorization] = 'roles'
   prefs[:dashboard] = 'none'
@@ -33,8 +33,8 @@ if prefer :apps4, 'rails-signup-thankyou'
 
 __END__
 
-name: rails_signup_thankyou
-description: "rails-signup-thankyou starter application"
+name: rails_shortcut_app
+description: "rails-shortcut-app starter application"
 author: RailsApps
 
 requires: [core]

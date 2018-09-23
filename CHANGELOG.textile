@@ -1,5 +1,9 @@
 h1. CHANGELOG
 
+h3. 3.1.36 September 23, 2018
+
+* add rails-shortcut-app contributed application
+
 h3. 3.1.35 May 16, 2018
 
 * option to remove Rails Turbolinks for Rails 5
