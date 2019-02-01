@@ -77,7 +77,7 @@ if prefer :tests, 'rspec'
   if prefer :continuous_testing, 'guard'
     add_gem 'guard-bundler', :group => :development
     add_gem 'guard-rails', :group => :development
-    add_gem 'guard-rspec', :group => :development
+    add_gem 'guard-rspec', :group => :development, :require => false
     add_gem 'rb-inotify', :group => :development, :require => false
     add_gem 'rb-fsevent', :group => :development, :require => false
     add_gem 'rb-fchange', :group => :development, :require => false
